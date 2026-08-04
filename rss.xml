@@ -2,195 +2,338 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-04</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-05</description>
 <item>
   <title>LLMs reward expertise</title>
   <link>https://www.seangoedecke.com/llms-reward-expertise/</link>
   <guid isPermaLink="false">https://www.seangoedecke.com/llms-reward-expertise/</guid>
-  <description>In the 2010s, if you had technical gaps (say, you couldn’t write CSS), you had to either rely on a skilled colleague or just hope that the answer to your exact problem was out there on the internet. Today, everyone can write sort-of-okay CSS by delegating the task to an LLM. LLMs make everybody int…</description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
-  <source>HN</source>
-</item><item>
-  <title>Devtools must be open source</title>
-  <link>https://blog.exe.dev/devtools-must-be-open-source</link>
-  <guid isPermaLink="false">https://blog.exe.dev/devtools-must-be-open-source</guid>
-  <description></description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
-  <source>HN</source>
-</item><item>
-  <title>Ten advances in mathematics and theoretical computer science</title>
-  <link>https://openai.com/index/ten-advances-in-mathematics/</link>
-  <guid isPermaLink="false">https://openai.com/index/ten-advances-in-mathematics/</guid>
-  <description></description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <description>Before LLMs, people with technical gaps relied on colleagues or the internet. Today, LLMs let users delegate tasks like writing CSS. Users get acceptable results in seconds. This shifts capability but depends on underlying expertise.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>HN</source>
 </item><item>
   <title>AI-Generated Images Discourage Me from Reading Your Blog</title>
   <link>https://nelson.cloud/ai-generated-images-discourage-me-from-reading-your-blog/</link>
   <guid isPermaLink="false">https://nelson.cloud/ai-generated-images-discourage-me-from-reading-your-blog/</guid>
-  <description>If you’re willing to use AI-generated images, how do I know the text isn’t AI-generated?</description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <description>AI-generated images in blog posts lead to reader skepticism. The author questions if such images mean the text is also AI-generated. This doubt reduces trust in the content. Engineers should consider source authenticity when evaluating online information.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
+  <source>HN</source>
+</item><item>
+  <title>Ray Bradbury&#x27;s &quot;There Will Come Soft Rains&quot; is set today (2026-08-04)</title>
+  <link>https://short-stories.co/@raybradbury/there-will-come-soft-rains-6k8vr4xxlnmj</link>
+  <guid isPermaLink="false">https://short-stories.co/@raybradbury/there-will-come-soft-rains-6k8vr4xxlnmj</guid>
+  <description>The short story &#x27;There Will Come Soft Rains&#x27; by Ray Bradbury is set on August 4, 2026. In the narrative, an automated house continues its functions after humans are gone. The voice-clock activates and sings. The house ejects breakfast, but no doors slam. The garage door opens to reveal a car that waits for no one. The structure sits alone in a destroyed city.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
+  <source>HN</source>
+</item><item>
+  <title>Xbox goes down. You can&#x27;t play games you own on disc</title>
+  <link>https://birchtree.me/blog/xbox-goes-down-you-cant-play-games-you-own-on-disc/</link>
+  <guid isPermaLink="false">https://birchtree.me/blog/xbox-goes-down-you-cant-play-games-you-own-on-disc/</guid>
+  <description>Xbox has a huge, extended outage that began Sunday evening. The outage prevents users from playing both digital and disc-based games. Players with physical discs cannot launch their games during this time. This event demonstrates that modern consoles depend on online services for basic access. Engineers must consider how to handle such failures in system design.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>HN</source>
 </item><item>
   <title>Bridging Artificial Intelligence and Power Systems Education Using a Hands-On Executable Framework</title>
   <link>http://arxiv.org/abs/2608.02599v1</link>
   <guid isPermaLink="false">http://arxiv.org/abs/2608.02599v1</guid>
-  <description>Artificial intelligence (AI) is increasingly central to power and energy systems, supporting modeling, forecasting, optimization, and control. Yet most existing works emphasize specialized applications and offer little reusable material for newcomers or interdisciplinary learners, who increasingly rely on large language models rather than building their own. This gap points to a need for engineering-grounded AI (EGAI), in which AI workflows follow established engineering and power-system domain rules rather than acting as task-agnostic black boxes. Motivated by a community survey of researchers and practitioners, which shows 92% report at least one barrier before running an AI model and 94% want a power-specific hands-on course. This paper presents a framework consisting of open, executable module library that lowers the entry barrier for AI in power systems. The modules follow a progressive difficulty ladder that maps core AI concepts onto representative power-system tasks: (i) foundational deep neural network (DNN) templates for function approximation and load-curve fitting; (ii) a domain-coupled convolutional neural network (CNN) power-flow surrogate for a 5-bus system; and (iii) frontier modules on DNN-assisted optimization, deep reinforcement learning (DRL) for battery storage control, and physics-informed neural networks (PINNs) for the swing equation. All modules are released as Jupyter notebooks that run locally or on Google Colab and are delivered through an IEEE online course and IEEE Power &amp; Energy Society (PES) webinar series. The webinar drew more than 590 live attendees, which is among the ten most-attended IEEE PES webinars, and over 344 repository visits within two weeks, reinforcing the survey-based motivation.</description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <description>Most AI material for power systems targets specialists and offers little for newcomers. A survey found 92% face barriers and 94% want hands-on courses. This paper presents an open framework with executable modules in Jupyter notebooks. IEEE webinars attracted over 590 attendees, showing strong interest.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>arXiv</source>
 </item><item>
   <title>Staying Productive Under the Palm Trees. On Graded Coeffect Typing in the Tropical Semiring</title>
   <link>http://arxiv.org/abs/2608.02596v1</link>
   <guid isPermaLink="false">http://arxiv.org/abs/2608.02596v1</guid>
-  <description>We show that the tropical semiring over the natural numbers, when used as the grading space in graded coeffect typing, faithfully models the passage of time while simultaneously guaranteeing productivity of well-typed programs. A grade a, when assigned to a function parameter, indicates that the parameter is not necessarily available immediately, but will become available after a time steps. We investigate this idea through two formal systems. We first introduce a graded type system featuring recursive and polymorphic types, and show that, in this setting, a natural restriction on recursive types is sufficient to guarantee productivity, while still allowing the definition of streams and recursive programs on them. In particular, we prove that Nakano&#x27;s later modality can be embedded directly into our system. We then show that tropical grading naturally suggests a novel form of intersection typing, in which the role traditionally played by sets or multisets of types is instead taken by &quot;timed&quot; sets, i.e., functions assigning to each type A the earliest time, represented as a grade, from which the underlying term is available with type A. For the resulting system, we prove not only that productivity is guaranteed, but that it is also characterized: the typable terms are exactly those with hereditarily head normal forms. Remarkably, the system is recursion-theoretically optimal, i.e., typability can be directly proved to be a $Π_0^2$ property in the arithmetical hierarchy.</description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <description>This work applies the tropical semiring to graded coeffect typing for modeling time delays. A grade on a function parameter indicates it becomes available after a number of steps. Two formal systems are introduced; one guarantees productivity for recursive programs. The second characterizes productivity, and typability is recursion-theoretically optimal.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>arXiv</source>
 </item><item>
   <title>onepot-Bench 0: towards lab-aware in silico chemistry benchmarks</title>
   <link>http://arxiv.org/abs/2608.02595v1</link>
   <guid isPermaLink="false">http://arxiv.org/abs/2608.02595v1</guid>
-  <description>Language models are playing an increasingly important role in laboratory science, performing tasks such as experiment planning, execution, and post-hoc analysis. However, precisely measuring their abilities is difficult, as scientific capabilities require a mixture of both problem-solving skills and domain-specific intuition. Existing evaluations rarely measure the capabilities required to make reliable decisions in a physical laboratory and often rely on public data that may have appeared in model training corpora. We introduce onepot-Bench 0, a proprietary benchmark suite for evaluating language models on synthetic chemistry capabilities relevant to wet-lab execution. onepot-Bench 0 comprises three complementary evaluations: ChemAbacus measures tool-free cheminformatics literacy and numerical reasoning; SynthRefusal characterizes safety and refusal behavior across a variety of benign, controlled, and designer-drug targets; and SynthBench evaluates reaction-outcome prediction and catalyst selection using private experimental data generated in our laboratory. Together, these evaluations probe basic competency, reliability, and deeper knowledge, all skills which are required for reliable performance in the lab.</description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <description>onepot-Bench 0 is a benchmark for evaluating language models in synthetic chemistry. It includes three tests: cheminformatics literacy, safety behavior, and reaction prediction. These evaluations use private experimental data to measure lab-relevant skills.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>arXiv</source>
 </item><item>
   <title>The Condition-Number Barrier in Sparse Least Squares</title>
   <link>http://arxiv.org/abs/2608.02588v1</link>
   <guid isPermaLink="false">http://arxiv.org/abs/2608.02588v1</guid>
-  <description>In [AS21], Axiotis and Sviridenko conjectured that the linear dependence on the restricted condition number in sparse convex optimization cannot be improved by a polynomial-time algorithm. We establish their conjectured lower bound for least-squares objectives, conditional on the randomized exact-volume Small-Set Expansion Hypothesis in the weighted regular-graph formulation of Raghavendra, Steurer, and Tulsiani [RST12]. Concretely, for every fixed $γ\in(0,1]$, there is no randomized polynomial-time algorithm that, with probability at least $2/3$, returns a vector $x$ such that, writing $s=\lVert x\rVert_0$, \[ \lVert Ax-b\rVert_2^2 \leq \min_{\lVert z\rVert_0\leq k}\lVert Az-b\rVert_2^2+\varepsilon \quad\text{and}\quad s=O\!\left(k\,κ_{s+k}^{\,1-γ}\right), \] where $κ_r$ is the restricted condition number at sparsity level $r$. The result holds even on rational instances with $A$ of full column rank. The proof was first obtained using a fully automated Gemini-based agentic system developed internally at Google. The authors have verified the proof and edited it for clarity of presentation.</description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <description>Researchers prove a lower bound for sparse least squares problems, conditional on the Small-Set Expansion Hypothesis. No efficient algorithm can achieve the required sparsity with the given condition number. The proof was automated using a Gemini-based system.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>arXiv</source>
 </item><item>
   <title>GradCuit: Credit-Assigned Gradient Flow Enables Robust and Interpretable Test-Time Latent Reasoning</title>
   <link>http://arxiv.org/abs/2608.02585v1</link>
   <guid isPermaLink="false">http://arxiv.org/abs/2608.02585v1</guid>
-  <description>Optimization-based latent reasoning improves large language model outputs by optimizing instance-specific continuous states at test time while keeping model parameters frozen. Existing methods, however, typically connect these states to the reasoning trajectory through decoded tokens, making sequence-level credit assignment indirect and obscuring how latent updates shape subsequent reasoning. We introduce GradCuit (gradient through circuit), which inserts optimizable latent states at a selected Transformer layer between the hidden representations of the prompt and the generated continuation. Causal self-attention provides every continuation-token log-probability with a differentiable path to every preceding latent state through the remaining Transformer blocks, enabling reward-weighted gradients from the entire continuation to be assigned directly to the latents. Across five instruction-tuned backbones, three reasoning benchmarks, and two answer formats, GradCuit achieves an average accuracy of 64.5%, outperforming chain-of-thought prompting by 6.6 percentage points and the strongest competing method by 2.4 points. GradCuit also demonstrates greater robustness: across seven learning-rate settings, it consistently outperforms LatentSeek while reducing the standard deviation of accuracy from 1.53 to 0.82, and even its random-walk variant remains competitive with LatentSeek. For interpretability, token-level gradient attribution reveals that latent influence concentrates on reasoning-connector tokens, while layer analysis identifies early-to-middle Transformer layers as the most effective optimization space. By directly optimizing internal reasoning from outcome feedback, GradCuit opens a new axis of robust and interpretable test-time scaling, where LLMs adapt how they reason rather than merely regenerate, sample, or rerank outputs.</description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <description>GradCuit improves LLM reasoning by inserting optimizable latent states in Transformers. It allows direct gradient assignment from outcomes to latents for better optimization. On benchmarks, it achieves 64.5% accuracy, outperforming chain-of-thought by 6.6 points. GradCuit is more robust and interpretable.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>arXiv</source>
 </item><item>
   <title>UEmbed: Unified Sparse and Dense Multimodal Embeddings</title>
   <link>http://arxiv.org/abs/2608.02583v1</link>
   <guid isPermaLink="false">http://arxiv.org/abs/2608.02583v1</guid>
-  <description>Sparse retrieval underpins modern search systems, from web search to retrieval-augmented generation. Existing work has introduced Learned Sparse Retrieval (LSR) to push beyond exact lexical matching toward richer semantics. Yet LSR has so far remained tied to encoder-style bidirectional architectures, and its extension to multimodal settings still relies heavily on auxiliary cross-modal modules. To address these limitations, we introduce UEmbed (Unified Embedding), a decoder-only multimodal embedding model that produces both sparse lexical and dense representations in one causal forward pass. UEmbed appends N learnable special tokens to the input and partitions the vocabulary into N disjoint subsets. Each token&#x27;s causal hidden state predicts sparse weights over its assigned subset, and the N subsets are concatenated into the full sparse vector. Trained on public data, we release UEmbed at 2B, 4B, and 9B scales. UEmbed-9B reaches 71.8 (dense) and 71.0 (sparse) on MMEB-v2, outperforming multimodal embedding models trained on publicly available data (e.g., RzenEmbed). On BEIR, UEmbed also remains competitive with strong dense and sparse baselines. Furthermore, we demonstrate the practical utility of UEmbed across three dimensions: effectiveness, efficiency, and agentic applications. Overall, UEmbed offers a new paradigm: it unifies dense and sparse embeddings in one model, while further extending sparse retrieval to unify text and multimodal inputs.</description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <description>UEmbed is a decoder-only model that generates both sparse and dense embeddings in one pass. It uses learnable tokens to predict sparse weights over vocabulary subsets. Trained on public data, it scores 71.8 dense and 71.0 sparse on MMEB-v2. UEmbed unifies text and multimodal inputs efficiently.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>arXiv</source>
+</item><item>
+  <title>Show HN: Fine-tune an 8B model on a 4 GB laptop GPU</title>
+  <link>https://github.com/MakazhanAlpamys/Soup</link>
+  <guid isPermaLink="false">https://github.com/MakazhanAlpamys/Soup</guid>
+  <description>Soup simplifies the fine-tuning of large language models. It turns a complex workflow into one configuration and one command. The tool completes the process after the command runs. Engineers save time and reduce effort in model training. This makes fine-tuning more accessible for developers.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
+  <source>HN</source>
 </item><item>
   <title>Show HN: Hacker News with AI stories filtered out</title>
   <link>https://hcker.news/?view=frontpage&amp;ai=exclude</link>
   <guid isPermaLink="false">https://hcker.news/?view=frontpage&amp;ai=exclude</guid>
-  <description>Hi folks, I&#x27;ve noticed that a lot of people here seem exhausted by the amount of AI news on the front page. I shared hcker.news here a year ago and it has since gained a ton of filtering features, including a dedicated AI filter, so I figured I should tell more people about it. The filter works in three passes: 1. Known AI-related keywords and domains are filtered automatically. 2. An agent reviews the remaining articles and removes those it identifies as AI-related. 3. I make the call on uncertain cases. You can also exclude GitHub repos posted to HN that show signs of AI authorship. The filter checks: - Commit messages for agent attribution - Contributors for known coding agents - Repository files for agent instructions and configs No filter will be perfect, but this is as good as it gets. lmk what you think. Cheers. More links: Original Show HN: https://news.ycombinator.com/item?id=44075353 If you only want AI stories: https://hcker.news/?view=frontpage&amp;ai=include RSS: https://hcker.news/feeds/atom?period=day&amp;ai=exclude A github-only non-AI feed: https://hcker.news/?ai=exclude&amp;include_domains=github.com</description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
-  <source>HN</source>
-</item><item>
-  <title>Show HN: Product analytics (and evals) for agent sessions on your MCP</title>
-  <link>https://armature.tech/</link>
-  <guid isPermaLink="false">https://armature.tech/</guid>
-  <description>Hi HN! We’re Theodore and Louis, founders of Armature (YC P26). We reconstruct the entire session behind the MCP tool calls you receive, including what the user asked their agent to do and what the agent thought. You wrap your MCP in 3 lines of code (our SDK is available in Typescript, Python and Go) and start seeing in your dashboard: - All sessions reconstructed: it’s like reading the real conversation the user had inside Claude or ChatGPT! - A ranking of your MCP most popular use cases, built from sessions clustering - The most frequent issues your users’ agents encounter so you can fix them. Here is a quick demo: https://youtu.be/ZFlvquhyNMQ The story behind this is that we initially launched Armature as a standalone testing tool ( https://www.ycombinator.com/launches/QQc-armature-making-you... ) that could naturally be used through an MCP itself. We quickly realized we had no idea how our users were using Armature MCP and if they were satisfied with it or frustrated. It’s something we had also experienced in our previous companies: Louis built MCPs exposed to millions of users and Theo was a Forward Deployed Engineer at Palantir before joining a Datadog spin-off as Founding Engineer. Both testing and product analytics had always been real pains when exposing a product to agents but we always thought there wasn’t much we could do about analytics because the conversation lived in our users’ AI client. Then it struck us: what if we asked the agents why they were making this or that tool call? And what’s the user&#x27;s intent or potential frustration? So we started experimenting with MCP instrumentation and the use-cases actually surprised us! Many of our first customers had implemented workarounds for their CI to trigger new tests or for their coding agents to fetch the results efficiently. Even though we talked to our first users regularly, they had never shared this feedback with us. We then built automations to automatically cluster use-cases, identify issues frequently encountered and let our own coding agents fix them. When our CTO friends heard about this, they wanted to try it for themselves so we gave them access to a cloned version of our internal product and they started sharing feedback like they never did on our “real” product! That’s when we decided to start working seriously on MCP Analytics as a product. At first we were afraid of degrading MCP performance so we iterated until we reached the exact same success rate as without our instrumentation (89.17 % vs 89.15 % pass rate out of 870 runs). Then privacy was an obvious constraint so we applied the same methods we had learned from working with banking data or building sensitive data scanning in logs. Today, redaction runs client-side before reaching our servers. There are still a lot of things we haven’t fully figured out: not all fields are equally filled by all models, session fingerprinting for serverless / stateless MCPs isn’t perfect, and use-case clustering remains to be optimized. But we are finally launching our analytics product to everyone, self-serve at https://armature.tech with a set-up that takes less than 5 minutes and a generous free tier. And now we are working on fully closing the loop, bringing evals back in our product so we can: identify top workflows and issues -&gt; recommend fixes and improvements -&gt; test fixes at scale on the same workflows run by users, across all harnesses and models -&gt; open PRs to ship fixes directly. The evals can be generated automatically from the session analytics so you can catch every regression and can test every improvement’s real impact across all models and harnesses before shipping it. Here’s an example to make it more concrete: 10 days ago, a marketing automation platform which has had early access to what we built for weeks identified thanks to MCP Analytics that users were frustrated not being able to change their target audience after campaign creation. So they shipped the feature and tested it successfully…</description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <description></description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>HN</source>
 </item><item>
   <title>Soppo - Go, with the features it&#x27;s missing</title>
   <link>https://soppolang.dev/</link>
   <guid isPermaLink="false">https://soppolang.dev/</guid>
-  <description></description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <description>&lt;think&gt;Let me carefully read the article about Soppo and craft a summary that covers:
+- What it is (a Go-compatible language with extra features)
+- Main claims/features
+- Notable details (numbers, specifics)
+- Why it matters to a working engineer
+
+Key facts from the article:
+- Soppo is described as &quot;Go, with the features it&#x27;s missing&quot;
+- Adds type safety and ergonomics with full interop
+- Uses Go syntax wherever possible
+- Can use any Go library directly, keep existing tooling, introduce gradually
+- Features:
+  1. Enums and pattern matching - tagged unions with struct variants, compiler catches missing branches
+  2. Error handling with `?` operator - replaces repetitive `if err != nil` blocks
+  3. Nil safety - tracks nilability at compile time, narrows type after nil check
+  4. Clear error messages - shows relevant code, highlights problem, suggests fix
+- Installation via SOPMOD (version manager at github.com/halcyonnouveau/sopmod) which also manages Go
+- Or install `sop` binary via Cargo (requires Rust and Go)
+- Internally uses Go for compilation
+
+Notable details:
+- The `?` operator for error propagation
+- `?*User` syntax marks nilable types
+- Example server on :8080
+- Area calculation uses 3.14159 for circle
+
+Let me write 4-6 sentences, 100-150 words, present tense, prose, no lists.&lt;/think&gt;
+
+Soppo is a new programming language positioned as &quot;Go, with the features it&#x27;s missing,&quot; designed to layer type safety and ergonomics onto Go while preserving full interoperability with existing Go libraries and tooling. Its main additions include tagged-union enums with exhaustive pattern matching, a `?` operator that replaces repetitive `if err != nil` blocks with concise error propagation, and compile-time nilability tracking that uses a `?` prefix (such as `?*User`) to mark types that may be nil and automatically narrows the type after a nil check. The compiler produces error messages that point to the offending line, highlight the problem, and suggest fixes, with one example flagging a missing `Green` variant in a match expression. Soppo compiles through Go internally and can be installed via the SOPMOD version manager or directly as a `sop` binary through Cargo. For working engineers, the appeal is gradual adoption in existing Go projects, gaining stronger compile-time guarantees without abandoning the Go ecosystem or rewriting working code.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>Lobsters</source>
 </item><item>
   <title>Kill the Cookie Banner</title>
   <link>https://killthecookiebanner.eu/</link>
   <guid isPermaLink="false">https://killthecookiebanner.eu/</guid>
-  <description></description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <description>&lt;think&gt;The user wants a 4-6 sentence summary of the article, about 100-150 words, in prose form. I need to cover:
+- What it is
+- Main claim or finding
+- One or two notable numbers/details
+- Why it matters to a working engineer
+
+Let me extract key facts:
+- EU Commission proposed in Autumn 2025, as part of Digital Omnibus reform, to replace cookie banners with automated browser-level privacy preference signals
+- Tracking industry (led by Google) lobbying against it
+- Up to 90% of users click &quot;YES&quot; on cookie banners, but only ~3% actually want to be tracked
+- Some US states already legally support privacy preference signals
+- EU law says tracking is prohibited by default
+- Member States and European Parliament haven&#x27;t decided yet
+- Action: contact representatives
+
+For a software engineer audience, this matters because engineers build the cookie banner mechanisms and would need to implement the new privacy signals system if it passes. It&#x27;s relevant to frontend/backend web development.
+
+Let me write 4-6 sentences, 100-150 words:
+
+The EU Commission proposed in Autumn 2025, as part of its Digital Omnibus reform, to replace cookie banners with automated browser-level privacy preference signals that communicate consent between devices and websites. The core problem is that cookie banners are deliberately misleading, producing up to 90% click-through rates even though only about 3% of users actually want to be tracked online. Despite the proposal drawing on technology already used for preferences like language settings—and already legally supported in some US states—lobbying from Google and the tracking industry has pushed several EU Member States to block it. The European Parliament has not yet finalized its position. For working engineers, this matters because any future EU rule would reshape how consent flows through web and app stacks, potentially replacing front-end consent UI with standardized browser signals—a change that would touch authentication, analytics, and ad-tech integrations across the industry.
+
+Let me count: 137 words. Good.
+
+Let me check sentences: 5 sentences. Good.
+
+Facts verified:
+- Autumn 2025 ✓
+- Digital Omnibus ✓
+- ~90% ✓
+- ~3% ✓
+- Google ✓
+- US states ✓
+- Member States blocking ✓
+- Parliament not decided ✓
+
+Tone is declarative, present tense. Doesn&#x27;t start with &quot;This article&quot;. No lists. No JSON.&lt;/think&gt;
+
+The EU Commission proposed in Autumn 2025, as part of its Digital Omnibus reform, to replace cookie banners with automated browser-level privacy preference signals that communicate consent between a user&#x27;s device and the websites or apps they visit. The campaign frames cookie banners as deliberately misleading design, noting that up to 90% of users click &quot;YES&quot; even though only about 3% actually want to be tracked online. The technical proposal closely mirrors mechanisms browsers already use for preferences such as language, and similar privacy signals are already legally supported in some US states. Despite this, lobbying from</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
+  <source>Lobsters</source>
+</item><item>
+  <title>Twenty Years of Pandoc</title>
+  <link>https://pandoc.org/twenty-years-of-pandoc.html</link>
+  <guid isPermaLink="false">https://pandoc.org/twenty-years-of-pandoc.html</guid>
+  <description>&lt;think&gt;The user wants a 4-6 sentence summary of the article &quot;Twenty Years of Pandoc&quot; by John MacFarlane. Let me extract the key facts:
+
+1. Pandoc was first released on August 3, 2006, written in Haskell
+2. Initial version (0.1) was about 3000 lines of Haskell code
+3. It became the most popular program written in Haskell
+4. Supports over fifty document formats
+5. Key technical decision: parses documents into an abstract syntax tree (AST) using parser combinators, then renders to output format - more reliable than regex-based converters
+6. N readers × M writers = N×M conversions architecture
+7. Pandoc 1.0 released September 2008
+8. Pandoc 1.9 (2012) added Word docx output
+9. Pandoc 1.13 added Org-mode, docx reader, EPUB input
+10. Commonmark spec emerged from MacFarlane&#x27;s work in 2014
+11. Pandoc 1.14 (2015) added Commonmark support
+12. Integrated into academic tools like Quarto and Jupyter Notebook
+
+The main claim/finding is the history of how this Haskell document converter grew from a 3000-line personal project into the most popular Haskell program with over 200 releases, supporting 50+ formats, using an extensible AST-based architecture.
+
+Key technical details:
+- AST-based approach vs regex transformations (N×M conversions)
+- Parser combinator library (parsec)
+- 3000 lines of code initially, 200+ releases, 50+ formats
+- Now integrated into Quarto and Jupyter
+
+Why it matters to working engineers:
+- Document conversion is a real pain point
+- The extensible architecture is a useful design pattern
+- Many engineers use pandoc daily
+
+Let me write 4-6 sentences, 100-150 words, prose, no lists, present tense, declarative, no &quot;This article&quot; opener.
+
+Draft:
+Pandoc, the universal document converter written in Haskell by John MacFarlane, was first released on August 3, 2006, as a roughly 3,000-line program with no external dependencies. Its defining architectural choice was to parse input documents into an abstract syntax tree using parser combinators and then render them to output formats, which proved more reliable than the regex-based Markdown converters that existed at the time. This N readers by M writers design enabled an extensible system that grew to over two hundred releases and more than fifty supported formats. Major milestones include Word docx output in version 1.9 (2012), customizable Lua writers and JSON filters in 2013, and Commonmark support added in pandoc 1.14 (2015). Today pandoc is the most popular Haskell program, is integrated into tools like Quarto and Jupyter Notebook, and remains the de facto standard for programmatic document conversion.
+
+Let me count: 5&lt;/think&gt;</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>Lobsters</source>
 </item><item>
   <title>Don&#x27;t be a meat proxy</title>
   <link>https://gruhn.me/blog/2026-08-03/</link>
   <guid isPermaLink="false">https://gruhn.me/blog/2026-08-03/</guid>
-  <description></description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <description>&lt;think&gt;The user wants a 4-6 sentence summary (100-150 words) of this article. The article is about &quot;Don&#x27;t be a meat proxy&quot; - it&#x27;s an opinion piece arguing against being a passive intermediary for AI-generated content, especially in code reviews and communications.
+
+Key points:
+1. The author argues against being a &quot;meat proxy&quot; - a person who relays AI output without adding value
+2. AI output is verbose, jargon-dense, and contains plausible nonsense
+3. The author advocates reading, understanding, and validating AI output before sharing
+4. In code reviews, the danger is that someone copies tickets into AI, doesn&#x27;t read the code, and just relays feedback to AI - resulting in the reviewer doing the actual implementation
+5. Writing responses in your own words is a &quot;certificate&quot; that you&#x27;ve understood the content
+
+Notable details/numbers:
+- References Claude and Claude Code specifically
+- Mentions Slack, merge/pull requests, WhatsApp group
+- Says shipping code can be done with &quot;close to zero effort now&quot;
+- Example: &quot;Jesus. I had to lookup almost every word&quot; - Claude generated this sentence
+
+Why it matters to engineers:
+- If you&#x27;re not actually understanding AI-generated code you&#x27;re reviewing/approving, you&#x27;re not doing your job
+- Real value comes from understanding and validating, not just relaying
+- Code review integrity is at stake
+
+Let me write a 4-6 sentence summary, 100-150 words, prose, present tense, no lists, no JSON, no &quot;This article&quot; opener.&lt;/think&gt;
+
+The post critiques engineers who act as &quot;meat proxies&quot; by relaying AI-generated responses without understanding them, whether in Slack conversations, code reviews, or group chats. The author argues that AI output is verbose, jargon-dense, and often contains plausible nonsense, citing a Claude response—&quot;Jesus.&quot;—that required looking up nearly every word. Rather than forwarding raw AI output, the writer urges engineers to read, understand, and validate generated content before responding in their own words, framing that effort as real added value. In code review specifically, the concern is that a developer can ship work with close to zero effort by pasting ticket descriptions and reviewer feedback into Claude Code, which means reviewers end up doing the implementation rather than the ticket author. The takeaway for working engineers is that authentic review and communication require genuine comprehension, and outsourcing that step to an AI intermediary undermines both accountability and quality.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>Lobsters</source>
 </item><item>
   <title>help wanted</title>
   <link>https://lake.computer/blog/help-wanted/</link>
   <guid isPermaLink="false">https://lake.computer/blog/help-wanted/</guid>
   <description></description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>Lobsters</source>
 </item><item>
   <title>The Future of GNOME Boxes</title>
   <link>https://blogs.gnome.org/feborges/future-of-boxes/</link>
   <guid isPermaLink="false">https://blogs.gnome.org/feborges/future-of-boxes/</guid>
-  <description></description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
-  <source>Lobsters</source>
-</item><item>
-  <title>Reliability Lessons From SQLite</title>
-  <link>https://www.youtube.com/watch?v=V_qzqY1bb7I</link>
-  <guid isPermaLink="false">https://www.youtube.com/watch?v=V_qzqY1bb7I</guid>
-  <description></description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <description>&lt;think&gt;The article is about the future of GNOME Boxes, a virtualization frontend. Let me extract key facts:
+
+- Author (Felipe Borges) spent two years rebuilding GNOME Boxes from the ground up
+- Three main factors: shifting to Flatpak-first model, migrating to GTK4 and Libadwaita, modernizing the codebase
+- Replaced SPICE display widget with Libmks
+- Beta release for testing, not production
+- Installed via: flatpak install org.gnome.Boxes.Devel from GNOME Nightly Flatpak Repository
+- Covers creating VMs from ISO media and qcow2 disk images
+- Can install Windows 11 without manual workarounds - configures Secure Boot and virtual TPM automatically
+- Addressed Flatpak sandboxing issues with VSOCK device and SSH access (systemd v256+)
+- Initial support for port forwarding
+- Author works on this in free time alongside GNOME Settings and Red Hat job
+- Website: nightly.gnomeboxes.org
+
+Let me write a 4-6 sentence summary (100-150 words) covering:
+- What it is: rewrite of GNOME Boxes
+- Main claim/finding: Flatpak-only, GTK4, modernized
+- Notable details: Windows 11 support without workarounds, VSOCK for SSH access
+- Why it matters to a working engineer
+
+Let me draft:
+
+GNOME Boxes has been rebuilt from scratch over two years as a Flatpak-only, GTK4-based virtualization frontend for libvirt and qemu. The rewrite replaces the legacy GTK3 SPICE display widget with Libmks, modernizes the codebase for new contributors, and bundles the full virtualization stack inside the Flatpak to avoid host-service dependencies on immutable Linux distributions. A beta release is now available for testing via `flatpak install org.gnome.Boxes.Devel` from the GNOME Nightly repository, though users are warned it is not for production and should back up VM data first. The new version covers classic features like creating VMs from ISO media and qcow2 images, and notably installs Windows 11 with no manual workarounds by automatically configuring Secure Boot and a virtual TPM. To overcome Flatpak sandboxing, it adds a VSOCK device for direct SSH access to guests running systemd v256 or newer, plus initial port-forwarding support, making it easier for engineers to reach services inside VMs from the host.
+
+Let me count words: GNOME(1) Boxes(2) has(3) been(4) rebuilt(5) from(6) scratch(7) over(8) two(9) years(10) as(11) a(12) Flatpak-only,(13) GTK4-based(14) virtualization(15) frontend(16) for(17) libvirt(18) and(19) qemu.(20) The(21) rewrite(22) replaces(23) the(24) legacy(25) GTK3(26) SPICE&lt;/think&gt;</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>Lobsters</source>
 </item><item>
   <title>FFmpeg 9.0</title>
   <link>https://github.com/FFmpeg/FFmpeg/blob/n9.0/RELEASE_NOTES</link>
   <guid isPermaLink="false">https://github.com/FFmpeg/FFmpeg/blob/n9.0/RELEASE_NOTES</guid>
-  <description></description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
-  <source>HN</source>
-</item><item>
-  <title>Show HN: Run an 80B Qwen in 4.3 GB of RAM on a Mac, and a 35B on an iPhone</title>
-  <link>https://github.com/leonickson1/Swiftlet</link>
-  <guid isPermaLink="false">https://github.com/leonickson1/Swiftlet</guid>
-  <description></description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <description>&lt;think&gt;The article text provided is essentially empty - it&#x27;s just an error message about a page failing to load. There&#x27;s no actual content about FFmpeg 9.0 to summarize. I should not invent facts or details that aren&#x27;t in the article. I&#x27;ll need to be honest about this limitation while still being helpful.
+
+Let me note what&#x27;s actually in the article: only an error message saying &quot;There was an error while loading. Please reload this page.&quot; There&#x27;s nothing else.
+
+I should write a brief response acknowledging I can&#x27;t summarize content that isn&#x27;t there, without inventing any details about FFmpeg 9.0.&lt;/think&gt;
+
+The article content could not be loaded, so no summary can be written from it.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>HN</source>
 </item><item>
   <title>DeepSeek V4 Flash on a Single AMD MI300X</title>
   <link>https://github.com/ryanzhou/deepseek-v4-flash-mi300x</link>
   <guid isPermaLink="false">https://github.com/ryanzhou/deepseek-v4-flash-mi300x</guid>
   <description></description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>HN</source>
+</item><item>
+  <title>Enabling the next iteration of the borrow checker on nightly</title>
+  <link>https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nighty/</link>
+  <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nighty/</guid>
+  <description>The Rust team enables Polonius Alpha on nightly builds for testing. This borrow checker introduces flow-sensitive analysis for lifetime outlives relationships. It compiles code that NLL rejects, such as cases with flow-dependent borrows. Some legacy Polonius code may not compile with this version. Performance regressions are minimal, based on top ten thousand crates. Engineers can report issues on GitHub or Zulip before full stabilization later this year.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
+  <source>Rust Blog</source>
 </item><item>
   <title>The Agent Development Lifecycle has arrived on Cloudflare</title>
   <link>https://blog.cloudflare.com/agent-development-lifecycle/</link>
   <guid isPermaLink="false">https://blog.cloudflare.com/agent-development-lifecycle/</guid>
-  <description>Agents can write code faster than teams can review, deploy, and maintain it. Today we’re introducing the Agent Development Lifecycle and the Cloudflare primitives that underpin it</description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <description>AI agents write code faster than teams can review, deploy, and maintain it. Cloudflare introduces the Agent Development Lifecycle. The lifecycle uses Cloudflare primitives to support this process.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>Cloudflare</source>
 </item><item>
   <title>Announcing Cloudflare Wallets: the programmable wallet for the agentic Internet</title>
   <link>https://blog.cloudflare.com/wallets/</link>
   <guid isPermaLink="false">https://blog.cloudflare.com/wallets/</guid>
-  <description>Cloudflare Wallets will provide AI agents with native payments and verifiable identity on the web. Using the x402 protocol, agents can autonomously purchase APIs and content within clear safety guardrails.</description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <description>Cloudflare Wallets give AI agents native payments and verifiable identity on the web. Agents use the x402 protocol to purchase APIs and content autonomously. The purchases operate within clear safety guardrails.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>Cloudflare</source>
 </item><item>
   <title>Run CI/CD for millions of repos — on your platform, on Cloudflare</title>
   <link>https://blog.cloudflare.com/ci-workflows/</link>
   <guid isPermaLink="false">https://blog.cloudflare.com/ci-workflows/</guid>
-  <description>Learn how to build customizable, sandboxed CI/CD pipelines natively on Cloudflare using Workflows, Artifacts, and the CI SDK. We walk through replacing complex YAML configurations with TypeScript workflow steps and self-healing AI agents.</description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <description>Engineers can build customizable, sandboxed CI/CD pipelines on Cloudflare. They use Workflows, Artifacts, and the CI SDK. The approach replaces complex YAML with TypeScript workflow steps. Self-healing AI agents manage the pipelines.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>Cloudflare</source>
 </item><item>
   <title>How Cloudflare enforces engineering standards using AI</title>
   <link>https://blog.cloudflare.com/engineering-standards-enforcement/</link>
   <guid isPermaLink="false">https://blog.cloudflare.com/engineering-standards-enforcement/</guid>
-  <description>We created the Cloudflare Codex, a governed body of engineering standards that AI agents consume across the development lifecycle. By pairing structured RFCs with agentic reviews, teams automatically enforce consistency across code, specs, and incident reports.</description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <description>Cloudflare created Codex, a governed body of engineering standards. AI agents consume these standards across the development lifecycle. Teams pair structured RFCs with agentic reviews. This automatically enforces consistency across code, specs, and incident reports.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>Cloudflare</source>
 </item><item>
-  <title>Don’t stop early: Case-folding source code at memory speed</title>
-  <link>https://github.blog/engineering/architecture-optimization/dont-stop-early-case-folding-source-code-at-memory-speed/</link>
-  <guid isPermaLink="false">https://github.blog/engineering/architecture-optimization/dont-stop-early-case-folding-source-code-at-memory-speed/</guid>
-  <description>How a branch-free loop and byte-space arithmetic let GitHub case-fold every byte of code search at &gt;45 GiB/s on a single core. The post Don’t stop early: Case-folding source code at memory speed appeared first on The GitHub Blog .</description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
-  <source>GitHub Blog</source>
-</item><item>
-  <title>Stacked sessions and pull requests in the GitHub Copilot app</title>
-  <link>https://github.blog/ai-and-ml/github-copilot/stacked-sessions-and-pull-requests-in-the-github-copilot-app/</link>
-  <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/stacked-sessions-and-pull-requests-in-the-github-copilot-app/</guid>
-  <description>Learn how I modernized an old codebase of mine using stacked sessions and pull requests in the GitHub Copilot app. The post Stacked sessions and pull requests in the GitHub Copilot app appeared first on The GitHub Blog .</description>
-  <pubDate>Tue, 04 Aug 2026 19:40:55 +0530</pubDate>
+  <title>Turn one giant AI-generated pull request to a reviewable stack</title>
+  <link>https://github.blog/engineering/turn-one-giant-ai-generated-pull-request-to-a-reviewable-stack/</link>
+  <guid isPermaLink="false">https://github.blog/engineering/turn-one-giant-ai-generated-pull-request-to-a-reviewable-stack/</guid>
+  <description>AI coding agents produce one large pull request that is hard to review. The method uses GitHub stacked pull requests to decompose the work. It creates a clean, ordered stack of pull requests. This lets engineers review code in smaller, manageable pieces. The approach makes AI-generated changes easier to handle.</description>
+  <pubDate>Wed, 05 Aug 2026 00:25:37 +0530</pubDate>
   <source>GitHub Blog</source>
 </item>
 </channel></rss>

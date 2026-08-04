@@ -346,20 +346,23 @@ FREE_MODELS = [
 
 
 def _llm_key():
-    return (os.environ.get("OPENCODE_ZEN_API_KEY")
+    return (os.environ.get("MINIMAX_API_KEY")
+            or os.environ.get("OPENCODE_ZEN_API_KEY")
             or os.environ.get("KIMI_API_KEY"))
 
 
 def _llm_endpoint():
-    """Return (url, key, model). Prefer Hermes's default model (deepseek-free
-    via opencode-zen); fall back to Kimi. Explicit LLM_URL/LLM_API_KEY/LLM_MODEL
-    env override everything."""
+    """Return (url, key, model). Prefer Hermes's default model (MINIMAX/M3 via
+    api.minimax.io); fall back to opencode-zen (free), then to Kimi. Explicit
+    LLM_URL/LLM_API_KEY/LLM_MODEL env override everything."""
     if os.environ.get("LLM_URL") or os.environ.get("LLM_API_KEY") or os.environ.get("LLM_MODEL"):
         return (
             os.environ.get("LLM_URL", DEFAULT_LLM_URL),
             os.environ.get("LLM_API_KEY") or _llm_key(),
             os.environ.get("LLM_MODEL", DEFAULT_LLM_MODEL),
         )
+    if os.environ.get("MINIMAX_API_KEY"):
+        return "https://api.minimax.io/v1/chat/completions", os.environ["MINIMAX_API_KEY"], "MiniMax-M3"
     if os.environ.get("OPENCODE_ZEN_API_KEY"):
         return DEFAULT_LLM_URL, os.environ["OPENCODE_ZEN_API_KEY"], DEFAULT_LLM_MODEL
     if os.environ.get("KIMI_API_KEY"):
@@ -427,6 +430,42 @@ def _load_json(path, default):
     except Exception:
         pass
     return default
+
+
+def _fetch_article_body(url, timeout=15, max_chars=12000):
+    """Fetch the article's main prose: prefer <article> or <main>; fall back
+    to all <p> paragraphs. Returns clean text, or \"\"."""
+    if not url or not url.startswith("http"):
+        return ""
+    try:
+        r = get(url, timeout=timeout, headers={"User-Agent": "Mozilla/5.0"})
+        if r.status_code != 200 or not r.text:
+            return ""
+    except Exception:
+        return ""
+    body = r.text
+    candidates = []
+    for sel in (
+        r"<article[^>]*>(.*?)</article>",
+        r"<main[^>]*>(.*?)</main>",
+    ):
+        m = re.search(sel, body, re.S | re.I)
+        if m:
+            candidates.append(m.group(1))
+    section = max(candidates, key=len) if candidates else body
+    section = re.sub(r"<script.*?</script>", "", section, flags=re.S | re.I)
+    section = re.sub(r"<style.*?</style>", "", section, flags=re.S | re.I)
+    section = re.sub(r"<nav.*?</nav>", "", section, flags=re.S | re.I)
+    section = re.sub(r"<header.*?</header>", "", section, flags=re.S | re.I)
+    section = re.sub(r"<footer.*?</footer>", "", section, flags=re.S | re.I)
+    paras = re.findall(r"<p[^>]*>(.*?)</p>", section, flags=re.S | re.I)
+    text = " ".join(paras) if paras else re.sub(r"<[^>]+>", " ", section)
+    text = html.unescape(re.sub(r"\s+", " ", text)).strip()
+    if len(text) < 200:
+        return ""
+    if _is_junk_description(text):
+        return ""
+    return text[:max_chars]
 
 
 def _fetch_og(url, timeout=10):
@@ -555,9 +594,15 @@ def _curate_batch(url, key, models, prompt):
 
 
 def curate_with_kimi(items, edition):
+    """Per-article fetch + summarize — one LLM call per item, returns prose.
+
+    Modeled on tdd.cat: fetch the full article body, send it to the LLM,
+    get back a 4-6 sentence prose summary (no JSON). Minimizes parsed-shape
+    complexity (no regex over JSON, no positional mapping); tolerates LLMs
+    returning short fields without truncation-induced failure."""
     url, key, primary = _llm_endpoint()
     if not url or not key:
-        log("  no LLM endpoint configured (OPENCODE_ZEN_API_KEY/KIMI_API_KEY) — skipping curation")
+        log("  no LLM endpoint configured - skipping curation")
         return items
     if url.startswith("https://opencode.ai"):
         models = FREE_MODELS
@@ -566,13 +611,13 @@ def curate_with_kimi(items, edition):
     else:
         models = [primary]
     models = [m for m in models if m]
-    log(f"  curating in parallel across {len(models)} models: {', '.join(models[:3])}…")
+    log(f"  curating one-article-at-a-time via {models[0]} (fallback pool of {len(models)})")
 
     cache = _load_cache()
     fresh, cached = [], 0
     for it in items:
         k = _item_key(it)
-        if k in cache and cache[k]:      # only trust non-empty cached summaries
+        if k in cache and cache[k]:
             it["snippet"] = "" if _is_junk_description(cache[k]) else cache[k]
             cached += 1
         else:
@@ -580,78 +625,65 @@ def curate_with_kimi(items, edition):
     if cached:
         log(f"  reused {cached} cached summaries; curating {len(fresh)} new")
 
-    BATCH = 5
-    batches = [fresh[i : i + BATCH] for i in range(0, len(fresh), BATCH)]
-    results = [None] * len(batches)
-
-    def build_prompt(batch):
-        payload = [
-            {"title": it["title"], "snippet": (it["snippet"] or "")[:4000], "url": it["url"]}
-            for it in batch
-        ]
+    def _one_article_prompt(it, body):
         return (
-            "You curate a byte-size daily learning digest for a software engineer. "
-            + STE100_RULES
-            + "Return STRICT JSON: an array of objects "
-            "{\"title\": <exact item title, copied verbatim>, \"summary\": \"...\"} "
-            "matching the input order. No markdown, no extra text.\n\n"
-            f"Edition: {edition}. Items:\n{json.dumps(payload, ensure_ascii=False)}"
+            "You curate a daily digest for a software engineer. "
+            "Read the article below and write a single 4-6 sentence summary "
+            "(about 100-150 words, prose, no lists, no JSON). "
+            "Cover what it is, the main claim or finding, one or two "
+            "notable numbers or details, and why it matters to a working "
+            "engineer. Use ONLY facts from the article. Never invent "
+            "numbers or names. Write in the present tense, simple "
+            "declarative sentences. Never start with 'This article' or "
+            "'This post'.\n\n"
+            f"Title: {it['title']}\nURL: {it['url']}\n\n"
+            f"Article text:\n{body[:12000]}"
         )
 
-    def work(idx, batch):
-        out, used = _curate_batch(url, key, models, build_prompt(batch))
-        if used:
-            log(f"  batch {idx} via {used} ({len(batch)} items)")
-        else:
-            log(f"  batch {idx}: all models failed — leaving source text")
-        return out
-
-    workers = min(len(batches), len(models)) if batches else 0
-    if workers:
-        with ThreadPoolExecutor(max_workers=workers) as ex:
-            futs = {ex.submit(work, i, b): i for i, b in enumerate(batches)}
-            for f in as_completed(futs):
-                results[futs[f]] = f.result()
+    def _summarize_one(it):
+        body = _fetch_article_body(it["url"]) if it.get("url") else ""
+        if not body:
+            body = (it.get("snippet") or "").strip()
+        if not body:
+            return it, "", "no-content"
+        prompt = _one_article_prompt(it, body)
+        for model in models:
+            try:
+                r = requests.post(
+                    url,
+                    headers={"Authorization": f"Bearer {key}",
+                             "Content-Type": "application/json"},
+                    json={"model": model,
+                          "messages": [{"role": "user", "content": prompt}],
+                          "max_tokens": 600, "temperature": 0.2},
+                    timeout=120,
+                )
+                r.raise_for_status()
+                text = (r.json()["choices"][0]["message"]
+                        .get("content") or "").strip()
+                text = re.sub(r"^```[a-zA-Z]*\n|\n```$", "", text,
+                              flags=re.M).strip()
+                if len(text) >= 80:
+                    return it, text, model
+            except Exception as e:
+                log(f"    {model}: {e}")
+            time.sleep(0.5)
+        return it, "", "all-failed"
 
     ok = fail = 0
-    for idx, batch in enumerate(batches):
-        got = results[idx] or []
-        if len(got) == len(batch):
-            # Model returns items in input order — position maps directly.
-            for pos, s in enumerate(got):
-                summary = (s.get("summary") or "").strip()
-                if summary:
-                    batch[pos]["snippet"] = summary
-                    ok += 1
-                else:
-                    fail += 1
-            continue
-        # Counts differ (dropped/reordered items) — match defensively.
-        for pos, s in enumerate(got):
-            summary = (s.get("summary") or "").strip()
-            if not summary:
-                fail += 1
-                continue
-            target = None
-            t = _item_key({"title": s.get("title")})
-            if t:
-                for it in batch:
-                    if _item_key(it) == t:
-                        target = it
-                        break
-            if target is None and isinstance(s.get("i"), int) and 0 <= s["i"] < len(batch):
-                target = batch[s["i"]]
-            if target is None and pos < len(batch):
-                target = batch[pos]
-            if target is not None and not target.get("snippet"):
-                target["snippet"] = summary
+    with ThreadPoolExecutor(max_workers=4) as ex:
+        futs = {ex.submit(_summarize_one, it): it for it in fresh}
+        for f in as_completed(futs):
+            it, summary, used = f.result()
+            if summary:
+                it["snippet"] = summary
+                cache[_item_key(it)] = summary
                 ok += 1
+                log(f"  ok {it['title'][:60]} via {used}")
             else:
                 fail += 1
+                log(f"  miss {it['title'][:60]} ({used})")
 
-    for it in fresh:
-        if it.get("snippet"):
-            cache[_item_key(it)] = it["snippet"]
     try:
         CACHE_FILE.write_text(json.dumps(cache, ensure_ascii=False, indent=1))
     except Exception as e:
