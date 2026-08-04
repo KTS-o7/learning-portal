@@ -50,6 +50,8 @@ TIMEOUT = 20
 # Per-section caps — a personal digest should stay ~25-30 stories, not 50+.
 SECTION_CAPS = {"featured": 4, "papers": 6, "discussions": 8, "tools": 5, "blogs": 6}
 BLOG_PER_FEED = 4            # max entries taken from each blog feed
+MAX_BLOG_AGE_H = 168         # skip blog posts older than 7 days (quiet feeds
+                             # would otherwise recycle stale posts daily)
 
 # Engineering blog feeds (title, url, feed). Extend freely.
 BLOG_FEEDS = [
@@ -141,9 +143,11 @@ def fetch_hn():
                 "kind": "discussion" if kind == "discussion" else "story",
                 "points": h.get("points") or 0,
                 "snippet": "",
+                "text": h.get("story_text") or "",
                 "age_h": (now - h.get("created_at_i", now)) / 3600,
                 "tag": tag,
             })
+    enrich_hn_snippets(items)
     return items
 
 
@@ -166,7 +170,7 @@ def fetch_lobsters():
             "source": "Lobsters",
             "kind": "discussion",
             "points": pts,
-            "snippet": clean(s.get("description"), 240),
+            "snippet": clean(s.get("description"), 4000),
             "age_h": max(0, (now - to_ts(s.get("created_at"), now)) / 3600),
             "tag": "lobsters",
         })
@@ -198,7 +202,7 @@ def fetch_arxiv():
             if age_h > FETCH_WINDOW_H:
                 continue
             title = clean(e.find("a:title", ns).text, 160)
-            summary = clean(e.find("a:summary", ns).text, 260)
+            summary = clean(e.find("a:summary", ns).text, 4000)
             link = e.find("a:id", ns).text
             items.append({
                 "title": title,
@@ -249,8 +253,8 @@ def fetch_blogs():
                 if snippet is None:
                     snippet = en.find("description")
                 if snippet is not None and snippet.text:
-                    snippet = clean(snippet.text, 240)
-                age_h = 0
+                    snippet = clean(snippet.text, 4000)
+                age_h = None
                 if pub is not None and pub.text:
                     try:
                         dt = datetime.fromisoformat(
@@ -262,8 +266,11 @@ def fetch_blogs():
                                 pub.text, "%a, %d %b %Y %H:%M:%S %z")
                             age_h = (now - dt.timestamp()) / 3600
                         except Exception:
-                            pass
+                            age_h = None
                 if not title or not url:
+                    continue
+                # Skip stale posts from quiet feeds.
+                if age_h is not None and age_h > MAX_BLOG_AGE_H:
                     continue
                 items.append({
                     "title": title,
@@ -324,14 +331,17 @@ DEFAULT_LLM_URL = "https://opencode.ai/zen/v1/chat/completions"
 DEFAULT_LLM_MODEL = "deepseek-v4-flash-free"
 
 # Free models on opencode-zen — batches run across these IN PARALLEL and fall
-# over between them, giving speed + resilience to flaky free tiers.
+# over between them, giving speed + resilience to flaky free tiers. Ordered
+# by observed reliability; deepseek-free is notoriously empty/5xx-heavy so it
+# is the last resort.
 FREE_MODELS = [
-    "deepseek-v4-flash-free",
     "mimo-v2.5-free",
     "ling-3.0-flash-free",
     "nemotron-3-ultra-free",
     "north-mini-code-free",
     "laguna-s-2.1-free",
+    "big-pickle",
+    "deepseek-v4-flash-free",
 ]
 
 
@@ -359,20 +369,139 @@ def _llm_endpoint():
 
 
 STE100_RULES = """
-Write each summary in Simplified Technical English (ASD-STE100):
-- ONE sentence, active voice, at most 24 words.
-- Do NOT start with "This article", "This post", "This paper", or similar
-  container references. Start directly with the subject ("SQLite validates
-  data with...", "The paper introduces...") or an imperative takeaway.
-- Use only standard technical terms and approved vocabulary; avoid jargon, idioms,
-  contractions, and subjective opinion ("amazing", "huge", "must-read").
-- State plainly what the item is and the single most useful takeaway for an
-  engineer. Prefer specific numbers and nouns over adjectives.
-- Formal, concise, matter-of-fact tone. No marketing language, no exclamation marks.
+Write each summary in STRICT ASD-STE100 (Simplified Technical English), the
+standard used in aerospace maintenance manuals. STE100 reads CLEAR and SIMPLE,
+never robotic: short declarative sentences, everyday technical words, active
+voice. If a sentence sounds stiff, tangled, or machine-generated, rewrite it.
+
+HARD RULES:
+- 3-5 sentences per item, 60-90 words (never more than 100). Each sentence
+  carries ONE idea and stays under 20 words.
+- Active voice, simple present tense. Say "SQLite validates the data", not
+  "validation is performed by SQLite". Avoid gerund-stacking: write "the
+  engineer delegates the task" instead of "delegation by the engineer".
+- Plain vocabulary: use the common word (use, check, show), not the fancy one
+  (utilize, verify, demonstrate). Use the same term for the same thing.
+- Start with the subject or the finding. NEVER start with "This article",
+  "This post", "This paper", or any container reference.
+- Use ONLY facts from the snippet/abstract. Never invent numbers, names,
+  quotes, or claims. If the snippet has no facts, return "summary": "".
+- No marketing words (amazing, must-read, huge), no exclamation marks, no
+  hedging (maybe, seems, trailing question marks).
+
+STRUCTURE: sentence 1 states what the item is or what happened. The middle
+sentences carry the gist: the main claim, key findings, and notable numbers
+from the snippet, in a natural order. The final sentence gives the takeaway
+or why it matters to an engineer. Aim to convey about 90% of the article's
+substance in under 100 words.
+
+EXAMPLES — study the tone: simple, natural, factual. Facts below come from
+the real page descriptions.
+BAD (robotic, gerund-stacked): "LLMs enable non-experts to write acceptable
+    CSS by delegation, reducing reliance on skilled colleagues for technical
+    gaps."
+GOOD: "In the 2010s, people without CSS skills asked a colleague or searched
+    the web for answers. Today they delegate the task to an LLM and get
+    acceptable results in seconds."
+
+BAD (title echo): "This paper introduces a framework for power-systems AI
+    education."
+GOOD: "Most AI-for-power-systems material targets specialists and gives
+    newcomers little to work with. This paper offers reusable courseware that
+    runs labs in the browser, with no GPU setup needed."
+
+Output STRICT JSON only: an array of objects {"title": <exact item title,
+copied verbatim>, "summary": "<your STE100 text>"}, one per input item, in
+the same order. No markdown, no extra text.
 """
 
 
 CACHE_FILE = OUT_DIR / ".cache_summaries.json"
+META_FILE = OUT_DIR / ".meta_cache.json"
+
+
+def _load_json(path, default):
+    try:
+        if path.exists():
+            return json.loads(path.read_text())
+    except Exception:
+        pass
+    return default
+
+
+def _fetch_og(url, timeout=10):
+    """Extract a page's meta description (og:description / description / <p>)."""
+    try:
+        r = get(url, timeout=timeout)
+        if r.status_code != 200:
+            return ""
+    except Exception:
+        return ""
+    body = r.text or ""
+    pats = [
+        r'<meta[^>]+property=["\']og:description["\'][^>]+content=["\']([^"\']+)',
+        r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:description["\']',
+        r'<meta[^>]+name=["\']description["\'][^>]+content=["\']([^"\']+)',
+        r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+name=["\']description["\']',
+        r'<p[^>]*>([^<]{60,320})',
+    ]
+    for p in pats:
+        m = re.search(p, body, re.I)
+        if m:
+            return clean(html.unescape(m.group(1)), 4000) or ""
+    return ""
+
+
+def _is_junk_description(d):
+    if not d:
+        return True
+    low = d.lower()
+    junk = ("contribute to", "development by creating an account",
+            "mirror of https://", "this repository", "github repositories",
+            '<svg', "javascript:", "the age of personalized software")
+    return any(j in low for j in junk)
+
+
+def enrich_hn_snippets(items):
+    """Give HN items real page context; otherwise the LLM sees only a URL."""
+    meta = _load_json(META_FILE, {})
+    dirty = False
+    targets = [it for it in items if it["source"] == "HN" and not it["snippet"]
+               and it["url"].startswith("http")]
+
+    def enrich(it):
+        nonlocal dirty
+        # Ask/Show HN stick with the Algolia body text (fast + accurate)
+        if it.get("text"):
+            it["snippet"] = clean(it["text"], 4000)
+            return
+        u = it["url"]
+        hit = meta.get(u)
+        if hit and isinstance(hit, dict) and hit.get("d"):
+            it["snippet"] = "" if _is_junk_description(hit["d"]) else hit["d"]
+            return
+        if "news.ycombinator.com" in u:   # comment pages have no og:description
+            return
+        d = _fetch_og(u)
+        if d and not _is_junk_description(d):
+            meta[u] = {"d": d, "t": int(time.time())}
+            it["snippet"] = d
+            dirty = True
+
+    if targets:
+        with ThreadPoolExecutor(max_workers=8) as ex:
+            list(ex.map(enrich, targets))
+        # prune entries older than 30 days so the cache stays bounded
+        cutoff = time.time() - 30 * 86400
+        stale = [k for k, v in meta.items()
+                 if isinstance(v, dict) and v.get("t", 0) < cutoff]
+        for k in stale:
+            meta.pop(k, None)
+        if dirty or stale:
+            try:
+                META_FILE.write_text(json.dumps(meta))
+            except Exception as e:
+                log(f"  meta cache write failed: {e}")
 
 
 def _item_key(it):
@@ -396,7 +525,7 @@ def _request_summaries(url, key, model, prompt):
                  "Content-Type": "application/json"},
         json={"model": model,
               "messages": [{"role": "user", "content": prompt}],
-              "temperature": 0.2, "max_tokens": 4000},
+              "temperature": 0.2, "max_tokens": 8192},
         timeout=120,
     )
     r.raise_for_status()
@@ -412,13 +541,13 @@ def _request_summaries(url, key, model, prompt):
 
 
 def _curate_batch(url, key, models, prompt):
-    """Try models in order until one returns a non-empty JSON array."""
+    """Try models in order until one returns a list with real summaries."""
     for model in models:
         try:
             out = _request_summaries(url, key, model, prompt)
-            if out:
+            if out and any((s.get("summary") or "").strip() for s in out):
                 return out, model
-            log(f"    {model}: empty response")
+            log(f"    {model}: no usable summaries")
         except Exception as e:
             log(f"    {model}: failed ({e})")
         time.sleep(1.5)
@@ -443,21 +572,21 @@ def curate_with_kimi(items, edition):
     fresh, cached = [], 0
     for it in items:
         k = _item_key(it)
-        if k in cache:
-            it["snippet"] = cache[k]
+        if k in cache and cache[k]:      # only trust non-empty cached summaries
+            it["snippet"] = "" if _is_junk_description(cache[k]) else cache[k]
             cached += 1
         else:
             fresh.append(it)
     if cached:
         log(f"  reused {cached} cached summaries; curating {len(fresh)} new")
 
-    BATCH = 10
+    BATCH = 5
     batches = [fresh[i : i + BATCH] for i in range(0, len(fresh), BATCH)]
     results = [None] * len(batches)
 
     def build_prompt(batch):
         payload = [
-            {"title": it["title"], "snippet": (it["snippet"] or "")[:300], "url": it["url"]}
+            {"title": it["title"], "snippet": (it["snippet"] or "")[:4000], "url": it["url"]}
             for it in batch
         ]
         return (
@@ -486,33 +615,43 @@ def curate_with_kimi(items, edition):
 
     ok = fail = 0
     for idx, batch in enumerate(batches):
-        for s in results[idx] or []:
+        got = results[idx] or []
+        if len(got) == len(batch):
+            # Model returns items in input order — position maps directly.
+            for pos, s in enumerate(got):
+                summary = (s.get("summary") or "").strip()
+                if summary:
+                    batch[pos]["snippet"] = summary
+                    ok += 1
+                else:
+                    fail += 1
+            continue
+        # Counts differ (dropped/reordered items) — match defensively.
+        for pos, s in enumerate(got):
             summary = (s.get("summary") or "").strip()
             if not summary:
                 fail += 1
                 continue
-            # Match by title (robust against models returning 0/1-based indices).
+            target = None
             t = _item_key({"title": s.get("title")})
             if t:
-                hit = False
                 for it in batch:
                     if _item_key(it) == t:
-                        it["snippet"] = summary
-                        ok += 1
-                        hit = True
+                        target = it
                         break
-                if not hit:
-                    fail += 1
+            if target is None and isinstance(s.get("i"), int) and 0 <= s["i"] < len(batch):
+                target = batch[s["i"]]
+            if target is None and pos < len(batch):
+                target = batch[pos]
+            if target is not None and not target.get("snippet"):
+                target["snippet"] = summary
+                ok += 1
             else:
-                i = s.get("i")
-                if isinstance(i, int) and 0 <= i < len(batch):
-                    batch[i]["snippet"] = summary
-                    ok += 1
-                else:
-                    fail += 1
+                fail += 1
 
     for it in fresh:
-        cache[_item_key(it)] = it.get("snippet", "")
+        if it.get("snippet"):
+            cache[_item_key(it)] = it["snippet"]
     try:
         CACHE_FILE.write_text(json.dumps(cache, ensure_ascii=False, indent=1))
     except Exception as e:
@@ -527,14 +666,11 @@ def curate_with_kimi(items, edition):
 CSS = """
 /* ---------- Daily Byte: newspaper edition ---------- */
 :root{
-  --paper:#0f1113; --paper2:#14171c; --rule:#2a2f37; --ink:#e8eaed;
-  --mut:#9aa3b2; --mut2:#6b7484; --ac:#f0b429; --ln:#7aa2f7;
+  --paper:#fbf1c7; --paper2:#f9f5d7; --rule:#d8c9a8; --ink:#3c3836;
+  --mut:#504945; --mut2:#79756b; --ac:#b57614; --ln:#076678;
   --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
   --sans:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-}
-@media (prefers-color-scheme:light){
-  :root{--paper:#fdfcfa; --paper2:#ffffff; --rule:#d8d6d0; --ink:#17191d;
-  --mut:#545b66; --mut2:#8a8f99; --ac:#b45309; --ln:#1d4ed8;}
+  --pad:clamp(14px,5vw,26px);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -549,21 +685,17 @@ button{cursor:pointer;font-family:var(--sans)}
 /* top chrome */
 .chrome{position:sticky;top:0;z-index:50;background:var(--paper);
 border-bottom:1px solid var(--rule);backdrop-filter:blur(6px)}
-.chrome-in{max-width:920px;margin:0 auto;padding:9px 22px;
-display:flex;align-items:center;justify-content:space-between;gap:14px;
+.chrome-in{max-width:920px;margin:0 auto;padding:9px var(--pad);
+display:flex;align-items:center;justify-content:space-between;gap:12px;
 font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut2)}
 .chrome nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .chrome nav a{color:var(--mut);font-weight:600}
 .chrome nav a:hover{color:var(--ln);text-decoration:none}
 .chrome .left,.chrome .right{display:flex;gap:14px;align-items:center;white-space:nowrap}
 .chrome .count{color:var(--ac);font-weight:700}
-.toggle{border:1px solid var(--rule);background:transparent;color:var(--mut);
-border-radius:14px;padding:3px 10px;font-size:11px;letter-spacing:.06em;
-text-transform:uppercase}
-.toggle:hover{color:var(--ink);border-color:var(--mut2)}
 
 /* masthead / nameplate */
-.mast{text-align:center;padding:44px 0 26px}
+.mast{text-align:center;padding:40px var(--pad) 24px}
 .mast h1{margin:0;font-family:var(--serif);font-weight:700;font-size:clamp(46px,9vw,82px);
 letter-spacing:.5px;line-height:1}
 .mast h1 .dot{color:var(--ac)}
@@ -575,8 +707,8 @@ text-transform:uppercase;margin-top:14px}
 .nameplate:before,.nameplate:after{content:"";flex:1;height:1px;background:var(--rule)}
 .nameplate span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut2)}
 
-main{max-width:920px;margin:0 auto}
-.story{padding:22px 0;border-bottom:1px solid var(--rule)}
+main{max-width:920px;margin:0 auto;padding:0 var(--pad)}
+.story{padding:20px 0;border-bottom:1px solid var(--rule)}
 .story:last-of-type{border-bottom:0}
 .story .lbl{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
 color:var(--ac);font-weight:700;margin-bottom:6px}
@@ -592,15 +724,11 @@ font-weight:700;font-family:var(--serif);letter-spacing:.2px}
 display:flex;gap:14px;flex-wrap:wrap;align-items:center}
 .pill{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.08em;
 text-transform:uppercase;padding:2px 8px;border-radius:10px}
-.p-HN{color:#ff8c3b;background:rgba(255,102,0,.10);border:1px solid rgba(255,102,0,.25)}
-.p-Lobsters{color:#ff7a66;background:rgba(233,86,63,.10);border:1px solid rgba(233,86,63,.25)}
-.p-arxiv{color:#e58a8a;background:rgba(179,27,27,.10);border:1px solid rgba(179,27,27,.25)}
-.p-blog{color:#8fb0f5;background:rgba(91,141,239,.10);border:1px solid rgba(91,141,239,.25)}
-.p-tool{color:#56d364;background:rgba(46,160,67,.10);border:1px solid rgba(46,160,67,.25)}
-@media (prefers-color-scheme:light){
-  .p-HN{color:#c2410c}.p-Lobsters{color:#b91c1c}.p-arxiv{color:#991b1b}
-  .p-blog{color:#1e40af}.p-tool{color:#166534}
-}
+.p-HN{color:#9d0006;background:rgba(220,50,47,.09);border:1px solid rgba(220,50,47,.22)}
+.p-Lobsters{color:#8f3f97;background:rgba(179,70,110,.09);border:1px solid rgba(179,70,110,.22)}
+.p-arxiv{color:#076678;background:rgba(7,102,120,.09);border:1px solid rgba(7,102,120,.22)}
+.p-blog{color:#427b58;background:rgba(66,123,88,.09);border:1px solid rgba(66,123,88,.22)}
+.p-tool{color:#79740e;background:rgba(121,116,14,.09);border:1px solid rgba(121,116,14,.22)}
 .story .smeta .pts{color:var(--ac);font-weight:600}
 
 /* footer */
@@ -608,22 +736,29 @@ text-transform:uppercase;padding:2px 8px;border-radius:10px}
 letter-spacing:.04em}
 .foot a{color:var(--mut);text-decoration:underline}
 .foot .ln{display:inline-block;margin:0 8px}
+
+/* ---------- mobile ---------- */
+.foot{margin:36px 0 30px;padding:0 var(--pad);text-align:center;
+color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
+@media (max-width:640px){
+  .chrome-in{flex-wrap:wrap;row-gap:4px}
+  .chrome .right{flex:1;justify-content:flex-end}
+  .chrome .right .d{display:none}          /* hide full date on phones */
+  .chrome .count{font-size:10px}
+  .mast{padding:30px var(--pad) 18px}
+  .mast h1{font-size:clamp(38px,13vw,56px)}
+  .mast .tag{font-size:16px}
+  .mast .edition{letter-spacing:.14em}
+  .story{padding:16px 0}
+  .story h2{font-size:19.5px;line-height:1.3}
+  .story .sum{font-size:14.5px}
+  .story .acts{gap:14px}
+  .story .smeta{font-size:11.5px;gap:10px}
+  .nameplate{margin:22px auto 0}
+}
 """
 
-SCRIPT = """
-(function(){var t=document.querySelector('.toggle');
-function set(a){document.documentElement.dataset.theme=a;
-try{localStorage.setItem('theme',a)}catch(e){}}
-function upd(){t.textContent=(document.documentElement.dataset.theme==='light')
-?'Night':'Day';}
-document.documentElement.dataset.theme=
-localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');
-upd();
-function flip(){var cur=document.documentElement.dataset.theme;
-set(cur==='light'?'dark':'light');upd();}
-t.addEventListener('click',flip);t.addEventListener('touchend',flip);
-})();
-"""
+SCRIPT = ""
 
 
 def item_html(it, label=None):
@@ -703,9 +838,8 @@ def render_page(edition, sections, all_days):
 <div class="chrome"><div class="chrome-in">
   <div class="left"><a href="{BASE_URL}/"><strong>{esc(SITE_NAME)}</strong></a>
     <a href="{HOME_REPO}">Source</a><a href="{BASE_URL}/rss.xml">RSS</a></div>
-  <div class="right"><span>{edition_label}</span>
-    <span class="count">{total} STORIES</span>
-    <button class="toggle" type="button"></button></div>
+  <div class="right"><span class="d">{edition_label}</span>
+    <span class="count">{total} STORIES</span></div>
 </div></div>
 
 <header class="mast">
@@ -727,7 +861,6 @@ def render_page(edition, sections, all_days):
   <div style="margin-top:8px"><a href="{BASE_URL}/rss.xml">Subscribe via RSS</a></div>
 </footer>
 
-<script>{SCRIPT}</script>
 </body>
 </html>"""
 

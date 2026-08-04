@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 .DS_Store
 .cache_summaries.json
+.meta_cache.json

@@ -11,14 +11,11 @@
 <style>
 /* ---------- Daily Byte: newspaper edition ---------- */
 :root{
-  --paper:#0f1113; --paper2:#14171c; --rule:#2a2f37; --ink:#e8eaed;
-  --mut:#9aa3b2; --mut2:#6b7484; --ac:#f0b429; --ln:#7aa2f7;
+  --paper:#fbf1c7; --paper2:#f9f5d7; --rule:#d8c9a8; --ink:#3c3836;
+  --mut:#504945; --mut2:#79756b; --ac:#b57614; --ln:#076678;
   --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
   --sans:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-}
-@media (prefers-color-scheme:light){
-  :root{--paper:#fdfcfa; --paper2:#ffffff; --rule:#d8d6d0; --ink:#17191d;
-  --mut:#545b66; --mut2:#8a8f99; --ac:#b45309; --ln:#1d4ed8;}
+  --pad:clamp(14px,5vw,26px);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -33,21 +30,17 @@ button{cursor:pointer;font-family:var(--sans)}
 /* top chrome */
 .chrome{position:sticky;top:0;z-index:50;background:var(--paper);
 border-bottom:1px solid var(--rule);backdrop-filter:blur(6px)}
-.chrome-in{max-width:920px;margin:0 auto;padding:9px 22px;
-display:flex;align-items:center;justify-content:space-between;gap:14px;
+.chrome-in{max-width:920px;margin:0 auto;padding:9px var(--pad);
+display:flex;align-items:center;justify-content:space-between;gap:12px;
 font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut2)}
 .chrome nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .chrome nav a{color:var(--mut);font-weight:600}
 .chrome nav a:hover{color:var(--ln);text-decoration:none}
 .chrome .left,.chrome .right{display:flex;gap:14px;align-items:center;white-space:nowrap}
 .chrome .count{color:var(--ac);font-weight:700}
-.toggle{border:1px solid var(--rule);background:transparent;color:var(--mut);
-border-radius:14px;padding:3px 10px;font-size:11px;letter-spacing:.06em;
-text-transform:uppercase}
-.toggle:hover{color:var(--ink);border-color:var(--mut2)}
 
 /* masthead / nameplate */
-.mast{text-align:center;padding:44px 0 26px}
+.mast{text-align:center;padding:40px var(--pad) 24px}
 .mast h1{margin:0;font-family:var(--serif);font-weight:700;font-size:clamp(46px,9vw,82px);
 letter-spacing:.5px;line-height:1}
 .mast h1 .dot{color:var(--ac)}
@@ -59,8 +52,8 @@ text-transform:uppercase;margin-top:14px}
 .nameplate:before,.nameplate:after{content:"";flex:1;height:1px;background:var(--rule)}
 .nameplate span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut2)}
 
-main{max-width:920px;margin:0 auto}
-.story{padding:22px 0;border-bottom:1px solid var(--rule)}
+main{max-width:920px;margin:0 auto;padding:0 var(--pad)}
+.story{padding:20px 0;border-bottom:1px solid var(--rule)}
 .story:last-of-type{border-bottom:0}
 .story .lbl{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
 color:var(--ac);font-weight:700;margin-bottom:6px}
@@ -76,15 +69,11 @@ font-weight:700;font-family:var(--serif);letter-spacing:.2px}
 display:flex;gap:14px;flex-wrap:wrap;align-items:center}
 .pill{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.08em;
 text-transform:uppercase;padding:2px 8px;border-radius:10px}
-.p-HN{color:#ff8c3b;background:rgba(255,102,0,.10);border:1px solid rgba(255,102,0,.25)}
-.p-Lobsters{color:#ff7a66;background:rgba(233,86,63,.10);border:1px solid rgba(233,86,63,.25)}
-.p-arxiv{color:#e58a8a;background:rgba(179,27,27,.10);border:1px solid rgba(179,27,27,.25)}
-.p-blog{color:#8fb0f5;background:rgba(91,141,239,.10);border:1px solid rgba(91,141,239,.25)}
-.p-tool{color:#56d364;background:rgba(46,160,67,.10);border:1px solid rgba(46,160,67,.25)}
-@media (prefers-color-scheme:light){
-  .p-HN{color:#c2410c}.p-Lobsters{color:#b91c1c}.p-arxiv{color:#991b1b}
-  .p-blog{color:#1e40af}.p-tool{color:#166534}
-}
+.p-HN{color:#9d0006;background:rgba(220,50,47,.09);border:1px solid rgba(220,50,47,.22)}
+.p-Lobsters{color:#8f3f97;background:rgba(179,70,110,.09);border:1px solid rgba(179,70,110,.22)}
+.p-arxiv{color:#076678;background:rgba(7,102,120,.09);border:1px solid rgba(7,102,120,.22)}
+.p-blog{color:#427b58;background:rgba(66,123,88,.09);border:1px solid rgba(66,123,88,.22)}
+.p-tool{color:#79740e;background:rgba(121,116,14,.09);border:1px solid rgba(121,116,14,.22)}
 .story .smeta .pts{color:var(--ac);font-weight:600}
 
 /* footer */
@@ -92,15 +81,34 @@ text-transform:uppercase;padding:2px 8px;border-radius:10px}
 letter-spacing:.04em}
 .foot a{color:var(--mut);text-decoration:underline}
 .foot .ln{display:inline-block;margin:0 8px}
+
+/* ---------- mobile ---------- */
+.foot{margin:36px 0 30px;padding:0 var(--pad);text-align:center;
+color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
+@media (max-width:640px){
+  .chrome-in{flex-wrap:wrap;row-gap:4px}
+  .chrome .right{flex:1;justify-content:flex-end}
+  .chrome .right .d{display:none}          /* hide full date on phones */
+  .chrome .count{font-size:10px}
+  .mast{padding:30px var(--pad) 18px}
+  .mast h1{font-size:clamp(38px,13vw,56px)}
+  .mast .tag{font-size:16px}
+  .mast .edition{letter-spacing:.14em}
+  .story{padding:16px 0}
+  .story h2{font-size:19.5px;line-height:1.3}
+  .story .sum{font-size:14.5px}
+  .story .acts{gap:14px}
+  .story .smeta{font-size:11.5px;gap:10px}
+  .nameplate{margin:22px auto 0}
+}
 </style>
 </head>
 <body>
 <div class="chrome"><div class="chrome-in">
   <div class="left"><a href="https://learn.shenthar.me/"><strong>Daily Byte</strong></a>
     <a href="https://github.com/KTS-o7/learning-portal">Source</a><a href="https://learn.shenthar.me/rss.xml">RSS</a></div>
-  <div class="right"><span>Tuesday, August 4, 2026</span>
-    <span class="count">27 STORIES</span>
-    <button class="toggle" type="button"></button></div>
+  <div class="right"><span class="d">Tuesday, August 4, 2026</span>
+    <span class="count">27 STORIES</span></div>
 </div></div>
 
 <header class="mast">
@@ -115,221 +123,221 @@ letter-spacing:.04em}
   <div class="lbl">• Top story</div>
   <div class="acts"><a href="https://www.seangoedecke.com/llms-reward-expertise/">Read ›</a><a href="https://news.ycombinator.com/item?id=49161518">Discuss ›</a></div>
   <h2><a href="https://www.seangoedecke.com/llms-reward-expertise/">LLMs reward expertise</a></h2>
-  <div class="sum">This article explains how large language models provide better responses to expert users.</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">1080 pts</span>
-  <span>16h ago</span></div>
-</article>
-<article class="story">
-  
-  <div class="acts"><a href="https://research.jfrog.com/post/sqlite-critical-cves-or-llm-slops/">Read ›</a><a href="https://news.ycombinator.com/item?id=49154332">Discuss ›</a></div>
-  <h2><a href="https://research.jfrog.com/post/sqlite-critical-cves-or-llm-slops/">SQLite Critical CVEs or LLM Slop?</a></h2>
-  <div class="sum">This post compares critical vulnerabilities in SQLite with errors generated by large language models.</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">714 pts</span>
-  <span>25h ago</span></div>
+  <div class="sum">In the 2010s, if you had technical gaps (say, you couldn’t write CSS), you had to either rely on a skilled colleague or just hope that the answer to your exact problem was out there on the internet. Today, everyone can write sort-of-okay CSS by delegating the task to an LLM. LLMs make everybody int…</div>
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">1130 pts</span>
+  <span>17h ago</span></div>
 </article>
 <article class="story">
   
   <div class="acts"><a href="https://blog.exe.dev/devtools-must-be-open-source">Read ›</a><a href="https://news.ycombinator.com/item?id=49156111">Discuss ›</a></div>
   <h2><a href="https://blog.exe.dev/devtools-must-be-open-source">Devtools must be open source</a></h2>
-  <div class="sum">This blog post argues that development tools should be open source to improve collaboration.</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">644 pts</span>
-  <span>23h ago</span></div>
+  
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">663 pts</span>
+  <span>24h ago</span></div>
 </article>
 <article class="story">
   
   <div class="acts"><a href="https://openai.com/index/ten-advances-in-mathematics/">Read ›</a><a href="https://news.ycombinator.com/item?id=49157930">Discuss ›</a></div>
   <h2><a href="https://openai.com/index/ten-advances-in-mathematics/">Ten advances in mathematics and theoretical computer science</a></h2>
-  <div class="sum">This OpenAI article lists ten advances in mathematics and theoretical computer science.</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">566 pts</span>
-  <span>21h ago</span></div>
+  
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">578 pts</span>
+  <span>22h ago</span></div>
+</article>
+<article class="story">
+  
+  <div class="acts"><a href="https://nelson.cloud/ai-generated-images-discourage-me-from-reading-your-blog/">Read ›</a><a href="https://news.ycombinator.com/item?id=49167113">Discuss ›</a></div>
+  <h2><a href="https://nelson.cloud/ai-generated-images-discourage-me-from-reading-your-blog/">AI-Generated Images Discourage Me from Reading Your Blog</a></h2>
+  <div class="sum">If you’re willing to use AI-generated images, how do I know the text isn’t AI-generated?</div>
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">424 pts</span>
+  <span>3h ago</span></div>
 </article>
 <div class="nameplate" style="margin:30px auto"><span>PAPERS</span></div>
 <article class="story">
   
   <div class="acts"><a href="http://arxiv.org/abs/2608.02599v1">Read ›</a></div>
   <h2><a href="http://arxiv.org/abs/2608.02599v1">Bridging Artificial Intelligence and Power Systems Education Using a Hands-On Executable Framework</a></h2>
-  <div class="sum">This paper presents a hands-on executable framework for teaching artificial intelligence in power systems education.</div>
+  <div class="sum">Artificial intelligence (AI) is increasingly central to power and energy systems, supporting modeling, forecasting, optimization, and control. Yet most existing works emphasize specialized applications and offer little reusable material for newcomers or interdisciplinary learners, who increasingly rely on large language models rather than building their own. This gap points to a need for engineering-grounded AI (EGAI), in which AI workflows follow established engineering and power-system domain rules rather than acting as task-agnostic black boxes. Motivated by a community survey of researchers and practitioners, which shows 92% report at least one barrier before running an AI model and 94% want a power-specific hands-on course. This paper presents a framework consisting of open, executable module library that lowers the entry barrier for AI in power systems. The modules follow a progressive difficulty ladder that maps core AI concepts onto representative power-system tasks: (i) foundational deep neural network (DNN) templates for function approximation and load-curve fitting; (ii) a domain-coupled convolutional neural network (CNN) power-flow surrogate for a 5-bus system; and (iii) frontier modules on DNN-assisted optimization, deep reinforcement learning (DRL) for battery storage control, and physics-informed neural networks (PINNs) for the swing equation. All modules are released as Jupyter notebooks that run locally or on Google Colab and are delivered through an IEEE online course and IEEE Power &amp; Energy Society (PES) webinar series. The webinar drew more than 590 live attendees, which is among the ten most-attended IEEE PES webinars, and over 344 repository visits within two weeks, reinforcing the survey-based motivation.</div>
   <div class="smeta"><span class="pill p-arxiv">arXiv</span>
-  <span>19h ago</span></div>
+  <span>20h ago</span></div>
 </article>
 <article class="story">
   
   <div class="acts"><a href="http://arxiv.org/abs/2608.02596v1">Read ›</a></div>
   <h2><a href="http://arxiv.org/abs/2608.02596v1">Staying Productive Under the Palm Trees. On Graded Coeffect Typing in the Tropical Semiring</a></h2>
-  <div class="sum">This study uses the tropical semiring in graded coeffect typing to model time and ensure program productivity.</div>
+  <div class="sum">We show that the tropical semiring over the natural numbers, when used as the grading space in graded coeffect typing, faithfully models the passage of time while simultaneously guaranteeing productivity of well-typed programs. A grade a, when assigned to a function parameter, indicates that the parameter is not necessarily available immediately, but will become available after a time steps. We investigate this idea through two formal systems. We first introduce a graded type system featuring recursive and polymorphic types, and show that, in this setting, a natural restriction on recursive types is sufficient to guarantee productivity, while still allowing the definition of streams and recursive programs on them. In particular, we prove that Nakano&#x27;s later modality can be embedded directly into our system. We then show that tropical grading naturally suggests a novel form of intersection typing, in which the role traditionally played by sets or multisets of types is instead taken by &quot;timed&quot; sets, i.e., functions assigning to each type A the earliest time, represented as a grade, from which the underlying term is available with type A. For the resulting system, we prove not only that productivity is guaranteed, but that it is also characterized: the typable terms are exactly those with hereditarily head normal forms. Remarkably, the system is recursion-theoretically optimal, i.e., typability can be directly proved to be a $Π_0^2$ property in the arithmetical hierarchy.</div>
   <div class="smeta"><span class="pill p-arxiv">arXiv</span>
-  <span>19h ago</span></div>
+  <span>20h ago</span></div>
 </article>
 <article class="story">
   
   <div class="acts"><a href="http://arxiv.org/abs/2608.02595v1">Read ›</a></div>
   <h2><a href="http://arxiv.org/abs/2608.02595v1">onepot-Bench 0: towards lab-aware in silico chemistry benchmarks</a></h2>
-  <div class="sum">This paper proposes onepot-Bench 0 benchmarks for evaluating language models in chemistry experiments.</div>
+  <div class="sum">Language models are playing an increasingly important role in laboratory science, performing tasks such as experiment planning, execution, and post-hoc analysis. However, precisely measuring their abilities is difficult, as scientific capabilities require a mixture of both problem-solving skills and domain-specific intuition. Existing evaluations rarely measure the capabilities required to make reliable decisions in a physical laboratory and often rely on public data that may have appeared in model training corpora. We introduce onepot-Bench 0, a proprietary benchmark suite for evaluating language models on synthetic chemistry capabilities relevant to wet-lab execution. onepot-Bench 0 comprises three complementary evaluations: ChemAbacus measures tool-free cheminformatics literacy and numerical reasoning; SynthRefusal characterizes safety and refusal behavior across a variety of benign, controlled, and designer-drug targets; and SynthBench evaluates reaction-outcome prediction and catalyst selection using private experimental data generated in our laboratory. Together, these evaluations probe basic competency, reliability, and deeper knowledge, all skills which are required for reliable performance in the lab.</div>
   <div class="smeta"><span class="pill p-arxiv">arXiv</span>
-  <span>19h ago</span></div>
+  <span>20h ago</span></div>
 </article>
 <article class="story">
   
   <div class="acts"><a href="http://arxiv.org/abs/2608.02588v1">Read ›</a></div>
   <h2><a href="http://arxiv.org/abs/2608.02588v1">The Condition-Number Barrier in Sparse Least Squares</a></h2>
-  <div class="sum">This work establishes a lower bound for the condition number in sparse least squares optimization.</div>
+  <div class="sum">In [AS21], Axiotis and Sviridenko conjectured that the linear dependence on the restricted condition number in sparse convex optimization cannot be improved by a polynomial-time algorithm. We establish their conjectured lower bound for least-squares objectives, conditional on the randomized exact-volume Small-Set Expansion Hypothesis in the weighted regular-graph formulation of Raghavendra, Steurer, and Tulsiani [RST12]. Concretely, for every fixed $γ\in(0,1]$, there is no randomized polynomial-time algorithm that, with probability at least $2/3$, returns a vector $x$ such that, writing $s=\lVert x\rVert_0$, \[ \lVert Ax-b\rVert_2^2 \leq \min_{\lVert z\rVert_0\leq k}\lVert Az-b\rVert_2^2+\varepsilon \quad\text{and}\quad s=O\!\left(k\,κ_{s+k}^{\,1-γ}\right), \] where $κ_r$ is the restricted condition number at sparsity level $r$. The result holds even on rational instances with $A$ of full column rank. The proof was first obtained using a fully automated Gemini-based agentic system developed internally at Google. The authors have verified the proof and edited it for clarity of presentation.</div>
   <div class="smeta"><span class="pill p-arxiv">arXiv</span>
-  <span>19h ago</span></div>
+  <span>20h ago</span></div>
 </article>
 <article class="story">
   
   <div class="acts"><a href="http://arxiv.org/abs/2608.02585v1">Read ›</a></div>
   <h2><a href="http://arxiv.org/abs/2608.02585v1">GradCuit: Credit-Assigned Gradient Flow Enables Robust and Interpretable Test-Time Latent Reasoning</a></h2>
-  <div class="sum">GradCuit enables robust test-time latent reasoning in large language models using credit-assigned gradient flow.</div>
+  <div class="sum">Optimization-based latent reasoning improves large language model outputs by optimizing instance-specific continuous states at test time while keeping model parameters frozen. Existing methods, however, typically connect these states to the reasoning trajectory through decoded tokens, making sequence-level credit assignment indirect and obscuring how latent updates shape subsequent reasoning. We introduce GradCuit (gradient through circuit), which inserts optimizable latent states at a selected Transformer layer between the hidden representations of the prompt and the generated continuation. Causal self-attention provides every continuation-token log-probability with a differentiable path to every preceding latent state through the remaining Transformer blocks, enabling reward-weighted gradients from the entire continuation to be assigned directly to the latents. Across five instruction-tuned backbones, three reasoning benchmarks, and two answer formats, GradCuit achieves an average accuracy of 64.5%, outperforming chain-of-thought prompting by 6.6 percentage points and the strongest competing method by 2.4 points. GradCuit also demonstrates greater robustness: across seven learning-rate settings, it consistently outperforms LatentSeek while reducing the standard deviation of accuracy from 1.53 to 0.82, and even its random-walk variant remains competitive with LatentSeek. For interpretability, token-level gradient attribution reveals that latent influence concentrates on reasoning-connector tokens, while layer analysis identifies early-to-middle Transformer layers as the most effective optimization space. By directly optimizing internal reasoning from outcome feedback, GradCuit opens a new axis of robust and interpretable test-time scaling, where LLMs adapt how they reason rather than merely regenerate, sample, or rerank outputs.</div>
   <div class="smeta"><span class="pill p-arxiv">arXiv</span>
-  <span>19h ago</span></div>
+  <span>20h ago</span></div>
 </article>
 <article class="story">
   
   <div class="acts"><a href="http://arxiv.org/abs/2608.02583v1">Read ›</a></div>
   <h2><a href="http://arxiv.org/abs/2608.02583v1">UEmbed: Unified Sparse and Dense Multimodal Embeddings</a></h2>
-  <div class="sum">UEmbed provides unified sparse and dense embeddings for multimodal retrieval systems.</div>
+  <div class="sum">Sparse retrieval underpins modern search systems, from web search to retrieval-augmented generation. Existing work has introduced Learned Sparse Retrieval (LSR) to push beyond exact lexical matching toward richer semantics. Yet LSR has so far remained tied to encoder-style bidirectional architectures, and its extension to multimodal settings still relies heavily on auxiliary cross-modal modules. To address these limitations, we introduce UEmbed (Unified Embedding), a decoder-only multimodal embedding model that produces both sparse lexical and dense representations in one causal forward pass. UEmbed appends N learnable special tokens to the input and partitions the vocabulary into N disjoint subsets. Each token&#x27;s causal hidden state predicts sparse weights over its assigned subset, and the N subsets are concatenated into the full sparse vector. Trained on public data, we release UEmbed at 2B, 4B, and 9B scales. UEmbed-9B reaches 71.8 (dense) and 71.0 (sparse) on MMEB-v2, outperforming multimodal embedding models trained on publicly available data (e.g., RzenEmbed). On BEIR, UEmbed also remains competitive with strong dense and sparse baselines. Furthermore, we demonstrate the practical utility of UEmbed across three dimensions: effectiveness, efficiency, and agentic applications. Overall, UEmbed offers a new paradigm: it unifies dense and sparse embeddings in one model, while further extending sparse retrieval to unify text and multimodal inputs.</div>
   <div class="smeta"><span class="pill p-arxiv">arXiv</span>
-  <span>19h ago</span></div>
+  <span>20h ago</span></div>
 </article>
 <div class="nameplate" style="margin:30px auto"><span>DISCUSSIONS</span></div>
 <article class="story">
   
-  <div class="acts"><a href="https://github.com/garagehq/nightcrawler/">Read ›</a><a href="https://news.ycombinator.com/item?id=49154127">Discuss ›</a></div>
-  <h2><a href="https://github.com/garagehq/nightcrawler/">Show HN: Nightcrawler – A local AI pentesting agent running on a smartphone</a></h2>
-  <div class="sum">Nightcrawler provides a local AI agent for penetration testing on a smartphone.</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">112 pts</span>
-  <span>26h ago</span></div>
-</article>
-<article class="story">
-  
   <div class="acts"><a href="https://hcker.news/?view=frontpage&amp;ai=exclude">Read ›</a><a href="https://news.ycombinator.com/item?id=49159018">Discuss ›</a></div>
   <h2><a href="https://hcker.news/?view=frontpage&amp;ai=exclude">Show HN: Hacker News with AI stories filtered out</a></h2>
-  <div class="sum">The tool filters out AI stories from Hacker News.</div>
+  <div class="sum">Hi folks, I&#x27;ve noticed that a lot of people here seem exhausted by the amount of AI news on the front page. I shared hcker.news here a year ago and it has since gained a ton of filtering features, including a dedicated AI filter, so I figured I should tell more people about it. The filter works in three passes: 1. Known AI-related keywords and domains are filtered automatically. 2. An agent reviews the remaining articles and removes those it identifies as AI-related. 3. I make the call on uncertain cases. You can also exclude GitHub repos posted to HN that show signs of AI authorship. The filter checks: - Commit messages for agent attribution - Contributors for known coding agents - Repository files for agent instructions and configs No filter will be perfect, but this is as good as it gets. lmk what you think. Cheers. More links: Original Show HN: https://news.ycombinator.com/item?id=44075353 If you only want AI stories: https://hcker.news/?view=frontpage&amp;ai=include RSS: https://hcker.news/feeds/atom?period=day&amp;ai=exclude A github-only non-AI feed: https://hcker.news/?ai=exclude&amp;include_domains=github.com</div>
   <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">49 pts</span>
-  <span>19h ago</span></div>
+  <span>21h ago</span></div>
 </article>
 <article class="story">
   
   <div class="acts"><a href="https://armature.tech/">Read ›</a><a href="https://news.ycombinator.com/item?id=49157807">Discuss ›</a></div>
   <h2><a href="https://armature.tech/">Show HN: Product analytics (and evals) for agent sessions on your MCP</a></h2>
-  <div class="sum">Armature offers product analytics for agent sessions on MCP.</div>
+  <div class="sum">Hi HN! We’re Theodore and Louis, founders of Armature (YC P26). We reconstruct the entire session behind the MCP tool calls you receive, including what the user asked their agent to do and what the agent thought. You wrap your MCP in 3 lines of code (our SDK is available in Typescript, Python and Go) and start seeing in your dashboard: - All sessions reconstructed: it’s like reading the real conversation the user had inside Claude or ChatGPT! - A ranking of your MCP most popular use cases, built from sessions clustering - The most frequent issues your users’ agents encounter so you can fix them. Here is a quick demo: https://youtu.be/ZFlvquhyNMQ The story behind this is that we initially launched Armature as a standalone testing tool ( https://www.ycombinator.com/launches/QQc-armature-making-you... ) that could naturally be used through an MCP itself. We quickly realized we had no idea how our users were using Armature MCP and if they were satisfied with it or frustrated. It’s something we had also experienced in our previous companies: Louis built MCPs exposed to millions of users and Theo was a Forward Deployed Engineer at Palantir before joining a Datadog spin-off as Founding Engineer. Both testing and product analytics had always been real pains when exposing a product to agents but we always thought there wasn’t much we could do about analytics because the conversation lived in our users’ AI client. Then it struck us: what if we asked the agents why they were making this or that tool call? And what’s the user&#x27;s intent or potential frustration? So we started experimenting with MCP instrumentation and the use-cases actually surprised us! Many of our first customers had implemented workarounds for their CI to trigger new tests or for their coding agents to fetch the results efficiently. Even though we talked to our first users regularly, they had never shared this feedback with us. We then built automations to automatically cluster use-cases, identify issues frequently encountered and let our own coding agents fix them. When our CTO friends heard about this, they wanted to try it for themselves so we gave them access to a cloned version of our internal product and they started sharing feedback like they never did on our “real” product! That’s when we decided to start working seriously on MCP Analytics as a product. At first we were afraid of degrading MCP performance so we iterated until we reached the exact same success rate as without our instrumentation (89.17 % vs 89.15 % pass rate out of 870 runs). Then privacy was an obvious constraint so we applied the same methods we had learned from working with banking data or building sensitive data scanning in logs. Today, redaction runs client-side before reaching our servers. There are still a lot of things we haven’t fully figured out: not all fields are equally filled by all models, session fingerprinting for serverless / stateless MCPs isn’t perfect, and use-case clustering remains to be optimized. But we are finally launching our analytics product to everyone, self-serve at https://armature.tech with a set-up that takes less than 5 minutes and a generous free tier. And now we are working on fully closing the loop, bringing evals back in our product so we can: identify top workflows and issues -&gt; recommend fixes and improvements -&gt; test fixes at scale on the same workflows run by users, across all harnesses and models -&gt; open PRs to ship fixes directly. The evals can be generated automatically from the session analytics so you can catch every regression and can test every improvement’s real impact across all models and harnesses before shipping it. Here’s an example to make it more concrete: 10 days ago, a marketing automation platform which has had early access to what we built for weeks identified thanks to MCP Analytics that users were frustrated not being able to change their target audience after campaign creation. So they shipped the feature and tested it successfully…</div>
   <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">41 pts</span>
-  <span>21h ago</span></div>
+  <span>22h ago</span></div>
 </article>
 <article class="story">
   
   <div class="acts"><a href="https://soppolang.dev/">Read ›</a><a href="https://lobste.rs/s/0ykmyt">Discuss ›</a></div>
   <h2><a href="https://soppolang.dev/">Soppo - Go, with the features it&#x27;s missing</a></h2>
-  <div class="sum">Soppo adds features missing from the Go programming language.</div>
-  <div class="smeta"><span class="pill p-Lobsters">Lobsters</span><span class="pts">32 pts</span>
-  <span>7h ago</span></div>
+  
+  <div class="smeta"><span class="pill p-Lobsters">Lobsters</span><span class="pts">37 pts</span>
+  <span>8h ago</span></div>
 </article>
 <article class="story">
   
   <div class="acts"><a href="https://killthecookiebanner.eu/">Read ›</a><a href="https://lobste.rs/s/aftrcr">Discuss ›</a></div>
   <h2><a href="https://killthecookiebanner.eu/">Kill the Cookie Banner</a></h2>
-  <div class="sum">The tool removes cookie banners from web pages.</div>
-  <div class="smeta"><span class="pill p-Lobsters">Lobsters</span><span class="pts">128 pts</span>
-  <span>23h ago</span></div>
+  
+  <div class="smeta"><span class="pill p-Lobsters">Lobsters</span><span class="pts">129 pts</span>
+  <span>25h ago</span></div>
 </article>
 <article class="story">
   
   <div class="acts"><a href="https://gruhn.me/blog/2026-08-03/">Read ›</a><a href="https://lobste.rs/s/hfbqr3">Discuss ›</a></div>
   <h2><a href="https://gruhn.me/blog/2026-08-03/">Don&#x27;t be a meat proxy</a></h2>
-  <div class="sum">The blog post discusses the risks of acting as a meat proxy.</div>
-  <div class="smeta"><span class="pill p-Lobsters">Lobsters</span><span class="pts">105 pts</span>
-  <span>30h ago</span></div>
+  
+  <div class="smeta"><span class="pill p-Lobsters">Lobsters</span><span class="pts">115 pts</span>
+  <span>31h ago</span></div>
 </article>
 <article class="story">
   
   <div class="acts"><a href="https://lake.computer/blog/help-wanted/">Read ›</a><a href="https://lobste.rs/s/a355zh">Discuss ›</a></div>
   <h2><a href="https://lake.computer/blog/help-wanted/">help wanted</a></h2>
-  <div class="sum">The post covers strategies for writing effective help wanted posts.</div>
-  <div class="smeta"><span class="pill p-Lobsters">Lobsters</span><span class="pts">171 pts</span>
-  <span>23h ago</span></div>
+  
+  <div class="smeta"><span class="pill p-Lobsters">Lobsters</span><span class="pts">175 pts</span>
+  <span>24h ago</span></div>
 </article>
 <article class="story">
   
   <div class="acts"><a href="https://blogs.gnome.org/feborges/future-of-boxes/">Read ›</a><a href="https://lobste.rs/s/3umxr8">Discuss ›</a></div>
   <h2><a href="https://blogs.gnome.org/feborges/future-of-boxes/">The Future of GNOME Boxes</a></h2>
-  <div class="sum">The article outlines future developments for GNOME Boxes.</div>
-  <div class="smeta"><span class="pill p-Lobsters">Lobsters</span><span class="pts">34 pts</span>
-  <span>20h ago</span></div>
+  
+  <div class="smeta"><span class="pill p-Lobsters">Lobsters</span><span class="pts">36 pts</span>
+  <span>21h ago</span></div>
+</article>
+<article class="story">
+  
+  <div class="acts"><a href="https://www.youtube.com/watch?v=V_qzqY1bb7I">Read ›</a><a href="https://lobste.rs/s/kprcuc">Discuss ›</a></div>
+  <h2><a href="https://www.youtube.com/watch?v=V_qzqY1bb7I">Reliability Lessons From SQLite</a></h2>
+  
+  <div class="smeta"><span class="pill p-Lobsters">Lobsters</span><span class="pts">38 pts</span>
+  <span>22h ago</span></div>
 </article>
 <div class="nameplate" style="margin:30px auto"><span>TOOLS & PROJECTS</span></div>
 <article class="story">
   
   <div class="acts"><a href="https://github.com/FFmpeg/FFmpeg/blob/n9.0/RELEASE_NOTES">Read ›</a><a href="https://news.ycombinator.com/item?id=49166202">Discuss ›</a></div>
   <h2><a href="https://github.com/FFmpeg/FFmpeg/blob/n9.0/RELEASE_NOTES">FFmpeg 9.0</a></h2>
-  <div class="sum">FFmpeg 9.0 release includes new features and updates.</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">288 pts</span>
-  <span>3h ago</span></div>
+  
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">317 pts</span>
+  <span>5h ago</span></div>
 </article>
 <article class="story">
   
   <div class="acts"><a href="https://github.com/leonickson1/Swiftlet">Read ›</a><a href="https://news.ycombinator.com/item?id=49158333">Discuss ›</a></div>
   <h2><a href="https://github.com/leonickson1/Swiftlet">Show HN: Run an 80B Qwen in 4.3 GB of RAM on a Mac, and a 35B on an iPhone</a></h2>
-  <div class="sum">Swiftlet runs an 80B Qwen in 4.3 GB on Mac and a 35B on iPhone.</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">225 pts</span>
-  <span>20h ago</span></div>
+  
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">246 pts</span>
+  <span>21h ago</span></div>
 </article>
 <article class="story">
   
-  <div class="acts"><a href="https://github.com/lyogavin/airllm">Read ›</a><a href="https://news.ycombinator.com/item?id=49154228">Discuss ›</a></div>
-  <h2><a href="https://github.com/lyogavin/airllm">AirLLM 70B inference with single 4GB GPU</a></h2>
-  <div class="sum">AirLLM enables inference of 70B-parameter models on a single 4GB GPU through layer-wise loading.</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">225 pts</span>
-  <span>26h ago</span></div>
+  <div class="acts"><a href="https://github.com/ryanzhou/deepseek-v4-flash-mi300x">Read ›</a><a href="https://news.ycombinator.com/item?id=49166386">Discuss ›</a></div>
+  <h2><a href="https://github.com/ryanzhou/deepseek-v4-flash-mi300x">DeepSeek V4 Flash on a Single AMD MI300X</a></h2>
+  
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">172 pts</span>
+  <span>4h ago</span></div>
 </article>
 <div class="nameplate" style="margin:30px auto"><span>ENGINEERING BLOGS</span></div>
 <article class="story">
   
-  <div class="acts"><a href="https://go.dev/blog/pkgsite-api">Read ›</a></div>
-  <h2><a href="https://go.dev/blog/pkgsite-api">Introducing the pkg.go.dev API</a></h2>
-  <div class="sum">The new pkg.go.dev API allows engineers to fetch package and module data programmatically for automation.</div>
-  <div class="smeta"><span class="pill p-blog">Go Blog</span>
-  <span>1813h ago</span></div>
+  <div class="acts"><a href="https://blog.cloudflare.com/agent-development-lifecycle/">Read ›</a></div>
+  <h2><a href="https://blog.cloudflare.com/agent-development-lifecycle/">The Agent Development Lifecycle has arrived on Cloudflare</a></h2>
+  <div class="sum">Agents can write code faster than teams can review, deploy, and maintain it. Today we’re introducing the Agent Development Lifecycle and the Cloudflare primitives that underpin it</div>
+  <div class="smeta"><span class="pill p-blog">Cloudflare</span>
+  </div>
 </article>
 <article class="story">
   
-  <div class="acts"><a href="https://go.dev/blog/type-construction-and-cycle-detection">Read ›</a></div>
-  <h2><a href="https://go.dev/blog/type-construction-and-cycle-detection">Type Construction and Cycle Detection</a></h2>
-  <div class="sum">Go 1.26 simplifies type construction and detects cycles in recursive types, reducing compile-time errors.</div>
-  <div class="smeta"><span class="pill p-blog">Go Blog</span>
-  <span>3205h ago</span></div>
+  <div class="acts"><a href="https://blog.cloudflare.com/wallets/">Read ›</a></div>
+  <h2><a href="https://blog.cloudflare.com/wallets/">Announcing Cloudflare Wallets: the programmable wallet for the agentic Internet</a></h2>
+  <div class="sum">Cloudflare Wallets will provide AI agents with native payments and verifiable identity on the web. Using the x402 protocol, agents can autonomously purchase APIs and content within clear safety guardrails.</div>
+  <div class="smeta"><span class="pill p-blog">Cloudflare</span>
+  </div>
 </article>
 <article class="story">
   
-  <div class="acts"><a href="https://go.dev/blog/inliner">Read ›</a></div>
-  <h2><a href="https://go.dev/blog/inliner">//go:fix inline and the source-level inliner</a></h2>
-  <div class="sum">The //go:fix inline directive invokes Go&#x27;s source-level inliner to automate API migrations.</div>
-  <div class="smeta"><span class="pill p-blog">Go Blog</span>
-  <span>3541h ago</span></div>
+  <div class="acts"><a href="https://blog.cloudflare.com/ci-workflows/">Read ›</a></div>
+  <h2><a href="https://blog.cloudflare.com/ci-workflows/">Run CI/CD for millions of repos — on your platform, on Cloudflare</a></h2>
+  <div class="sum">Learn how to build customizable, sandboxed CI/CD pipelines natively on Cloudflare using Workflows, Artifacts, and the CI SDK. We walk through replacing complex YAML configurations with TypeScript workflow steps and self-healing AI agents.</div>
+  <div class="smeta"><span class="pill p-blog">Cloudflare</span>
+  </div>
 </article>
 <article class="story">
   
-  <div class="acts"><a href="https://go.dev/blog/allocation-optimizations">Read ›</a></div>
-  <h2><a href="https://go.dev/blog/allocation-optimizations">Allocating on the Stack</a></h2>
-  <div class="sum">Go 1.26 moves certain allocations from the heap to the stack, lowering garbage collection overhead.</div>
-  <div class="smeta"><span class="pill p-blog">Go Blog</span>
-  <span>3805h ago</span></div>
+  <div class="acts"><a href="https://blog.cloudflare.com/engineering-standards-enforcement/">Read ›</a></div>
+  <h2><a href="https://blog.cloudflare.com/engineering-standards-enforcement/">How Cloudflare enforces engineering standards using AI</a></h2>
+  <div class="sum">We created the Cloudflare Codex, a governed body of engineering standards that AI agents consume across the development lifecycle. By pairing structured RFCs with agentic reviews, teams automatically enforce consistency across code, specs, and incident reports.</div>
+  <div class="smeta"><span class="pill p-blog">Cloudflare</span>
+  </div>
 </article>
 <article class="story">
   
-  <div class="acts"><a href="https://blog.rust-lang.org/2026/07/16/Rust-1.97.1/">Read ›</a></div>
-  <h2><a href="https://blog.rust-lang.org/2026/07/16/Rust-1.97.1/">Announcing Rust 1.97.1</a></h2>
-  <div class="sum">The Rust team published Rust 1.97.1; run rustup update to install it.</div>
-  <div class="smeta"><span class="pill p-blog">Rust Blog</span>
-  <span>469h ago</span></div>
+  <div class="acts"><a href="https://github.blog/engineering/architecture-optimization/dont-stop-early-case-folding-source-code-at-memory-speed/">Read ›</a></div>
+  <h2><a href="https://github.blog/engineering/architecture-optimization/dont-stop-early-case-folding-source-code-at-memory-speed/">Don’t stop early: Case-folding source code at memory speed</a></h2>
+  <div class="sum">How a branch-free loop and byte-space arithmetic let GitHub case-fold every byte of code search at &gt;45 GiB/s on a single core. The post Don’t stop early: Case-folding source code at memory speed appeared first on The GitHub Blog .</div>
+  <div class="smeta"><span class="pill p-blog">GitHub Blog</span>
+  <span>94h ago</span></div>
 </article>
 <article class="story">
   
-  <div class="acts"><a href="https://blog.rust-lang.org/2026/07/13/crates-io-development-update/">Read ›</a></div>
-  <h2><a href="https://blog.rust-lang.org/2026/07/13/crates-io-development-update/">crates.io: development update</a></h2>
-  <div class="sum">The crates.io team added a source code viewer and other improvements; read the update for details.</div>
-  <div class="smeta"><span class="pill p-blog">Rust Blog</span>
-  <span>541h ago</span></div>
+  <div class="acts"><a href="https://github.blog/ai-and-ml/github-copilot/stacked-sessions-and-pull-requests-in-the-github-copilot-app/">Read ›</a></div>
+  <h2><a href="https://github.blog/ai-and-ml/github-copilot/stacked-sessions-and-pull-requests-in-the-github-copilot-app/">Stacked sessions and pull requests in the GitHub Copilot app</a></h2>
+  <div class="sum">Learn how I modernized an old codebase of mine using stacked sessions and pull requests in the GitHub Copilot app. The post Stacked sessions and pull requests in the GitHub Copilot app appeared first on The GitHub Blog .</div>
+  <div class="smeta"><span class="pill p-blog">GitHub Blog</span>
+  <span>117h ago</span></div>
 </article>
 </main>
 
@@ -341,19 +349,5 @@ letter-spacing:.04em}
   <div style="margin-top:8px"><a href="https://learn.shenthar.me/rss.xml">Subscribe via RSS</a></div>
 </footer>
 
-<script>
-(function(){var t=document.querySelector('.toggle');
-function set(a){document.documentElement.dataset.theme=a;
-try{localStorage.setItem('theme',a)}catch(e){}}
-function upd(){t.textContent=(document.documentElement.dataset.theme==='light')
-?'Night':'Day';}
-document.documentElement.dataset.theme=
-localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');
-upd();
-function flip(){var cur=document.documentElement.dataset.theme;
-set(cur==='light'?'dark':'light');upd();}
-t.addEventListener('click',flip);t.addEventListener('touchend',flip);
-})();
-</script>
 </body>
 </html>
