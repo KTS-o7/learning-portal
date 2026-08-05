@@ -9,104 +9,104 @@
       href="https://learn.shenthar.me/rss.xml">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
 <style>/* ---------- Daily Byte: newspaper edition ---------- */
-:root{
+:root{{
   --paper:#fbf1c7; --paper2:#f9f5d7; --rule:#d8c9a8; --ink:#3c3836;
   --mut:#504945; --mut2:#79756b; --ac:#b57614; --ln:#076678;
   --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
   --sans:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --pad:clamp(14px,5vw,26px);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);
+}}
+*{{box-sizing:border-box}}
+html{{scroll-behavior:smooth}}
+body{{margin:0;background:var(--paper);color:var(--ink);
 font-family:var(--sans);font-size:16px;line-height:1.55;font-weight:400;
--webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-a{color:var(--ln);text-decoration:none;cursor:pointer}
-a:hover{text-decoration:underline}
-.wrap{max-width:920px;margin:0 auto;padding:0 22px}
-button{cursor:pointer;font-family:var(--sans)}
+-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}}
+a{{color:var(--ln);text-decoration:none;cursor:pointer}}
+a:hover{{text-decoration:underline}}
+.wrap{{max-width:920px;margin:0 auto;padding:0 22px}}
+button{{cursor:pointer;font-family:var(--sans)}}
 
 /* top chrome */
-.chrome{position:sticky;top:0;z-index:50;background:var(--paper);
-border-bottom:1px solid var(--rule);backdrop-filter:blur(6px)}
-.chrome-in{max-width:920px;margin:0 auto;padding:9px var(--pad);
+.chrome{{position:sticky;top:0;z-index:50;background:var(--paper);
+border-bottom:1px solid var(--rule);backdrop-filter:blur(6px)}}
+.chrome-in{{max-width:920px;margin:0 auto;padding:9px var(--pad);
 display:flex;align-items:center;justify-content:space-between;gap:12px;
-font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut2)}
-.chrome nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-.chrome nav a{color:var(--mut);font-weight:600}
-.chrome nav a:hover{color:var(--ln);text-decoration:none}
-.chrome .left,.chrome .right,.chrome .nav{display:flex;gap:14px;align-items:center;white-space:nowrap}
-.chrome .nav{gap:8px;color:var(--mut);font-weight:600}
-.chrome .nav .d{color:var(--ink);font-weight:600;letter-spacing:.04em;text-transform:none;font-size:12px}
-.chrome .nav-arrow{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
-border:1px solid var(--rule);border-radius:50%;color:var(--mut);background:var(--paper2)}
-.chrome .nav-arrow:hover{color:var(--paper);background:var(--ink);border-color:var(--ink);text-decoration:none}
-.chrome .nav-arrow.disabled{opacity:.3;pointer-events:none}
-.chrome .count{color:var(--ac);font-weight:700}
+font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut2)}}
+.chrome nav{{display:flex;gap:16px;align-items:center;flex-wrap:wrap}}
+.chrome nav a{{color:var(--mut);font-weight:600}}
+.chrome nav a:hover{{color:var(--ln);text-decoration:none}}
+.chrome .left,.chrome .right,.chrome .nav{{display:flex;gap:14px;align-items:center;white-space:nowrap}}
+.chrome .nav{{gap:8px;color:var(--mut);font-weight:600}}
+.chrome .nav .d{{color:var(--ink);font-weight:600;letter-spacing:.04em;text-transform:none;font-size:12px}}
+.chrome .nav-arrow{{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
+border:1px solid var(--rule);border-radius:50%;color:var(--mut);background:var(--paper2)}}
+.chrome .nav-arrow:hover{{color:var(--paper);background:var(--ink);border-color:var(--ink);text-decoration:none}}
+.chrome .nav-arrow.disabled{{opacity:.3;pointer-events:none}}
+.chrome .count{{color:var(--ac);font-weight:700}}
 
 /* masthead / nameplate */
-.mast{text-align:center;padding:40px var(--pad) 24px}
-.mast h1{margin:0;font-family:var(--serif);font-weight:700;font-size:clamp(46px,9vw,82px);
-letter-spacing:.5px;line-height:1}
-.mast h1 .dot{color:var(--ac)}
-.mast .tag{color:var(--mut);font-style:italic;font-family:var(--serif);
-font-size:19px;margin-top:8px}
-.mast .edition{color:var(--mut2);font-size:12px;letter-spacing:.22em;
-text-transform:uppercase;margin-top:14px}
-.nameplate{display:flex;align-items:center;gap:14px;margin:20px auto 0;max-width:560px}
-.nameplate:before,.nameplate:after{content:"";flex:1;height:1px;background:var(--rule)}
-.nameplate span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut2)}
+.mast{{text-align:center;padding:40px var(--pad) 24px}}
+.mast h1{{margin:0;font-family:var(--serif);font-weight:700;font-size:clamp(46px,9vw,82px);
+letter-spacing:.5px;line-height:1}}
+.mast h1 .dot{{color:var(--ac)}}
+.mast .tag{{color:var(--mut);font-style:italic;font-family:var(--serif);
+font-size:19px;margin-top:8px}}
+.mast .edition{{color:var(--mut2);font-size:12px;letter-spacing:.22em;
+text-transform:uppercase;margin-top:14px}}
+.nameplate{{display:flex;align-items:center;gap:14px;margin:20px auto 0;max-width:560px}}
+.nameplate:before,.nameplate:after{{content:"";flex:1;height:1px;background:var(--rule)}}
+.nameplate span{{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut2)}}
 
-main{max-width:920px;margin:0 auto;padding:0 var(--pad)}
-.story{padding:20px 0;border-bottom:1px solid var(--rule)}
-.story:last-of-type{border-bottom:0}
-.story .lbl{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
-color:var(--ac);font-weight:700;margin-bottom:6px}
-.story .acts{display:flex;gap:16px;margin-bottom:7px;font-size:11px;
-letter-spacing:.14em;text-transform:uppercase}
-.story .acts a{color:var(--ln);font-weight:700}
-.story h2{margin:0 0 7px;font-size:clamp(20px,2.6vw,26px);line-height:1.22;
-font-weight:700;font-family:var(--serif);letter-spacing:.2px}
-.story h2 a{color:var(--ink)}
-.story h2 a:hover{color:var(--ln);text-decoration:none}
-.story .sum{color:var(--mut);font-size:15px}
-.story .smeta{margin-top:9px;font-size:12px;color:var(--mut2);
-display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-.pill{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.08em;
-text-transform:uppercase;padding:2px 8px;border-radius:10px}
-.p-HN{color:#9d0006;background:rgba(220,50,47,.09);border:1px solid rgba(220,50,47,.22)}
-.p-Lobsters{color:#8f3f97;background:rgba(179,70,110,.09);border:1px solid rgba(179,70,110,.22)}
-.p-arxiv{color:#076678;background:rgba(7,102,120,.09);border:1px solid rgba(7,102,120,.22)}
-.p-blog{color:#427b58;background:rgba(66,123,88,.09);border:1px solid rgba(66,123,88,.22)}
-.p-tool{color:#79740e;background:rgba(121,116,14,.09);border:1px solid rgba(121,116,14,.22)}
-.story .smeta .pts{color:var(--ac);font-weight:600}
+main{{max-width:920px;margin:0 auto;padding:0 var(--pad)}}
+.story{{padding:20px 0;border-bottom:1px solid var(--rule)}}
+.story:last-of-type{{border-bottom:0}}
+.story .lbl{{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+color:var(--ac);font-weight:700;margin-bottom:6px}}
+.story .acts{{display:flex;gap:16px;margin-bottom:7px;font-size:11px;
+letter-spacing:.14em;text-transform:uppercase}}
+.story .acts a{{color:var(--ln);font-weight:700}}
+.story h2{{margin:0 0 7px;font-size:clamp(20px,2.6vw,26px);line-height:1.22;
+font-weight:700;font-family:var(--serif);letter-spacing:.2px}}
+.story h2 a{{color:var(--ink)}}
+.story h2 a:hover{{color:var(--ln);text-decoration:none}}
+.story .sum{{color:var(--mut);font-size:15px}}
+.story .smeta{{margin-top:9px;font-size:12px;color:var(--mut2);
+display:flex;gap:14px;flex-wrap:wrap;align-items:center}}
+.pill{{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.08em;
+text-transform:uppercase;padding:2px 8px;border-radius:10px}}
+.p-HN{{color:#9d0006;background:rgba(220,50,47,.09);border:1px solid rgba(220,50,47,.22)}}
+.p-Lobsters{{color:#8f3f97;background:rgba(179,70,110,.09);border:1px solid rgba(179,70,110,.22)}}
+.p-arxiv{{color:#076678;background:rgba(7,102,120,.09);border:1px solid rgba(7,102,120,.22)}}
+.p-blog{{color:#427b58;background:rgba(66,123,88,.09);border:1px solid rgba(66,123,88,.22)}}
+.p-tool{{color:#79740e;background:rgba(121,116,14,.09);border:1px solid rgba(121,116,14,.22)}}
+.story .smeta .pts{{color:var(--ac);font-weight:600}}
 
 /* footer */
-.foot{margin:40px 0 34px;text-align:center;color:var(--mut2);font-size:12.5px;
-letter-spacing:.04em}
-.foot a{color:var(--mut);text-decoration:underline}
-.foot .ln{display:inline-block;margin:0 8px}
+.foot{{margin:40px 0 34px;text-align:center;color:var(--mut2);font-size:12.5px;
+letter-spacing:.04em}}
+.foot a{{color:var(--mut);text-decoration:underline}}
+.foot .ln{{display:inline-block;margin:0 8px}}
 
 /* ---------- mobile ---------- */
-.foot{margin:36px 0 30px;padding:0 var(--pad);text-align:center;
-color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
-@media (max-width:640px){
-  .chrome-in{flex-wrap:wrap;row-gap:4px}
-  .chrome .right{flex:1;justify-content:flex-end}
-  .chrome .nav{flex:1;justify-content:center;order:3}    /* on phones, push nav below the link row */
-  .chrome .nav .d{font-size:11px}
-  .chrome .count{font-size:10px}
-  .mast{padding:30px var(--pad) 18px}
-  .mast h1{font-size:clamp(38px,13vw,56px)}
-  .mast .tag{font-size:16px}
-  .mast .edition{letter-spacing:.14em}
-  .story{padding:16px 0}
-  .story h2{font-size:19.5px;line-height:1.3}
-  .story .sum{font-size:14.5px}
-  .story .acts{gap:14px}
-  .story .smeta{font-size:11.5px;gap:10px}
-  .nameplate{margin:22px auto 0}
-}
+.foot{{margin:36px 0 30px;padding:0 var(--pad);text-align:center;
+color:var(--mut2);font-size:12.5px;letter-spacing:.04em}}
+@media (max-width:640px){{
+  .chrome-in{{flex-wrap:wrap;row-gap:4px}}
+  .chrome .right{{flex:1;justify-content:flex-end}}
+  .chrome .nav{{flex:1;justify-content:center;order:3}}    /* on phones, push nav below the link row */
+  .chrome .nav .d{{font-size:11px}}
+  .chrome .count{{font-size:10px}}
+  .mast{{padding:30px var(--pad) 18px}}
+  .mast h1{{font-size:clamp(38px,13vw,56px)}}
+  .mast .tag{{font-size:16px}}
+  .mast .edition{{letter-spacing:.14em}}
+  .story{{padding:16px 0}}
+  .story h2{{font-size:19.5px;line-height:1.3}}
+  .story .sum{{font-size:14.5px}}
+  .story .acts{{gap:14px}}
+  .story .smeta{{font-size:11.5px;gap:10px}}
+  .nameplate{{margin:22px auto 0}}
+}}
 </style>
 </head>
 <body>
@@ -114,8 +114,8 @@ color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
   <div class="left"><a href="https://learn.shenthar.me/"><strong>Daily Byte</strong></a>
     <a href="https://github.com/KTS-o7/learning-portal">Source</a><a href="https://learn.shenthar.me/archive/">Archive</a>
     <a href="https://learn.shenthar.me/rss.xml">RSS</a></div>
-  <div class="nav"><a class="nav-arrow" href="https://learn.shenthar.me/archive/2026-08-04.html" aria-label="Previous edition (2026-08-04)"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></a><span class="d">Wednesday, August 5, 2026</span><span class="nav-arrow disabled" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></div>
-  <div class="right"><span class="count">15 STORIES</span></div>
+  <div class="nav"><a class="nav-arrow" href="https://learn.shenthar.me/2026-08-04" aria-label="Previous edition (2026-08-04)"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></a><span class="d">Wednesday, August 5, 2026</span><span class="nav-arrow disabled" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></div>
+  <div class="right"><span class="count">16 STORIES</span></div>
 </div></div>
 
 <header class="mast">
@@ -127,135 +127,143 @@ color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
 
 <main>
   <article class="story">
-  
-  <div class="acts"><a href="https://blog.rust-lang.org/2026/06/25/vision-doc-journeys-to-learning-rust/">Read ›</a></div>
-  <h2><a href="https://blog.rust-lang.org/2026/06/25/vision-doc-journeys-to-learning-rust/">The many journeys of learning Rust</a></h2>
-  <div class="sum">Rust learners enter the language through several paths, including curiosity, embedded work, job-market pressure, organizational adoption, and reassignment after teams choose Rust. Many learners are not evaluating Rust from scratch but are trying to become productive after it has already arrived in their work. To learn the language, people reach for a range of resources, including official documentation such as The Rust Programming Language Book, as well as community-maintained materials like Rustlings, The Little Book of Rust Macros, Learn Rust With Entirely Too Many Linked Lists, Zero to Production in Rust, and Jon Gjengset&#x27;s tutorials. Some learners find the official book sufficient, while others require multiple passes and different formats to grasp concepts like the borrow checker. There is also a perception that some resources, including The Rust Programming Language, have fallen out of date, with unresolved issues and unmerged pull requests in their repositories. Rust is typically a second or later language for developers, and many initially write idiomatic C++ or Java patterns in Rust for months or even years before becoming comfortable with idiomatic Rust, often experiencing an initial productivity drop.</div>
-  <div class="smeta"><span class="pill p-blog">Rust Blog</span><span>41d ago</span></div>
+  <div class="lbl">• Top story</div>
+  <div class="acts"><a href="https://arpitbhayani.me/blogs/three-skills">Read ›</a></div>
+  <h2><a href="https://arpitbhayani.me/blogs/three-skills">Three Claude Skills I Think Every Org Should Have</a></h2>
+  <div class="sum">An engineering organization becomes more efficient by building executable tools rather than relying on documentation that often becomes stale and misleading. The author recommends three skills: a `create-app` skill that provisions databases, wires up logging, registers services with identity providers, and deploys to production in a single command; a `deploy-&lt;service&gt;` skill that integrates forward deploys, rollbacks, environment-scoped tests, and post-deploy smoke tests as a unified flow; and a `&lt;service&gt;-debugging` skill that matches live symptoms to known failure patterns with direct links to logs, traces, and dashboards. The core argument is that broken tools fail loudly and get fixed, while stale wiki pages can mislead people for months. With AI agents increasingly creating services and triaging incidents, knowledge embedded in executable tools ensures correct behavior regardless of whether a human or an agent is acting on it. The author advises starting with the service that pages most often and takes longest to fix.</div>
+  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span></div>
 </article>
 
 <article class="story">
   
-  <div class="acts"><a href="https://jvns.ca/blog/2024/11/18/how-to-import-a-javascript-library/">Read ›</a></div>
-  <h2><a href="https://jvns.ca/blog/2024/11/18/how-to-import-a-javascript-library/">Importing a frontend Javascript library without a build system</a></h2>
-  <div class="sum">JavaScript libraries typically provide three types of files: &quot;classic&quot; files that define global variables, ES modules, and CommonJS modules. CommonJS files are designed for Node and cannot be used directly in the browser without a build system. All CDN-hosted library files originate from the library&#x27;s NPM build, so examining the NPM package locally is the best way to see exactly what files are available. File extensions offer useful clues: a .cjs suffix indicates CommonJS, a standard .js file containing import syntax is an ES module, and a .umd.js file is a Universal Module Definition that works with a basic script tag. Chart.js illustrates this well, providing chart.cjs for Node, chart.js as an ES module, and chart.umd.js as a UMD file that can be loaded directly with a script tag in the browser.</div>
-  <div class="smeta"><span class="pill p-blog">Julia Evans</span><span>624d ago</span></div>
+  <div class="acts"><a href="https://arpitbhayani.me/blogs/g-eval">Read ›</a></div>
+  <h2><a href="https://arpitbhayani.me/blogs/g-eval">G-Eval, Explained</a></h2>
+  <div class="sum">G-Eval is a prompting framework introduced in a 2023 paper by Yang Liu and colleagues at Microsoft that uses a large language model as a reference-free evaluator of generated text, meaning it judges outputs without needing a gold-standard reference. The framework has three components: a precise rubric defining the evaluation dimension, auto-generated chain-of-thought evaluation steps produced by the model from the task description and criterion, and a scoring step. To avoid score collapse onto a single dominant value, G-Eval replaces direct integer scoring with a probability-weighted expectation over the tokens the model assigns to each possible score, producing decimals like 4.45 instead of flat 4s. This requires APIs that expose token-level log probabilities, such as OpenAI&#x27;s logprobs parameter, though sampling the same prompt multiple times at nonzero temperature serves as a workaround. The authors warn about self-preference bias, where LLM judges tend to favor outputs from their own model family, so the same model should not be used for both generation and judging.</div>
+  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span></div>
 </article>
 
 <article class="story">
   
-  <div class="acts"><a href="https://jvns.ca/blog/2025/02/13/how-to-add-a-directory-to-your-path/">Read ›</a></div>
-  <h2><a href="https://jvns.ca/blog/2025/02/13/how-to-add-a-directory-to-your-path/">How to add a directory to your PATH</a></h2>
-  <div class="sum">A February 2025 guide explains how to add a directory to your PATH in bash, zsh, or fish. First, determine your shell by running `ps -p $$ -o pid,comm=`; bash is the default on Linux while zsh is the default on Mac OS. Next, locate the appropriate config file: ~/.zshrc for zsh, ~/.config/fish/config.fish for fish, and ~/.bashrc, ~/.bash_profile, or ~/.profile for bash, though the author recommends testing rather than memorizing which one bash uses. To identify which directory to add, consult installer directions, search online, or use commands like `npm config get prefix`, `go env GOPATH`, or</div>
-  <div class="smeta"><span class="pill p-blog">Julia Evans</span><span>537d ago</span></div>
+  <div class="acts"><a href="https://arpitbhayani.me/blogs/ai-topological-sort">Read ›</a></div>
+  <h2><a href="https://arpitbhayani.me/blogs/ai-topological-sort">AI Workflows Need Topological Sort</a></h2>
+  <div class="sum">AI workflows are fundamentally dependency problems where consumer steps cannot execute before producer steps finish. Directed acyclic graphs (DAGs) model these workflows as nodes (tasks) and directed edges (dependencies), while topological sort produces a valid execution order ensuring producers always precede consumers. Kahn&#x27;s algorithm computes this ordering in O(V+E) time, and because nodes at the same level share no dependencies, they can execute in parallel—a key advantage over linear pipelines. Cycle detection during topological sort catches circular dependencies before runtime, preventing deadlocks and distinguishing a clear error message from a hung pipeline. Tools like Prefect and Airflow use this approach to maximize throughput, and multi-agent frameworks like LangGraph model agent interactions as DAGs to enforce correct execution order across agents producing and consuming each other&#x27;s outputs.</div>
+  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span></div>
 </article>
 
 <article class="story">
   
-  <div class="acts"><a href="https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/">Read ›</a></div>
-  <h2><a href="https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/">Enabling the next iteration of the borrow checker on nightly</a></h2>
-  <div class="sum">The next iteration of Rust&#x27;s borrow checker, called Polonius Alpha, is being enabled on nightly in preparation for stabilization in the coming months. It originated from a 2023 reimagining of the original Polonius formulation and required minimal rearchitecture of the existing NLL implementation. Polonius Alpha&#x27;s key improvement is flow-sensitive borrow checking of lifetime outlives relationships, allowing code that NLL rejects to compile, such as patterns using map.get_mut where branches don&#x27;t actually use the returned borrow. However, it is not a perfect superset of legacy Polonius, as some programs accepted by the older formulation are rejected. Performance currently does equal or more work than NLL, though regressions among the top ten thousand crates on crates.io are generally small, with the worst observed case being a 2-3x regression on crates with many borrows.</div>
-  <div class="smeta"><span class="pill p-blog">Rust Blog</span><span>1d ago</span></div>
+  <div class="acts"><a href="https://seangoedecke.com/giving-and-taking-credit/">Read ›</a></div>
+  <h2><a href="https://seangoedecke.com/giving-and-taking-credit/">Giving and taking credit in big tech companies</a></h2>
+  <div class="sum">Engineers often expect their managers to handle visibility and reward them for good work, but this &quot;school fantasy&quot; doesn&#x27;t match how big tech companies actually operate. Managers can&#x27;t reliably assess technical work because software systems are too complex, so they depend on trusted engineers to evaluate performance through quiet conversations behind the scenes. This means engineers need to actively take credit themselves by writing internal posts and building relationships with their management chain. However, the best way to accumulate credit is by giving it away, since sharing credit with others gives them a reason to support your project. Projects where credit is concentrated in one person become automatic targets for blame during complex failures, because nobody else is incentivized to defend them. Credit and blame function as the actual currencies of tech companies, making this give-and-take essential to long-term success.</div>
+  <div class="smeta"><span class="pill p-blog">Sean Goedecke</span></div>
 </article>
 
 <article class="story">
   
-  <div class="acts"><a href="https://jvns.ca/blog/2024/11/26/terminal-rules/">Read ›</a></div>
-  <h2><a href="https://jvns.ca/blog/2024/11/26/terminal-rules/">&quot;Rules&quot; that terminal programs follow</a></h2>
-  <div class="sum">Terminal behavior depends on the interaction of your operating system, shell, terminal emulator, and the specific program you&#x27;re running. While there are no formal standards governing how terminal programs should behave, the author observes that they tend to follow consistent unwritten rules. These include: noninteractive programs quitting on Ctrl-C, TUIs quitting on q, REPLs quitting on Ctrl-D at an empty line, limiting color use to 16, supporting basic readline keybindings like Ctrl-W to delete the last word, disabling colors when output is piped, and using &quot;-&quot; to denote stdin or stdout. The author emphasizes these rules are descriptive of common practice rather than prescriptive standards, and recognizing which behaviors fall to the program rather than the system helps explain why implementations sometimes vary between different tools.</div>
-  <div class="smeta"><span class="pill p-blog">Julia Evans</span><span>600d ago</span></div>
+  <div class="acts"><a href="https://seangoedecke.com/ai-models-need-moral-support/">Read ›</a></div>
+  <h2><a href="https://seangoedecke.com/ai-models-need-moral-support/">AI models need moral support to make discoveries</a></h2>
+  <div class="sum">AI has rapidly become capable of solving long-standing mathematical problems, with new LLM-produced results appearing almost daily in 2026. The prompting strategy for these breakthroughs is often remarkably simple—just asking the model to find something important and offering encouragement. The author argues that prompt engineering matters less than understanding what models are good at, since AI is often limited by its beliefs about its own capabilities. Models frequently refuse to attempt difficult tasks they could actually perform, such as counting to 100, solving Tower of Hanoi with more than eight disks, or attempting major unsolved problems. The author calls this the &quot;refusal problem&quot; and notes it has largely been solved. Even if AI capabilities stalled, the pace of discoveries should accelerate as successful AI-generated results become part of training data, helping models overcome their pessimistic self-assessments.</div>
+  <div class="smeta"><span class="pill p-blog">Sean Goedecke</span></div>
 </article>
 
 <div class="nameplate" style="margin:30px auto"><span>PAPERS</span></div>
 
 <article class="story">
   
-  <div class="acts"><a href="https://arxiv.org/abs/2608.02604">Read ›</a></div>
-  <h2><a href="https://arxiv.org/abs/2608.02604">ISEE: Interactive Semantic Enrichment for Database Fields</a></h2>
-  <div class="sum">arXiv:2608.02604v1 Announce Type: new Abstract: LLM-based agents are increasingly being deployed for data-related tasks, including data sense-making, exploration, and retrieval. However, their performance heavily depends on the clarity and completeness of data semantics. In practice, many field descriptions remain ambiguous or incomplete, as much of the essential context (e.g., the meaning of a customized field) originates from users&#x27; domain knowledge and is rarely documented publicly. This gap restricts the agents&#x27; task performance in downstream tasks, such as entity-linking. To bridge this g</div>
-  <div class="smeta"><span class="pill p-arxiv">cs.AI updates on arXiv.org</span><span>32m ago</span></div>
+  <div class="acts"><a href="http://arxiv.org/abs/2608.04007v1">Read ›</a></div>
+  <h2><a href="http://arxiv.org/abs/2608.04007v1">TurnSight: Turn-Level Hindsight Self-Distillation for Tool-Integrated Reasoning</a></h2>
+  <div class="sum">TurnSight is a turn-level hindsight self-distillation framework designed for Tool-Integrated Reasoning, where LLMs solve complex tasks through iterative tool interactions. Existing reinforcement learning methods typically rely on trajectory-level supervision, which limits fine-grained credit assignment across long interaction sequences, while prior on-policy self-distillation approaches derive privileged teacher context from ground-truth answers or retrieved skills that may not match the states the agent actually visits. TurnSight instead derives supervision directly from execution-conditioned hindsight, constructing multiple hindsight views with different lookahead horizons and selecting reliable signals through cross-horizon directional agreement. The selected hindsight signal is normalized across sibling rollouts and used to adaptively modulate RL advantages while preserving their original optimization direction. The framework was evaluated on three benchmarks, with the authors releasing their implementation publicly on GitHub.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>12h ago</span></div>
 </article>
 
 <article class="story">
   
-  <div class="acts"><a href="https://arxiv.org/abs/2608.02606">Read ›</a></div>
-  <h2><a href="https://arxiv.org/abs/2608.02606">Self-Organising Digital Circuits</a></h2>
-  <div class="sum">This work introduces Self-Organising Digital Circuits, a biologically inspired approach to fault tolerance in computing. Unlike traditional static methods such as hardware redundancy and error-correcting codes, the system achieves adaptive plasticity by framing functional logic generation as a meta-learning problem on graphs. The architecture employs a topology-masked Transformer that configures the Lookup Tables of a circuit&#x27;s Boolean gates, extending the pattern-generation paradigm of Neural Cellular Automata to navigate the Boolean search space and satisfy computational tasks. The researchers demonstrate that their system can self-assemble functional circuits from scratch and rapidly re-route logic around permanent hardware faults not encountered during training. For soft errors, the policy achieves near-perfect recovery exceeding 99.99% accuracy from damage sizes far beyond its training conditions, while also generalising to circuit scales substantially wider than those seen during training.</div>
-  <div class="smeta"><span class="pill p-arxiv">cs.AI updates on arXiv.org</span><span>32m ago</span></div>
+  <div class="acts"><a href="http://arxiv.org/abs/2608.04001v1">Read ›</a></div>
+  <h2><a href="http://arxiv.org/abs/2608.04001v1">Test-Time Scaling in Reasoning LLMs: Inference Regimes, Evaluation, and Reproducibility</a></h2>
+  <div class="sum">Large language models solve harder reasoning problems with more inference-time compute, yet the term &quot;test-time scaling&quot; now spans structurally different algorithms—sequential single-trajectory deliberation, candidate sampling with voting or verification, and search over partial states—that cannot be treated as interchangeable under a single scalar budget. The authors formalize test-time scaling as budgeted inference over the implicit prefix tree of an autoregressive model and distinguish three regimes: single-trajectory sequential scaling, leaf-level scaling with terminal reduction, and prefix-level scaling. Evaluation focuses on the full inference system, separating end-to-end performance from candidate-bank diagnostics through an evaluation profile whose coordinates and functionals recover or bound common repeated-sampling metrics, with protocol-matched reporting of compute and uncertainty. Reproducibility requirements distinguish exact replay from distributional reproducibility along with the artifacts needed to support each. The framework is applied to broad-knowledge, symbolic-reasoning, and competition-mathematics benchmarks, and over two billion full reasoning traces are assembled for release with progressively richer verifier and token-level signals.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>12h ago</span></div>
 </article>
 
 <article class="story">
   
-  <div class="acts"><a href="https://arxiv.org/abs/2608.02618">Read ›</a></div>
-  <h2><a href="https://arxiv.org/abs/2608.02618">Beyond the Hivemind: Escaping LLM Homogeneity via Meta-Persona Anchoring and Sequential Temperature Scaling</a></h2>
-  <div class="sum">arXiv:2608.02618v1 Announce Type: new Abstract: Recent studies have identified an ``Artificial Hivemind&#x27;&#x27; effect in Large Language Models (LLMs) causing models to converge on a narrow, homogenized consensus even for open questions. This semantic collapse limits the diversity of AI, resulting in high inter-response similarity ($\approx 0.80-0.90$) even under high-temperature sampling. In this paper, we propose a novel mitigation framework to increase diversity: Meta-Persona Anchoring combined with Filtered Temperature Scaling (FTS). Our approach utilizes a two-stage generation process: first, t</div>
-  <div class="smeta"><span class="pill p-arxiv">cs.AI updates on arXiv.org</span><span>32m ago</span></div>
+  <div class="acts"><a href="http://arxiv.org/abs/2608.03990v1">Read ›</a></div>
+  <h2><a href="http://arxiv.org/abs/2608.03990v1">Assessment of Conditional Diffusion Model for Synthetic Histopathology Image Generation</a></h2>
+  <div class="sum">The study evaluates synthetic histopathology image generation, addressing limitations in standard metrics like Frechet Inception Distance (FID) and Inception Score (IS), which depend on ImageNet-pretrained feature extractors and may lack relevance for pathology data. The authors propose modified FID and IS approaches using foundation models pretrained on digital pathology datasets, supplemented by precision-recall based metrics. Using conditional denoising diffusion models trained on four benchmark datasets with a two-step training approach, they generated synthetic datasets with varied quality characteristics. The research measured correlations between these synthetic data quality metrics and downstream nuclei segmentation performance using aggregated Jaccard index (AJI+) and Dice coefficient. Their results showed that pathology-specific metrics offered improved discriminative power, with the modified Inception Score correlating more strongly with AJI+ (r=0.6096, p=0.0122) than the original IS (r=0.0708, p=0.7944). The findings further indicate that data variety in generated training sets correlates more positively with segmentation performance than visual fidelity of individual images.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>12h ago</span></div>
 </article>
 
 <article class="story">
   
-  <div class="acts"><a href="https://arxiv.org/abs/2608.02630">Read ›</a></div>
-  <h2><a href="https://arxiv.org/abs/2608.02630">PULSE: An Executable Contract Language for Spatiotemporal Knowledge Graph Engineering</a></h2>
-  <div class="sum">arXiv:2608.02630v1 Announce Type: new Abstract: Knowledge graph engineering often distributes accepted state, observations, constraints, processes, and hypothetical scenarios across artifacts whose combined execution contract remains external. We present PULSE, an Object-Process-Methodology-inspired language that localizes four operational roles and their write effects in one typed runtime. Here, modes denote operational roles rather than modal or deontic logic. The implemented contract fixes evidence non-overwrite, branch isolation, grounded multi-subject timers, guarded state change, and dec</div>
-  <div class="smeta"><span class="pill p-arxiv">cs.AI updates on arXiv.org</span><span>32m ago</span></div>
+  <div class="acts"><a href="http://arxiv.org/abs/2608.03983v1">Read ›</a></div>
+  <h2><a href="http://arxiv.org/abs/2608.03983v1">Can Large Language Models Recover Semantic Optimization Opportunities That Compilers Miss?</a></h2>
+  <div class="sum">Optimizing compilers often miss profitable transformations because the enabling semantics are absent from the analyzed program representation. This work investigates whether large language models can recover such semantics from heterogeneous C/C++ context and produce validated, contract-preserving artifacts. The authors introduce SeGaBench, an executable benchmark with 100 synthetic and 20 source-backed cases covering low-level assumptions, data-structure invariants, and high-level semantic lifting, each including hidden enabling semantics, an oracle artifact, correctness and semantic validators, and a reproducible performance protocol. Evaluating five LLMs across five independent responses per case, the strongest model produced correct artifacts in 94.8% of responses, achieved at least 1.05x speedup in 83.3%, and obtained a performance success on 93.3% of cases. However, correct artifacts frequently closed only part of the oracle gap, indicating room for improvement. Overall, the findings suggest LLMs can serve as speculative semantic proposers that complement compiler analysis when their artifacts are properly validated and evaluated.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>12h ago</span></div>
 </article>
 
 <article class="story">
   
-  <div class="acts"><a href="https://arxiv.org/abs/2608.02650">Read ›</a></div>
-  <h2><a href="https://arxiv.org/abs/2608.02650">HyperAgent: Planning and Acting over Tool-Schema Hypergraphs for Tool-Use LLM Agents</a></h2>
-  <div class="sum">arXiv:2608.02650v1 Announce Type: new Abstract: Large language model (LLM) agents increasingly rely on external tools to complete complex real-world tasks. However, reliable tool-use planning remains challenging due to the limitations of implicit reasoning and the evolving nature of real-world execution environments. Existing tool-use agents typically rely on LLMs to infer tool compositions from textual descriptions, which can lead to inefficient exploration and unreliable execution in complex tasks. To address these challenges, we model tool relations at the schema level and construct a direc</div>
-  <div class="smeta"><span class="pill p-arxiv">cs.AI updates on arXiv.org</span><span>32m ago</span></div>
+  <div class="acts"><a href="http://arxiv.org/abs/2608.03979v1">Read ›</a></div>
+  <h2><a href="http://arxiv.org/abs/2608.03979v1">Video-DeepResearch: Towards the Next-Generation Multimodal Deepresearch Agent</a></h2>
+  <div class="sum">Video-DeepResearch extends multimodal agents from static images to continuous video streams, requiring dense spatiotemporal grounding combined with open-web exploration. The authors identify two key bottlenecks in current models: modality bias, where agents prefer textual search over visual tools, and parametric knowledge leakage, where models rely on internal knowledge instead of tool-based execution. To address these, the framework employs a decoupled perception-exploration pipeline with stage-wise tool unlocking that forces thorough cross-frame visual grounding before web retrieval, trained via supervised fine-tuning followed by Group Relative Policy Optimization. The team also created Video-DR-Bench, a human-AI collaborative benchmark with 200 complex multi-hop VQA instances. Empirical results show that Video-DeepResearch-35B-A3B achieves a new state-of-the-art 64.0% average accuracy, surpassing Claude-4.5-Sonnet (59.0%), GPT-5 (52.5%), and Gemini 2.5 Pro (57.5%), while the compact 30B-A3B variant reaches 59.3%.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>12h ago</span></div>
 </article>
 
 <div class="nameplate" style="margin:30px auto"><span>TOOLS &amp; PROJECTS</span></div>
 
 <article class="story">
   
-  <div class="acts"><a href="https://github.com/brian-armstrong/fec">Read ›</a><a href="https://news.ycombinator.com/item?id=49176212">Discuss ›</a></div>
-  <h2><a href="https://github.com/brian-armstrong/fec">Show HN: SIMD Viterbi Decoder in Rust</a></h2>
-  <div class="sum">The `fec` Rust crate implements forward error correction for software-defined radio, space, and satellite applications, supporting convolutional codes with a Viterbi decoder (hard and soft decision) across rates from 1/2 to 1/8 and orders from k=4 to k=16, as well as Reed-Solomon codes over GF(2⁸) including the standard CCSDS (255,223) code. On nightly Rust, the `simd` feature enables Viterbi decoding accelerated by SSE/AVX2/AVX512, allowing it to outperform Phil Karn&#x27;s `libfec` C library across all supported codes on a Zen4 laptop. The crate is bit-compatible with `libfec`, and a companion `fec-shim` crate exposes its functionality under `libfec`&#x27;s C ABI as a drop-in replacement for existing C codebases. Standard parameters are derived from the published CCSDS 131.0-B standard. The library draws inspiration from the author&#x27;s earlier `libcorrect` C library but is independently implemented.</div>
-  <div class="smeta"><span class="pill p-tool">Tool</span><span class="pts">33 pts</span></div>
+  <div class="acts"><a href="https://github.com/FFmpeg/FFmpeg/blob/n9.0/RELEASE_NOTES">Read ›</a><a href="https://news.ycombinator.com/item?id=49166202">Discuss ›</a></div>
+  <h2><a href="https://github.com/FFmpeg/FFmpeg/blob/n9.0/RELEASE_NOTES">FFmpeg 9.0</a></h2>
+<div class="sum">FFmpeg 9.0 ships a Playdate video encoder and muxer, animated WebP decoder, HE-AAC 960 for DAB, transpose_cuda, AMF HDR dynamic metadata, ProRes RAW hwaccel, and the APV Vulkan encoder. ONNX runtime detection is now automatic. Dropped: CELT encoder, NVENC AV1, and several deprecated APIs. About four months after 8.1.</div>
+  
+</article>
+
+<article class="story">
+  
+  <div class="acts"><a href="https://github.com/ryanzhou/deepseek-v4-flash-mi300x">Read ›</a><a href="https://news.ycombinator.com/item?id=49166386">Discuss ›</a></div>
+  <h2><a href="https://github.com/ryanzhou/deepseek-v4-flash-mi300x">DeepSeek V4 Flash on a Single AMD MI300X</a></h2>
+<div class="sum">A community port of the 304B-parameter DeepSeek-V4-Flash checkpoint that runs on a single AMD MI300X. Key fixes: FNUZ FP8 quantization (the stock MI300X path is broken), AITER attention kernel tuning, and a verified 256K context window. Reported throughput: ~168 tokens/sec decode, ~8K tokens/sec prefill on the unquantized model.</div>
+  
 </article>
 
 <div class="nameplate" style="margin:30px auto"><span>DISCUSSIONS</span></div>
 
 <article class="story">
   
-  <div class="acts"><a href="https://writings.stephenwolfram.com/2026/08/in-memory-of-my-wife-elise-cawley-1961-2026-with-thanks-for-36-wonderful-years/">Read ›</a><a href="https://news.ycombinator.com/item?id=49173165">Discuss ›</a></div>
-  <h2><a href="https://writings.stephenwolfram.com/2026/08/in-memory-of-my-wife-elise-cawley-1961-2026-with-thanks-for-36-wonderful-years/">In Memory of My Wife, Elise Cawley, with Thanks for 36 Wonderful Years</a></h2>
-  <div class="sum"></div>
-  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">1117 pts</span></div>
+  <div class="acts"><a href="https://github.com/MakazhanAlpamys/Soup">Read ›</a><a href="https://news.ycombinator.com/item?id=49166984">Discuss ›</a></div>
+  <h2><a href="https://github.com/MakazhanAlpamys/Soup">Show HN: Fine-tune an 8B model on a 4 GB laptop GPU</a></h2>
+  <div class="sum">A GitHub repository titled &quot;Soup&quot; by user MakazhanAlpamys presents a project shared as &quot;Show HN: Fine-tune an 8B model on a 4 GB laptop GPU.&quot; The public repository has gained notable attention, with 218 stars and 32 forks from the community. The project appears to focus on making large language model fine-tuning accessible on consumer hardware with limited VRAM. Based on the title, the tool aims to enable users to fine-tune an 8 billion parameter model using just a 4GB laptop GPU, which would typically be considered insufficient for such a task. The repository is hosted under the main branch and is publicly available for collaboration, though specific technical implementation details from the README content are not visible in the provided page.</div>
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">125 pts</span><span>19h ago</span></div>
 </article>
 
 <article class="story">
   
-  <div class="acts"><a href="https://birchtree.me/blog/xbox-goes-down-you-cant-play-games-you-own-on-disc/">Read ›</a><a href="https://news.ycombinator.com/item?id=49167448">Discuss ›</a></div>
-  <h2><a href="https://birchtree.me/blog/xbox-goes-down-you-cant-play-games-you-own-on-disc/">Xbox goes down. You can&#x27;t play games you own on disc</a></h2>
-  <div class="sum">An extended Xbox outage that began Sunday evening blocked players from accessing their disc-based games, not just digital titles. The author notes that even when a disc is inserted, the game typically installs to the internal hard drive and requires updates to function, meaning players depend on network services even for physical copies. This illustrates how owning a disc today still amounts to a license rather than true ownership, since companies can unintentionally or intentionally prevent access. The author contrasts this with experiences like playing Game Boy cartridges on an Analog Pocket, where no network authorization is needed to access decades-old games. This reliance on digital infrastructure, even for physical media, is one reason the author has gravitated toward PC gaming, where gamers have more reliable means of maintaining access to their libraries.</div>
-  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">603 pts</span></div>
+  <div class="acts"><a href="https://deepgrove.ai/maple-preview">Read ›</a><a href="https://news.ycombinator.com/item?id=49173984">Discuss ›</a></div>
+  <h2><a href="https://deepgrove.ai/maple-preview">Show HN: Maple-Preview – Ternary 20B MoE running at 120 tok/s on a iPhone</a></h2>
+<div class="sum">Maple-Preview is an early demo of a ternary 20B-parameter mixture-of-experts model running at about 120 tokens per second on a stock iPhone. The numbers suggest aggressive weight quantisation plus aggressive MoE routing — most layers stay inactive per token. Authors claim it matches larger dense models on benchmarks; the live demo page reportedly 404s, so this summary is from the HN title only.</div>
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">85 pts</span><span>10h ago</span></div>
 </article>
 
 <article class="story">
   
-  <div class="acts"><a href="https://toneyalexander.github.io/inclusive-color-space/">Read ›</a><a href="https://news.ycombinator.com/item?id=49170165">Discuss ›</a></div>
-  <h2><a href="https://toneyalexander.github.io/inclusive-color-space/">Show HN: Simple algorithm and color space to generate diverse skin tones</a></h2>
-  <div class="sum">A project presents a custom color space and algorithm for generating diverse, plausible skin tones in digital contexts like character creators and digital art. It provides a JavaScript color picker and Python procedural generation code, offering two methods to uniformly sample points from a sphere within the color space, which are then converted to RGB values through a set of linear equations. The motivation is that existing representations fall short—emojis typically use around five shades, makeup brands maybe fifty, and character creators offer millions of options without guidance—none capturing real human variety. The color space aims to define the broadest inclusive range of simplified skin tones as a practical starting point for artists and developers. The author frames the equations as &quot;good enough&quot; rather than authoritative, acknowledging the simplified nature of the approach while providing a more inclusive alternative to traditional reference materials like &quot;flesh cloud&quot; color guides.</div>
-  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">482 pts</span></div>
+  <div class="acts"><a href="https://hisham.hm/2026/08/04/the-lua-community-needs-to-learn-to-move-on/">Read ›</a><a href="https://lobste.rs/s/t7wzko">Discuss ›</a></div>
+  <h2><a href="https://hisham.hm/2026/08/04/the-lua-community-needs-to-learn-to-move-on/">The Lua community needs to learn to move on</a></h2>
+  <div class="sum">Mike Pall deleted tags for old LuaJIT versions from his upstream GitHub repository, a move that frustrates many due to projects remaining stuck on tags like `luajit-2.1.0-beta3` for years. The Lua community has developed a tendency to support old versions indefinitely since the Lua/LuaJIT split around version 5.2, roughly 15 years ago. Library authors commonly test their packages against Lua 5.1 through 5.5, plus LuaJIT 2.1, the OpenResty variant, and 3.0. While Lua&#x27;s embeddable nature often forces apps to maintain old versions, extensible language use cases should follow standard scripting language practices of supporting only the latest versions. The author promotes Teal as a way to bridge version gaps, and points out that upstream maintainers Roberto and Mike already end-of-life their interpreters—LuaJIT 1.0, 2.0.0, and PUC-Rio Lua up to 5.3—so library authors should do the same.</div>
+  <div class="smeta"><span class="pill p-Lobsters">Lobsters</span><span class="pts">67 pts</span><span>15h ago</span></div>
 </article>
 
 <article class="story">
   
-  <div class="acts"><a href="https://users.wpi.edu/~zrbutzke/Docs/BradburyStories(1).pdf">Read ›</a><a href="https://news.ycombinator.com/item?id=49162653">Discuss ›</a></div>
-  <h2><a href="https://users.wpi.edu/~zrbutzke/Docs/BradburyStories(1).pdf">There Will Come Soft Rains (1950) [pdf]</a></h2>
-  <div class="sum"></div>
-  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">363 pts</span></div>
+  <div class="acts"><a href="https://textslashplain.com/2026/08/04/security-is-hard-yall/">Read ›</a><a href="https://lobste.rs/s/qoptbx">Discuss ›</a></div>
+  <h2><a href="https://textslashplain.com/2026/08/04/security-is-hard-yall/">Security is Hard, Y’all</a></h2>
+  <div class="sum">A security researcher encountered what appeared to be a well-crafted phishing attack while trying to claim his preferred handle (@ericlaw) on a new Cloudflare service. The site was hosted on cloudflare.pay rather than cloudflare.com, used a .pay domain available to anyone for $20, and featured a suspicious permission request with a green checkmark that could easily be mimicked by attackers. The page lacked a &quot;Report suspicious request&quot; link, and the feature wasn&#x27;t visible in the main dashboard. When he asked Cloudflare&#x27;s AI chat agent, it confirmed the site was an attack. Only after further investigation did he discover it was actually a legitimate new Cloudflare product, with the green checkmark being a poorly placed security UI element. He concluded that when legitimate sites mimic phishy behavior, URL reputation services face an impossible task of avoiding false positives, and urged web developers to follow best practices while users should think carefully before clicking.</div>
+  <div class="smeta"><span class="pill p-Lobsters">Lobsters</span><span class="pts">61 pts</span><span>11h ago</span></div>
 </article>
 
 </main>
 
 <footer class="foot">
-  <div><span class="ln">2026-08-05</span> · <a href="https://learn.shenthar.me/archive/2026-08-04.html">2026-08-04</a></div>
+  <div><div style="margin-top:14px">📚 Past editions:<a style="margin:0 10px" href="https://learn.shenthar.me/2026-08-04">2026-08-04</a></div></div>
   <div style="margin-top:18px">Curated daily by your <strong>Hermes</strong> agent ·
      <a href="https://github.com/KTS-o7/learning-portal">open source</a> · served from learn.shenthar.me<br>
      Sources: Hacker News · arXiv · Lobsters · engineering blogs</div>
