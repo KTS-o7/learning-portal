@@ -1,0 +1,50 @@
+{
+  "date": "2026-08-05",
+  "label": "Wednesday, August 5, 2026",
+  "edition_tag": "vol-2-no-37",
+  "total": 3,
+  "prev_day": "2026-08-04",
+  "next_day": null,
+  "site": {
+    "name": "Daily Byte",
+    "tagline": "A byte-size daily digest for engineers who value depth over noise.",
+    "base_url": "https://learn.shenthar.me",
+    "repo": "https://github.com/KTS-o7/learning-portal"
+  },
+  "sections": [
+    {
+      "name": "engineering",
+      "label": "Engineering",
+      "intro": "Three engineers writing about workflow, evaluation, and agent DAGs — the throughline is making tools do work.",
+      "stories": [
+        {
+          "id": "eng-01",
+          "title": "Three Claude Skills I Think Every Org Should Have",
+          "url": "https://arpitbhayani.me/blogs/three-skills",
+          "source": "Arpit Bhayani",
+          "source_kind": "blog",
+          "summary": "An engineering organization becomes more efficient by building executable tools rather than relying on documentation that often becomes stale and misleading. The author recommends three skills: a create-app skill that provisions databases, wires up logging, registers services with identity providers, and deploys to production; a deploy-service skill that integrates forward deploys, rollbacks, environment-scoped tests, and post-deploy smoke tests; and a service-debugging skill that matches live symptoms to known failure patterns.",
+          "published_at": "2026-08-05T05:56:50Z"
+        },
+        {
+          "id": "eng-02",
+          "title": "G-Eval, Explained",
+          "url": "https://arpitbhayani.me/blogs/g-eval",
+          "source": "Arpit Bhayani",
+          "source_kind": "blog",
+          "summary": "G-Eval is a prompting framework introduced in a 2023 paper by Yang Liu and colleagues at Microsoft that uses a large language model as a reference-free evaluator of generated text. The framework has three components: a precise rubric defining the evaluation dimension, auto-generated chain-of-thought evaluation steps, and a scoring step. To avoid score collapse onto a single dominant value, G-Eval replaces direct integer scoring with a probability-weighted expectation over the tokens the model assigns to each possible score.",
+          "published_at": "2026-08-05T05:56:50Z"
+        },
+        {
+          "id": "eng-03",
+          "title": "AI Workflows Need Topological Sort",
+          "url": "https://arpitbhayani.me/blogs/ai-topological-sort",
+          "source": "Arpit Bhayani",
+          "source_kind": "blog",
+          "summary": "AI workflows are fundamentally dependency problems where consumer steps cannot execute before producer steps finish. Directed acyclic graphs model these workflows as nodes and directed edges, while topological sort produces a valid execution order. Kahn's algorithm computes this ordering in O(V+E) time, and because nodes at the same level share no dependencies, they can execute in parallel — a key advantage over linear pipelines.",
+          "published_at": "2026-08-05T05:56:50Z"
+        }
+      ]
+    }
+  ]
+}

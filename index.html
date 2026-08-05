@@ -3,272 +3,41 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Daily Byte — 2026-08-05</title>
+<title>Daily Byte</title>
 <meta name="description" content="A byte-size daily digest for engineers who value depth over noise.">
-<link rel="alternate" type="application/rss+xml" title="Daily Byte"
-      href="https://learn.shenthar.me/rss.xml">
+<link rel="alternate" type="application/rss+xml" title="Daily Byte" href="rss.xml">
+<link rel="canonical" href="https://learn.shenthar.me/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
-<style>/* ---------- Daily Byte: newspaper edition ---------- */
-:root{
-  --paper:#fbf1c7; --paper2:#f9f5d7; --rule:#d8c9a8; --ink:#3c3836;
-  --mut:#504945; --mut2:#79756b; --ac:#b57614; --ln:#076678;
-  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
-  --sans:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  --pad:clamp(14px,5vw,26px);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);
-font-family:var(--sans);font-size:16px;line-height:1.55;font-weight:400;
--webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-a{color:var(--ln);text-decoration:none;cursor:pointer}
-a:hover{text-decoration:underline}
-.wrap{max-width:920px;margin:0 auto;padding:0 22px}
-button{cursor:pointer;font-family:var(--sans)}
-
-/* top chrome */
-.chrome{position:sticky;top:0;z-index:50;background:var(--paper);
-border-bottom:1px solid var(--rule);backdrop-filter:blur(6px)}
-.chrome-in{max-width:920px;margin:0 auto;padding:9px var(--pad);
-display:flex;align-items:center;justify-content:space-between;gap:12px;
-font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut2)}
-.chrome nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-.chrome nav a{color:var(--mut);font-weight:600}
-.chrome nav a:hover{color:var(--ln);text-decoration:none}
-.chrome .left,.chrome .right,.chrome .nav{display:flex;gap:14px;align-items:center;white-space:nowrap}
-.chrome .nav{gap:8px;color:var(--mut);font-weight:600}
-.chrome .nav .d{color:var(--ink);font-weight:600;letter-spacing:.04em;text-transform:none;font-size:12px}
-.chrome .nav-arrow{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
-border:1px solid var(--rule);border-radius:50%;color:var(--mut);background:var(--paper2)}
-.chrome .nav-arrow:hover{color:var(--paper);background:var(--ink);border-color:var(--ink);text-decoration:none}
-.chrome .nav-arrow.disabled{opacity:.3;pointer-events:none}
-.chrome .count{color:var(--ac);font-weight:700}
-
-/* masthead / nameplate */
-.mast{text-align:center;padding:40px var(--pad) 24px}
-.mast h1{margin:0;font-family:var(--serif);font-weight:700;font-size:clamp(46px,9vw,82px);
-letter-spacing:.5px;line-height:1}
-.mast h1 .dot{color:var(--ac)}
-.mast .tag{color:var(--mut);font-style:italic;font-family:var(--serif);
-font-size:19px;margin-top:8px}
-.mast .edition{color:var(--mut2);font-size:12px;letter-spacing:.22em;
-text-transform:uppercase;margin-top:14px}
-.nameplate{display:flex;align-items:center;gap:14px;margin:20px auto 0;max-width:560px}
-.nameplate:before,.nameplate:after{content:"";flex:1;height:1px;background:var(--rule)}
-.nameplate span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut2)}
-
-main{max-width:920px;margin:0 auto;padding:0 var(--pad)}
-.story{padding:20px 0;border-bottom:1px solid var(--rule)}
-.story:last-of-type{border-bottom:0}
-.story .lbl{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
-color:var(--ac);font-weight:700;margin-bottom:6px}
-.story .acts{display:flex;gap:16px;margin-bottom:7px;font-size:11px;
-letter-spacing:.14em;text-transform:uppercase}
-.story .acts a{color:var(--ln);font-weight:700}
-.story h2{margin:0 0 7px;font-size:clamp(20px,2.6vw,26px);line-height:1.22;
-font-weight:700;font-family:var(--serif);letter-spacing:.2px}
-.story h2 a{color:var(--ink)}
-.story h2 a:hover{color:var(--ln);text-decoration:none}
-.story .sum{color:var(--mut);font-size:15px}
-.story .smeta{margin-top:9px;font-size:12px;color:var(--mut2);
-display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-.pill{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.08em;
-text-transform:uppercase;padding:2px 8px;border-radius:10px}
-.p-HN{color:#9d0006;background:rgba(220,50,47,.09);border:1px solid rgba(220,50,47,.22)}
-.p-Lobsters{color:#8f3f97;background:rgba(179,70,110,.09);border:1px solid rgba(179,70,110,.22)}
-.p-arxiv{color:#076678;background:rgba(7,102,120,.09);border:1px solid rgba(7,102,120,.22)}
-.p-blog{color:#427b58;background:rgba(66,123,88,.09);border:1px solid rgba(66,123,88,.22)}
-.p-tool{color:#79740e;background:rgba(121,116,14,.09);border:1px solid rgba(121,116,14,.22)}
-.story .smeta .pts{color:var(--ac);font-weight:600}
-
-/* footer */
-.foot{margin:40px 0 34px;text-align:center;color:var(--mut2);font-size:12.5px;
-letter-spacing:.04em}
-.foot a{color:var(--mut);text-decoration:underline}
-.foot .ln{display:inline-block;margin:0 8px}
-
-/* ---------- mobile ---------- */
-.foot{margin:36px 0 30px;padding:0 var(--pad);text-align:center;
-color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
-@media (max-width:640px){
-  .chrome-in{flex-wrap:wrap;row-gap:4px}
-  .chrome .right{flex:1;justify-content:flex-end}
-  .chrome .nav{flex:1;justify-content:center;order:3}    /* on phones, push nav below the link row */
-  .chrome .nav .d{font-size:11px}
-  .chrome .count{font-size:10px}
-  .mast{padding:30px var(--pad) 18px}
-  .mast h1{font-size:clamp(38px,13vw,56px)}
-  .mast .tag{font-size:16px}
-  .mast .edition{letter-spacing:.14em}
-  .story{padding:16px 0}
-  .story h2{font-size:19.5px;line-height:1.3}
-  .story .sum{font-size:14.5px}
-  .story .acts{gap:14px}
-  .story .smeta{font-size:11.5px;gap:10px}
-  .nameplate{margin:22px auto 0}
-}
-</style>
+<link rel="stylesheet" href="style.css">
+<script src="assets/app.js?v=3" defer></script>
 </head>
 <body>
 <div class="chrome"><div class="chrome-in">
-  <div class="left"><a href="https://learn.shenthar.me/"><strong>Daily Byte</strong></a>
-    <a href="https://github.com/KTS-o7/learning-portal">Source</a><a href="https://learn.shenthar.me/archive/">Archive</a>
-    <a href="https://learn.shenthar.me/rss.xml">RSS</a></div>
-  <div class="nav"><a class="nav-arrow" href="https://learn.shenthar.me/2026-08-04" aria-label="Previous edition (2026-08-04)"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></a><span class="d">Wednesday, August 5, 2026</span><span class="nav-arrow disabled" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></div>
-  <div class="right"><span class="count">16 STORIES</span></div>
+  <div class="left">
+    <a href="/"><strong>Daily Byte</strong></a>
+    <a href="https://github.com/KTS-o7/learning-portal" target="_blank" rel="noopener">Source</a>
+    <a href="archive/">Archive</a>
+    <a href="rss.xml">RSS</a>
+  </div>
+  <div class="nav"><span class="d">Loading…</span></div>
+  <div class="right"><span class="count">…</span></div>
 </div></div>
 
 <header class="mast">
   <h1>Daily Byte<span class="dot">.</span></h1>
   <div class="tag">A byte-size daily digest for engineers who value depth over noise.</div>
-  <div class="edition">Wednesday, August 5, 2026 · Edition 2026-08-05</div>
-  <div class="nameplate"><span>Engineering</span></div>
+  <div class="edition">Loading…</div>
 </header>
 
 <main>
-  <article class="story">
-  <div class="lbl">• Top story</div>
-  <div class="acts"><a href="https://arpitbhayani.me/blogs/three-skills">Read ›</a></div>
-  <h2><a href="https://arpitbhayani.me/blogs/three-skills">Three Claude Skills I Think Every Org Should Have</a></h2>
-  <div class="sum">An engineering organization becomes more efficient by building executable tools rather than relying on documentation that often becomes stale and misleading. The author recommends three skills: a `create-app` skill that provisions databases, wires up logging, registers services with identity providers, and deploys to production in a single command; a `deploy-&lt;service&gt;` skill that integrates forward deploys, rollbacks, environment-scoped tests, and post-deploy smoke tests as a unified flow; and a `&lt;service&gt;-debugging` skill that matches live symptoms to known failure patterns with direct links to logs, traces, and dashboards. The core argument is that broken tools fail loudly and get fixed, while stale wiki pages can mislead people for months. With AI agents increasingly creating services and triaging incidents, knowledge embedded in executable tools ensures correct behavior regardless of whether a human or an agent is acting on it. The author advises starting with the service that pages most often and takes longest to fix.</div>
-  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span></div>
-</article>
-
-<article class="story">
-  
-  <div class="acts"><a href="https://arpitbhayani.me/blogs/g-eval">Read ›</a></div>
-  <h2><a href="https://arpitbhayani.me/blogs/g-eval">G-Eval, Explained</a></h2>
-  <div class="sum">G-Eval is a prompting framework introduced in a 2023 paper by Yang Liu and colleagues at Microsoft that uses a large language model as a reference-free evaluator of generated text, meaning it judges outputs without needing a gold-standard reference. The framework has three components: a precise rubric defining the evaluation dimension, auto-generated chain-of-thought evaluation steps produced by the model from the task description and criterion, and a scoring step. To avoid score collapse onto a single dominant value, G-Eval replaces direct integer scoring with a probability-weighted expectation over the tokens the model assigns to each possible score, producing decimals like 4.45 instead of flat 4s. This requires APIs that expose token-level log probabilities, such as OpenAI&#x27;s logprobs parameter, though sampling the same prompt multiple times at nonzero temperature serves as a workaround. The authors warn about self-preference bias, where LLM judges tend to favor outputs from their own model family, so the same model should not be used for both generation and judging.</div>
-  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span></div>
-</article>
-
-<article class="story">
-  
-  <div class="acts"><a href="https://arpitbhayani.me/blogs/ai-topological-sort">Read ›</a></div>
-  <h2><a href="https://arpitbhayani.me/blogs/ai-topological-sort">AI Workflows Need Topological Sort</a></h2>
-  <div class="sum">AI workflows are fundamentally dependency problems where consumer steps cannot execute before producer steps finish. Directed acyclic graphs (DAGs) model these workflows as nodes (tasks) and directed edges (dependencies), while topological sort produces a valid execution order ensuring producers always precede consumers. Kahn&#x27;s algorithm computes this ordering in O(V+E) time, and because nodes at the same level share no dependencies, they can execute in parallel—a key advantage over linear pipelines. Cycle detection during topological sort catches circular dependencies before runtime, preventing deadlocks and distinguishing a clear error message from a hung pipeline. Tools like Prefect and Airflow use this approach to maximize throughput, and multi-agent frameworks like LangGraph model agent interactions as DAGs to enforce correct execution order across agents producing and consuming each other&#x27;s outputs.</div>
-  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span></div>
-</article>
-
-<article class="story">
-  
-  <div class="acts"><a href="https://seangoedecke.com/giving-and-taking-credit/">Read ›</a></div>
-  <h2><a href="https://seangoedecke.com/giving-and-taking-credit/">Giving and taking credit in big tech companies</a></h2>
-  <div class="sum">Engineers often expect their managers to handle visibility and reward them for good work, but this &quot;school fantasy&quot; doesn&#x27;t match how big tech companies actually operate. Managers can&#x27;t reliably assess technical work because software systems are too complex, so they depend on trusted engineers to evaluate performance through quiet conversations behind the scenes. This means engineers need to actively take credit themselves by writing internal posts and building relationships with their management chain. However, the best way to accumulate credit is by giving it away, since sharing credit with others gives them a reason to support your project. Projects where credit is concentrated in one person become automatic targets for blame during complex failures, because nobody else is incentivized to defend them. Credit and blame function as the actual currencies of tech companies, making this give-and-take essential to long-term success.</div>
-  <div class="smeta"><span class="pill p-blog">Sean Goedecke</span></div>
-</article>
-
-<article class="story">
-  
-  <div class="acts"><a href="https://seangoedecke.com/ai-models-need-moral-support/">Read ›</a></div>
-  <h2><a href="https://seangoedecke.com/ai-models-need-moral-support/">AI models need moral support to make discoveries</a></h2>
-  <div class="sum">AI has rapidly become capable of solving long-standing mathematical problems, with new LLM-produced results appearing almost daily in 2026. The prompting strategy for these breakthroughs is often remarkably simple—just asking the model to find something important and offering encouragement. The author argues that prompt engineering matters less than understanding what models are good at, since AI is often limited by its beliefs about its own capabilities. Models frequently refuse to attempt difficult tasks they could actually perform, such as counting to 100, solving Tower of Hanoi with more than eight disks, or attempting major unsolved problems. The author calls this the &quot;refusal problem&quot; and notes it has largely been solved. Even if AI capabilities stalled, the pace of discoveries should accelerate as successful AI-generated results become part of training data, helping models overcome their pessimistic self-assessments.</div>
-  <div class="smeta"><span class="pill p-blog">Sean Goedecke</span></div>
-</article>
-
-<div class="nameplate" style="margin:30px auto"><span>PAPERS</span></div>
-
-<article class="story">
-  
-  <div class="acts"><a href="http://arxiv.org/abs/2608.04007v1">Read ›</a></div>
-  <h2><a href="http://arxiv.org/abs/2608.04007v1">TurnSight: Turn-Level Hindsight Self-Distillation for Tool-Integrated Reasoning</a></h2>
-  <div class="sum">TurnSight is a turn-level hindsight self-distillation framework designed for Tool-Integrated Reasoning, where LLMs solve complex tasks through iterative tool interactions. Existing reinforcement learning methods typically rely on trajectory-level supervision, which limits fine-grained credit assignment across long interaction sequences, while prior on-policy self-distillation approaches derive privileged teacher context from ground-truth answers or retrieved skills that may not match the states the agent actually visits. TurnSight instead derives supervision directly from execution-conditioned hindsight, constructing multiple hindsight views with different lookahead horizons and selecting reliable signals through cross-horizon directional agreement. The selected hindsight signal is normalized across sibling rollouts and used to adaptively modulate RL advantages while preserving their original optimization direction. The framework was evaluated on three benchmarks, with the authors releasing their implementation publicly on GitHub.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>12h ago</span></div>
-</article>
-
-<article class="story">
-  
-  <div class="acts"><a href="http://arxiv.org/abs/2608.04001v1">Read ›</a></div>
-  <h2><a href="http://arxiv.org/abs/2608.04001v1">Test-Time Scaling in Reasoning LLMs: Inference Regimes, Evaluation, and Reproducibility</a></h2>
-  <div class="sum">Large language models solve harder reasoning problems with more inference-time compute, yet the term &quot;test-time scaling&quot; now spans structurally different algorithms—sequential single-trajectory deliberation, candidate sampling with voting or verification, and search over partial states—that cannot be treated as interchangeable under a single scalar budget. The authors formalize test-time scaling as budgeted inference over the implicit prefix tree of an autoregressive model and distinguish three regimes: single-trajectory sequential scaling, leaf-level scaling with terminal reduction, and prefix-level scaling. Evaluation focuses on the full inference system, separating end-to-end performance from candidate-bank diagnostics through an evaluation profile whose coordinates and functionals recover or bound common repeated-sampling metrics, with protocol-matched reporting of compute and uncertainty. Reproducibility requirements distinguish exact replay from distributional reproducibility along with the artifacts needed to support each. The framework is applied to broad-knowledge, symbolic-reasoning, and competition-mathematics benchmarks, and over two billion full reasoning traces are assembled for release with progressively richer verifier and token-level signals.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>12h ago</span></div>
-</article>
-
-<article class="story">
-  
-  <div class="acts"><a href="http://arxiv.org/abs/2608.03990v1">Read ›</a></div>
-  <h2><a href="http://arxiv.org/abs/2608.03990v1">Assessment of Conditional Diffusion Model for Synthetic Histopathology Image Generation</a></h2>
-  <div class="sum">The study evaluates synthetic histopathology image generation, addressing limitations in standard metrics like Frechet Inception Distance (FID) and Inception Score (IS), which depend on ImageNet-pretrained feature extractors and may lack relevance for pathology data. The authors propose modified FID and IS approaches using foundation models pretrained on digital pathology datasets, supplemented by precision-recall based metrics. Using conditional denoising diffusion models trained on four benchmark datasets with a two-step training approach, they generated synthetic datasets with varied quality characteristics. The research measured correlations between these synthetic data quality metrics and downstream nuclei segmentation performance using aggregated Jaccard index (AJI+) and Dice coefficient. Their results showed that pathology-specific metrics offered improved discriminative power, with the modified Inception Score correlating more strongly with AJI+ (r=0.6096, p=0.0122) than the original IS (r=0.0708, p=0.7944). The findings further indicate that data variety in generated training sets correlates more positively with segmentation performance than visual fidelity of individual images.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>12h ago</span></div>
-</article>
-
-<article class="story">
-  
-  <div class="acts"><a href="http://arxiv.org/abs/2608.03983v1">Read ›</a></div>
-  <h2><a href="http://arxiv.org/abs/2608.03983v1">Can Large Language Models Recover Semantic Optimization Opportunities That Compilers Miss?</a></h2>
-  <div class="sum">Optimizing compilers often miss profitable transformations because the enabling semantics are absent from the analyzed program representation. This work investigates whether large language models can recover such semantics from heterogeneous C/C++ context and produce validated, contract-preserving artifacts. The authors introduce SeGaBench, an executable benchmark with 100 synthetic and 20 source-backed cases covering low-level assumptions, data-structure invariants, and high-level semantic lifting, each including hidden enabling semantics, an oracle artifact, correctness and semantic validators, and a reproducible performance protocol. Evaluating five LLMs across five independent responses per case, the strongest model produced correct artifacts in 94.8% of responses, achieved at least 1.05x speedup in 83.3%, and obtained a performance success on 93.3% of cases. However, correct artifacts frequently closed only part of the oracle gap, indicating room for improvement. Overall, the findings suggest LLMs can serve as speculative semantic proposers that complement compiler analysis when their artifacts are properly validated and evaluated.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>12h ago</span></div>
-</article>
-
-<article class="story">
-  
-  <div class="acts"><a href="http://arxiv.org/abs/2608.03979v1">Read ›</a></div>
-  <h2><a href="http://arxiv.org/abs/2608.03979v1">Video-DeepResearch: Towards the Next-Generation Multimodal Deepresearch Agent</a></h2>
-  <div class="sum">Video-DeepResearch extends multimodal agents from static images to continuous video streams, requiring dense spatiotemporal grounding combined with open-web exploration. The authors identify two key bottlenecks in current models: modality bias, where agents prefer textual search over visual tools, and parametric knowledge leakage, where models rely on internal knowledge instead of tool-based execution. To address these, the framework employs a decoupled perception-exploration pipeline with stage-wise tool unlocking that forces thorough cross-frame visual grounding before web retrieval, trained via supervised fine-tuning followed by Group Relative Policy Optimization. The team also created Video-DR-Bench, a human-AI collaborative benchmark with 200 complex multi-hop VQA instances. Empirical results show that Video-DeepResearch-35B-A3B achieves a new state-of-the-art 64.0% average accuracy, surpassing Claude-4.5-Sonnet (59.0%), GPT-5 (52.5%), and Gemini 2.5 Pro (57.5%), while the compact 30B-A3B variant reaches 59.3%.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>12h ago</span></div>
-</article>
-
-<div class="nameplate" style="margin:30px auto"><span>TOOLS &amp; PROJECTS</span></div>
-
-<article class="story">
-  
-  <div class="acts"><a href="https://github.com/FFmpeg/FFmpeg/blob/n9.0/RELEASE_NOTES">Read ›</a><a href="https://news.ycombinator.com/item?id=49166202">Discuss ›</a></div>
-  <h2><a href="https://github.com/FFmpeg/FFmpeg/blob/n9.0/RELEASE_NOTES">FFmpeg 9.0</a></h2>
-<div class="sum">FFmpeg 9.0 ships a Playdate video encoder and muxer, animated WebP decoder, HE-AAC 960 for DAB, transpose_cuda, AMF HDR dynamic metadata, ProRes RAW hwaccel, and the APV Vulkan encoder. ONNX runtime detection is now automatic. Dropped: CELT encoder, NVENC AV1, and several deprecated APIs. About four months after 8.1.</div>
-  
-</article>
-
-<article class="story">
-  
-  <div class="acts"><a href="https://github.com/ryanzhou/deepseek-v4-flash-mi300x">Read ›</a><a href="https://news.ycombinator.com/item?id=49166386">Discuss ›</a></div>
-  <h2><a href="https://github.com/ryanzhou/deepseek-v4-flash-mi300x">DeepSeek V4 Flash on a Single AMD MI300X</a></h2>
-<div class="sum">A community port of the 304B-parameter DeepSeek-V4-Flash checkpoint that runs on a single AMD MI300X. Key fixes: FNUZ FP8 quantization (the stock MI300X path is broken), AITER attention kernel tuning, and a verified 256K context window. Reported throughput: ~168 tokens/sec decode, ~8K tokens/sec prefill on the unquantized model.</div>
-  
-</article>
-
-<div class="nameplate" style="margin:30px auto"><span>DISCUSSIONS</span></div>
-
-<article class="story">
-  
-  <div class="acts"><a href="https://github.com/MakazhanAlpamys/Soup">Read ›</a><a href="https://news.ycombinator.com/item?id=49166984">Discuss ›</a></div>
-  <h2><a href="https://github.com/MakazhanAlpamys/Soup">Show HN: Fine-tune an 8B model on a 4 GB laptop GPU</a></h2>
-  <div class="sum">A GitHub repository titled &quot;Soup&quot; by user MakazhanAlpamys presents a project shared as &quot;Show HN: Fine-tune an 8B model on a 4 GB laptop GPU.&quot; The public repository has gained notable attention, with 218 stars and 32 forks from the community. The project appears to focus on making large language model fine-tuning accessible on consumer hardware with limited VRAM. Based on the title, the tool aims to enable users to fine-tune an 8 billion parameter model using just a 4GB laptop GPU, which would typically be considered insufficient for such a task. The repository is hosted under the main branch and is publicly available for collaboration, though specific technical implementation details from the README content are not visible in the provided page.</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">125 pts</span><span>19h ago</span></div>
-</article>
-
-<article class="story">
-  
-  <div class="acts"><a href="https://deepgrove.ai/maple-preview">Read ›</a><a href="https://news.ycombinator.com/item?id=49173984">Discuss ›</a></div>
-  <h2><a href="https://deepgrove.ai/maple-preview">Show HN: Maple-Preview – Ternary 20B MoE running at 120 tok/s on a iPhone</a></h2>
-<div class="sum">Maple-Preview is an early demo of a ternary 20B-parameter mixture-of-experts model running at about 120 tokens per second on a stock iPhone. The numbers suggest aggressive weight quantisation plus aggressive MoE routing — most layers stay inactive per token. Authors claim it matches larger dense models on benchmarks; the live demo page reportedly 404s, so this summary is from the HN title only.</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">85 pts</span><span>10h ago</span></div>
-</article>
-
-<article class="story">
-  
-  <div class="acts"><a href="https://hisham.hm/2026/08/04/the-lua-community-needs-to-learn-to-move-on/">Read ›</a><a href="https://lobste.rs/s/t7wzko">Discuss ›</a></div>
-  <h2><a href="https://hisham.hm/2026/08/04/the-lua-community-needs-to-learn-to-move-on/">The Lua community needs to learn to move on</a></h2>
-  <div class="sum">Mike Pall deleted tags for old LuaJIT versions from his upstream GitHub repository, a move that frustrates many due to projects remaining stuck on tags like `luajit-2.1.0-beta3` for years. The Lua community has developed a tendency to support old versions indefinitely since the Lua/LuaJIT split around version 5.2, roughly 15 years ago. Library authors commonly test their packages against Lua 5.1 through 5.5, plus LuaJIT 2.1, the OpenResty variant, and 3.0. While Lua&#x27;s embeddable nature often forces apps to maintain old versions, extensible language use cases should follow standard scripting language practices of supporting only the latest versions. The author promotes Teal as a way to bridge version gaps, and points out that upstream maintainers Roberto and Mike already end-of-life their interpreters—LuaJIT 1.0, 2.0.0, and PUC-Rio Lua up to 5.3—so library authors should do the same.</div>
-  <div class="smeta"><span class="pill p-Lobsters">Lobsters</span><span class="pts">67 pts</span><span>15h ago</span></div>
-</article>
-
-<article class="story">
-  
-  <div class="acts"><a href="https://textslashplain.com/2026/08/04/security-is-hard-yall/">Read ›</a><a href="https://lobste.rs/s/qoptbx">Discuss ›</a></div>
-  <h2><a href="https://textslashplain.com/2026/08/04/security-is-hard-yall/">Security is Hard, Y’all</a></h2>
-  <div class="sum">A security researcher encountered what appeared to be a well-crafted phishing attack while trying to claim his preferred handle (@ericlaw) on a new Cloudflare service. The site was hosted on cloudflare.pay rather than cloudflare.com, used a .pay domain available to anyone for $20, and featured a suspicious permission request with a green checkmark that could easily be mimicked by attackers. The page lacked a &quot;Report suspicious request&quot; link, and the feature wasn&#x27;t visible in the main dashboard. When he asked Cloudflare&#x27;s AI chat agent, it confirmed the site was an attack. Only after further investigation did he discover it was actually a legitimate new Cloudflare product, with the green checkmark being a poorly placed security UI element. He concluded that when legitimate sites mimic phishy behavior, URL reputation services face an impossible task of avoiding false positives, and urged web developers to follow best practices while users should think carefully before clicking.</div>
-  <div class="smeta"><span class="pill p-Lobsters">Lobsters</span><span class="pts">61 pts</span><span>11h ago</span></div>
-</article>
-
+  <div class="loading">Loading today's edition…</div>
 </main>
 
 <footer class="foot">
-  <div><div style="margin-top:14px">📚 Past editions:<a style="margin:0 10px" href="https://learn.shenthar.me/2026-08-04">2026-08-04</a></div></div>
-  <div style="margin-top:18px">Curated daily by your <strong>Hermes</strong> agent ·
-     <a href="https://github.com/KTS-o7/learning-portal">open source</a> · served from learn.shenthar.me<br>
-     Sources: Hacker News · arXiv · Lobsters · engineering blogs</div>
-  <div style="margin-top:8px"><a href="https://learn.shenthar.me/rss.xml">Subscribe via RSS</a></div>
+  Curated daily by your <strong>Hermes</strong> agent ·
+  <a href="https://github.com/KTS-o7/learning-portal" target="_blank" rel="noopener">open source</a> ·
+  served from learn.shenthar.me
+  <div style="margin-top:8px"><a href="rss.xml">Subscribe via RSS</a></div>
 </footer>
-
 </body>
 </html>
