@@ -114,8 +114,8 @@ color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
   <div class="left"><a href="https://learn.shenthar.me/"><strong>Daily Byte</strong></a>
     <a href="https://github.com/KTS-o7/learning-portal">Source</a><a href="https://learn.shenthar.me/archive/">Archive</a>
     <a href="https://learn.shenthar.me/rss.xml">RSS</a></div>
-  <div class="nav"><a class="nav-arrow" href="https://learn.shenthar.me/2026-08-04">‹</a><span class="d">Wednesday, August 5, 2026</span><span class="nav-arrow disabled">›</span></div>
-  <div class="right"><span class="count">15 STORIES</span></div>
+  <div class="nav"><a class="nav-arrow" href="https://learn.shenthar.me/2026-08-04" aria-label="Previous edition (2026-08-04)"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></a><span class="d">Wednesday, August 5, 2026</span><span class="nav-arrow disabled" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></div>
+  <div class="right"><span class="count">17 STORIES</span></div>
 </div></div>
 
 <header class="mast">
@@ -126,123 +126,161 @@ color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
 </header>
 
 <main>
-  <div class="nameplate" style="margin:30px auto"><span>Engineering</span></div>
-<article class="story">
-  <div class="lbl">• Top story</div>
-  <div class="acts"><a href="https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/">Read ›</a></div>
-  <h2><a href="https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/">Enabling the next iteration of the borrow checker on nightly</a></h2>
-  <div class="sum">The Rust team is enabling Polonius Alpha, the next iteration of the borrow checker, on nightly in preparation for stabilization within the next few months. The key improvement over NLL is flow-sensitive borrow checking of lifetime outlives relationships, which allows code like conditional branches returning mutable references to compile correctly. While Polonius Alpha does not cover all programs that legacy Polonius did, it is not strictly a subset either. Performance is generally acceptable for stabilization, with relatively few significant regressions among the top 10,000 crates on crates.io and a worst-case 2-3x slowdown. Developers can opt out using the `-Zpolonius=off` flag. The team plans to monitor for issues, address performance regressions, and stabilize Polonius Alpha before the end of the year, after which they will shift focus to other high-priority work rather than continuing active feature development.</div>
-  <div class="smeta"><span class="pill p-blog">Rust Blog</span><span>1d ago</span></div>
-</article>
-<article class="story">
+  <article class="story">
   
-  <div class="acts"><a href="https://github.blog/ai-and-ml/github-copilot/how-the-github-legal-team-used-copilot-cli-to-streamline-their-workflows/">Read ›</a></div>
-  <h2><a href="https://github.blog/ai-and-ml/github-copilot/how-the-github-legal-team-used-copilot-cli-to-streamline-their-workflows/">How the GitHub legal team used Copilot CLI to streamline their workflows</a></h2>
-  <div class="sum">I don&#x27;t see the article content in your message—only the title &quot;How the GitHub legal team used Copilot CLI to streamline their workflows&quot; and the author name. Could you paste the full article text? Once I have it, I&#x27;ll provide a 4-6 sentence summary (100-150 words) using only facts from the article, in plain prose.</div>
-  <div class="smeta"><span class="pill p-blog">GitHub Blog</span><span>9h ago</span></div>
+  <div class="acts"><a href="https://arpitbhayani.me/blogs/three-skills">Read ›</a></div>
+  <h2><a href="https://arpitbhayani.me/blogs/three-skills">Three Claude Skills I Think Every Org Should Have</a></h2>
+  <div class="sum">Arpit Bhayani argues that engineering organizations lose productivity not to hard problems but to tooling gaps, and recommends building three core skills. The first skill, create-app, should provision databases, wire up logging, register services with the identity provider, and deploy to production in a single command, eliminating day-one friction. The second skill, deploy, should treat forward deploys, rollbacks, environment-scoped tests, and post-deploy smoke tests as a single integrated flow, since rollback is the least exercised path despite being the most critical during incidents. The third skill, debugging, should match live symptoms to known failure patterns and link directly to logs, traces, and dashboards rather than pointing users at raw data. He emphasizes that executable tools fail loudly and get fixed, while documentation rots silently, a distinction that matters even more as AI agents begin creating services and triaging incidents. He advises starting with the worst service, the one that pages most frequently, to prove the approach before scaling across the fleet.</div>
+  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span><span>5d ago</span></div>
 </article>
-<article class="story">
-  
-  <div class="acts"><a href="https://github.blog/engineering/turn-one-giant-ai-generated-pull-request-to-a-reviewable-stack/">Read ›</a></div>
-  <h2><a href="https://github.blog/engineering/turn-one-giant-ai-generated-pull-request-to-a-reviewable-stack/">Turn one giant AI-generated pull request to a reviewable stack</a></h2>
-  <div class="sum">I don&#x27;t have access to the actual article content—only the title and byline (&quot;Turn one giant AI-generated pull request to a reviewable stack&quot; by Julia Muiruri, Developer Experiences at GitHub). Could you paste the article text so I can summarize it accurately based on the facts it contains?
 
-Without the full article, I can&#x27;t reliably produce a faithful 100–150 word summary, and I&#x27;d risk fabricating details about the specific techniques, tools, or workflows the author describes.</div>
-  <div class="smeta"><span class="pill p-blog">GitHub Blog</span><span>11h ago</span></div>
+<article class="story">
+  
+  <div class="acts"><a href="https://arpitbhayani.me/blogs/g-eval">Read ›</a></div>
+  <h2><a href="https://arpitbhayani.me/blogs/g-eval">G-Eval, Explained</a></h2>
+  <div class="sum">G-Eval is a reference-free evaluation framework that uses large language models to assess the quality of generated text. This article explains how G-Eval works, including rubric-based prompting, chain-of-thought evaluation, and probability-weighted scoring using token log probabilities. You will also learn its limitations, common implementation patterns, practical best practices, and when not to use it. If you are building LLM applications, chatbots, summarization systems, or AI writing assistan</div>
+  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span><span>22d ago</span></div>
 </article>
+
+<article class="story">
+  
+  <div class="acts"><a href="https://arpitbhayani.me/blogs/ai-topological-sort">Read ›</a></div>
+  <h2><a href="https://arpitbhayani.me/blogs/ai-topological-sort">AI Workflows Need Topological Sort</a></h2>
+  <div class="sum">Every AI workflow is fundamentally a dependency problem where steps produce outputs that other steps consume, best modeled as directed acyclic graphs. Topological sort converts these DAGs into valid execution order in O(V+E) time using algorithms like Kahn&#x27;s, guaranteeing producers always precede consumers. This abstraction naturally reveals which tasks can run in parallel, as nodes at the same topological level share no dependencies and</div>
+  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span><span>65d ago</span></div>
+</article>
+
+<article class="story">
+  
+  <div class="acts"><a href="https://jvns.ca/blog/2026/07/21/more-nice-django-things/">Read ›</a></div>
+  <h2><a href="https://jvns.ca/blog/2026/07/21/more-nice-django-things/">Some more things about Django I&#x27;ve been enjoying</a></h2>
+  <div class="sum">The author has been learning to build websites using a backend-focused, &quot;2010 style&quot; approach with SQL databases and HTML rendered on the server, choosing this method over frontend-heavy single-page apps for sites with many pages. They are enjoying Django and highlight several features: query builder methods on QuerySet classes that make filtering readable, useful template filters like urlize, linebreaksbr, date, json_script, and querystring for generating HTML and links, and automatic database migrations. They dislike using class-based views with inheritance for organizing view code, preferring function-based views instead. On performance, they discovered they had accidentally disabled Django&#x27;s cached template loader, and re-enabling it improved their site&#x27;s capacity on a ~$10/month VM from about 2-3 requests per second to around 12. They use py-spy for CPU profiling and note that with SQLite, slow database queries still appear in CPU profiles, making profiling a useful starting point.</div>
+  <div class="smeta"><span class="pill p-blog">Julia Evans</span><span>15d ago</span></div>
+</article>
+
+<article class="story">
+  
+  <div class="acts"><a href="https://jvns.ca/blog/2026/07/17/learning-about-running-sqlite/">Read ›</a></div>
+  <h2><a href="https://jvns.ca/blog/2026/07/17/learning-about-running-sqlite/">Learning a few things about running SQLite</a></h2>
+  <div class="sum">Hello! I&amp;rsquo;ve been working on a Django site recently, and I decided to use SQLite
+as the database.
+When I was getting started with using SQLite as database for a website I read a bunch
+of blog posts about how it is totally fine to use SQLite in production for a
+small site and I think it is totally fine, but what I did not fully appreciate
+is that SQLite is still a database, databases are complicated, and I do not know
+a lot about operating databases.
+So here are a couple of small things I&amp;rs</div>
+  <div class="smeta"><span class="pill p-blog">Julia Evans</span><span>19d ago</span></div>
+</article>
+
 <div class="nameplate" style="margin:30px auto"><span>PAPERS</span></div>
-<article class="story">
-  
-  <div class="acts"><a href="https://arxiv.org/abs/2608.03588">Read ›</a></div>
-  <h2><a href="https://arxiv.org/abs/2608.03588">GenOS: Compositional Certificates for Semantic Robustness in AI Code Generation</a></h2>
-  <div class="sum">I don&#x27;t have the actual content of the &quot;GenOS: Compositional Certificates for Semantic Robustness in AI Code Generation&quot; paper to summarize. The text you provided only contains the arXivLabs framework description and the paper&#x27;s title, not the paper&#x27;s substantive content (abstract, methodology, findings, or results).
 
-If you share the actual paper content—including the abstract, introduction, or main body text—I would be happy to summarize it in 4-6 sentences using only the facts provided, following your formatting requirements.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>26m ago</span></div>
-</article>
 <article class="story">
   
-  <div class="acts"><a href="https://arxiv.org/abs/2608.03983">Read ›</a></div>
-  <h2><a href="https://arxiv.org/abs/2608.03983">Can Large Language Models Recover Semantic Optimization Opportunities That Compilers Miss?</a></h2>
-  <div class="sum">I don&#x27;t see the article&#x27;s actual content in your message—only the title and a brief description of arXivLabs. Without the full text, I can&#x27;t summarize the specific findings, methodology, or conclusions of the paper. If you can share the abstract or body of the article, I&#x27;d be happy to provide a 4–6 sentence summary based on its actual content.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>26m ago</span></div>
+  <div class="acts"><a href="https://arxiv.org/abs/2608.02604">Read ›</a></div>
+  <h2><a href="https://arxiv.org/abs/2608.02604">ISEE: Interactive Semantic Enrichment for Database Fields</a></h2>
+  <div class="sum">ISEE (Interactive SEmantic Enrichment) is a system designed to improve ambiguous or incomplete database field descriptions that limit LLM-based agent performance on data tasks such as sense-making, exploration, and retrieval. Submitted in April 2026 by Yuan Tian and colleagues, the system addresses a common gap where essential domain context is held by users rather than being publicly documented, which restricts downstream task performance like entity-linking. Given a field description, ISEE scores its quality, gathers relevant domain knowledge, and collaborates with users to enrich the semantics. The authors evaluate ISEE through a user study, automated user simulation</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv cs.AI</span><span>4h ago</span></div>
 </article>
+
 <article class="story">
   
-  <div class="acts"><a href="https://arxiv.org/abs/2608.02610">Read ›</a></div>
-  <h2><a href="https://arxiv.org/abs/2608.02610">An Empirical Analysis of the Glob Ecosystem</a></h2>
-  <div class="sum">The provided text does not contain an empirical analysis of the Glob Ecosystem. The content supplied appears to be the standard arXivLabs description boilerplate, which only describes arXivLabs as a framework for collaborators to develop and share new arXiv features, outlines its values of openness, community, excellence, and user data privacy, and invites project ideas that add value to arXiv&#x27;s community. No substantive information about a &quot;Glob Ecosystem,&quot; its components, or any empirical findings is included in the text you shared. To provide the requested summary, I would need the actual body of the article or at least its abstract and key sections describing the Glob Ecosystem&#x27;s structure, methodology, and findings. If you can share the article&#x27;s full text or relevant excerpts, I would be happy to summarize them in</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>26m ago</span></div>
+  <div class="acts"><a href="https://arxiv.org/abs/2608.02606">Read ›</a></div>
+  <h2><a href="https://arxiv.org/abs/2608.02606">Self-Organising Digital Circuits</a></h2>
+  <div class="sum">arXiv:2608.02606v1 Announce Type: new 
+Abstract: Fault tolerance in classical computing has traditionally relied on static strategies like hardware redundancy and error-correcting codes. Biological systems, in contrast, exhibit adaptive plasticity, maintaining function through dynamic re-organisation around damage. Inspired by this principle, we introduce Self-Organising Digital Circuits, framing functional logic generation and maintenance as a meta-learning problem on graphs. Our architecture e</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv cs.AI</span><span>4h ago</span></div>
 </article>
+
+<article class="story">
+  
+  <div class="acts"><a href="https://arxiv.org/abs/2608.02618">Read ›</a></div>
+  <h2><a href="https://arxiv.org/abs/2608.02618">Beyond the Hivemind: Escaping LLM Homogeneity via Meta-Persona Anchoring and Sequential Temperature Scaling</a></h2>
+  <div class="sum">The paper &quot;Beyond the Hivemind: Escaping LLM Homogeneity via Meta-Persona Anchoring and Sequential Temperature Scaling&quot; by Tairan Fu and colleagues addresses an &quot;Artificial Hivemind&quot; effect in Large Language Models, in which</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv cs.AI</span><span>4h ago</span></div>
+</article>
+
 <article class="story">
   
   <div class="acts"><a href="https://arxiv.org/abs/2608.02630">Read ›</a></div>
   <h2><a href="https://arxiv.org/abs/2608.02630">PULSE: An Executable Contract Language for Spatiotemporal Knowledge Graph Engineering</a></h2>
-  <div class="sum">The article introduces PULSE, an executable contract language designed for engineering spatiotemporal knowledge graphs. As the title indicates, PULSE functions as a formal language that combines executable specifications with contract-based reasoning to support the construction and manipulation of knowledge graphs that incorporate both spatial and temporal dimensions. The work is presented through arXivLabs, a collaborative framework that enables researchers to develop and share new features directly on arXiv&#x27;s platform. The framework emphasizes values of openness, community, excellence, and user data privacy, partnering only with collaborators who uphold these principles. However, beyond the title, the specific technical details, methodology, and findings of the article were not provided in the source content available for summarization.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>26m ago</span></div>
+  <div class="sum">PULSE is an Object-Process-Methodology-inspired executable contract language that localizes four operational roles and their write effects within a single typed runtime for spatiotemporal knowledge graph engineering. Its implemented contract fixes five behaviors—evidence non-overwrite, branch isolation, grounded multi-subject timers, guarded state change, and declaration-ranked event ordering over time and space—while an external runner still decides whether evidence becomes an authoritative move, with GeoSPARQL, SOSA, and SHACL remaining generated views. The authors provide a core calculus yielding an effect-confinement lemma and six safety properties, and Lean 4 verifies kernel analogues for positions, evidence, clocks, monitors, atomicity, and branch source retention. Validation includes 88 tests, 3,534 bounded checks, 32 Lean/Python runtime-kernel cases, reproduction of a tested cold-chain trace, and 37,440 generated temporal traces matching a separate workflow while distinguishing ten single-field mutants. On the complete NOAA IBTrACS since-1980 subset, PULSE agrees with GEOS and an event sweep across 1,476,290 transition-zone pairs, including 4,800 sampled and 12,831 duration-qualified events.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv cs.AI</span><span>4h ago</span></div>
 </article>
+
 <article class="story">
   
-  <div class="acts"><a href="https://arxiv.org/abs/2608.02648">Read ›</a></div>
-  <h2><a href="https://arxiv.org/abs/2608.02648">Intent-Level Quantum Programming with Assertion-Guided Execution and Inspectable Intermediate Representation</a></h2>
-  <div class="sum">I can only see the article&#x27;s title and a general description of the arXivLabs framework, with no actual article content provided. Without the body text or abstract containing facts about the research, I cannot produce a faithful summary. If you can share the article&#x27;s abstract or main text, I&#x27;ll gladly condense it into a 4-6 sentence paragraph using only its stated facts.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>26m ago</span></div>
+  <div class="acts"><a href="https://arxiv.org/abs/2608.02650">Read ›</a></div>
+  <h2><a href="https://arxiv.org/abs/2608.02650">HyperAgent: Planning and Acting over Tool-Schema Hypergraphs for Tool-Use LLM Agents</a></h2>
+  <div class="sum">arXiv:2608.02650v1 Announce Type: new 
+Abstract: Large language model (LLM) agents increasingly rely on external tools to complete complex real-world tasks. However, reliable tool-use planning remains challenging due to the limitations of implicit reasoning and the evolving nature of real-world execution environments. Existing tool-use agents typically rely on LLMs to infer tool compositions from textual descriptions, which can lead to inefficient exploration and unreliable execution in complex</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv cs.AI</span><span>4h ago</span></div>
 </article>
+
 <div class="nameplate" style="margin:30px auto"><span>TOOLS &amp; PROJECTS</span></div>
+
 <article class="story">
   
   <div class="acts"><a href="https://github.com/ryanzhou/deepseek-v4-flash-mi300x">Read ›</a><a href="https://news.ycombinator.com/item?id=49166386">Discuss ›</a></div>
   <h2><a href="https://github.com/ryanzhou/deepseek-v4-flash-mi300x">DeepSeek V4 Flash on a Single AMD MI300X</a></h2>
-  <div class="sum">The repository documents a production deployment of DeepSeek-V4-Flash on a single AMD MI300X GPU, using a digest-pinned vLLM ROCm nightly stack with full-file patches. The MI300X&#x27;s 192 GB of HBM3 capacity—roughly 2.4× that of an H100 SXM5—enables single-GPU deployment of the 304B-parameter checkpoint without weight quantization. Key fixes address MI300X&#x27;s AMD FNUZ E4M3 FP8 format (which can produce factor-of-two</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">367 pts</span><span>18h ago</span></div>
+  <div class="sum"></div>
+  <div class="smeta"><span class="pill p-tool">Tool</span><span class="pts">367 pts</span></div>
 </article>
+
 <article class="story">
   
   <div class="acts"><a href="https://github.com/MariaDB/server/pull/4262">Read ›</a><a href="https://news.ycombinator.com/item?id=49171068">Discuss ›</a></div>
   <h2><a href="https://github.com/MariaDB/server/pull/4262">MariaDB: Promote getting to 10k GitHub stars in server log and client prompt</a></h2>
-  <div class="sum">A pull request proposed adding a line to the MariaDB client prompt and server logs asking users to give the project a GitHub star to help reach 10k stars. The change was designed to be easy to cherry-pick to older releases, with text that could be updated later once the goal was met. The request sparked debate among developers, with some supporting the appeal for visibility and others criticizing it as unprofessional promotional content inappropriate for a production database. The PR was initially declined but later reopened after MariaDB Foundation management reversed their decision. After multiple rounds of revisions and code review, it received approval and was merged. Some users reported seeing the message appearing unexpectedly in logs, including through Debian package patches, fueling further criticism about cluttering system logs with non-technical content.</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">52 pts</span><span>12h ago</span></div>
+  <div class="sum">A GitHub pull request (#4262) on the MariaDB/server repository proposed adding promotional messages asking users to star the project&#x27;s GitHub repo, appearing in both the client prompt and server logs. The PR, filed by user ottok on August 26, 2025, was titled &quot;MDEV-38328: Promote getting to 10k GitHub stars in server log and client prompt.&quot; Reactions were largely negative, with 26 thumbs-down votes compared to 3 thumbs-up, and several commenters criticized the practice as unprofessional for a mature RDBMS. Despite community pushback, MariaDB maintainer gkodinov initially closed the PR on December 15, 2025, stating internal discussions led to declining it. However, gkodinov reopened the pull request on January 19, 2026, after the MariaDB Foundation management reversed their decision, and asked ottok if he wanted to continue working on it.</div>
+  <div class="smeta"><span class="pill p-tool">Tool</span><span class="pts">52 pts</span></div>
 </article>
+
 <article class="story">
   
   <div class="acts"><a href="https://github.com/brian-armstrong/fec">Read ›</a><a href="https://news.ycombinator.com/item?id=49176212">Discuss ›</a></div>
   <h2><a href="https://github.com/brian-armstrong/fec">Show HN: SIMD Viterbi Decoder in Rust</a></h2>
-  <div class="sum">fec is a Rust crate implementing forward error correction codes used in software-defined radio and spacecraft communications, drawing inspiration from the author&#x27;s own libcorrect C library and crediting Phil Karn&#x27;s libfec, though sharing no source code. It supports both convolutional codes (with Viterbi decoding) and Reed-Solomon codes, with parameters derived from the CCSDS 131.0-B standard, and includes CCSDS dual-basis variants for spacecraft telemetry. When compiled with the simd feature, fec decodes faster than libfec on every convolutional code, with SIMD kernels working on both 32-bit and 64-bit builds, unlike libfec whose SIMD paths are restricted to 32-bit x86. The crate offers hard-decision and 8-bit soft-decision decoding, produces output bit-compatible with libfec, and ships with a companion fec-shim crate exposing libfec&#x27;s C ABI for drop-in replacement in existing codebases under a BSD-3-Clause license.</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">33 pts</span><span>5h ago</span></div>
+  <div class="sum"></div>
+  <div class="smeta"><span class="pill p-tool">Tool</span><span class="pts">33 pts</span></div>
 </article>
+
 <div class="nameplate" style="margin:30px auto"><span>DISCUSSIONS</span></div>
+
 <article class="story">
   
   <div class="acts"><a href="https://www.seangoedecke.com/llms-reward-expertise/">Read ›</a><a href="https://news.ycombinator.com/item?id=49161518">Discuss ›</a></div>
   <h2><a href="https://www.seangoedecke.com/llms-reward-expertise/">LLMs reward expertise</a></h2>
-  <div class="sum">While LLMs have made everyone capable of producing passable work in unfamiliar domains like CSS, prompting effectively requires deep domain expertise rather than special tricks. A good mathematician like Terence Tao can get dramatically better results from ChatGPT on mathematical questions because he understands the subject well enough to ask specific questions, identify weak points in responses, and steer the model toward better answers. This same principle applies to software work: programmers familiar with their codebase can push LLMs harder by suggesting simpler approaches or noting existing patterns, whereas those without that knowledge must settle for whatever the model produces. As a result, human expertise is likely to remain valuable even as models improve, because the bottleneck is often communicating exactly what kind of solution is wanted rather than the model&#x27;s underlying capability.</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">1336 pts</span><span>1d ago</span></div>
+  <div class="sum">LLMs have made everyone into generalists by filling in technical gaps like writing code or solving math problems. While some believe prompting skill alone determines results, the article argues that the most important skill in prompting is actual domain expertise. This is illustrated by Terence Tao&#x27;s conversation with ChatGPT about the Jacobian Conjecture, where Tao&#x27;s short, pointed messages signal expertise and push the model into a more rigorous mode, though the key to his technique is his deep mathematical understanding, not just prompting tricks. The same principle applies to other fields like software development, where familiarity with a codebase allows a person to steer the LLM more effectively by recognizing when solutions are overly complex or miss existing patterns. As models grow stronger, human expertise remains valuable because the bottleneck is often the human&#x27;s ability to communicate exactly what kind of solution they want.</div>
+  <div class="smeta"><span class="pill p-blog">Source</span><span class="pts">1336 pts</span></div>
 </article>
+
 <article class="story">
   
   <div class="acts"><a href="https://writings.stephenwolfram.com/2026/08/in-memory-of-my-wife-elise-cawley-1961-2026-with-thanks-for-36-wonderful-years/">Read ›</a><a href="https://news.ycombinator.com/item?id=49173165">Discuss ›</a></div>
   <h2><a href="https://writings.stephenwolfram.com/2026/08/in-memory-of-my-wife-elise-cawley-1961-2026-with-thanks-for-36-wonderful-years/">In Memory of My Wife, Elise Cawley, with Thanks for 36 Wonderful Years</a></h2>
   <div class="sum"></div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">1111 pts</span><span>9h ago</span></div>
+  <div class="smeta"><span class="pill p-blog">Source</span><span class="pts">1112 pts</span></div>
 </article>
+
 <article class="story">
   
   <div class="acts"><a href="https://birchtree.me/blog/xbox-goes-down-you-cant-play-games-you-own-on-disc/">Read ›</a><a href="https://news.ycombinator.com/item?id=49167448">Discuss ›</a></div>
   <h2><a href="https://birchtree.me/blog/xbox-goes-down-you-cant-play-games-you-own-on-disc/">Xbox goes down. You can&#x27;t play games you own on disc</a></h2>
-  <div class="sum">Jay Peters reports that Xbox experienced a major outage that even prevented users from playing games on physical disc. He argues that physical media is no longer what it used to be, comparing the experience to using an Analog Pocket to immediately play old Game Boy cartridges without any authorization. While he acknowledges that owning a physical copy is technically a license rather than true ownership, he emphasizes that companies like Microsoft, Sony, and Nintendo can intentionally or unintentionally block access to disc-based games. He points out that inserting a disc actually installs the game to the internal hard drive along with required updates. Peters concludes that PC gaming, though entirely digital for years, offers better means of maintaining access to purchased games, which is why he has gravitated toward it.</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">602 pts</span><span>16h ago</span></div>
+  <div class="sum">An extended Xbox outage beginning Sunday evening, July 27, 2026, prevented users from playing both digital games and physical disc-based games. This incident highlights how owning a game on disc today functions more as a license than true ownership, since Microsoft, Sony, and Nintendo can unintentionally or intentionally block access to games. Even with a disc inserted, the game installs to the console&#x27;s internal hard drive and typically requires mandatory updates to function. The author contrasts this with older physical media, noting that cartridges from devices like the Game Boy can still be played on new hardware like the Analog Pocket without requiring authorization. Because of these limitations with modern disc-based games, the author has gravitated toward PC gaming, where players have more reliable means of maintaining long-term access to their games.</div>
+  <div class="smeta"><span class="pill p-blog">Source</span><span class="pts">602 pts</span></div>
 </article>
+
 <article class="story">
   
   <div class="acts"><a href="https://toneyalexander.github.io/inclusive-color-space/">Read ›</a><a href="https://news.ycombinator.com/item?id=49170165">Discuss ›</a></div>
   <h2><a href="https://toneyalexander.github.io/inclusive-color-space/">Show HN: Simple algorithm and color space to generate diverse skin tones</a></h2>
-  <div class="sum">The article describes a project that defines a custom color space with simple equations to generate a broad, inclusive range of plausible skin tones in RGB for contexts like character creators and digital art. The author manually labeled many RGB colors as plausible skin tones, then applied principal component analysis (PCA) with N=3 to transform the banana-shaped dataset into a more workable form, creating equations that map a sphere in PCA space onto the transformed data. The author acknowledges significant limitations, noting that real skin tones are affected by melanin, blood flow, light scattering, and conditions like vitiligo, argyria, and hyperpigmentation, while also appearing differently across displays and lighting conditions. They admit their own biases as a non-researcher making subjective color choices. The project is positioned as a useful starting point rather than an authoritative solution for simplified representations.</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">482 pts</span><span>13h ago</span></div>
+  <div class="sum">A developer created a custom color space with simple equations to generate diverse, plausible skin tones for digital art and character creators. The methodology involved manually labeling colors in RGB, performing principal component analysis (PCA) with N=3 to simplify the dataset shape, and writing equations that map a sphere onto the transformed data in PCA space. The provided code includes functions to uniformly sample points from a sphere and convert them to RGB values using linear coefficients. The author acknowledges significant limitations, noting that real skin tones vary across the body, are affected by health conditions like argyria and bilirubin levels, and that the work is subjective and potentially affected by display and lighting differences. The article also addresses the broader social context of colorism and racism, recommending related videos and projects on inclusive representation in makeup and video games.</div>
+  <div class="smeta"><span class="pill p-blog">Source</span><span class="pts">482 pts</span></div>
 </article>
+
 </main>
 
 <footer class="foot">
-  <div><div style="margin-top:14px">📚 Past editions:<a style="margin:0 10px" href="https://learn.shenthar.me/2026-08-04">2026-08-04</a></div></div>
+  <div><span class="ln">2026-08-05</span> · <a href="https://learn.shenthar.me/archive/2026-08-04.html">2026-08-04</a></div>
   <div style="margin-top:18px">Curated daily by your <strong>Hermes</strong> agent \u00b7
      <a href="https://github.com/KTS-o7/learning-portal">open source</a> \u00b7 served from learn.shenthar.me<br>
      Sources: Hacker News \u00b7 arXiv \u00b7 Lobsters \u00b7 engineering blogs</div>
