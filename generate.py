@@ -751,7 +751,13 @@ font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut2)}
 .chrome nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .chrome nav a{color:var(--mut);font-weight:600}
 .chrome nav a:hover{color:var(--ln);text-decoration:none}
-.chrome .left,.chrome .right{display:flex;gap:14px;align-items:center;white-space:nowrap}
+.chrome .left,.chrome .right,.chrome .nav{display:flex;gap:14px;align-items:center;white-space:nowrap}
+.chrome .nav{gap:8px;color:var(--mut);font-weight:600}
+.chrome .nav .d{color:var(--ink);font-weight:600;letter-spacing:.04em;text-transform:none;font-size:12px}
+.chrome .nav-arrow{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
+border:1px solid var(--rule);border-radius:50%;color:var(--mut);background:var(--paper2)}
+.chrome .nav-arrow:hover{color:var(--paper);background:var(--ink);border-color:var(--ink);text-decoration:none}
+.chrome .nav-arrow.disabled{opacity:.3;pointer-events:none}
 .chrome .count{color:var(--ac);font-weight:700}
 
 /* masthead / nameplate */
@@ -803,7 +809,8 @@ color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
 @media (max-width:640px){
   .chrome-in{flex-wrap:wrap;row-gap:4px}
   .chrome .right{flex:1;justify-content:flex-end}
-  .chrome .right .d{display:none}          /* hide full date on phones */
+  .chrome .nav{flex:1;justify-content:center;order:3}    /* on phones, push nav below the link row */
+  .chrome .nav .d{font-size:11px}
   .chrome .count{font-size:10px}
   .mast{padding:30px var(--pad) 18px}
   .mast h1{font-size:clamp(38px,13vw,56px)}
@@ -872,9 +879,42 @@ def render_page(edition, sections, all_days):
 
     body = "\n".join(stream)
 
+    # Build prev/next navigation from the archive list (descending).
+    # all_days is sorted newest-first; current edition sits at index 0.
+    past_days = [d for d in all_days if d != edition]
+    prev_day = None
+    next_day = None
+    if edition in all_days:
+        idx = all_days.index(edition)
+        if idx + 1 < len(all_days):
+            prev_day = all_days[idx + 1]   # older (newest-first ordering)
+        if idx > 0:
+            next_day = all_days[idx - 1]   # newer
+    # Today is the newest; if next_day exists it points to it (today == edition).
+    # After cron runs once per day, the live page is always the newest -> next_day = None.
+
+    arrow_svg = ('<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" '
+                 'viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+                 'stroke-width="2.5" stroke-linecap="round" '
+                 'stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>')
+    arrow_svg_r = ('<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" '
+                   'viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+                   'stroke-width="2.5" stroke-linecap="round" '
+                   'stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>')
+    prev_btn = (f'<a class="nav-arrow" href="{BASE_URL}/{prev_day}" '
+                f'aria-label="Previous edition ({prev_day})">'
+                f'{arrow_svg}</a>') if prev_day else (
+                f'<span class="nav-arrow disabled" aria-hidden="true">'
+                f'{arrow_svg}</span>')
+    next_btn = (f'<a class="nav-arrow" href="{BASE_URL}/{next_day}" '
+                f'aria-label="Next edition ({next_day})">'
+                f'{arrow_svg_r}</a>') if next_day else (
+                f'<span class="nav-arrow disabled" aria-hidden="true">'
+                f'{arrow_svg_r}</span>')
+
     archive_links = "".join(
         f'<a style="margin:0 10px" href="{BASE_URL}/{d}">{d}</a>'
-        for d in all_days if d != edition)
+        for d in past_days)
     archive_html = (f'<div style="margin-top:14px">📚 Past editions:{archive_links}</div>'
                     if archive_links else "")
 
@@ -896,9 +936,10 @@ def render_page(edition, sections, all_days):
 <body>
 <div class="chrome"><div class="chrome-in">
   <div class="left"><a href="{BASE_URL}/"><strong>{esc(SITE_NAME)}</strong></a>
-    <a href="{HOME_REPO}">Source</a><a href="{BASE_URL}/rss.xml">RSS</a></div>
-  <div class="right"><span class="d">{edition_label}</span>
-    <span class="count">{total} STORIES</span></div>
+    <a href="{HOME_REPO}">Source</a><a href="{BASE_URL}/archive/">Archive</a>
+    <a href="{BASE_URL}/rss.xml">RSS</a></div>
+  <div class="nav">{prev_btn}<span class="d">{edition_label}</span>{next_btn}</div>
+  <div class="right"><span class="count">{total} STORIES</span></div>
 </div></div>
 
 <header class="mast">
@@ -945,6 +986,83 @@ def render_rss(edition, sections):
   <description>{esc(SITE_TAGLINE)} — edition {edition}</description>
 {entries}
 </channel></rss>"""
+
+
+def render_archive_index(all_days):
+    """Generate /archive/index.html — a single-page list of every edition.
+
+    Reads each archive/<day>.html, extracts the edition label + count, and
+    presents them newest-first. Lets visitors jump to any past edition
+    without needing to paginate through them sequentially.
+    """
+    rows = []
+    for d in sorted(all_days, reverse=True):
+        path = OUT_DIR / "archive" / f"{d}.html"
+        if not path.exists():
+            continue
+        try:
+            text = path.read_text()
+        except Exception:
+            continue
+        # Pull edition label and story count from the existing HTML.
+        m_label = re.search(r'<div class="edition">([^<·]+)·', text)
+        m_count = re.search(r'<span class="count">(\d+)\s*STORIES</span>', text)
+        label = m_label.group(1).strip() if m_label else d
+        count = m_count.group(1) if m_count else "?"
+        # Featured (first story under Engineering) for that day, if any.
+        m_title = re.search(r'<h2><a[^>]*>([^<]+)</a></h2>', text)
+        lead = m_title.group(1) if m_title else ""
+        rows.append(
+            f'<li><a href="{BASE_URL}/{d}"><span class="d">{esc(d)}</span>'
+            f'<span class="lbl">{esc(label)}</span>'
+            f'<span class="cnt">{count} stories</span>'
+            f'<span class="lead">{esc(lead[:80])}</span></a></li>'
+        )
+
+    body = "\n".join(rows) or "<li>No editions yet.</li>"
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{esc(SITE_NAME)} — Archive</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Past editions of {esc(SITE_NAME)}.">
+<link rel="canonical" href="{BASE_URL}/archive/">
+<style>
+  body{{margin:0;background:var(--paper,#fbf1c7);color:var(--ink,#3c3836);
+    font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;line-height:1.55}}
+  main{{max-width:680px;margin:40px auto;padding:0 24px}}
+  h1{{font-size:24px;letter-spacing:.04em;margin:0 0 6px}}
+  .sub{{color:#79756b;font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 24px}}
+  ul{{list-style:none;padding:0;margin:0}}
+  li{{border-top:1px solid #d8c9a8;padding:14px 0}}
+  li:last-child{{border-bottom:1px solid #d8c9a8}}
+  li a{{display:grid;grid-template-columns:90px 1fr 90px;gap:14px;align-items:baseline;
+    color:#3c3836;text-decoration:none}}
+  li a:hover .d{{color:#076678}}
+  .d{{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    font-weight:700;font-size:18px;color:#b57614}}
+  .lbl{{font-size:14px}}
+  .cnt{{font-size:11px;color:#79756b;text-align:right;letter-spacing:.06em;text-transform:uppercase}}
+  .lead{{grid-column:2/4;font-size:13px;color:#79756b;font-style:italic;margin-top:4px}}
+  .back{{margin-top:28px;font-size:12px;letter-spacing:.1em;text-transform:uppercase}}
+  .back a{{color:#076678;text-decoration:none}}
+  .back a:hover{{text-decoration:underline}}
+</style>
+</head>
+<body>
+<main>
+  <h1>{esc(SITE_NAME)} — Archive</h1>
+  <p class="sub">{len(rows)} editions, newest first</p>
+  <ul>
+{body}
+  </ul>
+  <p class="back"><a href="{BASE_URL}/">← Today</a></p>
+</main>
+</body>
+</html>
+"""
 
 
 # ----------------------------------------------------------------------------
@@ -1005,8 +1123,9 @@ def main():
     arch_dir.mkdir(exist_ok=True)
     (arch_dir / f"{edition}.html").write_text(page)
     (OUT_DIR / "rss.xml").write_text(render_rss(edition, sections))
+    (arch_dir / "index.html").write_text(render_archive_index(all_days))
 
-    log(f"wrote index.html, archive/{edition}.html, rss.xml, archive.json")
+    log(f"wrote index.html, archive/{edition}.html, archive/index.html, rss.xml, archive.json")
     log(f"done — {sum(counts.values())} items total")
 
 

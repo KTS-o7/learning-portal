@@ -36,7 +36,13 @@ font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut2)}
 .chrome nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .chrome nav a{color:var(--mut);font-weight:600}
 .chrome nav a:hover{color:var(--ln);text-decoration:none}
-.chrome .left,.chrome .right{display:flex;gap:14px;align-items:center;white-space:nowrap}
+.chrome .left,.chrome .right,.chrome .nav{display:flex;gap:14px;align-items:center;white-space:nowrap}
+.chrome .nav{gap:8px;color:var(--mut);font-weight:600}
+.chrome .nav .d{color:var(--ink);font-weight:600;letter-spacing:.04em;text-transform:none;font-size:12px}
+.chrome .nav-arrow{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
+border:1px solid var(--rule);border-radius:50%;color:var(--mut);background:var(--paper2)}
+.chrome .nav-arrow:hover{color:var(--paper);background:var(--ink);border-color:var(--ink);text-decoration:none}
+.chrome .nav-arrow.disabled{opacity:.3;pointer-events:none}
 .chrome .count{color:var(--ac);font-weight:700}
 
 /* masthead / nameplate */
@@ -88,7 +94,8 @@ color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
 @media (max-width:640px){
   .chrome-in{flex-wrap:wrap;row-gap:4px}
   .chrome .right{flex:1;justify-content:flex-end}
-  .chrome .right .d{display:none}          /* hide full date on phones */
+  .chrome .nav{flex:1;justify-content:center;order:3}    /* on phones, push nav below the link row */
+  .chrome .nav .d{font-size:11px}
   .chrome .count{font-size:10px}
   .mast{padding:30px var(--pad) 18px}
   .mast h1{font-size:clamp(38px,13vw,56px)}
@@ -106,9 +113,10 @@ color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
 <body>
 <div class="chrome"><div class="chrome-in">
   <div class="left"><a href="https://learn.shenthar.me/"><strong>Daily Byte</strong></a>
-    <a href="https://github.com/KTS-o7/learning-portal">Source</a><a href="https://learn.shenthar.me/rss.xml">RSS</a></div>
-  <div class="right"><span class="d">Wednesday, August 5, 2026</span>
-    <span class="count">16 STORIES</span></div>
+    <a href="https://github.com/KTS-o7/learning-portal">Source</a><a href="https://learn.shenthar.me/archive/">Archive</a>
+    <a href="https://learn.shenthar.me/rss.xml">RSS</a></div>
+  <div class="nav"><a class="nav-arrow" href="https://learn.shenthar.me/2026-08-04" aria-label="Previous edition (2026-08-04)"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></a><span class="d">Wednesday, August 5, 2026</span><span class="nav-arrow disabled" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></div>
+  <div class="right"><span class="count">16 STORIES</span></div>
 </div></div>
 
 <header class="mast">
@@ -231,7 +239,7 @@ color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
   <div class="acts"><a href="https://deepgrove.ai/maple-preview">Read ›</a><a href="https://news.ycombinator.com/item?id=49173984">Discuss ›</a></div>
   <h2><a href="https://deepgrove.ai/maple-preview">Show HN: Maple-Preview – ternary 20B MoE running at 120 tok/s on a iPhone</a></h2>
   
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">75 pts</span>
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">76 pts</span>
   <span>8h ago</span></div>
 </article>
 <article class="story">
