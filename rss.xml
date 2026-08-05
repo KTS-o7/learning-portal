@@ -4,186 +4,116 @@
   <link>https://learn.shenthar.me/</link>
   <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-05</description>
 <item>
-  <title>In Memory of My Wife, Elise Cawley, with Thanks for 36 Wonderful Years</title>
-  <link>https://writings.stephenwolfram.com/2026/08/in-memory-of-my-wife-elise-cawley-1961-2026-with-thanks-for-36-wonderful-years/</link>
-  <guid isPermaLink="false">https://writings.stephenwolfram.com/2026/08/in-memory-of-my-wife-elise-cawley-1961-2026-with-thanks-for-36-wonderful-years/</guid>
-  <description></description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
-  <source>HN</source>
+  <title>Three Claude Skills I Think Every Org Should Have</title>
+  <link>https://arpitbhayani.me/blogs/three-skills</link>
+  <guid isPermaLink="false">https://arpitbhayani.me/blogs/three-skills</guid>
+  <description>A company runs smoothly when people can get stuff done without hunting for information. What actually wears people out day to day is not the hard engineering problem. It is not knowing which ticket to file, which team to bug on Slack, or what invisible step stands between them and getting a simple service live.</description>
+  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <source>Arpit Bhayani</source>
 </item><item>
-  <title>AI-Generated Images Discourage Me from Reading Your Blog</title>
-  <link>https://nelson.cloud/ai-generated-images-discourage-me-from-reading-your-blog/</link>
-  <guid isPermaLink="false">https://nelson.cloud/ai-generated-images-discourage-me-from-reading-your-blog/</guid>
-  <description>AI-generated images in blog posts lead to reader skepticism. The author questions if such images mean the text is also AI-generated. This doubt reduces trust in the content. Engineers should consider source authenticity when evaluating online information.</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
-  <source>HN</source>
+  <title>G-Eval, Explained</title>
+  <link>https://arpitbhayani.me/blogs/g-eval</link>
+  <guid isPermaLink="false">https://arpitbhayani.me/blogs/g-eval</guid>
+  <description>G-Eval is a reference-free evaluation framework that leverages large language models to assess the quality of generated text without requiring ground-truth references. It operates through rubric-based prompting, where evaluators are guided by structured criteria, and chain-of-thought evaluation, which encourages the model to reason through its assessments step by step. A distinctive feature is its probability-weighted scoring mechanism, which uses token log probabilities to produce more nuanced and calibrated quality scores than simple discrete ratings. While G-Eval offers a flexible approach for evaluating outputs in LLM applications, chatbots, summarization systems, and AI writing assistants, it has notable limitations including potential bias, inconsistency across runs, and dependence on the underlying model&#x27;s capabilities. The framework is best suited for scenarios where reference data is unavailable or impractical, but practitioners should validate its outputs and avoid relying on it as a sole quality metric.</description>
+  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <source>Arpit Bhayani</source>
 </item><item>
-  <title>Xbox goes down. You can&#x27;t play games you own on disc</title>
-  <link>https://birchtree.me/blog/xbox-goes-down-you-cant-play-games-you-own-on-disc/</link>
-  <guid isPermaLink="false">https://birchtree.me/blog/xbox-goes-down-you-cant-play-games-you-own-on-disc/</guid>
-  <description>Xbox has a huge, extended outage that began Sunday evening. The outage prevents users from playing both digital and disc-based games. Players with physical discs cannot launch their games during this time. This event demonstrates that modern consoles depend on online services for basic access. Engineers must consider how to handle such failures in system design.</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
-  <source>HN</source>
+  <title>AI Workflows Need Topological Sort</title>
+  <link>https://arpitbhayani.me/blogs/ai-topological-sort</link>
+  <guid isPermaLink="false">https://arpitbhayani.me/blogs/ai-topological-sort</guid>
+  <description>Every AI workflow is essentially a dependency problem in which some steps produce outputs while other steps depend on those outputs to run. The central constraint is that consumers cannot execute before their producers finish, since reversing the order leads to reading stale data, calling tools with missing context, or triggering an agent before its inputs are ready. Topological sort provides the mechanism for ordering these steps correctly by respecting the producer-consumer relationships. Without enforcing this ordering, the workflow cannot guarantee that each step has the data it needs when it begins. Treating execution order as a graph problem makes workflow design more reliable and predictable.</description>
+  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <source>Arpit Bhayani</source>
 </item><item>
-  <title>Ray Bradbury&#x27;s &quot;There Will Come Soft Rains&quot; is set today (2026-08-04)</title>
-  <link>https://short-stories.co/@raybradbury/there-will-come-soft-rains-6k8vr4xxlnmj</link>
-  <guid isPermaLink="false">https://short-stories.co/@raybradbury/there-will-come-soft-rains-6k8vr4xxlnmj</guid>
-  <description>The short story &#x27;There Will Come Soft Rains&#x27; by Ray Bradbury is set on August 4, 2026. In the narrative, an automated house continues its functions after humans are gone. The voice-clock activates and sings. The house ejects breakfast, but no doors slam. The garage door opens to reveal a car that waits for no one. The structure sits alone in a destroyed city.</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
-  <source>HN</source>
+  <title>Temporal Primer - Building Long-Running Systems</title>
+  <link>https://arpitbhayani.me/blogs/temporal-primer</link>
+  <guid isPermaLink="false">https://arpitbhayani.me/blogs/temporal-primer</guid>
+  <description>Developers often construct complex systems by combining cron jobs, message queues, database state tables, and retry loops to handle long-running processes. These improvised solutions tend to fail during unexpected events like network blips, exposing the need for a more reliable approach. The homegrown fix effectively becomes a workflow engine, managing state, scheduling, and retries across distributed services. Temporal positions itself as a properly engineered workflow engine designed specifically for building long-running systems. Rather than relying on brittle, hand-stitched components, Temporal provides a purpose-built framework that handles these concerns natively, ensuring that workflows can survive interruptions and resume reliably without manual intervention.</description>
+  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <source>Arpit Bhayani</source>
 </item><item>
-  <title>Computing Actual Causes for Neural Network Predictions under Structured Causal Inputs</title>
-  <link>http://arxiv.org/abs/2608.03772v1</link>
-  <guid isPermaLink="false">http://arxiv.org/abs/2608.03772v1</guid>
-  <description>Existing explanation methods for neural networks typically treat input features as independent, which can produce misleading explanations when inputs have structured dependencies. This work formalizes explanations as Halpern-Pearl actual causes, modeling input dependencies through Boolean Structural Causal Models. The authors compute these causes using bound propagation and branch-and-bound techniques, providing formal guarantees of completeness and minimality. Experiments demonstrate that the approach substantially outperforms brute-force and ILP baselines in scalability, and surpasses heuristic search as graph size increases, successfully computing all minimal actual causes on instances with up to 2.3×10^13 candidate pairs across SCMs with up to 28 nodes within a 180-second budget. A case study further reveals that ignoring input dependencies inflates the reported causes, with 14.9% of these being spurious under their SCM formulation.</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
+  <title>Giving and taking credit in big tech companies</title>
+  <link>https://seangoedecke.com/giving-and-taking-credit/</link>
+  <guid isPermaLink="false">https://seangoedecke.com/giving-and-taking-credit/</guid>
+  <description>Engineers often assume their manager should advocate for their work, treating the workplace like school where good performance is automatically rewarded. In reality, managers cannot reliably assess technical quality themselves and instead rely on quiet conversations with trusted engineers to judge performance. This means engineers must actively communicate their accomplishments through internal posts, 1:1s, and other channels rather than expecting recognition for silent good work. However, hoarding credit is counterproductive because credit is not zero-sum: sharing credit with collaborators gives them personal reasons to speak positively about the project. Conversely, projects where credit is concentrated in one person become attractive targets for blame during complex failures, since no one else is incentivized to defend them. The most effective strategy is to make individual projects partially group projects, so that success reflects well on everyone involved.</description>
+  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <source>Sean Goedecke</source>
+</item><item>
+  <title>TurnSight: Turn-Level Hindsight Self-Distillation for Tool-Integrated Reasoning</title>
+  <link>http://arxiv.org/abs/2608.04007v1</link>
+  <guid isPermaLink="false">http://arxiv.org/abs/2608.04007v1</guid>
+  <description>TurnSight is a turn-level hindsight self-distillation framework designed for Tool-Integrated Reasoning, where LLMs solve complex tasks through iterative tool interactions. While existing reinforcement learning methods depend on trajectory-level supervision that limits fine-grained credit assignment in long-horizon scenarios, and prior on-policy self-distillation approaches derive privileged context from ground-truth answers or retrieved skills that may not match states actually visited by the agent, TurnSight instead derives supervision directly from execution-conditioned hindsight. The framework constructs multiple hindsight views with different lookahead horizons and selects reliable supervision through cross-horizon directional agreement. The selected hindsight signal is then normalized across sibling rollouts and used to adaptively modulate RL advantages while preserving their original optimization direction. Experiments on three benchmarks demonstrate TurnSight&#x27;s effectiveness, with code publicly available on GitHub.</description>
+  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
   <source>arXiv</source>
 </item><item>
-  <title>MDLMPE: Distribution Aware Positional Encoding for Masked Diffusion Language Models</title>
-  <link>http://arxiv.org/abs/2608.03769v1</link>
-  <guid isPermaLink="false">http://arxiv.org/abs/2608.03769v1</guid>
-  <description>Masked diffusion language models (MDLMs) produce non-contiguous configurations of revealed and masked tokens, unlike the contiguous prefixes handled by autoregressive models. Conventional positional encodings such as RoPE capture sequence order and pairwise displacement but are insensitive to this evolving token-availability structure. To address this, the authors propose MDLMPE, the first method to make positional representations explicitly aware of the changing revealed/masked configuration. It represents token availability as a binary sequence, applies distance-aware Gaussian weighting, and projects the resulting pattern through a cosine basis to obtain distribution-aware positional features, which are then added to token embeddings and mapped by a lightweight MLP to angular offsets that modulate standard RoPE phases. Experiments on LLaDA and DREAM show that MDLMPE generally outperforms conventional positional encoding methods across supervised fine-tuning, pretraining, zero-shot evaluation, and block</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
+  <title>Test-Time Scaling in Reasoning LLMs: Inference Regimes, Evaluation, and Reproducibility</title>
+  <link>http://arxiv.org/abs/2608.04001v1</link>
+  <guid isPermaLink="false">http://arxiv.org/abs/2608.04001v1</guid>
+  <description>This paper develops a systematic framework for understanding and evaluating test-time scaling in reasoning language models. The authors formalize test-time scaling as budgeted inference over the implicit prefix tree of an autoregressive model, distinguishing three structural regimes: single-trajectory sequential scaling, leaf-level scaling with terminal reduction, and prefix-level scaling. They treat the inference system as the evaluated object, introducing evaluation principles that separate end-to-end performance from candidate-bank diagnostics through an evaluation profile whose coordinates recover or bound common repeated-sampling metrics. The work specifies reproducibility requirements for inference protocols, distinguishing exact replay from distributional reproducibility and identifying supporting artifacts. The authors apply these principles to broad-knowledge, symbolic-reasoning, and competition-mathematics benchmarks, organize the open-weight reasoning ecosystem by model-side and interface mechanisms, and release over 2 billion full reasoning traces with progressively richer verifier and token-level signals.</description>
+  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
   <source>arXiv</source>
 </item><item>
-  <title>GDPevo: Evaluating Agent Self-Evolution on Real Business Tasks</title>
-  <link>http://arxiv.org/abs/2608.03764v1</link>
-  <guid isPermaLink="false">http://arxiv.org/abs/2608.03764v1</guid>
-  <description>GDPevo is an evolution-native benchmark for evaluating agent self-evolution on real business tasks, built around GDP-related enterprise workflows through a fully automated data pipeline. Its rule hybridization mechanism decomposes workflows into atomic business rules, distributes subsets across training tasks, and recombines them in held-out test tasks so test-time gains can be attributed to prior experience. The benchmark spans CRM, ERP, finance, healthcare, legal, and data-centric workflows, with V1 containing 120 tasks across 12 groups and the pipeline able to expand to 240 tasks in 24 groups within two days as a practical response to data contamination. Evaluating four agents under four supervision types, self-evolution consistently improves held-out accuracy by up to 16.44 percentage points. Yet the best evolved agents remain far below the fully informed oracle ceiling of 91.6%, indicating current self-evolution capability is far from fully realized. The pipeline, benchmark, and full results are publicly released.</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
+  <title>Assessment of Conditional Diffusion Model for Synthetic Histopathology Image Generation</title>
+  <link>http://arxiv.org/abs/2608.03990v1</link>
+  <guid isPermaLink="false">http://arxiv.org/abs/2608.03990v1</guid>
+  <description>The study investigates limitations of conventional synthetic data evaluation metrics like Frechet Inception Distance (FID) and Inception Score (IS) for histopathology images, noting their dependence on ImageNet-pretrained feature extractors. To address these limitations, the authors propose modified FID and IS approaches using foundation models pretrained on digital pathology datasets, supplemented by precision-recall based metrics. Using conditional denoising diffusion models trained on four benchmark datasets with a two-step approach, they generated synthetic datasets with systematically varied quality and measured correlation with downstream nuclei segmentation performance. Results indicate that pathology-specific metrics may offer improved discriminative power, with the modified Inception Score showing higher correlation with segmentation performance (r=0.6096 with AJI+, p=0.0122) compared to the original IS (r=0.0708, p=0.7944). The findings also suggest that increasing the variety of generated training data correlates more positively with segmentation model performance than improving the visual fidelity of individual generated images.</description>
+  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
   <source>arXiv</source>
 </item><item>
-  <title>Delay Attacks on the German Smart Metering Infrastructure: A Security Analysis of CLS Channel Timing Constraints</title>
-  <link>http://arxiv.org/abs/2608.03751v1</link>
-  <guid isPermaLink="false">http://arxiv.org/abs/2608.03751v1</guid>
-  <description>This work analyzes the feasibility of delay attacks on control signals transmitted via the Controllable Local System (CLS) channel of the German Smart Metering Infrastructure (SMI). It combines theoretical analysis with experimental validation under a threat model aligned to the Common Criteria Protection Profile for the Smart Meter Gateway (SMGW) and assess the potential impact on the power grid if the identified attack vector is exploited across multiple CLS channels simultaneously. We also outline mitigation strategies, including SMGW configuration restrictions, implementation-level changes, and protocol extensions. Our results show that an on-path attacker in the Wide Area Network (WAN) with sufficient contextual knowledge can feasibly execute delay attacks, with a theoretical upper bound of roughly 48 hours for some deployed protocol configurations. Projecting from a single CLS to several hundred thousand CLS devices indicates such an adversary could cause a significant frequency deviation potentially resulting in load shedding. Scaling the attack requires contextual knowledge for each targeted implementation and configuration; whether this knowledge can be broadly reused across CLS channels is uncertain but may become easier to obtain as standardization progresses. Time restricted transmissions in the FNN Steuerbox and in applications using CLS.EEDI are implementation-specific and can therefore be addressed by manufacturers. By contrast, ensuring application-data time limitations in TLS~1.3 requires protocol-level extensions. The TLS extensions proposed here offer a sustainable mitigation while preserving backward compatibility. Other communication channels outside the SMI (for example, proprietary remote terminal units used to control a CLS) are outside this work&#x27;s scope and may exhibit similar or worse vulnerabilities.</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
+  <title>Can Large Language Models Recover Semantic Optimization Opportunities That Compilers Miss?</title>
+  <link>http://arxiv.org/abs/2608.03983v1</link>
+  <guid isPermaLink="false">http://arxiv.org/abs/2608.03983v1</guid>
+  <description>Optimizing compilers often miss profitable transformations when enabling semantics are absent from the analyzed program representation. The authors investigate whether large language models can recover such semantics from heterogeneous C/C++ context and produce validated, contract-preserving artifacts. They introduce SeGaBench, an executable benchmark comprising 100 synthetic and 20 source-backed cases spanning low-level assumptions, data-structure invariants, and high-level semantic lifting, each equipped with hidden enabling semantics, an oracle artifact, correctness and semantic validators, and a reproducible performance protocol. Evaluating five LLMs with five independent responses per case, the strongest model produces correct artifacts in 94.8% of responses, achieves at least 1.05x speedup in 83.3%, and reaches a performance success on 93.3% of cases. However, correct artifacts often close only part of the oracle gap. These findings suggest LLMs can complement compiler analysis as speculative semantic proposers when their outputs are validated and evaluated.</description>
+  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
   <source>arXiv</source>
 </item><item>
-  <title>Risky Business: Measuring The Faithfulness-Safety Tension</title>
-  <link>http://arxiv.org/abs/2608.03745v1</link>
-  <guid isPermaLink="false">http://arxiv.org/abs/2608.03745v1</guid>
-  <description>This paper identifies an alignment tension in Large Reasoning Models (LRMs) between reasoning faithfulness—the degree to which outputs strictly derive from their chain-of-thought trace—and the ability to reject unsafe reasoning. To study this, the authors introduce HazMart, a human-written dataset framed around an autonomous AI shopkeeper, and propose Targeted Reasoning Replacement (TRR), a technique that directly intervenes in reasoning chains by substituting in unsafe or illogical thoughts, differing from prior approaches that inject hints into prompts. Evaluations reveal a clear counterbalance: DeepSeek-R1-Llama-70B exhibits high faithfulness (97.5%) but rejects Unsafe Reasoning only 12.3% of the time, whereas QwQ-32B achieves 73.9% safety but lower faithfulness (74.7%). Mechanistic analyses on QwQ-32B show that faithfulness and safety are encoded by anti-correlated internal directions peaking at the action-commit token. Finally, the authors demonstrate that representation steering can amplify the safety direction, increasing safe behavior by 9 percentage points without compromising base capabilities.</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
+  <title>Video-DeepResearch: Towards the Next-Generation Multimodal Deepresearch Agent</title>
+  <link>http://arxiv.org/abs/2608.03979v1</link>
+  <guid isPermaLink="false">http://arxiv.org/abs/2608.03979v1</guid>
+  <description>We introduce Video-DeepResearch (Video-DR), extending multimodal agents from static images to continuous video streams, a setting that demands dense spatiotemporal grounding coupled with open-web exploration. Preliminary evaluations reveal two critical bottlenecks in current models: (1) modality bias, where agents bypass visual tools in favor of textual search, and (2) parametric knowledge leakage, where models rely on internal memory rather than genuine tool-augmented execution. To address these challenges, we propose Video-DR, featuring a decoupled perception-exploration pipeline with stage-wise tool unlocking that compels exhaustive cross-frame visual grounding prior to web retrieval. Our framework adopts a two-stage training recipe: supervised fine-tuning followed by Group Relative Policy Optimization (GRPO), enabling autonomous exploration that breaks the imitation-learning ceiling. Furthermore, we curate Video-DR-Bench, a human-AI collaborative benchmark comprising 200 complex, multi-hop VQA instances. Empirical results demonstrate that our Video-DeepResearch-35B-A3B establishes a new state-of-the-art of 64.0% average accuracy, surpassing proprietary Claude-4.5-Sonnet (59.0%) by 5.0 points and significantly outperforming GPT-5 (52.5%) and Gemini 2.5 Pro (57.5%). The 30B-A3B variant achieves 59.3%, competitive with Claude-4.5-Sonnet and demonstrating the effectiveness of our training paradigm even at compact scale. Code: https://github.com/Osilly/Vision-DeepResearch.</description>
+  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
   <source>arXiv</source>
-</item><item>
-  <title>Agents Catching Agents: Shortcut Cascades and Benchmark Gaming in Clinical Multi-Agent Systems</title>
-  <link>http://arxiv.org/abs/2608.03744v1</link>
-  <guid isPermaLink="false">http://arxiv.org/abs/2608.03744v1</guid>
-  <description>Clinical decision support is moving toward committees of language-model agents deliberating on a shared workspace. We ask whether such committees can be gamed by shortcuts, cues a benchmark rewards but a clinician would ignore. Across seven cohorts on six public datasets spanning text (MedQA-USMLE, MedMCQA, MIMIC-CXR reports), imaging (NIH ChestX-ray14, MIMIC-CXR-JPG, CheXpert) and tabular ICU records (SUPPORT2), Gemini committees resist these cues in isolation (flip 5-16%), yet a socially plausible shortcut spreads: when two peers assert the same wrong answer, the holdout under test adopts it in 38% of cases, as does a false &quot;pre-screen&quot; system flag, on both capability tiers. Of three oversight agents, a gate cannot separate adoption from honest agreement (false-positive rate 100%); a same-lineage judge reading only the transcript flags adoption on text (precision 100%, recall 93%) but collapses onto the gate in imaging; a referee that privately re-queries the holdout transfers to imaging (77-88% precision, 13-21% false-positive rate). Tripling a cue&#x27;s visual salience does not move contagion, whereas a second peer voice raises it by half again. Gaming a hidden rubric is near-silent: only 1/10 text and 1/134 imaging drifters name the rubric they moved toward. What games a committee is social plausibility, and only a referee independent of self-report catches it. Code: https://github.com/criticaldata/benchmaxxing</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
-  <source>arXiv</source>
-</item><item>
-  <title>Show HN: Fine-tune an 8B model on a 4 GB laptop GPU</title>
-  <link>https://github.com/MakazhanAlpamys/Soup</link>
-  <guid isPermaLink="false">https://github.com/MakazhanAlpamys/Soup</guid>
-  <description>Soup simplifies the fine-tuning of large language models. It turns a complex workflow into one configuration and one command. The tool completes the process after the command runs. Engineers save time and reduce effort in model training. This makes fine-tuning more accessible for developers.</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
-  <source>HN</source>
-</item><item>
-  <title>Show HN: Maple-Preview – ternary 20B MoE running at 120 tok/s on a iPhone</title>
-  <link>https://deepgrove.ai/maple-preview</link>
-  <guid isPermaLink="false">https://deepgrove.ai/maple-preview</guid>
-  <description></description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
-  <source>HN</source>
-</item><item>
-  <title>The Lua community needs to learn to move on</title>
-  <link>https://hisham.hm/2026/08/04/the-lua-community-needs-to-learn-to-move-on/</link>
-  <guid isPermaLink="false">https://hisham.hm/2026/08/04/the-lua-community-needs-to-learn-to-move-on/</guid>
-  <description></description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
-  <source>Lobsters</source>
-</item><item>
-  <title>Security is Hard, Y’all</title>
-  <link>https://textslashplain.com/2026/08/04/security-is-hard-yall/</link>
-  <guid isPermaLink="false">https://textslashplain.com/2026/08/04/security-is-hard-yall/</guid>
-  <description>When Eric Lawrence saw a tweet about a new Cloudflare product, he clicked through and found his preferred handle available, prompting him to sign in quickly to claim it. During the authorization process, he noticed numerous red flags typical of consent phishing attacks, including the request occurring on cloudflare.pay rather than cloudflare.com, despite there being no technical relationship between the two domains, and .pay TLDs being available to anyone for $20. A suspicious-looking green checkmark turned out to be a poorly placed security UI element rather than a misleading app name. After failing to find the feature through his dashboard or documentation, he confirmed with Cloudflare&#x27;s AI chat agent that it was indeed an attack, only to discover it was actually a legitimate new product. Lawrence noted Cloudflare wants security issues reported via HackerOne, though the HackerOne CAPTCHA appeared broken, and emphasized how difficult security is for both users and URL reputation services when legitimate sites exhibit phishing-like characteristics.</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
-  <source>Lobsters</source>
-</item><item>
-  <title>Soppo - Go, with the features it&#x27;s missing</title>
-  <link>https://soppolang.dev/</link>
-  <guid isPermaLink="false">https://soppolang.dev/</guid>
-  <description>Soppo is a new programming language positioned as &quot;Go, with the features it&#x27;s missing,&quot; designed to layer type safety and ergonomics onto Go while preserving full interoperability with existing Go libraries and tooling. Its main additions include tagged-union enums with exhaustive pattern matching, a `?` operator that replaces repetitive `if err != nil` blocks with concise error propagation, and compile-time nilability tracking that uses a `?` prefix (such as `?*User`) to mark types that may be nil and automatically narrows the type after a nil check. The compiler produces error messages that point to the offending line, highlight the problem, and suggest fixes, with one example flagging a missing `Green` variant in a match expression. Soppo compiles through Go internally and can be installed via the SOPMOD version manager or directly as a `sop` binary through Cargo. For working engineers, the appeal is gradual adoption in existing Go projects, gaining stronger compile-time guarantees without abandoning the Go ecosystem or rewriting working code.</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
-  <source>Lobsters</source>
-</item><item>
-  <title>Enabling the next iteration of the borrow checker on nightly</title>
-  <link>https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nighty/</link>
-  <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nighty/</guid>
-  <description>The Rust team enables Polonius Alpha on nightly builds for testing. This borrow checker introduces flow-sensitive analysis for lifetime outlives relationships. It compiles code that NLL rejects, such as cases with flow-dependent borrows. Some legacy Polonius code may not compile with this version. Performance regressions are minimal, based on top ten thousand crates. Engineers can report issues on GitHub or Zulip before full stabilization later this year.</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
-  <source>Lobsters</source>
-</item><item>
-  <title>Kill the Cookie Banner</title>
-  <link>https://killthecookiebanner.eu/</link>
-  <guid isPermaLink="false">https://killthecookiebanner.eu/</guid>
-  <description>The EU Commission proposed in Autumn 2025, as part of its Digital Omnibus reform, to replace cookie banners with automated browser-level privacy preference signals that communicate consent between a user&#x27;s device and the websites or apps they visit. The campaign frames cookie banners as deliberately misleading design, noting that up to 90% of users click &quot;YES&quot; even though only about 3% actually want to be tracked online. The technical proposal closely mirrors mechanisms browsers already use for preferences such as language, and similar privacy signals are already legally supported in some US states. Despite this, lobbying from</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
-  <source>Lobsters</source>
-</item><item>
-  <title>BorrowSanitizer</title>
-  <link>https://borrowsanitizer.com/</link>
-  <guid isPermaLink="false">https://borrowsanitizer.com/</guid>
-  <description></description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
-  <source>Lobsters</source>
 </item><item>
   <title>FFmpeg 9.0</title>
   <link>https://github.com/FFmpeg/FFmpeg/blob/n9.0/RELEASE_NOTES</link>
   <guid isPermaLink="false">https://github.com/FFmpeg/FFmpeg/blob/n9.0/RELEASE_NOTES</guid>
   <description>The article content could not be loaded, so no summary can be written from it.</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
+  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
   <source>HN</source>
 </item><item>
   <title>DeepSeek V4 Flash on a Single AMD MI300X</title>
   <link>https://github.com/ryanzhou/deepseek-v4-flash-mi300x</link>
   <guid isPermaLink="false">https://github.com/ryanzhou/deepseek-v4-flash-mi300x</guid>
   <description></description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
+  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
   <source>HN</source>
 </item><item>
-  <title>The Agent Development Lifecycle has arrived on Cloudflare</title>
-  <link>https://blog.cloudflare.com/agent-development-lifecycle/</link>
-  <guid isPermaLink="false">https://blog.cloudflare.com/agent-development-lifecycle/</guid>
-  <description>AI agents write code faster than teams can review, deploy, and maintain it. Cloudflare introduces the Agent Development Lifecycle. The lifecycle uses Cloudflare primitives to support this process.</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
-  <source>Cloudflare</source>
+  <title>Show HN: Fine-tune an 8B model on a 4 GB laptop GPU</title>
+  <link>https://github.com/MakazhanAlpamys/Soup</link>
+  <guid isPermaLink="false">https://github.com/MakazhanAlpamys/Soup</guid>
+  <description>Soup simplifies the fine-tuning of large language models. It turns a complex workflow into one configuration and one command. The tool completes the process after the command runs. Engineers save time and reduce effort in model training. This makes fine-tuning more accessible for developers.</description>
+  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <source>HN</source>
 </item><item>
-  <title>Announcing Cloudflare Wallets: the programmable wallet for the agentic Internet</title>
-  <link>https://blog.cloudflare.com/wallets/</link>
-  <guid isPermaLink="false">https://blog.cloudflare.com/wallets/</guid>
-  <description>Cloudflare Wallets give AI agents native payments and verifiable identity on the web. Agents use the x402 protocol to purchase APIs and content autonomously. The purchases operate within clear safety guardrails.</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
-  <source>Cloudflare</source>
+  <title>Show HN: Maple-Preview – ternary 20B MoE running at 120 tok/s on a iPhone</title>
+  <link>https://deepgrove.ai/maple-preview</link>
+  <guid isPermaLink="false">https://deepgrove.ai/maple-preview</guid>
+  <description></description>
+  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <source>HN</source>
 </item><item>
-  <title>Run CI/CD for millions of repos — on your platform, on Cloudflare</title>
-  <link>https://blog.cloudflare.com/ci-workflows/</link>
-  <guid isPermaLink="false">https://blog.cloudflare.com/ci-workflows/</guid>
-  <description>Engineers can build customizable, sandboxed CI/CD pipelines on Cloudflare. They use Workflows, Artifacts, and the CI SDK. The approach replaces complex YAML with TypeScript workflow steps. Self-healing AI agents manage the pipelines.</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
-  <source>Cloudflare</source>
+  <title>The Lua community needs to learn to move on</title>
+  <link>https://hisham.hm/2026/08/04/the-lua-community-needs-to-learn-to-move-on/</link>
+  <guid isPermaLink="false">https://hisham.hm/2026/08/04/the-lua-community-needs-to-learn-to-move-on/</guid>
+  <description></description>
+  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <source>Lobsters</source>
 </item><item>
-  <title>How Cloudflare enforces engineering standards using AI</title>
-  <link>https://blog.cloudflare.com/engineering-standards-enforcement/</link>
-  <guid isPermaLink="false">https://blog.cloudflare.com/engineering-standards-enforcement/</guid>
-  <description>Cloudflare created Codex, a governed body of engineering standards. AI agents consume these standards across the development lifecycle. Teams pair structured RFCs with agentic reviews. This automatically enforces consistency across code, specs, and incident reports.</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
-  <source>Cloudflare</source>
-</item><item>
-  <title>How the GitHub legal team used Copilot CLI to streamline their workflows</title>
-  <link>https://github.blog/ai-and-ml/github-copilot/how-the-github-legal-team-used-copilot-cli-to-streamline-their-workflows/</link>
-  <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/how-the-github-legal-team-used-copilot-cli-to-streamline-their-workflows/</guid>
-  <description>The GitHub legal team adopted Copilot CLI to simplify and streamline their daily workflows. The initiative focused on building custom tools to handle routine tasks more efficiently, all without writing a single line of code. By leveraging Copilot CLI, the team was able to automate processes that previously required manual effort, reducing time spent on repetitive work. The approach demonstrated how non-engineering teams within GitHub could harness AI-powered development tools to address their specific operational needs. The post serves as a practical example of how command-line AI assistants can empower professionals outside of software development to create tailored solutions.</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
-  <source>GitHub Blog</source>
-</item><item>
-  <title>Turn one giant AI-generated pull request to a reviewable stack</title>
-  <link>https://github.blog/engineering/turn-one-giant-ai-generated-pull-request-to-a-reviewable-stack/</link>
-  <guid isPermaLink="false">https://github.blog/engineering/turn-one-giant-ai-generated-pull-request-to-a-reviewable-stack/</guid>
-  <description>AI coding agents produce one large pull request that is hard to review. The method uses GitHub stacked pull requests to decompose the work. It creates a clean, ordered stack of pull requests. This lets engineers review code in smaller, manageable pieces. The approach makes AI-generated changes easier to handle.</description>
-  <pubDate>Wed, 05 Aug 2026 07:00:27 +0530</pubDate>
-  <source>GitHub Blog</source>
+  <title>Security is Hard, Y’all</title>
+  <link>https://textslashplain.com/2026/08/04/security-is-hard-yall/</link>
+  <guid isPermaLink="false">https://textslashplain.com/2026/08/04/security-is-hard-yall/</guid>
+  <description>When Eric Lawrence saw a tweet about a new Cloudflare product, he clicked through and found his preferred handle available, prompting him to sign in quickly to claim it. During the authorization process, he noticed numerous red flags typical of consent phishing attacks, including the request occurring on cloudflare.pay rather than cloudflare.com, despite there being no technical relationship between the two domains, and .pay TLDs being available to anyone for $20. A suspicious-looking green checkmark turned out to be a poorly placed security UI element rather than a misleading app name. After failing to find the feature through his dashboard or documentation, he confirmed with Cloudflare&#x27;s AI chat agent that it was indeed an attack, only to discover it was actually a legitimate new product. Lawrence noted Cloudflare wants security issues reported via HackerOne, though the HackerOne CAPTCHA appeared broken, and emphasized how difficult security is for both users and URL reputation services when legitimate sites exhibit phishing-like characteristics.</description>
+  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <source>Lobsters</source>
 </item>
 </channel></rss>

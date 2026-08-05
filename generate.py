@@ -48,7 +48,7 @@ ARXIV_MAX = 25
 TIMEOUT = 20
 
 # Per-section caps — a personal digest should stay ~25-30 stories, not 50+.
-SECTION_CAPS = {"featured": 4, "papers": 6, "discussions": 8, "tools": 5, "blogs": 6}
+SECTION_CAPS = {"engineering": 5, "papers": 5, "tools": 4, "discussions": 4}
 BLOG_PER_FEED = 4            # max entries taken from each blog feed
 MAX_BLOG_AGE_H = 168         # skip blog posts older than 7 days (quiet feeds
                              # would otherwise recycle stale posts daily)
@@ -57,10 +57,10 @@ MAX_BLOG_AGE_H = 168         # skip blog posts older than 7 days (quiet feeds
 BLOG_FEEDS = [
     ("Go Blog", "https://go.dev/blog/feed.atom"),
     ("Rust Blog", "https://blog.rust-lang.org/feed.xml"),
-    ("Cloudflare", "https://blog.cloudflare.com/rss/"),
     ("GitHub Blog", "https://github.blog/feed/"),
     ("Arpit Bhayani", "https://arpitbhayani.me/rss.xml"),
     ("Julia Evans", "https://jvns.ca/atom.xml"),
+    ("Sean Goedecke", "https://www.seangoedecke.com/rss.xml"),
 ]
 
 UA = "Mozilla/5.0 (compatible; DailyByte/1.0; +https://learn.shenthar.me)"
@@ -303,19 +303,46 @@ def dedupe(items):
 
 
 def assemble(items):
-    """Bucket items into sections, pick Featured, apply per-section caps."""
-    featured = sorted(
-        [i for i in items if i["points"] >= 150 or (i["tag"] == "story" and i["points"] >= 120)],
-        key=lambda i: i["points"], reverse=True)[:SECTION_CAPS["featured"]]
+    """Bucket items into sections, apply per-section caps.
+
+    Section order (and order in render): engineering -> papers -> tools ->
+    discussions. High-signal engineering blogs first so the digest opens
+    with depth; arXiv papers and tool releases follow; HN/Lobsters threads
+    close it out so chatter doesn't dominate the page.
+
+    For engineering (blog) items we apply a quality score that rewards
+    recognized independent voices and penalises vendor marketing blogs
+    (Cloudflare-style "announcing X" posts), so the slot is filled by
+    writing from people, not press releases.
+    """
+    blogs = [i for i in items if i["kind"] == "blog"]
+    # Score blogs: prefer independent voices over vendor blogs.
+    vendor_markers = ("announcing ", "now generally available",
+                      "introducing ", "is now available")
+    for b in blogs:
+        title_lc = b["title"].lower()
+        b["blog_score"] = 0
+        # Higher base score for independent voices
+        if b["source"] in ("Arpit Bhayani", "Julia Evans", "Sean Goedecke"):
+            b["blog_score"] += 10
+        elif b["source"] in ("Go Blog", "Rust Blog"):
+            b["blog_score"] += 8
+        else:
+            b["blog_score"] += 2
+        # Penalise vendor marketing language
+        if any(m in title_lc for m in vendor_markers):
+            b["blog_score"] -= 5
+        # Reward recency (last 24h gets a boost)
+        if b.get("age_h") is not None and b["age_h"] < 24:
+            b["blog_score"] += 3
+
     sections = {
-        "featured": featured,
+        "engineering": sorted(blogs, key=lambda i: -i["blog_score"])[:SECTION_CAPS["engineering"]],
         "papers": [i for i in items if i["kind"] == "paper"][:SECTION_CAPS["papers"]],
+        "tools": [i for i in items if i["tag"] == "story"
+                  and "github.com" in (i["url"] or "")][:SECTION_CAPS["tools"]],
         "discussions": [i for i in items if i["kind"] == "discussion"][:SECTION_CAPS["discussions"]],
-        "blogs": [i for i in items if i["kind"] == "blog"][:SECTION_CAPS["blogs"]],
     }
-    # Tools & Projects: GitHub URLs from HN stories
-    tools = [i for i in items if i["tag"] == "story" and "github.com" in (i["url"] or "")]
-    sections["tools"] = tools[:SECTION_CAPS["tools"]]
     return sections
 
 
@@ -824,11 +851,10 @@ def render_page(edition, sections, all_days):
     # Build a continuous newspaper stream with thin section dividers.
     stream = []
     sections_order = [
-        ("featured", "TOP STORIES"),
+        ("engineering", "ENGINEERING"),
         ("papers", "PAPERS"),
-        ("discussions", "DISCUSSIONS"),
         ("tools", "TOOLS & PROJECTS"),
-        ("blogs", "ENGINEERING BLOGS"),
+        ("discussions", "DISCUSSIONS"),
     ]
     first = True
     for key, sec_label in sections_order:
@@ -841,7 +867,7 @@ def render_page(edition, sections, all_days):
                 f'{sec_label}</span></div>')
         first = False
         for i, it in enumerate(items):
-            lb = "Top story" if (key == "featured" and i == 0) else None
+            lb = "Top story" if (key == "engineering" and i == 0) else None
             stream.append(item_html(it, lb))
 
     body = "\n".join(stream)
@@ -879,7 +905,7 @@ def render_page(edition, sections, all_days):
   <h1>{esc(SITE_NAME)}<span class="dot">.</span></h1>
   <div class="tag">{esc(SITE_TAGLINE)}</div>
   <div class="edition">{edition_label} · Edition {edition}</div>
-  <div class="nameplate"><span>Depth over noise</span></div>
+  <div class="nameplate"><span>Engineering</span></div>
 </header>
 
 <main>
@@ -900,7 +926,7 @@ def render_page(edition, sections, all_days):
 
 def render_rss(edition, sections):
     items = []
-    for key in ("featured", "papers", "discussions", "tools", "blogs"):
+    for key in ("engineering", "papers", "tools", "discussions"):
         items.extend(sections.get(key) or [])
     entries = ""
     for it in items[:40]:
@@ -947,7 +973,7 @@ def main():
 
     if args.curate:
         to_curate, seen = [], set()
-        for key in ("featured", "papers", "discussions", "tools", "blogs"):
+        for key in ("engineering", "papers", "tools", "discussions"):
             for it in sections.get(key) or []:
                 k = _item_key(it)
                 if k not in seen:
