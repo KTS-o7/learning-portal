@@ -626,18 +626,14 @@ def curate_with_kimi(items, edition):
         log(f"  reused {cached} cached summaries; curating {len(fresh)} new")
 
     def _one_article_prompt(it, body):
+        # Direct, single-shot ask: no planning scaffold (invites thinking).
+        # Match tdd.cat: 100-150 words, 4-6 sentences, prose only.
         return (
-            "You curate a daily digest for a software engineer. "
-            "Read the article below and write a single 4-6 sentence summary "
-            "(about 100-150 words, prose, no lists, no JSON). "
-            "Cover what it is, the main claim or finding, one or two "
-            "notable numbers or details, and why it matters to a working "
-            "engineer. Use ONLY facts from the article. Never invent "
-            "numbers or names. Write in the present tense, simple "
-            "declarative sentences. Never start with 'This article' or "
-            "'This post'.\n\n"
-            f"Title: {it['title']}\nURL: {it['url']}\n\n"
-            f"Article text:\n{body[:12000]}"
+            f"Title: {it['title']}\n\n"
+            f"{body[:10000]}\n\n"
+            "Summarize in 4-6 sentences (100-150 words). Use only facts "
+            "from the article. Plain prose, no lists or headings. "
+            "Don't start with 'This article'."
         )
 
     def _summarize_one(it):
@@ -655,7 +651,8 @@ def curate_with_kimi(items, edition):
                              "Content-Type": "application/json"},
                     json={"model": model,
                           "messages": [{"role": "user", "content": prompt}],
-                          "max_tokens": 600, "temperature": 0.2},
+                          "max_tokens": 600, "temperature": 0.2,
+                          "reasoning_split": True},
                     timeout=120,
                 )
                 r.raise_for_status()
@@ -663,6 +660,10 @@ def curate_with_kimi(items, edition):
                         .get("content") or "").strip()
                 text = re.sub(r"^```[a-zA-Z]*\n|\n```$", "", text,
                               flags=re.M).strip()
+                # Strip <think>.../think blocks (MiniMax-M3 leaks these
+                # into content occasionally).
+                text = re.sub(r"<think>.*?</think>", "", text,
+                              flags=re.S).strip()
                 if len(text) >= 80:
                     return it, text, model
             except Exception as e:
