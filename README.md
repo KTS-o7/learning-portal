@@ -4,51 +4,64 @@ A byte-size daily learning digest — curated tech/CS/AI papers, discussions,
 and engineering blog posts, published as a static newspaper-style HTML page.
 
 **Live at:** [learn.shenthar.me](https://learn.shenthar.me)
-**Generated daily by:** Hermes agent (cron, 7:00 IST)
+**Generated daily by:** Hermes agent (cron, 01:30 UTC = 07:00 IST)
 
 ## How it works
 
-1. `generate.py` fetches high-signal items from free sources:
-   - **Hacker News** (Algolia API — stories ≥120 pts, Ask/Show HN ≥40)
-   - **arXiv** (cs.AI/SE/LG/OS/DB/CR/PL, last 24h, capped)
-   - **Lobsters** (score ≥30)
-   - **Engineering blogs** (Go, Rust, Cloudflare, GitHub, Arpit Bhayani, Julia Evans)
-2. Dedupes, scores, and buckets into a continuous newspaper stream:
-   `TOP STORIES · PAPERS · DISCUSSIONS · TOOLS & PROJECTS · ENGINEERING BLOGS`
-   Per-section caps keep a daily edition at ~25-30 stories (tune `SECTION_CAPS`).
-3. Optional `--curate` pass writes **Simplified Technical English (STE100)**
-   byte-size "why it matters" summaries using the **same default model Hermes
-   runs** (deepseek-v4-flash-free via opencode-zen; falls back to Kimi).
-   Summaries are cached in `.cache_summaries.json` (gitignored) so same-day
-   re-runs are instant.
-4. Renders `index.html` + `archive/YYYY-MM-DD.html` + `rss.xml` + `archive.json`.
+Every day at 01:30 UTC, a Hermes cron job loads the
+`learning-portal-curator` skill (at `~/.hermes/skills/learning-portal-curator/`)
+and runs the full curation at runtime:
 
-Every night the generated files are committed + pushed here, so the whole
-history of the digest is version-controlled.
-
-## Usage
-
-```bash
-# plain generation (no LLM)
-python3 generate.py
-
-# with STE100 byte-size summaries (default model)
-OPENCODE_ZEN_API_KEY=... python3 generate.py --curate
-
-# regenerate a specific edition
-python3 generate.py --date 2026-08-04
-```
+1. **Read SKILL.md** — workflow + section rules
+2. **Fetch** high-signal items from free sources via `feeds.md`:
+   - Hacker News (top stories, ≥120 pts)
+   - arXiv (cs.AI/LG/PL, last 24h)
+   - Lobsters (recent + page 2)
+   - Engineering blogs (Rust, Go, GitHub, Arpit Bhayani, Julia Evans,
+     Sean Goedecke) — vendor marketing feeds deliberately excluded
+3. **Dedupe, score, bucket** into a continuous newspaper stream:
+   `Engineering (top story) · Papers · Tools & Projects · Discussions`
+   Per-section caps: engineering 5, papers 5, tools 4, discussions 4
+   Per-source diversity: no single source > 3 in engineering
+4. **Summarise** each story via MiniMax-M3 (parallel,
+   `reasoning_split=True` to keep thinking out of `content`).
+   Same model Hermes uses — `~/.hermes/.env` provides `MINIMAX_API_KEY`,
+   with `OPENCODE_ZEN_API_KEY` and `KIMI_API_KEY` as fallbacks.
+5. **Render** `index.html` + `archive/<EDITION>.html` + `archive/index.html`
+   + `rss.xml` using the literal templates in the skill.
+6. **Commit + push** to `main`; nginx serves the site from `/opt/learning-portal/`.
 
 ## Layout
 
 ```
-/opt/learning-portal        ← this repo == nginx web root for learn.shenthar.me
-├── generate.py             ← the generator (no secrets inside)
-├── index.html              ← today's edition
-├── archive/YYYY-MM-DD.html ← per-day editions (history)
+/opt/learning-portal
+├── index.html                   ← today's edition
+├── archive/YYYY-MM-DD.html      ← per-day editions (history)
+├── archive/index.html           ← archive listing
 ├── rss.xml
-├── archive.json
+├── archive.json                 ← ordered list of editions (newest first)
+├── generate.py.deprecated       ← old pipeline, kept for rollback only
+└── run_hermes_curator.sh.*      ← old test wrapper, kept for rollback only
 ```
 
-**Security:** this repo is public. It contains only the generator and generated
-content — no API keys, no nginx configs, no infra files.
+## Manual run (debugging)
+
+```bash
+# Simulate what the cron job does, manually:
+hermes chat -q "$(cat /tmp/hermes_prompt.txt)" \
+  --yolo --skills learning-portal-curator
+```
+
+Or run the skill's self-contained python script directly:
+```bash
+python3 /tmp/curate_today.py
+```
+
+## Adding a source
+
+Edit `feeds.md` in the skill directory — the next run picks it up
+automatically. No code change needed.
+
+**Security:** this repo is public. It contains only generated content and
+templates — no API keys, no nginx configs, no infra files. The skill lives in
+the user's `~/.hermes/skills/` (private).
