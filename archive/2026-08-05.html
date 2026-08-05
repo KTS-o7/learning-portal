@@ -3,13 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Daily Byte — 2026-08-05</title>
+<title>Daily Byte \u2014 2026-08-05</title>
 <meta name="description" content="A byte-size daily digest for engineers who value depth over noise.">
 <link rel="alternate" type="application/rss+xml" title="Daily Byte"
       href="https://learn.shenthar.me/rss.xml">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
-<style>
-/* ---------- Daily Byte: newspaper edition ---------- */
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>\ud83d\udcda</text></svg>">
+<style>/* ---------- Daily Byte: newspaper edition ---------- */
 :root{
   --paper:#fbf1c7; --paper2:#f9f5d7; --rule:#d8c9a8; --ink:#3c3836;
   --mut:#504945; --mut2:#79756b; --ac:#b57614; --ln:#076678;
@@ -115,156 +114,138 @@ color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
   <div class="left"><a href="https://learn.shenthar.me/"><strong>Daily Byte</strong></a>
     <a href="https://github.com/KTS-o7/learning-portal">Source</a><a href="https://learn.shenthar.me/archive/">Archive</a>
     <a href="https://learn.shenthar.me/rss.xml">RSS</a></div>
-  <div class="nav"><a class="nav-arrow" href="https://learn.shenthar.me/2026-08-04" aria-label="Previous edition (2026-08-04)"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></a><span class="d">Wednesday, August 5, 2026</span><span class="nav-arrow disabled" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></div>
-  <div class="right"><span class="count">16 STORIES</span></div>
+  <div class="nav"><a class="nav-arrow" href="https://learn.shenthar.me/2026-08-04">‹</a><span class="d">Wednesday, August 5, 2026</span><span class="nav-arrow disabled">›</span></div>
+  <div class="right"><span class="count">15 STORIES</span></div>
 </div></div>
 
 <header class="mast">
   <h1>Daily Byte<span class="dot">.</span></h1>
   <div class="tag">A byte-size daily digest for engineers who value depth over noise.</div>
-  <div class="edition">Wednesday, August 5, 2026 · Edition 2026-08-05</div>
+  <div class="edition">Wednesday, August 5, 2026 \u00b7 Edition 2026-08-05</div>
   <div class="nameplate"><span>Engineering</span></div>
 </header>
 
 <main>
-  <article class="story">
+  <div class="nameplate" style="margin:30px auto"><span>Engineering</span></div>
+<article class="story">
   <div class="lbl">• Top story</div>
-  <div class="acts"><a href="https://arpitbhayani.me/blogs/three-skills">Read ›</a></div>
-  <h2><a href="https://arpitbhayani.me/blogs/three-skills">Three Claude Skills I Think Every Org Should Have</a></h2>
-  <div class="sum">A company runs smoothly when people can get stuff done without hunting for information. What actually wears people out day to day is not the hard engineering problem. It is not knowing which ticket to file, which team to bug on Slack, or what invisible step stands between them and getting a simple service live.</div>
-  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span>
-  </div>
+  <div class="acts"><a href="https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/">Read ›</a></div>
+  <h2><a href="https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/">Enabling the next iteration of the borrow checker on nightly</a></h2>
+  <div class="sum">The Rust team is enabling Polonius Alpha, the next iteration of the borrow checker, on nightly in preparation for stabilization within the next few months. The key improvement over NLL is flow-sensitive borrow checking of lifetime outlives relationships, which allows code like conditional branches returning mutable references to compile correctly. While Polonius Alpha does not cover all programs that legacy Polonius did, it is not strictly a subset either. Performance is generally acceptable for stabilization, with relatively few significant regressions among the top 10,000 crates on crates.io and a worst-case 2-3x slowdown. Developers can opt out using the `-Zpolonius=off` flag. The team plans to monitor for issues, address performance regressions, and stabilize Polonius Alpha before the end of the year, after which they will shift focus to other high-priority work rather than continuing active feature development.</div>
+  <div class="smeta"><span class="pill p-blog">Rust Blog</span><span>1d ago</span></div>
 </article>
 <article class="story">
   
-  <div class="acts"><a href="https://arpitbhayani.me/blogs/g-eval">Read ›</a></div>
-  <h2><a href="https://arpitbhayani.me/blogs/g-eval">G-Eval, Explained</a></h2>
-  <div class="sum">G-Eval is a reference-free evaluation framework that uses large language models to assess the quality of generated text. This article explains how G-Eval works, including rubric-based prompting, chain-of-thought evaluation, and probability-weighted scoring using token log probabilities. You will also learn its limitations, common implementation patterns, practical best practices, and when not to use it. If you are building LLM applications, chatbots, summarization systems, or AI writing assistants, this guide will help you evaluate outputs more reliably.</div>
-  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span>
-  </div>
+  <div class="acts"><a href="https://github.blog/ai-and-ml/github-copilot/how-the-github-legal-team-used-copilot-cli-to-streamline-their-workflows/">Read ›</a></div>
+  <h2><a href="https://github.blog/ai-and-ml/github-copilot/how-the-github-legal-team-used-copilot-cli-to-streamline-their-workflows/">How the GitHub legal team used Copilot CLI to streamline their workflows</a></h2>
+  <div class="sum">I don&#x27;t see the article content in your message—only the title &quot;How the GitHub legal team used Copilot CLI to streamline their workflows&quot; and the author name. Could you paste the full article text? Once I have it, I&#x27;ll provide a 4-6 sentence summary (100-150 words) using only facts from the article, in plain prose.</div>
+  <div class="smeta"><span class="pill p-blog">GitHub Blog</span><span>9h ago</span></div>
 </article>
 <article class="story">
   
-  <div class="acts"><a href="https://arpitbhayani.me/blogs/ai-topological-sort">Read ›</a></div>
-  <h2><a href="https://arpitbhayani.me/blogs/ai-topological-sort">AI Workflows Need Topological Sort</a></h2>
-  <div class="sum">Every AI workflow is a dependency problem. You have steps that produce outputs, other steps that consume those outputs, and a hard constraint: consumers cannot run before their producers finish. Get the order wrong and you read stale data, call a tool with missing context, or trigger an agent before its inputs are ready.</div>
-  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span>
-  </div>
-</article>
-<article class="story">
-  
-  <div class="acts"><a href="https://seangoedecke.com/giving-and-taking-credit/">Read ›</a></div>
-  <h2><a href="https://seangoedecke.com/giving-and-taking-credit/">Giving and taking credit in big tech companies</a></h2>
-  <div class="sum">Big tech companies deliberately mimic university culture to attract talented graduates, but that analogy hurts engineers who expect to be rewarded purely on the quality of their work. The post argues you must actively claim credit for your own contributions, because no one else fully understands what you built and managers cannot evaluate difficulty from the outside. It also covers how to give credit publicly, why self-promotion is not the same as bragging, and concrete tactics for talking about your work without sounding performative.</div>
-  <div class="smeta"><span class="pill p-blog">Sean Goedecke</span>
-  </div>
-</article>
-<article class="story">
-  
-  <div class="acts"><a href="https://seangoedecke.com/ai-models-need-moral-support/">Read ›</a></div>
-  <h2><a href="https://seangoedecke.com/ai-models-need-moral-support/">AI models need moral support to make discoveries</a></h2>
-  <div class="sum">Frontier LLMs are now solving long-standing open problems in mathematics almost daily, but the prompting that produced these breakthroughs is surprisingly informal: just ask, check in every few hours, and tell the model to keep pushing. The author argues this vindicates 2025 heretics who said prompt engineering was overhyped - real skill is knowing what a model is good at and updating that picture as it changes. The post also names a key bottleneck: models that have not yet learned they can do something give up early, and solving that "self-belief" problem in coding agents foreshadowed the same unlock in math.</div>
-  <div class="smeta"><span class="pill p-blog">Sean Goedecke</span>
-  </div>
+  <div class="acts"><a href="https://github.blog/engineering/turn-one-giant-ai-generated-pull-request-to-a-reviewable-stack/">Read ›</a></div>
+  <h2><a href="https://github.blog/engineering/turn-one-giant-ai-generated-pull-request-to-a-reviewable-stack/">Turn one giant AI-generated pull request to a reviewable stack</a></h2>
+  <div class="sum">I don&#x27;t have access to the actual article content—only the title and byline (&quot;Turn one giant AI-generated pull request to a reviewable stack&quot; by Julia Muiruri, Developer Experiences at GitHub). Could you paste the article text so I can summarize it accurately based on the facts it contains?
+
+Without the full article, I can&#x27;t reliably produce a faithful 100–150 word summary, and I&#x27;d risk fabricating details about the specific techniques, tools, or workflows the author describes.</div>
+  <div class="smeta"><span class="pill p-blog">GitHub Blog</span><span>11h ago</span></div>
 </article>
 <div class="nameplate" style="margin:30px auto"><span>PAPERS</span></div>
 <article class="story">
   
-  <div class="acts"><a href="http://arxiv.org/abs/2608.04007v1">Read ›</a></div>
-  <h2><a href="http://arxiv.org/abs/2608.04007v1">TurnSight: Turn-Level Hindsight Self-Distillation for Tool-Integrated Reasoning</a></h2>
-  <div class="sum">Tool-Integrated Reasoning (TIR) enables LLMs to solve complex tasks through iterative tool interactions. However, existing reinforcement learning methods often rely on trajectory-level supervision, limiting fine-grained credit assignment in long-horizon TIR scenarios. On-policy self-distillation offers denser signals through teacher branches with privileged context, but existing approaches typically derive such context from ground-truth answers or retrieved skills, which may not reflect the states actually visited by the agent. Moreover, token-level supervision fails to capture the turn-level structure of tool interactions. To address this, we propose TurnSight, a turn-level hindsight self-distillation framework that derives supervision directly from execution-conditioned hindsight. It then constructs multiple hindsight views with different lookahead horizons and selects reliable supervision through cross-horizon directional agreement. Finally, the selected hindsight signal is normalized across sibling rollouts and used to adaptively modulate RL advantages while preserving their original optimization direction. Extensive experiments on three benchmarks demonstrate the effectiveness of TurnSight. Our codes are available at https://github.com/quchangle1/TurnSight.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv</span>
-  <span>10h ago</span></div>
+  <div class="acts"><a href="https://arxiv.org/abs/2608.03588">Read ›</a></div>
+  <h2><a href="https://arxiv.org/abs/2608.03588">GenOS: Compositional Certificates for Semantic Robustness in AI Code Generation</a></h2>
+  <div class="sum">I don&#x27;t have the actual content of the &quot;GenOS: Compositional Certificates for Semantic Robustness in AI Code Generation&quot; paper to summarize. The text you provided only contains the arXivLabs framework description and the paper&#x27;s title, not the paper&#x27;s substantive content (abstract, methodology, findings, or results).
+
+If you share the actual paper content—including the abstract, introduction, or main body text—I would be happy to summarize it in 4-6 sentences using only the facts provided, following your formatting requirements.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>26m ago</span></div>
 </article>
 <article class="story">
   
-  <div class="acts"><a href="http://arxiv.org/abs/2608.04001v1">Read ›</a></div>
-  <h2><a href="http://arxiv.org/abs/2608.04001v1">Test-Time Scaling in Reasoning LLMs: Inference Regimes, Evaluation, and Reproducibility</a></h2>
-  <div class="sum">Large language models can solve substantially harder reasoning problems with more inference-time compute. The term &quot;test-time scaling,&quot; however, now covers diverse inference algorithms that extend deliberation along a single trajectory, sample completed candidates and aggregate them through voting or verification, or search over unfinished partial states. These algorithms differ in their statistical structure, compute accounting, and failure modes. Treating these procedures as interchangeable under a single scalar &quot;budget,&quot; or reporting accuracy without the inference protocol that produced it, makes results difficult to compare across studies. We develop a systematic account of test-time scaling along three axes. First, we formalize test-time scaling as budgeted inference over the implicit prefix tree of an autoregressive model and distinguish three structural regimes: single-trajectory sequential scaling, leaf-level scaling with terminal reduction, and prefix-level scaling. Second, we treat the evaluated object as the entire inference system and develop evaluation principles that separate end-to-end system performance from candidate-bank diagnostics. We introduce an evaluation profile whose coordinates and simple functionals recover or bound common repeated-sampling metrics, and prescribe protocol-matched reporting of compute and uncertainty. Third, we specify reproducibility requirements for inference protocols, distinguishing exact replay from distributional reproducibility and identifying the artifacts needed to support each. We also organize the open-weight reasoning ecosystem by model-side and interface mechanisms, apply these principles to broad-knowledge, symbolic-reasoning, and competition-mathematics benchmarks, and assemble over 2 billion full reasoning traces for release with progressively richer verifier and token-level signals.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv</span>
-  <span>10h ago</span></div>
+  <div class="acts"><a href="https://arxiv.org/abs/2608.03983">Read ›</a></div>
+  <h2><a href="https://arxiv.org/abs/2608.03983">Can Large Language Models Recover Semantic Optimization Opportunities That Compilers Miss?</a></h2>
+  <div class="sum">I don&#x27;t see the article&#x27;s actual content in your message—only the title and a brief description of arXivLabs. Without the full text, I can&#x27;t summarize the specific findings, methodology, or conclusions of the paper. If you can share the abstract or body of the article, I&#x27;d be happy to provide a 4–6 sentence summary based on its actual content.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>26m ago</span></div>
 </article>
 <article class="story">
   
-  <div class="acts"><a href="http://arxiv.org/abs/2608.03990v1">Read ›</a></div>
-  <h2><a href="http://arxiv.org/abs/2608.03990v1">Assessment of Conditional Diffusion Model for Synthetic Histopathology Image Generation</a></h2>
-  <div class="sum">Synthetic histopathology image generation has emerged as an approach that may address data scarcity in computational pathology, yet current evaluation methodologies may not fully assess synthetic data quality for medical applications. This work investigates and addresses limitations in existing evaluation metrics, investigating an approach for assessing synthetic histopathology image quality through domain-specific metrics and downstream task validation. We show that conventional synthetic data evaluation metrics such as Frechet Inception Distance (FID) and Inception Score (IS) may have limitations when applied to histopathology images due to their reliance on ImageNet-pretrained feature extractors. To address these limitations, we propose for consideration modified FID and IS approaches utilizing foundation models pretrained on digital pathology datasets, supplemented by precision-recall based metrics as part of an additional quality assessment. Using conditional denoising diffusion models trained on four benchmark datasets, with a two-step training approach, we generated synthetic datasets with systematically varied quality characteristics. We also measured the correlation between the synthetic data quality metrics with downstream nuclei segmentation performance using common metrics including the aggregated Jaccard index (AJI+) and the Dice coefficient. The study results suggest that pathology-specific metrics may provide improved discriminative power. Specifically, the modified Inception Score indicates higher correlation with downstream task performance (r=0.6096 with AJI+, p=0.0122), compared to the original IS (r=0.0708, p=0.7944). Our observations indicate that increasing the variety of generated training data has a higher positive correlation with segmentation model performance than improving the visual fidelity of individual generated images.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv</span>
-  <span>10h ago</span></div>
+  <div class="acts"><a href="https://arxiv.org/abs/2608.02610">Read ›</a></div>
+  <h2><a href="https://arxiv.org/abs/2608.02610">An Empirical Analysis of the Glob Ecosystem</a></h2>
+  <div class="sum">The provided text does not contain an empirical analysis of the Glob Ecosystem. The content supplied appears to be the standard arXivLabs description boilerplate, which only describes arXivLabs as a framework for collaborators to develop and share new arXiv features, outlines its values of openness, community, excellence, and user data privacy, and invites project ideas that add value to arXiv&#x27;s community. No substantive information about a &quot;Glob Ecosystem,&quot; its components, or any empirical findings is included in the text you shared. To provide the requested summary, I would need the actual body of the article or at least its abstract and key sections describing the Glob Ecosystem&#x27;s structure, methodology, and findings. If you can share the article&#x27;s full text or relevant excerpts, I would be happy to summarize them in</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>26m ago</span></div>
 </article>
 <article class="story">
   
-  <div class="acts"><a href="http://arxiv.org/abs/2608.03983v1">Read ›</a></div>
-  <h2><a href="http://arxiv.org/abs/2608.03983v1">Can Large Language Models Recover Semantic Optimization Opportunities That Compilers Miss?</a></h2>
-  <div class="sum">Optimizing compilers miss profitable transformations when their enabling semantics are absent from the analyzed program representation. We ask whether large language models (LLMs) can recover such semantics from heterogeneous C/C++ context and realize them as validated, contract-preserving artifacts. We introduce SeGaBench, an executable benchmark containing 100 synthetic and 20 source-backed cases spanning low-level assumptions, data-structure invariants, and high-level semantic lifting. Each case includes hidden enabling semantics, an oracle artifact, correctness and semantic validators, and a reproducible performance protocol. We evaluate five LLMs using five independent responses per case. The strongest model produces correct artifacts in 94.8% of responses, achieves at least 1.05x speedup in 83.3%, and obtains a performance success on 93.3% of cases. Nevertheless, correct artifacts often close only part of the oracle gap. These results show that LLMs can complement compiler analysis as speculative semantic proposers, provided that their artifacts are validated and evaluated.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv</span>
-  <span>10h ago</span></div>
+  <div class="acts"><a href="https://arxiv.org/abs/2608.02630">Read ›</a></div>
+  <h2><a href="https://arxiv.org/abs/2608.02630">PULSE: An Executable Contract Language for Spatiotemporal Knowledge Graph Engineering</a></h2>
+  <div class="sum">The article introduces PULSE, an executable contract language designed for engineering spatiotemporal knowledge graphs. As the title indicates, PULSE functions as a formal language that combines executable specifications with contract-based reasoning to support the construction and manipulation of knowledge graphs that incorporate both spatial and temporal dimensions. The work is presented through arXivLabs, a collaborative framework that enables researchers to develop and share new features directly on arXiv&#x27;s platform. The framework emphasizes values of openness, community, excellence, and user data privacy, partnering only with collaborators who uphold these principles. However, beyond the title, the specific technical details, methodology, and findings of the article were not provided in the source content available for summarization.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>26m ago</span></div>
 </article>
 <article class="story">
   
-  <div class="acts"><a href="http://arxiv.org/abs/2608.03979v1">Read ›</a></div>
-  <h2><a href="http://arxiv.org/abs/2608.03979v1">Video-DeepResearch: Towards the Next-Generation Multimodal Deepresearch Agent</a></h2>
-  <div class="sum">We introduce Video-DeepResearch (Video-DR), extending multimodal agents from static images to continuous video streams, a setting that demands dense spatiotemporal grounding coupled with open-web exploration. Preliminary evaluations reveal two critical bottlenecks in current models: (1) modality bias, where agents bypass visual tools in favor of textual search, and (2) parametric knowledge leakage, where models rely on internal memory rather than genuine tool-augmented execution. To address these challenges, we propose Video-DR, featuring a decoupled perception-exploration pipeline with stage-wise tool unlocking that compels exhaustive cross-frame visual grounding prior to web retrieval. Our framework adopts a two-stage training recipe: supervised fine-tuning followed by Group Relative Policy Optimization (GRPO), enabling autonomous exploration that breaks the imitation-learning ceiling. Furthermore, we curate Video-DR-Bench, a human-AI collaborative benchmark comprising 200 complex, multi-hop VQA instances. Empirical results demonstrate that our Video-DeepResearch-35B-A3B establishes a new state-of-the-art of 64.0% average accuracy, surpassing proprietary Claude-4.5-Sonnet (59.0%) by 5.0 points and significantly outperforming GPT-5 (52.5%) and Gemini 2.5 Pro (57.5%). The 30B-A3B variant achieves 59.3%, competitive with Claude-4.5-Sonnet and demonstrating the effectiveness of our training paradigm even at compact scale. Code: https://github.com/Osilly/Vision-DeepResearch.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv</span>
-  <span>11h ago</span></div>
+  <div class="acts"><a href="https://arxiv.org/abs/2608.02648">Read ›</a></div>
+  <h2><a href="https://arxiv.org/abs/2608.02648">Intent-Level Quantum Programming with Assertion-Guided Execution and Inspectable Intermediate Representation</a></h2>
+  <div class="sum">I can only see the article&#x27;s title and a general description of the arXivLabs framework, with no actual article content provided. Without the body text or abstract containing facts about the research, I cannot produce a faithful summary. If you can share the article&#x27;s abstract or main text, I&#x27;ll gladly condense it into a 4-6 sentence paragraph using only its stated facts.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv</span><span>26m ago</span></div>
 </article>
-<div class="nameplate" style="margin:30px auto"><span>TOOLS & PROJECTS</span></div>
-<article class="story">
-  
-  <div class="acts"><a href="https://github.com/FFmpeg/FFmpeg/blob/n9.0/RELEASE_NOTES">Read ›</a><a href="https://news.ycombinator.com/item?id=49166202">Discuss ›</a></div>
-  <h2><a href="https://github.com/FFmpeg/FFmpeg/blob/n9.0/RELEASE_NOTES">FFmpeg 9.0</a></h2>
-  <div class="sum">FFmpeg 9.0 Lei ships about four months after 8.1, adding a Playdate video encoder and muxer, animated WebP decoder and demuxer, HE-AAC 960 decoding for DAB+, a transpose_cuda filter, an AMF frame rate converter, AMD AMF HDR support, ProRes RAW VideoToolbox hardware decoding, an APV Vulkan hwaccel, SMPTE 2094-50 metadata passthrough, a Dolby Vision multi-layer HEVC bitstream splitter, and an ONNX Runtime DNN backend with GPU execution. Notable removals are CELT decoding and the legacy ogg/celt parser; pre-11.1 NVENC options are also gone.</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">433 pts</span>
-  <span>19h ago</span></div>
-</article>
+<div class="nameplate" style="margin:30px auto"><span>TOOLS &amp; PROJECTS</span></div>
 <article class="story">
   
   <div class="acts"><a href="https://github.com/ryanzhou/deepseek-v4-flash-mi300x">Read ›</a><a href="https://news.ycombinator.com/item?id=49166386">Discuss ›</a></div>
   <h2><a href="https://github.com/ryanzhou/deepseek-v4-flash-mi300x">DeepSeek V4 Flash on a Single AMD MI300X</a></h2>
-  <div class="sum">An open-source configuration lets you run the 304B DeepSeek-V4-Flash checkpoint on a single AMD MI300X without quantization or weight offload, using the chip's 192 GB of HBM3. The repo ships vLLM ROCm nightly patches and AITER tuning tables for the recurring gfx942 shapes, plus correctness fixes for the AMD/Graphcore FNUZ variant of E4M3 FP8, which differs from OCP-standard FP8 by up to 2x in the scale domain. Numbers from the production profile: 168.6 tok/s single-stream decode, about 8K tok/s prefill, 542 tok/s aggregate over 8 concurrent streams, 830 tok/s burst over 64, with 256K context validated against the architecture's 1M ceiling.</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">367 pts</span>
-  <span>18h ago</span></div>
+  <div class="sum">The repository documents a production deployment of DeepSeek-V4-Flash on a single AMD MI300X GPU, using a digest-pinned vLLM ROCm nightly stack with full-file patches. The MI300X&#x27;s 192 GB of HBM3 capacity—roughly 2.4× that of an H100 SXM5—enables single-GPU deployment of the 304B-parameter checkpoint without weight quantization. Key fixes address MI300X&#x27;s AMD FNUZ E4M3 FP8 format (which can produce factor-of-two</div>
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">367 pts</span><span>18h ago</span></div>
+</article>
+<article class="story">
+  
+  <div class="acts"><a href="https://github.com/MariaDB/server/pull/4262">Read ›</a><a href="https://news.ycombinator.com/item?id=49171068">Discuss ›</a></div>
+  <h2><a href="https://github.com/MariaDB/server/pull/4262">MariaDB: Promote getting to 10k GitHub stars in server log and client prompt</a></h2>
+  <div class="sum">A pull request proposed adding a line to the MariaDB client prompt and server logs asking users to give the project a GitHub star to help reach 10k stars. The change was designed to be easy to cherry-pick to older releases, with text that could be updated later once the goal was met. The request sparked debate among developers, with some supporting the appeal for visibility and others criticizing it as unprofessional promotional content inappropriate for a production database. The PR was initially declined but later reopened after MariaDB Foundation management reversed their decision. After multiple rounds of revisions and code review, it received approval and was merged. Some users reported seeing the message appearing unexpectedly in logs, including through Debian package patches, fueling further criticism about cluttering system logs with non-technical content.</div>
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">52 pts</span><span>12h ago</span></div>
+</article>
+<article class="story">
+  
+  <div class="acts"><a href="https://github.com/brian-armstrong/fec">Read ›</a><a href="https://news.ycombinator.com/item?id=49176212">Discuss ›</a></div>
+  <h2><a href="https://github.com/brian-armstrong/fec">Show HN: SIMD Viterbi Decoder in Rust</a></h2>
+  <div class="sum">fec is a Rust crate implementing forward error correction codes used in software-defined radio and spacecraft communications, drawing inspiration from the author&#x27;s own libcorrect C library and crediting Phil Karn&#x27;s libfec, though sharing no source code. It supports both convolutional codes (with Viterbi decoding) and Reed-Solomon codes, with parameters derived from the CCSDS 131.0-B standard, and includes CCSDS dual-basis variants for spacecraft telemetry. When compiled with the simd feature, fec decodes faster than libfec on every convolutional code, with SIMD kernels working on both 32-bit and 64-bit builds, unlike libfec whose SIMD paths are restricted to 32-bit x86. The crate offers hard-decision and 8-bit soft-decision decoding, produces output bit-compatible with libfec, and ships with a companion fec-shim crate exposing libfec&#x27;s C ABI for drop-in replacement in existing codebases under a BSD-3-Clause license.</div>
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">33 pts</span><span>5h ago</span></div>
 </article>
 <div class="nameplate" style="margin:30px auto"><span>DISCUSSIONS</span></div>
 <article class="story">
   
-  <div class="acts"><a href="https://github.com/MakazhanAlpamys/Soup">Read ›</a><a href="https://news.ycombinator.com/item?id=49166984">Discuss ›</a></div>
-  <h2><a href="https://github.com/MakazhanAlpamys/Soup">Show HN: Fine-tune an 8B model on a 4 GB laptop GPU</a></h2>
-  <div class="sum">Soup turns the pain of LLM fine-tuning into a simple workflow. One config, one command, done. - MakazhanAlpamys/Soup</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">124 pts</span>
-  <span>17h ago</span></div>
+  <div class="acts"><a href="https://www.seangoedecke.com/llms-reward-expertise/">Read ›</a><a href="https://news.ycombinator.com/item?id=49161518">Discuss ›</a></div>
+  <h2><a href="https://www.seangoedecke.com/llms-reward-expertise/">LLMs reward expertise</a></h2>
+  <div class="sum">While LLMs have made everyone capable of producing passable work in unfamiliar domains like CSS, prompting effectively requires deep domain expertise rather than special tricks. A good mathematician like Terence Tao can get dramatically better results from ChatGPT on mathematical questions because he understands the subject well enough to ask specific questions, identify weak points in responses, and steer the model toward better answers. This same principle applies to software work: programmers familiar with their codebase can push LLMs harder by suggesting simpler approaches or noting existing patterns, whereas those without that knowledge must settle for whatever the model produces. As a result, human expertise is likely to remain valuable even as models improve, because the bottleneck is often communicating exactly what kind of solution is wanted rather than the model&#x27;s underlying capability.</div>
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">1336 pts</span><span>1d ago</span></div>
 </article>
 <article class="story">
   
-  <div class="acts"><a href="https://deepgrove.ai/maple-preview">Read ›</a><a href="https://news.ycombinator.com/item?id=49173984">Discuss ›</a></div>
-  <h2><a href="https://deepgrove.ai/maple-preview">Show HN: Maple-Preview – ternary 20B MoE running at 120 tok/s on a iPhone</a></h2>
-  <div class="sum">Maple-Preview is an early demo of a ternary 20B-parameter mixture-of-experts model running at about 120 tokens per second on a stock iPhone. The numbers suggest aggressive quantization plus an Apple-Silicon-tuned inference runtime can deliver usable local-assistant-grade speed on phones without active cooling. Details are thin (the project's product page is currently offline), but the demo is a useful marker for where on-device LLMs are landing this year.</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">77 pts</span>
-  <span>9h ago</span></div>
+  <div class="acts"><a href="https://writings.stephenwolfram.com/2026/08/in-memory-of-my-wife-elise-cawley-1961-2026-with-thanks-for-36-wonderful-years/">Read ›</a><a href="https://news.ycombinator.com/item?id=49173165">Discuss ›</a></div>
+  <h2><a href="https://writings.stephenwolfram.com/2026/08/in-memory-of-my-wife-elise-cawley-1961-2026-with-thanks-for-36-wonderful-years/">In Memory of My Wife, Elise Cawley, with Thanks for 36 Wonderful Years</a></h2>
+  <div class="sum"></div>
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">1111 pts</span><span>9h ago</span></div>
 </article>
 <article class="story">
   
-  <div class="acts"><a href="https://hisham.hm/2026/08/04/the-lua-community-needs-to-learn-to-move-on/">Read ›</a><a href="https://lobste.rs/s/t7wzko">Discuss ›</a></div>
-  <h2><a href="https://hisham.hm/2026/08/04/the-lua-community-needs-to-learn-to-move-on/">The Lua community needs to learn to move on</a></h2>
-  <div class="sum">A core Lua contributor argues the ecosystem must stop supporting every old version forever. Maintainers keep fielding bug reports against out-of-date interpreter releases already EOL upstream, which drains time and patience without helping users upgrade. The post contrasts embedded and extensible use cases, notes that LuaJIT 2.0 and Lua pre-5.4 are already end-of-life, and asks library authors to follow suit by EOLing their packages on old runtimes too. Teal is offered as a way to write once and target Lua 5.1 through 5.5.</div>
-  <div class="smeta"><span class="pill p-Lobsters">Lobsters</span><span class="pts">65 pts</span>
-  <span>13h ago</span></div>
+  <div class="acts"><a href="https://birchtree.me/blog/xbox-goes-down-you-cant-play-games-you-own-on-disc/">Read ›</a><a href="https://news.ycombinator.com/item?id=49167448">Discuss ›</a></div>
+  <h2><a href="https://birchtree.me/blog/xbox-goes-down-you-cant-play-games-you-own-on-disc/">Xbox goes down. You can&#x27;t play games you own on disc</a></h2>
+  <div class="sum">Jay Peters reports that Xbox experienced a major outage that even prevented users from playing games on physical disc. He argues that physical media is no longer what it used to be, comparing the experience to using an Analog Pocket to immediately play old Game Boy cartridges without any authorization. While he acknowledges that owning a physical copy is technically a license rather than true ownership, he emphasizes that companies like Microsoft, Sony, and Nintendo can intentionally or unintentionally block access to disc-based games. He points out that inserting a disc actually installs the game to the internal hard drive along with required updates. Peters concludes that PC gaming, though entirely digital for years, offers better means of maintaining access to purchased games, which is why he has gravitated toward it.</div>
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">602 pts</span><span>16h ago</span></div>
 </article>
 <article class="story">
   
-  <div class="acts"><a href="https://textslashplain.com/2026/08/04/security-is-hard-yall/">Read ›</a><a href="https://lobste.rs/s/qoptbx">Discuss ›</a></div>
-  <h2><a href="https://textslashplain.com/2026/08/04/security-is-hard-yall/">Security is Hard, Y’all</a></h2>
-  <div class="sum">The post argues web security has become disproportionately hard for what browsers actually need: a small set of primitives like secure cookies, content security, isolation between origins, and reliable session handling. The complexity has accumulated through decades of stacked mitigations, each defensible at the time but in aggregate a burden on engineers shipping sites. The piece pushes for consolidation around a small set of well-implemented primitives developers can rely on, rather than the present surface area of overlapping specs and headers.</div>
-  <div class="smeta"><span class="pill p-Lobsters">Lobsters</span><span class="pts">57 pts</span>
-  <span>10h ago</span></div>
+  <div class="acts"><a href="https://toneyalexander.github.io/inclusive-color-space/">Read ›</a><a href="https://news.ycombinator.com/item?id=49170165">Discuss ›</a></div>
+  <h2><a href="https://toneyalexander.github.io/inclusive-color-space/">Show HN: Simple algorithm and color space to generate diverse skin tones</a></h2>
+  <div class="sum">The article describes a project that defines a custom color space with simple equations to generate a broad, inclusive range of plausible skin tones in RGB for contexts like character creators and digital art. The author manually labeled many RGB colors as plausible skin tones, then applied principal component analysis (PCA) with N=3 to transform the banana-shaped dataset into a more workable form, creating equations that map a sphere in PCA space onto the transformed data. The author acknowledges significant limitations, noting that real skin tones are affected by melanin, blood flow, light scattering, and conditions like vitiligo, argyria, and hyperpigmentation, while also appearing differently across displays and lighting conditions. They admit their own biases as a non-researcher making subjective color choices. The project is positioned as a useful starting point rather than an authoritative solution for simplified representations.</div>
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">482 pts</span><span>13h ago</span></div>
 </article>
 </main>
 
 <footer class="foot">
   <div><div style="margin-top:14px">📚 Past editions:<a style="margin:0 10px" href="https://learn.shenthar.me/2026-08-04">2026-08-04</a></div></div>
-  <div style="margin-top:18px">Curated daily by your <strong>Hermes</strong> agent ·
-     <a href="https://github.com/KTS-o7/learning-portal">open source</a> · served from learn.shenthar.me<br>
-     Sources: Hacker News · arXiv · Lobsters · engineering blogs</div>
+  <div style="margin-top:18px">Curated daily by your <strong>Hermes</strong> agent \u00b7
+     <a href="https://github.com/KTS-o7/learning-portal">open source</a> \u00b7 served from learn.shenthar.me<br>
+     Sources: Hacker News \u00b7 arXiv \u00b7 Lobsters \u00b7 engineering blogs</div>
   <div style="margin-top:8px"><a href="https://learn.shenthar.me/rss.xml">Subscribe via RSS</a></div>
 </footer>
 
