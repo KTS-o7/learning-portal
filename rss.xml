@@ -8,112 +8,112 @@
   <link>https://arpitbhayani.me/blogs/three-skills</link>
   <guid isPermaLink="false">https://arpitbhayani.me/blogs/three-skills</guid>
   <description>A company runs smoothly when people can get stuff done without hunting for information. What actually wears people out day to day is not the hard engineering problem. It is not knowing which ticket to file, which team to bug on Slack, or what invisible step stands between them and getting a simple service live.</description>
-  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <pubDate>Wed, 05 Aug 2026 09:33:31 +0530</pubDate>
   <source>Arpit Bhayani</source>
 </item><item>
   <title>G-Eval, Explained</title>
   <link>https://arpitbhayani.me/blogs/g-eval</link>
   <guid isPermaLink="false">https://arpitbhayani.me/blogs/g-eval</guid>
-  <description>G-Eval is a reference-free evaluation framework that leverages large language models to assess the quality of generated text without requiring ground-truth references. It operates through rubric-based prompting, where evaluators are guided by structured criteria, and chain-of-thought evaluation, which encourages the model to reason through its assessments step by step. A distinctive feature is its probability-weighted scoring mechanism, which uses token log probabilities to produce more nuanced and calibrated quality scores than simple discrete ratings. While G-Eval offers a flexible approach for evaluating outputs in LLM applications, chatbots, summarization systems, and AI writing assistants, it has notable limitations including potential bias, inconsistency across runs, and dependence on the underlying model&#x27;s capabilities. The framework is best suited for scenarios where reference data is unavailable or impractical, but practitioners should validate its outputs and avoid relying on it as a sole quality metric.</description>
-  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <description>G-Eval is a reference-free evaluation framework that uses large language models to assess the quality of generated text. This article explains how G-Eval works, including rubric-based prompting, chain-of-thought evaluation, and probability-weighted scoring using token log probabilities. You will also learn its limitations, common implementation patterns, practical best practices, and when not to use it. If you are building LLM applications, chatbots, summarization systems, or AI writing assistants, this guide will help you evaluate outputs more reliably.</description>
+  <pubDate>Wed, 05 Aug 2026 09:33:31 +0530</pubDate>
   <source>Arpit Bhayani</source>
 </item><item>
   <title>AI Workflows Need Topological Sort</title>
   <link>https://arpitbhayani.me/blogs/ai-topological-sort</link>
   <guid isPermaLink="false">https://arpitbhayani.me/blogs/ai-topological-sort</guid>
-  <description>Every AI workflow is essentially a dependency problem in which some steps produce outputs while other steps depend on those outputs to run. The central constraint is that consumers cannot execute before their producers finish, since reversing the order leads to reading stale data, calling tools with missing context, or triggering an agent before its inputs are ready. Topological sort provides the mechanism for ordering these steps correctly by respecting the producer-consumer relationships. Without enforcing this ordering, the workflow cannot guarantee that each step has the data it needs when it begins. Treating execution order as a graph problem makes workflow design more reliable and predictable.</description>
-  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <description>Every AI workflow is a dependency problem. You have steps that produce outputs, other steps that consume those outputs, and a hard constraint: consumers cannot run before their producers finish. Get the order wrong and you read stale data, call a tool with missing context, or trigger an agent before its inputs are ready.</description>
+  <pubDate>Wed, 05 Aug 2026 09:33:31 +0530</pubDate>
   <source>Arpit Bhayani</source>
 </item><item>
   <title>Temporal Primer - Building Long-Running Systems</title>
   <link>https://arpitbhayani.me/blogs/temporal-primer</link>
   <guid isPermaLink="false">https://arpitbhayani.me/blogs/temporal-primer</guid>
-  <description>Developers often construct complex systems by combining cron jobs, message queues, database state tables, and retry loops to handle long-running processes. These improvised solutions tend to fail during unexpected events like network blips, exposing the need for a more reliable approach. The homegrown fix effectively becomes a workflow engine, managing state, scheduling, and retries across distributed services. Temporal positions itself as a properly engineered workflow engine designed specifically for building long-running systems. Rather than relying on brittle, hand-stitched components, Temporal provides a purpose-built framework that handles these concerns natively, ensuring that workflows can survive interruptions and resume reliably without manual intervention.</description>
-  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <description>If you have ever taped together a cron job, message queue, a database table for state, and a retry loop - only to watch the whole thing break during a network blip at 2am - you already understand the problem Temporal solves. The fix you built was a workflow engine. Temporal is workflow engine done right.</description>
+  <pubDate>Wed, 05 Aug 2026 09:33:31 +0530</pubDate>
   <source>Arpit Bhayani</source>
 </item><item>
   <title>Giving and taking credit in big tech companies</title>
   <link>https://seangoedecke.com/giving-and-taking-credit/</link>
   <guid isPermaLink="false">https://seangoedecke.com/giving-and-taking-credit/</guid>
-  <description>Engineers often assume their manager should advocate for their work, treating the workplace like school where good performance is automatically rewarded. In reality, managers cannot reliably assess technical quality themselves and instead rely on quiet conversations with trusted engineers to judge performance. This means engineers must actively communicate their accomplishments through internal posts, 1:1s, and other channels rather than expecting recognition for silent good work. However, hoarding credit is counterproductive because credit is not zero-sum: sharing credit with collaborators gives them personal reasons to speak positively about the project. Conversely, projects where credit is concentrated in one person become attractive targets for blame during complex failures, since no one else is incentivized to defend them. The most effective strategy is to make individual projects partially group projects, so that success reflects well on everyone involved.</description>
-  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <description></description>
+  <pubDate>Wed, 05 Aug 2026 09:33:31 +0530</pubDate>
   <source>Sean Goedecke</source>
 </item><item>
   <title>TurnSight: Turn-Level Hindsight Self-Distillation for Tool-Integrated Reasoning</title>
   <link>http://arxiv.org/abs/2608.04007v1</link>
   <guid isPermaLink="false">http://arxiv.org/abs/2608.04007v1</guid>
-  <description>TurnSight is a turn-level hindsight self-distillation framework designed for Tool-Integrated Reasoning, where LLMs solve complex tasks through iterative tool interactions. While existing reinforcement learning methods depend on trajectory-level supervision that limits fine-grained credit assignment in long-horizon scenarios, and prior on-policy self-distillation approaches derive privileged context from ground-truth answers or retrieved skills that may not match states actually visited by the agent, TurnSight instead derives supervision directly from execution-conditioned hindsight. The framework constructs multiple hindsight views with different lookahead horizons and selects reliable supervision through cross-horizon directional agreement. The selected hindsight signal is then normalized across sibling rollouts and used to adaptively modulate RL advantages while preserving their original optimization direction. Experiments on three benchmarks demonstrate TurnSight&#x27;s effectiveness, with code publicly available on GitHub.</description>
-  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <description>Tool-Integrated Reasoning (TIR) enables LLMs to solve complex tasks through iterative tool interactions. However, existing reinforcement learning methods often rely on trajectory-level supervision, limiting fine-grained credit assignment in long-horizon TIR scenarios. On-policy self-distillation offers denser signals through teacher branches with privileged context, but existing approaches typically derive such context from ground-truth answers or retrieved skills, which may not reflect the states actually visited by the agent. Moreover, token-level supervision fails to capture the turn-level structure of tool interactions. To address this, we propose TurnSight, a turn-level hindsight self-distillation framework that derives supervision directly from execution-conditioned hindsight. It then constructs multiple hindsight views with different lookahead horizons and selects reliable supervision through cross-horizon directional agreement. Finally, the selected hindsight signal is normalized across sibling rollouts and used to adaptively modulate RL advantages while preserving their original optimization direction. Extensive experiments on three benchmarks demonstrate the effectiveness of TurnSight. Our codes are available at https://github.com/quchangle1/TurnSight.</description>
+  <pubDate>Wed, 05 Aug 2026 09:33:31 +0530</pubDate>
   <source>arXiv</source>
 </item><item>
   <title>Test-Time Scaling in Reasoning LLMs: Inference Regimes, Evaluation, and Reproducibility</title>
   <link>http://arxiv.org/abs/2608.04001v1</link>
   <guid isPermaLink="false">http://arxiv.org/abs/2608.04001v1</guid>
-  <description>This paper develops a systematic framework for understanding and evaluating test-time scaling in reasoning language models. The authors formalize test-time scaling as budgeted inference over the implicit prefix tree of an autoregressive model, distinguishing three structural regimes: single-trajectory sequential scaling, leaf-level scaling with terminal reduction, and prefix-level scaling. They treat the inference system as the evaluated object, introducing evaluation principles that separate end-to-end performance from candidate-bank diagnostics through an evaluation profile whose coordinates recover or bound common repeated-sampling metrics. The work specifies reproducibility requirements for inference protocols, distinguishing exact replay from distributional reproducibility and identifying supporting artifacts. The authors apply these principles to broad-knowledge, symbolic-reasoning, and competition-mathematics benchmarks, organize the open-weight reasoning ecosystem by model-side and interface mechanisms, and release over 2 billion full reasoning traces with progressively richer verifier and token-level signals.</description>
-  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <description>Large language models can solve substantially harder reasoning problems with more inference-time compute. The term &quot;test-time scaling,&quot; however, now covers diverse inference algorithms that extend deliberation along a single trajectory, sample completed candidates and aggregate them through voting or verification, or search over unfinished partial states. These algorithms differ in their statistical structure, compute accounting, and failure modes. Treating these procedures as interchangeable under a single scalar &quot;budget,&quot; or reporting accuracy without the inference protocol that produced it, makes results difficult to compare across studies. We develop a systematic account of test-time scaling along three axes. First, we formalize test-time scaling as budgeted inference over the implicit prefix tree of an autoregressive model and distinguish three structural regimes: single-trajectory sequential scaling, leaf-level scaling with terminal reduction, and prefix-level scaling. Second, we treat the evaluated object as the entire inference system and develop evaluation principles that separate end-to-end system performance from candidate-bank diagnostics. We introduce an evaluation profile whose coordinates and simple functionals recover or bound common repeated-sampling metrics, and prescribe protocol-matched reporting of compute and uncertainty. Third, we specify reproducibility requirements for inference protocols, distinguishing exact replay from distributional reproducibility and identifying the artifacts needed to support each. We also organize the open-weight reasoning ecosystem by model-side and interface mechanisms, apply these principles to broad-knowledge, symbolic-reasoning, and competition-mathematics benchmarks, and assemble over 2 billion full reasoning traces for release with progressively richer verifier and token-level signals.</description>
+  <pubDate>Wed, 05 Aug 2026 09:33:31 +0530</pubDate>
   <source>arXiv</source>
 </item><item>
   <title>Assessment of Conditional Diffusion Model for Synthetic Histopathology Image Generation</title>
   <link>http://arxiv.org/abs/2608.03990v1</link>
   <guid isPermaLink="false">http://arxiv.org/abs/2608.03990v1</guid>
-  <description>The study investigates limitations of conventional synthetic data evaluation metrics like Frechet Inception Distance (FID) and Inception Score (IS) for histopathology images, noting their dependence on ImageNet-pretrained feature extractors. To address these limitations, the authors propose modified FID and IS approaches using foundation models pretrained on digital pathology datasets, supplemented by precision-recall based metrics. Using conditional denoising diffusion models trained on four benchmark datasets with a two-step approach, they generated synthetic datasets with systematically varied quality and measured correlation with downstream nuclei segmentation performance. Results indicate that pathology-specific metrics may offer improved discriminative power, with the modified Inception Score showing higher correlation with segmentation performance (r=0.6096 with AJI+, p=0.0122) compared to the original IS (r=0.0708, p=0.7944). The findings also suggest that increasing the variety of generated training data correlates more positively with segmentation model performance than improving the visual fidelity of individual generated images.</description>
-  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <description>Synthetic histopathology image generation has emerged as an approach that may address data scarcity in computational pathology, yet current evaluation methodologies may not fully assess synthetic data quality for medical applications. This work investigates and addresses limitations in existing evaluation metrics, investigating an approach for assessing synthetic histopathology image quality through domain-specific metrics and downstream task validation. We show that conventional synthetic data evaluation metrics such as Frechet Inception Distance (FID) and Inception Score (IS) may have limitations when applied to histopathology images due to their reliance on ImageNet-pretrained feature extractors. To address these limitations, we propose for consideration modified FID and IS approaches utilizing foundation models pretrained on digital pathology datasets, supplemented by precision-recall based metrics as part of an additional quality assessment. Using conditional denoising diffusion models trained on four benchmark datasets, with a two-step training approach, we generated synthetic datasets with systematically varied quality characteristics. We also measured the correlation between the synthetic data quality metrics with downstream nuclei segmentation performance using common metrics including the aggregated Jaccard index (AJI+) and the Dice coefficient. The study results suggest that pathology-specific metrics may provide improved discriminative power. Specifically, the modified Inception Score indicates higher correlation with downstream task performance (r=0.6096 with AJI+, p=0.0122), compared to the original IS (r=0.0708, p=0.7944). Our observations indicate that increasing the variety of generated training data has a higher positive correlation with segmentation model performance than improving the visual fidelity of individual generated images.</description>
+  <pubDate>Wed, 05 Aug 2026 09:33:31 +0530</pubDate>
   <source>arXiv</source>
 </item><item>
   <title>Can Large Language Models Recover Semantic Optimization Opportunities That Compilers Miss?</title>
   <link>http://arxiv.org/abs/2608.03983v1</link>
   <guid isPermaLink="false">http://arxiv.org/abs/2608.03983v1</guid>
-  <description>Optimizing compilers often miss profitable transformations when enabling semantics are absent from the analyzed program representation. The authors investigate whether large language models can recover such semantics from heterogeneous C/C++ context and produce validated, contract-preserving artifacts. They introduce SeGaBench, an executable benchmark comprising 100 synthetic and 20 source-backed cases spanning low-level assumptions, data-structure invariants, and high-level semantic lifting, each equipped with hidden enabling semantics, an oracle artifact, correctness and semantic validators, and a reproducible performance protocol. Evaluating five LLMs with five independent responses per case, the strongest model produces correct artifacts in 94.8% of responses, achieves at least 1.05x speedup in 83.3%, and reaches a performance success on 93.3% of cases. However, correct artifacts often close only part of the oracle gap. These findings suggest LLMs can complement compiler analysis as speculative semantic proposers when their outputs are validated and evaluated.</description>
-  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <description>Optimizing compilers miss profitable transformations when their enabling semantics are absent from the analyzed program representation. We ask whether large language models (LLMs) can recover such semantics from heterogeneous C/C++ context and realize them as validated, contract-preserving artifacts. We introduce SeGaBench, an executable benchmark containing 100 synthetic and 20 source-backed cases spanning low-level assumptions, data-structure invariants, and high-level semantic lifting. Each case includes hidden enabling semantics, an oracle artifact, correctness and semantic validators, and a reproducible performance protocol. We evaluate five LLMs using five independent responses per case. The strongest model produces correct artifacts in 94.8% of responses, achieves at least 1.05x speedup in 83.3%, and obtains a performance success on 93.3% of cases. Nevertheless, correct artifacts often close only part of the oracle gap. These results show that LLMs can complement compiler analysis as speculative semantic proposers, provided that their artifacts are validated and evaluated.</description>
+  <pubDate>Wed, 05 Aug 2026 09:33:31 +0530</pubDate>
   <source>arXiv</source>
 </item><item>
   <title>Video-DeepResearch: Towards the Next-Generation Multimodal Deepresearch Agent</title>
   <link>http://arxiv.org/abs/2608.03979v1</link>
   <guid isPermaLink="false">http://arxiv.org/abs/2608.03979v1</guid>
   <description>We introduce Video-DeepResearch (Video-DR), extending multimodal agents from static images to continuous video streams, a setting that demands dense spatiotemporal grounding coupled with open-web exploration. Preliminary evaluations reveal two critical bottlenecks in current models: (1) modality bias, where agents bypass visual tools in favor of textual search, and (2) parametric knowledge leakage, where models rely on internal memory rather than genuine tool-augmented execution. To address these challenges, we propose Video-DR, featuring a decoupled perception-exploration pipeline with stage-wise tool unlocking that compels exhaustive cross-frame visual grounding prior to web retrieval. Our framework adopts a two-stage training recipe: supervised fine-tuning followed by Group Relative Policy Optimization (GRPO), enabling autonomous exploration that breaks the imitation-learning ceiling. Furthermore, we curate Video-DR-Bench, a human-AI collaborative benchmark comprising 200 complex, multi-hop VQA instances. Empirical results demonstrate that our Video-DeepResearch-35B-A3B establishes a new state-of-the-art of 64.0% average accuracy, surpassing proprietary Claude-4.5-Sonnet (59.0%) by 5.0 points and significantly outperforming GPT-5 (52.5%) and Gemini 2.5 Pro (57.5%). The 30B-A3B variant achieves 59.3%, competitive with Claude-4.5-Sonnet and demonstrating the effectiveness of our training paradigm even at compact scale. Code: https://github.com/Osilly/Vision-DeepResearch.</description>
-  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <pubDate>Wed, 05 Aug 2026 09:33:31 +0530</pubDate>
   <source>arXiv</source>
 </item><item>
   <title>FFmpeg 9.0</title>
   <link>https://github.com/FFmpeg/FFmpeg/blob/n9.0/RELEASE_NOTES</link>
   <guid isPermaLink="false">https://github.com/FFmpeg/FFmpeg/blob/n9.0/RELEASE_NOTES</guid>
-  <description>The article content could not be loaded, so no summary can be written from it.</description>
-  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <description></description>
+  <pubDate>Wed, 05 Aug 2026 09:33:31 +0530</pubDate>
   <source>HN</source>
 </item><item>
   <title>DeepSeek V4 Flash on a Single AMD MI300X</title>
   <link>https://github.com/ryanzhou/deepseek-v4-flash-mi300x</link>
   <guid isPermaLink="false">https://github.com/ryanzhou/deepseek-v4-flash-mi300x</guid>
   <description></description>
-  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <pubDate>Wed, 05 Aug 2026 09:33:31 +0530</pubDate>
   <source>HN</source>
 </item><item>
   <title>Show HN: Fine-tune an 8B model on a 4 GB laptop GPU</title>
   <link>https://github.com/MakazhanAlpamys/Soup</link>
   <guid isPermaLink="false">https://github.com/MakazhanAlpamys/Soup</guid>
-  <description>Soup simplifies the fine-tuning of large language models. It turns a complex workflow into one configuration and one command. The tool completes the process after the command runs. Engineers save time and reduce effort in model training. This makes fine-tuning more accessible for developers.</description>
-  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <description>Soup turns the pain of LLM fine-tuning into a simple workflow. One config, one command, done. - MakazhanAlpamys/Soup</description>
+  <pubDate>Wed, 05 Aug 2026 09:33:31 +0530</pubDate>
   <source>HN</source>
 </item><item>
   <title>Show HN: Maple-Preview – ternary 20B MoE running at 120 tok/s on a iPhone</title>
   <link>https://deepgrove.ai/maple-preview</link>
   <guid isPermaLink="false">https://deepgrove.ai/maple-preview</guid>
   <description></description>
-  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <pubDate>Wed, 05 Aug 2026 09:33:31 +0530</pubDate>
   <source>HN</source>
 </item><item>
   <title>The Lua community needs to learn to move on</title>
   <link>https://hisham.hm/2026/08/04/the-lua-community-needs-to-learn-to-move-on/</link>
   <guid isPermaLink="false">https://hisham.hm/2026/08/04/the-lua-community-needs-to-learn-to-move-on/</guid>
   <description></description>
-  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <pubDate>Wed, 05 Aug 2026 09:33:31 +0530</pubDate>
   <source>Lobsters</source>
 </item><item>
   <title>Security is Hard, Y’all</title>
   <link>https://textslashplain.com/2026/08/04/security-is-hard-yall/</link>
   <guid isPermaLink="false">https://textslashplain.com/2026/08/04/security-is-hard-yall/</guid>
-  <description>When Eric Lawrence saw a tweet about a new Cloudflare product, he clicked through and found his preferred handle available, prompting him to sign in quickly to claim it. During the authorization process, he noticed numerous red flags typical of consent phishing attacks, including the request occurring on cloudflare.pay rather than cloudflare.com, despite there being no technical relationship between the two domains, and .pay TLDs being available to anyone for $20. A suspicious-looking green checkmark turned out to be a poorly placed security UI element rather than a misleading app name. After failing to find the feature through his dashboard or documentation, he confirmed with Cloudflare&#x27;s AI chat agent that it was indeed an attack, only to discover it was actually a legitimate new product. Lawrence noted Cloudflare wants security issues reported via HackerOne, though the HackerOne CAPTCHA appeared broken, and emphasized how difficult security is for both users and URL reputation services when legitimate sites exhibit phishing-like characteristics.</description>
-  <pubDate>Wed, 05 Aug 2026 09:25:29 +0530</pubDate>
+  <description></description>
+  <pubDate>Wed, 05 Aug 2026 09:33:31 +0530</pubDate>
   <source>Lobsters</source>
 </item>
 </channel></rss>
