@@ -336,8 +336,24 @@ def assemble(items):
         if b.get("age_h") is not None and b["age_h"] < 24:
             b["blog_score"] += 3
 
+    # Per-source diversity cap: no single blog may dominate the section,
+    # even when it has multiple high-scoring posts in one feed (otherwise
+    # the digest opens with one author four days in a row when they post).
+    cap = SECTION_CAPS["engineering"]
+    max_per_source = max(1, cap - 2)   # if cap is 5, max 3 posts per source
+    selected = []
+    seen_sources = {}
+    for b in sorted(blogs, key=lambda i: -i["blog_score"]):
+        src = b["source"]
+        if seen_sources.get(src, 0) >= max_per_source:
+            continue
+        selected.append(b)
+        seen_sources[src] = seen_sources.get(src, 0) + 1
+        if len(selected) >= cap:
+            break
+
     sections = {
-        "engineering": sorted(blogs, key=lambda i: -i["blog_score"])[:SECTION_CAPS["engineering"]],
+        "engineering": selected,
         "papers": [i for i in items if i["kind"] == "paper"][:SECTION_CAPS["papers"]],
         "tools": [i for i in items if i["tag"] == "story"
                   and "github.com" in (i["url"] or "")][:SECTION_CAPS["tools"]],

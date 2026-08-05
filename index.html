@@ -153,17 +153,17 @@ color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
 </article>
 <article class="story">
   
-  <div class="acts"><a href="https://arpitbhayani.me/blogs/temporal-primer">Read ›</a></div>
-  <h2><a href="https://arpitbhayani.me/blogs/temporal-primer">Temporal Primer - Building Long-Running Systems</a></h2>
-  <div class="sum">If you have ever taped together a cron job, message queue, a database table for state, and a retry loop - only to watch the whole thing break during a network blip at 2am - you already understand the problem Temporal solves. The fix you built was a workflow engine. Temporal is workflow engine done right.</div>
-  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span>
+  <div class="acts"><a href="https://seangoedecke.com/giving-and-taking-credit/">Read ›</a></div>
+  <h2><a href="https://seangoedecke.com/giving-and-taking-credit/">Giving and taking credit in big tech companies</a></h2>
+  <div class="sum">Big tech companies deliberately mimic university culture to attract talented graduates, but that analogy hurts engineers who expect to be rewarded purely on the quality of their work. The post argues you must actively claim credit for your own contributions, because no one else fully understands what you built and managers cannot evaluate difficulty from the outside. It also covers how to give credit publicly, why self-promotion is not the same as bragging, and concrete tactics for talking about your work without sounding performative.</div>
+  <div class="smeta"><span class="pill p-blog">Sean Goedecke</span>
   </div>
 </article>
 <article class="story">
   
-  <div class="acts"><a href="https://seangoedecke.com/giving-and-taking-credit/">Read ›</a></div>
-  <h2><a href="https://seangoedecke.com/giving-and-taking-credit/">Giving and taking credit in big tech companies</a></h2>
-  
+  <div class="acts"><a href="https://seangoedecke.com/ai-models-need-moral-support/">Read ›</a></div>
+  <h2><a href="https://seangoedecke.com/ai-models-need-moral-support/">AI models need moral support to make discoveries</a></h2>
+  <div class="sum">Frontier LLMs are now solving long-standing open problems in mathematics almost daily, but the prompting that produced these breakthroughs is surprisingly informal: just ask, check in every few hours, and tell the model to keep pushing. The author argues this vindicates 2025 heretics who said prompt engineering was overhyped - real skill is knowing what a model is good at and updating that picture as it changes. The post also names a key bottleneck: models that have not yet learned they can do something give up early, and solving that "self-belief" problem in coding agents foreshadowed the same unlock in math.</div>
   <div class="smeta"><span class="pill p-blog">Sean Goedecke</span>
   </div>
 </article>
@@ -206,22 +206,22 @@ color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
   <h2><a href="http://arxiv.org/abs/2608.03979v1">Video-DeepResearch: Towards the Next-Generation Multimodal Deepresearch Agent</a></h2>
   <div class="sum">We introduce Video-DeepResearch (Video-DR), extending multimodal agents from static images to continuous video streams, a setting that demands dense spatiotemporal grounding coupled with open-web exploration. Preliminary evaluations reveal two critical bottlenecks in current models: (1) modality bias, where agents bypass visual tools in favor of textual search, and (2) parametric knowledge leakage, where models rely on internal memory rather than genuine tool-augmented execution. To address these challenges, we propose Video-DR, featuring a decoupled perception-exploration pipeline with stage-wise tool unlocking that compels exhaustive cross-frame visual grounding prior to web retrieval. Our framework adopts a two-stage training recipe: supervised fine-tuning followed by Group Relative Policy Optimization (GRPO), enabling autonomous exploration that breaks the imitation-learning ceiling. Furthermore, we curate Video-DR-Bench, a human-AI collaborative benchmark comprising 200 complex, multi-hop VQA instances. Empirical results demonstrate that our Video-DeepResearch-35B-A3B establishes a new state-of-the-art of 64.0% average accuracy, surpassing proprietary Claude-4.5-Sonnet (59.0%) by 5.0 points and significantly outperforming GPT-5 (52.5%) and Gemini 2.5 Pro (57.5%). The 30B-A3B variant achieves 59.3%, competitive with Claude-4.5-Sonnet and demonstrating the effectiveness of our training paradigm even at compact scale. Code: https://github.com/Osilly/Vision-DeepResearch.</div>
   <div class="smeta"><span class="pill p-arxiv">arXiv</span>
-  <span>10h ago</span></div>
+  <span>11h ago</span></div>
 </article>
 <div class="nameplate" style="margin:30px auto"><span>TOOLS & PROJECTS</span></div>
 <article class="story">
   
   <div class="acts"><a href="https://github.com/FFmpeg/FFmpeg/blob/n9.0/RELEASE_NOTES">Read ›</a><a href="https://news.ycombinator.com/item?id=49166202">Discuss ›</a></div>
   <h2><a href="https://github.com/FFmpeg/FFmpeg/blob/n9.0/RELEASE_NOTES">FFmpeg 9.0</a></h2>
-  
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">432 pts</span>
+  <div class="sum">FFmpeg 9.0 Lei ships about four months after 8.1, adding a Playdate video encoder and muxer, animated WebP decoder and demuxer, HE-AAC 960 decoding for DAB+, a transpose_cuda filter, an AMF frame rate converter, AMD AMF HDR support, ProRes RAW VideoToolbox hardware decoding, an APV Vulkan hwaccel, SMPTE 2094-50 metadata passthrough, a Dolby Vision multi-layer HEVC bitstream splitter, and an ONNX Runtime DNN backend with GPU execution. Notable removals are CELT decoding and the legacy ogg/celt parser; pre-11.1 NVENC options are also gone.</div>
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">433 pts</span>
   <span>19h ago</span></div>
 </article>
 <article class="story">
   
   <div class="acts"><a href="https://github.com/ryanzhou/deepseek-v4-flash-mi300x">Read ›</a><a href="https://news.ycombinator.com/item?id=49166386">Discuss ›</a></div>
   <h2><a href="https://github.com/ryanzhou/deepseek-v4-flash-mi300x">DeepSeek V4 Flash on a Single AMD MI300X</a></h2>
-  
+  <div class="sum">An open-source configuration lets you run the 304B DeepSeek-V4-Flash checkpoint on a single AMD MI300X without quantization or weight offload, using the chip's 192 GB of HBM3. The repo ships vLLM ROCm nightly patches and AITER tuning tables for the recurring gfx942 shapes, plus correctness fixes for the AMD/Graphcore FNUZ variant of E4M3 FP8, which differs from OCP-standard FP8 by up to 2x in the scale domain. Numbers from the production profile: 168.6 tok/s single-stream decode, about 8K tok/s prefill, 542 tok/s aggregate over 8 concurrent streams, 830 tok/s burst over 64, with 256K context validated against the architecture's 1M ceiling.</div>
   <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">367 pts</span>
   <span>18h ago</span></div>
 </article>
@@ -231,22 +231,22 @@ color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
   <div class="acts"><a href="https://github.com/MakazhanAlpamys/Soup">Read ›</a><a href="https://news.ycombinator.com/item?id=49166984">Discuss ›</a></div>
   <h2><a href="https://github.com/MakazhanAlpamys/Soup">Show HN: Fine-tune an 8B model on a 4 GB laptop GPU</a></h2>
   <div class="sum">Soup turns the pain of LLM fine-tuning into a simple workflow. One config, one command, done. - MakazhanAlpamys/Soup</div>
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">123 pts</span>
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">124 pts</span>
   <span>17h ago</span></div>
 </article>
 <article class="story">
   
   <div class="acts"><a href="https://deepgrove.ai/maple-preview">Read ›</a><a href="https://news.ycombinator.com/item?id=49173984">Discuss ›</a></div>
   <h2><a href="https://deepgrove.ai/maple-preview">Show HN: Maple-Preview – ternary 20B MoE running at 120 tok/s on a iPhone</a></h2>
-  
-  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">76 pts</span>
-  <span>8h ago</span></div>
+  <div class="sum">Maple-Preview is an early demo of a ternary 20B-parameter mixture-of-experts model running at about 120 tokens per second on a stock iPhone. The numbers suggest aggressive quantization plus an Apple-Silicon-tuned inference runtime can deliver usable local-assistant-grade speed on phones without active cooling. Details are thin (the project's product page is currently offline), but the demo is a useful marker for where on-device LLMs are landing this year.</div>
+  <div class="smeta"><span class="pill p-HN">HN</span><span class="pts">77 pts</span>
+  <span>9h ago</span></div>
 </article>
 <article class="story">
   
   <div class="acts"><a href="https://hisham.hm/2026/08/04/the-lua-community-needs-to-learn-to-move-on/">Read ›</a><a href="https://lobste.rs/s/t7wzko">Discuss ›</a></div>
   <h2><a href="https://hisham.hm/2026/08/04/the-lua-community-needs-to-learn-to-move-on/">The Lua community needs to learn to move on</a></h2>
-  
+  <div class="sum">A core Lua contributor argues the ecosystem must stop supporting every old version forever. Maintainers keep fielding bug reports against out-of-date interpreter releases already EOL upstream, which drains time and patience without helping users upgrade. The post contrasts embedded and extensible use cases, notes that LuaJIT 2.0 and Lua pre-5.4 are already end-of-life, and asks library authors to follow suit by EOLing their packages on old runtimes too. Teal is offered as a way to write once and target Lua 5.1 through 5.5.</div>
   <div class="smeta"><span class="pill p-Lobsters">Lobsters</span><span class="pts">65 pts</span>
   <span>13h ago</span></div>
 </article>
@@ -254,7 +254,7 @@ color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
   
   <div class="acts"><a href="https://textslashplain.com/2026/08/04/security-is-hard-yall/">Read ›</a><a href="https://lobste.rs/s/qoptbx">Discuss ›</a></div>
   <h2><a href="https://textslashplain.com/2026/08/04/security-is-hard-yall/">Security is Hard, Y’all</a></h2>
-  
+  <div class="sum">The post argues web security has become disproportionately hard for what browsers actually need: a small set of primitives like secure cookies, content security, isolation between origins, and reliable session handling. The complexity has accumulated through decades of stacked mitigations, each defensible at the time but in aggregate a burden on engineers shipping sites. The piece pushes for consolidation around a small set of well-implemented primitives developers can rely on, rather than the present surface area of overlapping specs and headers.</div>
   <div class="smeta"><span class="pill p-Lobsters">Lobsters</span><span class="pts">57 pts</span>
   <span>10h ago</span></div>
 </article>
