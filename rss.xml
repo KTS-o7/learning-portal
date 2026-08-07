@@ -2,29 +2,149 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-05</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-07</description>
   <item>
-    <title>Three Claude Skills I Think Every Org Should Have</title>
-    <link>https://arpitbhayani.me/blogs/three-skills</link>
-    <guid isPermaLink="false">https://arpitbhayani.me/blogs/three-skills</guid>
-    <description>An engineering organization becomes more efficient by building executable tools rather than relying on documentation that often becomes stale and misleading. The author recommends three skills: a create-app skill that provisions databases, wires up logging, registers services with identity providers, and deploys to production; a deploy-service skill that integrates forward deploys, rollbacks, environment-scoped tests, and post-deploy smoke tests; and a service-debugging skill that matches live symptoms to known failure patterns.</description>
-    <pubDate>2026-08-05T05:56:50Z</pubDate>
+    <title>A guide to slash commands in the GitHub Copilot app</title>
+    <link>https://github.blog/ai-and-ml/github-copilot/a-guide-to-slash-commands-in-the-github-copilot-app/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/a-guide-to-slash-commands-in-the-github-copilot-app/</guid>
+    <description>Slash commands are text shortcuts in the GitHub Copilot app&#x27;s chat composer that begin with a single `/`, opening an autocomplete menu of contextual commands. They extend the concept familiar from the Copilot CLI but are tailored for the app&#x27;s multi-session, visual workflow rather than terminal-based use. While some commands like `/clear` and `/model` work in both environments, app-specific commands focus on managing sessions, navigating projects, and customizing how Copilot functions. The commands enable faster, focused interaction without breaking your workflow to dig through menus. Examples highlighted in the guide include `/plan`, which helps break down tasks, plan features, prepare for refactors, or triage bugs before writing code, and `/spar`, which challenges ideas by having Copilot play devil&#x27;s advocate.</description>
+    <pubDate>Thu, 06 Aug 2026 19:49:34 +0000</pubDate>
+    <source>GitHub Blog</source>
+  </item>
+  <item>
+    <title>What AI First Engineering Orgs Look Like</title>
+    <link>https://arpitbhayani.me/blogs/ai-first-org</link>
+    <guid isPermaLink="false">https://arpitbhayani.me/blogs/ai-first-org</guid>
+    <description>In AI-first engineering organizations, traditional software development processes built around scarce engineering time no longer apply. Writing code, tests, and refactoring cease to be the bottleneck, as verification, code review, and security take their place. These organizations practice just-in-time planning, since six-month roadmaps become outdated quickly as AI tools continuously change what is possible. Question-asking shifts from &quot;who wrote this&quot; to identifying what information is actually needed, with the AI model often being the fastest source, and recurring questions get automated into standing jobs. Code review transitions from human-driven to model-driven, with humans remaining involved only for decisions that are expensive to reverse or require judgment about risk tolerance. Finally, traditional role boundaries blur, with product managers shipping prototypes directly and engineers picking up design and content work.</description>
+    <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
     <source>Arpit Bhayani</source>
   </item>
   <item>
-    <title>G-Eval, Explained</title>
-    <link>https://arpitbhayani.me/blogs/g-eval</link>
-    <guid isPermaLink="false">https://arpitbhayani.me/blogs/g-eval</guid>
-    <description>G-Eval is a prompting framework introduced in a 2023 paper by Yang Liu and colleagues at Microsoft that uses a large language model as a reference-free evaluator of generated text. The framework has three components: a precise rubric defining the evaluation dimension, auto-generated chain-of-thought evaluation steps, and a scoring step. To avoid score collapse onto a single dominant value, G-Eval replaces direct integer scoring with a probability-weighted expectation over the tokens the model assigns to each possible score.</description>
-    <pubDate>2026-08-05T05:56:50Z</pubDate>
-    <source>Arpit Bhayani</source>
+    <title>How we took malware advisories beyond npm</title>
+    <link>https://github.blog/security/supply-chain-security/how-we-took-malware-advisories-beyond-npm/</link>
+    <guid isPermaLink="false">https://github.blog/security/supply-chain-security/how-we-took-malware-advisories-beyond-npm/</guid>
+    <description>GitHub expanded its malware advisory coverage from npm to eight major package ecosystems by building an importer for OpenSSF&#x27;s malicious-packages repository, which holds over 15,000 reports in OSV format. The importer validates each record against the OSV schema before normalizing it into feed entries, rejecting any record that fails validation rather than quietly patching it through. The team had to address several data quirks, including mismatched ecosystem strings, discrete version values versus ranges, empty details fields, merged write-ups from multiple sources, and a withdrawn folder for retracted advisories. They also solved a deduplication problem, since GitHub itself contributes npm malware advisories upstream and risked re-importing its own data in a loop. Malware advisories and the Dependabot alerts they power now cover npm, PyPI, Maven, RubyGems, NuGet, Go, crates.io, and PHP Composer.</description>
+    <pubDate>Thu, 06 Aug 2026 16:51:12 +0000</pubDate>
+    <source>GitHub Blog</source>
   </item>
   <item>
-    <title>AI Workflows Need Topological Sort</title>
-    <link>https://arpitbhayani.me/blogs/ai-topological-sort</link>
-    <guid isPermaLink="false">https://arpitbhayani.me/blogs/ai-topological-sort</guid>
-    <description>AI workflows are fundamentally dependency problems where consumer steps cannot execute before producer steps finish. Directed acyclic graphs model these workflows as nodes and directed edges, while topological sort produces a valid execution order. Kahn&#x27;s algorithm computes this ordering in O(V+E) time, and because nodes at the same level share no dependencies, they can execute in parallel — a key advantage over linear pipelines.</description>
-    <pubDate>2026-08-05T05:56:50Z</pubDate>
-    <source>Arpit Bhayani</source>
+    <title>Enabling the next iteration of the borrow checker on nightly</title>
+    <link>https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/</link>
+    <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/</guid>
+    <description>Rust is enabling Polonius Alpha, the next iteration of its borrow checker, on nightly in preparation for stabilization later this year. Polonius originated from the NLL effort in 2018, but the original formulation was too slow to be practical. A new formulation imagined in 2023 required minimal rearchitecture of the existing NLL implementation and can be extended to allow more code to compile. Polonius Alpha&#x27;s key advantage over NLL is flow-sensitive borrow checking of lifetime outlives relationships, enabling programs with patterns like conditional returns from map operations to compile, since it recognizes that borrows aren&#x27;t always live across all branches. While some programs that compile under legacy Polonius don&#x27;t compile with Polonius Alpha (and vice versa), there are no known remaining issues with the subset intended for stabilization. Performance is generally acceptable, though Polonius Alpha does equal or more work than NLL, with the worst observed regression being 2-3x in crates with many borrows.</description>
+    <pubDate>2026-08-04T00:00:00+00:00</pubDate>
+    <source>Rust Blog</source>
+  </item>
+  <item>
+    <title>How the GitHub legal team used Copilot CLI to streamline their workflows</title>
+    <link>https://github.blog/ai-and-ml/github-copilot/how-the-github-legal-team-used-copilot-cli-to-streamline-their-workflows/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/how-the-github-legal-team-used-copilot-cli-to-streamline-their-workflows/</guid>
+    <description>Members of GitHub&#x27;s legal team, who are lawyers, program managers, and business professionals rather than engineers, used GitHub Copilot CLI to build custom tools for their daily work without writing traditional code. Principal Product Counsel Ngandu Kasuku created &quot;terms-ai,&quot; a contract drafting tool that draws on an internal style guide based on plain language principles and a library of approved agreements stored in a repository, cutting her review and drafting time roughly in half. Online Safety Counsel Jesse Geraci began with a narrow problem of analyzing source code for DMCA notice evaluations and expanded the tool to handle additional recurring tasks. By asking for what they wanted in plain language and connecting to existing repositories, team members transformed repetitive processes like contract review and legal triage into structured, AI-assisted workflows. The team emphasized that the key lesson was using AI to build tools around their own judgment and working style rather than relying on it for isolated tasks.</description>
+    <pubDate>Tue, 04 Aug 2026 19:02:34 +0000</pubDate>
+    <source>GitHub Blog</source>
+  </item>
+  <item>
+    <title>Agentic Nesting: A New Methodology for Existing Enterprise Application Integration and Services</title>
+    <link>https://arxiv.org/abs/2608.05159</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.05159</guid>
+    <description>Enterprise operations depend on multiple heterogeneous business systems and information applications, creating severe data silos and process fragmentation despite substantial prior investment. Conventional integration approaches such as Enterprise Service Bus, API gateways, and Robotic Process Automation suffer from high architectural coupling, escalating maintenance costs, and limited intelligence. To address these limitations, the authors propose Agentic Nesting, a multi-agent collaboration framework that encapsulates existing enterprise applications as autonomous AI agents within a hierarchically nested structure of layered stewardship topologies. The framework extracts a digital agent proxy from each legacy application to enable natural-language interaction and autonomous manipulation, coordinating multiple agents through a central orchestrator for task decomposition and dynamic dispatching. It also exposes a unified conversational interface for cross-application querying and process orchestration, introducing the &quot;Application-as-Agent&quot; integration paradigm and the &quot;Conversation-as-Integration&quot; interaction philosophy while exploring generalization across heterogeneous system coordination and large-scale data applications.</description>
+    <pubDate>Fri, 07 Aug 2026 00:00:00 -0400</pubDate>
+    <source>arXiv cs.AI</source>
+  </item>
+  <item>
+    <title>The Ignition Index: Measuring Global Workspace Dynamics in Language Models</title>
+    <link>https://arxiv.org/abs/2608.05160</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.05160</guid>
+    <description>The paper introduces the Ignition Index, a scalar metric that operationalizes Global Workspace Theory&#x27;s all-or-none ignition prediction in transformer language models by fitting a four-parameter sigmoid to per-layer linear probe accuracy and extracting a steepness parameter. Testing across 11 models from five architecture families, the authors demonstrate 9.6-fold selectivity for genuine linguistic structure over spurious probe capacity using shuffled-label controls. Feedforward transformers exceed state-space models by 89% in aggregate ignition, with Mamba exhibiting near-linear profiles consistent with absent global broadcast. In the recurrent Huginn-3.5B model, ignition manifests 2.12 times more strongly along the iteration axis than the depth axis, while Pythia-410M shows a training-phase transition that precedes induction-head formation. Hypotheses linking ignition to model scale and signal strength were not confirmed, suggesting transformer architectures may saturate available ignition mechanisms.</description>
+    <pubDate>Fri, 07 Aug 2026 00:00:00 -0400</pubDate>
+    <source>arXiv cs.AI</source>
+  </item>
+  <item>
+    <title>Woodpecker Distillation: Weak Models Diagnose Reasoning Bugs in Strong Models</title>
+    <link>https://arxiv.org/abs/2608.05168</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.05168</guid>
+    <description>Large language models often fail on reasoning tasks despite possessing the capability to solve them, with many failures arising from localized reasoning bugs in intermediate steps rather than global incompetence. The authors show that inserting a short patch generated by a weak probe model after the same strong-model reasoning prefix can redirect the trajectory toward a correct solution. However, this corrective effect is not reliably internalized by directly fine-tuning on weak patches, suggesting the useful signal lies in how interventions reshape the model&#x27;s future reasoning distribution. They propose Woodpecker Distillation, a weak-to-strong training framework that learns from contrastive local interventions by contrasting successful and unsuccessful weak-model patches at the same prefix. The method constructs a corrective teacher distribution from their induced future token predictions and distills this signal into the strong model. Experiments on mathematical reasoning benchmarks demonstrate that Woodpecker Distillation consistently improves strong-model performance and outperforms direct imitation baselines.</description>
+    <pubDate>Fri, 07 Aug 2026 00:00:00 -0400</pubDate>
+    <source>arXiv cs.AI</source>
+  </item>
+  <item>
+    <title>From Continuous Predictors to Clinical Thresholds: Early Evidence on Performance Trade-offs of Guideline-Based Categorisation for Ischaemic Stroke Outcome Prediction</title>
+    <link>https://arxiv.org/abs/2608.05203</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.05203</guid>
+    <description>Machine learning models achieve strong predictive accuracy for 90-day outcome prediction in acute ischaemic stroke, but clinical adoption is hindered by the misalignment of model explanations with clinicians&#x27; reasoning. Motivated by a clinician user study calling for clinical guideline-aligned cut-offs, the authors investigate whether continuous predictors can be replaced by clinically informed categorical encodings without sacrificing performance. Using a multi-centre European registry stratified into three treatment cohorts, they compare standard gradient-boosted models with fully categorised models that use stroke guideline-aligned, treatment-specific thresholds. The fully categorised models are statistically indistinguishable from their continuous counterparts in two of the treatment cohorts, while showing a significant drop in predictive accuracy in one cohort. Global feature importance rankings remain consistent across all treatment groups, indicating that discretising continuous predictors preserves the core hierarchy of prognostic factors. The findings suggest that guideline-based categorisation is a viable design choice for stroke-outcome models.</description>
+    <pubDate>Fri, 07 Aug 2026 00:00:00 -0400</pubDate>
+    <source>arXiv cs.AI</source>
+  </item>
+  <item>
+    <title>SkillTrace: Multi-Trace Provenance Auditing for LLM-Agent Skill Reuse</title>
+    <link>https://arxiv.org/abs/2608.05204</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.05204</guid>
+    <description>SkillTrace is a multi-trace provenance auditing framework designed to detect reuse of LLM-agent skills, which are mixed-modality packages combining metadata, natural-language instructions, code, tools, references, and workflows. The framework extracts three provenance traces: Expression, Implementation, and Operational, with the Operational Trace represented as a Skill Operational Graph (SOG) that captures activation, procedure, and resource-flow structure. An LLM assists only the Operational-trace extraction once at ingestion, while audit-time comparisons are performed deterministically against cached traces and calibrated using same-function strict negatives. On the SKILLTRACE-BENCH benchmark, comprising 820 transformed reuse positives over 100 marketplace anchors and 751 negative controls, the system achieves AUROC 0.938 and F1 0.898. A 36,446-skill wild audit further demonstrates that trace-attributed evidence surfaces actionable reuse review queues beyond repository-level baselines.</description>
+    <pubDate>Fri, 07 Aug 2026 00:00:00 -0400</pubDate>
+    <source>arXiv cs.AI</source>
+  </item>
+  <item>
+    <title>On non-rooted Android 17, ADB uninstall of system apps fails</title>
+    <link>https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/issues/1426</link>
+    <guid isPermaLink="false">https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/issues/1426</guid>
+    <description>A GitHub issue was opened in the Universal-Debloater-Alliance repository requesting that the &quot;Disable mode&quot; option become the default setting in the universal-android-debloater-next-generation tool. Currently referred to as &quot;Freeze&quot; in AppManager, this mode would replace the default &quot;Uninstall&quot; action, which has been causing significant problems for users. On non-rooted Android 17 devices, ADB-based uninstall attempts of system apps reportedly fail, highlighting the need for a safer alternative. The feature request, labeled as an enhancement, was submitted by Rudxain on July 1, 2026. The proposed change would help users avoid the complications associated with uninstalling system applications while still allowing them to effectively manage bloatware on their devices.</description>
+    <pubDate>2026-08-06T06:24:42Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Show HN: The Channels SDK – Bring Any Agent to Any Channel (Slack, MS Teams)</title>
+    <link>https://github.com/CopilotKit/channels-sdk</link>
+    <guid isPermaLink="false">https://github.com/CopilotKit/channels-sdk</guid>
+    <description>The Channels SDK by CopilotKit connects AI agents to communication platforms like Slack, Microsoft Teams, and Discord while preserving the agent&#x27;s tools, model, and business logic. It supports AG-UI-compatible frameworks including LangGraph, CrewAI, Mastra, Pydantic AI, and Google ADK, allowing messages to render as native platform UI such as Slack Block Kit and Teams Adaptive Cards. The SDK enables agents to stream responses, call tools, work with files, display interactive elements like buttons and choices, and pause for human approval before acting. Managed connections for Slack and Teams are handled through CopilotKit Intelligence, with additional channels planned. Developers can build channels either through a hosted setup guide driven by a coding agent or by installing skills directly via the CLI.</description>
+    <pubDate>2026-08-06T16:05:51Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Zapscape (CVE-2026-64561): Guest-to-Host Escape in KVM/x86</title>
+    <link>https://github.com/V4bel/Zapscape</link>
+    <guid isPermaLink="false">https://github.com/V4bel/Zapscape</guid>
+    <description>Zapscape (CVE-2026-64561) is a use-after-free vulnerability discovered by Hyunwoo Kim in the shadow MMU emulation of KVM/x86, specifically in the recursive zap path that runs when shadow pages are reclaimed. The flaw allows a guest to escape to the host and execute commands with kernel (root) privilege, threatening guest-host isolation in KVM/x86 hosts that accept untrusted guests with nested virtualization enabled, particularly multi-tenant x86 public clouds. The vulnerability allows guest-side actions alone to corrupt the host kernel&#x27;s shadow page. The issue affects kernel versions from f95eec9bed76 (2020-07-08) to 2abd5287f083 (2026-07-21). A proof-of-concept targets AMD systems and is designed to run safely under QEMU TCG, employing a three-level nesting structure (L0 host, L1 escape target, L2 guest) to demonstrate the exploit chain. On successful execution, the PoC creates a /Zapscape file owned by root on the host, though the code serves as demonstration rather than a weaponized cloud exploit.</description>
+    <pubDate>2026-08-06T16:24:36Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Show HN: Pokémon Emerald Ported to Raspberry Pi Pico 2</title>
+    <link>https://github.com/mattdeeds/pokeemerald-rp2350</link>
+    <guid isPermaLink="false">https://github.com/mattdeeds/pokeemerald-rp2350</guid>
+    <description>Pokémon Emerald has been ported to run natively on a $6 Raspberry Pi Pico 2 (RP2350B) microcontroller, achieving 60 fps gameplay with HDMI output, real button input, and persistent saves. The implementation is not an emulator; the pret decompilation is recompiled from ARMv4T to Cortex-M33, with the Game Boy Advance&#x27;s video hardware reimplemented in software on the second core. The RP2350B runs at 252 MHz, with core 0 handling game logic in about 0.3 ms per frame and core 1 rendering at about 12 ms per frame to a 240×160</description>
+    <pubDate>2026-08-06T21:49:07Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Mario Meets Pareto</title>
+    <link>https://www.mayerowitz.io/blog/mario-meets-pareto</link>
+    <guid isPermaLink="false">https://www.mayerowitz.io/blog/mario-meets-pareto</guid>
+    <description>In Mario Kart 8, choosing the optimal combination of driver, body, tires, and glider involves navigating thousands of builds with varying statistics such as speed, acceleration, handling, weight, offroad, and mini turbo. Economist Vilfredo Pareto&#x27;s century-old concept helps filter out suboptimal options by identifying those that are dominated on every dimension—for instance, Koopa is outperformed by Cat Peach in speed and Toadette in acceleration. The non-dominated choices form what&#x27;s known as the Pareto frontier, which objectively eliminates inefficient builds but doesn&#x27;t reveal a single best option. Players must still apply personal preferences and play style to select the most suitable component from the frontier. This multi-objective optimization approach extends beyond gaming to real-world trade-offs involving meals, jobs, investment portfolios, materials, taxation, and AI models, though knowing one&#x27;s exact utility function reduces the problem to simple single-objective optimization.</description>
+    <pubDate>2026-08-06T11:24:53Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Discovery Loop</title>
+    <link>https://www.discoveryloop.com/</link>
+    <guid isPermaLink="false">https://www.discoveryloop.com/</guid>
+    <description>Discovery Loop is focused on automating the experimental loops of scientific and engineering research to overcome bottlenecks in the scientific method. The company uses frontier AI models and large-scale computational infrastructure to rapidly propose, run, and learn from thousands of parallel experiments. Initially, it will concentrate on automating machine learning research and engineering, using its own systems as the first customer before expanding to other domains. The long-term vision is to address National Academy of Engineering Grand Challenges, including engineering better medicines, advancing health informatics, making solar energy economical, providing clean water, securing cyberspace, and improving scientific discovery tools. The founding team includes Jeff Dean, Sanjay Ghemawat, Quoc Le, and Oriol Vinyals, researchers behind foundational advances including AlphaFold, Gemini, TensorFlow, TPUs, and multiple generations of LLMs, as well as infrastructure such as Google Search, Google Translate, MapReduce, and Spanner.</description>
+    <pubDate>2026-08-05T16:19:44Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Changes at Google DeepMind: Demis Hassabis from CEO to Chair, Jeff Dean departs</title>
+    <link>https://blog.google/company-news/inside-google/message-ceo/next-chapter-ai-momentum/</link>
+    <guid isPermaLink="false">https://blog.google/company-news/inside-google/message-ceo/next-chapter-ai-momentum/</guid>
+    <description>Google and Alphabet CEO Sundar Pichai announced leadership changes at Google DeepMind, with Demis Hassabis transitioning from CEO to Chair of Google DeepMind and Chief Scientist of Alphabet, while continuing to lead Isomorphic Labs. Koray Kavukcuoglu, currently Chief Technology Officer of Google DeepMind, will step up as Senior Vice President, reporting to Pichai and overseeing Gemini model development, Frontier AI research, and the Gemini app and developer teams. After a 27-year tenure at Google, Jeff Dean is departing alongside Google Senior Fellow Sanjay Ghemawat to launch an independent public benefit corporation focused on accelerating discoveries in machine learning, science, and engineering. Google will continue collaborating with them as a founding investor and Cloud partner. The announcements come amid strong momentum for Google&#x27;s AI products, with the Gemini app reaching over 950 million monthly users and Gemma models surpassing 900 million downloads.</description>
+    <pubDate>2026-08-05T16:05:31Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Crime Pays but Botany Doesn&#x27;t</title>
+    <link>https://www.crimepaysbutbotanydoesnt.com/reading-list</link>
+    <guid isPermaLink="false">https://www.crimepaysbutbotanydoesnt.com/reading-list</guid>
+    <description>Teaching oneself botany is more accessible than it appears, thanks to the internet providing round-the-clock access to information. Latin terminology remains the standard because Linnaeus created a universal naming system that scientists across cultures could use, and common names are unreliable—one name like &quot;cedar&quot; can refer to eight unrelated plants, while Cedrus specifically identifies a genus containing species like C. libani and C. deodara. Scientific nomenclature follows strict formatting rules: the genus name is capitalized, the species name is lowercase, and both are italicized. Modern taxonomy groups plants according to evolutionary relationships, allowing botanists to identify unfamiliar species by recognizing shared traits within families or genera. For those pursuing deeper study, Plant Systematics by Michael Simpson is recommended as a foundational textbook covering plant evolution, morphology, and identification through synapomorphies, with the third edition serving as a long-term reference.</description>
+    <pubDate>2026-08-06T04:46:35Z</pubDate>
+    <source>Hacker News</source>
   </item>
 </channel></rss>
