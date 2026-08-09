@@ -2,12 +2,36 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-08</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-09</description>
+  <item>
+    <title>What AI First Engineering Orgs Look Like</title>
+    <link>https://arpitbhayani.me/blogs/ai-first-org</link>
+    <guid isPermaLink="false">https://arpitbhayani.me/blogs/ai-first-org</guid>
+    <description>As AI reshapes the pace and structure of software development, understanding how leading engineering organizations have restructured their teams, workflows, and tooling around it is becoming essential for anyone trying to keep up. The differences between an organization that has genuinely internalized AI-first practices and one that has merely bolted on a few copilots are stark, and they show up in hiring, architecture, review processes, and how product decisions get made. Studying these patterns gives engineering leaders a concrete reference point rather than another vague call to &quot;embrace AI,&quot; and helps individual engineers anticipate where their roles and skills are headed. In a landscape where every company claims to be AI-driven, knowing what the real thing actually looks like is a meaningful advantage.</description>
+    <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    <source>Arpit Bhayani</source>
+  </item>
+  <item>
+    <title>Three Claude Skills I Think Every Org Should Have</title>
+    <link>https://arpitbhayani.me/blogs/three-skills</link>
+    <guid isPermaLink="false">https://arpitbhayani.me/blogs/three-skills</guid>
+    <description>Arpit Bhayani argues that engineering organizations need three executable tools rather than documentation that can rot. The first skill, create-app, should provision a database, wire up logging, register the service with an identity provider, and deploy to production before any business logic is written. The second, deploy, should integrate forward deploys, rollbacks, environment-scoped tests, and post-deploy smoke tests as one unified flow, since rollback paths tend to be the least exercised and most unreliable. The third, debugging, should match live symptoms to known service-specific failure patterns and surface direct links to relevant logs, traces, and dashboards rather than pointing at raw data. Bhayani emphasizes that broken tools fail loudly and get fixed immediately, while stale documentation misleads people for months. As AI agents increasingly handle service creation and incident triage, executable tools ensure correct behavior by default, so he recommends starting with the worst-paging service to prove the numbers move.</description>
+    <pubDate>Fri, 31 Jul 2026 00:00:00 GMT</pubDate>
+    <source>Arpit Bhayani</source>
+  </item>
+  <item>
+    <title>G-Eval, Explained</title>
+    <link>https://arpitbhayani.me/blogs/g-eval</link>
+    <guid isPermaLink="false">https://arpitbhayani.me/blogs/g-eval</guid>
+    <description>As LLMs become integral to products and workflows, reliably measuring the quality of their outputs has turned into a bottleneck—and G-Eval offers one of the most accessible solutions. It reframes evaluation as a task the LLM itself can perform, using chain-of-thought reasoning and a structured form-filling approach to score generated text. Understanding how it works matters because it outperforms traditional metrics like BLEU and ROUGE in aligning with human judgment, shaping how researchers benchmark new models and how teams choose which LLM to ship. Getting fluent in G-Eval is also a gateway to the broader question of whether models can meaningfully judge their own kind.</description>
+    <pubDate>Tue, 14 Jul 2026 00:00:00 GMT</pubDate>
+    <source>Arpit Bhayani</source>
+  </item>
   <item>
     <title>A guide to slash commands in the GitHub Copilot app</title>
     <link>https://github.blog/ai-and-ml/github-copilot/a-guide-to-slash-commands-in-the-github-copilot-app/</link>
     <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/a-guide-to-slash-commands-in-the-github-copilot-app/</guid>
-    <description>Slash commands are text shortcuts you type directly into the GitHub Copilot app&#x27;s chat composer. By typing a forward slash, an autocomplete menu appears with context-appropriate commands for managing sessions, navigating projects, and customizing workflows. While some commands like /clear and /model work in both the CLI and the app, app-specific commands are tailored for the multi-session workflow the desktop app provides. File access commands such as /add-dir or /cwd aren&#x27;t needed since the app manages project context automatically. The article highlights several commands: /plan helps break down tasks before coding and switches the session to Plan mode, /spar challenges assumptions and identifies risks, and /autopilot handles implementation steps. Additional commands include /rubber-duck for a second-opinion review using a different model, /create-canvas for building interactive visualizations, and /orchestrate for coordinating work across multiple repositories and sessions.</description>
+    <description>Slash commands in the GitHub Copilot app are text shortcuts typed directly into the chat composer, where typing &quot;/&quot; triggers an autocomplete menu of context-aware options. While commands like /clear and /model work in both the CLI and the app, the app&#x27;s commands are tailored for managing multi-session workflows rather than terminal-based tasks. /plan helps break down tasks before coding and switches the session into Plan mode, while /autopilot handles implementation steps in Autopilot mode. /spar pressure-tests ideas by having Copilot challenge assumptions and identify risks, and /rubber-duck uses a different model to independently review work for blind spots. For richer interactions, /create-canvas turns conversations into interactive visualizations or dashboards, and /orchestrate coordinates work across multiple sessions and repositories by breaking larger efforts into parallel tasks.</description>
     <pubDate>Thu, 06 Aug 2026 19:49:34 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
@@ -15,136 +39,104 @@
     <title>How we took malware advisories beyond npm</title>
     <link>https://github.blog/security/supply-chain-security/how-we-took-malware-advisories-beyond-npm/</link>
     <guid isPermaLink="false">https://github.blog/security/supply-chain-security/how-we-took-malware-advisories-beyond-npm/</guid>
-    <description>GitHub expanded its malware advisory coverage beyond npm to eight major package ecosystems—PyPI, Maven, RubyGems, NuGet, Go, crates.io, and PHP Composer—by building an importer that ingests OpenSSF&#x27;s malicious-packages repository, which holds over 15,000 OSV-formatted reports. The importer validates each record against the schema, rejecting and logging any that fail rather than quietly patching them, and skips entries originating from GitHub itself to avoid round-trip duplicates. Because the auto-published advisories now trigger Dependabot alerts without human review, the team added three safety layers: configurable batch caps that halt a run entirely if exceeded, provenance metadata tracing each advisory back to the exact upstream commit, and batch-level rollback that can revert a poisoned import as a single unit. Dependabot malware alerts are opt-in and begin matching dependencies against the database, including backfilled historical advisories, as soon as they are enabled.</description>
+    <description>GitHub extended its malware advisory coverage beyond npm to eight major package ecosystems—npm, PyPI, Maven, RubyGems, NuGet, Go, crates.io, and PHP Composer—by building an importer for OpenSSF&#x27;s malicious-packages repository, which holds over 15,000 OSV-format reports. The Dependabot team validates each record against the schema before ingestion, normalizes mismatched ecosystem strings and version formats, and filters out GitHub&#x27;s own upstream-originated reports using OSV origin metadata to avoid round-trip imports. Because the advisories auto-publish without human review, the pipeline includes three safeguards: configurable batch caps that halt and page on suspicious volume, provenance tracking back to specific upstream commits, and batch-level rollback to revert any poisoned imports. Dependabot malware alerts are opt-in at the repository, organization, or enterprise level, with a backfill applied against existing advisories the moment the feature is enabled.</description>
     <pubDate>Thu, 06 Aug 2026 16:51:12 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
-    <title>How the GitHub legal team used Copilot CLI to streamline their workflows</title>
-    <link>https://github.blog/ai-and-ml/github-copilot/how-the-github-legal-team-used-copilot-cli-to-streamline-their-workflows/</link>
-    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/how-the-github-legal-team-used-copilot-cli-to-streamline-their-workflows/</guid>
-    <description>GitHub&#x27;s legal team, composed of lawyers, program managers, and business professionals rather than engineers, used GitHub Copilot CLI to build custom tools that streamlined their workflows. Principal Product Counsel Ngandu Kasuku created &quot;terms-ai,&quot; a contract drafting tool featuring an internal drafting style guide based on plain language principles and a library of prior agreements. Since adopting it, she cut her review and drafting time roughly in half and achieved more consistent provisions across agreements. Online Safety Counsel Jesse Geraci began by analyzing source code for DMCA notices using plain-language instruction files, then expanded the project into a desktop app that handles contract review, NDA triage, risk assessment, compliance checks, and response drafting. Both emphasized that clearly defining methodology and standards enabled them to build serious AI tooling without traditional coding or engineering support.</description>
-    <pubDate>Tue, 04 Aug 2026 19:02:34 +0000</pubDate>
-    <source>GitHub Blog</source>
-  </item>
-  <item>
-    <title>How to keep thinking</title>
-    <link>https://seangoedecke.com/how-to-keep-thinking/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/how-to-keep-thinking/</guid>
-    <description>Working in tech in 2026 often feels frenetic, as engineers spin off tasks for AI agents and rapidly skim through their outputs rather than engaging in slow, careful thought. The author worries this habit is eroding their capacity for deep reflection and creativity. To counteract this, they recommend writing in your own words, since articulating ideas yourself forces genuine thinking rather than assembling fragments. Reading dense non-fiction books, and ideally writing about them, also helps restore slower mental habits. While AI-assisted work is now standard in software engineering, the author argues that losing the skill of careful thought would be a mistake, particularly for complex tasks like large refactors that demand taste and independent problem-solving.</description>
-    <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
-    <source>Sean Goedecke</source>
-  </item>
-  <item>
-    <title>Giving and taking credit in big tech companies</title>
-    <link>https://seangoedecke.com/giving-and-taking-credit/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/giving-and-taking-credit/</guid>
-    <description>Engineers in big tech companies must actively manage their visibility and take credit for their work, because managers cannot assess technical quality on their own and instead rely on quiet conversations with trusted engineers throughout the organization. Successful engineers write internal posts, mention their accomplishments in one-on-ones, and build relationships with their management chain. However, hoarding credit is counterproductive: sharing credit with peers gives them a reason to speak positively about your projects, since credit flows through informal networks that assess work at multiple organizational levels. Blame follows the same pattern, so projects concentrated in one person become easy targets when failures occur, as no one else is incentivized to defend them. Credit and blame ultimately translate directly into promotions, raises, and compensation.</description>
-    <pubDate>Sun, 02 Aug 2026 00:00:00 GMT</pubDate>
-    <source>Sean Goedecke</source>
-  </item>
-  <item>
-    <title>Agentic Nesting: A New Methodology for Existing Enterprise Application Integration and Services</title>
-    <link>https://arxiv.org/abs/2608.05159</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.05159</guid>
-    <description>Enterprise operations depend on heterogeneous business systems that create data silos and process fragmentation, and traditional integration approaches like Enterprise Service Bus, API gateways, and Robotic Process Automation suffer from high architectural coupling, escalating maintenance costs, and limited intelligence. To address these limitations, the authors propose Agentic Nesting, a multi-agent collaboration framework that encapsulates existing enterprise applications as autonomous AI agents organized within a hierarchically nested structure. Layered stewardship topologies mirror the compositional complexity of enterprise ecosystems, while each legacy application exposes a digital agent proxy that enables natural-language interaction and autonomous manipulation. A central orchestrator coordinates these agents through task decomposition and dynamic dispatching, providing a unified conversational interface for cross-application querying and process orchestration. The paper introduces the &quot;Application-as-Agent&quot; integration paradigm and the &quot;Conversation-as-Integration&quot; interaction philosophy, and explores the methodology&#x27;s generalization potential for heterogeneous system coordination and large-scale data applications.</description>
-    <pubDate>Fri, 07 Aug 2026 00:00:00 -0400</pubDate>
+    <title>Learning When to Trust via Selective Context Preference Optimization</title>
+    <link>https://arxiv.org/abs/2608.06377v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.06377v1</guid>
+    <description>Language models increasingly rely on external signals, but a single misleading one can derail a correct answer. Training models to resist all context eliminates this risk yet renders them useless when the context is trustworthy. The authors recast the issue as selective trust and introduce MIST, a human-annotated benchmark presenting each reasoning item under four matched conditions: clean, misleading, correct-context, and irrelevant-context. They also propose SC2W, a paired metric measuring how often a misleading signal flips a clean-correct answer to wrong, and find such susceptibility to be universal across models. To address this, they develop SCOPE, which mines clean-correct and misleading-wrong failures and applies a Direct Preference Optimization objective over matched preference pairs balanced equally across all four conditions. Experiments on popular open-source models show SCOPE substantially reduces SC2W while preserving accuracy when added context is clean, correct, or irrelevant.</description>
+    <pubDate>2026-08-06T17:59:58Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
-    <title>The Ignition Index: Measuring Global Workspace Dynamics in Language Models</title>
-    <link>https://arxiv.org/abs/2608.05160</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.05160</guid>
-    <description>The paper introduces the Ignition Index, a scalar metric that operationalizes Global Workspace Theory&#x27;s all-or-none ignition prediction in transformer language models by fitting a four-parameter sigmoid to per-layer linear probe accuracy as a function of input signal strength, extracting a steepness parameter β̂. Tested across 11 models spanning five architecture families, the metric demonstrates 9.6-fold selectivity for genuine linguistic structure over spurious probe capacity through shuffled-label controls. The authors find that feedforward transformers exceed state-space models by 89% in aggregate β̂, with Mamba exhibiting near-linear profiles consistent with absent global broadcast. Additionally, Huginn-3.5B shows 2.12-fold higher ignition along its iteration axis than its depth axis, while Pythia-410M displays a phase transition at training step 256 preceding induction-head formation. Hypotheses linking ignition to model scale and signal strength were not confirmed. The work provides the first validated quantitative bridge between Global Workspace Theory&#x27;s dynamical predictions and mechanistic interpretability.</description>
-    <pubDate>Fri, 07 Aug 2026 00:00:00 -0400</pubDate>
+    <title>Tracing the Heart: An Evidence-Linked Pipeline for Heart-Failure Feature Engineering</title>
+    <link>https://arxiv.org/abs/2608.06366v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.06366v1</guid>
+    <description>Electronic health record feature engineering consumes 39-45% of data scientists&#x27; workload, a problem particularly acute in heart failure research, which affects an estimated 6.7 million U.S. adults and requires integrating fragmented clinical data with guideline-based reasoning. To address this, researchers developed the Nimblemind Multi-Agent System (nMAS), an evidence-linked, rubric-grounded pipeline for automated heart-failure feature engineering. Evaluated on 500 dummy patient records drawn from nine EHR source tables, nMAS produced 132 structured and 70 rubric-scored aggregated features that were verified for structural integrity, rubric compliance, and provenance through a restricted LLM audit. Incorporating these aggregated features improved held-out AUROC from 0.895 to 0.963 for HFrEF phenotyping and from 0.870 to 0.910 for HFpEF phenotyping. An independent LLM-based rubric assessment rated the features&#x27; evidence support and methodological soundness at 81.5% of maximum points, though the authors note the evaluation was limited to a single-institution cohort and requires external validation.</description>
+    <pubDate>2026-08-06T17:57:37Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
-    <title>Woodpecker Distillation: Weak Models Diagnose Reasoning Bugs in Strong Models</title>
-    <link>https://arxiv.org/abs/2608.05168</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.05168</guid>
-    <description>Large language models often fail on reasoning tasks even when they possess the capability to solve them, frequently due to localized reasoning bugs in intermediate steps. These bugs are often repairable by inserting a short patch generated by a weak probe model after the strong model&#x27;s reasoning prefix, which redirects the trajectory toward a correct solution. However, this corrective effect is not reliably internalized through direct fine-tuning on weak patches or repaired trajectories. The authors therefore introduce Woodpecker Distillation, a weak-to-strong training framework that learns from contrastive local interventions. It contrasts successful and unsuccessful weak-model patches at the same prefix, constructs a corrective teacher distribution from their induced future token predictions, and distills this signal into the strong model. Experiments on mathematical reasoning benchmarks show that Woodpecker Distillation consistently improves strong-model performance and outperforms direct imitation baselines.</description>
-    <pubDate>Fri, 07 Aug 2026 00:00:00 -0400</pubDate>
+    <title>Investigating Artificial Intelligence Digital Sovereignty in Mobile Shopping Apps: A Case Study of Nigeria</title>
+    <link>https://arxiv.org/abs/2608.06364v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.06364v1</guid>
+    <description>This research examines how Artificial Intelligence in Nigerian mobile shopping applications affects digital sovereignty, using platform transparency as a key indicator of user awareness and control. The study employs an interpretive approach, combining forensic analysis of selected Android applications with contextual document analysis to identify AI features and evaluate disclosure practices. Findings show that AI is widely implemented across the applications examined, yet transparency about its use remains limited. A socio-economic analysis of Nigeria reveals an increasing dependence on consumer digital platforms, moderate AI awareness among users, and uneven patterns of interaction with these technologies. By providing empirical evidence on AI transparency and platform practices, the study advances understanding of individual digital sovereignty and highlights ongoing challenges for protecting user control in AI-driven digital environments.</description>
+    <pubDate>2026-08-06T17:57:28Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
-    <title>From Continuous Predictors to Clinical Thresholds: Early Evidence on Performance Trade-offs of Guideline-Based Categorisation for Ischaemic Stroke Outcome Prediction</title>
-    <link>https://arxiv.org/abs/2608.05203</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.05203</guid>
-    <description>A machine learning study investigates whether continuous predictors can be replaced by clinically informed categorical encodings for 90-day outcome prediction in acute ischaemic stroke without sacrificing performance. Motivated by a clinician user study calling for guideline-aligned cut-offs, the researchers compared standard and fully categorised gradient-boosted models on a multi-centre European registry stratified into three treatment cohorts, with the categorised version using stroke guideline-aligned, treatment-specific thresholds. The fully categorised models were statistically indistinguishable from their continuous counterparts in two of the treatment cohorts, with a significant drop in predictive accuracy occurring in only one cohort. Global feature importance rankings remained consistent across all treatment groups, suggesting that discretising continuous predictors into guideline-based categories preserves the core hierarchy of prognostic factors. The authors conclude that guideline-based categorisation is a viable design choice for stroke-outcome models.</description>
-    <pubDate>Fri, 07 Aug 2026 00:00:00 -0400</pubDate>
+    <title>An Optimal Agnostic PAC Algorithm</title>
+    <link>https://arxiv.org/abs/2608.06363v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.06363v1</guid>
+    <description>This paper, authored by Markus Engelund Mathiasen, Jian Qian, and Nikita Zhivotovskiy, constructs a learner for binary classification that achieves a statistically optimal risk bound in the agnostic PAC learning setting. For a hypothesis class H ⊆ {-1,+1}^X with finite VC dimension d ≥ 1, the proposed algorithm uses an i.i.d. sample of size n and, with probability at least 1-δ, guarantees that the binary risk L(ĥ) is bounded by L* plus a term of order √(L*(d+log(1/δ))/n) + (d+log(1/δ))/n, with a universal constant of 7·10^8. This result matches the lower bounds established by Devroye, Györfi, and Lugosi in their 1996 book on pattern recognition. Consequently, the work settles the sample complexity of agnostic PAC learning up to universal constants at every fixed value of the optimal risk L*.</description>
+    <pubDate>2026-08-06T17:57:25Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
-    <title>SkillTrace: Multi-Trace Provenance Auditing for LLM-Agent Skill Reuse</title>
-    <link>https://arxiv.org/abs/2608.05204</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.05204</guid>
-    <description>SKILLTRACE is a multi-trace provenance auditing framework designed to detect reuse of reusable skills in LLM-agent ecosystems, where skills are marketplace artifacts combining metadata, natural-language instructions, code, tools, references, and operational workflows. The framework addresses limitations of existing detectors, which target either single-modality source code or whole-package similarity and can miss reuse that preserves only one component. SKILLTRACE extracts three provenance traces—Expression, Implementation, and Operational—with the Operational Trace represented as a Skill Operational Graph capturing activation, procedure, and resource-flow structure. An LLM assists only once during ingestion for operational extraction, after which audit-time comparisons run deterministically and each trace is calibrated against same-function strict negatives. On SKILLTRACE-BENCH, comprising 820 transformed reuse positives over 100 marketplace anchors and 751 negative controls, the system achieves AUROC 0.938 and F1 0.898. A 36,446-skill wild audit further demonstrates that trace-attributed evidence surfaces actionable reuse review queues beyond repository-level baselines.</description>
-    <pubDate>Fri, 07 Aug 2026 00:00:00 -0400</pubDate>
+    <title>AV-AIVAT: 74x Cheaper Agent Evaluation with Certified Anytime-Valid Stopping in Imperfect-Information Games</title>
+    <link>https://arxiv.org/abs/2608.06362v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.06362v1</guid>
+    <description>The paper AV-AIVAT by Boning Li, Yu Chen, and Longbo Huang addresses the inefficiency of evaluating two agents in imperfect-information games, where fixed-budget methods either keep paying after the result is settled or stop before the agents can be distinguished, and naive optional stopping invalidates the stated confidence level. The authors combine AIVAT, a variance-reduction technique based on conditional mean-zero corrections, with continuously monitored Confidence Sequences to enable anytime-valid stopping, with an online value model learning only from past games. AIVAT alone achieves a median 54× variance reduction across 15 LLM agent configurations spanning 71,439 paired Heads-Up No-Limit Hold&#x27;em hands. At a 95% nominal level and ±1 Big Blind target precision, raw outcomes require a median 74× as many hands as AIVAT-corrected outcomes under the Asymptotic CS. For exact finite-sample certification, the Empirical-Bernstein CS relies on an independently justified bound, which the authors establish structurally for Leduc hold&#x27;em, while descriptive HUNL runs show a median 1.37× stopping-time ratio.</description>
+    <pubDate>2026-08-06T17:57:11Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
-    <title>Assembly Hall of Shame</title>
-    <link>https://github.com/xoreaxeaxeax/asm-hall-of-shame</link>
-    <guid isPermaLink="false">https://github.com/xoreaxeaxeax/asm-hall-of-shame</guid>
-    <description>The Assembly Hall of Shame is a GitHub repository that takes the opposite approach to typical instruction latency analysis, searching for the absolute floor of single-instruction performance rather than focusing on optimization. The project maintains a collection of test cases for numerous x86 instructions, organized into directories covering instructions like clflush, cpuid, fdiv, fsin, fxrstor64, fyl2x, idiv, mfence, mov, rdmsr, rdtsc, and many others. The current x86 champion is the fxrstor64 instruction, which appears to hold the record for slowest single-instruction performance. The repository includes supporting tools, a Makefile, and generates artifacts including an x86 leaderboard graph. By systematically benchmarking these instructions, the project highlights the performance worst-offenders in x86 architecture, providing a unique counterpoint to conventional optimization-focused latency benchmarks.</description>
-    <pubDate>2026-08-07T18:01:30+00:00</pubDate>
+    <title>Show HN: Algebruh - Cross-check arithmetic claims with Z3, cvc5, and Lean</title>
+    <link>https://github.com/skorotkiewicz/algebruh</link>
+    <guid isPermaLink="false">https://github.com/skorotkiewicz/algebruh</guid>
+    <description>Algebruh is a Rust tool that classifies arithmetic equality and disequality claims by reporting proofs, models, countermodels, and disagreements between independent checkers including Z3, cvc5, and Lean. It supports multiple interpretations such as integers, exact real arithmetic, signed and unsigned bit-vectors of 1 to 256 bits, modular arithmetic, quotient rings, and IEEE-754 floating point. Users can declare functions as injective, add assumptions, or send problems to AI commands that must output Lean tactics verified by the Lean kernel. The --all flag activates additional checkers like Vampire, E, and Carcara, with disagreements between solvers flagged as CHECKER_BUG_CANDIDATE. External tools execute through Bubblewrap and prlimit sandboxes, and the --emit option saves SMT-LIB scripts and Z3 proof artifacts for replay.</description>
+    <pubDate>2026-08-08T18:04:15Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Psychological Warfare in Reverse Engineering (2015)</title>
-    <link>https://github.com/xoreaxeaxeax/repsych</link>
-    <guid isPermaLink="false">https://github.com/xoreaxeaxeax/repsych</guid>
-    <description>REpsych is a proof-of-concept toolset that generates images through a program&#x27;s control flow graph (CFG). Created by xoreaxeaxeax (domas) and presented at DEF CON, the project translates source images into functioning programs whose control flow graphs render the original image when viewed in a reverse engineering tool. The compiled binaries work reliably with IDA Pro and semi-reliably with other CFG viewers including Hopper, BinNavi, and radare2. To generate a program from a custom image, users save the image in the gfx/ folder as a 24 BPP bitmap and run &quot;make image&quot; in the project root, which produces two functioning binaries (repsych_v1 and repsych_v2) using different strategies for properly placing CFG nodes. The project has no specific practical purpose beyond demonstrating that the technique is possible, though potential (non-serious) applications are discussed in the accompanying DEF CON presentation.</description>
-    <pubDate>2026-08-07T18:51:45+00:00</pubDate>
+    <title>LinkedIn Feed Blocker</title>
+    <link>https://github.com/andrewpollack/linkedin-feed-blocker</link>
+    <guid isPermaLink="false">https://github.com/andrewpollack/linkedin-feed-blocker</guid>
+    <description>LinkedIn Feed Blocker is a minimal Chrome extension by developer andrewpollack that hides LinkedIn&#x27;s home feed on /feed while keeping the rest of the platform functional. It blocks infinite-scroll feed pagination and uses a CSS rule to set the mainFeed element to display none, alongside a rules.json entry targeting LinkedIn&#x27;s mainFeed pager endpoint. Profiles, jobs, search, messaging, and notifications remain fully accessible. The creator built the extension because they value LinkedIn for job searches and recruiter conversations but dislike the social feed experience. Installation requires downloading the repository, enabling Developer mode in chrome://extensions, and loading the unpacked directory. The project, distributed under an MIT license, has 76 stars and 2 forks, with its Chrome Web Store listing currently pending review.</description>
+    <pubDate>2026-08-08T16:49:07Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Captain Bible Reverse Engineering</title>
-    <link>https://github.com/peterkelly/captain-bible-re</link>
-    <guid isPermaLink="false">https://github.com/peterkelly/captain-bible-re</guid>
-    <description>The repository captain-bible-re by peterkelly hosts a reproducible environment and research notes for reverse-engineering the 1990s DOS game Captain Bible in the Dome of Darkness. The original game files are expected in a CB/ directory that is intentionally ignored by Git, while the FreeDOS/QEMU environment along with planned static and dynamic analysis are already complete. Two documentation outputs are published via GitHub Pages: a reverse-engineering documentation book under docs/ that records research progress, recovered formats, and executable analysis, and a clean-room engine specification book under spec/ that defines game mechanics and a portable compatibility contract for reimplementing the engine without relying on the DOS program&#x27;s internals. Project planning is tracked in PLAN.md as a living checklist, with a full activity log maintained in docs/src/progress-log.md. The repository also includes a rust-engine directory and relies on QEMU (qemu-system-i386 and qemu-img) along with mtools utilities as runtime requirements.</description>
-    <pubDate>2026-08-02T17:38:34+00:00</pubDate>
+    <title>Hardware backdoors in some x86 CPUs</title>
+    <link>https://github.com/xoreaxeaxeax/rosenbridge</link>
+    <guid isPermaLink="false">https://github.com/xoreaxeaxeax/rosenbridge</guid>
+    <description>Project rosenbridge reveals a hardware backdoor in some x86 processors that allows unprivileged ring 3 code to read and write kernel ring 0 data by bypassing memory protections and privilege checks. The backdoor consists of a small, non-x86 core embedded alongside the main x86 core, activated by a model-specific register control bit and toggled with a launch-instruction that feeds commands in a custom deeply embedded instruction set. Although typically disabled, the backdoor is enabled by default on some systems, and only VIA C3 CPUs, marketed toward industrial, point-of-sale, ATM, healthcare, and consumer applications, are thought to be affected. The repository provides utilities to detect affected processors, close the vulnerability, and includes the research tools used to discover the backdoor, which does not appear in CPU generations after the C3. The research was conducted by Christopher Domas as a case study in identifying hidden processor features.</description>
+    <pubDate>2026-08-08T07:04:51Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: Wyzer Programming Language</title>
-    <link>https://github.com/Wyzer-Lang/wyzer</link>
-    <guid isPermaLink="false">https://github.com/Wyzer-Lang/wyzer</guid>
-    <description>Wyzer is a statically typed, compiled, resource-oriented programming language that integrates distributed safety through choreographic programming and a Perceus memory model. The project is associated with Atiksh Sharma, who describes it with the quote &quot;Simplicity is not the absence of power. It is power without pretense.&quot; The language was developed to address limitations that Rust leaves unaddressed, specifically distributed deadlocks, protocol mismatches, and cross-service correctness. By introducing choreographic programming, Wyzer aims to provide correctness guarantees across services and distributed systems. The repository includes documentation covering introduction, variables and types, control flow, functions and structs, and the memory model, along with a Discord community for contributor collaboration.</description>
-    <pubDate>2026-08-07T12:28:55+00:00</pubDate>
+    <title>What happens if an entire class of workers loses faith in their careers</title>
+    <link>https://www.noemamag.com/why-is-everyone-in-tech-so-sad/</link>
+    <guid isPermaLink="false">https://www.noemamag.com/why-is-everyone-in-tech-so-sad/</guid>
+    <description>Knowledge workers are increasingly experiencing existential disillusionment with their careers, feeling that their work is fundamentally pointless despite high pay. Many are turning to analog hobbies like knitting, pottery, and painting as a form of escape, with some fantasizing about leaving professional life entirely to start farms or live off the grid. Unlike past economic disruptions, this malaise is existential rather than purely financial, affecting even highly paid executives and senior professionals. The article traces this phenomenon to &quot;Workism&quot;—described by Derek Thompson in 2019 as educated professionals seeking meaning from work that previous generations found in religion—combined with the prevalence of jobs in finance, consulting, and technology that often lack altruistic purpose. David Graeber&#x27;s concept of &quot;bullshit jobs&quot; illustrates how much knowledge work serves no meaningful function, and AI is now beginning to execute this abstract work, raising the question of what happens when an entire class of workers loses faith in their careers.</description>
+    <pubDate>2026-08-07T12:42:27Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Am I the problem? Interviewing another team to find out</title>
-    <link>https://www.macchaffee.com/blog/2026/am-i-the-problem/</link>
-    <guid isPermaLink="false">https://www.macchaffee.com/blog/2026/am-i-the-problem/</guid>
-    <description>The author, a DevOps engineer with a history of workplace conflicts—including a lost friendship after two years of arguments at Cisco—interviewed the infra team at ngrok expecting to find similar dysfunction. Instead, he found four team members (James, Stacks, Alex, and Sabrina) who navigated a major technical disagreement over adopting Argo Rollouts versus building custom Buildkite tooling with unusual civility, ultimately reaching consensus without animosity. Each interviewee accurately characterized the others&#x27; views, and none held grudges against those who disagreed. Comparing this healthy dynamic to his own team&#x27;s frequent conflicts, the author realized he might be the common denominator across his past jobs. His reflections on this contrast, combined with years of self-improvement reading, prompted him to confront the possibility that he is the argumentative one.</description>
-    <pubDate>Fri, 07 Aug 2026 14:27:16 -0500</pubDate>
-    <source>Lobsters</source>
+    <title>DeepSeek V4 Flash 0731</title>
+    <link>https://arcprize.org/results/deepseek-v4-flash-0731</link>
+    <guid isPermaLink="false">https://arcprize.org/results/deepseek-v4-flash-0731</guid>
+    <description>DeepSeek V4 Flash 0731, released on July 31, 2026, is available in three reasoning variants: Max, High, and Low. At maximum effort, the model achieves 89.0% on the ARC-AGI-1 Semi-Private benchmark at a cost of $0.02 per task, and 61.4% on the ARC-AGI-2 Semi-Private benchmark at $0.04 per task. The Max variant outperforms the High and Low variants across both benchmarks, with scores of 87.0% and 84.0% on ARC-AGI-1, and 56.0% and 46.0% on ARC-AGI-2 respectively. Detailed pass/fail results are provided for each task across both public evaluations, covering 120 tasks for ARC-AGI-2 and 400 tasks for ARC-AGI-1, showing where the model succeeds or fails at each reasoning level.</description>
+    <pubDate>2026-08-07T17:56:20Z</pubDate>
+    <source>Hacker News</source>
   </item>
   <item>
-    <title>A shell exclamation mark is not for yelling. Be lazy</title>
-    <link>https://refp.se/articles/your-shell-and-the-lazy-exclamation-mark</link>
-    <guid isPermaLink="false">https://refp.se/articles/your-shell-and-the-lazy-exclamation-mark</guid>
-    <description>Shell event designators, available in bash, csh, tcsh, and zsh, let users reference and reuse parts of previous commands using the exclamation mark, following the pattern ![event][:word][:modifier]. Common examples include !! to rerun the previous command, !ssh to repeat the most recent command starting with &quot;ssh&quot;, !$ to grab the last argument (useful with commands like sudo !!), and !# to reference the current line. Word designators like !:0, !:$, and !:* select specific arguments, while modifiers transform them: :h extracts the directory, :t the filename, :r strips the extension, and :s performs substitutions. For POSIX-compatible shells lacking this feature, the fc command offers similar functionality by letting users edit and rerun previous commands in their editor of choice. Users who find the feature disruptive can disable it with set +H in bash or setopt nobanghist in zsh.</description>
-    <pubDate>Thu, 06 Aug 2026 20:18:25 -0500</pubDate>
-    <source>Lobsters</source>
+    <title>“Code was never the hard part” is an insult to all programmers</title>
+    <link>https://blog.senko.net/code-was-never-the-hard-part-is-an-insult-to-all-programmers</link>
+    <guid isPermaLink="false">https://blog.senko.net/code-was-never-the-hard-part-is-an-insult-to-all-programmers</guid>
+    <description>The article disputes the claim that &quot;code was never the hard part,&quot; arguing that this dismissive attitude insults programmers and ignores the years of skilled work, high salaries, and craft required for the profession. The author challenges the idea that figuring out what to build is solely the hard part, noting that product managers and business analysts aren&#x27;t held to the same rigorous standards or paid as highly as developers. While acknowledging that understanding users and solving their problems is critical, the author insists that good code is also a craft demanding skill, patience, and experience. The article advises developers to embrace ongoing change, deepen their technical foundations, and learn about adjacent fields like user experience and business strategy. Finally, the author warns against outsourcing judgment, empathy, and taste to AI, urging readers to take responsibility for their own understanding rather than acting as a &quot;meat proxy.&quot;</description>
+    <pubDate>2026-08-08T14:32:33Z</pubDate>
+    <source>Hacker News</source>
   </item>
   <item>
-    <title>PS3 emulation is fast on ARM now</title>
-    <link>https://www.youtube.com/watch?v=-aI_XEwmKFk</link>
-    <guid isPermaLink="false">https://www.youtube.com/watch?v=-aI_XEwmKFk</guid>
-    <description>It appears the article content was not included in your message—only the title &quot;PS3 emulation is fast on ARM now&quot; and an empty &quot;Comments&quot; section were provided. Could you please share the full article text so I can summarize it for you in 4-6 sentences (100-150 words) using only the facts it contains?</description>
-    <pubDate>Fri, 07 Aug 2026 12:50:55 -0500</pubDate>
-    <source>Lobsters</source>
-  </item>
-  <item>
-    <title>What are you doing this weekend?</title>
-    <link>https://lobste.rs/s/ucaatd/what_are_you_doing_this_weekend</link>
-    <guid isPermaLink="false">https://lobste.rs/s/ucaatd/what_are_you_doing_this_weekend</guid>
-    <description>People shared a wide variety of weekend plans, ranging from outdoor activities like camping in New Hampshire, group motorcycle rides through national parks, hiking, and street festivals, to relaxation activities including visiting family, playing dominoes, watching movies, attending concerts and BBQs, and celebrating birthdays. Many planned programming and tech projects, such as building a Python package repository to learn Elixir, working on Zig projects, refactoring a parser generator, migrating from FUSE2 to FUSE3, building a bare metal server, and developing a Social Maps API for OpenStreetMap with Google Takeout integration. Others planned to attend events like DEF CON, Long Island Retro Gaming Expo, or the Capitol Hill Block Party. Creative pursuits included working on a novel, reading &quot;The Will of the Many,&quot; practicing photography, writing Wikipedia pages for bands, and playing Pokémon Platinum on a childhood DSi. Some respondents emphasized that doing nothing or simply going with the flow is also a valid and enjoyable option.</description>
-    <pubDate>Fri, 07 Aug 2026 04:38:13 -0500</pubDate>
-    <source>Lobsters</source>
+    <title>Danish high schoolers will have to verbally defend written assignments</title>
+    <link>https://mezha.net/eng/bukvy/ca117584_denmark_requires_oral/</link>
+    <guid isPermaLink="false">https://mezha.net/eng/bukvy/ca117584_denmark_requires_oral/</guid>
+    <description>Denmark&#x27;s Ministry of Education has announced that high school students must orally defend their written assignments to combat cheating with artificial intelligence. The policy takes effect immediately and applies to upper-secondary students, primarily affecting approximately 9,000 students enrolled in the two-year Higher Preparatory Examination (HF) program who must submit major written assignments annually. In addition to mandatory oral defenses, schools are being urged to use screen-monitoring tools during exams, install firewalls to restrict access to certain content, and require more assignments to be completed on campus under supervision. Education Minister Magnus Heunicke acknowledged that students are using AI to cheat and emphasized that action is needed now while continuing consultations on long-term solutions. Three organizations representing school leaders, teachers, and students welcomed the measures but called for more lasting solutions as technology continues to advance, with student representatives requesting involvement in shaping future policies.</description>
+    <pubDate>2026-08-08T18:09:31Z</pubDate>
+    <source>Hacker News</source>
   </item>
 </channel></rss>
