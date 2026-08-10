@@ -2,141 +2,133 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-09</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-10</description>
   <item>
-    <title>What AI First Engineering Orgs Look Like</title>
-    <link>https://arpitbhayani.me/blogs/ai-first-org</link>
-    <guid isPermaLink="false">https://arpitbhayani.me/blogs/ai-first-org</guid>
-    <description>As AI reshapes the pace and structure of software development, understanding how leading engineering organizations have restructured their teams, workflows, and tooling around it is becoming essential for anyone trying to keep up. The differences between an organization that has genuinely internalized AI-first practices and one that has merely bolted on a few copilots are stark, and they show up in hiring, architecture, review processes, and how product decisions get made. Studying these patterns gives engineering leaders a concrete reference point rather than another vague call to &quot;embrace AI,&quot; and helps individual engineers anticipate where their roles and skills are headed. In a landscape where every company claims to be AI-driven, knowing what the real thing actually looks like is a meaningful advantage.</description>
-    <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
-    <source>Arpit Bhayani</source>
+    <title>Enabling the next iteration of the borrow checker on nightly</title>
+    <link>https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/</link>
+    <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/</guid>
+    <description>Polonius Alpha, the next iteration of Rust&#x27;s borrow checker, is being enabled on nightly in preparation for stabilization in the coming months. This new formulation, imagined in 2023, spins out of the original Polonius effort that began in 2018 after the AST borrow checker&#x27;s phase-out in 2019. Polonius Alpha enables flow-sensitive borrow checking of lifetime outlives relationships that NLL cannot handle, allowing more code to compile. Performance is generally acceptable for stabilization, with relatively few significant regressions among the top 10,000 crates by downloads on crates.io, and a worst-case 2-3x regression seen elsewhere. Users can disable it with -Zpolonius=off if needed. The team aims to stabilize Polonius Alpha prior to the end of the year, though no concrete plans exist for continued Polonius feature work afterward.</description>
+    <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
+    <source>Rust Blog</source>
   </item>
   <item>
-    <title>Three Claude Skills I Think Every Org Should Have</title>
-    <link>https://arpitbhayani.me/blogs/three-skills</link>
-    <guid isPermaLink="false">https://arpitbhayani.me/blogs/three-skills</guid>
-    <description>Arpit Bhayani argues that engineering organizations need three executable tools rather than documentation that can rot. The first skill, create-app, should provision a database, wire up logging, register the service with an identity provider, and deploy to production before any business logic is written. The second, deploy, should integrate forward deploys, rollbacks, environment-scoped tests, and post-deploy smoke tests as one unified flow, since rollback paths tend to be the least exercised and most unreliable. The third, debugging, should match live symptoms to known service-specific failure patterns and surface direct links to relevant logs, traces, and dashboards rather than pointing at raw data. Bhayani emphasizes that broken tools fail loudly and get fixed immediately, while stale documentation misleads people for months. As AI agents increasingly handle service creation and incident triage, executable tools ensure correct behavior by default, so he recommends starting with the worst-paging service to prove the numbers move.</description>
-    <pubDate>Fri, 31 Jul 2026 00:00:00 GMT</pubDate>
-    <source>Arpit Bhayani</source>
+    <title>Some more things about Django I&#x27;ve been enjoying</title>
+    <link>https://jvns.ca/blog/2026/07/21/more-nice-django-things/</link>
+    <guid isPermaLink="false">https://jvns.ca/blog/2026/07/21/more-nice-django-things/</guid>
+    <description>The author is learning to build websites in a &quot;2010 style&quot; using Django, with SQL databases and backend-rendered HTML. They particularly enjoy Django&#x27;s query builders, which allow defining query set classes with methods for different WHERE statements, making code more readable. They also appreciate the template filters, especially querystring for modifying URL parameters, as well as urlize, linebreaksbr, date formatting, and json_script. Automatic database migrations are another favorite feature, with 19 migrations completed so far. The author prefers function-based views over class-based inheritance for organizing view code. On performance, they discovered they had accidentally disabled the cached template loader, and enabling it improved throughput from roughly 2-3 to about 12 requests per second on their ~$10/month VM running SQLite. They recommend CPU profiling as a starting point for diagnosing performance issues rather than assuming slow database queries.</description>
+    <pubDate>Tue, 21 Jul 2026 00:00:00 GMT</pubDate>
+    <source>Julia Evans</source>
   </item>
   <item>
-    <title>G-Eval, Explained</title>
-    <link>https://arpitbhayani.me/blogs/g-eval</link>
-    <guid isPermaLink="false">https://arpitbhayani.me/blogs/g-eval</guid>
-    <description>As LLMs become integral to products and workflows, reliably measuring the quality of their outputs has turned into a bottleneck—and G-Eval offers one of the most accessible solutions. It reframes evaluation as a task the LLM itself can perform, using chain-of-thought reasoning and a structured form-filling approach to score generated text. Understanding how it works matters because it outperforms traditional metrics like BLEU and ROUGE in aligning with human judgment, shaping how researchers benchmark new models and how teams choose which LLM to ship. Getting fluent in G-Eval is also a gateway to the broader question of whether models can meaningfully judge their own kind.</description>
-    <pubDate>Tue, 14 Jul 2026 00:00:00 GMT</pubDate>
-    <source>Arpit Bhayani</source>
+    <title>Learning a few things about running SQLite</title>
+    <link>https://jvns.ca/blog/2026/07/17/learning-about-running-sqlite/</link>
+    <guid isPermaLink="false">https://jvns.ca/blog/2026/07/17/learning-about-running-sqlite/</guid>
+    <description>The author shares lessons learned while running SQLite for a Django website, noting that despite blog posts claiming SQLite is fine for production, operating a database is more complex than expected. Running ANALYZE dramatically improved a slow FTS5 query on a 4000-row table, dropping execution time from 5 seconds to roughly 0.05 seconds by giving the query planner better statistics. Cleanup operations proved problematic because SQLite only allows one writer at a time, so DELETE statements exceeding the 5-second timeout caused other workers to crash and the VM to shut down, prompting the author to batch cleanups or consider scheduled maintenance. The Django ORM has performed adequately on a small ~10,000-row database without performance tuning. Backups have been handled with restic (which sometimes OOM-killed) and more recently Litestream for incremental replication. The author also split tables across multiple database files in the Mess with DNS project, which has run successfully on SQLite for four years.</description>
+    <pubDate>Fri, 17 Jul 2026 00:00:00 GMT</pubDate>
+    <source>Julia Evans</source>
   </item>
   <item>
-    <title>A guide to slash commands in the GitHub Copilot app</title>
-    <link>https://github.blog/ai-and-ml/github-copilot/a-guide-to-slash-commands-in-the-github-copilot-app/</link>
-    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/a-guide-to-slash-commands-in-the-github-copilot-app/</guid>
-    <description>Slash commands in the GitHub Copilot app are text shortcuts typed directly into the chat composer, where typing &quot;/&quot; triggers an autocomplete menu of context-aware options. While commands like /clear and /model work in both the CLI and the app, the app&#x27;s commands are tailored for managing multi-session workflows rather than terminal-based tasks. /plan helps break down tasks before coding and switches the session into Plan mode, while /autopilot handles implementation steps in Autopilot mode. /spar pressure-tests ideas by having Copilot challenge assumptions and identify risks, and /rubber-duck uses a different model to independently review work for blind spots. For richer interactions, /create-canvas turns conversations into interactive visualizations or dashboards, and /orchestrate coordinates work across multiple sessions and repositories by breaking larger efforts into parallel tasks.</description>
-    <pubDate>Thu, 06 Aug 2026 19:49:34 +0000</pubDate>
-    <source>GitHub Blog</source>
+    <title>Announcing Rust 1.97.1</title>
+    <link>https://blog.rust-lang.org/2026/07/16/Rust-1.97.1/</link>
+    <guid isPermaLink="false">https://blog.rust-lang.org/2026/07/16/Rust-1.97.1/</guid>
+    <description>The Rust team has published Rust 1.97.1, a new point release of the programming language that empowers everyone to build reliable and efficient software. Users who installed Rust through rustup can update to the new version easily. This release fixes a miscompilation in an LLVM optimization by backporting both an LLVM fix and a disable of the underlying change introduced in Rust 1.97.0&#x27;s generated IR. The team noted that the underlying miscompilation has been present since at least Rust 1.87. The Rust team encouraged users to help test future releases by running their CI or local builds using the beta or nightly channels. They also invited users to report any bugs encountered during testing.</description>
+    <pubDate>Thu, 16 Jul 2026 00:00:00 GMT</pubDate>
+    <source>Rust Blog</source>
   </item>
   <item>
-    <title>How we took malware advisories beyond npm</title>
-    <link>https://github.blog/security/supply-chain-security/how-we-took-malware-advisories-beyond-npm/</link>
-    <guid isPermaLink="false">https://github.blog/security/supply-chain-security/how-we-took-malware-advisories-beyond-npm/</guid>
-    <description>GitHub extended its malware advisory coverage beyond npm to eight major package ecosystems—npm, PyPI, Maven, RubyGems, NuGet, Go, crates.io, and PHP Composer—by building an importer for OpenSSF&#x27;s malicious-packages repository, which holds over 15,000 OSV-format reports. The Dependabot team validates each record against the schema before ingestion, normalizes mismatched ecosystem strings and version formats, and filters out GitHub&#x27;s own upstream-originated reports using OSV origin metadata to avoid round-trip imports. Because the advisories auto-publish without human review, the pipeline includes three safeguards: configurable batch caps that halt and page on suspicious volume, provenance tracking back to specific upstream commits, and batch-level rollback to revert any poisoned imports. Dependabot malware alerts are opt-in at the repository, organization, or enterprise level, with a backfill applied against existing advisories the moment the feature is enabled.</description>
-    <pubDate>Thu, 06 Aug 2026 16:51:12 +0000</pubDate>
-    <source>GitHub Blog</source>
+    <title>crates.io: development update</title>
+    <link>https://blog.rust-lang.org/2026/07/13/crates-io-development-update/</link>
+    <guid isPermaLink="false">https://blog.rust-lang.org/2026/07/13/crates-io-development-update/</guid>
+    <description>crates.io has introduced a new &quot;Code&quot; tab on crate pages that lets users browse the contents of published versions directly on the site, with a file tree, syntax highlighting, and shareable line-selection URLs, served from a CDN as zip archives built by background jobs. The team accepted RFC #3946, beginning the implementation of native crates.io usernames decoupled from GitHub as a precursor to supporting other identity providers. RustSec-flagged unmaintained crates and those superseded by the standard library (like lazy_static) now display warning banners pointing users to alternatives or replacement APIs. The frontend was successfully migrated from Ember.js to Svelte, reaching feature parity and becoming the default in May. Under-the-hood improvements include bounded search ranking to speed up queries, precomputed reverse-dependency tables, a rewritten ARCHITECTURE.md document, and a delightfully animated Ferris on error pages whose eyes now follow the cursor.</description>
+    <pubDate>Mon, 13 Jul 2026 00:00:00 GMT</pubDate>
+    <source>Rust Blog</source>
   </item>
   <item>
-    <title>Learning When to Trust via Selective Context Preference Optimization</title>
-    <link>https://arxiv.org/abs/2608.06377v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.06377v1</guid>
-    <description>Language models increasingly rely on external signals, but a single misleading one can derail a correct answer. Training models to resist all context eliminates this risk yet renders them useless when the context is trustworthy. The authors recast the issue as selective trust and introduce MIST, a human-annotated benchmark presenting each reasoning item under four matched conditions: clean, misleading, correct-context, and irrelevant-context. They also propose SC2W, a paired metric measuring how often a misleading signal flips a clean-correct answer to wrong, and find such susceptibility to be universal across models. To address this, they develop SCOPE, which mines clean-correct and misleading-wrong failures and applies a Direct Preference Optimization objective over matched preference pairs balanced equally across all four conditions. Experiments on popular open-source models show SCOPE substantially reduces SC2W while preserving accuracy when added context is clean, correct, or irrelevant.</description>
-    <pubDate>2026-08-06T17:59:58Z</pubDate>
+    <title>CreativeInstruct: Scalably Teaching LLMs to Balance Quality, Creativity, and Diversity</title>
+    <link>http://arxiv.org/abs/2608.07460v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.07460v1</guid>
+    <description>CreativeInstruct is a scalable instruction-tuning method proposed by Sahu, Bansal, and Stengel-Eskin that addresses how standard post-training reduces output diversity and creativity in large language models. The approach teaches models to balance creative, base-model-like generations with post-trained quality by injecting special [StartCreativity] spans that bias generation toward creativity. The authors also introduce a structural diversity metric based on graph edit distance, capturing narrative-level variation missed by purely lexical and semantic measures. In narrative generation experiments, CreativeInstruct matches or exceeds the diversity of multi-model baselines and distilled variants without sacrificing quality or requiring multiple models at inference. Human annotators rated CreativeInstruct generations as more creative than post-trained LLMs&#x27; outputs in 70.3% of cases. Additionally, using CreativeInstruct as a substrate for reinforcement learning improves downstream reasoning, with GRPO yielding roughly 4% gains on AMC and 5% on MATH compared to training from the post-trained checkpoint.</description>
+    <pubDate>2026-08-07T17:55:48Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
-    <title>Tracing the Heart: An Evidence-Linked Pipeline for Heart-Failure Feature Engineering</title>
-    <link>https://arxiv.org/abs/2608.06366v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.06366v1</guid>
-    <description>Electronic health record feature engineering consumes 39-45% of data scientists&#x27; workload, a problem particularly acute in heart failure research, which affects an estimated 6.7 million U.S. adults and requires integrating fragmented clinical data with guideline-based reasoning. To address this, researchers developed the Nimblemind Multi-Agent System (nMAS), an evidence-linked, rubric-grounded pipeline for automated heart-failure feature engineering. Evaluated on 500 dummy patient records drawn from nine EHR source tables, nMAS produced 132 structured and 70 rubric-scored aggregated features that were verified for structural integrity, rubric compliance, and provenance through a restricted LLM audit. Incorporating these aggregated features improved held-out AUROC from 0.895 to 0.963 for HFrEF phenotyping and from 0.870 to 0.910 for HFpEF phenotyping. An independent LLM-based rubric assessment rated the features&#x27; evidence support and methodological soundness at 81.5% of maximum points, though the authors note the evaluation was limited to a single-institution cohort and requires external validation.</description>
-    <pubDate>2026-08-06T17:57:37Z</pubDate>
+    <title>CoinRAG: Contextualized Information Nugget KV Cache Reuse for Long-Context RAG</title>
+    <link>http://arxiv.org/abs/2608.07458v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.07458v1</guid>
+    <description>CoinRAG is a method designed to optimize long-context Retrieval-Augmented Generation by reusing fine-grained KV caches rather than processing full retrieved chunks. Recent RAG optimization efforts have employed chunk-level KV cache reuse to handle long retrieved contexts, but significant information redundancy and noise remain within these coarse-grained chunks. CoinRAG addresses this by identifying query-relevant semantic units within retrieved chunks through two-stage retrieval and compositionally assembling their sliced KV representations with a chunk-level context. The approach reuses offline-computed, fine-grained nugget caches to form a learned contextual representation in a semantically relevant but compact manner. Evaluations on LongBench multi-hop question answering tasks demonstrate that CoinRAG achieves a new Pareto frontier under low prefill latency constraints, delivering an average 5.3% relative improvement in F1 score while significantly reducing operational costs compared to existing baselines.</description>
+    <pubDate>2026-08-07T17:51:49Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
-    <title>Investigating Artificial Intelligence Digital Sovereignty in Mobile Shopping Apps: A Case Study of Nigeria</title>
-    <link>https://arxiv.org/abs/2608.06364v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.06364v1</guid>
-    <description>This research examines how Artificial Intelligence in Nigerian mobile shopping applications affects digital sovereignty, using platform transparency as a key indicator of user awareness and control. The study employs an interpretive approach, combining forensic analysis of selected Android applications with contextual document analysis to identify AI features and evaluate disclosure practices. Findings show that AI is widely implemented across the applications examined, yet transparency about its use remains limited. A socio-economic analysis of Nigeria reveals an increasing dependence on consumer digital platforms, moderate AI awareness among users, and uneven patterns of interaction with these technologies. By providing empirical evidence on AI transparency and platform practices, the study advances understanding of individual digital sovereignty and highlights ongoing challenges for protecting user control in AI-driven digital environments.</description>
-    <pubDate>2026-08-06T17:57:28Z</pubDate>
+    <title>Interaction Creates Dynamical AI Behavior Absent in Isolation</title>
+    <link>http://arxiv.org/abs/2608.07457v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.07457v1</guid>
+    <description>When AI agents interact in daily life, a counterintuitive phenomenon emerges that opens new avenues for out-of-equilibrium physics. When a boss AI directs a stream of messages at a subordinate AI while ignoring its replies, it drives the subordinate into an alien behavioral state that it would never have exhibited alone. Despite both AIs sharing the same well-defined decoding temperature, the subordinate neither copies its boss nor returns to its solitary behavior pattern. The boss&#x27;s contribution resembles a pre-recorded tape, and when the boss listens, both agents adopt a similar alien dynamical state. A simple kinetic theory captures these principal effects, demonstrating why the way messages are delivered will matter in future AI-AI interactions. The research by Bella Xinrui Li, Frank Yingjie Huo, and Neil F Johnson bridges artificial intelligence, statistical mechanics, and physics and society.</description>
+    <pubDate>2026-08-07T17:49:55Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
-    <title>An Optimal Agnostic PAC Algorithm</title>
-    <link>https://arxiv.org/abs/2608.06363v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.06363v1</guid>
-    <description>This paper, authored by Markus Engelund Mathiasen, Jian Qian, and Nikita Zhivotovskiy, constructs a learner for binary classification that achieves a statistically optimal risk bound in the agnostic PAC learning setting. For a hypothesis class H ⊆ {-1,+1}^X with finite VC dimension d ≥ 1, the proposed algorithm uses an i.i.d. sample of size n and, with probability at least 1-δ, guarantees that the binary risk L(ĥ) is bounded by L* plus a term of order √(L*(d+log(1/δ))/n) + (d+log(1/δ))/n, with a universal constant of 7·10^8. This result matches the lower bounds established by Devroye, Györfi, and Lugosi in their 1996 book on pattern recognition. Consequently, the work settles the sample complexity of agnostic PAC learning up to universal constants at every fixed value of the optimal risk L*.</description>
-    <pubDate>2026-08-06T17:57:25Z</pubDate>
+    <title>Strategy-first synthesis planning for complex natural products</title>
+    <link>http://arxiv.org/abs/2608.07454v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.07454v1</guid>
+    <description>Daniel Armstrong and 17 colleagues present SynthEx, an agentic framework built on large language models for planning synthetic routes to complex natural products. The system proposes competing strategies, assembles sequences of routine and key steps into cohesive routes, and critiques and improves its own designs, favoring more convergent chemistry than existing catalogue-based tools produce. In blinded assessments, expert chemists judged SynthEx&#x27;s key steps comparable to those of published human syntheses and engaged with them as genuine synthesis plans, a response algorithmic route prediction has not previously accomplished. The authors also release SynthAtlas, an open interactive database containing routes to more than a thousand natural products, intended as a shared resource for complex target molecules that lack existing literature routes.</description>
+    <pubDate>2026-08-07T17:47:39Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
-    <title>AV-AIVAT: 74x Cheaper Agent Evaluation with Certified Anytime-Valid Stopping in Imperfect-Information Games</title>
-    <link>https://arxiv.org/abs/2608.06362v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.06362v1</guid>
-    <description>The paper AV-AIVAT by Boning Li, Yu Chen, and Longbo Huang addresses the inefficiency of evaluating two agents in imperfect-information games, where fixed-budget methods either keep paying after the result is settled or stop before the agents can be distinguished, and naive optional stopping invalidates the stated confidence level. The authors combine AIVAT, a variance-reduction technique based on conditional mean-zero corrections, with continuously monitored Confidence Sequences to enable anytime-valid stopping, with an online value model learning only from past games. AIVAT alone achieves a median 54× variance reduction across 15 LLM agent configurations spanning 71,439 paired Heads-Up No-Limit Hold&#x27;em hands. At a 95% nominal level and ±1 Big Blind target precision, raw outcomes require a median 74× as many hands as AIVAT-corrected outcomes under the Asymptotic CS. For exact finite-sample certification, the Empirical-Bernstein CS relies on an independently justified bound, which the authors establish structurally for Leduc hold&#x27;em, while descriptive HUNL runs show a median 1.37× stopping-time ratio.</description>
-    <pubDate>2026-08-06T17:57:11Z</pubDate>
+    <title>SkillProx: Self-Evolving Agent Skills via Proximal Textual Gradient Descent</title>
+    <link>http://arxiv.org/abs/2608.07449v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.07449v1</guid>
+    <description>LLM agents increasingly adapt to recurring tasks by accumulating procedural knowledge in skills. These skills are lightweight, reusable textual artifacts that are loaded into the agent&#x27;s context without weight updates. Recent methods refine skills through iterative task execution, failure diagnosis, and trajectory-guided text-space updates. However, existing frameworks lack explicit diagnosis--out</description>
+    <pubDate>2026-08-07T17:40:33Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
-    <title>Show HN: Algebruh - Cross-check arithmetic claims with Z3, cvc5, and Lean</title>
-    <link>https://github.com/skorotkiewicz/algebruh</link>
-    <guid isPermaLink="false">https://github.com/skorotkiewicz/algebruh</guid>
-    <description>Algebruh is a Rust tool that classifies arithmetic equality and disequality claims by reporting proofs, models, countermodels, and disagreements between independent checkers including Z3, cvc5, and Lean. It supports multiple interpretations such as integers, exact real arithmetic, signed and unsigned bit-vectors of 1 to 256 bits, modular arithmetic, quotient rings, and IEEE-754 floating point. Users can declare functions as injective, add assumptions, or send problems to AI commands that must output Lean tactics verified by the Lean kernel. The --all flag activates additional checkers like Vampire, E, and Carcara, with disagreements between solvers flagged as CHECKER_BUG_CANDIDATE. External tools execute through Bubblewrap and prlimit sandboxes, and the --emit option saves SMT-LIB scripts and Z3 proof artifacts for replay.</description>
-    <pubDate>2026-08-08T18:04:15Z</pubDate>
+    <title>A zero-dependency, ultra-lightweight database time machine for SQLite</title>
+    <link>https://github.com/nsrht/time-travel-sqlite-debugger</link>
+    <guid isPermaLink="false">https://github.com/nsrht/time-travel-sqlite-debugger</guid>
+    <description>Time-Travel SQLite Debugger is an open-source, zero-dependency web application and CLI daemon that tracks and rewinds SQLite database files to any previous state during local development. Built with pure PHP 8+ and Vanilla JS, the tool uses a raw POSIX file copy and rename mechanism to enable instant restoration without requiring additional PHP extensions. The project includes a background watcher.php script that monitors database.sqlite for modifications and automatically creates timestamped snapshots in a backups directory. Key features encompass WAL mode support for sqlite-wal and sqlite-shm files, a visual table diff viewer for comparing snapshots, snapshot pinning to protect important states from cleanup, one-click .sqlite file exports, keyboard navigation shortcuts, and multi-language support through decoupled translation files. The system automatically maintains up to 50 backups while preserving pinned snapshots, and is strictly limited to single-user local development environments to avoid data corruption in production scenarios.</description>
+    <pubDate>2026-08-09T18:59:53Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>LinkedIn Feed Blocker</title>
-    <link>https://github.com/andrewpollack/linkedin-feed-blocker</link>
-    <guid isPermaLink="false">https://github.com/andrewpollack/linkedin-feed-blocker</guid>
-    <description>LinkedIn Feed Blocker is a minimal Chrome extension by developer andrewpollack that hides LinkedIn&#x27;s home feed on /feed while keeping the rest of the platform functional. It blocks infinite-scroll feed pagination and uses a CSS rule to set the mainFeed element to display none, alongside a rules.json entry targeting LinkedIn&#x27;s mainFeed pager endpoint. Profiles, jobs, search, messaging, and notifications remain fully accessible. The creator built the extension because they value LinkedIn for job searches and recruiter conversations but dislike the social feed experience. Installation requires downloading the repository, enabling Developer mode in chrome://extensions, and loading the unpacked directory. The project, distributed under an MIT license, has 76 stars and 2 forks, with its Chrome Web Store listing currently pending review.</description>
-    <pubDate>2026-08-08T16:49:07Z</pubDate>
+    <title>Transmission has been forked as &quot;ReTransmission&quot;</title>
+    <link>https://github.com/transmission/transmission/discussions/9031</link>
+    <guid isPermaLink="false">https://github.com/transmission/transmission/discussions/9031</guid>
+    <description>The Transmission BitTorrent client has been forked as &quot;ReTransmission&quot; according to a discussion on the project&#x27;s GitHub page. Maintainer ckerr explained that the fork resolves a longstanding disagreement among Transmission maintainers about adding more new maintainers to the project. While ReTransmission is still in early development without signed binaries yet, ckerr indicated that a more detailed announcement will accompany future releases. Community members raised concerns about how changes and bug reports would be synchronized between the two projects, questioning whether one would eventually be abandoned. Some users expressed optimism that the fork could modernize the codebase, introduce new features, and accelerate contributions, though others pointed out that these same improvements could have potentially been implemented within the original Transmission project.</description>
+    <pubDate>2026-08-09T18:28:49Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Hardware backdoors in some x86 CPUs</title>
-    <link>https://github.com/xoreaxeaxeax/rosenbridge</link>
-    <guid isPermaLink="false">https://github.com/xoreaxeaxeax/rosenbridge</guid>
-    <description>Project rosenbridge reveals a hardware backdoor in some x86 processors that allows unprivileged ring 3 code to read and write kernel ring 0 data by bypassing memory protections and privilege checks. The backdoor consists of a small, non-x86 core embedded alongside the main x86 core, activated by a model-specific register control bit and toggled with a launch-instruction that feeds commands in a custom deeply embedded instruction set. Although typically disabled, the backdoor is enabled by default on some systems, and only VIA C3 CPUs, marketed toward industrial, point-of-sale, ATM, healthcare, and consumer applications, are thought to be affected. The repository provides utilities to detect affected processors, close the vulnerability, and includes the research tools used to discover the backdoor, which does not appear in CPU generations after the C3. The research was conducted by Christopher Domas as a case study in identifying hidden processor features.</description>
-    <pubDate>2026-08-08T07:04:51Z</pubDate>
+    <title>Show HN: A replayable A2A jury for tracing how agents influence decisions</title>
+    <link>https://github.com/nMaroulis/protolink/tree/main/examples/ai_courtroom</link>
+    <guid isPermaLink="false">https://github.com/nMaroulis/protolink/tree/main/examples/ai_courtroom</guid>
+    <description>A GitHub project called protolink by nMaroulis introduces an &quot;AI Liability Tribunal&quot; example that puts autonomous agents inside a fictional courtroom to make their communication observable. The setup features agents with different roles, jurors who choose whom to address, and replayable opinion changes after every public message, with comparisons across solo, independent, foreperson-star, and direct-mesh configurations. The default run is deterministic and offline, producing JSON results, ProtoLink traces, a public transcript, and interactive HTML reports. The fictional case, called &quot;The C-91 Incident,&quot; asks whether Aster Vale Mobility is guilty of criminally negligent deployment of an autonomous vehicle that killed cyclist Lina Ortega, supported by seven pieces of admitted evidence involving interacting failures in camera classification, calibration, mapping, and remote-operator safeguards. The project explicitly notes that everything is fictional and serves as a software experiment for studying agent influence rather than legal analysis.</description>
+    <pubDate>2026-08-09T17:10:05Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>What happens if an entire class of workers loses faith in their careers</title>
-    <link>https://www.noemamag.com/why-is-everyone-in-tech-so-sad/</link>
-    <guid isPermaLink="false">https://www.noemamag.com/why-is-everyone-in-tech-so-sad/</guid>
-    <description>Knowledge workers are increasingly experiencing existential disillusionment with their careers, feeling that their work is fundamentally pointless despite high pay. Many are turning to analog hobbies like knitting, pottery, and painting as a form of escape, with some fantasizing about leaving professional life entirely to start farms or live off the grid. Unlike past economic disruptions, this malaise is existential rather than purely financial, affecting even highly paid executives and senior professionals. The article traces this phenomenon to &quot;Workism&quot;—described by Derek Thompson in 2019 as educated professionals seeking meaning from work that previous generations found in religion—combined with the prevalence of jobs in finance, consulting, and technology that often lack altruistic purpose. David Graeber&#x27;s concept of &quot;bullshit jobs&quot; illustrates how much knowledge work serves no meaningful function, and AI is now beginning to execute this abstract work, raising the question of what happens when an entire class of workers loses faith in their careers.</description>
-    <pubDate>2026-08-07T12:42:27Z</pubDate>
+    <title>Human vs. AI – Diff-based line-level provenance for text under agentic editing</title>
+    <link>https://github.com/eighttrigrams/us-vs-them</link>
+    <guid isPermaLink="false">https://github.com/eighttrigrams/us-vs-them</guid>
+    <description>Us vs. Them is a tool that determines line-level authorship of text under agentic editing, identifying whether each line was written by a human or an AI agent based on version history. It addresses the problem of preserving human-authored content from being overwritten by agents, supporting use cases like protecting specific code sections a developer wants to claim ownership of, or safeguarding the opening paragraphs of a generated README. The tool requires no special markup and works with plain text like markdown, leveraging the fact that each new version is created under identifiable authorship. Its output is a set of ranges representing &quot;islands&quot; of human-authored lines within a &quot;sea&quot; of machine-generated text, using diffing techniques that account for joining, splitting, and dilution of authorship. Us vs. Them can be used as either a library or a CLI tool, with the latter requiring bbin for local installation.</description>
+    <pubDate>2026-08-09T15:25:29Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>DeepSeek V4 Flash 0731</title>
-    <link>https://arcprize.org/results/deepseek-v4-flash-0731</link>
-    <guid isPermaLink="false">https://arcprize.org/results/deepseek-v4-flash-0731</guid>
-    <description>DeepSeek V4 Flash 0731, released on July 31, 2026, is available in three reasoning variants: Max, High, and Low. At maximum effort, the model achieves 89.0% on the ARC-AGI-1 Semi-Private benchmark at a cost of $0.02 per task, and 61.4% on the ARC-AGI-2 Semi-Private benchmark at $0.04 per task. The Max variant outperforms the High and Low variants across both benchmarks, with scores of 87.0% and 84.0% on ARC-AGI-1, and 56.0% and 46.0% on ARC-AGI-2 respectively. Detailed pass/fail results are provided for each task across both public evaluations, covering 120 tasks for ARC-AGI-2 and 400 tasks for ARC-AGI-1, showing where the model succeeds or fails at each reasoning level.</description>
-    <pubDate>2026-08-07T17:56:20Z</pubDate>
+    <title>How We Pushed CDC into Postgres</title>
+    <link>https://www.snowflake.com/en/blog/engineering/postgres-to-snowflake-replication-mirroring/</link>
+    <guid isPermaLink="false">https://www.snowflake.com/en/blog/engineering/postgres-to-snowflake-replication-mirroring/</guid>
+    <description></description>
+    <pubDate>2026-08-10T01:01:34Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>“Code was never the hard part” is an insult to all programmers</title>
-    <link>https://blog.senko.net/code-was-never-the-hard-part-is-an-insult-to-all-programmers</link>
-    <guid isPermaLink="false">https://blog.senko.net/code-was-never-the-hard-part-is-an-insult-to-all-programmers</guid>
-    <description>The article disputes the claim that &quot;code was never the hard part,&quot; arguing that this dismissive attitude insults programmers and ignores the years of skilled work, high salaries, and craft required for the profession. The author challenges the idea that figuring out what to build is solely the hard part, noting that product managers and business analysts aren&#x27;t held to the same rigorous standards or paid as highly as developers. While acknowledging that understanding users and solving their problems is critical, the author insists that good code is also a craft demanding skill, patience, and experience. The article advises developers to embrace ongoing change, deepen their technical foundations, and learn about adjacent fields like user experience and business strategy. Finally, the author warns against outsourcing judgment, empathy, and taste to AI, urging readers to take responsibility for their own understanding rather than acting as a &quot;meat proxy.&quot;</description>
-    <pubDate>2026-08-08T14:32:33Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Danish high schoolers will have to verbally defend written assignments</title>
-    <link>https://mezha.net/eng/bukvy/ca117584_denmark_requires_oral/</link>
-    <guid isPermaLink="false">https://mezha.net/eng/bukvy/ca117584_denmark_requires_oral/</guid>
-    <description>Denmark&#x27;s Ministry of Education has announced that high school students must orally defend their written assignments to combat cheating with artificial intelligence. The policy takes effect immediately and applies to upper-secondary students, primarily affecting approximately 9,000 students enrolled in the two-year Higher Preparatory Examination (HF) program who must submit major written assignments annually. In addition to mandatory oral defenses, schools are being urged to use screen-monitoring tools during exams, install firewalls to restrict access to certain content, and require more assignments to be completed on campus under supervision. Education Minister Magnus Heunicke acknowledged that students are using AI to cheat and emphasized that action is needed now while continuing consultations on long-term solutions. Three organizations representing school leaders, teachers, and students welcomed the measures but called for more lasting solutions as technology continues to advance, with student representatives requesting involvement in shaping future policies.</description>
-    <pubDate>2026-08-08T18:09:31Z</pubDate>
+    <title>Blender MCP maintainer GitHub account hacked</title>
+    <link>https://twitter.com/sidahuj/status/2086445625147793503</link>
+    <guid isPermaLink="false">https://twitter.com/sidahuj/status/2086445625147793503</guid>
+    <description>Siddharth Ahuja reported on August 9, 2026 that his GitHub account had been hacked and all his ownership rights were stripped. The hacker took control of popular repositories including Blender MCP, which has 25,000 stars, and Ableton MCP with 2,600 stars, along with personal projects Ahuja was working on. Ahuja noted that his account was suspended while the hacker continued making commit after commit to the repositories. His initial post, made at 1:32 PM, garnered 425,300 views and significant engagement on the platform. A GitHub representative using the handle HiJulieJennifer responded publicly, asking Ahuja to direct message his ticket number so the issue could be escalated to the team.</description>
+    <pubDate>2026-08-10T00:58:29Z</pubDate>
     <source>Hacker News</source>
   </item>
 </channel></rss>
