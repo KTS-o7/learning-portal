@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="agent-harness.css?v=10">
-<link rel="stylesheet" href="agent-harness-inline.css?v=13">
+<link rel="stylesheet" href="agent-harness-inline.css?v=14">
 </head>
 <body>
 <div class="chrome"><div class="chrome-in">
@@ -101,15 +101,17 @@
 <script>
 (function(){
   /* Rubric Labs original animation sequence, recreated:
-     1. model node (g opacity=0 with clipPath r48) reveals at center
-     2. model fades, harness segments (path opacity=0) draw in one by one
-     3. sub-agents / reviewer reveal staggered with scale pop (dispatch/verify)
-     4. % counters tick upward (context figures) */
+     1. model node reveals at center, then fades leaving the harness
+     2. harness segments + divider lines draw in one by one
+     3. labels (inline opacity:0) appear with the segments
+     4. sub-agents / reviewer reveal staggered with scale pop (dispatch/verify)
+     5. % counters tick upward (context figures) */
   document.querySelectorAll('.special figure svg').forEach(function(svg){
-    var hidden = svg.querySelectorAll('g[opacity="0"], circle[opacity="0"]');
+    /* attribute-hidden groups/circles/texts: model node, sub-agents, rings */
+    var hidden = svg.querySelectorAll('g[opacity="0"], circle[opacity="0"], text[opacity="0"]');
     var i = 0;
     hidden.forEach(function(el){
-      var d = 500 + i*380; i++;
+      var d = 500 + i*340; i++;
       setTimeout(function(){
         el.style.opacity = '1';
         var t = el.getAttribute('transform') || '';
@@ -119,11 +121,25 @@
         }
       }, d);
     });
-    /* harness segments (6 paths with opacity=0) draw in one by one */
+    /* segments: attribute opacity=0 + fill/stroke 0 -> reveal the wedge art */
     var segs = svg.querySelectorAll('path[opacity="0"]');
     var j = 0;
     segs.forEach(function(p){
-      setTimeout(function(){ p.style.opacity = '1'; }, 1600 + j*260); j++;
+      setTimeout(function(){
+        p.style.opacity = '1';
+        p.style.fillOpacity = '0.06';
+        p.style.strokeOpacity = '0.38';
+      }, 1500 + j*260); j++;
+    });
+    /* divider lines */
+    svg.querySelectorAll('line[stroke-opacity="0"]').forEach(function(l, idx){
+      setTimeout(function(){ l.style.strokeOpacity = '0.38'; }, 2300 + idx*200);
+    });
+    /* inline-hidden labels (style="...opacity:0") appear after segments */
+    var labels = svg.querySelectorAll('text[style*="opacity:0"]');
+    var k = 0;
+    labels.forEach(function(t){
+      setTimeout(function(){ t.style.opacity = '1'; }, 2100 + k*240); k++;
     });
     /* hero: model reveals, then fades leaving the harness */
     var first = svg.querySelector('g[opacity="0"]');
