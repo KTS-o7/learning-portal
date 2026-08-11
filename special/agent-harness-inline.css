@@ -1,19 +1,25 @@
 .special figure svg{display:block;width:100%;height:auto;background:transparent}
 .special figure .swap{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start}
 .special figure .swap > svg{margin:0}
-.special figure svg text{font-family:Georgia,serif;fill:#3c3836}
+.special figure svg text{font-family:Georgia,serif;fill:#227f99}
+.special figure svg circle[stroke="currentColor"]{stroke:#227f99}
 .special figure svg [style*="opacity:0"]{display:none}
 .special figure svg .draw,.special figure svg path[stroke-dasharray]{stroke-dasharray:none}
-.special figure .anim path{stroke-dasharray:1000;stroke-dashoffset:1000;animation:drawline 6s ease-out forwards}
-.special figure .anim [data-appear]{opacity:0;animation:fadein 6s ease-out forwards}
-.special figure .anim [data-appear="1"]{animation-delay:.2s}
-.special figure .anim [data-appear="2"]{animation-delay:.6s}
-.special figure .anim [data-appear="3"]{animation-delay:1s}
-.special figure .anim [data-appear="4"]{animation-delay:1.4s}
-.special figure .anim [data-appear="5"]{animation-delay:1.8s}
-.special figure .anim [data-appear="6"]{animation-delay:2.2s}
-.special figure .anim [data-appear="7"]{animation-delay:2.6s}
-.special figure .anim [data-appear="8"]{animation-delay:3s}
+.special figure .anim svg *{opacity:0;animation:fadein 8s ease-out forwards}
+.special figure .anim svg text{animation-delay:.4s}
+.special figure .anim svg circle[r="48"]{animation-delay:.6s}
+.special figure .anim svg circle[r="27"]{animation-delay:.8s}
+.special figure .anim svg [data-appear]{animation:none;opacity:0;animation:fadein 8s ease-out forwards}
+.special figure .anim svg [data-appear="1"]{animation-delay:.2s}
+.special figure .anim svg [data-appear="2"]{animation-delay:.5s}
+.special figure .anim svg [data-appear="3"]{animation-delay:.9s}
+.special figure .anim svg [data-appear="4"]{animation-delay:1.3s}
+.special figure .anim svg [data-appear="5"]{animation-delay:1.7s}
+.special figure .anim svg [data-appear="6"]{animation-delay:2.1s}
+.special figure .anim svg [data-appear="7"]{animation-delay:2.6s}
+.special figure .anim svg [data-appear="8"]{animation-delay:3.1s}
+.special figure .anim svg path[stroke-dasharray]{stroke-dasharray:600;stroke-dashoffset:600;opacity:1;animation:drawline 8s ease-out forwards}
+.special figure .anim path:not([stroke-dasharray]){animation:fadein 8s ease-out forwards}
 @keyframes drawline{to{stroke-dashoffset:0}}
 @keyframes fadein{to{opacity:1}}
 @media(max-width:680px){
