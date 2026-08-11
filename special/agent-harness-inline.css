@@ -1,0 +1,8 @@
+.special figure svg{display:block;width:100%;height:auto;background:transparent}
+.special figure .swap{display:grid;grid-template-columns:1fr;gap:0}
+.special figure .swap > svg{margin:0}
+.special figure svg text{font-family:Georgia,serif;fill:#3c3836}
+@media(max-width:680px){
+  .special figure{margin:18px 0 24px;padding:10px 8px 12px}
+  .special figure svg{max-height:340px}
+}
