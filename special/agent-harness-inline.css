@@ -1,5 +1,36 @@
+/* Verbatim Rubric Labs illustrations — colors mapped to Daily Byte palette via classes.
+   No SVG markup rewriting: class tokens define color/typography. */
+.special figure{--background:#fbf8ef}
+
+/* palette class mapping */
+.special figure svg [class~="text-primary"]{color:#20262b}
+.special figure svg [class~="text-secondary"]{color:#6f7476}
+.special figure svg [class~="text-sky-600"],.special figure svg [class~="dark:text-sky-400"]{color:#227f99}
+.special figure svg [class~="text-stone-600"],.special figure svg [class~="dark:text-stone-300"]{color:#78716c}
+.special figure svg [class~="stroke-sky-600"],.special figure svg [class~="dark:stroke-sky-400"],
+.special figure svg [class~="stroke-sky-700"],.special figure svg [class~="dark:stroke-sky-300"]{color:#227f99}
+
+/* typography classes */
+.special figure svg text{font-family:Georgia,serif}
+.special figure svg [class~="font-medium"]{font-weight:600}
+.special figure svg [class~="font-mono"]{font-family:ui-monospace,Menlo,Consolas,monospace}
+.special figure svg [class~="tracking-wide"]{letter-spacing:.08em}
+.special figure svg [class~="text-[12px]"],.special figure svg [class~="sm:text-[11px]"]{font-size:12px}
+.special figure svg [class~="text-[11px]"],.special figure svg [class~="sm:text-[9px]"]{font-size:11px}
+.special figure svg [class~="text-[14px]"],.special figure svg [class~="sm:text-[12px]"]{font-size:14px}
+.special figure svg [class~="text-[10px]"]{font-size:10px}
+
+/* motion: smooth state transitions + flowing loop dashes */
+.special figure svg g{transition:opacity .7s ease,transform .7s cubic-bezier(.34,1.56,.64,1)}
+.special figure svg path{transition:fill-opacity .6s ease,stroke-opacity .6s ease}
 .special figure .swap{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
 .special figure .swap > svg{margin:0}
+.special figure .swap svg path:first-of-type{stroke-dasharray:3 12;animation:flowdash 3s linear infinite}
+@keyframes flowdash{to{stroke-dashoffset:-60}}
+
+@media (prefers-reduced-motion:reduce){
+  .special figure svg *{animation:none!important;transition:none!important}
+}
 @media(max-width:680px){
   .special figure .swap{grid-template-columns:1fr;gap:0}
 }
