@@ -102,38 +102,26 @@
 (function(){
   /* Rubric Labs original animation sequence, recreated:
      1. model node reveals at center, then fades leaving the harness
-     2. harness segments + divider lines draw in one by one
+     2. harness segments + divider lines + rings draw in one by one
      3. labels (inline opacity:0) appear with the segments
      4. sub-agents / reviewer reveal staggered with scale pop (dispatch/verify)
      5. % counters tick upward (context figures) */
   document.querySelectorAll('.special figure svg').forEach(function(svg){
-    /* attribute-hidden groups/circles/texts: model node, sub-agents, rings */
-    var hidden = svg.querySelectorAll('g[opacity="0"], circle[opacity="0"], text[opacity="0"]');
+    /* elements hidden via opacity/fill-opacity/stroke-opacity = 0 attrs */
+    var hidden = svg.querySelectorAll('[opacity="0"], [fill-opacity="0"], [stroke-opacity="0"]');
     var i = 0;
     hidden.forEach(function(el){
-      var d = 500 + i*340; i++;
+      var d = 400 + i*240; i++;
       setTimeout(function(){
-        el.style.opacity = '1';
+        if (el.getAttribute('opacity') === '0') el.style.opacity = '1';
+        if (el.getAttribute('fill-opacity') === '0') el.style.fillOpacity = '0.06';
+        if (el.getAttribute('stroke-opacity') === '0') el.style.strokeOpacity = '0.38';
         var t = el.getAttribute('transform') || '';
         if (t.indexOf('scale(0)') > -1) {
           el.style.transform = t; void el.offsetWidth;
           el.style.transform = t.replace('scale(0)','scale(1)');
         }
       }, d);
-    });
-    /* segments: attribute opacity=0 + fill/stroke 0 -> reveal the wedge art */
-    var segs = svg.querySelectorAll('path[opacity="0"]');
-    var j = 0;
-    segs.forEach(function(p){
-      setTimeout(function(){
-        p.style.opacity = '1';
-        p.style.fillOpacity = '0.06';
-        p.style.strokeOpacity = '0.38';
-      }, 1500 + j*260); j++;
-    });
-    /* divider lines */
-    svg.querySelectorAll('line[stroke-opacity="0"]').forEach(function(l, idx){
-      setTimeout(function(){ l.style.strokeOpacity = '0.38'; }, 2300 + idx*200);
     });
     /* inline-hidden labels (style="...opacity:0") appear after segments */
     var labels = svg.querySelectorAll('text[style*="opacity:0"]');
