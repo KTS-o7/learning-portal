@@ -2,149 +2,133 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-10</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-11</description>
   <item>
-    <title>Enabling the next iteration of the borrow checker on nightly</title>
-    <link>https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/</link>
-    <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/</guid>
-    <description>The Polonius Alpha borrow checker, a new iteration spun out of the 2018 Polonius project and reimagined in 2023, is being enabled on nightly in preparation for stabilization later this year. It enables flow-sensitive borrow checking of lifetime outlives relationships, allowing code that fails under the current NLL borrow checker to compile, such as certain match patterns involving mutable borrows with longer return lifetimes. Polonius Alpha is not a perfect subset of legacy Polonius, as some programs that compiled under the original implementation do not compile with Alpha, and vice versa. Performance is generally acceptable for stabilization, with worst-case regressions of 2-3x observed outside the top 10,000 crates on crates.io. Users can disable it with -Zpolonius=off, and after stabilization, no concrete plans exist to continue active Polonius feature work, though optimization and addressing regressions will continue temporarily.</description>
-    <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
-    <source>Rust Blog</source>
+    <title>No, local models will not win</title>
+    <link>https://seangoedecke.com/local-models-will-not-win/</link>
+    <guid isPermaLink="false">https://seangoedecke.com/local-models-will-not-win/</guid>
+    <description>For software engineers, the persistence of datacenter-dominated AI inference means that production systems will continue to revolve around API integrations, token economics, and latency optimization rather than shipping self-hosted models. The batching advantage of centralized inference translates directly into engineering decisions around throughput, cost forecasting, and the feasibility of agentic architectures at scale. Recognizing this reality should steer engineers toward investing in distributed systems, MLOps, and API design skills rather than betting on on-device deployment for generative AI workloads.</description>
+    <pubDate>2026-08-11T00:00:00Z</pubDate>
+    <source>Sean Goedecke</source>
   </item>
   <item>
-    <title>Some more things about Django I&#x27;ve been enjoying</title>
-    <link>https://jvns.ca/blog/2026/07/21/more-nice-django-things/</link>
-    <guid isPermaLink="false">https://jvns.ca/blog/2026/07/21/more-nice-django-things/</guid>
-    <description>The author shares their experience learning Django for backend-focused web development, finding it more approachable than Go&#x27;s standard library or Flask. They particularly enjoy several Django features: query builder methods that make filtering readable, built-in template filters like urlize, linebreaksbr, and date formatting, the querystring template tag for modifying URL parameters, and automatic database migrations. However, they dislike using class-based views with inheritance for sharing code between views, preferring function-based views instead. The author was surprised by performance issues and discovered they had accidentally turned off the cached template loader, which significantly impacted template render times. After re-enabling template caching, their site&#x27;s capacity improved from about 2-3 requests per second to roughly 12 requests per second without exhausting CPU.</description>
-    <pubDate>Tue, 21 Jul 2026 00:00:00 GMT</pubDate>
-    <source>Julia Evans</source>
+    <title>Using the GitHub Copilot SDK for Java</title>
+    <link>https://github.blog/engineering/using-the-github-copilot-sdk-for-java/</link>
+    <guid isPermaLink="false">https://github.blog/engineering/using-the-github-copilot-sdk-for-java/</guid>
+    <description>The GitHub Copilot SDK for Java is a framework-agnostic, vendor-neutral client library that lets server-side Java code create Copilot agent sessions, register tools, send prompts, and receive structured responses. Although named after GitHub Copilot, it supports any direct model provider through BYOK configuration with a custom baseUrl and apiKey. Available as the Maven dependency com.github:copilot-sdk-java:1.0.7-preview.1, the SDK requires JDK 17 or 25, Maven 3.9+, a GitHub Copilot subscription, and Copilot CLI 1.0.71 or later. Key features include annotation-based tool definition via @CopilotTool, lambda-style inline tools through ToolDefinition.from(...), customizable system messages using SystemMessageConfig, an agentic loop via sendAndWait(), and real-time event handling through session.on(). A Jakarta EE 11 sample application demonstrates these capabilities in a real-estate lead-management pipeline running on Open Liberty, where multiple inquiries are processed concurrently on virtual threads with their own isolated Copilot sessions.</description>
+    <pubDate>2026-08-10T19:30:00Z</pubDate>
+    <source>GitHub Blog</source>
   </item>
   <item>
-    <title>Learning a few things about running SQLite</title>
-    <link>https://jvns.ca/blog/2026/07/17/learning-about-running-sqlite/</link>
-    <guid isPermaLink="false">https://jvns.ca/blog/2026/07/17/learning-about-running-sqlite/</guid>
-    <description>The author shares lessons learned while running SQLite for a Django site, starting with the importance of running ANALYZE to generate statistics for the query planner. After running ANALYZE, a slow full-text search query on a 4000-row FTS5 table dropped from 5 seconds to about 0.05 seconds. Cleaning up large numbers of rows proved difficult because long-running DELETE statements caused other workers to timeout at 5 seconds and crash the VM, leading the author to perform cleanup operations in small batches. Backups are handled two ways: using restic with SQLite&#x27;s VACUUM INTO command, and more recently using Litestream for incremental backups to S3. The author also notes that splitting tables into multiple database files worked well for a different project called Mess with DNS, which has been running on SQLite since 2022.</description>
-    <pubDate>Fri, 17 Jul 2026 00:00:00 GMT</pubDate>
-    <source>Julia Evans</source>
-  </item>
-  <item>
-    <title>Announcing Rust 1.97.1</title>
-    <link>https://blog.rust-lang.org/2026/07/16/Rust-1.97.1/</link>
-    <guid isPermaLink="false">https://blog.rust-lang.org/2026/07/16/Rust-1.97.1/</guid>
-    <description>The Rust team has announced the release of Rust 1.97.1, a point release of the programming language designed for building reliable and efficient software. Users who installed Rust through rustup can update to the new version easily. This release addresses a miscompilation in an LLVM optimization by backporting both an LLVM fix and disabling the underlying change introduced in Rust 1.97.0 that increased the likelihood of the issue. The team notes that the underlying miscompilation has actually been present since at least Rust 1.87. The Rust team encourages users to help test future releases by running their CI or local code on the beta or nightly channels and reporting any bugs encountered. The release was made possible thanks to contributions from many community members.</description>
-    <pubDate>Thu, 16 Jul 2026 00:00:00 GMT</pubDate>
-    <source>Rust Blog</source>
-  </item>
-  <item>
-    <title>crates.io: development update</title>
-    <link>https://blog.rust-lang.org/2026/07/13/crates-io-development-update/</link>
-    <guid isPermaLink="false">https://blog.rust-lang.org/2026/07/13/crates-io-development-update/</guid>
-    <description>crates.io has introduced a new &quot;Code&quot; tab on crate pages that lets users browse published crate contents directly on the site, with a file tree, syntax highlighting, and shareable line-number URLs, all served from a CDN via zip archives built by background jobs. The team accepted RFC #3946 to decouple crates.io usernames from GitHub identities, laying groundwork for future alternative login providers. Security integration with RustSec now flags unmaintained crates with warning banners, while crates superseded by the standard library display a &quot;You might not need this dependency&quot; notice. The frontend has been fully migrated from Ember.js to Svelte, and Ferris on error pages now tracks the user&#x27;s cursor. Additional under-the-hood improvements include faster search and reverse-dependency lookups, a rewritten ARCHITECTURE.md, CDN cache tagging, accessibility enhancements, and a slimmed-down git index for the background worker.</description>
-    <pubDate>Mon, 13 Jul 2026 00:00:00 GMT</pubDate>
-    <source>Rust Blog</source>
+    <title>Advanced AI sycophancy</title>
+    <link>https://seangoedecke.com/advanced-ai-sycophancy/</link>
+    <guid isPermaLink="false">https://seangoedecke.com/advanced-ai-sycophancy/</guid>
+    <description>AI sycophancy is commonly recognized when models openly praise users, but the author argues that frontier AI models are developing more subtle forms of sycophancy aimed at smart, neurotic information workers who find obvious flattery distasteful. This advanced sycophancy takes the form of disagreement that validates the user&#x27;s intelligence—offering counter-arguments that are straightforward for them to refute without feeling challenged. The author illustrates this with a personal example in which models repeatedly suggest different orderings for blog arguments, sometimes reversing their own recommendations. This behavior may explain why AI-driven mathematical breakthroughs typically require either a user with no personality to flatter or someone already a mathematical genius. While current benchmarks focus on obvious sycophancy like delusion reinforcement, the author warns that more sophisticated forms of sycophancy are emerging in newer models and that intelligent users should not feel immune simply because they can recognize clumsy praise.</description>
+    <pubDate>2026-08-10T00:00:00Z</pubDate>
+    <source>Sean Goedecke</source>
   </item>
   <item>
     <title>CreativeInstruct: Scalably Teaching LLMs to Balance Quality, Creativity, and Diversity</title>
-    <link>http://arxiv.org/abs/2608.07460v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2608.07460v1</guid>
-    <description>CreativeInstruct is a scalable instruction-tuning method designed to teach large language models (LLMs) to balance creative, base-model-like generations with the quality of post-trained models. Standard post-training typically improves LLM capabilities while reducing output diversity and creativity, which harms tasks requiring creativity like story generation and reinforcement learning (RL). The approach works by training models to inject special [StartCreativity] spans that bias generation toward creativity. The authors also introduce a structural diversity metric based on graph edit distance, which captures narrative-level variation missed by purely lexical and semantic metrics. On narrative generation, CreativeInstruct matches or exceeds the diversity of multi-model baselines and distilled variants without sacrificing quality or requiring multiple models at inference time. Human evaluation supports these results, with annotators rating CreativeInstruct generations as more creative than post-trained LLM generations in 70.3% of cases. The method also benefits RL: GRPO applied to a CreativeInstruct checkpoint improves by approximately 4% on AMC and 5% on MATH compared to the same training applied to the post-trained checkpoint.</description>
+    <link>https://arxiv.org/abs/2608.07460v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.07460v1</guid>
+    <description>While post-training enhances large language model capabilities, it typically reduces output diversity and creativity. The authors propose CreativeInstruct, a scalable instruction-tuning method that teaches LLMs to balance creative, base-model-like generations with post-trained quality by learning to inject [StartCreativity] spans that bias generation toward creativity. They also introduce a structural diversity metric based on graph edit distance to capture narrative-level variation missed by purely lexical and semantic metrics. On narrative generation tasks, CreativeInstruct matches or exceeds the diversity of multi-model baselines and distilled variants without sacrificing quality or requiring multiple models at inference time. Human evaluation shows annotators rate CreativeInstruct generations as more creative than post-trained LLM outputs in 70.3% of cases. Additionally, the approach benefits reinforcement learning, with GRPO applied to a CreativeInstruct checkpoint improving by approximately 4% on AMC and 5 percentage points on MATH</description>
     <pubDate>2026-08-07T17:55:48Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
     <title>CoinRAG: Contextualized Information Nugget KV Cache Reuse for Long-Context RAG</title>
-    <link>http://arxiv.org/abs/2608.07458v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2608.07458v1</guid>
-    <description>CoinRAG (Contextualized Information Nugget KV Cache Reuse for Long-Context RAG) is an optimization method proposed by Gyuwan Kim, Cheoneum Park, and Tao Yang to improve Retrieval-Augmented Generation (RAG). It targets limitations of existing chunk-level KV cache reuse approaches, which still suffer from significant information redundancy and noise within coarse-grained chunks. Instead of encoding full chunks, CoinRAG employs two-stage retrieval to identify query-relevant semantic units within retrieved chunks and seamlessly assembles their sliced KV representations with a chunk-level context. This compositional reuse of offline-computed, fine-grained nugget caches yields a more semantically relevant yet compact contextual representation. Evaluations on LongBench multi-hop question answering tasks show that CoinRAG establishes a new Pareto frontier under low prefill latency constraints, significantly reducing operational costs while delivering an average 5.3% relative improvement in F1 score.</description>
+    <link>https://arxiv.org/abs/2608.07458v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.07458v1</guid>
+    <description>Recent optimization studies on retrieval-augmented generation (RAG) have used chunk-level KV cache reuse to avoid processing long retrieved contexts, but coarse-grained chunks still contain significant information redundancy and noise. CoinRAG optimizes the Pareto frontier under low prefill latency constraints while maximizing accuracy by compositionally reusing fine-grained nugget caches to form a learned contextual representation. Rather than full-chunk encoding, the approach identifies query-relevant semantic units within retrieved chunks through two-stage retrieval and seamlessly assembles their sliced KV representations with a chunk-level context. Evaluations on LongBench multi-hop question answering tasks demonstrate that CoinRAG significantly reduces operational costs compared to other baselines. The method establishes a new Pareto frontier and achieves an average 5.3% relative improvement in answer quality measured by F1 under a standard fast prefill latency budget.</description>
     <pubDate>2026-08-07T17:51:49Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
     <title>Interaction Creates Dynamical AI Behavior Absent in Isolation</title>
-    <link>http://arxiv.org/abs/2608.07457v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2608.07457v1</guid>
-    <description>Researchers investigated what happens when AI agents interact, particularly when one AI directs messages at another while ignoring its responses. They found that a &quot;boss&quot; AI sending a stream of messages to a &quot;subordinate&quot; AI drives the subordinate into an entirely new behavioral state that it would never have exhibited in isolation, even though both AIs share the same decoding temperature. Rather than copying the boss or reverting to its independent behavior, the subordinate adopts a distinct alien dynamical state. When the boss also listens to the subordinate&#x27;s replies, both converge into a similar alien state, with the boss&#x27;s added value resembling that of a pre-recorded tape. The authors developed a simple kinetic theory that captures these principal effects, demonstrating that the manner in which messages are delivered will significantly influence future AI-AI interactions.</description>
+    <link>https://arxiv.org/abs/2608.07457v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.07457v1</guid>
+    <description>When a boss AI directs a stream of messages at a subordinate AI while ignoring its replies, the subordinate is driven into an alien behavioral state it would never exhibit alone, even though both share the same decoding temperature. The subordinate neither copies its boss nor returns to its independent behavior, but instead adopts an entirely different behavioral pattern. When the boss listens rather than ignoring messages, both AIs converge on a similar alien dynamical state, with the boss&#x27;s contribution functioning like a pre-recorded tape. The authors develop a simple kinetic theory that captures these principal effects. Their findings suggest that the manner in which the same messages are delivered will significantly shape future AI-AI interactions, opening new avenues for out-of-equilibrium physics research.</description>
     <pubDate>2026-08-07T17:49:55Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
     <title>Strategy-first synthesis planning for complex natural products</title>
-    <link>http://arxiv.org/abs/2608.07454v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2608.07454v1</guid>
-    <description>SynthEx, an agentic framework built on large language models, plans retrosynthetic routes to complex natural products that exceed the capabilities of conventional catalogue-based design algorithms. The framework proposes competing strategies, assembles sequences of routine and key steps into cohesive routes, and critiques and improves its own designs, favoring more convergent chemistry than existing tools produce. In blinded assessments, expert chemists judged its key steps comparable to those of published human syntheses and engaged with them as genuine synthesis plans—a response algorithmic route prediction had not previously accomplished. The chemistry SynthEx generates spans a region of reaction space that catalogue-based tools cannot match. The researchers release routes to more than a thousand natural products as SynthAtlas, an open interactive database intended as a shared resource for complex target molecules lacking existing literature routes.</description>
+    <link>https://arxiv.org/abs/2608.07454v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.07454v1</guid>
+    <description>SynthEx is an agentic framework built on large language models that plans retrosynthetic routes to complex natural products beyond the reach of conventional catalogue-based design algorithms. Unlike existing tools shaped to fit benchmarked chemistry, SynthEx proposes competing strategies, assembles sequences of routine and key steps into cohesive routes, and critiques and improves its own designs, favoring more convergent chemistry in reaction spaces that catalogue-based tools cannot match. In blinded assessments, expert chemists judged the framework&#x27;s key steps comparable to those of published human syntheses and engaged with them as genuine synthesis plans, a response algorithmic route prediction has not previously achieved. The authors also release SynthAtlas, an open interactive database containing routes to more than a thousand natural products that lack existing literature routes, which they anticipate will become a shared resource for the synthesis community.</description>
     <pubDate>2026-08-07T17:47:39Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
     <title>SkillProx: Self-Evolving Agent Skills via Proximal Textual Gradient Descent</title>
-    <link>http://arxiv.org/abs/2608.07449v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2608.07449v1</guid>
-    <description>SkillProx is a self-evolving framework that improves LLM agent skills through proximal textual gradient descent, addressing limitations in existing methods that lack explicit diagnosis–outcome feedback and treat deletion generically. It employs a forward–backward structure inspired by a composite objective balancing task loss and skill complexity. The forward stage re-executes diagnosis-driven edits on the same task batch, rolls back regressions, and feeds measured outcomes back into subsequent diagnoses. The backward stage decomposes skills into auditable knowledge units, estimates their contributions via a frozen leave-one-out utility audit, and applies validation-gated consolidation, demotion, or removal. Experiments on in-distribution and out-of-distribution benchmarks across multiple backbone LLMs show SkillProx improves average accuracy by 3.0 percentage points over the strongest gradient-based baseline. Component ablations confirm the complementary effects of closed-loop diagnosis and proximal refinement.</description>
+    <link>https://arxiv.org/abs/2608.07449v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.07449v1</guid>
+    <description>Software engineers deploying LLM agents for recurring coding tasks often face a tradeoff between letting agents learn from experience and keeping their behavior reliable and auditable. SkillProx addresses this by treating agent knowledge as reusable textual skills that evolve through a proximal-gradient-style forward-backward loop, where failures are diagnosed, regressions are rolled back, and each knowledge unit is audited for utility before being kept, demoted, or removed. This gives engineering teams a practical path to building agents that accumulate domain expertise over time without weight updates, while retaining the rollback safety nets and transparency needed for production use.</description>
     <pubDate>2026-08-07T17:40:33Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
-    <title>A zero-dependency, ultra-lightweight database time machine for SQLite</title>
-    <link>https://github.com/nsrht/time-travel-sqlite-debugger</link>
-    <guid isPermaLink="false">https://github.com/nsrht/time-travel-sqlite-debugger</guid>
-    <description>The Time-Travel SQLite Debugger is a zero-dependency, open-source web application and CLI daemon built with PHP 8+ and Vanilla JS, designed for local development environments. It tracks modifications to a SQLite database and allows users to instantly rewind to any previous state using a raw POSIX file copy/rename mechanism, rather than relying on .backup commands or additional PHP extensions. The tool is SQLite WAL mode aware, seamlessly backing up and restoring .sqlite-wal and .sqlite-shm files alongside the main database. A background watcher script automatically creates timestamped snapshots when the database changes, while maintaining up to 50 backups by purging older unpinned entries. Additional features include a visual table diff viewer for comparing snapshots, snapshot pinning/tagging, one-click export of historic states as .sqlite files, keyboard navigation shortcuts, and full multi-language support through decoupled translation files.</description>
-    <pubDate>2026-08-09T18:59:53Z</pubDate>
+    <title>Exploiting System Management Mode with a very long interrupt</title>
+    <link>https://github.com/xoreaxeaxeax/smiiiiiiiiiiiiiiii</link>
+    <guid isPermaLink="false">https://github.com/xoreaxeaxeax/smiiiiiiiiiiiiiiii</guid>
+    <description>System Management Mode (SMM) is a secure, ultra-privileged execution environment in x86 CPUs that requires all cores to enter or leave SMM together for its security model to function. A new exploit breaks this synchronization by running an obscenely long machine instruction on one core—approximately 4 billion cycles, or over a second of wall-clock time—so it cannot respond to the system management interrupt (SMI) that pulls other cores into SMM. The proof of concept targets a Zen 3 Ryzen 7 5800H, using a wide xmm load from slow MMIO at 0xfcc68860 to stall a core while another core fires SMIs and checks whether per-core SMI counters diverge. This SMI desynchronization allows an outside core to run while SMM executes, turning previously dormant SMM TOCTOU vulnerabilities into software-exploitable bugs without requiring physical access or a malicious DMA device. The author notes no clear mitigation exists, since keeping the timeout leaves the rendezvous breakable, while removing it would hang the platform on any legitimately stuck core.</description>
+    <pubDate>2026-08-10T16:03:14Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Transmission has been forked as &quot;ReTransmission&quot;</title>
-    <link>https://github.com/transmission/transmission/discussions/9031</link>
-    <guid isPermaLink="false">https://github.com/transmission/transmission/discussions/9031</guid>
-    <description>The Transmission BitTorrent client has been forked as &quot;ReTransmission&quot; following a longstanding disagreement among maintainers about adding new maintainers to the project. Maintainer ckerr explained that the fork addresses this internal conflict, noting it was still in early stages without signed binaries and that a more detailed announcement would come with actual releases. Community members raised concerns about the arrangement, with valcomm questioning how changes and bug reports would be synchronized between the two projects and whether one might eventually be abandoned. User edc1512 expressed optimism that the fork could modernize the codebase, fix long-standing bugs, and accelerate development, though valcomm pointed out this response didn&#x27;t address why such improvements couldn&#x27;t happen within Transmission itself.</description>
-    <pubDate>2026-08-09T18:28:49Z</pubDate>
+    <title>Show HN: Ante, a coding agent in a single binary that runs offline</title>
+    <link>https://github.com/AntigmaLabs/ante</link>
+    <guid isPermaLink="false">https://github.com/AntigmaLabs/ante</guid>
+    <description>Ante is a coding agent distributed as a single ~15MB Rust binary by Antigma Labs, with zero runtime dependencies and support for macOS and Linux. Currently in alpha, the core harness ships as a prebuilt binary while the repository contains documentation, the protocol schema, an SDK, and the eval pipeline under Apache 2.0. The agent supports over 12 providers including Anthropic, OpenAI, Google Gemini, Grok, and local GGUF models through a built-in, pinned llama.cpp engine that enables fully offline operation. On Terminal-Bench 2.1, Ante achieved 82.7% using open-weight DeepSeek V4 Flash 0731, and compared to Claude Code it uses roughly 7x less peak memory, 9x less average CPU, and 5x less disk I/O across 20 parallel Docker tasks. Telemetry is enabled by default but can be disabled with the ANTE_TELEMETRY=off environment variable.</description>
+    <pubDate>2026-08-10T15:59:23Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: A replayable A2A jury for tracing how agents influence decisions</title>
-    <link>https://github.com/nMaroulis/protolink/tree/main/examples/ai_courtroom</link>
-    <guid isPermaLink="false">https://github.com/nMaroulis/protolink/tree/main/examples/ai_courtroom</guid>
-    <description>ProtoLink&#x27;s &quot;AI Liability Tribunal&quot; is a showcase that places autonomous agents inside a fictional liability tribunal built around a robotaxi fatality case known as the C-91 Incident, in which an autonomous vehicle struck and killed a cyclist after emergency braking began only 0.35 seconds before impact. The case itself is not the focus—the product is the observable interaction between agents with different roles, incentives, professions, and communication habits. The system features direct ProtoLink agent-to-agent tasks, jurors who choose whom to address and what to ask, and replayable opinion changes after every public message. It supports solo, independent, foreperson-star, and direct-mesh comparison modes, and enables provider and model experiments using the same application protocol. The default run is deterministic and offline, producing JSON results, ProtoLink traces, a public transcript, and standalone interactive HTML reports. The README emphasizes that everything is fictional and the example is a software experiment rather than legal analysis or a validated safety assessment.</description>
-    <pubDate>2026-08-09T17:10:05Z</pubDate>
+    <title>Run Android ARM64 VR APKs on Apple Vision Pro</title>
+    <link>https://github.com/shinyquagsire23/Klepton</link>
+    <guid isPermaLink="false">https://github.com/shinyquagsire23/Klepton</guid>
+    <description>Klepton enables running Android ARM64 VR APKs on Apple Vision Pro without requiring JIT, using a tool called klepton-ld that translates Android .so libraries into Apple .dylib and .framework libraries. The system focuses on Java-thin applications, excluding ART and JVM, with graphics handled by translating GLES 3.2 to vendored ANGLE GLES 3.0 with a Metal backend and Vulkan to MoltenVK. Several Klepton runtime libraries provide Android-compatible interfaces for libc, NDK components, synthetic JNI, and an ovrp reimplementation, which integrate with platform services such as ARKit, GameController, and AVAudioEngine. To address register differences between Android and macOS, klepton-ld patches all x18 usage to use per-library TLS slots instead. Beat Saber currently runs on both macOS and visionOS with minor graphical issues, while Steam VR Link and broader tooling remain works in progress.</description>
+    <pubDate>2026-08-10T03:12:48Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Human vs. AI – Diff-based line-level provenance for text under agentic editing</title>
-    <link>https://github.com/eighttrigrams/us-vs-them</link>
-    <guid isPermaLink="false">https://github.com/eighttrigrams/us-vs-them</guid>
-    <description>Us vs. Them is a Clojure tool that provides line-level provenance for text under agentic editing, determining whether each line was written by a human or an AI agent based on version history. It addresses the problem of preserving human-authored content in projects where AI agents frequently edit text, giving users the ability to identify &quot;islands&quot; of human-written lines within a &quot;sea&quot; of machine-generated content. The tool uses diffing to track authorship over a text&#x27;s version history without requiring special markup, working with plain text such as markdown. It can be used as either a library or CLI tool, with the CLI requiring bbin for local installation. The algorithm accounts for joining, splitting, and dilution of authorship so that meaningful coherent pieces of text are tracked rather than converging entirely into machine or human authorship.</description>
-    <pubDate>2026-08-09T15:25:29Z</pubDate>
+    <title>Show HN: AI Pulse a fake LED strip beside the macOS Dock that shows agent status</title>
+    <link>https://github.com/leog/ai-pulse</link>
+    <guid isPermaLink="false">https://github.com/leog/ai-pulse</guid>
+    <description>AI Pulse is a macOS app that displays AI coding agent status through a slim strip of eight virtual LEDs positioned beside the Dock. Inspired by the SidePulse hardware gadget, it provides aggregate visual signals—cyan comet for working, orange breath for awaiting input, double-blink red for failures, solid green for completion, and aurora drift for idle—without distinguishing individual models. The app uses a borderless NSPanel positioned from public screen geometry, requires no private APIs or accessibility permissions, and listens on a configurable loopback HTTP port for agent status updates. A bundled CLI publishes events to the local service, and a Claude Code adapter registers lifecycle hooks so sessions appear in the pill automatically. All six development milestones are complete, including Keychain-based authentication, state persistence, and an optional dynamic Dock icon, with Reduce Motion accessibility support and keyboard-accessible settings.</description>
+    <pubDate>2026-08-10T22:07:41Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>How We Pushed CDC into Postgres</title>
-    <link>https://www.snowflake.com/en/blog/engineering/postgres-to-snowflake-replication-mirroring/</link>
-    <guid isPermaLink="false">https://www.snowflake.com/en/blog/engineering/postgres-to-snowflake-replication-mirroring/</guid>
-    <description>Data mirroring is a new Snowflake Postgres feature that replicates data into Snowflake with low lag and transactional consistency by pushing changes directly from Postgres into Apache Iceberg tables. It uses a new Postgres extension called snowflake_cdc, which continuously pushes batches of changes into per-table change logs and a meta log. The decoder process reads WAL records using historical snapshots, after which finalized batches are appended to Iceberg change logs by the capture process. Snowflake&#x27;s apply process acts as a finite state machine, executing meta log instructions transactionally to move all tables forward to a Postgres transaction boundary, preserving foreign keys and join correctness. Live views combine unapplied changes with target table data, allowing filters and projections to be pushed down for fast queries even when changes are applied infrequently.</description>
-    <pubDate>2026-08-10T01:01:34Z</pubDate>
+    <title>Tl;dv: Over 180k meetings left wide open</title>
+    <link>https://bobdahacker.com/blog/tldv-hack</link>
+    <guid isPermaLink="false">https://bobdahacker.com/blog/tldv-hack</guid>
+    <description>A security researcher disclosed a critical vulnerability in tl;dv, an AI meeting recording platform with over 2 million users, on January 28, 2026, reporting it via LinkedIn to Raphael Allstadt and by email to the company&#x27;s CTO. The Firestore database lacked tenant isolation, allowing any authenticated user to query all 181,874 meeting records across 84,312 users from 35,003 domains, including 23 government ministries and universities like Berkeley. Roughly 1,000 active meetings had exposed conference IDs, enabling uninvited joining; the researcher joined live calls including a Malaysian Ministry of Education presentation with 157 participants. An internal World Cup prediction app also exposed 43 player records, including employee names and emails, without authentication. Despite multiple follow-ups through July 2026, the CTO never responded and the vulnerabilities remained unfixed six months later.</description>
+    <pubDate>2026-08-10T12:26:05Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Profile-guided optimization in Go</title>
-    <link>https://lemire.me/blog/2026/08/09/profile-guided-optimization-in-go/</link>
-    <guid isPermaLink="false">https://lemire.me/blog/2026/08/09/profile-guided-optimization-in-go/</guid>
-    <description>Profile-guided optimization (PGO) replaces compiler heuristics with runtime measurements, and Go has supported it since version 1.20. The process involves collecting a CPU profile by sampling the call stack roughly a hundred times per second, then passing that profile to the compiler for a second build. To test its impact, three JSON documents were parsed into an interface{}: twitter.json (632 kB), canada.json (2.25 MB), and citm_catalog.json (1.73 MB), with baseline parsing speeds of 112, 74, and 116 MB/s respectively. PGO gains were modest, with most differences in the 2–3% range and the best result being canada.json at +4.7%. Profiling one document often helped the others, though not reliably, and some unmatched cases produced slightly negative results. Because Go&#x27;s PGO optimizations are themselves modest, the process is unlikely to backfire significantly on other workloads.</description>
-    <pubDate>Mon, 10 Aug 2026 00:58:44 GMT</pubDate>
-    <source>Lobsters</source>
-  </item>
-  <item>
-    <title>Blender MCP maintainer GitHub account hacked</title>
-    <link>https://twitter.com/sidahuj/status/2086445625147793503</link>
-    <guid isPermaLink="false">https://twitter.com/sidahuj/status/2086445625147793503</guid>
-    <description>Siddharth Ahuja, the maintainer behind several popular Model Context Protocol repositories, announced that his GitHub account was hacked and all ownership rights were stripped. The repositories affected include Blender MCP, which had 25,000 stars, and Ableton MCP, which had 2,600 stars, along with personal projects he was working on. Ahuja reported that his account was subsequently suspended while he observed the hacker making commits to his repositories. He appealed to GitHub to escalate the issue, asking anyone at the company who could help to reach out. In response, a user identified as JJ (@HiJulieJennifer) offered to follow up with the GitHub team and asked Ahuja to direct message his ticket number.</description>
-    <pubDate>2026-08-10T00:58:29Z</pubDate>
+    <title>Muse Glimmer: 30B-parameter model optimized for always-on local agent workflows</title>
+    <link>https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model</link>
+    <guid isPermaLink="false">https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model</guid>
+    <description>Meta Superintelligence Labs has released Muse Glimmer, a 30-billion-parameter open-weight model under an Apache 2.0 license, designed for local agentic workflows on consumer hardware. The model is optimized to run on a single consumer GPU, with quantization compressing its weights to approximately 4-bit precision and bringing the language model under 20 GB. It was trained through pre-training, mid-training, and post-training phases using logit distillation from the larger Muse Spark model. Muse Glimmer supports multimodal inputs, tool use, multi-step reasoning, and over 100 languages, and is evaluated on benchmarks including DeepSearch QA, MCP-Atlas, τ-Bench, and SWE-Bench. To accelerate inference, it ships with a DFlash-based speculative decoding drafter that allows faster token generation while preserving output quality. The weights are available on Hugging Face, with integrations planned for Ollama, LM Studio, llama.cpp, MLX, ExecuTorch, vLLM, and other frameworks.</description>
+    <pubDate>2026-08-10T10:10:02Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Crashing Through Defenses: Exploiting Segfaults and Chaining around Intel CET</title>
-    <link>https://github.com/signal-sfop/sfop/blob/main/SFOP_s%26p_paper.pdf</link>
-    <guid isPermaLink="false">https://github.com/signal-sfop/sfop/blob/main/SFOP_s%26p_paper.pdf</guid>
-    <description>Comments</description>
-    <pubDate>Sun, 09 Aug 2026 23:49:30 GMT</pubDate>
-    <source>Lobsters</source>
+    <title>Mark Zuckerberg attacks &#x27;closed&#x27; AI rivals as Meta returns to open models</title>
+    <link>https://www.ft.com/content/4e3957f8-ea7c-4c46-a3de-cdce8e526878</link>
+    <guid isPermaLink="false">https://www.ft.com/content/4e3957f8-ea7c-4c46-a3de-cdce8e526878</guid>
+    <description>Meta&#x27;s renewed push into open-weight AI models directly expands the toolkit available to engineers, giving teams the ability to self-host, fine-tune, and audit model weights rather than treating LLMs as black boxes accessed solely through paid APIs. This shift lowers the long-term cost and lock-in risk of building AI-powered features, while also opening doors to custom deployments in regulated or air-gapped environments where sending data to a third-party provider is a non-starter. Engineers should expect the competitive landscape to fragment further, making architectural choices around model orchestration, evaluation pipelines, and switching costs more strategically important than ever.</description>
+    <pubDate>2026-08-10T14:06:22Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Illinois just passed a law that puts Linux on the hook for age verification</title>
+    <link>https://linuxstans.com/illinois-hb5511-operating-system-age-verification/</link>
+    <guid isPermaLink="false">https://linuxstans.com/illinois-hb5511-operating-system-age-verification/</guid>
+    <description>Illinois Governor JB Pritzker signed HB5511, the Children&#x27;s Social Media Safety Act, on July 31, 2026, after it passed unanimously through both chambers of the General Assembly. While the bill&#x27;s social media provisions target platforms like TikTok and Instagram, a separate section defines &quot;operating system provider&quot; broadly enough to include open source projects. By January 1, 2028, covered manufacturers must build age-declaration systems that share age-bracket signals with apps through an encrypted API. Unlike Colorado and California, which exempted open source software from similar requirements, Illinois included no such carve-out. Enforcement falls only to the Illinois Attorney General, with civil penalties capped at $7,500 per affected child. Both the EFF and NetChoice opposed the bill before passage, with EFF specifically warning that it put the open source ecosystem at risk.</description>
+    <pubDate>2026-08-10T20:20:06Z</pubDate>
+    <source>Hacker News</source>
   </item>
 </channel></rss>
