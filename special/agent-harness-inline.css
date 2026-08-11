@@ -1,16 +1,15 @@
-/* Verbatim Rubric Labs illustrations — colors mapped to Daily Byte palette via classes.
-   No SVG markup rewriting: class tokens define color/typography. */
-.special figure{--background:#fbf8ef}
+/* Verbatim Rubric Labs figures — palette + animation via CSS, no markup edits */
+.special figure{--background:#fbf8ef;--primary:#20262b;--secondary:#b57614}
 
-/* palette class mapping */
+/* palette class mapping (original Tailwind tokens -> Daily Byte palette) */
 .special figure svg [class~="text-primary"]{color:#20262b}
 .special figure svg [class~="text-secondary"]{color:#b57614}
-.special figure svg [class~="text-sky-600"],.special figure svg [class~="dark:text-sky-400"]{color:#227f99}
 .special figure svg [class~="text-stone-600"],.special figure svg [class~="dark:text-stone-300"]{color:#b57614}
+.special figure svg [class~="text-sky-600"],.special figure svg [class~="dark:text-sky-400"]{color:#227f99}
 .special figure svg [class~="stroke-sky-600"],.special figure svg [class~="dark:stroke-sky-400"],
 .special figure svg [class~="stroke-sky-700"],.special figure svg [class~="dark:stroke-sky-300"]{color:#227f99}
 
-/* typography classes */
+/* typography */
 .special figure svg text{font-family:Georgia,serif}
 .special figure svg [class~="font-medium"]{font-weight:600}
 .special figure svg [class~="font-mono"]{font-family:ui-monospace,Menlo,Consolas,monospace}
@@ -18,20 +17,12 @@
 .special figure svg [class~="text-[12px]"],.special figure svg [class~="sm:text-[11px]"]{font-size:12px}
 .special figure svg [class~="text-[11px]"],.special figure svg [class~="sm:text-[9px]"]{font-size:11px}
 .special figure svg [class~="text-[14px]"],.special figure svg [class~="sm:text-[12px]"]{font-size:14px}
+.special figure svg [class~="text-[17px]"],.special figure svg [class~="sm:text-[15px]"]{font-size:17px}
+.special figure svg [class~="text-[13px]"],.special figure svg [class~="sm:text-[10px]"]{font-size:13px}
 .special figure svg [class~="text-[10px]"]{font-size:10px}
 
-/* motion: smooth state transitions + flowing loop dashes */
-.special figure svg g{transition:opacity .7s ease,transform .7s cubic-bezier(.34,1.56,.64,1)}
-.special figure svg path{transition:fill-opacity .6s ease,stroke-opacity .6s ease}
-.special figure .swap{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
-.special figure .swap > svg{margin:0}
-.special figure .swap svg path:first-of-type{stroke-dasharray:3 12;animation:flowdash 3s linear infinite}
-@keyframes flowdash{to{stroke-dashoffset:-60}}
-
+/* motion: smooth opacity/transform transitions for the reveal sequence */
+.special figure svg g,.special figure svg path,.special figure svg circle{transition:opacity .7s ease,fill-opacity .7s ease,stroke-opacity .7s ease,transform .7s cubic-bezier(.34,1.56,.64,1)}
 @media (prefers-reduced-motion:reduce){
-  .special figure svg *{animation:none!important;transition:none!important}
-}
-@media(max-width:680px){
-  .special figure .swap{grid-template-columns:1fr;gap:0}
-  .chrome .right,.chrome .nav{display:none}
+  .special figure svg *{transition:none!important}
 }
