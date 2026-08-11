@@ -1,0 +1,21 @@
+/* Agent Harness special edition — editorial layer on top of Daily Byte */
+.special{max-width:920px;margin:0 auto;padding:0 var(--pad) 30px}
+.special .kicker{color:var(--ac);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;text-align:center;margin-top:26px}
+.special h1{max-width:800px;margin:10px auto 0;text-align:center;font-family:var(--serif);font-size:clamp(42px,8vw,78px);line-height:.98;letter-spacing:-.02em}
+.special .dek{max-width:650px;margin:18px auto 0;text-align:center;font-family:var(--serif);font-style:italic;color:var(--mut);font-size:21px;line-height:1.45}
+.special .byline{margin:18px auto 34px;text-align:center;color:var(--mut2);font-size:12px;letter-spacing:.06em}
+.special .byline a{color:var(--ln)}
+.harness-map{display:grid;grid-template-columns:1fr 1.35fr 1fr;gap:12px;align-items:stretch;margin:28px 0 42px}
+.map-card{border:1px solid var(--rule);background:var(--paper2);padding:18px 14px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:108px}
+.map-card strong{font-family:var(--serif);font-size:22px}.map-card small{display:block;color:var(--mut2);font-size:11px;margin-top:4px}.map-plus{display:grid;place-items:center;font-family:var(--serif);font-size:34px;color:var(--ac)}
+.map-card.core{background:var(--ink);color:var(--paper);border-color:var(--ink);min-height:138px}.map-card.core small{color:#d8c9a8}
+.special .rule{border-top:1px solid var(--rule);margin:0 0 30px}
+.special .intro{max-width:700px;margin:0 auto 34px;font-family:var(--serif);font-size:20px;line-height:1.65}
+.special section{max-width:760px;margin:0 auto;padding:28px 0;border-top:1px solid var(--rule)}
+.special section h2{font-family:var(--serif);font-size:34px;line-height:1.1;margin:0 0 12px}.special section h3{font-family:var(--serif);font-size:23px;margin:22px 0 6px}
+.special section p{font-size:16px;line-height:1.72;margin:10px 0}.special section ul{padding-left:24px;line-height:1.7}.special section li{margin:7px 0}
+.callout{margin:22px 0;padding:18px 20px;border-left:4px solid var(--ac);background:var(--paper2);font-family:var(--serif);font-size:20px;line-height:1.5}
+.pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:20px 0}.pipeline div{padding:12px 8px;background:var(--paper2);border:1px solid var(--rule);text-align:center;font-size:12px;font-weight:700}.pipeline div:not(:last-child):after{content:"→";position:absolute;margin-left:10px;color:var(--ac)}
+.special figure{margin:24px 0 28px;border:1px solid var(--rule);background:var(--paper2);padding:14px 14px 10px}.special figure svg{display:block;width:100%;height:auto}.special figcaption{margin-top:8px;text-align:center;color:var(--mut2);font-size:11px;letter-spacing:.04em}.special .source-note{font-size:13px;color:var(--mut2);border-top:1px solid var(--rule);margin-top:20px;padding-top:20px}.source-note a{color:var(--ln)}
+.special .back{display:block;text-align:center;margin:28px 0 0;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+@media(max-width:680px){.harness-map{grid-template-columns:1fr;gap:0}.map-plus{height:28px}.map-card.core{min-height:108px}.pipeline{grid-template-columns:1fr}.pipeline div:not(:last-child):after{content:"↓";position:static;display:block;margin:3px 0 0}.special .dek{font-size:18px}.special section h2{font-size:29px}}

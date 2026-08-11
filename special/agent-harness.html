@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Makes an Agent? — Daily Byte Special Edition</title>
+<meta name="description" content="A Daily Byte special edition explaining the agent harness: the software layer that turns a language model into a system that can act.">
+<link rel="canonical" href="https://learn.shenthar.me/special/agent-harness.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="agent-harness.css">
+</head>
+<body>
+<div class="chrome"><div class="chrome-in">
+  <div class="left"><a href="../"><strong>Daily Byte</strong></a><a href="../archive/">Archive</a><a href="../rss.xml">RSS</a></div>
+  <div class="nav"><span class="d">Special edition</span></div>
+  <div class="right"><span class="count">AI SYSTEMS</span></div>
+</div></div>
+
+<header class="special">
+  <div class="kicker">Daily Byte · Special Edition</div>
+  <h1>What makes an agent?</h1>
+  <p class="dek">The model may generate the next token. The harness decides what happens next in the world.</p>
+  <p class="byline">A source-grounded retelling of <a href="https://rubriclabs.com/blog/what-is-an-agent-harness" target="_blank" rel="noopener">Rubric Labs’ “What is an Agent Harness?”</a> · August 11, 2026</p>
+
+  <div class="harness-map" aria-label="An agent is a model plus a harness">
+    <div class="map-card"><strong>Model</strong><small>Predicts, reasons, writes</small></div>
+    <div class="map-plus">+</div>
+    <div class="map-card core"><strong>Harness</strong><small>Loops, remembers, acts, checks</small></div>
+  </div>
+  <figure aria-labelledby="hero-caption">
+    <svg viewBox="0 0 760 190" role="img" aria-label="A model inside a harness receives context, calls tools, observes results, and loops until it can return an answer">
+      <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#b57614"/></marker></defs>
+      <path d="M120 95 H230 M370 95 H490 M630 95 H690 Q730 95 730 55 Q730 20 380 20 Q40 20 40 95 Q40 170 380 170 Q690 170 730 135" fill="none" stroke="#b57614" stroke-width="2" marker-end="url(#arrow)"/>
+      <rect x="36" y="63" width="112" height="64" rx="7" fill="#3c3836"/><text x="92" y="91" text-anchor="middle" fill="#fbf1c7" font-family="Georgia" font-size="18" font-weight="bold">context</text><text x="92" y="111" text-anchor="middle" fill="#d8c9a8" font-family="Arial" font-size="11">prompt + memory</text>
+      <rect x="230" y="48" width="140" height="94" rx="7" fill="#076678"/><text x="300" y="88" text-anchor="middle" fill="#fff" font-family="Georgia" font-size="20" font-weight="bold">model</text><text x="300" y="110" text-anchor="middle" fill="#d8f0ed" font-family="Arial" font-size="11">reason / decide</text>
+      <rect x="490" y="63" width="140" height="64" rx="7" fill="#8f3f71"/><text x="560" y="91" text-anchor="middle" fill="#fff" font-family="Georgia" font-size="18" font-weight="bold">tools</text><text x="560" y="111" text-anchor="middle" fill="#f4d9ea" font-family="Arial" font-size="11">act on the world</text>
+      <text x="380" y="184" text-anchor="middle" fill="#79756b" font-family="Arial" font-size="11" letter-spacing="1">THE HARNESS KEEPS THE LOOP MOVING</text>
+    </svg>
+    <figcaption id="hero-caption">A simplified reinterpretation of the article’s harness diagram: the model is useful because the surrounding software supplies the loop.</figcaption>
+  </figure>
+</header>
+
+<main class="special">
+  <p class="intro">An LLM becomes agentic when software wraps it in a running system. That system feeds the model context, interprets its tool calls, executes actions, decides what requires permission, and keeps the work moving until there is a result. In shorthand: <strong>Agent = Model + Harness.</strong></p>
+
+  <section>
+    <h2>1. The loop is the first ingredient</h2>
+    <p>Even a chatbot needs a harness: something must collect a request, call the model, and return the answer. Agent harnesses extend that simple exchange into a <strong>reason–act loop</strong>.</p>
+    <div class="pipeline" aria-label="The agent loop"><div>Request</div><div>Reason</div><div>Call a tool</div><div>Observe</div><div>Respond</div></div>
+    <p>The model can search, edit a file, run a command, inspect the result, and decide whether another step is needed. Modern harnesses make this loop durable enough for long tasks—and structured enough to delegate pieces of work.</p>
+  </section>
+
+  <section>
+    <h2>2. Context is the agent’s working world</h2>
+    <p>At every turn, the harness chooses what the model can see: its role, current facts, available tools, earlier messages, tool outputs, and the user’s latest request. That selection is not plumbing; it is part of the agent’s behavior.</p>
+    <figure aria-labelledby="context-caption">
+      <svg viewBox="0 0 760 150" role="img" aria-label="Context is assembled from system instructions, current state, history, and tools before reaching the model">
+        <defs><marker id="context-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#b57614"/></marker></defs>
+        <path d="M170 30 H300 M170 75 H300 M170 120 H300 M460 75 H600" fill="none" stroke="#b57614" stroke-width="2" marker-end="url(#context-arrow)"/>
+        <rect x="12" y="12" width="158" height="36" rx="5" fill="#3c3836"/><text x="91" y="35" text-anchor="middle" fill="#fbf1c7" font-family="Arial" font-size="13">system instructions</text>
+        <rect x="12" y="57" width="158" height="36" rx="5" fill="#3c3836"/><text x="91" y="80" text-anchor="middle" fill="#fbf1c7" font-family="Arial" font-size="13">current state</text>
+        <rect x="12" y="102" width="158" height="36" rx="5" fill="#3c3836"/><text x="91" y="125" text-anchor="middle" fill="#fbf1c7" font-family="Arial" font-size="13">history + tools</text>
+        <rect x="300" y="38" width="160" height="74" rx="7" fill="#076678"/><text x="380" y="70" text-anchor="middle" fill="#fff" font-family="Georgia" font-size="19" font-weight="bold">working context</text><text x="380" y="92" text-anchor="middle" fill="#d8f0ed" font-family="Arial" font-size="11">selected, compacted, ranked</text>
+        <rect x="600" y="48" width="148" height="54" rx="7" fill="#8f3f71"/><text x="674" y="80" text-anchor="middle" fill="#fff" font-family="Georgia" font-size="18" font-weight="bold">next decision</text>
+      </svg><figcaption id="context-caption">Context engineering is the harness deciding what the model gets to know.</figcaption>
+    </figure>
+    <h3>Compaction: staying inside one run</h3>
+    <p>Long loops eventually fill the context window. Compaction asks a model to summarize older material and removes the original detail from the active window. Done well, this keeps a long-running agent coherent instead of forcing it to stop at the context limit.</p>
+    <h3>Memory: carrying useful knowledge forward</h3>
+    <p>Compaction is temporary. Memory persists across runs. Harnesses commonly separate reusable <strong>procedural knowledge</strong>—often encoded as skills—from other experience and tacit judgment stored in memory files. The open problem is deciding what should be remembered, when it should be trusted, and how it should be corrected.</p>
+    <div class="callout">A good harness does not merely give a model more context. It gives the model the <em>right</em> context at the right moment.</div>
+  </section>
+
+  <section>
+    <h2>3. Orchestration turns effort into a system</h2>
+    <h3>Planning</h3>
+    <p>As agents take on larger tasks, the human has fewer opportunities to steer every step. A detailed plan and a visible todo list become an external working memory: they preserve the goal while implementation becomes more autonomous.</p>
+    <h3>Dispatch</h3>
+    <p>For complex tasks, a primary agent can delegate independent work to sub-agents and combine their results. This gives an agent elastic capacity, but it creates a coordination problem: fragmented state can lead to conflicting edits, duplicated work, or agents that lose sight of the main objective. Parallelism helps only when the harness also supplies boundaries and review.</p>
+    <figure aria-labelledby="dispatch-caption">
+      <svg viewBox="0 0 760 180" role="img" aria-label="A primary agent dispatches three parallel tasks to sub-agents and receives reviewed results">
+        <defs><marker id="dispatch-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#b57614"/></marker></defs>
+        <path d="M180 90 H270 M430 35 H570 M430 90 H570 M430 145 H570" stroke="#b57614" stroke-width="2" fill="none" marker-end="url(#dispatch-arrow)"/>
+        <rect x="20" y="54" width="160" height="72" rx="7" fill="#076678"/><text x="100" y="84" text-anchor="middle" fill="#fff" font-family="Georgia" font-size="19" font-weight="bold">primary agent</text><text x="100" y="106" text-anchor="middle" fill="#d8f0ed" font-family="Arial" font-size="11">plan + coordinate</text>
+        <rect x="270" y="65" width="160" height="50" rx="6" fill="#3c3836"/><text x="350" y="95" text-anchor="middle" fill="#fbf1c7" font-family="Arial" font-size="13">dispatch / shared state</text>
+        <rect x="570" y="12" width="170" height="45" rx="6" fill="#8f3f71"/><text x="655" y="40" text-anchor="middle" fill="#fff" font-family="Arial" font-size="13">research task</text>
+        <rect x="570" y="68" width="170" height="45" rx="6" fill="#8f3f71"/><text x="655" y="96" text-anchor="middle" fill="#fff" font-family="Arial" font-size="13">implementation task</text>
+        <rect x="570" y="124" width="170" height="45" rx="6" fill="#8f3f71"/><text x="655" y="152" text-anchor="middle" fill="#fff" font-family="Arial" font-size="13">review task</text>
+      </svg><figcaption id="dispatch-caption">Dispatch scales effort outward; coordination brings the work back into one coherent result.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>4. Tools are where language meets reality</h2>
+    <p>A typical tool has an input schema and an output schema. The model emits structured data; the harness validates it, runs the corresponding operation, waits for the result, and places that result back into context.</p>
+    <p>This is also where architecture becomes authorization. Should an agent control a signed-in browser, or should it use narrowly scoped APIs for reading, drafting, and sending? The tool interface determines not only what the agent can do, but how safely those actions can be governed.</p>
+    <p>Protocols such as <strong>MCP</strong> reduce repeated integration work by giving tools a shared interface. CLIs and clear documentation can serve a similar role; the important idea is that the harness needs a reliable bridge from model output to real capability.</p>
+  </section>
+
+  <section>
+    <h2>5. Verification is part of agency</h2>
+    <p>When an agent changes more of the world, “the model said it worked” is not enough. Harnesses can require unit tests, smoke tests, browser checks, or a reviewer sub-agent before returning a result.</p>
+    <p>Each method has limits. Tests written by the same agent may confirm its assumptions without proving the feature works for a user. Smoke tests reveal unknown unknowns, but the agent must know what to exercise. The direction of travel is toward training models in environments where checking their work is learned behavior rather than an afterthought in the prompt.</p>
+    <div class="callout">The agent loop should end with evidence, not confidence.</div>
+  </section>
+
+  <section>
+    <h2>6. Permissions define the trust boundary</h2>
+    <p>A harness must decide whether an action runs immediately or waits for review. Older systems often asked the user to approve each new operation, with an escape hatch that approved everything. Newer systems can use an autonomous reviewer to inspect actions and surface only those judged risky.</p>
+    <p>That convenience changes the shape of trust. Permission granularity can expand as a user gains confidence, but the harness still needs clear scopes, useful explanations, and a way to stop or revise an action.</p>
+  </section>
+
+  <section>
+    <h2>The larger lever</h2>
+    <p>Model size is only one way to scale AI output. The harness is another: it determines how long a model can work, what it can remember, how many workers it can coordinate, which tools it can use, and whether the result is verified. The source article points to striking gains in cost and benchmark performance from harnessed systems, and to foundation models increasingly being trained with these environments in mind.</p>
+    <p>The practical takeaway is simple: when evaluating an “agent,” inspect the software around the model. Its loop, context policy, memory, orchestration, tools, checks, and permissions may matter as much as the model underneath.</p>
+    <p class="source-note">This edition is an original educational retelling, not a reproduction. Primary source: <a href="https://rubriclabs.com/blog/what-is-an-agent-harness" target="_blank" rel="noopener">Rubric Labs, “What is an Agent Harness?”</a>, by Ted Spare, Dexter Storey, and Sarim Malik. Read the original for its animations, references, and fuller treatment of the examples.</p>
+    <a class="back" href="../">← Return to Daily Byte</a>
+  </section>
+</main>
+
+<footer class="foot">Curated by your <strong>Hermes</strong> agent · <a href="https://github.com/KTS-o7/learning-portal" target="_blank" rel="noopener">open source</a> · served from learn.shenthar.me</footer>
+</body>
+</html>
