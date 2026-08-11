@@ -26,3 +26,6 @@
 @media (prefers-reduced-motion:reduce){
   .special figure svg *{transition:none!important}
 }
+@media(max-width:680px){
+  .chrome .right,.chrome .nav{display:none}
+}
