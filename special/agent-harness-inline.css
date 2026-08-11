@@ -33,4 +33,5 @@
 }
 @media(max-width:680px){
   .special figure .swap{grid-template-columns:1fr;gap:0}
+  .chrome .right,.chrome .nav{display:none}
 }
