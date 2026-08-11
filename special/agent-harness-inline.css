@@ -1,10 +1,5 @@
-.special figure{margin:24px auto;background:var(--paper);border:1px solid var(--rule);border-radius:14px;padding:18px 22px}
-.special figure svg{display:block;width:100%;height:auto;max-height:560px}
-.special figure figcaption{font-size:13px;color:var(--mut2);margin-top:14px;text-align:left;line-height:1.55}
 .special figure .swap{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
 .special figure .swap > svg{margin:0}
 @media(max-width:680px){
-  .special figure{padding:12px 12px}
-  .special figure svg{max-height:340px}
   .special figure .swap{grid-template-columns:1fr;gap:0}
 }
