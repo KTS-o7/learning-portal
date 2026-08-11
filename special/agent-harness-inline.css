@@ -1,8 +1,23 @@
 .special figure svg{display:block;width:100%;height:auto;background:transparent}
-.special figure .swap{display:grid;grid-template-columns:1fr;gap:0}
+.special figure .swap{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start}
 .special figure .swap > svg{margin:0}
 .special figure svg text{font-family:Georgia,serif;fill:#3c3836}
+.special figure svg [style*="opacity:0"]{display:none}
+.special figure svg .draw,.special figure svg path[stroke-dasharray]{stroke-dasharray:none}
+.special figure .anim path{stroke-dasharray:1000;stroke-dashoffset:1000;animation:drawline 6s ease-out forwards}
+.special figure .anim [data-appear]{opacity:0;animation:fadein 6s ease-out forwards}
+.special figure .anim [data-appear="1"]{animation-delay:.2s}
+.special figure .anim [data-appear="2"]{animation-delay:.6s}
+.special figure .anim [data-appear="3"]{animation-delay:1s}
+.special figure .anim [data-appear="4"]{animation-delay:1.4s}
+.special figure .anim [data-appear="5"]{animation-delay:1.8s}
+.special figure .anim [data-appear="6"]{animation-delay:2.2s}
+.special figure .anim [data-appear="7"]{animation-delay:2.6s}
+.special figure .anim [data-appear="8"]{animation-delay:3s}
+@keyframes drawline{to{stroke-dashoffset:0}}
+@keyframes fadein{to{opacity:1}}
 @media(max-width:680px){
   .special figure{margin:18px 0 24px;padding:10px 8px 12px}
   .special figure svg{max-height:340px}
+  .special figure .swap{grid-template-columns:1fr;gap:0}
 }
