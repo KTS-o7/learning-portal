@@ -8,7 +8,7 @@
 <link rel="canonical" href="https://learn.shenthar.me/special/agent-harness.html">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
 <link rel="stylesheet" href="../style.css">
-<link rel="stylesheet" href="agent-harness.css?v=2">
+<link rel="stylesheet" href="agent-harness.css?v=3">
 </head>
 <body>
 <div class="chrome"><div class="chrome-in">
@@ -30,7 +30,7 @@
   </div>
   <figure aria-labelledby="hero-caption">
     <video class="rendered-illustration" autoplay muted loop playsinline aria-label="Standalone rendered illustration: a model becomes an agent when the harness supplies context, tools, and a continuing loop.">
-      <source src="harness.webm?v=2" type="video/webm">
+      <source src="harness.webm?v=3" type="video/webm">
     </video>
     <figcaption id="hero-caption">Standalone rendered illustration: a model becomes an agent when the harness supplies context, tools, and a continuing loop.</figcaption>
   </figure>
@@ -44,7 +44,7 @@
     <p>Even a chatbot needs a harness: something must collect a request, call the model, and return the answer. Agent harnesses extend that simple exchange into a <strong>reason–act loop</strong>.</p>
     <figure aria-labelledby="loop-caption">
       <video class="rendered-illustration" autoplay muted loop playsinline aria-label="Animated reason act observe loop">
-        <source src="loop.webm?v=2" type="video/webm">
+        <source src="loop.webm?v=3" type="video/webm">
       </video>
       <figcaption id="loop-caption">Standalone rendered illustration: reason, act, observe, and continue until the result has evidence behind it.</figcaption>
     </figure>
@@ -56,7 +56,7 @@
     <p>At every turn, the harness chooses what the model can see: its role, current facts, available tools, earlier messages, tool outputs, and the user’s latest request. That selection is not plumbing; it is part of the agent’s behavior.</p>
   <figure aria-labelledby="context-caption">
     <video class="rendered-illustration" autoplay muted loop playsinline aria-label="Standalone rendered illustration: the harness curates working context, compacts long runs, and carries memory forward.">
-      <source src="context.webm" type="video/webm">
+      <source src="context.webm?v=3" type="video/webm">
     </video>
     <figcaption id="context-caption">Standalone rendered illustration: the harness curates working context, compacts long runs, and carries memory forward.</figcaption>
   </figure>
@@ -75,7 +75,7 @@
     <p>For complex tasks, a primary agent can delegate independent work to sub-agents and combine their results. This gives an agent elastic capacity, but it creates a coordination problem: fragmented state can lead to conflicting edits, duplicated work, or agents that lose sight of the main objective. Parallelism helps only when the harness also supplies boundaries and review.</p>
   <figure aria-labelledby="dispatch-caption">
     <video class="rendered-illustration" autoplay muted loop playsinline aria-label="Standalone rendered illustration: planning and dispatch divide work, then reunify it through shared state and review.">
-      <source src="dispatch.webm" type="video/webm">
+      <source src="dispatch.webm?v=3" type="video/webm">
     </video>
     <figcaption id="dispatch-caption">Standalone rendered illustration: planning and dispatch divide work, then reunify it through shared state and review.</figcaption>
   </figure>
@@ -94,7 +94,7 @@
     <p>Each method has limits. Tests written by the same agent may confirm its assumptions without proving the feature works for a user. Smoke tests reveal unknown unknowns, but the agent must know what to exercise. The direction of travel is toward training models in environments where checking their work is learned behavior rather than an afterthought in the prompt.</p>
     <figure aria-labelledby="verify-caption">
       <video class="rendered-illustration" autoplay muted loop playsinline aria-label="Animated verification flow">
-        <source src="verify.webm" type="video/webm">
+        <source src="verify.webm?v=3" type="video/webm">
       </video>
       <figcaption id="verify-caption">Standalone rendered illustration: an agent’s claim becomes a result only after tests and evidence.</figcaption>
     </figure>
@@ -107,7 +107,7 @@
     <p>That convenience changes the shape of trust. Permission granularity can expand as a user gains confidence, but the harness still needs clear scopes, useful explanations, and a way to stop or revise an action.</p>
     <figure aria-labelledby="permissions-caption">
       <video class="rendered-illustration" autoplay muted loop playsinline aria-label="Animated permissions and risk review flow">
-        <source src="permissions.webm" type="video/webm">
+        <source src="permissions.webm?v=3" type="video/webm">
       </video>
       <figcaption id="permissions-caption">Standalone rendered illustration: requested actions pass through risk review before being allowed or surfaced to a human.</figcaption>
     </figure>
