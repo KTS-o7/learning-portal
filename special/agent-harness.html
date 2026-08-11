@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="agent-harness.css?v=10">
-<link rel="stylesheet" href="agent-harness-inline.css?v=11">
+<link rel="stylesheet" href="agent-harness-inline.css?v=12">
 </head>
 <body>
 <div class="chrome"><div class="chrome-in">
@@ -97,6 +97,7 @@
 (function(){
   var figs = document.querySelectorAll('.special figure svg');
   figs.forEach(function(svg){
+    /* 1. reveal genuinely-hidden state groups (model node, sub-agents, reviewer) */
     var hidden = svg.querySelectorAll('g[opacity="0"], text[opacity="0"]');
     var i = 0;
     hidden.forEach(function(el){
@@ -110,15 +111,26 @@
         }
       }, d);
     });
-    var segs = svg.querySelectorAll('path[fill-opacity="0"]');
-    var j = 0;
-    segs.forEach(function(p){
-      setTimeout(function(){ p.style.fillOpacity='0.18'; p.style.strokeOpacity='0.6'; }, 1400 + j*300); j++;
-    });
+    /* 2. hero: duplicate segment paths (fill-opacity=0) are animation scaffolding
+          that overlaps the visible segments — keep them hidden, never reveal */
+    /* 3. hero: model reveals at center, then fades leaving the harness */
     var first = svg.querySelector('g[opacity="0"]');
     if (first && svg.querySelector('g[opacity="0"] clipPath circle[r="48"]')) {
       setTimeout(function(){ first.style.opacity = '0'; }, 3600);
     }
+    /* 4. context-fill: animate % counters upward (original loop animation) */
+    var pct = svg.querySelectorAll('text[class*="font-mono"]');
+    pct.forEach(function(t){
+      if (t.textContent.indexOf('%') < 0) return;
+      var target = 78; /* static frames show 0%; animate fill up to ~78% */
+      var start = Date.now(), dur = 4200;
+      (function tick(){
+        var p = Math.min(1, (Date.now()-start)/dur);
+        var val = Math.round(p * target);
+        t.textContent = val + '%';
+        if (p < 1) requestAnimationFrame(tick);
+      })();
+    });
   });
 })();
 </script>

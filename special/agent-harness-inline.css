@@ -4,9 +4,9 @@
 
 /* palette class mapping */
 .special figure svg [class~="text-primary"]{color:#20262b}
-.special figure svg [class~="text-secondary"]{color:#6f7476}
+.special figure svg [class~="text-secondary"]{color:#b57614}
 .special figure svg [class~="text-sky-600"],.special figure svg [class~="dark:text-sky-400"]{color:#227f99}
-.special figure svg [class~="text-stone-600"],.special figure svg [class~="dark:text-stone-300"]{color:#78716c}
+.special figure svg [class~="text-stone-600"],.special figure svg [class~="dark:text-stone-300"]{color:#b57614}
 .special figure svg [class~="stroke-sky-600"],.special figure svg [class~="dark:stroke-sky-400"],
 .special figure svg [class~="stroke-sky-700"],.special figure svg [class~="dark:stroke-sky-300"]{color:#227f99}
 
