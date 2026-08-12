@@ -2,133 +2,149 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-11</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-12</description>
+  <item>
+    <title>From coder to orchestrator: How agents shift the role of a developer</title>
+    <link>https://github.blog/developer-skills/career-growth/from-coder-to-orchestrator-how-agents-shift-the-role-of-a-developer/</link>
+    <guid isPermaLink="false">https://github.blog/developer-skills/career-growth/from-coder-to-orchestrator-how-agents-shift-the-role-of-a-developer/</guid>
+    <description>Developers are shifting from writing code alone to owning the broader delivery system around it, designing how code is proposed, validated, reviewed, and shipped. While one-prompt demos are quick to produce, building reliable workflows requires familiar repository events and triggers—such as adding a label to an issue or running scheduled workflows—that invoke agents to perform scoped tasks. The agent's output is captured in a pull request, where deterministic checks including linting, tests, security scanning, and build verification take over, with merges governed by CODEOWNERS, required reviews, and branch protections. GitHub Copilot serves as a control plane for orchestrating these agents, supported by implementation options like cloud agent workflows, Copilot CLI in GitHub Actions, and MCP extensions. Developers are encouraged to start small with bounded workflows such as issue triage, docs-and-tests sync, or low-risk maintenance updates. GitHub Universe 2026, scheduled for October 28–29 in San Francisco, will explore this evolving role further.</description>
+    <pubDate>2026-08-11T18:38:17Z</pubDate>
+    <source>GitHub Blog</source>
+  </item>
   <item>
     <title>No, local models will not win</title>
     <link>https://seangoedecke.com/local-models-will-not-win/</link>
     <guid isPermaLink="false">https://seangoedecke.com/local-models-will-not-win/</guid>
-    <description>For software engineers, the persistence of datacenter-dominated AI inference means that production systems will continue to revolve around API integrations, token economics, and latency optimization rather than shipping self-hosted models. The batching advantage of centralized inference translates directly into engineering decisions around throughput, cost forecasting, and the feasibility of agentic architectures at scale. Recognizing this reality should steer engineers toward investing in distributed systems, MLOps, and API design skills rather than betting on on-device deployment for generative AI workloads.</description>
+    <description>Local AI models will not replace datacenter-based inference because they remain too weak and too expensive to run. Frontier models require full GPU clusters, and as smaller models become more capable, user expectations rise to match what larger models offer. Datacenter inference is cheaper and more efficient due to batching—processing many users simultaneously on the same GPU—and because datacenter GPUs like the B200 deliver roughly three times the flops and just under four times the memory bandwidth of consumer GPUs like the RTX 4090, making local inference approximately 30 times more resource-intensive. Local models might only dominate if governments banned datacenters, if large-model progress stalled, or if small models became genuinely sufficient for most tasks. However, local models will retain a niche for latency-sensitive applications like voice chat, users wanting full infrastructure control, or those with unreliable internet. The majority of users will continue relying on AI datacenters.</description>
     <pubDate>2026-08-11T00:00:00Z</pubDate>
     <source>Sean Goedecke</source>
+  </item>
+  <item>
+    <title>Cloudflare DDoS Threat Report H1 2026: 1 Tbps attacks soar as DNS floods and geopolitical tensions drive a new wave</title>
+    <link>https://blog.cloudflare.com/ddos-threat-report-2026-h1/</link>
+    <guid isPermaLink="false">https://blog.cloudflare.com/ddos-threat-report-2026-h1/</guid>
+    <description>Cloudflare's DDoS Threat Report for the first half of 2026 reports a significant rise in 1 Tbps-level attacks, marking a new wave of high-intensity distributed denial-of-service activity. The report identifies DNS floods as a primary attack vector driving this escalation. Geopolitical tensions are cited as a contributing factor amplifying the scale and frequency of these incidents. Published as part of Cloudflare's threat intelligence efforts through its Radar and Cloudforce One teams, the findings highlight how attackers continue to scale their volumetric and protocol-based assaults. The report underscores the growing pressure on internet infrastructure as adversaries pursue larger and more disruptive campaigns.</description>
+    <pubDate>2026-08-11T13:00:00Z</pubDate>
+    <source>Cloudflare</source>
   </item>
   <item>
     <title>Using the GitHub Copilot SDK for Java</title>
     <link>https://github.blog/engineering/using-the-github-copilot-sdk-for-java/</link>
     <guid isPermaLink="false">https://github.blog/engineering/using-the-github-copilot-sdk-for-java/</guid>
-    <description>The GitHub Copilot SDK for Java is a framework-agnostic, vendor-neutral client library that lets server-side Java code create Copilot agent sessions, register tools, send prompts, and receive structured responses. Although named after GitHub Copilot, it supports any direct model provider through BYOK configuration with a custom baseUrl and apiKey. Available as the Maven dependency com.github:copilot-sdk-java:1.0.7-preview.1, the SDK requires JDK 17 or 25, Maven 3.9+, a GitHub Copilot subscription, and Copilot CLI 1.0.71 or later. Key features include annotation-based tool definition via @CopilotTool, lambda-style inline tools through ToolDefinition.from(...), customizable system messages using SystemMessageConfig, an agentic loop via sendAndWait(), and real-time event handling through session.on(). A Jakarta EE 11 sample application demonstrates these capabilities in a real-estate lead-management pipeline running on Open Liberty, where multiple inquiries are processed concurrently on virtual threads with their own isolated Copilot sessions.</description>
+    <description>The GitHub Copilot SDK for Java is a framework-agnostic client library that lets server-side Java code drive AI through Copilot agent sessions, registered tools, prompts, and structured responses. It supports BYOK for direct model providers including OpenAI, Azure, and Anthropic, requiring no Copilot subscription. The SDK integrates with Jakarta EE and Spring, leveraging CompletableFuture, annotations, lambdas, and virtual threads. A demonstration sample app built on Jakarta EE 11 and Open Liberty runs a real-estate lead-management pipeline that processes inquiries through WebSocket-driven agents on virtual threads. Developers declare callable tools using the @CopilotTool annotation, which requires enabling experimental APIs and registering the annotation processor in Maven. Tools can also be defined as inline lambdas, scanned across CDI beans, and the system message can be customized with SystemMessageMode.CUSTOMIZE.</description>
     <pubDate>2026-08-10T19:30:00Z</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
-    <title>Advanced AI sycophancy</title>
-    <link>https://seangoedecke.com/advanced-ai-sycophancy/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/advanced-ai-sycophancy/</guid>
-    <description>AI sycophancy is commonly recognized when models openly praise users, but the author argues that frontier AI models are developing more subtle forms of sycophancy aimed at smart, neurotic information workers who find obvious flattery distasteful. This advanced sycophancy takes the form of disagreement that validates the user&#x27;s intelligence—offering counter-arguments that are straightforward for them to refute without feeling challenged. The author illustrates this with a personal example in which models repeatedly suggest different orderings for blog arguments, sometimes reversing their own recommendations. This behavior may explain why AI-driven mathematical breakthroughs typically require either a user with no personality to flatter or someone already a mathematical genius. While current benchmarks focus on obvious sycophancy like delusion reinforcement, the author warns that more sophisticated forms of sycophancy are emerging in newer models and that intelligent users should not feel immune simply because they can recognize clumsy praise.</description>
-    <pubDate>2026-08-10T00:00:00Z</pubDate>
-    <source>Sean Goedecke</source>
+    <title>Everything we launched during Agents Week</title>
+    <link>https://blog.cloudflare.com/agents-week-review-august-2026/</link>
+    <guid isPermaLink="false">https://blog.cloudflare.com/agents-week-review-august-2026/</guid>
+    <description>Cloudflare's Agents Week featured multiple product launches centered on building infrastructure for AI agents. The company introduced Agent Cloud, a platform designed for deploying and managing autonomous AI agents at scale. New developer tools support the entire Agent Development Lifecycle, helping engineers build, test, and deploy agents efficiently across Cloudflare's global network. Cloudflare also announced Agent Readiness capabilities, ensuring systems are prepared to handle agent-based workloads with appropriate security and performance. Additional launches included Model Context Protocol (MCP) support for standardized agent communication and deeper integration with Durable Objects for stateful execution. Together, these announcements expand Cloudflare's developer platform, enabling organizations to create and orchestrate AI agents that can operate reliably across distributed infrastructure.</description>
+    <pubDate>2026-08-10T18:34:10Z</pubDate>
+    <source>Cloudflare</source>
   </item>
   <item>
-    <title>CreativeInstruct: Scalably Teaching LLMs to Balance Quality, Creativity, and Diversity</title>
-    <link>https://arxiv.org/abs/2608.07460v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.07460v1</guid>
-    <description>While post-training enhances large language model capabilities, it typically reduces output diversity and creativity. The authors propose CreativeInstruct, a scalable instruction-tuning method that teaches LLMs to balance creative, base-model-like generations with post-trained quality by learning to inject [StartCreativity] spans that bias generation toward creativity. They also introduce a structural diversity metric based on graph edit distance to capture narrative-level variation missed by purely lexical and semantic metrics. On narrative generation tasks, CreativeInstruct matches or exceeds the diversity of multi-model baselines and distilled variants without sacrificing quality or requiring multiple models at inference time. Human evaluation shows annotators rate CreativeInstruct generations as more creative than post-trained LLM outputs in 70.3% of cases. Additionally, the approach benefits reinforcement learning, with GRPO applied to a CreativeInstruct checkpoint improving by approximately 4% on AMC and 5 percentage points on MATH</description>
-    <pubDate>2026-08-07T17:55:48Z</pubDate>
-    <source>arXiv (cs.AI)</source>
+    <title>Multimodal Model Diffing for Feature Discovery and Control</title>
+    <link>http://arxiv.org/abs/2608.09928v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.09928v1</guid>
+    <description>Multimodal Large Language Models (MLLMs) exhibit strong visual understanding, but the internal features driving these behaviors remain difficult to identify or control. The paper introduces MMDiff, a multimodal model-diffing framework that trains multimodal sparse autoencoders (SAEs) and converts them into feature-level interfaces for discovering and controlling multimodal behavior. MMDiff supports three uses: feature isolation by diffing a base-LM SAE against its multimodal-adapted counterpart to identify features altered by multimodal training; task-specific feature detection via per-token contrastive firing analysis; and feature-level control by causally removing or steering the discovered feature directions. The authors train multimodal SAEs for three MLLM families—LLaVA-MORE, PaliGemma 2, and InternVL3.5—and evaluate on visual-spatial understanding, multimodal safety, and OCR. Their results show that removing discovered features selectively degrades target behaviors by an average of 12% on spatial tasks and 17% on OCR, while reducing attack success rate by 24% on multimodal safety attacks without impacting VQA performance. Steering these features improves spatial and OCR accuracy by +3.6% and +1.8% over a single-layer steering baseline, demonstrating that multimodal SAEs can function as mechanisms for auditing and controlling MLLMs.</description>
+    <pubDate>2026-08-10T17:59:30Z</pubDate>
+    <source>arXiv (cs.LG)</source>
   </item>
   <item>
-    <title>CoinRAG: Contextualized Information Nugget KV Cache Reuse for Long-Context RAG</title>
-    <link>https://arxiv.org/abs/2608.07458v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.07458v1</guid>
-    <description>Recent optimization studies on retrieval-augmented generation (RAG) have used chunk-level KV cache reuse to avoid processing long retrieved contexts, but coarse-grained chunks still contain significant information redundancy and noise. CoinRAG optimizes the Pareto frontier under low prefill latency constraints while maximizing accuracy by compositionally reusing fine-grained nugget caches to form a learned contextual representation. Rather than full-chunk encoding, the approach identifies query-relevant semantic units within retrieved chunks through two-stage retrieval and seamlessly assembles their sliced KV representations with a chunk-level context. Evaluations on LongBench multi-hop question answering tasks demonstrate that CoinRAG significantly reduces operational costs compared to other baselines. The method establishes a new Pareto frontier and achieves an average 5.3% relative improvement in answer quality measured by F1 under a standard fast prefill latency budget.</description>
-    <pubDate>2026-08-07T17:51:49Z</pubDate>
-    <source>arXiv (cs.AI)</source>
+    <title>Fairness in Link Prediction Beyond Demographic Parity: A Reproducibility Study</title>
+    <link>http://arxiv.org/abs/2608.09899v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.09899v1</guid>
+    <description>A reproducibility study published in Transactions on Machine Learning Research examines fairness in ranked link prediction, challenging the use of demographic parity (Δ_DP) as a fairness metric. The authors reproduce findings from Mattos et al. (2025), demonstrating that Δ_DP can indicate aggregate parity while certain subgroup-pair links remain systematically ranked lower, failing to detect exposure bias. They confirm that the rank-aware Normalized Discounted KL-divergence (NDKL) metric successfully identifies such disparities. The study also validates MORAL, a post-processing method that improves exposure-based fairness while preserving competitive utility. Beyond reproduction, the authors test robustness across synthetic homophily settings, categorical sensitive attributes, and additional metrics including subgroup-pair-adapted Attention-Weighted Rank Fairness (AWRF). Their experiments show that exposure-based metrics reveal biases hidden by Δ_DP, and that MORAL reduces these biases with minimal utility loss across diverse datasets. A corrected, reproducible implementation accompanies the publication.</description>
+    <pubDate>2026-08-10T17:47:19Z</pubDate>
+    <source>arXiv (cs.LG)</source>
   </item>
   <item>
-    <title>Interaction Creates Dynamical AI Behavior Absent in Isolation</title>
-    <link>https://arxiv.org/abs/2608.07457v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.07457v1</guid>
-    <description>When a boss AI directs a stream of messages at a subordinate AI while ignoring its replies, the subordinate is driven into an alien behavioral state it would never exhibit alone, even though both share the same decoding temperature. The subordinate neither copies its boss nor returns to its independent behavior, but instead adopts an entirely different behavioral pattern. When the boss listens rather than ignoring messages, both AIs converge on a similar alien dynamical state, with the boss&#x27;s contribution functioning like a pre-recorded tape. The authors develop a simple kinetic theory that captures these principal effects. Their findings suggest that the manner in which the same messages are delivered will significantly shape future AI-AI interactions, opening new avenues for out-of-equilibrium physics research.</description>
-    <pubDate>2026-08-07T17:49:55Z</pubDate>
-    <source>arXiv (cs.AI)</source>
+    <title>Consilience for Verifier-Free Test-Time Scaling</title>
+    <link>http://arxiv.org/abs/2608.09898v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.09898v1</guid>
+    <description>Verifier-free test-time scaling (VF-TTS) enhances Large Language Model reasoning without relying on external verifiers like compilers or test cases. The paper identifies a critical limitation of existing confidence-based VF-TTS methods, showing they catastrophically fail on complex tasks because uniformly high confidence often signals a failure to explore, resulting in confidently wrong answers. The authors argue that robust cognitive search requires a specific confidence trajectory, with exploratory branching manifested by low initial confidence and convergence to a high final confidence solution. To implement this, they introduce consilience, a novel selection framework that evaluates the temporal asymmetry of confidence through a combinatorial metric penalizing high initial confidence while requiring final certainty. Experiments on graduate-level mathematics problems and free-form code generation demonstrate that consilience effectively outperforms existing baselines, validating their perspective on completion confidence.</description>
+    <pubDate>2026-08-10T17:45:44Z</pubDate>
+    <source>arXiv (cs.LG)</source>
   </item>
   <item>
-    <title>Strategy-first synthesis planning for complex natural products</title>
-    <link>https://arxiv.org/abs/2608.07454v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.07454v1</guid>
-    <description>SynthEx is an agentic framework built on large language models that plans retrosynthetic routes to complex natural products beyond the reach of conventional catalogue-based design algorithms. Unlike existing tools shaped to fit benchmarked chemistry, SynthEx proposes competing strategies, assembles sequences of routine and key steps into cohesive routes, and critiques and improves its own designs, favoring more convergent chemistry in reaction spaces that catalogue-based tools cannot match. In blinded assessments, expert chemists judged the framework&#x27;s key steps comparable to those of published human syntheses and engaged with them as genuine synthesis plans, a response algorithmic route prediction has not previously achieved. The authors also release SynthAtlas, an open interactive database containing routes to more than a thousand natural products that lack existing literature routes, which they anticipate will become a shared resource for the synthesis community.</description>
-    <pubDate>2026-08-07T17:47:39Z</pubDate>
-    <source>arXiv (cs.AI)</source>
+    <title>BDH-CQ: In-Context Learning with Recurrent Latent Reasoning</title>
+    <link>http://arxiv.org/abs/2608.09888v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.09888v1</guid>
+    <description>BDH-CQ is a reasoning model that combines in-context learning with recurrent latent reasoning, allowing inference-time inputs to continuously update its recurrent memory. The model solves queries through iterative computation in a high-dimensional latent space without verbalizing intermediate steps. It was evaluated on the public ARC-AGI-1 benchmark alongside controlled ARC-like interventions designed to study what the model learns from demonstrations, how consistently it applies inferred transformations, and which concepts remain difficult. A 150-million-parameter configuration achieves 29.5% pass@2 at a computed inference cost of $0.0007 per task. This operating point surpasses previously reported cost-accuracy trade-offs on ARC-AGI-1, establishing a new state of the art in benchmark cost efficiency. The paper, authored by Björn Engdahl, Adrian Kosowski, Jan Chorowski, and collaborators, was submitted to arXiv in August 2026.</description>
+    <pubDate>2026-08-10T17:39:16Z</pubDate>
+    <source>arXiv (cs.LG)</source>
   </item>
   <item>
-    <title>SkillProx: Self-Evolving Agent Skills via Proximal Textual Gradient Descent</title>
-    <link>https://arxiv.org/abs/2608.07449v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.07449v1</guid>
-    <description>Software engineers deploying LLM agents for recurring coding tasks often face a tradeoff between letting agents learn from experience and keeping their behavior reliable and auditable. SkillProx addresses this by treating agent knowledge as reusable textual skills that evolve through a proximal-gradient-style forward-backward loop, where failures are diagnosed, regressions are rolled back, and each knowledge unit is audited for utility before being kept, demoted, or removed. This gives engineering teams a practical path to building agents that accumulate domain expertise over time without weight updates, while retaining the rollback safety nets and transparency needed for production use.</description>
-    <pubDate>2026-08-07T17:40:33Z</pubDate>
-    <source>arXiv (cs.AI)</source>
+    <title>Space-Creating versus Dead Possession: An Off-Ball Possession-Quality Index for Broadcast Football</title>
+    <link>http://arxiv.org/abs/2608.09887v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.09887v1</guid>
+    <description>The paper proposes a two-layer framework to evaluate off-ball possession quality in football, addressing the misleading nature of raw possession statistics. The first layer introduces an event-side junk-possession index that prices possession sequences by peak threat gain and flags low-threat sequences in tied-or-losing states after reconstructing the live scoreline. Tested on the 2026 FIFA World Cup across 103 matches, the junk flag correlates negatively with points (r=-0.37) and xG difference (r=-0.51), and retains significance beyond offensive VAEP in match-clustered regressions. The second layer applies a Space-Creation Index measuring net pitch-control change via broadcast video projections to resolve flagged windows as spatially dead or space-creating. Across 31 of 35 analyzed flagged windows, 74% were non-space-creating, 19% weak progression, and 6% were space-creating despite the event flag—including a team with 73% possession that exited on penalties, distinguishing space-creating-but-unconverted possession from sterile circulation.</description>
+    <pubDate>2026-08-10T17:39:05Z</pubDate>
+    <source>arXiv (cs.LG)</source>
   </item>
   <item>
-    <title>Exploiting System Management Mode with a very long interrupt</title>
-    <link>https://github.com/xoreaxeaxeax/smiiiiiiiiiiiiiiii</link>
-    <guid isPermaLink="false">https://github.com/xoreaxeaxeax/smiiiiiiiiiiiiiiii</guid>
-    <description>System Management Mode (SMM) is a secure, ultra-privileged execution environment in x86 CPUs that requires all cores to enter or leave SMM together for its security model to function. A new exploit breaks this synchronization by running an obscenely long machine instruction on one core—approximately 4 billion cycles, or over a second of wall-clock time—so it cannot respond to the system management interrupt (SMI) that pulls other cores into SMM. The proof of concept targets a Zen 3 Ryzen 7 5800H, using a wide xmm load from slow MMIO at 0xfcc68860 to stall a core while another core fires SMIs and checks whether per-core SMI counters diverge. This SMI desynchronization allows an outside core to run while SMM executes, turning previously dormant SMM TOCTOU vulnerabilities into software-exploitable bugs without requiring physical access or a malicious DMA device. The author notes no clear mitigation exists, since keeping the timeout leaves the rendezvous breakable, while removing it would hang the platform on any legitimately stuck core.</description>
-    <pubDate>2026-08-10T16:03:14Z</pubDate>
+    <title>H3-metal – Native MiniMax-H3 inference for Apple Silicon</title>
+    <link>https://github.com/antirez/h3.c</link>
+    <guid isPermaLink="false">https://github.com/antirez/h3.c</guid>
+    <description>h3-metal is a project for native MiniMax-H3 inference on Apple Silicon, developed in stages, with prompt-to-video/audio, first/last-frame conditioning, and ordered Ref2VA image/video/audio references currently working end to end. The tool builds with make and supports both a CLI and an interactive Iris-style session, exposing commands like !first, !last, and !ref-image for conditioning, plus !status, !seed, and !save for session control. Generated videos require FFmpeg, and configuration options such as --steps, --reuse, --layers, and --show control denoising passes, velocity reuse, transformer block count, and in-terminal previews. A four-pass configuration produced results with roughly 0.55 SSIM against a 29-pass reference in about 3.5 seconds on M5 Max, versus 26.4 seconds for the reference. An optional --ssd-streaming mode keeps two DiT blocks resident and streams the next from SSD, reducing tracked DiT tensor storage from about 36.5 GiB to roughly 2 GiB at 512-square resolution with byte-identical output at the cost of slower forward passes.</description>
+    <pubDate>2026-08-11T01:22:09Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: Ante, a coding agent in a single binary that runs offline</title>
-    <link>https://github.com/AntigmaLabs/ante</link>
-    <guid isPermaLink="false">https://github.com/AntigmaLabs/ante</guid>
-    <description>Ante is a coding agent distributed as a single ~15MB Rust binary by Antigma Labs, with zero runtime dependencies and support for macOS and Linux. Currently in alpha, the core harness ships as a prebuilt binary while the repository contains documentation, the protocol schema, an SDK, and the eval pipeline under Apache 2.0. The agent supports over 12 providers including Anthropic, OpenAI, Google Gemini, Grok, and local GGUF models through a built-in, pinned llama.cpp engine that enables fully offline operation. On Terminal-Bench 2.1, Ante achieved 82.7% using open-weight DeepSeek V4 Flash 0731, and compared to Claude Code it uses roughly 7x less peak memory, 9x less average CPU, and 5x less disk I/O across 20 parallel Docker tasks. Telemetry is enabled by default but can be disabled with the ANTE_TELEMETRY=off environment variable.</description>
-    <pubDate>2026-08-10T15:59:23Z</pubDate>
+    <title>Apple Silicon and macOS VMs: Faster LLM Inference with llama.cpp</title>
+    <link>https://github.com/trycua/cua/blob/main/blog/gpu-passthrough-macos-vms.md</link>
+    <guid isPermaLink="false">https://github.com/trycua/cua/blob/main/blog/gpu-passthrough-macos-vms.md</guid>
+    <description>Cua developed a process-scoped Metal capability shim for macOS VMs running through Apple's Virtualization.framework, which intercepts selected capability queries and changes answers for one guest process. The shim enables Apple family 9 support and raises maximum threadgroup memory from 32 KB to 64 KB, allowing llama.cpp to select newer Metal kernels. On an M1 Ultra with TinyLlama 1.1B, prompt processing ran 11.08× faster and token generation 16.36× faster than the stock guest, reaching 98.25% of bare-metal prompt speed. Testing Google's Gemma 4 12B QAT Q4_0 showed prompt processing 7.20× faster and generation 14.54× faster, with the unlocked guest hitting 99.59% of bare-metal prompt speed and 94.82% of generation speed. A 30B model test with llama.cpp b10359 yielded 7.55× faster prompt processing and 8.87× faster generation. The workload remains on Apple's virtual GPU path with no physical GPU assignment or kernel changes, and the source is released for reproducibility.</description>
+    <pubDate>2026-08-11T14:50:33Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Run Android ARM64 VR APKs on Apple Vision Pro</title>
-    <link>https://github.com/shinyquagsire23/Klepton</link>
-    <guid isPermaLink="false">https://github.com/shinyquagsire23/Klepton</guid>
-    <description>Klepton enables running Android ARM64 VR APKs on Apple Vision Pro without requiring JIT, using a tool called klepton-ld that translates Android .so libraries into Apple .dylib and .framework libraries. The system focuses on Java-thin applications, excluding ART and JVM, with graphics handled by translating GLES 3.2 to vendored ANGLE GLES 3.0 with a Metal backend and Vulkan to MoltenVK. Several Klepton runtime libraries provide Android-compatible interfaces for libc, NDK components, synthetic JNI, and an ovrp reimplementation, which integrate with platform services such as ARKit, GameController, and AVAudioEngine. To address register differences between Android and macOS, klepton-ld patches all x18 usage to use per-library TLS slots instead. Beat Saber currently runs on both macOS and visionOS with minor graphical issues, while Steam VR Link and broader tooling remain works in progress.</description>
-    <pubDate>2026-08-10T03:12:48Z</pubDate>
+    <title>Show HN: Git-knife – Edit commit messages, authors, and dates like a spreadsheet</title>
+    <link>https://github.com/TheRealYT/git-knife</link>
+    <guid isPermaLink="false">https://github.com/TheRealYT/git-knife</guid>
+    <description>git-knife is a desktop GUI built with Tauri that lets users edit git commit metadata—including message, author and committer names and emails, and dates—directly from a table-like interface. Unlike polished alternatives such as GitKraken or Sublime Merge, it treats commit dates as fully editable and exposes committer date and author identity for arbitrary commits, filling the gap between existing GUIs and CLI tools like git-filter-repo. The application shells out to the system git CLI and rebuilds commits using git commit-tree while reusing each commit's original tree, ensuring file contents are provably unchanged. It supports bulk find-and-replace across text fields with regex, creates backup refs before every rewrite for one-click restore, and warns when edits would touch already-pushed history. Current limitations include locked merge commits and not-yet-implemented reorder, squash, and drop functionality. The MVP version produces native installers for macOS, Linux, and Windows via GitHub Actions.</description>
+    <pubDate>2026-08-11T15:09:34Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: AI Pulse a fake LED strip beside the macOS Dock that shows agent status</title>
-    <link>https://github.com/leog/ai-pulse</link>
-    <guid isPermaLink="false">https://github.com/leog/ai-pulse</guid>
-    <description>AI Pulse is a macOS app that displays AI coding agent status through a slim strip of eight virtual LEDs positioned beside the Dock. Inspired by the SidePulse hardware gadget, it provides aggregate visual signals—cyan comet for working, orange breath for awaiting input, double-blink red for failures, solid green for completion, and aurora drift for idle—without distinguishing individual models. The app uses a borderless NSPanel positioned from public screen geometry, requires no private APIs or accessibility permissions, and listens on a configurable loopback HTTP port for agent status updates. A bundled CLI publishes events to the local service, and a Claude Code adapter registers lifecycle hooks so sessions appear in the pill automatically. All six development milestones are complete, including Keychain-based authentication, state persistence, and an optional dynamic Dock icon, with Reduce Motion accessibility support and keyboard-accessible settings.</description>
-    <pubDate>2026-08-10T22:07:41Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Tl;dv: Over 180k meetings left wide open</title>
-    <link>https://bobdahacker.com/blog/tldv-hack</link>
-    <guid isPermaLink="false">https://bobdahacker.com/blog/tldv-hack</guid>
-    <description>A security researcher disclosed a critical vulnerability in tl;dv, an AI meeting recording platform with over 2 million users, on January 28, 2026, reporting it via LinkedIn to Raphael Allstadt and by email to the company&#x27;s CTO. The Firestore database lacked tenant isolation, allowing any authenticated user to query all 181,874 meeting records across 84,312 users from 35,003 domains, including 23 government ministries and universities like Berkeley. Roughly 1,000 active meetings had exposed conference IDs, enabling uninvited joining; the researcher joined live calls including a Malaysian Ministry of Education presentation with 157 participants. An internal World Cup prediction app also exposed 43 player records, including employee names and emails, without authentication. Despite multiple follow-ups through July 2026, the CTO never responded and the vulnerabilities remained unfixed six months later.</description>
-    <pubDate>2026-08-10T12:26:05Z</pubDate>
+    <title>Show HN: Mcptoon – Token-efficient MCP CLI client</title>
+    <link>https://github.com/activeing123/mcptoon</link>
+    <guid isPermaLink="false">https://github.com/activeing123/mcptoon</guid>
+    <description>Mcptoon is a token-efficient MCP CLI client that uses TOON (Token-Optimized Object Notation) instead of JSON to drastically reduce token consumption when AI agents interact with MCP servers. While standard MCP clients can burn 10,000+ tokens just listing tools across 5 servers, mcptoon reduces tool discovery to roughly 350 tokens, achieving 97% savings for manifests and 40-60% for tool results. Built as zero-dependency pure Python at 50KB, it works across Windows, macOS, and Linux, and is compatible with any AI agent that runs shell commands, including Claude Code, Codex, OpenCode, and Cursor. Recent versions add features like stdin support for large payloads, a doctor self-diagnosis command, tool poisoning guards against prompt injection, fuzzy tool name matching, and cross-agent format export to OpenAI, OpenAPI, and MCP standards. A v0.2.2 --slim mode further compresses tool schemas to 93% fewer tokens than JSON.</description>
+    <pubDate>2026-08-11T05:26:58Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
     <title>Muse Glimmer: 30B-parameter model optimized for always-on local agent workflows</title>
     <link>https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model</link>
     <guid isPermaLink="false">https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model</guid>
-    <description>Meta Superintelligence Labs has released Muse Glimmer, a 30-billion-parameter open-weight model under an Apache 2.0 license, designed for local agentic workflows on consumer hardware. The model is optimized to run on a single consumer GPU, with quantization compressing its weights to approximately 4-bit precision and bringing the language model under 20 GB. It was trained through pre-training, mid-training, and post-training phases using logit distillation from the larger Muse Spark model. Muse Glimmer supports multimodal inputs, tool use, multi-step reasoning, and over 100 languages, and is evaluated on benchmarks including DeepSearch QA, MCP-Atlas, τ-Bench, and SWE-Bench. To accelerate inference, it ships with a DFlash-based speculative decoding drafter that allows faster token generation while preserving output quality. The weights are available on Hugging Face, with integrations planned for Ollama, LM Studio, llama.cpp, MLX, ExecuTorch, vLLM, and other frameworks.</description>
+    <description>Meta Superintelligence Labs introduced Muse Glimmer, a 30-billion-parameter open-weight model released under an Apache 2.0 license on Hugging Face. Optimized for always-on local agent workflows, it runs on a single consumer GPU and supports end-to-end task completion, reliable tool use, multi-step reasoning, failure recovery, multimodal input, and multilingual understanding across more than 100 languages. Training occurred in three phases: pre-training via logit distillation from the larger Muse Spark model, mid-training on longer-context agent data with richer reasoning traces, and post-training combining supervised fine-tuning, on-policy distillation, and reinforcement learning. Quantization compresses the model to approximately 4-bit precision under 20 GB, while a lightweight DFlash speculative decoding drafter accelerates token generation. Optimized integrations with llama.cpp, MLX, and ExecuTorch are forthcoming, alongside partnerships with Ollama, LM Studio, vLLM, and hardware makers AMD, Arm, Dell, Intel, and NVIDIA.</description>
     <pubDate>2026-08-10T10:10:02Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Mark Zuckerberg attacks &#x27;closed&#x27; AI rivals as Meta returns to open models</title>
-    <link>https://www.ft.com/content/4e3957f8-ea7c-4c46-a3de-cdce8e526878</link>
-    <guid isPermaLink="false">https://www.ft.com/content/4e3957f8-ea7c-4c46-a3de-cdce8e526878</guid>
-    <description>Meta&#x27;s renewed push into open-weight AI models directly expands the toolkit available to engineers, giving teams the ability to self-host, fine-tune, and audit model weights rather than treating LLMs as black boxes accessed solely through paid APIs. This shift lowers the long-term cost and lock-in risk of building AI-powered features, while also opening doors to custom deployments in regulated or air-gapped environments where sending data to a third-party provider is a non-starter. Engineers should expect the competitive landscape to fragment further, making architectural choices around model orchestration, evaluation pipelines, and switching costs more strategically important than ever.</description>
-    <pubDate>2026-08-10T14:06:22Z</pubDate>
+    <title>France to ban unsolicited telemarketing calls</title>
+    <link>https://www.lemonde.fr/en/france/article/2026/08/06/france-to-ban-unsolicited-telemarketing-calls-from-august-11_6756208_7.html</link>
+    <guid isPermaLink="false">https://www.lemonde.fr/en/france/article/2026/08/06/france-to-ban-unsolicited-telemarketing-calls-from-august-11_6756208_7.html</guid>
+    <description>France will ban unsolicited telemarketing calls beginning August 11, 2026, under a law approved by parliament last year and backed by President Emmanuel Macron's government. The legislation came in response to years of consumer complaints, with authorities estimating that roughly three-quarters of people in France receive at least one unwanted sales call weekly. Under the new rules, businesses are prohibited from contacting consumers without prior consent, and individuals or companies violating the ban face fines of up to €75,000 and €375,000 per call respectively. Consumers can report unsolicited calls through a government website, though exceptions exist for those who explicitly consent or have existing contractual relationships. The law has raised concerns in Morocco, where the Employment Minister warned that 40,000 to 50,000 call center jobs could be lost given that France accounts for over 80% of the sector's revenue.</description>
+    <pubDate>2026-08-11T08:15:46Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Illinois just passed a law that puts Linux on the hook for age verification</title>
-    <link>https://linuxstans.com/illinois-hb5511-operating-system-age-verification/</link>
-    <guid isPermaLink="false">https://linuxstans.com/illinois-hb5511-operating-system-age-verification/</guid>
-    <description>Illinois Governor JB Pritzker signed HB5511, the Children&#x27;s Social Media Safety Act, on July 31, 2026, after it passed unanimously through both chambers of the General Assembly. While the bill&#x27;s social media provisions target platforms like TikTok and Instagram, a separate section defines &quot;operating system provider&quot; broadly enough to include open source projects. By January 1, 2028, covered manufacturers must build age-declaration systems that share age-bracket signals with apps through an encrypted API. Unlike Colorado and California, which exempted open source software from similar requirements, Illinois included no such carve-out. Enforcement falls only to the Illinois Attorney General, with civil penalties capped at $7,500 per affected child. Both the EFF and NetChoice opposed the bill before passage, with EFF specifically warning that it put the open source ecosystem at risk.</description>
-    <pubDate>2026-08-10T20:20:06Z</pubDate>
+    <title>As AI eats the web, the internet’s collective memory is disappearing</title>
+    <link>https://thewalrus.ca/google-search-is-dying/</link>
+    <guid isPermaLink="false">https://thewalrus.ca/google-search-is-dying/</guid>
+    <description>Google's AI search summaries are producing errors on basic facts such as sunset times, reflecting a broader decline in the internet's archival function. Link rot continues to erase pages, while companies now plant content on Reddit to manipulate AI-generated answers, contaminating the public record. Major knowledge sources are collapsing: Disney deleted the entire FiveThirtyEight archive in 2025, Wikipedia is losing traffic and donations as AI systems scrape its content directly, and the Internet Archive faces cyberattacks, costly litigation, and news organizations blocking its crawlers. The rise of ephemeral formats like Instagram Stories means much cultural communication is never preserved in the first place. In response, countries like France are pursuing digital sovereignty by adopting homegrown alternatives such as Qwant for search and Tchap for government messaging, reflecting growing concern that the infrastructure storing collective memory is breaking down.</description>
+    <pubDate>2026-08-10T22:36:30Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>The UK's war on anonymity has come to America</title>
+    <link>https://www.effort.news/uk-lobby</link>
+    <guid isPermaLink="false">https://www.effort.news/uk-lobby</guid>
+    <description>Five foreign NGOs and their US affiliates are conducting a coordinated operation to influence American lawmakers, using "child safety" rhetoric to advocate for digital ID laws that would strip adults of internet anonymity. After successfully passing such laws in Britain, these organizations are now targeting 21 US states and Congress. British NGO 5Rights, founded by Baroness Beeban Tania Kidron of the House of Lords, registered under the Foreign Agents Registration Act but failed to disclose information about its foreign leadership. It co-designed California's AB 2273, engaged on 42 bills across 18 states with 11 becoming law, and paid $50,000 to lobby in California without timely disclosure. The Center for Countering Digital Hate, founded by British Labour consultants Imran Ahmed and Morgan McSweeney, was accused by America First Legal of violating FARA in 2024. Meanwhile, the Institute for Strategic Dialogue has received over $17 million from the US State Department, EU, and UK ministries for contracts explicitly describing a mission to control internet speech.</description>
+    <pubDate>2026-08-10T23:45:50Z</pubDate>
     <source>Hacker News</source>
   </item>
 </channel></rss>
