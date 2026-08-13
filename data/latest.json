@@ -18,14 +18,24 @@
       "intro": "Hands-on engineering writing from independent voices and product teams — architecture and trade-offs behind systems that shipped.",
       "stories": [
         {
+          "title": "From coder to orchestrator: How agents shift the role of a developer",
+          "url": "https://github.blog/developer-skills/career-growth/from-coder-to-orchestrator-how-agents-shift-the-role-of-a-developer/",
+          "source": "GitHub Blog",
+          "source_kind": "blog",
+          "published_at": "Tue, 11 Aug 2026 18:38:17 +0000",
+          "snippet": "Developers are owning more of the delivery system around code, not just code itself. Join us during GitHub Universe to meet other devs, learn something new, and explore what's next. The post From coder to orchestrator: How agents shift the role of a developer appeared first on The GitHub Blog.",
+          "summary": "The developer role is shifting from coder to orchestrator as developers increasingly own the entire delivery system around code rather than just writing it. While AI agents can produce one-off code from a single prompt, reliable software delivery requires wired workflows with checks, context, and controls. A working agentic flow begins with repository events or triggers that invoke GitHub Actions workflows, which then trigger agents to perform scoped tasks. The agent's output is captured in a pull request, where deterministic checks like linting, tests, security scanning, and build verification take over, while review rules and branch protections govern merging. Developers act as system orchestrators who define triggers, scope agent permissions, design handoffs, and determine where human judgment remains. GitHub Copilot serves as the control plane for this ecosystem.",
+          "id": "eng-01"
+        },
+        {
           "title": "GitHub availability report: July 2026",
           "url": "https://github.blog/news-insights/company-news/github-availability-report-july-2026/",
           "source": "GitHub Blog",
           "source_kind": "blog",
           "published_at": "Wed, 12 Aug 2026 22:17:32 +0000",
           "snippet": "In July, we experienced eight incidents that resulted in degraded performance across GitHub services. The post GitHub availability report: July 2026 appeared first on The GitHub Blog.",
-          "summary": "GitHub has released its availability report for July 2026, detailing service performance over the month. During this period, eight incidents resulted in degraded performance across GitHub services. The report documents these disruptions as part of GitHub's ongoing transparency efforts regarding platform reliability. Specific details about the nature, duration, and resolution of each incident would be covered in the full post on The GitHub Blog.",
-          "id": "eng-01"
+          "summary": "In July 2026, GitHub experienced eight incidents that degraded performance across its services, including a particularly severe GitHub Actions disruption on August 6 that the company acknowledged fell short of its commitments. In response, GitHub is accelerating the migration of GitHub Actions to Azure to gain more capacity and improve resilience. Progress on the broader Azure migration included monolith read traffic in Azure Central US peaking at 52.75% on July 28—the first time it consistently exceeded the halfway mark—while Git traffic in Azure reached 47%, up from 43% in June. Additionally, 29% of repositories now have a second replica in Central US to enable less disruptive failover. GitHub also moved authentication tables off its oldest shared database and reduced pressure on shared infrastructure, with the dedicated pull request service reaching 99.87% parity with the monolith for authenticated reads. The company is targeting 70% of read traffic and 30% of write traffic in Central US this quarter, with a goal of moving all dotcom production traffic out of its data centers by the end of CY2026.",
+          "id": "eng-02"
         },
         {
           "title": "Write your first prompt with the GitHub Copilot app",
@@ -34,37 +44,27 @@
           "source_kind": "blog",
           "published_at": "Wed, 12 Aug 2026 19:00:00 +0000",
           "snippet": "Learn how to write your first prompt in the GitHub Copilot app, choose the right context and model, and start your first task with confidence. The post Write your first prompt with the GitHub Copilot app appeared first on The GitHub Blog.",
-          "summary": "The GitHub Copilot app helps new users begin by connecting an agent session to a GitHub repository or a local folder. Once a project is selected, users can describe a desired change in plain English, such as adding a most-funded sort option to a games list. Copilot examines the project, identifies relevant code, and works on the request, while users can refine it through follow-up details. The app also lets users choose a model, use voice input, select an agent, or enable remote control when needed. Its central advice is to start with a small change, learn through iteration, and select additional tools only as tasks require them.",
-          "id": "eng-02"
-        },
-        {
-          "title": "Your contributors are AI-first now. Is your project?",
-          "url": "https://github.blog/open-source/maintainers/your-contributors-are-ai-first-now-is-your-project/",
-          "source": "GitHub Blog",
-          "source_kind": "blog",
-          "published_at": "Wed, 12 Aug 2026 18:00:08 +0000",
-          "snippet": "AI contributors are already in your queue. AutoGPT maintainer Nicholas Tindle shares the repo instructions, gates, and boundaries that keep maintainers in control. The post Your contributors are AI-first now. Is your project? appeared first on The GitHub Blog.",
-          "summary": "AutoGPT, with over 180,000 GitHub stars and around 150 open pull requests, receives a significant portion of its contributions from AI agents like Copilot, OpenClaw, and internal tooling. Founding AI engineer Nicholas Tindle places instructions directly where agents look, using CLAUDE.md files, a centralized AGENTS.md, and discoverable skills with trigger phrasing in their descriptions. The project enforces several gates: PR templates that get closed automatically if not followed, a test plan that triggers a skill which installs browser testing tools and runs the change, mandatory Codecov coverage thresholds, and a CLA signing requirement that serves as a human detector. Some agents resolve review threads without fixing code, so AutoGPT requires a commit SHA link before resolution. Tindle emphasizes that maintainers don't have to accept every PR and can disable contributions entirely, and when closing a PR to rebuild, adding the contributor as co-author costs nothing.",
+          "summary": "Connecting an agent session to a GitHub repository or local folder gives Copilot the context it needs to work with your codebase, while the default model is a good starting point. You can describe a desired change in plain English, such as adding a most-funded sort option to a games list, without learning special syntax. Copilot can examine the project and refine the change as you add details or request adjustments. The app also supports voice input, which converts speech into editable text before sending. From the session title, you can select a different agent or enable remote control to continue a session from the web on another device. Beginners can start with a small change, then adjust the prompt, model, or session settings as needed.",
           "id": "eng-03"
         },
         {
-          "title": "Introducing the pkg.go.dev API",
-          "url": "https://go.dev/blog/pkgsite-api",
-          "source": "Go Blog",
+          "title": "How to keep thinking",
+          "url": "https://seangoedecke.com/how-to-keep-thinking/",
+          "source": "Sean Goedecke",
           "source_kind": "blog",
-          "published_at": "2026-05-21T00:00:00+00:00",
-          "snippet": "The Go Blog Introducing the pkg.go.dev API Ethan Lee, Hana Kim, and Jonathan Amsterdam 21 May 2026 Since its inception, pkg.go.dev has established itself as the Go community&rsquo;s primary resource for package documentation and discovery. While we initially prioritized creating a comprehensive and highly accessible web interface for users, the need for programmatic access has become increasingly ",
-          "summary": "The Go team has announced an official pkg.go.dev API to provide programmatic access to metadata about published Go modules, addressing years of community feedback and the growing needs of AI-assisted coding tools. Built for stability and efficient caching, the API uses a stateless, GET-only architecture with primary endpoints hosted under the /v1beta path, covering package and module information, versions, search, symbols, imported-by lists, and vulnerabilities. Following a \"precision over convenience\" design principle, the API requires the module to be specified explicitly when a package path exists in multiple modules, rather than applying the \"longest module path\" rule used by the web interface. The optional version query parameter supports semantic version tags as well as the master and main branches, defaulting to the latest tagged version. To demonstrate usage, the team has released pkgsite-cli, a reference client implementation installable via go install, while inviting community feedback through the issue tracker as the interface continues to evolve.",
+          "published_at": "Fri, 07 Aug 2026 00:00:00 GMT",
+          "snippet": "",
+          "summary": "Working with LLMs in 2026 often feels like a frenetic game show, with engineers constantly spinning off tasks and skimming AI outputs rather than engaging in slow reflection. The author worries this shift is biasing them toward quick judgment and away from the deep thinking needed for creativity. To counteract this, they recommend two practices: writing in your own words, since constructing prose forces you to actually articulate your thoughts, and reading dense non-fiction books slowly, the antithesis of AI slop. Combining both—reading a book and then writing about it—has been particularly satisfying. Although workplace expectations increasingly favor rapid task-switching between AI outputs, the author argues that losing the habit of slow thinking entirely would be a mistake, as problems like large refactors on complex codebases still require careful human problem-solving.",
           "id": "eng-04"
         },
         {
-          "title": "Type Construction and Cycle Detection",
-          "url": "https://go.dev/blog/type-construction-and-cycle-detection",
-          "source": "Go Blog",
+          "title": "No, local models will not win",
+          "url": "https://seangoedecke.com/local-models-will-not-win/",
+          "source": "Sean Goedecke",
           "source_kind": "blog",
-          "published_at": "2026-03-24T00:00:00+00:00",
-          "snippet": "The Go Blog Type Construction and Cycle Detection Mark Freeman 24 March 2026 Go&rsquo;s static typing is an important part of why Go is a good fit for production systems that have to be robust and reliable. When a Go package is compiled, it is first parsed—meaning that the Go source code within that package is converted into an abstract syntax tree (or AST). This AST is then passed to the Go type ",
-          "summary": "Go's type checker constructs an internal representation for each type it encounters while traversing the abstract syntax tree, a process known as type construction. A type is considered complete when all its fields are populated and the types it references are also complete, which is essential for safely deconstructing types during checking. While simple types complete naturally in a depth-first manner, recursive types like `type Node struct { next *Node }` may yield incomplete types during evaluation, forcing the type checker to delay deconstruction-dependent checks until all types are finished. Array types complicate this further because their construction requires deconstruction to determine size, which can create impossible completion cycles. Examples such as `type T [unsafe.Sizeof(T{})]int` fall into this category, and detecting these cyclic definitions is handled through cycle detection within the type checker.",
+          "published_at": "Tue, 11 Aug 2026 00:00:00 GMT",
+          "snippet": "",
+          "summary": "The author argues that local AI models will not replace datacenter-based inference, despite the popular belief that they represent the future. Local models are too weak compared to frontier models, and as smaller models become more capable, users' expectations rise so they still prefer the strongest available option. Datacenter models are also cheaper because they batch inference across many users simultaneously and use more efficient GPUs, with the datacenter B200 delivering roughly three times the flops and just under four times the memory bandwidth of consumer GPUs like the RTX 4090. The author estimates that running models locally uses approximately 30 times the resources of datacenter inference. While local models might win through scenarios like government bans on AI datacenters or progress stalling for large models, the author believes these remain niche situations. Most users will continue relying on datacenter inference, though local models",
           "id": "eng-05"
         }
       ]
@@ -81,7 +81,7 @@
           "source_kind": "paper",
           "published_at": "2026-08-11T17:59:13Z",
           "snippet": "",
-          "summary": "Surgical robot learning is limited by the high cost of collecting action-labeled teleoperated demonstrations such as dVRK trajectories, while action-free endoscopic video is far more abundant. The authors introduce Surgical WAM, a unified generative model built on Cosmos Policy that jointly predicts future endoscopic observations and executable surgical robot action chunks. The model is first pretrained on action-free video to learn surgical visual dynamics and then fine-tuned on a fixed budget of action-labeled demonstrations. At deployment, it functions as a closed-loop, receding-horizon controller that executes a short prefix of each predicted action chunk and replans from the new observation. Evaluated on four simulated surgical manipulation tasks, video pretraining raised the average success rate from 63.5% to 77.8%, including a 20 percentage-point gain on PegTransfer, with the largest improvements on contact-rich and bimanual tasks. The results suggest that action-free video provides transferable visual dynamics priors for data-efficient surgical robot learning.",
+          "summary": "Learning reliable surgical manipulation policies is limited by the high cost of collecting action-labeled teleoperated robot trajectories, while endoscopic video is comparatively abundant. The authors introduce Surgical WAM, a unified generative model built on Cosmos Policy that jointly predicts future endoscopic observations and executable surgical robot action chunks. The model first learns surgical visual dynamics from action-free video and is then fine-tuned on a fixed action-labeled budget, acting at deployment as a closed-loop, receding-horizon controller that executes a short prefix of each predicted action chunk and replans from the resulting observation. On four simulated surgical manipulation tasks, video pretraining improved the average success rate from 63.5% to 77.8%, including a 20 percentage point gain on the PegTransfer task. The largest gains occurred on contact-rich and bimanual tasks, demonstrating that action-free video provides transferable visual dynamics priors for learning surgical robot control with limited action supervision.",
           "id": "pap-01"
         },
         {
@@ -91,7 +91,7 @@
           "source_kind": "paper",
           "published_at": "2026-08-11T17:57:34Z",
           "snippet": "",
-          "summary": "ConVAWG is a retrieval-grounded framework designed to generate synthetic multi-turn dialogues depicting Violence Against Women and Girls (VAWG) scenarios. The framework builds scenarios from persona seeds, UK Office for National Statistics demographic patterns, official crime definitions, and retrieved Domestic Homicide Review cases, then converts them into hierarchical event timelines for multi-scene role-play dialogue generation. It also applies targeted activation-steered toxicity control to appropriate utterances. The authors released over 6,000 multi-turn dialogue events across 200 scenarios, accompanied by rich scenario-, event-, and turn-level metadata. The dataset was validated through human evaluation, LLM-as-Judge assessment, ablations, and downstream tasks, demonstrating strong dialogue quality and domain fidelity. The work addresses the gap in modelling abuse as a relational and temporally unfolding phenomenon, rather than limiting analysis to sentence-level toxicity.",
+          "summary": "ConVAWG is a retrieval-grounded framework designed to generate synthetic multi-turn dialogues modeling Violence Against Women and Girls (VAWG) scenarios, addressing the gap left by prior work that focused mainly on sentence-level toxicity of online abuse. The framework builds scenarios from persona seeds, UK Office for National Statistics demographic patterns, official crime definitions, and retrieved Domestic Homicide Review cases, then converts them into hierarchical event timelines. It generates multi-scene role-play dialogues and applies targeted activation-steered toxicity control to appropriate utterances. The researchers released over 6,000 multi-turn dialogue events across 200 scenarios, accompanied by rich scenario-, event-, and turn-level metadata. Evaluation through human assessment, LLM-as-Judge, ablations, and downstream tasks demonstrated strong dialogue quality and domain fidelity, offering a resource for studying conversational dynamics in sensitive domains where real data is restricted.",
           "id": "pap-02"
         },
         {
@@ -101,7 +101,7 @@
           "source_kind": "paper",
           "published_at": "2026-08-11T17:53:48Z",
           "snippet": "",
-          "summary": "Researchers Alan Li, Rahul Saha, Anton Xue, Swarat Chaudhuri, Adam Klivans, Pravesh K. Kothari, and Raghu Meka present a case study on using AI to improve bounds on the Grothendieck constant $K_G$, a quantity that captures the hardness gap between combinatorial problems and their continuous relaxations. While the exact value of $K_G$ remains unknown, the authors tightened the best known bounds to $\\frac{6\\pi}{11} \\le K_G \\le \\frac{\\pi}{2\\log(1+\\sqrt2)} - 10^{-4}$. These improvements were achieved with the help of an AI research system that produced insights deemed novel by domain experts. The paper offers a detailed discussion of the strengths and weaknesses of AI in mathematics research, along with the conditions that best support breakthrough insights. The work sits at the intersection of artificial intelligence, computational complexity, human-computer interaction, and functional analysis.",
+          "summary": "This paper presents a case study in human-AI mathematical collaboration, focusing on the use of an AI research system to improve bounds on the Grothendieck constant K_G, which measures the hardness gap between combinatorial problems and their continuous relaxations. While the precise value of K_G remains unknown, the authors tightened the best known bounds to 6π/11 ≤ K_G ≤ π/(2log(1+√2)) - 10�⁴. These improvements were achieved with the help of an AI system that arrived at insights considered novel by domain experts. The authors provide a detailed discussion of their experience using AI for mathematics research, highlighting both the strengths and weaknesses of such systems. They also reflect on the conditions that enabled the AI to contribute breakthrough insights, offering guidance for future AI-assisted mathematical work.",
           "id": "pap-03"
         },
         {
@@ -111,7 +111,7 @@
           "source_kind": "paper",
           "published_at": "2026-08-11T17:50:25Z",
           "snippet": "",
-          "summary": "The paper introduces a Test-Time Self-Evolving framework for GUI visual grounding that enables models to improve after deployment without human-annotated ground truth. It addresses the limitation of existing models that freeze their parameters after deployment, restricting their ability to adapt to unseen interfaces. The proposed approach creates a closed-loop process of Exploration, Evaluation, Reflection, and Internalization, where an MLLM-based Reflector assesses predicted grounding coordinates and provides reasoning reflections on the results. To internalize these reflections into model weights, the authors propose Reflection-Guided On-Policy Self-Distillation, which translates high-level reasoning into dense token-level supervision through a conditioned self-teacher, alongside a Contrastive Calibration method to prevent incorrect auto-regressive prefixes from corrupting supervisory signals. Experiments across six benchmarks demonstrate a 7.4% average accuracy improvement over the base model, representing the first successful exploitation of on-policy self-distillation for test-time adaptation in GUI visual grounding.",
+          "summary": "GUI visual grounding is a fundamental capability for GUI agents, but existing models typically freeze their parameters after deployment, limiting adaptation to unseen interfaces. To address this limitation, the authors propose a Test-Time Self-Evolving framework that enables models to improve after deployment without human-annotated ground truth. The framework operates as a closed loop of Exploration, Evaluation, Reflection, and Internalization, where the agent first explores unseen interfaces by predicting grounding coordinates. An MLLM-based Reflector evaluates these predictions and provides reasoning reflections, while Reflection-Guided On-Policy Self-Distillation translates high-level reasoning into dense token-level supervision through a conditioned self-teacher. A Contrastive Calibration method prevents incorrect auto-regressive prefixes from corrupting supervisory signals during failed explorations. Experiments across six benchmarks demonstrate a 7.4% average accuracy improvement over the base model, representing the first work to successfully exploit on-policy self-distillation for test-time adaptation in GUI visual grounding.",
           "id": "pap-04"
         },
         {
@@ -121,7 +121,7 @@
           "source_kind": "paper",
           "published_at": "2026-08-11T17:41:39Z",
           "snippet": "",
-          "summary": "The paper addresses verifying the self-consistency of probabilistic predictors that answer conditional-probability queries, a problem relevant to AI safety. The authors construct an interactive PCP in which a predictive model is specified by a probability circuit P and a confidence circuit Q, which together implicitly define exponentially many probabilistic claims. A polynomial-time verifier checks the approximate consistency of (P,Q) by evaluating the circuits at only a few points and reading from a proof oracle encoding a witnessing probability distribution. They also analyze consistency of explicit probabilistic claims—m claims of the form Pr[Y=1 | X=x]=p over n Boolean variables—and place l₂-approximate probabilistic consistency in NP, with certificates of length O(mn + log B) in input bit-precision B. A small additive completeness-soundness gap removes the dependence on B. Together these results provide a complexity-theoretic foundation for certifying the self-consistency of probabilistic predictors, and the interactive PCP is presented as a first step toward training predictive models to prove their own consistency.",
+          "summary": "",
           "id": "pap-05"
         }
       ]
@@ -139,7 +139,7 @@
           "published_at": "2026-06-01T02:19:07Z",
           "snippet": "Npm-scan: Modern supply chain security for the npm ecosystem",
           "_objectID": "48351958",
-          "summary": "npm-scan is a supply chain security tool for the npm ecosystem, distributed as the `@lateos/npm-scan` package on npm and stored in the lateos-ai/npm-scan GitHub repository. Licensed under MIT OR BLA, the project has 225 commits and a test suite of over 830 passing tests across components including a CLI, backend, API, Helm deployment charts, and a GitHub Action. The tool targets threats that other scanners miss, detecting obfuscated payloads, credential stealers, kernel rootkits, eBPF hooks, memory extraction attacks, GitHub spoofing, and attacks aimed at AI systems. The repository is multilingual, with documentation available in English, German, French, Hebrew, Japanese, and Chinese, and ships with Docker support and validation harnesses for production readiness.",
+          "summary": "npm-scan is an open-source supply chain security tool for the npm ecosystem, designed to detect threats that established scanners like npm audit, Snyk, and Socket overlook. Hosted on GitHub under the lateos-ai organization, it identifies obfuscated payloads, credential stealers, kernel rootkits, eBPF hooks, memory extraction attempts, GitHub spoofing, and AI-targeted attacks. The project is distributed as an npm package (@lateos/npm-scan) under a dual MIT or BLA license, and also published as a GitHub Action for workflow integration. Its repository contains a CLI tool, API, backend services, Helm charts for Kubernetes deployment, and Docker support, alongside over 830 passing tests across 225 commits. Documentation is available in multiple languages including English, German, French, Hebrew, Japanese, and Chinese.",
           "id": "too-01"
         },
         {
@@ -150,7 +150,7 @@
           "published_at": "2026-08-10T14:17:13Z",
           "snippet": "Show HN: Open-Source Greptile Alternative",
           "_objectID": "49244029",
-          "summary": "Juror is an open-source GitHub project that positions itself as an alternative to Greptile by using frontier models to review pull requests in parallel. According to a bundled benchmark on a single production PR, Juror Fast identified 4 out of 6 P0–P2 defects at 100% precision, compared to Greptile's 1 out of 6 at 50% precision, though the project acknowledges this is not a statistically sufficient evaluation. The MIT-licensed repository is implemented in TypeScript/Node.js and includes benchmarks, documentation, and a GitHub Action for integration, with the project dogfooding itself by using Juror to review its own code. Users can reproduce the benchmark locally via a provided command against an included corpus. The repository has 82 stars and 9 forks, with 48 commits on its main branch.",
+          "summary": "Juror is an open-source GitHub Action that uses frontier AI models to review pull requests in parallel, positioning itself as an alternative to Greptile. The project, hosted under the Juror-AI organization, is MIT-licensed and built for Node.js environments. According to a bundled benchmark on a single production pull request, Juror Fast identified 4 of 6 P0–P2 defects at 100% precision, compared to Greptile's 1 of 6 at 50% precision. The maintainers acknowledge this is a one-PR seed rather than a statistically sufficient benchmark, and invite users to inspect the corpus and reproduce the results using the included CLI command. The repository includes source code, tests, documentation, benchmarks, and 48 commits, with active issue and discussion channels.",
           "id": "too-02"
         }
       ]
@@ -168,7 +168,7 @@
           "published_at": "2026-08-12T14:22:30Z",
           "snippet": "Tailscale Traces Database Corruption to 16y/o SQLite WAL-Reset Bug",
           "_objectID": "49272832",
-          "summary": "Tailscale experienced 19 instances of database corruption over six months in their control plane, which uses SQLite databases with a single-writer design per shard. The corruption affected only metadata about tailnets and devices, not private encryption keys or network traffic, but caused significant downtime as shards had to be taken offline for repairs. After failing to reproduce the bug synthetically, Tailscale deployed passive forensic telemetry and engaged the SQLite developers through a professional support contract to systematically rule out theories. They built a transaction logging pipeline for recovery, which unexpectedly revealed that data written and committed by one transaction was inexplicably invisible to later transactions. Investigation of SQLite's checkpoint process using a new debugging tool ultimately uncovered a 16-year-old bug in the Write-Ahead Logging reset logic, which Tailscale helped identify and resolve.",
+          "summary": "Tailscale experienced 19 separate instances of SQLite database corruption over six months, disrupting its coordination servers (shards) that store tailnet metadata. Although the corruption only affected configuration data rather than private encryption keys or network traffic, affected tailnets temporarily lost access to the control plane, admin console, and API. Tailscale engineers threw significant resources at finding the bug, reviewing code and adding forensic telemetry, but could not reproduce it synthetically due to inconsistent triggers. They engaged SQLite's developers through a professional support contract, and a transaction logging pipeline revealed that data written by one transaction was invisibly missing from later transactions. The investigation ultimately led to a 16-year-old bug in SQLite's checkpoint and write-ahead log (WAL) process, which the developers helped identify and fix.",
           "id": "dis-01"
         },
         {
@@ -179,28 +179,27 @@
           "published_at": "2026-08-12T16:04:50Z",
           "snippet": "DeepSeek V4 Pro 0813",
           "_objectID": "49274600",
-          "summary": "DeepSeek V4 Pro 0813 is a large-scale mixture-of-experts model from DeepSeek, representing the GA release of DeepSeek V4 Pro. It supports text input and output modalities with a context window of 1,048,576 tokens. Pricing is set at $0.435 per million input tokens and $0.87 per million output tokens, with a cache read rate of $0.003625 per million tokens. The model was released on August 12, 2026, and is available through OpenRouter, where it is hosted by a single provider that receives all forwarded requests directly.",
+          "summary": "DeepSeek V4 Pro 0813 is a large-scale mixture-of-experts model from DeepSeek, representing the GA release of DeepSeek V4 Pro. It is hosted through OpenRouter by a single provider, with requests forwarded directly without routing decisions. The model supports text input and output modalities, features a context window of 1,048,576 tokens, and was released on August 12, 2026. Pricing is set at $0.435 per million input tokens and $0.87 per million output tokens, with a cache read rate of $0.003625 per million tokens. OpenRouter provides performance metrics including throughput, latency, and time-to-first-token measurements, along with uptime tracking and standardized benchmark scores comparing the model against others on the platform.",
           "id": "dis-02"
         },
         {
-          "title": "I hate packaging my software for Linux",
-          "url": "https://getfresh.dev/docs/blog/packaging-for-linux/",
+          "title": "Reviewing code is a skill",
+          "url": "https://typesanitizer.com/blog/code-review.html",
           "source": "Lobsters",
           "source_kind": "discussion",
-          "published_at": "Wed, 12 Aug 2026 07:40:12 -0500",
+          "published_at": "Tue, 11 Aug 2026 00:37:40 -0500",
           "snippet": "Comments",
-          "summary": "The author of Fresh tried numerous Linux distribution channels including npm, crates.io, AppImage, Flatpak, deb, rpm, AUR, nix, mise, homebrew for Linux, and Terra Gentoo GURU, but each came with significant drawbacks. Flatpak's sandboxing conflicts with Fresh's terminal-based interface that needs system access, while AppImage suffers from slow startup times due to on-demand squashfs FUSE-mounting. Getting packages accepted into official Debian and Fedora repositories requires packaging all Rust dependencies as Debian packages, which is too time-consuming, and unofficial packages lack automatic updates. The Arch User Repository is currently in read-only mode due to security breaches, causing the author to miss version releases. Moving forward, the author plans to focus on a statically linked musl binary with a built-in self-updating mechanism as the primary Linux release channel.",
+          "summary": "The article argues that reviewing code is a skill that can be improved and taught, serving multiple purposes beyond catching bugs. Research from Google and earlier studies identifies four key themes for code review: education, maintaining norms, gatekeeping, and accident prevention, while also providing benefits like knowledge transfer and increased team awareness. The author illustrates this with three recent examples of bugs caught during code review, noting that in two cases the PR author had experience with the surrounding code. LLM reviews using high-end coding models from around June 2026 failed to catch any of these issues. The author also discusses historical background, ideas for experimenting with review practices, and evaluates common claims about code review through this skill-focused lens.",
           "id": "dis-03"
         },
         {
-          "title": "AI is removing the middle class of software engineering?",
-          "url": "https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html",
-          "source": "Hacker News",
+          "title": "The fastest double-to-string algorithm you’ve never heard of",
+          "url": "https://vitaut.net/posts/2026/yy-dtoa/",
+          "source": "Lobsters",
           "source_kind": "discussion",
-          "published_at": "2026-08-12T13:20:05Z",
-          "snippet": "AI is removing the middle class of software engineering?",
-          "_objectID": "49271994",
-          "summary": "AI has dramatically accelerated code production, enabling teams to generate massive changes like 24,506-line PRs in days rather than weeks. Projects with weak engineering culture now fail much faster because developers accept AI-generated code without understanding it, leading to convoluted systems where no one—not even the original author—can explain how features work. Reverting bad decisions remains far harder than making them, since an LLM can add unnecessary complexity in minutes, but removing it requires careful migration plans and risks disrupting live systems. This dynamic is reshaping the engineering job market: good engineers have become more valuable as AI amplifies their productivity, while bad engineers are becoming cheaper to hire or being replaced entirely. The author predicts this trend will extend beyond software engineering to most knowledge work, where AI makes top performers far more productive and weak performers nearly impossible to employ.",
+          "published_at": "Tue, 11 Aug 2026 11:42:55 -0500",
+          "snippet": "Comments",
+          "summary": "The yy algorithm, defined in yy_double.c from the yyjson library, is a fast binary-to-decimal conversion routine with no published paper and almost no profile outside JSON performance circles. It belongs to the Schubfach family, which finds the shortest decimal that round-trips by intersecting a float's rounding interval with decimal grids, but yy runs on fixed-width integer arithmetic using only one multiplication by a precomputed power of 10, where Schubfach needs two or three. Three predicates evaluate four candidate decimals against the scaled value and a half-ulp band, with small parity adjustments handling round-half-to-even. A boundary walk-through on the 8-bit E4M3 format shows how the η_c bias correction compensates for truncation in the p10 table, letting yy correctly emit \"2e2\" instead of the longer \"19e1\". The article includes",
           "id": "dis-04"
         }
       ]
