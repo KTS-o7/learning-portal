@@ -2,7 +2,7 @@
   "date": "2026-08-13",
   "label": "Thursday, August 13, 2026",
   "edition_tag": "vol-2-no-9",
-  "total": 13,
+  "total": 18,
   "prev_day": "2026-08-12",
   "next_day": null,
   "site": {
@@ -24,7 +24,7 @@
           "source_kind": "blog",
           "published_at": "2026-05-21T00:00:00+00:00",
           "snippet": "The Go Blog Introducing the pkg.go.dev API Ethan Lee, Hana Kim, and Jonathan Amsterdam 21 May 2026 Since its inception, pkg.go.dev has established itself as the Go community&rsquo;s primary resource for package documentation and discovery. While we initially prioritized creating a comprehensive and highly accessible web interface for users, the need for programmatic access has become increasingly ",
-          "summary": "Ethan Lee, Hana Kim, and Jonathan Amsterdam have announced the official pkg.go.dev API, providing programmatic access to metadata about published Go modules in response to community feedback and the rise of AI-assisted coding. The stateless, GET-only API is hosted under the /v1beta path and offers endpoints for packages, modules, versions, searches, symbols, importers, and vulnerabilities, with plans to transition to a formal v1 release. Following a \"precision over convenience\" principle, the API requires clients to specify modules unambiguously rather than automatically applying the \"longest module path\" rule used by the web interface. An optional version parameter supports semantic version tags and the master or main branches, which automatically resolve to pseudo-versions. To demonstrate usage, the team has published the pkgsite-cli reference client implementation, installable via go install, with examples covering search, package inspection, version listing, and symbol retrieval.",
+          "summary": "The Go team has launched the official pkg.go.dev API, providing programmatic access to metadata about published Go modules and replacing the need for fragile web scraping. Built for stability and efficient caching, the stateless GET-only API is currently hosted under the /v1beta path, with plans to transition to a formal v1 release following community feedback. Core endpoints cover packages, modules, versions, search, symbols, imported-by relationships, and vulnerabilities. A key design principle is precision over convenience, requiring clients to specify the module explicitly when package paths are ambiguous, unlike the web interface which automatically applies the longest module path rule. The API supports a version query parameter for specific semantic versions or master/main branches, defaulting to the latest tagged version when omitted. To demonstrate usage, the team released pkgsite-cli, a reference command-line client that handles pagination and formatting, while committing to backward compatibility as the interface evolves.",
           "id": "eng-01"
         },
         {
@@ -34,7 +34,7 @@
           "source_kind": "blog",
           "published_at": "2026-03-24T00:00:00+00:00",
           "snippet": "The Go Blog Type Construction and Cycle Detection Mark Freeman 24 March 2026 Go&rsquo;s static typing is an important part of why Go is a good fit for production systems that have to be robust and reliable. When a Go package is compiled, it is first parsed—meaning that the Go source code within that package is converted into an abstract syntax tree (or AST). This AST is then passed to the Go type ",
-          "summary": "Go's type checker constructs internal type representations while traversing the AST in a depth-first manner, completing types only after their dependencies are complete. This process becomes complex with recursive types, where evaluation can return incomplete types, making deconstruction unsound until completion. The type checker handles this by delaying checks that require deconstruction until all types are complete. However, some recursive patterns create cycle errors that cannot be resolved—type T [unsafe.Sizeof(T{})]int is invalid because calculating its array size requires deconstruction of T, which cannot complete until the array does. Cycle detection identifies such errors during type checking. Additionally, operating on incomplete values is only sound when the operation does not deconstruct the value's type. These refinements in Go 1.26 reduce corner cases while setting the stage for future improvements to Go.",
+          "summary": "Go's type checker constructs internal representations for each type it encounters while traversing the abstract syntax tree, a process called type construction. Types begin as \"under construction\" and only become \"complete\" once all their dependencies are fully populated. Recursive types complicate this process, since evaluating a type expression may return an incomplete type rather than a complete one, making deconstruction unsound until construction finishes. While type construction can safely refer to incomplete types, operations like unsafe.Sizeof require deconstruction, which can create cycles. For example, type T [unsafe.Sizeof(T{})]int is invalid because calculating the array's size requires deconstruction of T, which cannot complete until the array completes, making the cycle impossible to satisfy. Go 1.26 significantly improved the type checker's handling of these cycle errors, reducing corner cases without producing observable changes for typical Go users.",
           "id": "eng-02"
         },
         {
@@ -44,7 +44,7 @@
           "source_kind": "blog",
           "published_at": "2026-03-10T00:00:00+00:00",
           "snippet": "The Go Blog //go:fix inline and the source-level inliner Alan Donovan 10 March 2026 .beforeafter { justify-content: center; display: grid; gap: 1em; margin: 1em; grid-template-columns: minmax(min-content, 1fr) auto minmax(min-content, 1fr); font-size: 180%; @media screen and (max-width: 57.7rem) { grid-template-columns: 1fr; } } #content .beforeafter pre { margin: 0em; /* Handled by grid gap */ } ",
-          "summary": "Go 1.26 introduces a new go fix subcommand featuring a source-level inliner that replaces function calls with copies of the callee's body, substituting arguments for parameters. Activated by the //go:fix inline directive comment, the tool enables self-service API migrations, such as updating deprecated ioutil.ReadFile calls to os.ReadFile or correcting design flaws like reversed parameter order in a custom package. The inliner also handles type aliases and constants, updating references when they are declared as forwarded declarations to a new package. Comprising about 7,000 lines of compiler-like logic, the inliner carefully manages complexities like parameter elimination to produce safe transformations. Beyond go fix, gopls uses the same inliner for refactorings such as \"Change signature\" and \"Remove unused parameter,\" and it has already helped prepare over 18,000 changelists in Google's monorepo.",
+          "summary": "Go 1.26 introduces an updated `go fix` command featuring a source-level inliner that replaces function calls with copies of the callee's body, substituting arguments for parameters. Unlike compiler inlining that operates on ephemeral intermediate representations, source-level inlining durably modifies source code and is used by gopls for refactorings like \"Change signature\" and \"Remove unused parameter.\" A new `//go:fix inline` directive allows package authors to mark deprecated functions for automatic migration, enabling self-service API updates such as replacing `ioutil.ReadFile` with `os.ReadFile` or correcting design flaws like swapped parameter orders. The directive works on types and constants as well, and at Google it has already prepared more than 18,000 changelists in the monorepo. Implementing the inliner required about 7,000 lines of compiler-like logic to handle complex edge cases, including parameter elimination when arguments are trivial literals.",
           "id": "eng-03"
         },
         {
@@ -54,7 +54,7 @@
           "source_kind": "blog",
           "published_at": "2026-08-04T00:00:00+00:00",
           "snippet": "TL;DR We are enabling the next iteration of the borrow checker (coined Polonius Alpha) on nightly in preparation for stabilization in the next few months. Whaaaaaat? Yes! You heard it right! The next iteration of the Rust borrow checker is coming! Rust's first borrow checker (\"AST borrowck\") was very limited and was phased out in 2019 in favor of NLL, other than a \"migrate mode\" that was used to p",
-          "summary": "The next iteration of Rust's borrow checker, referred to as Polonius Alpha, is being enabled on the nightly compiler in preparation for stabilization within the next few months. Rust's original borrow checker, known as \"AST borrowck,\" had significant limitations and was phased out in 2019 in favor of NLL (Non-Lexical Lifetimes). A \"migrate mode\" had been used during the transition period to the previous system. The new Polonius Alpha represents another step forward in improving how Rust handles borrowing and lifetime analysis, aiming to catch more cases that the current borrow checker cannot handle. This change is expected to eventually become the default stable borrow checking behavior after a stabilization period.",
+          "summary": "The next iteration of Rust's borrow checker, dubbed Polonius Alpha, is being enabled on nightly for testing before stabilization later this year. Its key advantage over the current NLL borrow checker is flow-sensitive analysis of lifetime outlives relationships, which allows code patterns like the `reborrow` and `get_mut_or_default` examples to compile. Polonius Alpha is not a full superset of the original legacy Polonius, as some programs accepted by legacy Polonius are rejected by Polonius Alpha. Performance is generally acceptable for stabilization, with relatively few significant regressions among the top 10,000 crates on crates.io, and a worst case of roughly 2-3x slowdown. Users can disable it via `-Zpolonius=off` if needed, and the team plans to monitor for issues, address performance regressions, and stabilize before year's end. After stabilization, no concrete plans exist for further Polonius feature work, though optimization will continue and future feature work may resume eventually.",
           "id": "eng-04"
         },
         {
@@ -64,7 +64,7 @@
           "source_kind": "blog",
           "published_at": "2026-07-16T00:00:00+00:00",
           "snippet": "The Rust team has published a new point release of Rust, 1.97.1. Rust is a programming language that is empowering everyone to build reliable and efficient software. If you have a previous version of Rust installed via rustup, getting Rust 1.97.1 is as easy as: rustup update stable If you don't have it already, you can get rustup from the appropriate page on our website. What's in 1.97.1 Rust 1.97",
-          "summary": "The Rust team has released Rust 1.97.1, a new point release of the programming language. Users with rustup can update easily by running rustup update stable. The release fixes a miscompilation in an LLVM optimization, with the team backporting both an LLVM fix and a disable of the underlying change introduced in Rust 1.97.0 that increased the likelihood of this issue. The underlying miscompilation has been present in Rust since at least version 1.87. The team encourages users to help test future releases by running their CI or local code using the beta or nightly channels and reporting any bugs encountered. The release was made possible through contributions from many community members.",
+          "summary": "The Rust team has released version 1.97.1 of Rust, a programming language empowering developers to build reliable and efficient software. Users with a previous version installed via rustup can update by running \"rustup update stable.\" This point release fixes a miscompilation in an LLVM optimization by backporting an LLVM fix and disabling a change introduced in Rust 1.97.0 that affected Rust's generated IR. The Rust team noted that the underlying miscompilation had been present since at least Rust 1.87. Developers can help test future releases by running their code's CI or local builds on the beta or nightly channels and reporting any bugs they encounter. The team thanked all contributors for making this release possible.",
           "id": "eng-05"
         }
       ]
@@ -73,7 +73,58 @@
       "name": "papers",
       "label": "Papers",
       "intro": "New arXiv research on agents, learning, and language models — abstracts digested into plain prose.",
-      "stories": []
+      "stories": [
+        {
+          "title": "Surgical WAM: A World-Action Model for Data-Efficient Surgical Robot Learning",
+          "url": "https://arxiv.org/abs/2608.11204v1",
+          "source": "arXiv (cs.AI)",
+          "source_kind": "paper",
+          "published_at": "2026-08-11T17:59:13Z",
+          "snippet": "",
+          "summary": "Learning reliable surgical manipulation policies is limited by the scarcity of costly action-labeled teleoperated demonstrations, while endoscopic video is comparatively inexpensive and abundant. Existing surgical world models rarely translate learned visual dynamics into closed-loop control, leaving open whether action-free video pretraining can improve closed-loop manipulation under a fixed action budget. To address this, the authors introduce the Surgical World-Action Model (Surgical WAM), a unified generative model built on Cosmos Policy that jointly predicts future endoscopic observations and executable surgical robot action chunks. The model first learns surgical visual dynamics from action-free video, is fine-tuned on a limited action-labeled budget, and acts at deployment as a receding-horizon controller that replans from each new observation. On four simulated surgical manipulation tasks, video pretraining raised the average success rate from 63.5% to 77.8%, including a 20-percentage-point gain on PegTransfer, with the largest improvements on contact-rich and bimanual tasks.",
+          "id": "pap-01"
+        },
+        {
+          "title": "ConVAWG: A Retrieval-Grounded Framework for Controlled Synthetic Dialogue Generation in Violence Against Women and Girls",
+          "url": "https://arxiv.org/abs/2608.11200v1",
+          "source": "arXiv (cs.AI)",
+          "source_kind": "paper",
+          "published_at": "2026-08-11T17:57:34Z",
+          "snippet": "",
+          "summary": "ConVAWG is a retrieval-grounded framework introduced by Chen Lyu and colleagues for generating synthetic multi-turn dialogues depicting Violence Against Women and Girls (VAWG) scenarios. The work addresses privacy and legal barriers that limit access to real conversation data and the gap in modeling abuse as a relational, temporally unfolding phenomenon rather than sentence-level toxicity. ConVAWG constructs scenarios from persona seeds, demographic patterns from the UK Office for National Statistics, official crime definitions, and retrieved Domestic Homicide Review cases, then converts them into hierarchical event timelines for multi-scene role-play generation. Targeted activation-steered toxicity control is applied to appropriate utterances during generation. The authors released over 6,000 multi-turn dialogue events across 200 scenarios with rich metadata at scenario, event, and turn levels. Evaluation through human assessment, LLM-as-Judge, ablations, and downstream tasks demonstrates strong dialogue quality and domain fidelity.",
+          "id": "pap-02"
+        },
+        {
+          "title": "Long-Horizon AI Research for Grothendieck Constant: A Case Study in Human-AI Mathematical Collaboration",
+          "url": "https://arxiv.org/abs/2608.11195v1",
+          "source": "arXiv (cs.AI)",
+          "source_kind": "paper",
+          "published_at": "2026-08-11T17:53:48Z",
+          "snippet": "",
+          "summary": "Researchers Alan Li, Rahul Saha, Anton Xue, Swarat Chaudhuri, Adam Klivans, Pravesh K Kothari, and Raghu Meka present an extensive case study exploring how AI can be effectively used in mathematics research, focused on improving bounds for the Grothendieck constant KG. The Grothendieck constant captures the hardness gap between combinatorial problems and their continuous relaxations, though its precise value remains unknown. Using an AI research system, the team tightened the best known bounds to 6π/11 ≤ KG ≤ π/(2log(1+√2)) − 10⁻⁴. The improvements were achieved through insights that domain experts deemed novel. The authors detail their experience using AI for mathematical research, discussing both its strengths and weaknesses, along with conditions that enable AI systems to arrive at breakthrough insights during long-horizon research tasks.",
+          "id": "pap-03"
+        },
+        {
+          "title": "Test-Time Self-Evolving GUI Visual Grounding via Reflection-Guided On-Policy Self-Distillation",
+          "url": "https://arxiv.org/abs/2608.11191v1",
+          "source": "arXiv (cs.AI)",
+          "source_kind": "paper",
+          "published_at": "2026-08-11T17:50:25Z",
+          "snippet": "",
+          "summary": "GUI Visual Grounding is a fundamental capability for GUI agents, but existing models typically freeze their parameters after deployment, limiting",
+          "id": "pap-04"
+        },
+        {
+          "title": "How to Verify Consistency of Probabilistic Claims",
+          "url": "https://arxiv.org/abs/2608.11181v1",
+          "source": "arXiv (cs.AI)",
+          "source_kind": "paper",
+          "published_at": "2026-08-11T17:41:39Z",
+          "snippet": "",
+          "summary": "The paper \"How to Verify Consistency of Probabilistic Claims\" by Orr Paradise, Oliver Richardson, Yoshua Bengio, and Shafi Goldwasser addresses whether a probabilistic predictor's many conditional-probability answers are self-consistent and whether this can be verified in polynomial time, a question relevant to AI safety. The authors construct an interactive PCP in which a polynomial-time verifier, given a probability circuit P and a confidence circuit Q that together specify exponentially many probabilistic claims, evaluates them at only a few points. Alongside the circuits, a proof oracle encodes an alleged witnessing probability distribution, which the verifier reads at few locations while interacting with a single untrusted prover. The work first handles explicit probabilistic claims—m claims of the form Pr[Y=1|X=x]=p over n Boolean variables—placing l_2-approximate probabilistic consistency in NP with certificates of length O(mn + log B) in input bit-precision B, building on Nilsson's 1986 work. A small additive completeness-soundness gap removes the dependence on B, and together these results provide a complexity-theoretic foundation for certifying self-consistency of probabilistic predictors.",
+          "id": "pap-05"
+        }
+      ]
     },
     {
       "name": "tools",
@@ -88,7 +139,7 @@
           "published_at": "2026-06-01T02:19:07Z",
           "snippet": "Npm-scan: Modern supply chain security for the npm ecosystem",
           "_objectID": "48351958",
-          "summary": "npm-scan is a supply chain threat detection tool designed for the npm ecosystem, claiming to catch security issues that npm audit, Snyk, and Socket miss. Available as the @lateos/npm-scan package on npm, it detects obfuscated payloads, credential stealers, kernel rootkits, eBPF hooks, memory extraction, GitHub spoofing, and AI-targeted attacks. The open-source project, hosted on GitHub under lateos-ai/npm-scan, is dually licensed under MIT or BLA and reports over 830 passing tests across 225 commits. Its repository includes a CLI, backend, API, Helm deployment charts, Docker configuration, and supporting documentation such as SECURITY.md and VALIDATION.md. The project has attracted 18 stars and 2 forks from the community.",
+          "summary": "npm-scan is a supply chain security tool designed for the npm ecosystem, distributed as the @lateos/npm-scan package on npm and licensed under MIT or BLA. The project claims to detect threats that existing tools like npm audit, Snyk, and Socket miss, specifically targeting obfuscated payloads, credential stealers, kernel rootkits, eBPF hooks, memory extraction, GitHub spoofing, and AI-targeted attacks. Its repository hosts a backend, CLI, API, helm deployment charts, Docker configurations, and documentation in multiple languages including German, French, Hebrew, Japanese, and Chinese. The codebase includes 830+ passing tests, capture-the-flag campaign fixtures, validation reports, and detection rate metrics. Additional features include a GitHub Action and files for verifying production readiness and phase-based release management.",
           "id": "too-01"
         },
         {
@@ -99,7 +150,7 @@
           "published_at": "2026-08-10T14:17:13Z",
           "snippet": "Show HN: Open-Source Greptile Alternative",
           "_objectID": "49244029",
-          "summary": "Juror is an open-source GitHub Action that uses frontier models to review pull requests in parallel, positioning itself as an alternative to Greptile. The project's README highlights a benchmark where Juror Fast identified 4 out of 6 P0–P2 defects at 100% precision, compared to Greptile's 1 out of 6 at 50% precision on a single production PR seed. However, the project openly acknowledges this is a manually adjudicated, one-PR sample rather than a statistically rigorous benchmark, providing the corpus and methodology for users to inspect or reproduce the results themselves. Juror practices \"dogfooding\" by using its own tool to review its codebase. Licensed under MIT and requiring Node ≥20, the repository includes 48 commits, standard project documentation, and a CLI command for running benchmarks against custom test files.",
+          "summary": "Juror-AI/juror is an open-source GitHub-based code review tool that uses frontier AI models to review pull requests in parallel, positioning itself as a self-hostable alternative to Greptile. It is distributed as a GitHub Action (juror-ai), runs on Node ≥20, and is MIT-licensed, with the project dogfooding itself by using Juror to review its own code. The repository includes source code, tests, documentation, scripts, and a bundled benchmark corpus. According to the project's README, on a manually adjudicated production-PR seed, Juror Fast reportedly identified 4 of 6 P0–P2 defects with 100% precision, compared to Greptile's 1 of 6 at 50% precision. However, the authors explicitly note this is a one-PR seed rather than a statistically sufficient benchmark, and invite users to inspect the corpus, methodology, and reproduce the results themselves.",
           "id": "too-02"
         },
         {
@@ -109,7 +160,7 @@
           "source_kind": "discussion",
           "published_at": "Wed, 12 Aug 2026 10:01:27 -0500",
           "snippet": "Previously, the SQLite release fixing this bug. Comments",
-          "summary": "Tailscale experienced 19 separate instances of SQLite database corruption over six months starting in August, affecting shards that store tailnet metadata and causing downtime for affected tailnets whose devices couldn't connect or receive network changes. The company had used SQLite as its primary database since 2022 in a single-writer design, and the corruption incidents resisted all initial internal investigation attempts. Tailscale engaged the SQLite developers through a professional support contract, and together they systematically ruled out theories including broken POSIX locks, memory mismanagement, and thread-safety issues. A transaction logging pipeline revealed that data committed by one transaction was sometimes invisible to later transactions, pointing toward the WAL checkpoint process. SQLite developers created a new debugging tool to provide visibility into checkpoints, which ultimately helped uncover the underlying 16-year-old bug.",
+          "summary": "Tailscale's control plane uses SQLite databases to manage tailnet configurations. Beginning in August, they encountered 19 separate instances of database corruption over six months, each requiring the control plane process to be stopped for repairs and causing downtime for affected tailnets. They engaged the SQLite developers through a professional support contract and built a transaction logging pipeline that enabled database restoration without data loss. This pipeline unexpectedly revealed that data committed by one transaction was mysteriously invisible to later transactions. Working with the SQLite developers and their new debugging tool, which provided better visibility into the WAL checkpoint process, they ultimately tracked down a long-standing bug in SQLite.",
           "id": "dis-04"
         },
         {
@@ -120,7 +171,7 @@
           "published_at": "2026-08-12T16:04:50Z",
           "snippet": "DeepSeek V4 Pro 0813",
           "_objectID": "49274600",
-          "summary": "DeepSeek V4 Pro 0813 is a large-scale mixture-of-experts model developed by DeepSeek, representing the GA release of DeepSeek V4 Pro. The model supports text input and output modalities with a 1,048,576 token context window and was released on August 12, 2026. Pricing is set at $0.435 per million input tokens and $0.87 per million output tokens, with a cache read rate of $0.003625 per million tokens. The model is hosted by a single provider on OpenRouter, with all requests forwarded directly without routing decisions. OpenRouter's API is OpenAI-compatible, allowing most SDKs to work by simply swapping the base URL.",
+          "summary": "DeepSeek V4 Pro 0813 is a large-scale mixture-of-experts model from DeepSeek, representing the GA release of DeepSeek V4 Pro. It is a text-in, text-out model with a context window of 1,048,576 tokens, released on August 12, 2026. Pricing is set at $0.435 per million input tokens and $0.87 per million output tokens, with cache reads available at $0.003625 per million tokens. On OpenRouter, the model is hosted by a single provider, with requests forwarded directly rather than routed. The page also tracks throughput, latency, time-to-first-token, uptime, and benchmark scores to help users evaluate the model's performance alongside real-world activity from public apps.",
           "id": "too-04"
         }
       ]
@@ -138,7 +189,7 @@
           "published_at": "2026-08-12T13:20:05Z",
           "snippet": "AI is removing the middle class of software engineering?",
           "_objectID": "49271994",
-          "summary": "AI tools are accelerating code production, enabling engineers to generate tens of thousands of lines in days rather than weeks, which causes projects with weak engineering cultures to fail faster as unnecessary complexity like Kafka or denormalized database tables gets added without justification. Engineers increasingly lose understanding of their own systems, defaulting to LLMs to explain decisions that get buried in lengthy AI conversations, while huge AI-generated PRs make meaningful code review impractical. Fixing bad decisions has become harder because code can be added in minutes but removing it requires careful migration planning, and by the time one issue is untangled, many more have been merged. The author argues this dynamic is pushing engineering salaries further apart: competent engineers become more valuable as AI amplifies their productivity, while less skilled engineers become liabilities because they can now produce flawed code faster than it can be reviewed. The same pattern is predicted to spread across most knowledge work.",
+          "summary": "AI has made software implementation dramatically cheaper, allowing anyone to generate thousands of lines of code in an afternoon. However, this speed causes projects with weak engineering cultures to fail faster, as bad decisions compound before anyone can properly review or understand them. Reverting poor decisions is extremely difficult because of database migrations, foreign keys, and the risk of disrupting live systems. As a result, companies increasingly value engineers with strong judgment who can evaluate AI recommendations, question unnecessary abstractions, and understand how systems actually work. The article predicts AI will push engineering salaries further apart, making top engineers more valuable while bad engineers become cheaper to hire or get replaced entirely. The same dynamic is likely to play out across most knowledge work, where AI amplifies the productivity of skilled professionals while making incompetent ones nearly unemployable.",
           "id": "dis-01"
         },
         {
@@ -149,7 +200,7 @@
           "published_at": "2026-08-12T15:01:17Z",
           "snippet": "https:&#x2F;&#x2F;huggingface.co&#x2F;Qwen&#x2F;Qwen3.8-2.4T-A95B-FP8",
           "_objectID": "49273478",
-          "summary": "The content presents a Jinja2 chat template configuration designed for a conversational AI model, specifying message handling and token formatting protocols. It defines special tokens including the end-of-sequence marker `<|im_end|>` and the padding token `<|endoftext|>`, while structuring conversations around user, assistant, system, and tool roles. The template includes a reasoning effort configuration that defaults to \"xhigh\" but also supports \"medium\" and \"low\" settings, with instructions emphasizing careful, validated thinking. Tool functionality is integrated through XML-formatted function calling blocks nested within `<tool_call>` tags, including parameter specifications. The template processes tool responses within `<tool_response>` blocks and maintains a multi-step tool namespace tracking system. Additionally, it enforces strict formatting rules, such as raising exceptions for unsupported configurations like disabling thinking or placing system messages out of order.",
+          "summary": "No article content was provided to summarize. The input only contains a model configuration string (a Jinja chat template, eos/pad/unk tokens, and tokenizer metadata) with the title \"Qwen3.8-2.4T,\" but no article body, news text, or substantive prose about the subject. To produce a 4–6 sentence factual summary, please paste the article text you'd like summarized.",
           "id": "dis-02"
         },
         {
@@ -159,7 +210,7 @@
           "source_kind": "discussion",
           "published_at": "Wed, 12 Aug 2026 07:40:12 -0500",
           "snippet": "Comments",
-          "summary": "The author expresses frustration with packaging their software \"Fresh\" for Linux due to the many distro-specific channels and their associated drawbacks. They initially released Fresh as an npm package but cited security concerns, lack of universal installation, and an awkward update flow. Despite creating packages for numerous systems—including cargo, AppImage, Flatpak, deb, rpm, AUR, nix, mise, and homebrew—each solution works for only some users and introduces problems like slow startup times requiring FUSE, sandboxing limitations unsuited to terminal applications, and lack of automatic updates for unofficial .deb and .rpm packages. AUR was also recently blocked in read-only mode following security issues, causing missed releases. The author plans to focus on a statically linked musl binary with a built-in self-updating mechanism as the main Linux distribution channel, hoping to reduce the compounded effort of supporting so many package formats.",
+          "summary": "The author describes frustrations with packaging their software, Fresh, for Linux due to the variety of distributions and packaging formats. While Windows and macOS are relatively uniform and easier to support, Linux required creating packages across numerous channels including npm, cargo, AppImage, Flatpak, deb, rpm, AUR, nix, mise, homebrew for Linux, and Terra Gentoo, each with their own drawbacks. Issues include AppImage's slow startup requiring FUSE, Flatpak's sandboxing being unsuitable for a terminal TUI, Debian requiring all Rust dependencies to be packaged separately, and lack of automatic updates without official source acceptance. The Arch AUR has also been in read-only mode due to security breaches, causing missed releases. Going forward, the author plans to focus on a statically linked musl binary with built-in self-updating capabilities as the main Linux release channel.",
           "id": "dis-03"
         },
         {
@@ -169,7 +220,7 @@
           "source_kind": "discussion",
           "published_at": "Wed, 12 Aug 2026 10:01:27 -0500",
           "snippet": "Previously, the SQLite release fixing this bug. Comments",
-          "summary": "Tailscale experienced 19 separate instances of SQLite database corruption over six months starting in August, affecting shards that store tailnet metadata and causing downtime for affected tailnets whose devices couldn't connect or receive network changes. The company had used SQLite as its primary database since 2022 in a single-writer design, and the corruption incidents resisted all initial internal investigation attempts. Tailscale engaged the SQLite developers through a professional support contract, and together they systematically ruled out theories including broken POSIX locks, memory mismanagement, and thread-safety issues. A transaction logging pipeline revealed that data committed by one transaction was sometimes invisible to later transactions, pointing toward the WAL checkpoint process. SQLite developers created a new debugging tool to provide visibility into checkpoints, which ultimately helped uncover the underlying 16-year-old bug.",
+          "summary": "Tailscale's control plane uses SQLite databases to manage tailnet configurations. Beginning in August, they encountered 19 separate instances of database corruption over six months, each requiring the control plane process to be stopped for repairs and causing downtime for affected tailnets. They engaged the SQLite developers through a professional support contract and built a transaction logging pipeline that enabled database restoration without data loss. This pipeline unexpectedly revealed that data committed by one transaction was mysteriously invisible to later transactions. Working with the SQLite developers and their new debugging tool, which provided better visibility into the WAL checkpoint process, they ultimately tracked down a long-standing bug in SQLite.",
           "id": "dis-04"
         }
       ]
