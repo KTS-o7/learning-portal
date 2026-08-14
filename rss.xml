@@ -2,133 +2,149 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-13</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-14</description>
   <item>
-    <title>From coder to orchestrator: How agents shift the role of a developer</title>
-    <link>https://github.blog/developer-skills/career-growth/from-coder-to-orchestrator-how-agents-shift-the-role-of-a-developer/</link>
-    <guid isPermaLink="false">https://github.blog/developer-skills/career-growth/from-coder-to-orchestrator-how-agents-shift-the-role-of-a-developer/</guid>
-    <description>Developers are shifting from writing code to orchestrating the delivery systems around it, according to GitHub. While one-prompt demos are easy, reliable and safe code generation requires a wired workflow with checks, context, and controls. GitHub Copilot serves as a control plane, where repository events trigger GitHub Actions that invoke agents, whose output is captured in pull requests. Deterministic checks like linting, tests, security scanning, and build verification then run, while CODEOWNERS, required reviews, and branch protections govern what can merge. Agents handle ambiguous, context-heavy tasks, while developers define triggers, scope agent permissions, design handoffs, and decide where human judgment must remain. The article recommends starting small with one bounded workflow, such as issue triage or low-risk maintenance updates, and promotes GitHub Universe 2026 on October 28–29 in San Francisco.</description>
-    <pubDate>Tue, 11 Aug 2026 18:38:17 +0000</pubDate>
+    <title>Your guide to GitHub Universe 2026 is here: The schedule just launched!</title>
+    <link>https://github.blog/news-insights/company-news/your-guide-to-github-universe-2026-is-here-the-schedule-just-launched/</link>
+    <guid isPermaLink="false">https://github.blog/news-insights/company-news/your-guide-to-github-universe-2026-is-here-the-schedule-just-launched/</guid>
+    <description>GitHub Universe 2026 will take place October 28-29 at Fort Mason Center in San Francisco, featuring two days of sessions on AI-powered development with speakers from companies including AMD, Figma, NVIDIA, Coinbase, Anthropic, and OpenAI. Early Bird registration is available through August 19 and saves $300, with group discounts available on top of that. The schedule includes hands-on sessions covering Copilot configuration, stacked pull requests, fine-grained authorization for hosted MCP servers, and GitHub&#x27;s agentic pipeline that manages 50+ services, alongside panels on the future of AI-assisted development. Other highlights include community-building talks, a session on building Home Assistant in the open with 20,000 contributors, and a demonstration of Copilot CLI hooks controlling a desk lamp. Three breakout sessions are competing for a main-stage spot, with public voting open until August 21.</description>
+    <pubDate>Thu, 13 Aug 2026 19:00:00 +0000</pubDate>
+    <source>GitHub Blog</source>
+  </item>
+  <item>
+    <title>What 50 open source projects taught us about security in the AI era</title>
+    <link>https://github.blog/open-source/maintainers/what-50-open-source-projects-taught-us-about-security-in-the-ai-era/</link>
+    <guid isPermaLink="false">https://github.blog/open-source/maintainers/what-50-open-source-projects-taught-us-about-security-in-the-ai-era/</guid>
+    <description>The GitHub Secure Open Source Fund Session 4 invested more than $500,000 across 50 open source projects, pairing maintainers with GitHub Security Lab experts, security tools, AI-assisted workflows, and a peer community. Each session runs as a three-week sprint with twelve months of follow-up, and every project receives $10,000 USD via GitHub Sponsors, broken into $6,000 during the sprint and $2,000 at six- and twelve-month check-ins. Training covers foundations of open source security, threat modeling and secure coding, and AI security and vulnerability management. The 50 participating projects were grouped into five categories spanning AI and machine learning infrastructure, build systems, core programming languages, developer tools, and web and networking services. OpenClaw participated as GitHub&#x27;s fastest-growing open source project, using the program to develop an incident response plan, expand security tooling usage, and audit its GitHub Actions workflows. The program found that AI security is increasingly integrated into the broader practice of building secure software rather than evolving in isolation. Applications for Session 5 are open through August 24.</description>
+    <pubDate>Thu, 13 Aug 2026 16:00:00 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
     <title>GitHub availability report: July 2026</title>
     <link>https://github.blog/news-insights/company-news/github-availability-report-july-2026/</link>
     <guid isPermaLink="false">https://github.blog/news-insights/company-news/github-availability-report-july-2026/</guid>
-    <description>GitHub experienced eight incidents in July 2026 resulting in degraded performance, including a prolonged GitHub Actions outage on August 6 caused by cascading failures in the service still running in legacy data centers. Progress toward Azure migration continued, with monolith read traffic in Azure Central US peaking at 52.75% on July 28, Git traffic reaching 47%, and 29% of repositories gaining a second replica for failover. Authentication data began migrating off the oldest shared database, with dedicated services offloading over one million queries per second at peak. Search and repository content operations moved fully to dedicated Central US infrastructure, and optimizations cut artifacts query time in half while reducing Git authorization service load by 18.2%. GitHub set targets of 70% read and 30% write traffic in Central US this quarter and a line of sight to fully exit data centers by end of 2026.</description>
+    <description>GitHub&#x27;s July 2026 availability report acknowledged an unacceptable GitHub Actions incident on August 6 and outlined accelerated migration of the service to Azure. In July, monolith read traffic in Azure Central US peaked at 52.75% on July 28, Git traffic in Azure reached 47% (up from 43% in June), and 29% of repositories gained a second replica in Central US. Authentication tables began moving off GitHub&#x27;s oldest shared database, with the dedicated user service now offloading over one million queries per second at peak and 80% of a major authorization lookup shifted to an isolated path. Two significant incidents occurred: a 7-hour, 4-minute outage on July 8 affecting multiple services across data-resident Enterprise Cloud environments after a configuration safeguard failure, and a 9-hour, 18-minute GitHub Actions disruption on July 9. GitHub set a target of 70% read traffic and 30% write traffic in Central US this quarter, with a goal of moving all dotcom production traffic out of its data centers by end of 2026.</description>
     <pubDate>Wed, 12 Aug 2026 22:17:32 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
-    <title>Write your first prompt with the GitHub Copilot app</title>
-    <link>https://github.blog/ai-and-ml/github-copilot/write-your-first-prompt-with-the-github-copilot-app/</link>
-    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/write-your-first-prompt-with-the-github-copilot-app/</guid>
-    <description>GitHub Copilot’s first task begins with connecting an agent session to a GitHub repository or a local folder, which gives the app access to the project’s code and files. From the app’s home screen, users can select a previous project or add a new one, then describe the desired change in plain English without learning special syntax. The prompt can be refined through additional requests, since the process is iterative. Users can also choose among different AI models, keeping the default when starting out and switching when a task needs more complex reasoning or better results. The app supports voice input, lets users select an agent, and can enable remote control so sessions can be resumed from another device. Beginners should start with a small, familiar change and adjust the prompt, model, or session settings as needed.</description>
-    <pubDate>Wed, 12 Aug 2026 19:00:00 +0000</pubDate>
-    <source>GitHub Blog</source>
+    <title>Track generative AI costs with Amazon Bedrock inference profiles</title>
+    <link>https://aws.amazon.com/blogs/architecture/track-generative-ai-costs-with-amazon-bedrock-inference-profiles/</link>
+    <guid isPermaLink="false">https://aws.amazon.com/blogs/architecture/track-generative-ai-costs-with-amazon-bedrock-inference-profiles/</guid>
+    <description>When multiple teams share a single foundation model in Amazon Bedrock, costs appear as one line item, making per-department chargeback and budgeting impossible. Amazon Bedrock application inference profiles solve this by acting as tagged wrappers around a foundation model that route usage to specific teams. To implement it, you create an inference profile for each department, tag it with a cost allocation tag like Team=HR, activate the tag in the AWS Billing console, and update your application to pass the profile ARN as the modelId parameter. The single IAM role remains unchanged, but Cost Explorer groups costs by team using the profile tags. The same per-token rate applies whether invoking the model directly or through a profile, and tagged costs take 24–48 hours to appear. For larger deployments, the AWS::Bedrock::ApplicationInferenceProfile CloudFormation resource lets you provision profiles at scale.</description>
+    <pubDate>Thu, 13 Aug 2026 15:59:39 +0000</pubDate>
+    <source>AWS Architecture</source>
   </item>
   <item>
-    <title>How to keep thinking</title>
-    <link>https://seangoedecke.com/how-to-keep-thinking/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/how-to-keep-thinking/</guid>
-    <description>The author describes working in 2026 as frenetic, with software engineers constantly context-switching between AI agent outputs—rapidly judging answers rather than carefully reading them. They worry this shift biases their thinking toward quick skimming rather than slow, deep reflection, even though some difficult tasks like large refactors on complex codebases still require careful human thought. To preserve the habit of thinking slowly, the author recommends writing in your own words, arguing that composition itself forces you to articulate and construct ideas, whereas writing with an LLM does not. They also recommend reading dense non-fiction books, the slower the better, and have found combining both practices—reading a book and then writing about it—particularly effective. The author acknowledges that while workplaces will increasingly demand rapid switching between LLM outputs, maintaining slow thinking habits outside of work is essential to avoid losing important cognitive skills.</description>
-    <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
-    <source>Sean Goedecke</source>
+    <title>Recovery strategies to meet data residency requirements</title>
+    <link>https://aws.amazon.com/blogs/architecture/recovery-strategies-to-meet-data-residency-requirements/</link>
+    <guid isPermaLink="false">https://aws.amazon.com/blogs/architecture/recovery-strategies-to-meet-data-residency-requirements/</guid>
+    <description>Data residency requirements affect how government agencies, regulated industries, and businesses plan for the recovery of critical workloads on AWS. AWS offers multiple Regions within countries including the United States, Canada, Australia, India, Japan, Germany, China, and across the EU to support national-level residency needs. For residency requirements scoped to a country with a single AWS Region, three alternative strategies are available. Strategy 1, the cryptographic boundary, replicates data to a geopolitically aligned country using AWS KMS encryption with key policies that explicitly deny decryption in the recovery Region. Strategy 2, the data boundary, uses AWS Outposts at an on-premises site within the source country, with control planes hosted in a different parent Region. Strategy 3, the strict local autonomy boundary, keeps customer data and control plane systems within national borders through on-premises infrastructure or fully in-country AWS architectures. Continuous end-to-end testing is critical to building confidence that the chosen recovery strategy will work when required.</description>
+    <pubDate>Thu, 13 Aug 2026 14:05:39 +0000</pubDate>
+    <source>AWS Architecture</source>
   </item>
   <item>
-    <title>No, local models will not win</title>
-    <link>https://seangoedecke.com/local-models-will-not-win/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/local-models-will-not-win/</guid>
-    <description>The author argues that local AI models will not overtake datacenter inference, despite enthusiasm surrounding open-weight releases. Current frontier models are far too large to run outside GPU clusters, and as smaller models improve, users&#x27; expectations will rise accordingly—meaning the strongest affordable model will always be preferred, just as GPT-4 feels obsolete today. Datacenter models are also inherently cheaper because GPUs can batch hundreds of users&#x27; inference simultaneously for nearly the same cost as serving one, and datacenter GPUs like the B200 deliver roughly three times the flops and four times the memory bandwidth of consumer RTX 4090s. Combined, running models locally uses approximately thirty times more resources. Local models may still serve niches such as latency-sensitive voice applications, privacy-focused users, or those with unreliable internet, but these represent a small minority of overall AI usage.</description>
-    <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
-    <source>Sean Goedecke</source>
-  </item>
-  <item>
-    <title>Surgical WAM: A World-Action Model for Data-Efficient Surgical Robot Learning</title>
-    <link>https://arxiv.org/abs/2608.11204v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.11204v1</guid>
-    <description>Surgical robot learning is constrained by the high cost of collecting action-labeled demonstrations, while endoscopic video is comparatively abundant. The authors introduce Surgical WAM (World-Action Model), a unified generative model built on Cosmos Policy that jointly predicts future endoscopic observations and executable surgical robot action chunks. The model is first pretrained on action-free surgical video to learn visual dynamics, then fine-tuned on a fixed budget of action-labeled trajectories, and at deployment it operates as a closed-loop, receding-horizon controller that executes a short prefix of each predicted chunk before replanning. Across four simulated surgical manipulation tasks, this video-pretraining approach improved the average success rate from 63.5% to 77.8%, including a 20 percentage-point gain on the PegTransfer task, with the largest gains observed on contact-rich and bimanual tasks. The work demonstrates that action-free video provides transferable visual dynamics priors for surgical robot control under limited action supervision.</description>
-    <pubDate>2026-08-11T17:59:13Z</pubDate>
+    <title>Enhancing Virtual Agents through SLMs and Edge-Computing: An Exploratory Evaluation of Think and Memory Processes</title>
+    <link>https://arxiv.org/abs/2608.13420v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.13420v1</guid>
+    <description>This paper explores how virtual agents can be enhanced through the integration of Small Language Models (SLMs) with edge-computing architectures. Rather than relying on large, cloud-based models, the authors examine how compact models deployed locally can support the reasoning and memory demands of conversational agents. The study provides an exploratory evaluation of &quot;think&quot; and &quot;memory&quot; processes, assessing how well SLMs handle deliberation and contextual recall when running on edge devices. By moving computation closer to the user, the approach aims to reduce latency, improve privacy, and lower operational costs while maintaining meaningful agent performance. The findings suggest that thoughtful design of reasoning and memory workflows can make SLMs a viable foundation for responsive virtual agents.</description>
+    <pubDate>2026-08-13T16:12:52Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
-    <title>ConVAWG: A Retrieval-Grounded Framework for Controlled Synthetic Dialogue Generation in Violence Against Women and Girls</title>
-    <link>https://arxiv.org/abs/2608.11200v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.11200v1</guid>
-    <description>ConVAWG is a retrieval-grounded framework for generating CPS-aligned synthetic multi-turn dialogues that model Violence Against Women and Girls (VAWG) scenarios. The framework addresses the difficulty of accessing real conversation data due to privacy and legal constraints, while existing work has mostly focused on sentence-level toxicity of online abuses, leaving a gap in modeling abuse as a relational and temporally unfolding phenomenon. ConVAWG builds scenarios from persona seeds, demographic patterns reported by the UK Office for National Statistics, official crime definitions, and retrieved Domestic Homicide Review cases. It converts these into hierarchical event timelines, generates multi-scene role-play dialogues, and applies targeted activation-steered toxicity control to appropriate utterances. The authors release over 6,000 multi-turn dialogue events across 200 scenarios with rich</description>
-    <pubDate>2026-08-11T17:57:34Z</pubDate>
+    <title>Beyond Final Scores: A Systematic Evaluation of Agents for Long-Horizon AI Research and Development</title>
+    <link>https://arxiv.org/abs/2608.13417v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.13417v1</guid>
+    <description>This paper addresses limitations in how AI agents are evaluated for long-horizon research and development tasks, arguing that final outcome scores alone provide an incomplete picture of agent capability. The authors propose a systematic evaluation framework that examines intermediate behaviors, decision-making trajectories, and the quality of processes leading to results, rather than relying solely on end-task metrics. The work likely benchmarks multiple AI agents performing extended research workflows such as hypothesis generation, experimentation, and code development, analyzing where agents succeed, fail, or exhibit inefficiencies. By dissecting performance across the research pipeline, the study aims to identify specific bottlenecks and failure modes that aggregate scores obscure. The contribution helps researchers design more diagnostic evaluations, enabling fairer comparisons between agents and clearer guidance for improving autonomous AI research systems.</description>
+    <pubDate>2026-08-13T16:11:22Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
-    <title>Long-Horizon AI Research for Grothendieck Constant: A Case Study in Human-AI Mathematical Collaboration</title>
-    <link>https://arxiv.org/abs/2608.11195v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.11195v1</guid>
-    <description>A team of researchers presented a case study examining how artificial intelligence can be used to advance mathematical research, specifically focusing on the Grothendieck constant K_G, which measures the gap between combinatorial problems and their continuous relaxations. While the exact value of K_G remains unknown, the team tightened existing bounds to 6π/11 ≤ K_G ≤ π/(2log(1+√2)) − 10^(−4) using an AI research system that produced insights considered novel by domain experts. The paper offers a detailed account of the researchers&#x27; experience integrating AI into their mathematical workflow, including the system&#x27;s demonstrated strengths and weaknesses. They also explored the conditions necessary for AI to achieve breakthrough insights in mathematics. The work falls at the intersection of artificial intelligence, computational complexity, human-computer interaction, and functional analysis.</description>
-    <pubDate>2026-08-11T17:53:48Z</pubDate>
+    <title>Deliberate Practice: Learning Robot Skills under a Budget</title>
+    <link>https://arxiv.org/abs/2608.13415v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.13415v1</guid>
+    <description>Shivam Vats, Sudarshan Harithas, Mete Tuluhan Akbulut, Arvind Raghunathan, and George Konidaris propose Deliberate Practice (DP), an active skill learning algorithm that enables robots to autonomously learn skills under a limited practice budget for sequential tasks. DP computes a provably budget-optimal allocation by estimating both the time needed to master each skill and the cumulative reward of the task plans those skills unlock, practicing only those skills that maximize expected cumulative reward while remaining learnable within the budget. The key technical contribution is a bilinear program formulation that exactly computes this optimal allocation using off-the-shelf solvers, addressing the challenge of reasoning over combinatorially many skill plans over a large practice budget. Through simulated and real-world experiments on long-horizon manipulation tasks, the authors demonstrate that DP allows robots to optimally use limited practice time to acquire useful policies and improve long-horizon planning.</description>
+    <pubDate>2026-08-13T16:09:25Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
-    <title>Test-Time Self-Evolving GUI Visual Grounding via Reflection-Guided On-Policy Self-Distillation</title>
-    <link>https://arxiv.org/abs/2608.11191v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.11191v1</guid>
-    <description>GUI Visual Grounding is a fundamental capability for GUI agents, but existing models typically freeze their parameters after deployment, limiting their ability to adapt to unseen interfaces. To overcome this limitation, the authors propose a Test-Time Self-Evolving framework that enables models to improve post-deployment without human-annotated ground truth. The framework constructs a closed-loop of Exploration, Evaluation, Reflection, and Internalization, using an MLLM-based Reflector to assess predicted grounding coordinates and provide corresponding reasoning reflections. These reflections are internalized into model weights through Reflection-Guided On-Policy Self-Distillation, which translates high-level reasoning into dense token-level supervision via a conditioned self-teacher. Additionally, a Contrastive Calibration method prevents incorrect auto-regressive prefixes from corrupting supervisory signals during failed explorations. Experiments across six benchmarks demonstrate an average accuracy improvement of 7.4% over the base model, representing the first successful exploitation of on-policy self-distillation for test-time adaptation in GUI visual grounding.</description>
-    <pubDate>2026-08-11T17:50:25Z</pubDate>
+    <title>Who Speaks Matters: Authority-Aware Multi-View RAG over Italian Parliamentary Proceedings</title>
+    <link>https://arxiv.org/abs/2608.13410v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.13410v1</guid>
+    <description>ParliamentRAG is a Retrieval-Augmented Generation system designed for the Italian Chamber of Deputies that addresses three challenges specific to parliamentary transcripts: the dominance of frequent speakers, the inability to weigh speakers by topical expertise, and citation misattribution. At its core, the system uses a topic-dependent authority model that estimates each speaker&#x27;s authority relative to the current query by combining interpretable features such as profession, education, and previous interventions. Given a user query, the system retrieves relevant speech chunks, identifies topic-relevant experts across parliamentary groups, and generates a summary synthesizing their perspectives alongside supporting quotations. The authors evaluated ParliamentRAG against Google NotebookLM on 15 policy topics using a two-level protocol that combined automated metrics with blind A/B human evaluation by six domain experts. ParliamentRAG achieved higher coverage across political groups (0.97 vs. 0.95), perfect quotation faithfulness (1.00 vs. 0.95), and stronger expert preferences on source-related dimensions, while NotebookLM remained stronger on prose-oriented dimensions. The paper was accepted at the ISWC 2026 In-Use Track.</description>
+    <pubDate>2026-08-13T16:07:23Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
-    <title>How to Verify Consistency of Probabilistic Claims</title>
-    <link>https://arxiv.org/abs/2608.11181v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.11181v1</guid>
-    <description>The paper investigates whether a probabilistic predictor&#x27;s many conditional-probability answers are self-consistent, a question motivated by AI safety concerns about honesty in AI predictions. The authors construct an interactive PCP in which a polynomial-time verifier, given circuits P (probability) and Q (confidence) specifying the model, checks approximate consistency by evaluating the circuits at few points and interacting with a single untrusted prover using a sparse witnessing distribution. They first analyze explicit probabilistic claims, placing l₂-approximate consistency of m claims of the form Pr[Y=1|X=x]=p over n Boolean variables in NP, with certificates of length O(mn + log B) where B is the input bit-precision. They further show that a small additive completeness-soundness gap eliminates the dependence on B. Together these results provide a complexity-theoretic foundation for certifying probabilistic predictors&#x27; self-consistency, viewed as a first step toward training predictive models to prove their own consistency.</description>
-    <pubDate>2026-08-11T17:41:39Z</pubDate>
+    <title>Jointly Predicting Courses and Grades Using a Transformer-Based Model</title>
+    <link>https://arxiv.org/abs/2608.13409v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.13409v1</guid>
+    <description>Paul Savala introduces TRACE (TRansformer for Academic Course-grade Estimation), a model that addresses limitations in existing learning analytics systems, which treat student academic history as a simple sequence and overlook the concurrent nature of courses taken within a semester. The transformer-based approach jointly predicts both the set of courses a student will take and their corresponding grades for an upcoming semester, encoding courses on a per-semester basis to capture concurrency effects. It uses a novel loss function combining course-set prediction with grade prediction. Trained on ten years of institutional data, the joint prediction model reduces mean absolute error by nearly 50% compared to an identical architecture that predicts grades alone, and outperforms both traditional LSTM-based sequential models and graph neural network-based approaches. The model offers natural ways to incorporate student attribute data and can be adapted to new institutions through retraining and recalibration, making it suitable for early detection systems at higher education institutions.</description>
+    <pubDate>2026-08-13T16:05:22Z</pubDate>
     <source>arXiv (cs.AI)</source>
   </item>
   <item>
-    <title>Npm-scan: Modern supply chain security for the npm ecosystem</title>
-    <link>https://github.com/lateos-ai/npm-scan</link>
-    <guid isPermaLink="false">https://github.com/lateos-ai/npm-scan</guid>
-    <description>npm-scan is a supply chain security tool for the npm ecosystem, distributed as the @lateos/npm-scan package and a GitHub Action under the MIT OR BLA license. It claims to detect threats that other tools like npm audit, Snyk, and Socket miss, including obfuscated payloads, credential stealers, kernel rootkits, eBPF hooks, memory extraction, GitHub spoofing, and AI-targeted attacks. The repository contains 225 commits and reports 830+ passing tests, with documentation translated into German, French, Hebrew, Japanese, and Chinese. Its structure includes dedicated api, backend, and cli directories, along with Helm deployment charts, Docker configuration, and test corpora. The project also includes validation and verification scripts, false-positive analysis files, and detection-rate benchmarks to support its production readiness.</description>
-    <pubDate>2026-06-01T02:19:07Z</pubDate>
+    <title>Spaghettifying DRAM</title>
+    <link>https://github.com/xoreaxeaxeax/skitter-creek-bath-salts</link>
+    <guid isPermaLink="false">https://github.com/xoreaxeaxeax/skitter-creek-bath-salts</guid>
+    <description>The skitter-creek-bath-salts project targets AMD Family 16h CPUs, the last generation whose datasheets document the DRAM controller&#x27;s translation registers and show they cannot be locked. It operates at the deepest layer of the *p pipeline — the memory controller (MCT/DCT) — where physical addresses are finally rewritten into raw DRAM coordinates before reaching the DIMM. By flipping a single bit in a DRAM controller register, such as the bank-swizzle-mode, the project rewires the physical-to-DRAM translation, scrambling platform memory and exposing protected DRAM regions invisible to the kernel. Because PSP, SMM, microcode, and C6 DRAM protection sit above the memory controller and guard physical addresses rather than DRAM coordinates, rearranging the coordinates bypasses all of them. The exploit disables APs, disables interrupts, flushes the target, rewires the controller, reads from the protected region, then restores the original mappings, keeping the platform operational while protected memory is exposed.</description>
+    <pubDate>2026-08-13T14:17:13Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: Open-Source Greptile Alternative</title>
-    <link>https://github.com/Juror-AI/juror</link>
-    <guid isPermaLink="false">https://github.com/Juror-AI/juror</guid>
-    <description>Juror is an open-source GitHub tool that uses frontier AI models to review pull requests in parallel, positioned as a free alternative to Greptile. In a bundled benchmark comparing the two on a single production pull request, Juror Fast identified 4 of 6 high-severity (P0–P2) defects at 100% precision, while Greptile caught only 1 of 6 at 50% precision, though the project explicitly notes this is a manually adjudicated one-PR sample and not a statistically sufficient evaluation. The repository is MIT-licensed, requires Node 20 or higher, is distributed as a GitHub Action, and dogfoods itself by using Juror to review its own code. At the time of writing, the project had 82 stars, 9 forks, and 48 commits on its main branch.</description>
-    <pubDate>2026-08-10T14:17:13Z</pubDate>
+    <title>Single log line is 49KB+ (ext4) / 110KB+ (btrfs) of systemd-journald disk writes</title>
+    <link>https://github.com/systemd/systemd/issues/40262</link>
+    <guid isPermaLink="false">https://github.com/systemd/systemd/issues/40262</guid>
+    <description>A bug report filed against systemd on January 3, 2026, details excessive disk I/O caused by systemd-journald on Debian 13 with systemd version 257.9. The reporter found that writing just two log lines per second generated approximately 50 IOPS on a virtual machine using XFS, with the title indicating a single log line results in 49KB+ of disk writes on ext4 and 110KB+ on btrfs. The expected behavior was log writes within an order of magnitude of syslog, but the actual journald output was far more I/O-intensive due to its inefficient storage format. The issue duplicates a previously closed ticket (#15292), which the reporter argues was dismissed without proper justification. Examples of repetitive haproxy log entries were provided to demonstrate the workload. The reporter also noted that journald files are significantly larger than the actual data written and that the format has proven unreliable after unclean reboots.</description>
+    <pubDate>2026-08-13T18:41:01Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Tailscale Traces Database Corruption to 16y/o SQLite WAL-Reset Bug</title>
-    <link>https://tailscale.com/blog/sqlite-wal-reset-bug</link>
-    <guid isPermaLink="false">https://tailscale.com/blog/sqlite-wal-reset-bug</guid>
-    <description>Tailscale experienced 19 separate database corruption incidents over six months while using SQLite as their primary control plane database, a system built on shards where each tailnet&#x27;s data is exclusively written by one process. The corruption affected only configuration metadata, not encryption keys or network traffic, but caused outages lasting over an hour initially as they repaired affected databases. To investigate, Tailscale engaged SQLite&#x27;s developers through a professional support contract and deployed forensic telemetry, eventually building a transaction logging pipeline that revealed committed writes inexplicably disappearing without error. The root cause was traced to a bug in SQLite&#x27;s Write-Ahead Logging checkpoint process, a flaw that had existed for 16 years. Recovery improvements and continuous integrity checks ultimately reduced downtime to under an hour per incident.</description>
-    <pubDate>2026-08-12T14:22:30Z</pubDate>
+    <title>Show HN: MCP Memory – Fast Agent Memory Using Google&#x27;s OKF and SQLite FTS5</title>
+    <link>https://github.com/fellowgeek/mcp-memory</link>
+    <guid isPermaLink="false">https://github.com/fellowgeek/mcp-memory</guid>
+    <description>MCP-Memory is a Model Context Protocol server that gives AI agents persistent, long-term memory across sessions. It stores records using Google&#x27;s Open Knowledge Format (OKF v0.2) Markdown standard and indexes them with a local SQLite instance using FTS5 full-text search, enabling sub-20ms key lookups and instant keyword searches. The system uses a dual-layer architecture, syncing every memory to disk as human-browseable .md files while maintaining a high-performance SQLite index, and supports namespace isolation for contextual separation. It exposes tools including memory_store, memory_retrieve, memory_search, memory_get_last, and memory_update_last, with the last two functioning as agent directives for session checkpoints. An interactive setup wizard auto-configures popular MCP clients like Claude Desktop, Cursor, Windsurf, and Codex, and by default creates project-isolated stores inside each project&#x27;s root directory, with environment variables available for customizing paths.</description>
+    <pubDate>2026-08-13T13:57:47Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>DeepSeek V4 Pro 0813</title>
-    <link>https://openrouter.ai/deepseek/deepseek-v4-pro-0813</link>
-    <guid isPermaLink="false">https://openrouter.ai/deepseek/deepseek-v4-pro-0813</guid>
-    <description>DeepSeek V4 Pro 0813 is a large-scale mixture-of-experts model from DeepSeek, representing the GA release of DeepSeek V4 Pro. The model accepts text input and produces text output, featuring a context window of 1,048,576 tokens. Pricing is set at $0.435 per million input tokens and $0.87 per million output tokens, with cache reads priced at $0.003625 per million tokens. The model was released on August 12, 2026, and is hosted exclusively by one provider through OpenRouter, which forwards every request directly without routing decisions. OpenRouter monitors the provider continuously and automatically retries on a next-best provider when errors occur.</description>
-    <pubDate>2026-08-12T16:04:50Z</pubDate>
+    <title>Gemini 3.7 Flash</title>
+    <link>https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/</link>
+    <guid isPermaLink="false">https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/</guid>
+    <description>I don&#x27;t actually have the article text to summarize — only the title &quot;Gemini 3.7 Flash&quot; and a link to the Google AI documentation page were included in your message. Without the article&#x27;s content, I can&#x27;t pull facts from it to write the 100–150 word summary you&#x27;re asking for.
+
+Additionally, I should flag something: as of my knowledge, Google has not announced a model called &quot;Gemini 3.7 Flash.&quot; The published Gemini API lineup includes models in the 1.5 and 2.0 families. If &quot;Gemini 3.7 Flash&quot; is a very recent release after my knowledge cutoff, I&#x27;d genuinely have no reliable information about its features, context window, pricing, or capabilities — and I wouldn&#x27;t want to fabricate those details.
+
+To get the summary you need, could you either:
+1. **Paste the article text** directly into the chat, or
+2. **Confirm whether this model actually exists**, so I know whether the documentation page is accessible and current.
+
+Once I can see the source material, I&#x27;ll happily produce a tight 4–6 sentence factual summary in plain prose.</description>
+    <pubDate>2026-08-13T17:23:22Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>I hate packaging my software for Linux</title>
-    <link>https://getfresh.dev/docs/blog/packaging-for-linux/</link>
-    <guid isPermaLink="false">https://getfresh.dev/docs/blog/packaging-for-linux/</guid>
-    <description>The author struggled to distribute &quot;Fresh&quot; across Linux due to its fragmented ecosystem, eventually packaging it through npm, crates.io, AppImage, Flatpak, deb, rpm, AUR, nix, mise, homebrew for Linux, Terra, Gentoo GURU, and pre-built tarballs, each with drawbacks. AppImage proved unacceptably slow due to FUSE-mounted squashfs, Flatpak&#x27;s sandboxing conflicted with the terminal-based tool, and official Debian/Fedora packages required maintaining all Rust dependencies. Arch&#x27;s AUR is currently in read-only mode, while mise broke unexpectedly when GitHub rotated build attestation certificates. The author&#x27;s plan is to make a statically linked musl binary with a built-in self-updating mechanism the primary release channel, continuing to support existing packages as alternatives.</description>
-    <pubDate>Wed, 12 Aug 2026 07:40:12 -0500</pubDate>
+    <title>DeepSeek Harness developer preview</title>
+    <link>https://deepseek.com/harness/en/</link>
+    <guid isPermaLink="false">https://deepseek.com/harness/en/</guid>
+    <description>DeepSeek Harness is available as a developer preview, with its source code hosted on GitHub at the deepseek-ai/deepseek-harness repository. Documentation is provided through a separate GitHub Pages site, including a quickstart guide aimed at helping users get started with the project. The presence of both a code repository and hosted documentation suggests the tool is intended for developer experimentation and early adoption. No further details about features, functionality, or release status are provided in the available content.</description>
+    <pubDate>2026-08-13T12:58:02Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Codex in ChatGPT desktop app for Linux is now in preview</title>
+    <link>https://community.openai.com/t/codex-in-chatgpt-desktop-app-for-linux-is-now-in-preview/1390027</link>
+    <guid isPermaLink="false">https://community.openai.com/t/codex-in-chatgpt-desktop-app-for-linux-is-now-in-preview/1390027</guid>
+    <description>I only have the article title and not the full text of the article. Without the source content, I cannot accurately summarize it in 4-6 sentences using only verified facts, as doing so would risk fabricating details. If you can paste the body of the article, I&#x27;d be happy to provide the requested summary.</description>
+    <pubDate>2026-08-13T04:53:41Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>ZOOMSDAY, Zoom Zero-Click Vulnerabilities Via Annotation</title>
+    <link>https://a.security/blog/asecurity-zoomsday</link>
+    <guid isPermaLink="false">https://a.security/blog/asecurity-zoomsday</guid>
+    <description>No article content was provided beyond the title &quot;ZOOMSDAY, Zoom Zero-Click Vulnerabilities Via Annotation&quot; and the label &quot;Comments.&quot; Without the actual body of the article, I cannot summarize its findings or details. If you can share the article&#x27;s text, I would be happy to produce a 100–150 word factual summary in plain prose for you.</description>
+    <pubDate>Thu, 13 Aug 2026 10:27:59 -0500</pubDate>
     <source>Lobsters</source>
-  </item>
-  <item>
-    <title>AI is removing the middle class of software engineering?</title>
-    <link>https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html</link>
-    <guid isPermaLink="false">https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html</guid>
-    <description>AI has removed the speed limit on software production, enabling engineers to generate massive PRs and merge changes faster than anyone can review or understand them. Projects with weak engineering cultures fail faster because teams skip design discussions and prompt agents for hours, producing code that appears functional but hides accumulating complexity. Bad decisions become nearly impossible to revert because undoing migrations and deprecating structures is far costlier than creating them. Meanwhile, a single person can produce 20,000 lines of code in an afternoon, drowning reviewers in work they cannot comprehend. The author argues this widens the salary gap: engineers who can judge and architect systems become more valuable, while those who cannot are replaceable or cheaper to hire. The same dynamic is likely to play out across most knowledge work, where AI amplifies the best while making the worst almost impossible to hire.</description>
-    <pubDate>2026-08-12T13:20:05Z</pubDate>
-    <source>Hacker News</source>
   </item>
 </channel></rss>
