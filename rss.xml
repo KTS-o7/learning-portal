@@ -2,141 +2,101 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-15</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-16</description>
   <item>
     <title>How to bring your software delivery workflow into GitHub with agent apps</title>
     <link>https://github.blog/ai-and-ml/github-copilot/how-to-bring-your-software-delivery-workflow-into-github-with-agent-apps/</link>
     <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/how-to-bring-your-software-delivery-workflow-into-github-with-agent-apps/</guid>
-    <description>GitHub agent apps bring external services directly into GitHub workflows, allowing developers to scope, secure, roll out, and ship features without leaving the platform. The article illustrates this with a use case of making a &quot;invite your teammates&quot; onboarding step optional, using four agent apps. Before building, the Amplitude agent helps analyze funnel data to confirm whether the change is justified for different user segments. As code is developed, the Endor Labs agent reviews dependencies for vulnerabilities and risks proactively. During rollout, the LaunchDarkly agent creates and wires feature flags into the implementation. Before shipping, the PagerDuty agent assesses deployment risk by checking active incidents and historical correlations with the affected code. These apps are available on the GitHub Marketplace and can be triggered by assignment to issues, @mentions in pull request comments, or through the Agents tab.</description>
+    <description>GitHub agent apps bring external developer tools into GitHub workflows, removing the need to switch tabs while working on pull requests. Powered by the same platform as GitHub&#x27;s Copilot cloud agent, these apps allow developers to interact with services like Amplitude, Endor Labs, LaunchDarkly, and PagerDuty directly within GitHub. In a sample workflow, the Amplitude agent helps validate whether a change is justified by analyzing product data, the Endor Labs agent proactively reviews dependency risks during code review, the LaunchDarkly agent creates and wires up feature flags for staged rollouts, and the PagerDuty agent assesses deployment risk against active and historical incidents before merge. Developers can invoke these agents by @mentioning them in pull request comments, assigning them to issues, or selecting them from the Agents tab. The agent apps are available in the GitHub Marketplace and can be installed and enabled for an organization.</description>
     <pubDate>Fri, 14 Aug 2026 16:00:00 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
-    <title>Your guide to GitHub Universe 2026 is here: The schedule just launched!</title>
-    <link>https://github.blog/news-insights/company-news/your-guide-to-github-universe-2026-is-here-the-schedule-just-launched/</link>
-    <guid isPermaLink="false">https://github.blog/news-insights/company-news/your-guide-to-github-universe-2026-is-here-the-schedule-just-launched/</guid>
-    <description>GitHub Universe 2026 will take place October 28-29 at Fort Mason Center in San Francisco, featuring sessions led by experts from companies including AMD, Figma, NVIDIA, Coinbase, Anthropic, and OpenAI. The two-day event includes interactive workshops, community talks, demos, and panels covering AI-powered development topics such as configuring Copilot for complex tasks, fine-grained authorization for MCP servers, and scaling agentic workflows across multiple services. Registration is open, with Early Bird passes saving $300 through August 19 and additional group discounts available. Attendees can add a Day of Learning pass for $50, which includes a GitHub Certification exam voucher, or purchase a standalone exam voucher for $30. Three breakout sessions are competing for a main-stage slot, with community voting open through August 21 to determine which one will be featured.</description>
-    <pubDate>Thu, 13 Aug 2026 19:00:00 +0000</pubDate>
-    <source>GitHub Blog</source>
-  </item>
-  <item>
-    <title>What 50 open source projects taught us about security in the AI era</title>
-    <link>https://github.blog/open-source/maintainers/what-50-open-source-projects-taught-us-about-security-in-the-ai-era/</link>
-    <guid isPermaLink="false">https://github.blog/open-source/maintainers/what-50-open-source-projects-taught-us-about-security-in-the-ai-era/</guid>
-    <description>Session 4 of the GitHub Secure Open Source Fund invested more than $500,000 across 50 projects with 71 maintainers from 22 countries, pairing them with GitHub Security Lab experts, AI-assisted workflows, and security tools over a three-week sprint and 12-month engagement. Each project received $10,000 via GitHub Sponsors, and 92% completed the program with core security features enabled, including secret scanning, code scanning, protected branches, private vulnerability reporting, and Dependabot. Across all sessions through August 2026, 188 projects and 290 maintainers from 42 countries have participated, resulting in $1.88 million in funding, 533 disclosed CVEs, more than 1,500 Dependabot security updates, and over 650 resolved exposed secrets. A consistent lesson emerged: AI helps maintainers investigate and respond faster, but maintainers still provide the context, judgment, and accountability needed to decide what ships. Applications for Session 5 close August 24.</description>
-    <pubDate>Thu, 13 Aug 2026 16:00:00 +0000</pubDate>
-    <source>GitHub Blog</source>
-  </item>
-  <item>
-    <title>What AI First Engineering Orgs Look Like</title>
-    <link>https://arpitbhayani.me/blogs/ai-first-org</link>
-    <guid isPermaLink="false">https://arpitbhayani.me/blogs/ai-first-org</guid>
-    <description>AI-first engineering orgs shift the bottleneck from writing code to verification, code review, and security. They replace heavy upfront roadmaps with just-in-time planning because the tools themselves keep changing what is possible. For context questions, the model that assisted a pull request is now faster than asking the human author, and repeated questions should be automated into standing jobs. Human code review is reserved for areas requiring domain judgment like security, legal, and product sense, while AI handles style, bugs, and tests. Roles blur as product managers ship prototypes directly and engineers pick up design and content work, so hiring emphasizes product sense and systems depth over raw coding throughput. Throughput metrics such as PR cycle time and AI-assisted commits should be paired with outcome metrics, since speed is a means rather than the goal.</description>
-    <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
-    <source>Arpit Bhayani</source>
-  </item>
-  <item>
-    <title>Three Claude Skills I Think Every Org Should Have</title>
-    <link>https://arpitbhayani.me/blogs/three-skills</link>
-    <guid isPermaLink="false">https://arpitbhayani.me/blogs/three-skills</guid>
-    <description>Claude is now embedded in many organizations&#x27; workflows, and the skills teams build around it directly shape the value they get from it. Not every team knows which skills are worth investing in, which is why a focused shortlist of three is genuinely useful. The choices reflected in this list are ones every organization will eventually need to make for itself.</description>
-    <pubDate>Fri, 31 Jul 2026 00:00:00 GMT</pubDate>
-    <source>Arpit Bhayani</source>
-  </item>
-  <item>
     <title>AutoDesign: Meta-Harness Optimization for Long-Horizon Agentic Design</title>
-    <link>https://arxiv.org/abs/2608.13560v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.13560v1</guid>
-    <description>AutoDesign is a framework that converts multimodal sources into condensed, structured media outputs through a long-horizon agentic process, using a meta-harness optimizer to guide a code agent in recursively improving the harness based on rollout feedback. The authors focus on academic paper-to-poster generation and introduce PosterBench, a benchmark with a 100-paper Main Track spanning five disciplines plus a 10-paper PosterBench-mini subset. On the PosterBench Main Track, AutoDesign achieves a score of 78.32, surpassing the closed-source Claude Design system by 7.45 points. Across seven controlled code-agent-model configurations, integrating the learned DesignHarness raises the average PosterBench Score from 54.99 to 67.39, a 12.4% improvement. In a fully autonomous long-horizon loop, the system executes 253 tool calls and 11 editing turns within 40 minutes for under $3, reaching average conference-poster quality in human evaluation, where a system-blind study shows it achieves the highest human preference among evaluated systems.</description>
+    <link>http://arxiv.org/abs/2608.13560</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.13560</guid>
+    <description>AutoDesign is a framework that frames the transformation of multimodal sources into structured media outputs as a long-horizon agentic process, using a meta-harness optimizer to guide a code agent in recursively improving the harness based on rollout feedback. To evaluate this approach, the authors introduce PosterBench, a benchmark for academic paper-to-poster generation comprising a 100-paper Main Track across five disciplines and a 10-paper PosterBench-mini subset. On the PosterBench Main Track, AutoDesign achieved the highest score of 78.32, outperforming the closed-source commercial system Claude Design by 7.45 points. Across seven controlled code-agent-model configurations, integrating the learned DesignHarness consistently improved performance, raising the average PosterBench Score from 54.99 to 67.39. In a fully autonomous long-horizon loop, the system executed 253 tool calls and 11 editing turns within 40 minutes for under $3, reaching average conference-poster quality, and a system-blind human study confirmed its highest human preference among evaluated systems.</description>
     <pubDate>2026-08-13T17:59:57Z</pubDate>
-    <source>Yaxin Luo et al. · arXiv (cs.AI)</source>
+    <source>Yaxin Luo · arXiv (cs.AI)</source>
   </item>
   <item>
     <title>OmniScientist: An Omni-Modal Omni-Discipline AI Scientist</title>
-    <link>https://arxiv.org/abs/2608.13558v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.13558v1</guid>
-    <description>OmniScientist is an end-to-end, omni-modal AI scientist designed to conduct multidisciplinary research directly from heterogeneous raw evidence. The system combines a perception layer with three autonomous agents handling ideation, experimentation, and writeup, all operating within a deterministic pipeline. This structure enables observations to shape research questions, experimental decisions, and final claims throughout the research lifecycle, while code-based checks enforce novelty screening, statistical validity, execution provenance, and numerical traceability. Evaluation covered 36 real-data cases spanning five discipline families, four families of scientific evidence, and modalities including images, signals, audio, video, 3-D structures, trajectories, tables, formulae, and graphs. The system successfully completed the full path from raw data to a compiled manuscript in all 36 cases and achieved a mean overall paper score of 6.3. In paired comparisons against a blind variant receiving only precomputed scalar features, direct perception improved all seven evaluation dimensions and won 85% of head-to-head judgments.</description>
+    <link>http://arxiv.org/abs/2608.13558</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.13558</guid>
+    <description>OmniScientist is an end-to-end, omni-modal AI scientist that conducts multidisciplinary research directly from heterogeneous raw evidence such as images, signals, audio, video, 3-D structures, trajectories, tables, formulae, and graphs. The system combines a perception layer with three autonomous agents for ideation, experimentation, and writeup, operating within a deterministic pipeline where observations shape research questions, experimental decisions, and final claims throughout the lifecycle. Built-in code-based checks enforce novelty screening, statistical validity, execution provenance, and numerical traceability. Evaluated on 36 real-data cases spanning five discipline families and four evidence families, OmniScientist completed the full path from raw data to a compiled manuscript in all cases and achieved a mean overall paper score of 6.3. In paired comparisons against a blind variant receiving only precomputed scalar features, direct perception improved all seven evaluation dimensions and won 85% of head-to-head judgments, demonstrating that lifecycle-wide perception is essential for evidence-grounded scientific discovery.</description>
     <pubDate>2026-08-13T17:59:52Z</pubDate>
-    <source>Bobo Li et al. · arXiv (cs.AI)</source>
+    <source>Bobo Li · arXiv (cs.AI)</source>
   </item>
   <item>
     <title>HumanTracker: Towards Comprehensive and Human-Aligned Motion Tracking Benchmark</title>
-    <link>https://arxiv.org/abs/2608.13555v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.13555v1</guid>
-    <description>HumanTracker is a benchmark designed to evaluate humanoid motion tracking in a way that aligns with human visual perception. The authors argue that traditional kinematic metrics average per-frame pose differences but miss critical physical artifacts such as foot skating, mistimed touch-downs, and unstable support, while existing test suites lack the diversity needed for contact-rich, long-horizon behaviors. To address this, HumanTracker provides approximately 153 hours of optical motion trajectories captured from multiple professional performers, organized into four motion families with text labels to enable fine-grained diagnosis. The authors also introduce HumanScore, a preference-aligned metric trained on 12,000 motion pairs containing 24,000 motions. Across representative state-of-the-art trackers, HumanScore more accurately predicts human preferences and surfaces contact and stability failures that standard kinematic metrics frequently overlook. The paper has been accepted to ECCV 2026.</description>
+    <link>http://arxiv.org/abs/2608.13555</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.13555</guid>
+    <description>Humanoid motion tracking is essential for teleoperation and whole-body imitation, but current evaluation methods often disagree with human visual perception. Standard kinematic errors average per-frame pose differences yet overlook critical physical artifacts such as unstable support, foot skating, and mistimed touch-downs, while existing test suites lack the scale and diversity to stress contact-rich, long-horizon behaviors. To address this, the authors introduce HumanTracker, a benchmark comprising approximately 153 hours of optical motion trajectories from multiple professional performers, organized into four motion families with text labels for fine-grained diagnosis. They also propose HumanScore, a preference-aligned metric trained on 12K motion pairs containing 24K motions. Across representative state-of-the-art trackers, HumanScore better predicts human preferences and reveals contact and stability failures that kinematic metrics frequently miss. The work was accepted to ECCV 2026.</description>
     <pubDate>2026-08-13T17:59:40Z</pubDate>
-    <source>Dairu Liu et al. · arXiv (cs.AI)</source>
+    <source>Dairu Liu · arXiv (cs.AI)</source>
   </item>
   <item>
     <title>QuoteBench: How Matched Scores Can Hide Command-Path Failures</title>
-    <link>https://arxiv.org/abs/2608.13547v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.13547v1</guid>
-    <description>Evaluation benchmarks are designed to give a quick read on whether a system is working, but headline scores can quietly mask the failures that matter most. When matched scores look favorable, they can hide command-path failures—breakdowns in the actual execution sequence that the metrics never surface. Anyone relying on a single benchmark number to judge reliability risks shipping systems whose deeper operational defects remain invisible.</description>
+    <link>http://arxiv.org/abs/2608.13547</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.13547</guid>
+    <description>QuoteBench measures how matched execution scores can mask command-path failures in LLM coding agents that issue Bash commands through interfaces which serialize, wrap, and reparse model output. Using exact final-state validation across 56 one-shot tasks from 14 incident-derived families, the benchmark introduces a deliberately unescaped added parser to isolate generation errors from post-generation failures. Across eight same-window configurations, replaying the same reply through the parser lowers success by 55.4 to 73.2 percentage points, while disclosure recovers 30.4 to 60.7 points for six configurations and zero or slightly negative gains for the other two. Raw generation is nearly saturated at the frontier, so boundary adaptation separates models; GPT-5.6-sol&#x27;s matched gap of -3.6 points hides -64.3 points of damage and +60.7 points of compensation. The authors conclude that evaluations of command-issuing agents should report the model configuration, generation contract, execution path, operating point, and final-state validator rather than treat a matched score as an intrinsic model property.</description>
     <pubDate>2026-08-13T17:57:20Z</pubDate>
-    <source>Shangao Li et al. · arXiv (cs.AI)</source>
+    <source>Shangao Li · arXiv (cs.AI)</source>
   </item>
   <item>
     <title>LittleLearner: Language Models Under Pedagogically Controlled Knowledge Exposure</title>
-    <link>https://arxiv.org/abs/2608.13545v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.13545v1</guid>
-    <description>The authors introduce LITTLECURRICULUM, an 88B-token pretraining corpus tailored to U.S. elementary school material, explicitly excluding concepts, facts, and vocabulary taught above Grade 5. Training a 5B-parameter LLM from scratch on this corpus yields LITTLELEARNER, a model with sufficient language competence for open-ended evaluation but with clear knowledge and capability boundaries mapped to interpretable curriculum guidelines. The authors release both LITTLECURRICULUM and LITTLELEARNER as a developmentally restricted sandbox to study how models acquire, represent, and use data under a well-defined training scope. They illustrate the sandbox&#x27;s utility through a first suite of experiments on injecting new knowledge via post-training and in-context learning. These methods enable LITTLELEARNER to better utilize existing knowledge without raising out-of-scope capabilities. Their findings underscore the value of this controlled environment for future investigations.</description>
+    <link>http://arxiv.org/abs/2608.13545</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.13545</guid>
+    <description>Controlling what a language model sees during training matters because it lets engineers isolate cause and effect in learning. With a curated corpus like LITTLECURRICULUM, you can study precisely how concepts and skills emerge, making it possible to predict, debug, and improve model behavior rather than treating it as a black box. For practitioners building AI systems, this approach informs better fine-tuning and curriculum-design strategies, helping ensure models acquire targeted capabilities without unintended baggage. It also gives engineers a benchmark for reasoning about memorization, reasoning limits, and evaluation methods, which directly translates to safer and more reliable deployments in production software.</description>
     <pubDate>2026-08-13T17:56:12Z</pubDate>
-    <source>Fanfei Li et al. · arXiv (cs.AI)</source>
+    <source>Fanfei Li · arXiv (cs.AI)</source>
   </item>
   <item>
-    <title>Show HN: Mole – Deep research agent for your terminal</title>
-    <link>https://github.com/lajosdeme/mole</link>
-    <guid isPermaLink="false">https://github.com/lajosdeme/mole</guid>
-    <description>Mole is a deep-research agent that runs as a single static binary in the terminal, decomposing questions into sub-questions, searching sources, extracting claims, and writing cited answers. Every model call is reserved against a budget before execution and settled afterward, so a flag like --usd 0.50 strictly caps spending with measured overshoot reported at 0% across the test corpus. Each claim must carry a verbatim quote from its source, and unsupported claims are discarded at extraction or marked in the final report. Local CSV, TSV, and JSON files can be analyzed via SQL aggregation without their contents ever reaching the model, with only aggregates covering at least five records allowed back. The tool installs via a curl script, Homebrew, the Arch AUR, or Debian packages, and exposes an MCP interface for coding agents in either autonomous or toolkit mode, where the driving agent handles reasoning while mole supplies the deterministic mechanics like quote verification and SQL rendering.</description>
-    <pubDate>2026-08-14T18:52:48+00:00</pubDate>
+    <title>Tess&#x27;s Android Wayland Compositor</title>
+    <link>https://github.com/wmww/tawc</link>
+    <guid isPermaLink="false">https://github.com/wmww/tawc</guid>
+    <description>tawc, or Tess&#x27;s Android Wayland Compositor, runs CLI and graphical Linux programs on Android without requiring root access, with graphical apps receiving hardware acceleration through the phone&#x27;s native graphics stack. The project consists of three main components: tawcroot, described as a performant alternative to PRoot; a Wayland compositor; and the user interface that ties everything together. The app embeds Termux&#x27;s widget to provide a familiar terminal experience without requiring the Termux app itself, and graphical apps can be launched through a built-in menu. Linux applications can be added to the Android home screen and appear alongside native apps in the app switcher, while XWayland support enables hardware-accelerated X11 programs. Additional features include a built-in task manager for viewing and killing Linux processes, and the `ando` command with storage binds that allow Linux programs to interact with Android data. The project is agent-built, developed primarily using Claude Code and recent Anthropic models.</description>
+    <pubDate>2026-08-15T18:34:26Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>High-Performance Array-Backed LRU Hash Table</title>
-    <link>https://github.com/adanil-code/LRUHashTable</link>
-    <guid isPermaLink="false">https://github.com/adanil-code/LRUHashTable</guid>
-    <description>A concurrent LRU hash table implementation addresses the bottlenecks of standard library containers by combining shard-based parallelism with array-backed memory management. The table partitions data into independently locked shards, with shard counts scaled to approximately CPU cores multiplied by 32, eliminating global lock contention and routing threads via a MurmurHash3-style avalanche mixer. All nodes and buckets are pre-allocated in contiguous flat arrays using 32-bit indices instead of 64-bit pointers, which removes runtime allocations and halves structural memory overhead. Custom TTAS spinlocks replace std::shared_mutex to achieve 14x+ throughput gains with sub-microsecond tail latencies, while cache-line alignment and hot/cold path struct packing prevent false sharing and maximize L1/L2 locality. NUMA-aware memory allocation distributes shards across physical CPU sockets, and payloads are destroyed outside synchronization boundaries to ensure flat tail latencies. The dual-environment design supports both user-mode applications and a Windows 10+ kernel implementation suitable for high-frequency trading, storage caches, network routing, and driver components.</description>
-    <pubDate>2026-08-14T19:11:19+00:00</pubDate>
+    <title>Tea5767-Radio-Tuner</title>
+    <link>https://github.com/turtushig22-blip/tea5767-radio-tuner</link>
+    <guid isPermaLink="false">https://github.com/turtushig22-blip/tea5767-radio-tuner</guid>
+    <description>The repository documents a TEA5767-based FM radio tuner project built around an ESP32 microcontroller, with a KY-040 rotary encoder, PAM8403 amplifier, and 0.96&quot; OLED display, along with a custom PCB design. The project originally began in January 2026 using an Arduino UNO paired with the TEA5767 radio module, and Phase 2 focuses on designing a compact, custom PCB while keeping the design simple and reproducible. The prototype&#x27;s primary functions include manual and preset FM tuning, displaying the current frequency on a 16x2 LCD, and outputting audio via wired headphones. Because the TEA5767 module lacks a built-in speaker amplifier, soldering directly onto the module was required to enable audio output. Photos of the prototype circuit and circuit diagrams are included to illustrate the design.</description>
+    <pubDate>2026-08-15T23:54:35Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: Ember – Redshift safe color palettes</title>
-    <link>https://github.com/carpdiem/ember</link>
-    <guid isPermaLink="false">https://github.com/carpdiem/ember</guid>
-    <description>Ember is a collection of color palettes designed to remain distinguishable under warm-screen filters like Redshift and Nightshift. It models the effect of these filters as independent gains on red, green, and blue channels, recognizing that deeper filter temperatures dramatically reduce the perceptual color space available. The project ships four palettes—3400K Dark, 3400K Light, 2000K Dark, and 1200K Dark—with deeper filters containing fewer distinct colors because extreme redshifts collapse blue channel differences. Ember treats day and night as two views of the same commanded color, prioritizing nighttime distinction in Oklab perceptual space before refining daytime separation. The palettes are exported as terminal themes for Alacritty, iTerm2, and Windows Terminal, along with UI surface roles, categorical chart colors, 256-sample sequential maps, and CSS, JSON, and Python artifacts.</description>
-    <pubDate>2026-08-09T16:26:37+00:00</pubDate>
+    <title>AI has access to a vastly larger working memory than the human brain</title>
+    <link>https://davidepiffer.com/p/ai-isnt-outthinking-mathematicians</link>
+    <guid isPermaLink="false">https://davidepiffer.com/p/ai-isnt-outthinking-mathematicians</guid>
+    <description>When AI systems solve difficult mathematical problems, their advantage may stem less from superior reasoning than from a vastly larger symbolic working memory than the human brain possesses. Human mathematicians can hold only a small number of unfamiliar elements in mind simultaneously, relying on notation, scratch paper, and chunking to compensate for this biological limit. Several studies, including Alloway and Alloway&#x27;s six-year longitudinal research and work by Blankenship and colleagues, indicate that working memory predicts mathematical performance even after controlling for IQ. A modern language model&#x27;s context window functions like a gigantic external notebook, preserving the problem statement, intermediate equations, abandoned approaches, and earlier conclusions in explicit symbolic form. Because mathematical reasoning can be translated into written symbols especially effectively, this capacity difference is particularly consequential for mathematics. However, the context window is not identical to human working memory, and advertised length does not guarantee perfectly usable memory.</description>
+    <pubDate>2026-08-15T18:13:02Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>GLM-5.3: Frontier coding with emergent cyber capabilities</title>
-    <link>https://z.ai/blog/glm-5.3</link>
-    <guid isPermaLink="false">https://z.ai/blog/glm-5.3</guid>
+    <title>Semaglutide linked to lower predicted dementia risk</title>
+    <link>https://alz-journals.onlinelibrary.wiley.com/doi/10.1002/dad2.70432</link>
+    <guid isPermaLink="false">https://alz-journals.onlinelibrary.wiley.com/doi/10.1002/dad2.70432</guid>
     <description></description>
-    <pubDate>2026-08-14T05:19:59+00:00</pubDate>
+    <pubDate>2026-08-15T15:58:53Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Gemini 3.7 Flash</title>
-    <link>https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/</link>
-    <guid isPermaLink="false">https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/</guid>
-    <description>Google announced Gemini 3.7 Flash on August 13, 2026, describing it as their most intelligent workhorse model for coding and agents, released just three weeks after Gemini 3.6 Flash. The model delivers substantial improvements across software engineering, knowledge work, and web development, with notable benchmark gains over its predecessor, including FrontierCode 1.1 Main (43.6% vs 34.4%), DeepSWE v1.1 (65.3% vs 49.0%), GDP.pdf (34.0% vs 22.0%), and AutomationBench (30.4% vs 17.0%). It also scored an Elo of 1588 on Arena.ai&#x27;s WebDev Arena compared to 1538 for the previous version. The model is available through the Gemini API, Google AI Studio, Android Studio, Gemini Enterprise, and the Gemini app, where it now powers Gemini Spark for Google AI Pro and Ultra subscribers in over 160 countries. An introductory price of $0.75 per million input tokens and $3.75 per million output tokens—half the cost of 3.6 Flash—applies through December 31, 2026, and the release ships with updated safeguards against CBRN and cyber offense misuse.</description>
-    <pubDate>2026-08-13T17:23:22+00:00</pubDate>
+    <title>RISC-V: They Should Have Known Better</title>
+    <link>https://dmitry.gr/?r=06.%20Thoughts&amp;proj=12.%20RV</link>
+    <guid isPermaLink="false">https://dmitry.gr/?r=06.%20Thoughts&amp;proj=12.%20RV</guid>
+    <description>The author argues that RISC-V cannot excel across all use cases, since the requirements for high-end CPUs and cheap microcontrollers are fundamentally opposed. Even in its likely stronghold—the cheap microcontroller space—RISC-V is outperformed by ARM&#x27;s decade-old Cortex-M0, which handles interrupt entry and exit in 27 cycles compared to 44 cycles for RV32IC and 38 cycles for RV32E. The compressed instruction extension is poorly designed: byte stores can only encode offsets of zero through three, and halfword stores only zero or two, while Cortex-M0 supports ranges of zero to 31 for bytes, zero to 62 for halfwords, and zero to 124 for words. Furthermore, these limited instructions reside in the separate Zcb extension rather than the base C extension, fragmenting the standard. For high-performance server cores, code density matters less than the ability to fetch and decode many instructions simultaneously, an area where RISC-V&#x27;s design choices fall short.</description>
+    <pubDate>2026-08-14T12:50:56Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Qwen 3.8 27B</title>
-    <link>https://huggingface.co/Qwen/Qwen3.8-27B-FP8</link>
-    <guid isPermaLink="false">https://huggingface.co/Qwen/Qwen3.8-27B-FP8</guid>
-    <description>Qwen 3.8 27B denotes a language model with 27 billion parameters, a size tier that has become a popular middle ground between lighter deployable models and larger frontier systems. The &quot;3.8&quot; versioning implies a refined release within an established lineage rather than a fundamentally new architecture, so its value depends on concrete gains over earlier checkpoints. At this scale, the model sits in a range where hardware requirements, inference cost, and task capability intersect most directly for teams choosing what to run in production.</description>
-    <pubDate>2026-08-14T15:00:00+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Why does Opus 5 feel worse to work with?</title>
-    <link>https://mun-logadan.github.io/why-does-opus-5-feel-worse/</link>
-    <guid isPermaLink="false">https://mun-logadan.github.io/why-does-opus-5-feel-worse/</guid>
-    <description>Opus 5 feels like a downgrade compared to Opus 4.7, Opus 4.8, and Fable despite being more capable than the former two and rivaling the latter on benchmarks. The older models feel better because they stop and ask questions when intent is unclear, avoid making unchecked assumptions, and don&#x27;t reinterpret or update plans without confirmation, while Opus 5 requires careful babysitting. The author attributes this to two compounding forces at Anthropic and frontier labs: the drive to build self-improving AI that can recursively bootstrap toward AGI/ASI, and pressure to score well on benchmarks. Since good benchmark tasks are self-contained and solvable without hints or outside context, training for them selects for models that make bold assumptions under ambiguity and penalizes those that ask for clarification. This is the opposite of what most users want from a coding agent, since real projects invariably contain ambiguity and lack guaranteed right answers, especially when real-life consequences are involved.</description>
-    <pubDate>2026-08-14T10:12:48+00:00</pubDate>
+    <title>Working with AI feels more like leadership than coding</title>
+    <link>https://allen.bargi.org/notes/working-with-ai-feels-like-leadership/</link>
+    <guid isPermaLink="false">https://allen.bargi.org/notes/working-with-ai-feels-like-leadership/</guid>
+    <description>Allen Bargi argues that working with AI is less predictable than traditional software, making context, clarity, and feedback more valuable than precise instructions. Traditional code gave him certainty, since the same input reliably produced the same output, but AI can generate different responses to identical prompts, sometimes making useful connections or missing obvious points. He compares working with AI more to leading people than to compiling code, noting that good leaders share context, explain desired outcomes, set boundaries, and respond to what comes back. Applying these same habits to AI through examples, corrections, reusable instructions, and shared context reduces misunderstandings and improves results over time. Bargi frames the shift as becoming better at expressing intent rather than humanizing AI, moving from commanding machines to leading through conversations.</description>
+    <pubDate>2026-08-15T10:39:41Z</pubDate>
     <source>Hacker News</source>
   </item>
 </channel></rss>
