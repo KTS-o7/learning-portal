@@ -139,22 +139,22 @@
       "stories": [
         {
           "id": "disc-01",
-          "title": "Models Are Getting Dumber on Purpose",
-          "url": "https://w4g1.dev/blog/models-are-getting-dumber-on-purpose",
-          "source": "Hacker News",
-          "source_kind": "discussion",
-          "summary": "",
-          "published_at": "2026-08-16T19:04:26Z",
-          "snippet": ""
-        },
-        {
-          "id": "disc-02",
           "title": "Stripe Clinches over $7B Deal to Buy AI Firm OpenRouter",
           "url": "https://www.bloomberg.com/news/articles/2026-08-16/stripe-nears-deal-to-buy-ai-firm-openrouter-for-over-7-billion",
           "source": "Hacker News",
           "source_kind": "discussion",
           "summary": "",
           "published_at": "2026-08-16T20:31:16Z",
+          "snippet": ""
+        },
+        {
+          "id": "disc-02",
+          "title": "Models Are Getting Dumber on Purpose",
+          "url": "https://w4g1.dev/blog/models-are-getting-dumber-on-purpose",
+          "source": "Hacker News",
+          "source_kind": "discussion",
+          "summary": "",
+          "published_at": "2026-08-16T19:04:26Z",
           "snippet": ""
         },
         {
