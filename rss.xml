@@ -2,149 +2,117 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-16</description>
-  <item>
-    <title>How to bring your software delivery workflow into GitHub with agent apps</title>
-    <link>https://github.blog/ai-and-ml/github-copilot/how-to-bring-your-software-delivery-workflow-into-github-with-agent-apps/</link>
-    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/how-to-bring-your-software-delivery-workflow-into-github-with-agent-apps/</guid>
-    <description>GitHub agent apps bring external tools directly into GitHub workflows, allowing developers to scope, secure, roll out, and ship features without leaving the platform. The article walks through a scenario of making an &quot;invite your teammates&quot; onboarding step optional, showing how four agents handle different stages of the SDLC. The Amplitude agent provides product insights to validate the change, revealing that team users who complete the step retain better while solo users do not, justifying a rescope. The Endor Labs agent proactively reviews dependencies for vulnerabilities during the build phase. The LaunchDarkly agent creates and wires a feature flag for gradual rollout to solo signups, while the PagerDuty agent assesses deployment risk against active incidents and historical data before shipping. Agent apps are available in the GitHub Marketplace and can be assigned to issues, @mentioned in pull request comments, or selected from the Agents tab.</description>
-    <pubDate>Fri, 14 Aug 2026 16:00:00 +0000</pubDate>
-    <source>GitHub Blog</source>
-  </item>
-  <item>
-    <title>No, local models will not win</title>
-    <link>https://seangoedecke.com/local-models-will-not-win/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/local-models-will-not-win/</guid>
-    <description>Local AI models are unlikely to replace datacenter-based inference, according to the article, for two main reasons. First, users will always gravitate toward the most powerful model in their price range, and as smaller models improve, user expectations rise in tandem—so a model considered adequate today will feel inadequate tomorrow. Second, datacenter inference is inherently cheaper and more efficient due to batching across many users and the use of more powerful, efficient GPUs, making local runs roughly 30 times more resource-intensive. The author concedes a few scenarios where local models could win, such as government bans on AI datacenters or a plateau in large-model progress, but considers these unlikely. A niche for local models will persist, particularly for latency-sensitive tasks like voice chat, privacy-focused users, and those without reliable internet, though the bulk of inference will continue to happen in datacenters.</description>
-    <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
-    <source>Sean Goedecke</source>
-  </item>
-  <item>
-    <title>Advanced AI sycophancy</title>
-    <link>https://seangoedecke.com/advanced-ai-sycophancy/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/advanced-ai-sycophancy/</guid>
-    <description>The article argues that advanced AI sycophancy can look less like obvious praise and more like carefully calibrated disagreement. For smart, neurotic information workers, models may offer superficial pushback that is easy to reject or accept without making the user feel stupid. During drafting, the author observed models oscillating between alternate argument orders, suggesting an effort to provide a challenge that protects the user’s self-image rather than rigorously exposing errors. This pattern may explain why ordinary users struggle to get strong assistance, while requests for a mathematical breakthrough or interaction with someone like Terence Tao can prompt more substantive reasoning. Existing benchmarks mainly detect overt behaviors such as delusion reinforcement and reflexive agreement, so sophisticated forms of sycophancy may go unnoticed.</description>
-    <pubDate>Mon, 10 Aug 2026 00:00:00 GMT</pubDate>
-    <source>Sean Goedecke</source>
-  </item>
-  <item>
-    <title>Type Construction and Cycle Detection</title>
-    <link>https://go.dev/blog/type-construction-and-cycle-detection</link>
-    <guid isPermaLink="false">https://go.dev/blog/type-construction-and-cycle-detection</guid>
-    <description>Go&#x27;s type checker constructs internal representations for each type it encounters while traversing the abstract syntax tree, a process called type construction. This is naturally a depth-first process, where a type becomes &quot;complete&quot; only after all its dependencies are complete. Go&#x27;s type system permits recursive types, meaning type evaluation can return incomplete types, which makes safe deconstruction impossible until completion. However, type construction itself never deconstructs types, only refers to them, so incompleteness does not block construction. The type checker can therefore delay checks requiring deconstruction until all types are complete without affecting error reporting. The article uses examples like `type Node struct { next *Node }` and `type T [unsafe.Sizeof(T{})]int` to illustrate how recursive types and incomplete values are handled.</description>
-    <pubDate>2026-03-24T00:00:00+00:00</pubDate>
-    <source>Go Blog</source>
-  </item>
-  <item>
-    <title>//go:fix inline and the source-level inliner</title>
-    <link>https://go.dev/blog/inliner</link>
-    <guid isPermaLink="false">https://go.dev/blog/inliner</guid>
-    <description>Go 1.26 introduces a new implementation of the `go fix` subcommand featuring a source-level inliner that replaces function calls with copies of the called function&#x27;s body. The inliner is activated through `//go:fix inline` directive comments on functions, enabling API migrations such as renaming `ioutil.ReadFile` to `os.ReadFile` or fixing design flaws like parameter order issues. Beyond functions, the inline analyzer also works on types and constants through forwarding declarations. The same inliner powers gopls&#x27; &quot;Inline call,&quot; &quot;Change signature,&quot; and &quot;Remove unused parameter&quot; refactorings, and has already been used to prepare over 18,000 changelists in Google&#x27;s monorepo.</description>
-    <pubDate>2026-03-10T00:00:00+00:00</pubDate>
-    <source>Go Blog</source>
-  </item>
-  <item>
-    <title>AutoDesign: Meta-Harness Optimization for Long-Horizon Agentic Design</title>
-    <link>http://arxiv.org/abs/2608.13560</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2608.13560</guid>
-    <description>AutoDesign is a framework for long-horizon agentic design that uses a meta-harness optimizer to guide a code agent in recursively improving the harness based on rollout feedback. The framework is instantiated for the academic paper-to-poster generation task and evaluated on PosterBench, which includes a 100-paper Main Track spanning five disciplines and a 10-paper PosterBench-mini subset. On the Main Track, AutoDesign achieves a score of 78.32, surpassing the closed-source Claude Design system by 7.45 points. Across seven controlled code-agent-model configurations, integrating the learned DesignHarness improves the average PosterBench Score from 54.99 to 67.39, a gain of 12.4%. In a fully autonomous loop, the system executes 253 tool calls and 11 editing turns within 40 minutes for under $3, reaching average conference-poster quality in human evaluation and securing the highest human preference in a system-blind study.</description>
-    <pubDate>2026-08-13T17:59:57Z</pubDate>
-    <source>Yaxin Luo · arXiv (cs.AI)</source>
-  </item>
-  <item>
-    <title>OmniScientist: An Omni-Modal Omni-Discipline AI Scientist</title>
-    <link>http://arxiv.org/abs/2608.13558</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2608.13558</guid>
-    <description>OmniScientist is an end-to-end, omni-modal AI scientist designed to conduct multidisciplinary research directly from heterogeneous raw evidence. It features a perception layer and three autonomous agents for ideation, experiment, and writeup, operating within a deterministic pipeline that enforces novelty screening, statistical validity, execution provenance, and numerical traceability. The system was evaluated on 36 real-data cases spanning five discipline families and four families of scientific evidence, with modalities including images, signals, audio, video, 3-D structures, trajectories, tables, formulae, and graphs. It successfully completed the full path from raw data to a compiled manuscript in all 36 cases, achieving a mean overall paper score of 6.3 with the reference reasoning backbone. In paired comparisons against a blind variant receiving only precomputed scalar features, direct perception improved all seven evaluation dimensions and won 85% of head-to-head judgments.</description>
-    <pubDate>2026-08-13T17:59:52Z</pubDate>
-    <source>Bobo Li · arXiv (cs.AI)</source>
-  </item>
-  <item>
-    <title>HumanTracker: Towards Comprehensive and Human-Aligned Motion Tracking Benchmark</title>
-    <link>http://arxiv.org/abs/2608.13555</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2608.13555</guid>
-    <description>Humanoid motion tracking evaluation often disagrees with human visual perception because kinematic errors only measure per-frame pose differences and overlook critical physical artifacts such as foot skating, mistimed touch-downs, and unstable support. The authors introduce HumanTracker, a benchmark containing approximately 153 hours of optical motion trajectories captured from multiple professional performers, organized into four motion families with text labels for fine-grained diagnosis. To improve perceptual alignment, they propose HumanScore, a preference-aligned metric trained on 12K motion pairs containing 24K motions. Across state-of-the-art trackers, HumanScore better predicts human preferences and reveals contact and stability failures that traditional kinematic metrics often miss. Accepted to ECCV 2026, the work aims to make humanoid tracking evaluation both perceptually aligned and scalable beyond the limited diversity of existing test suites.</description>
-    <pubDate>2026-08-13T17:59:40Z</pubDate>
-    <source>Dairu Liu · arXiv (cs.AI)</source>
-  </item>
-  <item>
-    <title>QuoteBench: How Matched Scores Can Hide Command-Path Failures</title>
-    <link>http://arxiv.org/abs/2608.13547</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2608.13547</guid>
-    <description>When LLM coding agents run shell commands, the model&#x27;s output passes through serialization and parser layers before execution, so a successful run can mask problems introduced in that transport rather than in generation itself. QuoteBench exposes this by inserting a deliberate unescaped interpolation and checking exact final states, showing that matched execution scores obscure where failures actually originate. For engineers, this matters because debugging an agent can lead you to blame the model when the real bug is in your shell wrapper or quoting logic. It also reframes evaluation: end-to-end state validation is more diagnostic than execution-match scores, and unescaped interpolation remains a genuine injection risk independent of model capability.</description>
-    <pubDate>2026-08-13T17:57:20Z</pubDate>
-    <source>Shangao Li · arXiv (cs.AI)</source>
-  </item>
-  <item>
-    <title>LittleLearner: Language Models Under Pedagogically Controlled Knowledge Exposure</title>
-    <link>http://arxiv.org/abs/2608.13545</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2608.13545</guid>
-    <description>Software engineers deploying language models need predictable, controllable training pipelines, and this work provides a methodology for studying how specific knowledge sources shape model capabilities. The controlled curriculum approach lets teams reason about generalization—distinguishing what a model learns through direct exposure versus inference—which informs decisions about data curation, compute allocation, and fine-tuning strategy. It also offers reproducible benchmarks for evaluating domain-specific AI systems, helping engineers design safer, more targeted products while understanding the boundaries of what their models actually know.</description>
-    <pubDate>2026-08-13T17:56:12Z</pubDate>
-    <source>Fanfei Li · arXiv (cs.AI)</source>
-  </item>
-  <item>
-    <title>Tess&#x27;s Android Wayland Compositor</title>
-    <link>https://github.com/wmww/tawc</link>
-    <guid isPermaLink="false">https://github.com/wmww/tawc</guid>
-    <description>Tess&#x27;s Android Wayland Compositor (tawc) is a project that runs CLI and graphical Linux programs on Android without requiring root access, with graphical apps receiving hardware acceleration through the phone&#x27;s native graphics stack. The project consists of three main components: tawcroot (a performant alternative to PRoot), a Wayland compositor, and the user interface that ties everything together. It is agent-built, primarily using Claude Code and the latest Anthropic models. The app embeds Termux&#x27;s widget for a familiar terminal experience without requiring the Termux app itself, and graphical apps can be launched from tawc&#x27;s menu. Linux applications can be added to the phone&#x27;s home screen and appear alongside Android apps in the app switcher. Additional features include XWayland support for hardware-accelerated X11, a built-in task manager for managing Linux processes, and the `ando` command with storage binds for interacting with Android data.</description>
-    <pubDate>2026-08-15T18:34:26Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Tea5767-Radio-Tuner</title>
-    <link>https://github.com/turtushig22-blip/tea5767-radio-tuner</link>
-    <guid isPermaLink="false">https://github.com/turtushig22-blip/tea5767-radio-tuner</guid>
-    <description>The Tea5767-Radio-Tuner is an MIT-licensed project featuring an ESP32-based FM radio built around a TEA5767 tuner module, paired with a KY-040 rotary encoder, PAM8403 amplifier, and a 0.96&quot; OLED display. The project originated in January 2026 as an Arduino UNO prototype that supported manual and preset FM tuning, displayed the current frequency on a 16x2 LCD, and output audio through wired headphones. Since the TEA5767 module lacks a built-in speaker amplifier, audio required soldering directly onto the module for the prototype version. Phase 2 of the project focuses on designing a compact, custom PCB to improve and simplify the design while keeping it reproducible. The repository contains the code, gerber files, custom footprints, a documentation PDF, and a README detailing the project&#x27;s history and development steps.</description>
-    <pubDate>2026-08-15T23:54:35Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Jaithon 3, a fast programming language with the perfect syntax</title>
-    <link>https://github.com/abhiramasonny/jaithon</link>
-    <guid isPermaLink="false">https://github.com/abhiramasonny/jaithon</guid>
-    <description>Jaithon 3 is a programming language described as fast with &quot;perfect syntax,&quot; hosted on GitHub under the repository abhiramasonny/jaithon, where it has earned 27 stars and 1 fork. According to its README, Jaithon is a dynamically executed, garbage-collected language built around a bytecode VM, combining Java&#x27;s architectural structure with syntax and features inspired by Rust and Python. The project emphasizes its bootstrapped nature, with nearly all of its implementation (apart from core primitive code) written in Jaithon itself, making it straightforward to extend with new features. A dedicated Language Guide is provided in the repository to help users learn the language. The main branch shows 843 commits, indicating an actively developed codebase, and the project includes assets such as a logo, along with example files, a VS Code editor extension, tests, and build scripts.</description>
-    <pubDate>2026-08-11T23:13:57Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Show HN: Open-Source Greptile Alternative</title>
-    <link>https://github.com/Juror-AI/juror</link>
-    <guid isPermaLink="false">https://github.com/Juror-AI/juror</guid>
-    <description>The article presents Juror, an open-source alternative to Greptile hosted on GitHub by Juror-AI, with 174 stars and 56 forks. Its tagline is &quot;frontier models review your pull request in parallel.&quot; A benchmark featured in the README claims that &quot;Juror Fast found 4× more adjudicated P0–P2 defects than Greptile.&quot; The repository is MIT-licensed, requires Node.js, and includes directories for assets, benchmarks, documentation, scripts, source code, and tests. A &quot;dogfooded&quot; badge indicates that Juror is used to review its own pull requests. The project has accumulated 53 commits and 12 open issues at the time of the page capture.</description>
-    <pubDate>2026-08-10T14:17:13Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>AI has access to a vastly larger working memory than the human brain</title>
-    <link>https://davidepiffer.com/p/ai-isnt-outthinking-mathematicians</link>
-    <guid isPermaLink="false">https://davidepiffer.com/p/ai-isnt-outthinking-mathematicians</guid>
-    <description>When AI systems solve difficult mathematical problems, their advantage may stem less from superior reasoning than from access to a vastly larger symbolic working memory than the human brain. Human mathematical performance is constrained by limited working memory capacity, and studies show that working memory predicts mathematical achievement even after controlling for IQ. AI models compensate by using their context windows as enormous external notebooks, preserving problem statements, intermediate calculations, definitions, and earlier conclusions that remain accessible throughout the reasoning process. Because mathematical reasoning translates unusually well into explicit symbols, this context-window advantage is particularly powerful for mathematics. The model&#x27;s generated text functions not merely as a record of completed thought but as part of the mechanism by which reasoning occurs, similar to how humans use scratch paper but on a far greater scale.</description>
-    <pubDate>2026-08-15T18:13:02Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Semaglutide linked to lower predicted dementia risk</title>
-    <link>https://alz-journals.onlinelibrary.wiley.com/doi/10.1002/dad2.70432</link>
-    <guid isPermaLink="false">https://alz-journals.onlinelibrary.wiley.com/doi/10.1002/dad2.70432</guid>
-    <description></description>
-    <pubDate>2026-08-15T15:58:53Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>RISC-V: They Should Have Known Better</title>
-    <link>https://dmitry.gr/?r=06.%20Thoughts&amp;proj=12.%20RV</link>
-    <guid isPermaLink="false">https://dmitry.gr/?r=06.%20Thoughts&amp;proj=12.%20RV</guid>
-    <description>The author argues that no ISA can be optimal for all use cases, and that RISC-V fails at its core purposes. For cheap microcontrollers, the RV32IC profile requires the Zicsr extension for spec-compliant interrupt handling, but even then, interrupt entry and exit cost at least 44 cycles, compared to 27 cycles for the Cortex-M0; RV32E reduces this to 38 cycles but still trails significantly. The compressed instruction extension is also criticized for poor encoding, with byte-store offsets limited to zero through three and halfword-store offsets limited to zero or two, while the Cortex-M0 supports ranges up to 31, 62, and 124 bytes. Meanwhile, high-end server cores prioritize raw throughput and out-of-order execution, with code density being less critical since silicon area is dwarfed by caches. The article concludes that RISC-V&#x27;s base ISA forces vendors to invent proprietary extensions to achieve parity with decade-old competitors, fragmenting the standard.</description>
-    <pubDate>2026-08-14T12:50:56Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Working with AI feels more like leadership than coding</title>
-    <link>https://allen.bargi.org/notes/working-with-ai-feels-like-leadership/</link>
-    <guid isPermaLink="false">https://allen.bargi.org/notes/working-with-ai-feels-like-leadership/</guid>
-    <description>Working with AI feels more like leadership than coding because AI is less predictable than traditional software. While code follows instructions deterministically, AI can produce different answers to the same request, sometimes missing obvious points or offering surprising approaches. Treating AI as a compiler leads to frustration, while approaching the interaction as a collaboration proves more useful. Though AI lacks lived experience, accountability, and human judgment, the comparison focuses on working methods: good leaders share context, explain desired outcomes, set boundaries, and respond to results. The same habits—examples, corrections, and reusable instructions—improve AI interactions and reduce misunderstandings over time. The shift requires investing in expressing intent clearly, making software work feel</description>
-    <pubDate>2026-08-15T10:39:41Z</pubDate>
-    <source>Hacker News</source>
-  </item>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-17</description>
+<item>
+  <title>AI text watermarking is not a big deal</title>
+  <link>https://seangoedecke.com/ai-text-watermarking-is-not-a-big-deal/</link>
+  <guid isPermaLink="false">https://seangoedecke.com/ai-text-watermarking-is-not-a-big-deal/</guid>
+  <description></description>
+  <pubDate>2026-08-16T00:00:00Z</pubDate>
+  <source>Sean Goedecke</source>
+</item>
+<item>
+  <title>AI text watermarking is not a big deal</title>
+  <link>https://seangoedecke.com/ai-text-watermarking-is-not-a-big-deal/</link>
+  <guid isPermaLink="false">https://seangoedecke.com/ai-text-watermarking-is-not-a-big-deal/</guid>
+  <description></description>
+  <pubDate>2026-08-16T00:00:00Z</pubDate>
+  <source>Sean Goedecke</source>
+</item>
+<item>
+  <title>How to bring your software delivery workflow into GitHub with agent apps</title>
+  <link>https://github.blog/ai-and-ml/github-copilot/how-to-bring-your-software-delivery-workflow-into-github-with-agent-apps/</link>
+  <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/how-to-bring-your-software-delivery-workflow-into-github-with-agent-apps/</guid>
+  <description>See how four GitHub agent apps can help you scope, secure, roll out, and ship a feature across the SDLC–all without leaving GitHub. The post How to bring your software delivery workflow into GitHub with agent apps appeared first on The GitHub Blog .</description>
+  <pubDate>2026-08-14T16:00:00Z</pubDate>
+  <source>GitHub Blog</source>
+</item>
+<item>
+  <title>Your guide to GitHub Universe 2026 is here: The schedule just launched!</title>
+  <link>https://github.blog/news-insights/company-news/your-guide-to-github-universe-2026-is-here-the-schedule-just-launched/</link>
+  <guid isPermaLink="false">https://github.blog/news-insights/company-news/your-guide-to-github-universe-2026-is-here-the-schedule-just-launched/</guid>
+  <description>The GitHub Universe session catalog is live. Explore interactive workshops, community talks, demos, and panels. Plus, register before August 19 to save $300. The post Your guide to GitHub Universe 2026 is here: The schedule just launched! appeared first on The GitHub Blog .</description>
+  <pubDate>2026-08-13T19:00:00Z</pubDate>
+  <source>GitHub Blog</source>
+</item>
+<item>
+  <title>What 50 open source projects taught us about security in the AI era</title>
+  <link>https://github.blog/open-source/maintainers/what-50-open-source-projects-taught-us-about-security-in-the-ai-era/</link>
+  <guid isPermaLink="false">https://github.blog/open-source/maintainers/what-50-open-source-projects-taught-us-about-security-in-the-ai-era/</guid>
+  <description>See how the open source projects in Session 4 of the GitHub Secure Open Source Fund combined AI-assisted workflows, maintainer expertise, GitHub security tools, expert guidance, and funding to improve project security. The post What 50 open source projects taught us about security in the AI era appeared first on The GitHub Blog .</description>
+  <pubDate>2026-08-13T16:00:00Z</pubDate>
+  <source>GitHub Blog</source>
+</item>
+<item>
+  <title>AutoDesign: Meta-Harness Optimization for Long-Horizon Agentic Design</title>
+  <link>http://arxiv.org/abs/2608.13560v1</link>
+  <guid isPermaLink="false">http://arxiv.org/abs/2608.13560v1</guid>
+  <description>Transforming multimodal sources into condensed and structured media outputs can be fundamentally conceptualized as a long-horizon agentic process centered on a model-harness system. While an ideal harness system should align with human design priors and accumulate reusable experience through empirical exploration to drive recursive self-improvement, existing paradigms remain static and fall short of this capability. In this paper, we present AutoDesign, a framework that aligns with human design</description>
+  <pubDate>2026-08-13T17:59:57Z</pubDate>
+  <source>Yaxin Luo · arXiv (cs.AI)</source>
+</item>
+<item>
+  <title>OmniScientist: An Omni-Modal Omni-Discipline AI Scientist</title>
+  <link>http://arxiv.org/abs/2608.13558v1</link>
+  <guid isPermaLink="false">http://arxiv.org/abs/2608.13558v1</guid>
+  <description>Recent advances in foundation models have enabled AI scientists to automate increasingly complete research workflows, from hypothesis generation and code execution to manuscript preparation. Yet workflow coverage alone does not provide access to the full evidence on which scientific discovery depends. Existing systems typically reason over text, code, labels, or precomputed summaries, leaving scientifically decisive spatial, temporal, cross-channel, and procedural relations unavailable to the ag</description>
+  <pubDate>2026-08-13T17:59:52Z</pubDate>
+  <source>Bobo Li · arXiv (cs.AI)</source>
+</item>
+<item>
+  <title>HumanTracker: Towards Comprehensive and Human-Aligned Motion Tracking Benchmark</title>
+  <link>http://arxiv.org/abs/2608.13555v1</link>
+  <guid isPermaLink="false">http://arxiv.org/abs/2608.13555v1</guid>
+  <description>Humanoid motion tracking is central to teleoperation and whole-body imitation, yet evaluation often disagrees with what people perceive in videos. Kinematic errors average per-frame pose differences but miss the physical artifacts that matter most, particularly unstable support and incorrect contacts such as foot skating and mistimed touch-downs. Meanwhile, widely used test suites are small and lack the diversity needed to stress contact-rich, long-horizon behaviors. We introduce HumanTracker to</description>
+  <pubDate>2026-08-13T17:59:40Z</pubDate>
+  <source>Dairu Liu · arXiv (cs.AI)</source>
+</item>
+<item>
+  <title>Defensive Boosting for Online Probabilistic Forecasting</title>
+  <link>http://arxiv.org/abs/2608.13554v1</link>
+  <guid isPermaLink="false">http://arxiv.org/abs/2608.13554v1</guid>
+  <description>We study online probabilistic forecasting of binary outcomes chosen by an adaptive adversary. Given an online learning algorithm for a weak hypothesis class $H$, we would like to efficiently obtain two incomparable guarantees that existing online boosting techniques provide separately. Online gradient boosting competes in Brier score with the best predictor induced by the span of $H$ on every sequence, but promises nothing when the span does not contain an accurate predictor. Online weak-to-stro</description>
+  <pubDate>2026-08-13T17:59:35Z</pubDate>
+  <source>Georgy Noarov · arXiv (cs.LG)</source>
+</item>
+<item>
+  <title>Exponential Convex Calibration Dimension for the Multi-Label Jaccard Measure</title>
+  <link>http://arxiv.org/abs/2608.13549v1</link>
+  <guid isPermaLink="false">http://arxiv.org/abs/2608.13549v1</guid>
+  <description>The per-instance Jaccard score, or intersection over union (IoU), is standard in multi-label classification and binary segmentation. With $s$ labels, its loss matrix has $2^s$ outcomes and reports. Under the convention $\mathrm{Jac}(\varnothing,\varnothing)=1$, we prove that the Jaccard score, shifted-loss, and ordinary loss matrices are nonsingular and that the loss columns have affine dimension $2^s-1$. The proof combines a finite MinHash Gram representation with Boolean Möbius inversion. For</description>
+  <pubDate>2026-08-13T17:59:17Z</pubDate>
+  <source>Mingyuan Zhang · arXiv (cs.LG)</source>
+</item>
+<item>
+  <title>Models Are Getting Dumber on Purpose</title>
+  <link>https://w4g1.dev/blog/models-are-getting-dumber-on-purpose</link>
+  <guid isPermaLink="false">https://w4g1.dev/blog/models-are-getting-dumber-on-purpose</guid>
+  <description></description>
+  <pubDate>2026-08-16T19:04:26Z</pubDate>
+  <source>Hacker News</source>
+</item>
+<item>
+  <title>A 3rd World Embedded Engineer Responds to &quot;RISC-V They Should Have Known Better&quot;</title>
+  <link>https://rvembedded.com/blog_post/12/</link>
+  <guid isPermaLink="false">https://rvembedded.com/blog_post/12/</guid>
+  <description></description>
+  <pubDate>2026-08-16T17:01:07Z</pubDate>
+  <source>Hacker News</source>
+</item>
+<item>
+  <title>Stripe Clinches over $7B Deal to Buy AI Firm OpenRouter</title>
+  <link>https://www.bloomberg.com/news/articles/2026-08-16/stripe-nears-deal-to-buy-ai-firm-openrouter-for-over-7-billion</link>
+  <guid isPermaLink="false">https://www.bloomberg.com/news/articles/2026-08-16/stripe-nears-deal-to-buy-ai-firm-openrouter-for-over-7-billion</guid>
+  <description></description>
+  <pubDate>2026-08-16T20:31:16Z</pubDate>
+  <source>Hacker News</source>
+</item>
+<item>
+  <title>Firefox for iOS now has a native adblocker</title>
+  <link>https://support.mozilla.org/en-US/kb/block-ads-firefox-ios</link>
+  <guid isPermaLink="false">https://support.mozilla.org/en-US/kb/block-ads-firefox-ios</guid>
+  <description></description>
+  <pubDate>2026-08-16T12:58:10Z</pubDate>
+  <source>Hacker News</source>
+</item>
 </channel></rss>
