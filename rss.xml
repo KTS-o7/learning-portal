@@ -12,14 +12,6 @@
   <source>Sean Goedecke</source>
 </item>
 <item>
-  <title>AI text watermarking is not a big deal</title>
-  <link>https://seangoedecke.com/ai-text-watermarking-is-not-a-big-deal/</link>
-  <guid isPermaLink="false">https://seangoedecke.com/ai-text-watermarking-is-not-a-big-deal/</guid>
-  <description></description>
-  <pubDate>2026-08-16T00:00:00Z</pubDate>
-  <source>Sean Goedecke</source>
-</item>
-<item>
   <title>How to bring your software delivery workflow into GitHub with agent apps</title>
   <link>https://github.blog/ai-and-ml/github-copilot/how-to-bring-your-software-delivery-workflow-into-github-with-agent-apps/</link>
   <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/how-to-bring-your-software-delivery-workflow-into-github-with-agent-apps/</guid>
@@ -42,6 +34,14 @@
   <description>See how the open source projects in Session 4 of the GitHub Secure Open Source Fund combined AI-assisted workflows, maintainer expertise, GitHub security tools, expert guidance, and funding to improve project security. The post What 50 open source projects taught us about security in the AI era appeared first on The GitHub Blog .</description>
   <pubDate>2026-08-13T16:00:00Z</pubDate>
   <source>GitHub Blog</source>
+</item>
+<item>
+  <title>Type Construction and Cycle Detection</title>
+  <link>https://go.dev/blog/type-construction-and-cycle-detection</link>
+  <guid isPermaLink="false">https://go.dev/blog/type-construction-and-cycle-detection</guid>
+  <description>Go 1.26 simplifies type construction and enhances cycle detection for certain kinds of recursive types.</description>
+  <pubDate>2026-03-24T00:00:00Z</pubDate>
+  <source>Go Blog</source>
 </item>
 <item>
   <title>AutoDesign: Meta-Harness Optimization for Long-Horizon Agentic Design</title>
