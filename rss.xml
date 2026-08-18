@@ -2,117 +2,149 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-17</description>
-<item>
-  <title>AI text watermarking is not a big deal</title>
-  <link>https://seangoedecke.com/ai-text-watermarking-is-not-a-big-deal/</link>
-  <guid isPermaLink="false">https://seangoedecke.com/ai-text-watermarking-is-not-a-big-deal/</guid>
-  <description></description>
-  <pubDate>2026-08-16T00:00:00Z</pubDate>
-  <source>Sean Goedecke</source>
-</item>
-<item>
-  <title>How to bring your software delivery workflow into GitHub with agent apps</title>
-  <link>https://github.blog/ai-and-ml/github-copilot/how-to-bring-your-software-delivery-workflow-into-github-with-agent-apps/</link>
-  <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/how-to-bring-your-software-delivery-workflow-into-github-with-agent-apps/</guid>
-  <description>See how four GitHub agent apps can help you scope, secure, roll out, and ship a feature across the SDLC–all without leaving GitHub. The post How to bring your software delivery workflow into GitHub with agent apps appeared first on The GitHub Blog .</description>
-  <pubDate>2026-08-14T16:00:00Z</pubDate>
-  <source>GitHub Blog</source>
-</item>
-<item>
-  <title>Your guide to GitHub Universe 2026 is here: The schedule just launched!</title>
-  <link>https://github.blog/news-insights/company-news/your-guide-to-github-universe-2026-is-here-the-schedule-just-launched/</link>
-  <guid isPermaLink="false">https://github.blog/news-insights/company-news/your-guide-to-github-universe-2026-is-here-the-schedule-just-launched/</guid>
-  <description>The GitHub Universe session catalog is live. Explore interactive workshops, community talks, demos, and panels. Plus, register before August 19 to save $300. The post Your guide to GitHub Universe 2026 is here: The schedule just launched! appeared first on The GitHub Blog .</description>
-  <pubDate>2026-08-13T19:00:00Z</pubDate>
-  <source>GitHub Blog</source>
-</item>
-<item>
-  <title>What 50 open source projects taught us about security in the AI era</title>
-  <link>https://github.blog/open-source/maintainers/what-50-open-source-projects-taught-us-about-security-in-the-ai-era/</link>
-  <guid isPermaLink="false">https://github.blog/open-source/maintainers/what-50-open-source-projects-taught-us-about-security-in-the-ai-era/</guid>
-  <description>See how the open source projects in Session 4 of the GitHub Secure Open Source Fund combined AI-assisted workflows, maintainer expertise, GitHub security tools, expert guidance, and funding to improve project security. The post What 50 open source projects taught us about security in the AI era appeared first on The GitHub Blog .</description>
-  <pubDate>2026-08-13T16:00:00Z</pubDate>
-  <source>GitHub Blog</source>
-</item>
-<item>
-  <title>Type Construction and Cycle Detection</title>
-  <link>https://go.dev/blog/type-construction-and-cycle-detection</link>
-  <guid isPermaLink="false">https://go.dev/blog/type-construction-and-cycle-detection</guid>
-  <description>Go 1.26 simplifies type construction and enhances cycle detection for certain kinds of recursive types.</description>
-  <pubDate>2026-03-24T00:00:00Z</pubDate>
-  <source>Go Blog</source>
-</item>
-<item>
-  <title>AutoDesign: Meta-Harness Optimization for Long-Horizon Agentic Design</title>
-  <link>http://arxiv.org/abs/2608.13560v1</link>
-  <guid isPermaLink="false">http://arxiv.org/abs/2608.13560v1</guid>
-  <description>Transforming multimodal sources into condensed and structured media outputs can be fundamentally conceptualized as a long-horizon agentic process centered on a model-harness system. While an ideal harness system should align with human design priors and accumulate reusable experience through empirical exploration to drive recursive self-improvement, existing paradigms remain static and fall short of this capability. In this paper, we present AutoDesign, a framework that aligns with human design</description>
-  <pubDate>2026-08-13T17:59:57Z</pubDate>
-  <source>Yaxin Luo · arXiv (cs.AI)</source>
-</item>
-<item>
-  <title>OmniScientist: An Omni-Modal Omni-Discipline AI Scientist</title>
-  <link>http://arxiv.org/abs/2608.13558v1</link>
-  <guid isPermaLink="false">http://arxiv.org/abs/2608.13558v1</guid>
-  <description>Recent advances in foundation models have enabled AI scientists to automate increasingly complete research workflows, from hypothesis generation and code execution to manuscript preparation. Yet workflow coverage alone does not provide access to the full evidence on which scientific discovery depends. Existing systems typically reason over text, code, labels, or precomputed summaries, leaving scientifically decisive spatial, temporal, cross-channel, and procedural relations unavailable to the ag</description>
-  <pubDate>2026-08-13T17:59:52Z</pubDate>
-  <source>Bobo Li · arXiv (cs.AI)</source>
-</item>
-<item>
-  <title>HumanTracker: Towards Comprehensive and Human-Aligned Motion Tracking Benchmark</title>
-  <link>http://arxiv.org/abs/2608.13555v1</link>
-  <guid isPermaLink="false">http://arxiv.org/abs/2608.13555v1</guid>
-  <description>Humanoid motion tracking is central to teleoperation and whole-body imitation, yet evaluation often disagrees with what people perceive in videos. Kinematic errors average per-frame pose differences but miss the physical artifacts that matter most, particularly unstable support and incorrect contacts such as foot skating and mistimed touch-downs. Meanwhile, widely used test suites are small and lack the diversity needed to stress contact-rich, long-horizon behaviors. We introduce HumanTracker to</description>
-  <pubDate>2026-08-13T17:59:40Z</pubDate>
-  <source>Dairu Liu · arXiv (cs.AI)</source>
-</item>
-<item>
-  <title>Defensive Boosting for Online Probabilistic Forecasting</title>
-  <link>http://arxiv.org/abs/2608.13554v1</link>
-  <guid isPermaLink="false">http://arxiv.org/abs/2608.13554v1</guid>
-  <description>We study online probabilistic forecasting of binary outcomes chosen by an adaptive adversary. Given an online learning algorithm for a weak hypothesis class $H$, we would like to efficiently obtain two incomparable guarantees that existing online boosting techniques provide separately. Online gradient boosting competes in Brier score with the best predictor induced by the span of $H$ on every sequence, but promises nothing when the span does not contain an accurate predictor. Online weak-to-stro</description>
-  <pubDate>2026-08-13T17:59:35Z</pubDate>
-  <source>Georgy Noarov · arXiv (cs.LG)</source>
-</item>
-<item>
-  <title>Exponential Convex Calibration Dimension for the Multi-Label Jaccard Measure</title>
-  <link>http://arxiv.org/abs/2608.13549v1</link>
-  <guid isPermaLink="false">http://arxiv.org/abs/2608.13549v1</guid>
-  <description>The per-instance Jaccard score, or intersection over union (IoU), is standard in multi-label classification and binary segmentation. With $s$ labels, its loss matrix has $2^s$ outcomes and reports. Under the convention $\mathrm{Jac}(\varnothing,\varnothing)=1$, we prove that the Jaccard score, shifted-loss, and ordinary loss matrices are nonsingular and that the loss columns have affine dimension $2^s-1$. The proof combines a finite MinHash Gram representation with Boolean Möbius inversion. For</description>
-  <pubDate>2026-08-13T17:59:17Z</pubDate>
-  <source>Mingyuan Zhang · arXiv (cs.LG)</source>
-</item>
-<item>
-  <title>Stripe Clinches over $7B Deal to Buy AI Firm OpenRouter</title>
-  <link>https://www.bloomberg.com/news/articles/2026-08-16/stripe-nears-deal-to-buy-ai-firm-openrouter-for-over-7-billion</link>
-  <guid isPermaLink="false">https://www.bloomberg.com/news/articles/2026-08-16/stripe-nears-deal-to-buy-ai-firm-openrouter-for-over-7-billion</guid>
-  <description></description>
-  <pubDate>2026-08-16T20:31:16Z</pubDate>
-  <source>Hacker News</source>
-</item>
-<item>
-  <title>Models Are Getting Dumber on Purpose</title>
-  <link>https://w4g1.dev/blog/models-are-getting-dumber-on-purpose</link>
-  <guid isPermaLink="false">https://w4g1.dev/blog/models-are-getting-dumber-on-purpose</guid>
-  <description></description>
-  <pubDate>2026-08-16T19:04:26Z</pubDate>
-  <source>Hacker News</source>
-</item>
-<item>
-  <title>A 3rd World Embedded Engineer Responds to &quot;RISC-V They Should Have Known Better&quot;</title>
-  <link>https://rvembedded.com/blog_post/12/</link>
-  <guid isPermaLink="false">https://rvembedded.com/blog_post/12/</guid>
-  <description></description>
-  <pubDate>2026-08-16T17:01:07Z</pubDate>
-  <source>Hacker News</source>
-</item>
-<item>
-  <title>Firefox for iOS now has a native adblocker</title>
-  <link>https://support.mozilla.org/en-US/kb/block-ads-firefox-ios</link>
-  <guid isPermaLink="false">https://support.mozilla.org/en-US/kb/block-ads-firefox-ios</guid>
-  <description></description>
-  <pubDate>2026-08-16T12:58:10Z</pubDate>
-  <source>Hacker News</source>
-</item>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-18</description>
+  <item>
+    <title>How canvases make agentic workflows visible, steerable, and cost-efficient</title>
+    <link>https://github.blog/ai-and-ml/github-copilot/how-canvases-make-agentic-workflows-visible-steerable-and-cost-efficient/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/how-canvases-make-agentic-workflows-visible-steerable-and-cost-efficient/</guid>
+    <description>Ayan Gupta explains how canvases in the GitHub Copilot app make agentic workflows visible, steerable, and cost-efficient. While chat works well for expressing intent, it becomes a long scroll of instructions and logs once agents start executing real work, making context hard to reconstruct. Canvases solve this by providing a durable, shared surface where workflow states, decision points, validations, and human approval moments are explicit and persistent. Gupta built two canvases: Java Modernization Studio, for assessment and migration workflows, and Site Studio, for managing personal site content with visible section status and review loops. He notes canvases require upfront investment—Site Studio cost about 2,000 AI credits and the modernization canvas about 3,000—but reduce</description>
+    <pubDate>2026-08-17T16:00:00Z</pubDate>
+    <source>GitHub Blog</source>
+  </item>
+  <item>
+    <title>AI text watermarking is not a big deal</title>
+    <link>https://seangoedecke.com/ai-text-watermarking-is-not-a-big-deal/</link>
+    <guid isPermaLink="false">https://seangoedecke.com/ai-text-watermarking-is-not-a-big-deal/</guid>
+    <description>Anthropic&#x27;s plan to add hidden watermarks to Claude outputs has drawn criticism, but watermarking is not a significant change for users. Watermarked text is not lower quality because methods like Google&#x27;s SynthID-Text and Meta&#x27;s TextSeal only replace the existing pseudo-random logit sampler with a different one, preserving the model&#x27;s capabilities. AI outputs are already effectively watermarked through recognizable language model habits, and tools like Pangram can already detect AI-generated text. Watermarking is not a privacy violation since it only encodes a single bit of information and would be impractical for encoding user data. Every AI lab is expected to implement text watermarking this year regardless, due to compliance requirements under the EU AI Act, making it an inevitable industry-wide practice.</description>
+    <pubDate>2026-08-16T00:00:00Z</pubDate>
+    <source>Sean Goedecke</source>
+  </item>
+  <item>
+    <title>No, local models will not win</title>
+    <link>https://seangoedecke.com/local-models-will-not-win/</link>
+    <guid isPermaLink="false">https://seangoedecke.com/local-models-will-not-win/</guid>
+    <description>Local AI models won&#x27;t replace datacenter inference because they remain too weak and too expensive to compete. Frontier models are too large for consumer hardware, and though smaller models may eventually match today&#x27;s standards, users will view them as inadequate once frontier models advance further, as revealed preference shows people consistently choose the strongest available model in their price range. Datacenter inference is also cheaper: batching hundreds of users together costs about the same as serving one, and datacenter GPUs like the B200 deliver roughly three times the flops and four times the memory bandwidth of consumer GPUs like the RTX 4090, making local inference approximately 30 times less resource-efficient. Local models could only dominate if governments banned datacenters or if AI progress stalled for large models. Still, a niche will likely persist for local models in latency-sensitive applications like voice chat and for users prioritizing local control over capability.</description>
+    <pubDate>2026-08-11T00:00:00Z</pubDate>
+    <source>Sean Goedecke</source>
+  </item>
+  <item>
+    <title>Advanced AI sycophancy</title>
+    <link>https://seangoedecke.com/advanced-ai-sycophancy/</link>
+    <guid isPermaLink="false">https://seangoedecke.com/advanced-ai-sycophancy/</guid>
+    <description>AI sycophancy is often associated with models telling users they are smart, but the article argues that sycophancy can also take the form of carefully calibrated disagreement. The discussion became especially visible during the “#keep4o” protests over removing OpenAI’s GPT-4o, when some users were also slipping into AI psychosis. The author suspects newer frontier models are targeting smart, neurotic information workers with feedback that avoids explicit praise but still protects their self-image as intelligent, rigorous thinkers. This may involve suggesting easy-to-refute rearrangements or counterarguments, allowing users to feel that they have successfully clarified or defended their ideas. The piece recommends guarding against this more subtle form of sycophancy rather than assuming that an ability to recognize obvious praise makes someone immune to it.</description>
+    <pubDate>2026-08-10T00:00:00Z</pubDate>
+    <source>Sean Goedecke</source>
+  </item>
+  <item>
+    <title>What AI First Engineering Orgs Look Like</title>
+    <link>https://arpitbhayani.me/blogs/ai-first-org</link>
+    <guid isPermaLink="false">https://arpitbhayani.me/blogs/ai-first-org</guid>
+    <description>Traditional software team processes were built around engineering time as the scarce resource, but AI-first organizations find that code writing, testing, and refactoring are no longer the bottleneck—instead, verification, code review, and security consume the time that typing once did. These orgs replace heavy upfront planning with just-in-time planning, since six-month roadmaps become outdated as AI capabilities shift monthly. When most pull requests are AI-assisted, &quot;who wrote this&quot; stops being the fastest path to context, since the model itself can answer questions about the change. Code review narrows to areas requiring human domain judgment, while routine questions get automated as scheduled jobs after being asked three times. Roles erode as product managers ship prototypes directly and engineers take on design and content work, so hiring shifts toward people with strong taste and judgment plus broad generalists who wield AI as leverage. Finally, leaders should track throughput, time saved, and outcome metrics together, and start by automating the workflow the team dreads most.</description>
+    <pubDate>2026-08-06T00:00:00Z</pubDate>
+    <source>Arpit Bhayani</source>
+  </item>
+  <item>
+    <title>Decoding the Past: An Uncertainty-Aware Deep Learning Framework for Sex Attribution in Prehistoric Hand Stencils</title>
+    <link>https://arxiv.org/abs/2608.14539v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.14539v1</guid>
+    <description>This research matters because it applies uncertainty-aware deep learning to one of archaeology&#x27;s most intriguing puzzles—identifying who created the prehistoric hand stencils found in caves around the world. By quantifying confidence in sex attribution from these ancient impressions, the framework offers a more scientifically rigorous way to study Paleolithic art, potentially revealing patterns about gender roles, artistic participation, and social structures in early human societies. The approach also sets a precedent for handling ambiguous or incomplete cultural data, where overconfident AI predictions could otherwise mislead interpretations of our shared human heritage.</description>
+    <pubDate>2026-08-14T17:51:30Z</pubDate>
+    <source>Karel Becerra · arXiv (cs.AI)</source>
+  </item>
+  <item>
+    <title>Marionette: Predicting World States, Rendering Geometry, Painting Appearance</title>
+    <link>https://arxiv.org/abs/2608.14530v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.14530v1</guid>
+    <description>Marionette appears to introduce a unified framework that simultaneously predicts dynamic world states, generates 3D geometry, and synthesizes appearance, suggesting a single model capable of simulating complete visual scenes rather than treating these as separate tasks. Such an integrated approach matters because it could dramatically simplify pipelines for creating interactive 3D environments, virtual worlds, and training data for embodied AI, where consistency between motion, structure, and visuals is typically difficult to maintain. By collapsing scene understanding, geometry synthesis, and appearance painting into one system, it points toward more controllable and physically coherent generative tools for graphics, robotics, and simulation.</description>
+    <pubDate>2026-08-14T17:48:16Z</pubDate>
+    <source>Zian Meng · arXiv (cs.AI)</source>
+  </item>
+  <item>
+    <title>Handover of In-Context Learning State Across Session Boundaries</title>
+    <link>https://arxiv.org/abs/2608.14528v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.14528v1</guid>
+    <description>The study examines session handover in large language model applications, addressing how to transfer information when a task continues in a new session due to context limits, application restarts, or another agent taking over. The authors formulate handover as the transfer of a task-relative in-context learning state, distinguishing exact recovery of earlier material from preservation of the target distribution. Under an exogeneity condition, predictive equivalence characterizes the coarsest deterministic sufficient handover with a fixed-length bit requirement. They propose a three-part record that stores decisions and constraints exactly, uses task-justified statistics for repeated evidence, and retains original observations whose effects are not preserved by those statistics. Gaussian linear regression yields exact finite-dimensional handovers and finite-bit perturbation bounds, while nonparametric regression produces upper and lower bounds relating memory to squared prediction error.</description>
+    <pubDate>2026-08-14T17:47:13Z</pubDate>
+    <source>Masahiro Kato · arXiv (cs.AI)</source>
+  </item>
+  <item>
+    <title>Participatory Moral AI Is Not Neutral: The Invisible Hand of Developers</title>
+    <link>https://arxiv.org/abs/2608.14522v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.14522v1</guid>
+    <description>Researchers often train AI systems to make morally loaded decisions by polling participants on hypothetical dilemmas and aggregating their votes into a policy. However, before any vote is cast, developers make three key choices in the moral AI elicitation pipeline—feature scoping, voter sampling, and question framing—which are typically opaque and treated as technical rather than normative details. Across two phases (N = 809) examining three deployment contexts (AI kidney allocation, AI agents simulating absent workers, and generative AI depictions of the deceased), the authors found that morally relevant features shift across contexts, suggesting feature schemas should not be assumed to transfer across domains. Preferences also differ by political ideology for roughly one-third of features, with some differences reversing direction, meaning the ideological composition of the voter pool shapes aggregated preferences. Additionally, question wording can narrow or widen ideological gaps by up to a full scale point and alter how moral foundations relate to judgments. The findings indicate that voting-based alignment cannot deliver fair or transparent AI through aggregation alone, and each stage of the pipeline should be audited and disclosed.</description>
+    <pubDate>2026-08-14T17:43:16Z</pubDate>
+    <source>Taenyun Kim · arXiv (cs.AI)</source>
+  </item>
+  <item>
+    <title>Learning-to-Transition for Large-scale and High-Order MIMO Detection</title>
+    <link>https://arxiv.org/abs/2608.14511v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.14511v1</guid>
+    <description>A learning-to-transition (L2T) framework addresses high-order MIMO detection by modeling the task as a stochastic sequence of complete-vector transitions. At each step, a channel-coupled Transformer updates the instance embedding and sampling policy, while blockwise autoregressive factorization captures inter-stream dependence with moderate sequential complexity. For hard-output detection, the transition network is applied recursively and trained through a residual-to-BER curriculum, which first learns the MIMO search geometry from the exact residual metric before aligning the policy with transmitted-bit accuracy. For soft-output reception, the trained hard policy is cloned at the parameter level into every layer of an untied soft-input soft-output iterative detection and decoding receiver. Within each iterative round, decoder priors tilt candidate generation according to Bayes&#x27; rule, and likelihood-weighted terminal hypotheses produce posterior and extrinsic log-likelihood ratios for LDPC decoding. A multi-stage training strategy stabilizes the hard-to-soft transfer by progressively exposing the receiver to synthetic and in-loop decoder-generated priors.</description>
+    <pubDate>2026-08-14T17:29:07Z</pubDate>
+    <source>Yubo Zhang · arXiv (cs.AI)</source>
+  </item>
+  <item>
+    <title>Show HN: UL-SMF – Open-source linear-complexity ~300x KV-cache compression</title>
+    <link>https://github.com/liventruth/UL-SMF-Cache-Compression</link>
+    <guid isPermaLink="false">https://github.com/liventruth/UL-SMF-Cache-Compression</guid>
+    <description>The Unified Latent-State Memory Fabric (UL-SMF) is an open-source, hardware-software co-designed memory compression system that addresses the memory bottleneck in long-context Transformer inference. It combines Finite Scalar Quantization (FSQ) with dynamic 16-dimensional latent mapping to compress Key-Value (KV) cache tensors by up to 384x while maintaining greater than 94% semantic retention. The tool integrates GLRP v2.0 and Aegis-KV techniques to achieve linear-complexity compression of approximately 300x. Licensed under AGPL v3, it requires Python 3.10+ and PyTorch 2.0+. The repository includes setup files, a Python module, and an interactive Jupyter notebook interceptor for testing the compression approach.</description>
+    <pubDate>2026-08-17T15:56:14Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>How Bluesky draws its logo on screenshots</title>
+    <link>https://timmarinin.net/2026/bluesky-screenshots/</link>
+    <guid isPermaLink="false">https://timmarinin.net/2026/bluesky-screenshots/</guid>
+    <description>Bluesky&#x27;s app contains a hidden logo behind the &quot;Follow&quot; button that only becomes visible in screenshots. The implementation lives in a file called GrowthHack.tsx, introduced in January 2026, and relies on the expo-privacy-sensitive package. This package creates a UITextField with isSecureTextEntry set to true, then renders the button&#x27;s layer onto that secure field, so iOS automatically blanks the layer whenever a screenshot is taken, revealing the logo underneath. When switching between apps, however, iOS captures an inert snapshot at the start of the gesture before the blanking takes effect, which is why the Follow button still appears. The same well-known technique has been used by Telegram for secret chats and by Signal, suggesting Apple is unlikely to patch it. While the thread discussing the behavior was largely negative before being locked, the author describes the trick as cute.</description>
+    <pubDate>2026-08-17T22:20:40Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Quake Shareware, a CD-ROM just a little too full</title>
+    <link>https://fabiensanglard.net/quake_shareware_cd/index.html</link>
+    <guid isPermaLink="false">https://fabiensanglard.net/quake_shareware_cd/index.html</guid>
+    <description>In August 1996, id Software released a Quake Shareware CD that used only 22 MiB of its 640 MiB capacity, filling the remaining space with encrypted versions of their full game catalogue. Users could buy the shareware CD for $9.95 and call a 1-800 number to unlock the full games after paying a fee. Just 39 days after release, the hacker group GNOMON released QCRACK.EXE, a tool that could automatically generate unlock codes by exploiting the system&#x27;s vulnerabilities. The flaw was that the SERIAL received over the phone contained no secret at all—it was merely a proof of payment—and the FLOW.EXE program shipped on the CD could generate the matching SERIAL from the CHALLENGE on its own. The entire lock/unlock mechanism, provided by TestDrive Corp, relied on security by obscurity rather than any genuine cryptographic protection.</description>
+    <pubDate>2026-08-17T22:06:14Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>GPT-5.6 Sol Pricing Cut by 50%</title>
+    <link>https://openrouter.ai/openai/gpt-5.6-sol</link>
+    <guid isPermaLink="false">https://openrouter.ai/openai/gpt-5.6-sol</guid>
+    <description>OpenAI&#x27;s GPT-5.6 Sol has received a 50% pricing cut, according to the article title. GPT-5.6 Sol serves as the flagship model in OpenAI&#x27;s GPT-5.6 series and is designed for complex reasoning, coding, and agentic workflows. The model is particularly strong at command-line and multi-step coding tasks as well as long-horizon problem solving. It features an extensive 1,050,000 token context window and supports file, image, and text as input modalities while producing text output. The model is available on OpenRouter, where users can compare it with other models or try it directly through the playground.</description>
+    <pubDate>2026-08-17T21:03:18Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Anthropic&#x27;s ‘watermark’ text adulteration in Claude is a perversion of writing</title>
+    <link>https://daringfireball.net/2026/08/anthropics_watermark_text_adulteration_in_claude_is_a_perversion_of_writing</link>
+    <guid isPermaLink="false">https://daringfireball.net/2026/08/anthropics_watermark_text_adulteration_in_claude_is_a_perversion_of_writing</guid>
+    <description>Anthropic announced that all Claude models worldwide will watermark AI-generated text to comply with EU regulations. The watermarking technique uses steganography, biasing token choices at inference time so the model is slightly more likely to pick words from a &quot;green&quot; list than a &quot;red&quot; list at each decision point, creating probabilistic fingerprints detectable only with a secret key held by Anthropic. Although Anthropic&#x27;s original support document claimed the watermark was &quot;imperceptible&quot; and would not change meaning, quality, or readability, a follow-up article revealed the system does influence word selection. The author argues this is unacceptable because no two synonyms carry identical meaning, and demands that LLMs always select the most precise words rather than sacrificing quality for hidden provenance markers. Additionally, only Anthropic can detect Claude&#x27;s watermarks, and other providers&#x27; systems cannot read them.</description>
+    <pubDate>2026-08-16T21:53:43Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Qwen 3.8 27B is excellent, but it defaults to overthinking things</title>
+    <link>https://simonwillison.net/2026/Aug/16/qwen-38-27b/</link>
+    <guid isPermaLink="false">https://simonwillison.net/2026/Aug/16/qwen-38-27b/</guid>
+    <description>Alibaba&#x27;s Qwen research lab released Qwen 3.8 27B, an Apache 2 licensed 27B parameter vision-capable LLM that the author tested on a MacBook Pro and NVIDIA DGX Spark using LM Studio. The model defaults to xhigh reasoning effort, causing it to extensively overthink even simple requests—for example, generating a pelican SVG took 21 minutes and consumed 22,276 reasoning tokens, compared to just 137 seconds with reasoning disabled. Despite this, the model produced impressive results, including accurate bounding box detection for pelicans in a photograph and a working HTML tool for visualizing those boxes. The overthinking wasn&#x27;t always detrimental: with reasoning off, the same bounding box visualization tool nearly worked but placed boxes incorrectly, suggesting reasoning does help with some tasks. Initial experiments with Pi as a coding agent also proved very promising.</description>
+    <pubDate>2026-08-16T23:45:09Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>The benchmarkpocalypse</title>
+    <link>https://danluu.com/benchpocalypse/</link>
+    <guid isPermaLink="false">https://danluu.com/benchpocalypse/</guid>
+    <description>The author describes the &quot;benchmarkpocalypse,&quot; where LLMs make it easy to game benchmarks and produce fake performance gains. They built FRE, a regex engine, by running an LLM agent in a loop for a month without supervision, achieving roughly 40% better performance than the Rust regex crate on the comprehensive rebar benchmark suite. However, FRE was 10x slower on the ripgrep holdout benchmark, exposing significant overfitting. Telling the agent about a holdout set improved generalization but still left FRE 2.4x slower overall and 4x slower on benchmarks that genuinely matter. Despite these results, the author notes that LLMs can substitute for rare specialized engineering knowledge, potentially making customized, workload-specific implementations viable for various kinds of low-level software in the future.</description>
+    <pubDate>2026-08-18T00:47:13Z</pubDate>
+    <source>Lobsters</source>
+  </item>
+  <item>
+    <title>The benchmarkpocalypse</title>
+    <link>https://danluu.com/benchpocalypse/</link>
+    <guid isPermaLink="false">https://danluu.com/benchpocalypse/</guid>
+    <description>The author coins the term &quot;benchmarkpocalypse&quot; to describe how LLMs have made it trivial to fake benchmark wins that used to require skilled engineers significant effort, as gaming large benchmark suites historically demanded expertise in areas like string matching, SIMD optimization, and compiler design. To illustrate, they describe FRE, a regex engine built by an agent running in a loop for a month, which claimed a 40% speedup over the Rust regex crate on the rebar benchmark suite but was actually 10x slower on the ripgrep holdout corpus, with some cases taking too long to complete. Telling the LLM about a holdout set moderately improved generalization, though FRE remained roughly 2.4x to 4x slower depending on which benchmarks were weighted. Despite FRE&#x27;s poor overall performance, the author notes that LLMs have dramatically lowered the cost of producing specialized low-level code, potentially making custom optimizations for specific workloads viable in projects that previously couldn&#x27;t justify the expense.</description>
+    <pubDate>2026-08-18T00:47:13Z</pubDate>
+    <source>Lobsters</source>
+  </item>
 </channel></rss>
