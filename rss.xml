@@ -1,134 +1,135 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0"><channel>
-  <title>Daily Byte</title>
-  <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-19</description>
-  <item>
-    <title>Type Construction and Cycle Detection</title>
-    <link>https://go.dev/blog/type-construction-and-cycle-detection</link>
-    <guid isPermaLink="false">https://go.dev/blog/type-construction-and-cycle-detection</guid>
-    <description>Go 1.26 includes a significant improvement to the Go type checker&#x27;s type construction process, which builds internal representations for each type encountered while traversing the AST. Types are constructed depth-first, with each type passing through an under-construction state before becoming complete once all its dependencies are complete; completeness is essential because it guarantees that deconstruction—looking inside a type—is sound. Recursive types complicate this because evaluation can return an incomplete type, but the type checker works around this by deferring checks that require deconstruction until type checking ends. A harder case arises with expressions like `type T [unsafe.Sizeof(T{})]int`, where constructing the array requires knowing its size, which demands deconstruction of the incomplete type T itself, creating a dependency cycle the previous approach could not resolve. This change, invisible to most Go users, eliminates corner cases and sets the stage for future language improvements.</description>
-    <pubDate>2026-03-24T00:00:00+00:00</pubDate>
-    <source>Go Blog</source>
-  </item>
-  <item>
-    <title>//go:fix inline and the source-level inliner</title>
-    <link>https://go.dev/blog/inliner</link>
-    <guid isPermaLink="false">https://go.dev/blog/inliner</guid>
-    <description>Go 1.26 introduces a new implementation of the `go fix` subcommand featuring a source-level inliner that durably modifies source code by replacing function calls with copies of the called function&#x27;s body. The `//go:fix inline` directive lets package authors express API migrations in a safe, straightforward way, enabling users to automatically update code without arbitrary rewrites. Examples include migrating deprecated functions like `ioutil.ReadFile` to `os.ReadFile`, fixing parameter ordering in old APIs, and forwarding types and constants to new packages. The inliner also powers gopls refactorings and has already been used at Google to prepare more than 18,000 changelists in their monorepo. Despite seeming simple, the tool is about 7,000 lines of compiler-like logic that handles subtle correctness issues such as parameter elimination, where trivial literal arguments can be substituted directly while more complex cases require explicit parameter binding declarations.</description>
-    <pubDate>2026-03-10T00:00:00+00:00</pubDate>
-    <source>Go Blog</source>
-  </item>
-  <item>
-    <title>Allocating on the Stack</title>
-    <link>https://go.dev/blog/allocation-optimizations</link>
-    <guid isPermaLink="false">https://go.dev/blog/allocation-optimizations</guid>
-    <description>The Go team has been working to reduce heap allocations in Go programs, since heap allocations are expensive and add overhead to the garbage collector, while stack allocations are cheaper and automatically reclaimed with the stack frame. Go 1.25 introduced a compiler optimization that automatically allocates small (32-byte) slice backing stores on the stack for certain `make` calls, even when the requested size is a variable rather than a constant. Go 1.26 extends this optimization to append-allocated slices, where a small speculative stack-allocated backing store is used to avoid the startup overhead of repeatedly allocating increasingly large heap-backed stores during slice growth. For functions that return slices, the intermediate append-allocated slices can still benefit from these stack optimizations, even though the final returned slice must be heap-allocated since it escapes the function.</description>
-    <pubDate>2026-02-27T00:00:00+00:00</pubDate>
-    <source>Go Blog</source>
-  </item>
-  <item>
-    <title>Enabling the next iteration of the borrow checker on nightly</title>
-    <link>https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/</link>
-    <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/</guid>
-    <description>The next iteration of Rust&#x27;s borrow checker, Polonius Alpha, is being enabled on nightly for testing in preparation for stabilization later this year. Polonius Alpha introduces flow-sensitive borrow checking of lifetime outlives relationships, allowing code that NLL currently rejects to compile, such as functions returning different references based on conditional branches. While it is not a complete superset of the original legacy Polonius implementation, it addresses the most-encountered borrow-check issues. Performance is generally acceptable, with relatively few significant regressions among the top 10,000 crates on crates.io, though the worst cases show 2-3x slowdowns. Users can opt out using the -Zpolonius=off flag. After stabilization, the team plans to optimize the implementation and address performance regressions rather than continue active feature work on Polonius.</description>
-    <pubDate>2026-08-04T00:00:00+00:00</pubDate>
-    <source>Rust Blog</source>
-  </item>
-  <item>
-    <title>crates.io: development update</title>
-    <link>https://blog.rust-lang.org/2026/07/13/crates-io-development-update/</link>
-    <guid isPermaLink="false">https://blog.rust-lang.org/2026/07/13/crates-io-development-update/</guid>
-    <description>crates.io has introduced a new &quot;Code&quot; tab on crate pages that lets users browse published crate versions directly, with a file tree, search, syntax highlighting, and shareable line-selection URLs, all served from a CDN using zip archives and JSON manifests. A version-to-version diff viewer based on the same infrastructure is in development. The team accepted RFC #3946, which decouples crates.io accounts from GitHub by introducing native usernames, laying groundwork for alternative identity providers. Security and dependency-hygiene features expanded, including RustSec warning banners for unmaintained crates and &quot;You might not need this dependency&quot; notices for crates like lazy_static that have been superseded by the standard library. The frontend was successfully migrated from Ember.js to Svelte, reaching feature parity in May. Other improvements include bounded search ranking for faster queries, a precomputed reverse-dependencies table, CDN cache tags, accessibility enhancements with ARIA snapshot tests, and a rewritten ARCHITECTURE.md.</description>
-    <pubDate>2026-07-13T00:00:00+00:00</pubDate>
-    <source>Rust Blog</source>
-  </item>
-  <item>
-    <title>MotoSafety: Edge-AI with Learned Temporal Importance for Two-Wheeler Collision Risk Assessment Under Time Pressure</title>
-    <link>https://arxiv.org/abs/2608.17823v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.17823v1</guid>
-    <description>Researchers introduce a large-scale dataset of over 129,000 labeled multivariate time-series sequences from 153 simulator rides by 51 participants, capturing 64 features related to vehicle dynamics, control inputs, proximity, and behavioral violations under No, Low, and High Time Pressure conditions. They propose MotoSafety, a novel edge-AI architecture built on a Learned Temporal Importance principle, which achieves 94.97% accuracy and 99.33% ROC AUC for collision risk assessment in powered two-wheeler riders. The model outperforms ten baselines including TimesNet and LLM4TS, while maintaining only 1.15M parameters and 0.135 ms latency suitable for low-cost CPU deployment. Using ground truth Time Pressure as an inductive bias improves accuracy from 94.09% to 94.97%, and the model retains 93.91% accuracy with only 21 IMU and GPS features. Beyond two-wheeler safety, the architecture transfers effectively to human activity recognition (97.66%) and clinical domains (99.65%).</description>
-    <pubDate>2026-08-18T14:21:50Z</pubDate>
-    <source>Sumit S. Shevtekar · Chandresh K. Maurya · Gourab Sil · Subasish Das · arXiv (cs.AI)</source>
-  </item>
-  <item>
-    <title>Interpretable Humans, Alien LLMs: Expert Analysis of Latent Structures in Assessment Responses</title>
-    <link>https://arxiv.org/abs/2608.17810v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.17810v1</guid>
-    <description>Researchers challenge the assumption that AI and humans employ similar cognitive constructs by investigating whether the latent factors governing LLM performance carry the same substantive, human-interpretable meaning as those governing human learners. Using responses from humans and six LLMs across quantitative reasoning and chemistry assessments, the team conducted Exploratory Factor Analysis (EFA) separately for both groups. Subject-Matter Experts then blindly evaluated the resulting factor graphs to ascribe pedagogical meaning to the emerged constructs. The experts successfully interpreted most of the human-derived factors, but could not ascribe meaning to any LLM-derived factors in quantitative reasoning and interpreted only half of the LLM factors in chemistry. By combining data-driven EFA with blind expert interpretation, the framework demonstrates that LLMs frequently operate on statistically opaque mechanisms distinct from human reasoning.</description>
-    <pubDate>2026-08-18T14:08:25Z</pubDate>
-    <source>Alona Strugatski · Licol Zeinfeld · Jason Cooper · Shelley Rap · Gil Schwarts · Giora Alexandron · arXiv (cs.AI)</source>
-  </item>
-  <item>
-    <title>StartupBench: Benchmarking General-Purpose Agents on Market-Validated End-to-End Workflows</title>
-    <link>https://arxiv.org/abs/2608.17800v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.17800v1</guid>
-    <description>StartupBench is an end-to-end benchmark designed to evaluate general-purpose AI agents on tasks derived from market-validated AI startup products. Rather than relying on researcher-selected tasks, the benchmark is built by systematically studying AI products with demonstrated real-world adoption, their workflows, and their users across diverse professional domains. These workflows are translated into complete deliverable-oriented tasks and assessed with fine-grained rubrics capturing complex requirements. When evaluated under a unified agent harness, even the strongest model successfully completed only approximately 30% of StartupBench tasks, despite making substantial partial progress on many others. Further analysis identifies complex instruction following and domain-specific expertise as major sources of failure. The results demonstrate that many market-validated workflows remain beyond the reliable capabilities of current general-purpose agents, positioning StartupBench as an empirical measure of progress toward completing real-world user tasks.</description>
-    <pubDate>2026-08-18T14:01:32Z</pubDate>
-    <source>Liya Zhu · Xin Ma · Tao Liu · Haodong Wang · Ge Zhang · Jingzhe Ding · Qingshui Gu · Yongjie Zhong · Jinxiang Meng · Yuan Gao · Yunqiu Zhou · Hao Zhu · Jifeng He · Yongzhi Liao · Xinyi Zhang · Chaoxin Li · Yi Zhu · Xi Lin · Duju Zeng · Xiang Gao · Wen Zhang · Yunyang Wang · Duo Wang · Huan Zhou · Zuo Wang · Jin Chen · Kaiyuan Zhang · Chuqian Yu · Tianhao Yu · Longxiang Liu · Jianbo Xue · Huimin Che · Jiahao Wang · Yujia Qin · Jiaheng Liu · Shen Yan · Xiaolong Chang · Wenhao Huang · arXiv (cs.AI)</source>
-  </item>
-  <item>
-    <title>Training with synthetic data for drone detection in thermal imagery</title>
-    <link>https://arxiv.org/abs/2608.17799v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.17799v1</guid>
-    <description>Ground-to-Air drone detection in medium- and long-wave infrared imagery faces challenges including reduced texture, sensor noise, weak thermal contrast, and limited annotated data. The authors propose a synthetic-first training strategy that combines synthetic scene generation with fine-tuning on real thermal data. They find that synthetic data provides a useful foundation for learning initial object representations, but real in-domain infrared imagery remains essential for reliable deployment. Even small amounts of real IR data significantly narrow the domain gap between synthetic and real domains. Their experiments indicate that dataset alignment has a stronger influence on performance than model scale, with semantic alignment in feature space identified as the strongest predictor of detection accuracy. Additionally, radiometric properties such as entropy and dynamic range were found to contribute to detection robustness, offering a foundation for combining synthetic and real IR data in effective G2A drone detection.</description>
-    <pubDate>2026-08-18T13:59:58Z</pubDate>
-    <source>Tanel Liiv · Sander Soodla · Nzamba Bignoumba · Alma M. Liezenga · Toomas Pruuden · arXiv (cs.AI)</source>
-  </item>
-  <item>
-    <title>Learnware for CSI Feedback: Scene-specific Small Models Can Do Big</title>
-    <link>https://arxiv.org/abs/2608.17760v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.17760v1</guid>
-    <description>The authors propose a Learnware-based deployment framework for channel state information (CSI) feedback in 6G systems, addressing the trade-off between generalization and scenario-specific performance of deep learning models. A centralized AI data center maintains a repository of scene-specific CSI models, each associated with a specification comprising a semantic part (network architecture parameters) and a statistical part (codebook-fingerprint embeddings of training-data distributions). A base station submits only its local statistical specifications to retrieve the most relevant pre-trained model, avoiding raw CSI transmission and enhancing data privacy. A data-driven search strategy matches codebook fingerprints to model performance, achieving over 90% selection accuracy. Simulations show 18.8% and 57.7% performance improvements over a General Model in line-of-sight and non-line-of-sight scenarios, respectively, while reducing local fine-tuning by up to 1000 samples and 100 epochs.</description>
-    <pubDate>2026-08-18T13:26:34Z</pubDate>
-    <source>Xiangyi Li · Jiajia Guo · Chao-Kai Wen · Xin Geng · Shi Jin · Zhi-Hua Zhou · arXiv (cs.AI)</source>
-  </item>
-  <item>
-    <title>Show HN: macOS data protection keychain for Electron apps</title>
-    <link>https://github.com/biw/keychain-store</link>
-    <guid isPermaLink="false">https://github.com/biw/keychain-store</guid>
-    <description>keychain-store is a package that provides secure storage for signed Electron and Node apps on macOS, backed by the modern Data Protection Keychain through the SecItem API with kSecUseDataProtectionKeychain enabled. It protects items using code-signing access groups, restricts access to declared item names, and optionally requires device-owner authentication or Touch ID only. The store supports both immutable and mutable accounts, allows iCloud Keychain synchronization, and handles UTF-8 strings and binary values. Since the host must have a valid Apple code signature, local development requires Electron Vite to run against a cached Electron runtime signed as a separate development app with its own provisioning profile. The package&#x27;s API includes methods for retrieving, creating, setting, removing, and checking the status of keychain items.</description>
-    <pubDate>2026-08-18T17:25:19Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Infra Lang – DSL That Compiles to Kubernetes, Helm, Compose, Terraform, and CI</title>
-    <link>https://github.com/TuviDev/infra-lang</link>
-    <guid isPermaLink="false">https://github.com/TuviDev/infra-lang</guid>
-    <description>Infra Lang is an Infrastructure-as-Code DSL developed by TuviDev that allows DevOps engineers and platform teams to write infrastructure once in a declarative `.infra` file and compile it to multiple target formats including Kubernetes YAML, Helm charts, Docker Compose, Terraform HCL, and GitHub Actions workflows. It supports 11 top-level resource types such as service, database, cache, queue, and pipeline, with compiler-grade validation featuring 30+ error codes, plus built-in security and reliability linters that block compilation on error-severity findings. The project includes a language server with completion, hover docs, diagnostics, and go-to-definition, along with a formatter, REPL, and diff engine. It also offers reusable features like template-string interpolation, imports with cycle detection, inheritance, and 25+ standard library functions. Installation is via pip from Git (Python 3.11+), and full documentation is hosted at TuviDev.github.io/infra-lang, with a Codespaces option for a quick browser-based setup.</description>
-    <pubDate>2026-08-18T21:29:47Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Incident with Github.com [resolved]</title>
-    <link>https://www.githubstatus.com/incidents/zkxwbgr0cnmx</link>
-    <guid isPermaLink="false">https://www.githubstatus.com/incidents/zkxwbgr0cnmx</guid>
-    <description>GitHub provides a status page for incidents affecting GitHub.com, allowing users to subscribe to updates via email or text message notifications. To subscribe, users must enter their email address and a one-time password (OTP), with an option to resend the OTP if it is not received within 30 seconds. The service utilizes webhooks to notify subscribers and sends emails when endpoints fail. GitHub also offers a developer newsletter delivered twice monthly, featuring technical guides, tips, and best practices. The company maintains a social media presence across platforms including Facebook, LinkedIn, YouTube, Twitch, and TikTok. Subscribers receive email notifications when incidents are updated and text message alerts whenever GitHub creates or resolves an incident.</description>
-    <pubDate>2026-08-17T13:35:06Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>How Bluesky draws its logo on screenshots</title>
-    <link>https://timmarinin.net/2026/bluesky-screenshots/</link>
-    <guid isPermaLink="false">https://timmarinin.net/2026/bluesky-screenshots/</guid>
-    <description>The Bluesky mobile app displays a logo in the corner of screenshots that isn&#x27;t visible during normal use, replacing the &quot;Follow&quot; button only when a screenshot is taken. When the user captured a screenshot mid-app-switch, the Follow button appeared instead, suggesting iOS uses an earlier inert snapshot during the gesture. The trick is implemented in a file called GrowthHack.tsx, introduced in January 2026 by a developer named mozzius, using a dependency called expo-privacy-sensitive. This package creates a UITextField with isSecureTextEntry set to true and renders the button content into that field&#x27;s layer, so iOS blanks the field during screenshots and reveals the logo underneath. On other platforms the content renders normally without masking. This technique isn&#x27;t new: Telegram uses it for &quot;secret&quot; chats and Signal has implemented it too, so Apple is unlikely to patch the behavior soon.</description>
-    <pubDate>2026-08-17T22:20:40Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>GPT-5.6 Sol Pricing Cut by 50% on OpenRouter</title>
-    <link>https://openrouter.ai/openai/gpt-5.6-sol</link>
-    <guid isPermaLink="false">https://openrouter.ai/openai/gpt-5.6-sol</guid>
-    <description>OpenAI&#x27;s flagship model GPT-5.6 Sol, designed for complex reasoning, coding, and agentic workflows, is available on OpenRouter with a 50% price cut through the OpenAI provider. The model is listed at $2.50 per million input tokens and $15.00 per million output tokens, with the OpenAI provider offering these rates as a discount from previous pricing of $5.00 and $30.00 respectively, plus cache reads at $0.25 per million tokens. GPT-5.6 Sol features a 1,050,000-token context window, supports up to 128,000 completion tokens, and accepts PDFs, images, and text as input. Requests are routed across three providers—OpenAI, Azure (EU), and Amazon Bedrock (US)—with automatic failover and a best throughput of 44 tokens per second. Released on July 9, 2026 with a knowledge cutoff of February 16, 2026, the model also supports function calling and structured JSON outputs.</description>
-    <pubDate>2026-08-17T21:03:18Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Ask HN: Alternatives to GitHub</title>
-    <link>https://news.ycombinator.com/item?id=49331033</link>
-    <guid isPermaLink="false">https://news.ycombinator.com/item?id=49331033</guid>
-    <description>Exploring alternatives to GitHub matters because it gives software engineers a clearer view of how hosting choices affect collaboration, deployment, security, and ownership. GitHub is widely used, but it may not fit every team’s workflow, budget, compliance needs, or preference for open-source infrastructure. Comparing other platforms can reveal differences in repository management, developer tooling, integrations, and governance. The discussion also highlights how concentrated dependence on one service can shape the broader software ecosystem, influence future tooling standards, and affect teams’ long-term flexibility.</description>
-    <pubDate>2026-08-17T13:59:17Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-</channel></rss>
+<rss version="2.0">
+  <channel>
+    <title>Daily Byte</title>
+    <link>https://learn.shenthar.me/</link>
+    <description>A byte-size daily digest for engineers who value depth over noise.</description>
+    <language>en-us</language>
+    <item>
+      <title>Go 1.27 is released</title>
+      <link>https://go.dev/blog/go1.27</link>
+      <guid isPermaLink="false">https://go.dev/blog/go1.27</guid>
+      <description>Go 1.27 adds generic methods, encoding/json/v2 package, uuid package, faster memory allocation, goroutine leak profiles, and more.</description>
+      <pubDate>2026-08-19T00:00:00+00:00</pubDate>
+    </item>
+    <item>
+      <title>Introducing the pkg.go.dev API</title>
+      <link>https://go.dev/blog/pkgsite-api</link>
+      <guid isPermaLink="false">https://go.dev/blog/pkgsite-api</guid>
+      <description>pkg.go.dev has launched an official API providing programmatic access to metadata about published Go modules, addressing years of community feedback and the needs of AI-assisted coding tools. The API uses a stateless, GET-only architecture with primary endpoints hosted under the /v1beta path, and the team plans to transition to a formal v1 release after a period of confirmed stability. Endpoints cover packages, modules, versions, search, symbols, imported-by relationships, and vulnerabilities. Following a "precision over convenience" principle, the API requires unambiguous module specification when a package path could resolve to multiple modules, unlike the web interface which applies the longest module path rule. The API supports an optional version query parameter for semantic versions or the master and main branches. A reference client implementation called pkgsite-cli is available to demonstrate usage, and the team is committed to maintaining backward compatibility as the interface evolves.</description>
+      <pubDate>2026-05-21T00:00:00+00:00</pubDate>
+    </item>
+    <item>
+      <title>Type Construction and Cycle Detection</title>
+      <link>https://go.dev/blog/type-construction-and-cycle-detection</link>
+      <guid isPermaLink="false">https://go.dev/blog/type-construction-and-cycle-detection</guid>
+      <description>Go's type checker constructs internal representations for each type encountered while traversing the abstract syntax tree, building data structures like Defined, Slice, Pointer, and Array with fields pointing to other types. A type is considered complete when all its fields are populated and any types they reference are also complete, which is essential for safely deconstructing types during type checking. While simple recursive types like `type T []U` and `type U *T` can be handled by pointing an incomplete type back to itself and completing all types in the loop simultaneously when construction finishes, more complex cases pose challenges. For instance, `type T [unsafe.Sizeof(T{})]int` requires deconstruction of T to calculate its size, but T cannot complete until the Array completes, creating an unsolvable cycle. The type checker addresses such situations through cycle detection, which identifies and reports these cyclic definition errors.</description>
+      <pubDate>2026-03-24T00:00:00+00:00</pubDate>
+    </item>
+    <item>
+      <title>Enabling the next iteration of the borrow checker on nightly</title>
+      <link>https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/</link>
+      <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/</guid>
+      <description>The Rust team is enabling Polonius Alpha, the next iteration of the borrow checker, on nightly with plans to stabilize it before the end of the year. This new formulation, developed since 2023, provides flow-sensitive borrow checking of lifetime outlives relationships, enabling code that the current NLL borrow checker rejects to compile. Polonius Alpha is not a perfect superset of the original Polonius implementation, as some programs accepted by legacy Polonius don't compile with this version, but it solves the most commonly encountered borrow-check issues. Performance is generally acceptable for stabilization, with worst observed regressions of 2-3x in crates outside the top 10,000 most-downloaded on crates.io. Users can disable Polonius Alpha using the -Zpolonius=off flag, and the team will monitor reported issues on GitHub and Zulip while working to address performance regressions prior to stabilization.</description>
+      <pubDate>2026-08-04T00:00:00+00:00</pubDate>
+    </item>
+    <item>
+      <title>Announcing Rust 1.97.1</title>
+      <link>https://blog.rust-lang.org/2026/07/16/Rust-1.97.1/</link>
+      <guid isPermaLink="false">https://blog.rust-lang.org/2026/07/16/Rust-1.97.1/</guid>
+      <description>The Rust team has released version 1.97.1, a point release of the programming language designed to help developers build reliable and efficient software. Users with a previous version installed via rustup can upgrade easily, or download rustup from the project's website. This release addresses a miscompilation in an LLVM optimization by backporting both an LLVM fix and a disable of the underlying change in Rust 1.97.0's generated IR that increased the likelihood of the issue. The team notes the miscompilation itself has existed since at least Rust 1.87. Users interested in helping test future releases are encouraged to run their code through the beta or nightly channels and report any bugs they encounter.</description>
+      <pubDate>2026-07-16T00:00:00+00:00</pubDate>
+    </item>
+    <item>
+      <title>From Corpora to Co-Evolving Capabilities: Capability-Centric Data Design for Generalist Image Generation</title>
+      <link>https://arxiv.org/abs/2608.18076v1</link>
+      <guid isPermaLink="false">https://arxiv.org/abs/2608.18076v1</guid>
+      <description>The paper introduces a capability-driven data infrastructure for generalist image generation that addresses the limitation of conventional pipelines, which optimize task-specific datasets in isolation. The framework couples capability-specific supervision construction with capability-aligned curriculum scheduling through three specialized data engines that build complementary relational supervision for text-image grounding, inter-image transformation, and image-knowledge association, while caption experts align T2I and editing supervision across tasks and granularities. A multi-stage curriculum jointly evolves task composition, visual-concept distribution, data quality, and image resolution along the dependency order of capability acquisition, with capability-aware evaluation closing the loop through targeted retrieval and gap-aware resampling. At scale, this infrastructure curates a 440M-image T2I corpus, 120M editing pairs, and over 27M image-entity pairs. Using this data, the authors train multimodal diffusion models from scratch at 3B and 6B parameter sizes, evaluating them on CPI-Bench and across diverse text-to-image and editing scenarios, where they demonstrate broad visual coverage, versatile rendering, and effective transfer across generative capabilities.</description>
+      <pubDate>2026-08-18T17:59:01Z</pubDate>
+    </item>
+    <item>
+      <title>On the Fragility of Self-Improving Agents: Variance, Task Order, and Underspecification</title>
+      <link>https://arxiv.org/abs/2608.18066v1</link>
+      <guid isPermaLink="false">https://arxiv.org/abs/2608.18066v1</guid>
+      <description>The paper "On the Fragility of Self-Improving Agents: Variance, Task Order, and Underspecification" by Qinyuan Ye and colleagues re-evaluates memory-based self-improving agents that learn from online task streams while maintaining textual memory banks. The authors conduct experiments across multiple runs to quantify variance and randomly shuffle task orderings to test robustness. They find that agent evaluation is inherently noisy in complex environments and multi-step tasks, with self-improving loops further amplifying this noise. Performance improvements are highly dependent on task order, as default orderings impose an implicit curriculum that acts as a hidden prerequisite for success. Manual examination of the agents' memory banks leads the authors to hypothesize that task and environment underspecification drives much of this fragility. Incorporating detailed rubrics and environment feedback into memory construction partially closes performance degradation, but significant gaps remain. The authors advocate for more rigorous evaluation protocols involving multiple runs and stress-testing, as well as systems enabling effective human oversight to prevent unpredictable agent failures.</description>
+      <pubDate>2026-08-18T17:55:07Z</pubDate>
+    </item>
+    <item>
+      <title>TokEval: A Tokenizer Evaluation Suite</title>
+      <link>https://arxiv.org/abs/2608.18062v1</link>
+      <guid isPermaLink="false">https://arxiv.org/abs/2608.18062v1</guid>
+      <description>TokEval is a tokenizer evaluation framework introduced by Clara Meister that goes beyond standard measures like fertility and compression rate to capture linguistically and structurally meaningful properties, such as UTF-8 character boundary integrity and digit place-value boundary alignment for mathematics. The authors conducted controlled language model pretraining experiments, varying only the tokenizers' training data mixture, pretokenization strategy, and training algorithm, then evaluated the resulting models on bits-per-byte and benchmarks spanning linguistic understanding, mathematical reasoning, and code generation. Their findings indicate that different intrinsic properties influence model abilities differently: information-theoretic metrics predict language modeling performance with Spearman rho up to 0.80, while structure-sensitive metrics measuring digit and line-break handling correlate with task accuracy. The authors hope TokEval will enable more principled tokenizer evaluation, replacing costly pretraining sweeps with intrinsic measurement wherever the two agree. The work was published as a conference paper at COLM 2026.</description>
+      <pubDate>2026-08-18T17:52:52Z</pubDate>
+    </item>
+    <item>
+      <title>The concentration game: Bayesian updating, regret, and information</title>
+      <link>https://arxiv.org/abs/2608.18061v1</link>
+      <guid isPermaLink="false">https://arxiv.org/abs/2608.18061v1</guid>
+      <description>The paper introduces a two-player zero-sum repeated game between a learner and nature whose value identity simultaneously generates Bayesian updating and exact accounting of exponential-weights regret. The terminal payoff represents the most a comparator can gain at fixed relative entropy from the prior, while the one-step constraint imposes an information budget on nature's move under the learner's mixed action. Gibbs and Bayes weights emerge as the unique Bellman equalizer, with log-partition functions serving as value functions. The regret decomposes exactly into three components: a per-round information loss reflecting variation in observed outcomes, an additive retempering drift accounting for changes in measurement scale between rounds, and the information the comparator carries relative to the prior. The author shows that standard variance and bounded-range proxies used in typical regret bounds are looser relaxations of this general decomposition. Both players' strategies can be read directly from the decomposition term by term, and the framework unifies methods across bandits, posterior sampling, aggregation, and boosting as specializations of a single regret decomposition that also accounts for classical large-deviation bounds.</description>
+      <pubDate>2026-08-18T17:52:26Z</pubDate>
+    </item>
+    <item>
+      <title>Delegation Asymmetry in Agentic Recommender Systems: Measuring Two-Sided Receptivity in Online Dating</title>
+      <link>https://arxiv.org/abs/2608.18058v1</link>
+      <guid isPermaLink="false">https://arxiv.org/abs/2608.18058v1</guid>
+      <description>Autonomous LLM agents that converse on behalf of users are an emerging design in matching platforms, but their viability depends on users accepting both delegating their own conversations and receiving agent-mediated communication from others. The authors examine this condition through two large-scale surveys of a major dating platform (N=2,894 on generative profile features and N=2,617 on autonomous conversational agents, fielded in two languages). Using a latent-variable measurement model based on graded response models with latent regression, they show that willingness to send and willingness to receive agent communication are highly correlated (rho=0.92) yet distinct constructs (Delta BIC=52), with partial measurement invariance across languages. The model reveals a systematic delegation asymmetry: deploying one's own agent requires far lower receptivity (threshold -0.38) than engaging a counterpart's agent (+0.32, or +1.39 for full engagement), and mean deployment propensity roughly triples engagement propensity. Under random-pairing counterfactuals, only 4–13% of directed dyads combine agent deployment with receiver engagement, with pronounced gender-directional imbalance, while design interventions such as receptivity-based routing triple per-contact engagement and survive out-of-sample validation (AUC 0.88, 3.1× quartile lift).</description>
+      <pubDate>2026-08-18T17:51:16Z</pubDate>
+    </item>
+    <item>
+      <title>Feature Request: Support AGENTS.md</title>
+      <link>https://github.com/anthropics/claude-code/issues/6235</link>
+      <guid isPermaLink="false">https://github.com/anthropics/claude-code/issues/6235</guid>
+      <description>A feature request was filed on the anthropics/claude-code repository to add support for AGENTS.md, a unified Markdown file that coding agents can use to understand a codebase. The issue was opened by DylanLIiii on August 21, 2025, and was subsequently closed. It was labeled as a core enhancement, a new feature request, and related to memory. The request noted that tools like Codex, Amp, and Cursor are beginning to standardize around AGENTS.md as a common format for agent instructions. The author argued that CLAUDE.md is too narrowly tailored to Claude Code and does not translate well to collaborations with developers using other coding tools. Adopting AGENTS.md was presented as a way to align with the broader ecosystem of agent-compatible development environments.</description>
+      <pubDate>2026-08-19T21:19:50+00:00</pubDate>
+    </item>
+    <item>
+      <title>MicroGPT-C in pure C hits 10M TPS on Apple M5</title>
+      <link>https://github.com/vixhal-baraiya/microgpt-c</link>
+      <guid isPermaLink="false">https://github.com/vixhal-baraiya/microgpt-c</guid>
+      <description>MicroGPT-C is a character-level GPT implementation written in pure, dependency-free C that fits in a single file using only libc. It includes forward pass, backprop, Adam optimizer, and sampling functionality, and trains on approximately 32,000 names in just a couple of seconds. The model contains only 4,192 parameters yet outperforms an interpolated trigram with nearly five times as many parameters, scoring 2.2039 nats per character on unseen test data. The Makefile automatically selects appropriate compiler flags for the host platform, supporting macOS, Linux, and Windows via MSYS2, with ARM64 NEON and x86-64 AVX2 optimizations. Performance benchmarks show 10,168,430 tokens per second on an Apple M5 Pro with NEON and 6,927,775 tokens per second on an AMD Ryzen 5 5600H with AVX2.</description>
+      <pubDate>2026-08-18T15:46:46+00:00</pubDate>
+    </item>
+    <item>
+      <title>Taffy: A flexible, high-performance, cross-platform UI layout library</title>
+      <link>https://github.com/DioxusLabs/taffy</link>
+      <guid isPermaLink="false">https://github.com/DioxusLabs/taffy</guid>
+      <description>Taffy is a flexible, high-performance, cross-platform UI layout library written in Rust that implements CSS Block, Flexbox, and CSS Grid layout algorithms. It powers several notable projects including Servo, Blitz, Bevy, Takumi, iocraft, Slint, the Lapce text editor via the Floem framework, and the Zed text editor via the GPUI framework. The library works by creating a tree of nodes with associated styles and then computing layout, after which the computed dimensions can be inspected. Taffy offers Python bindings through stretchable, with C and WASM bindings currently in development. According to benchmarks run on a 2021 MacBook Pro with M1 Pro processor, Taffy's performance is comparable to Yoga, outperforming it in some scenarios like deep nested trees while being slower in wide trees. The project welcomes contributions through issues, discussions, and pull requests.</description>
+      <pubDate>2026-08-13T14:56:15+00:00</pubDate>
+    </item>
+    <item>
+      <title>Launch HN: OneCLI (YC S26) – OSS sandboxed agent harness for teams</title>
+      <link>https://github.com/onecli/onecli</link>
+      <guid isPermaLink="false">https://github.com/onecli/onecli</guid>
+      <description>OneCLI v2 is an open-source platform designed to give every employee a secured, sandboxed personal AI agent. Each agent operates in its own isolated environment with a filesystem and shell, accessing external services only through a Rust-based gateway that injects credentials and enforces team policies. The platform integrates with company identity providers to provision agents on behalf of employees, supports human-in-the-loop approvals for sensitive actions, and offers shared team-level connections for resources like LLM keys. Agents maintain their own conversation history, memory, skills, and scheduling, and can be reached through a web dashboard or Slack. Originally built as a Rust credential vault, OneCLI now provides a full architecture including an API server, outbound-only runner, sandbox supervisor, and secret store that can operate from a laptop, homelab, or VPC with no ingress required. The project is Apache-2.0 licensed, with certain features under a separate enterprise license.</description>
+      <pubDate>2026-08-19T16:29:02+00:00</pubDate>
+    </item>
+    <item>
+      <title>OpenLogi</title>
+      <link>https://openlogi.org/en</link>
+      <guid isPermaLink="false">https://openlogi.org/en</guid>
+      <description>OpenLogi is a local-first, open-source alternative to Logitech Options+, written in Rust, that controls Logitech mice and keyboards directly over the HID++ protocol without requiring an account or sending telemetry. It supports button remapping with 44 built-in actions, DPI control with user-defined presets, and SmartShift wheel behavior, with all bindings stored in a portable TOML configuration file the user owns. The app works across macOS, Linux, and Windows through Bolt, Unifying, Lightspeed, Bluetooth, or wired connections, and includes a live device view showing battery status for paired hardware. Additional features include opt-in update checks, Bolt device pairing in the GUI, and Easy-Switch host switching, while per-app profiles, an Options+ settings importer, and Unifying/Lightspeed pairing are listed as upcoming or in-progress. The project is dual-licensed under MIT and Apache-2.0.</description>
+      <pubDate>2026-08-19T01:58:28+00:00</pubDate>
+    </item>
+    <item>
+      <title>The Amazon tax</title>
+      <link>https://seths.blog/2026/08/the-amazon-tax/</link>
+      <guid isPermaLink="false">https://seths.blog/2026/08/the-amazon-tax/</guid>
+      <description>Amazon earns nearly a billion dollars per week from search ads, which the author argues function as "legal theft" rather than legitimate marketing. These ads distort search results—when a shopper searches for a product like an air fryer, Amazon already knows the best option, so ads exist primarily to steer customers away from it, forcing top sellers to buy ads simply to protect the sales they were already entitled to. Unlike traditional advertising, search ads are zero-sum: total category sales remain static while merchants compete for the same share, and an estimated $50 billion in annual ad spending is ultimately passed on to consumers through higher prices or reduced product quality. To afford ad budgets, producers are incentivized to make cheaper, shoddier products, while Amazon and Google have reasons to weaken organic search results to push more advertisers into paying. The author concludes that Amazon's ad system, though legal, undermines the customer-first approach the company once claimed.</description>
+      <pubDate>2026-08-18T13:22:38+00:00</pubDate>
+    </item>
+    <item>
+      <title>A joke domain purchase turned in geopolitical warfare</title>
+      <link>https://sprocketfox.io/xssfox/2026/08/19/sondehub-and-war/</link>
+      <guid isPermaLink="false">https://sprocketfox.io/xssfox/2026/08/19/sondehub-and-war/</guid>
+      <description>SondeHub began in 2018 as a joke domain redirect to Habhub for tracking weather balloon radiosondes, but evolved into a full tracking service with its own backend, capturing more complete data than official meteorological software. The platform developed reverse prediction technology that accidentally mapped military artillery sites and naval vessels, leading to data removal requests from governments. During the 2023 China spy balloon incident, SondeHub experienced traffic surges after being referenced by the Washington Post. The service has since attracted attention from various government entities, including the US Department of War—which requested data but never paid—and the NTSB, which investigated a possible plane-balloon collision in Utah. Additionally, the site's API was apparently misused by parties in the Russia-Ukraine war for drone targeting, prompting the operator to offer local predictor alternatives and navigate interactions with AWS to preserve the service.</description>
+      <pubDate>2026-08-19T11:21:50+00:00</pubDate>
+    </item>
+    <item>
+      <title>OpenRouter is joining Stripe</title>
+      <link>https://openrouter.ai/blog/announcements/openrouter-is-joining-stripe/</link>
+      <guid isPermaLink="false">https://openrouter.ai/blog/announcements/openrouter-is-joining-stripe/</guid>
+      <description>OpenRouter, the AI model marketplace and gateway, announced it is joining Stripe on August 19, 2026. OpenRouter processes more than 10 trillion tokens daily across over 400 AI models for a community exceeding 10 million developers and companies. The company stated its mission, name, product, and roadmap will remain unchanged, with routing decisions continuing to prioritize user needs over any single model, provider, or parent company. Founded in early 2023 on the belief that intelligence will be multi-model, OpenRouter positions itself as neutral infrastructure for the AI ecosystem. Stripe is described as the best financial infrastructure platform in the world, sharing OpenRouter's developer-focused culture and abstracting complex systems into reliable APIs. The transaction is subject to customary closing conditions and is expected to close in the coming weeks.</description>
+      <pubDate>2026-08-19T17:32:38+00:00</pubDate>
+    </item>
+  </channel>
+</rss>
