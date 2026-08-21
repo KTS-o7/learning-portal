@@ -1,135 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
-  <channel>
-    <title>Daily Byte</title>
-    <link>https://learn.shenthar.me/</link>
-    <description>A byte-size daily digest for engineers who value depth over noise.</description>
-    <language>en-us</language>
-    <item>
-      <title>Go 1.27 is released</title>
-      <link>https://go.dev/blog/go1.27</link>
-      <guid isPermaLink="false">https://go.dev/blog/go1.27</guid>
-      <description>Go 1.27 adds generic methods, encoding/json/v2 package, uuid package, faster memory allocation, goroutine leak profiles, and more.</description>
-      <pubDate>2026-08-19T00:00:00+00:00</pubDate>
-    </item>
-    <item>
-      <title>Introducing the pkg.go.dev API</title>
-      <link>https://go.dev/blog/pkgsite-api</link>
-      <guid isPermaLink="false">https://go.dev/blog/pkgsite-api</guid>
-      <description>pkg.go.dev has launched an official API providing programmatic access to metadata about published Go modules, addressing years of community feedback and the needs of AI-assisted coding tools. The API uses a stateless, GET-only architecture with primary endpoints hosted under the /v1beta path, and the team plans to transition to a formal v1 release after a period of confirmed stability. Endpoints cover packages, modules, versions, search, symbols, imported-by relationships, and vulnerabilities. Following a "precision over convenience" principle, the API requires unambiguous module specification when a package path could resolve to multiple modules, unlike the web interface which applies the longest module path rule. The API supports an optional version query parameter for semantic versions or the master and main branches. A reference client implementation called pkgsite-cli is available to demonstrate usage, and the team is committed to maintaining backward compatibility as the interface evolves.</description>
-      <pubDate>2026-05-21T00:00:00+00:00</pubDate>
-    </item>
-    <item>
-      <title>Type Construction and Cycle Detection</title>
-      <link>https://go.dev/blog/type-construction-and-cycle-detection</link>
-      <guid isPermaLink="false">https://go.dev/blog/type-construction-and-cycle-detection</guid>
-      <description>Go's type checker constructs internal representations for each type encountered while traversing the abstract syntax tree, building data structures like Defined, Slice, Pointer, and Array with fields pointing to other types. A type is considered complete when all its fields are populated and any types they reference are also complete, which is essential for safely deconstructing types during type checking. While simple recursive types like `type T []U` and `type U *T` can be handled by pointing an incomplete type back to itself and completing all types in the loop simultaneously when construction finishes, more complex cases pose challenges. For instance, `type T [unsafe.Sizeof(T{})]int` requires deconstruction of T to calculate its size, but T cannot complete until the Array completes, creating an unsolvable cycle. The type checker addresses such situations through cycle detection, which identifies and reports these cyclic definition errors.</description>
-      <pubDate>2026-03-24T00:00:00+00:00</pubDate>
-    </item>
-    <item>
-      <title>Enabling the next iteration of the borrow checker on nightly</title>
-      <link>https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/</link>
-      <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/</guid>
-      <description>The Rust team is enabling Polonius Alpha, the next iteration of the borrow checker, on nightly with plans to stabilize it before the end of the year. This new formulation, developed since 2023, provides flow-sensitive borrow checking of lifetime outlives relationships, enabling code that the current NLL borrow checker rejects to compile. Polonius Alpha is not a perfect superset of the original Polonius implementation, as some programs accepted by legacy Polonius don't compile with this version, but it solves the most commonly encountered borrow-check issues. Performance is generally acceptable for stabilization, with worst observed regressions of 2-3x in crates outside the top 10,000 most-downloaded on crates.io. Users can disable Polonius Alpha using the -Zpolonius=off flag, and the team will monitor reported issues on GitHub and Zulip while working to address performance regressions prior to stabilization.</description>
-      <pubDate>2026-08-04T00:00:00+00:00</pubDate>
-    </item>
-    <item>
-      <title>Announcing Rust 1.97.1</title>
-      <link>https://blog.rust-lang.org/2026/07/16/Rust-1.97.1/</link>
-      <guid isPermaLink="false">https://blog.rust-lang.org/2026/07/16/Rust-1.97.1/</guid>
-      <description>The Rust team has released version 1.97.1, a point release of the programming language designed to help developers build reliable and efficient software. Users with a previous version installed via rustup can upgrade easily, or download rustup from the project's website. This release addresses a miscompilation in an LLVM optimization by backporting both an LLVM fix and a disable of the underlying change in Rust 1.97.0's generated IR that increased the likelihood of the issue. The team notes the miscompilation itself has existed since at least Rust 1.87. Users interested in helping test future releases are encouraged to run their code through the beta or nightly channels and report any bugs they encounter.</description>
-      <pubDate>2026-07-16T00:00:00+00:00</pubDate>
-    </item>
-    <item>
-      <title>From Corpora to Co-Evolving Capabilities: Capability-Centric Data Design for Generalist Image Generation</title>
-      <link>https://arxiv.org/abs/2608.18076v1</link>
-      <guid isPermaLink="false">https://arxiv.org/abs/2608.18076v1</guid>
-      <description>The paper introduces a capability-driven data infrastructure for generalist image generation that addresses the limitation of conventional pipelines, which optimize task-specific datasets in isolation. The framework couples capability-specific supervision construction with capability-aligned curriculum scheduling through three specialized data engines that build complementary relational supervision for text-image grounding, inter-image transformation, and image-knowledge association, while caption experts align T2I and editing supervision across tasks and granularities. A multi-stage curriculum jointly evolves task composition, visual-concept distribution, data quality, and image resolution along the dependency order of capability acquisition, with capability-aware evaluation closing the loop through targeted retrieval and gap-aware resampling. At scale, this infrastructure curates a 440M-image T2I corpus, 120M editing pairs, and over 27M image-entity pairs. Using this data, the authors train multimodal diffusion models from scratch at 3B and 6B parameter sizes, evaluating them on CPI-Bench and across diverse text-to-image and editing scenarios, where they demonstrate broad visual coverage, versatile rendering, and effective transfer across generative capabilities.</description>
-      <pubDate>2026-08-18T17:59:01Z</pubDate>
-    </item>
-    <item>
-      <title>On the Fragility of Self-Improving Agents: Variance, Task Order, and Underspecification</title>
-      <link>https://arxiv.org/abs/2608.18066v1</link>
-      <guid isPermaLink="false">https://arxiv.org/abs/2608.18066v1</guid>
-      <description>The paper "On the Fragility of Self-Improving Agents: Variance, Task Order, and Underspecification" by Qinyuan Ye and colleagues re-evaluates memory-based self-improving agents that learn from online task streams while maintaining textual memory banks. The authors conduct experiments across multiple runs to quantify variance and randomly shuffle task orderings to test robustness. They find that agent evaluation is inherently noisy in complex environments and multi-step tasks, with self-improving loops further amplifying this noise. Performance improvements are highly dependent on task order, as default orderings impose an implicit curriculum that acts as a hidden prerequisite for success. Manual examination of the agents' memory banks leads the authors to hypothesize that task and environment underspecification drives much of this fragility. Incorporating detailed rubrics and environment feedback into memory construction partially closes performance degradation, but significant gaps remain. The authors advocate for more rigorous evaluation protocols involving multiple runs and stress-testing, as well as systems enabling effective human oversight to prevent unpredictable agent failures.</description>
-      <pubDate>2026-08-18T17:55:07Z</pubDate>
-    </item>
-    <item>
-      <title>TokEval: A Tokenizer Evaluation Suite</title>
-      <link>https://arxiv.org/abs/2608.18062v1</link>
-      <guid isPermaLink="false">https://arxiv.org/abs/2608.18062v1</guid>
-      <description>TokEval is a tokenizer evaluation framework introduced by Clara Meister that goes beyond standard measures like fertility and compression rate to capture linguistically and structurally meaningful properties, such as UTF-8 character boundary integrity and digit place-value boundary alignment for mathematics. The authors conducted controlled language model pretraining experiments, varying only the tokenizers' training data mixture, pretokenization strategy, and training algorithm, then evaluated the resulting models on bits-per-byte and benchmarks spanning linguistic understanding, mathematical reasoning, and code generation. Their findings indicate that different intrinsic properties influence model abilities differently: information-theoretic metrics predict language modeling performance with Spearman rho up to 0.80, while structure-sensitive metrics measuring digit and line-break handling correlate with task accuracy. The authors hope TokEval will enable more principled tokenizer evaluation, replacing costly pretraining sweeps with intrinsic measurement wherever the two agree. The work was published as a conference paper at COLM 2026.</description>
-      <pubDate>2026-08-18T17:52:52Z</pubDate>
-    </item>
-    <item>
-      <title>The concentration game: Bayesian updating, regret, and information</title>
-      <link>https://arxiv.org/abs/2608.18061v1</link>
-      <guid isPermaLink="false">https://arxiv.org/abs/2608.18061v1</guid>
-      <description>The paper introduces a two-player zero-sum repeated game between a learner and nature whose value identity simultaneously generates Bayesian updating and exact accounting of exponential-weights regret. The terminal payoff represents the most a comparator can gain at fixed relative entropy from the prior, while the one-step constraint imposes an information budget on nature's move under the learner's mixed action. Gibbs and Bayes weights emerge as the unique Bellman equalizer, with log-partition functions serving as value functions. The regret decomposes exactly into three components: a per-round information loss reflecting variation in observed outcomes, an additive retempering drift accounting for changes in measurement scale between rounds, and the information the comparator carries relative to the prior. The author shows that standard variance and bounded-range proxies used in typical regret bounds are looser relaxations of this general decomposition. Both players' strategies can be read directly from the decomposition term by term, and the framework unifies methods across bandits, posterior sampling, aggregation, and boosting as specializations of a single regret decomposition that also accounts for classical large-deviation bounds.</description>
-      <pubDate>2026-08-18T17:52:26Z</pubDate>
-    </item>
-    <item>
-      <title>Delegation Asymmetry in Agentic Recommender Systems: Measuring Two-Sided Receptivity in Online Dating</title>
-      <link>https://arxiv.org/abs/2608.18058v1</link>
-      <guid isPermaLink="false">https://arxiv.org/abs/2608.18058v1</guid>
-      <description>Autonomous LLM agents that converse on behalf of users are an emerging design in matching platforms, but their viability depends on users accepting both delegating their own conversations and receiving agent-mediated communication from others. The authors examine this condition through two large-scale surveys of a major dating platform (N=2,894 on generative profile features and N=2,617 on autonomous conversational agents, fielded in two languages). Using a latent-variable measurement model based on graded response models with latent regression, they show that willingness to send and willingness to receive agent communication are highly correlated (rho=0.92) yet distinct constructs (Delta BIC=52), with partial measurement invariance across languages. The model reveals a systematic delegation asymmetry: deploying one's own agent requires far lower receptivity (threshold -0.38) than engaging a counterpart's agent (+0.32, or +1.39 for full engagement), and mean deployment propensity roughly triples engagement propensity. Under random-pairing counterfactuals, only 4–13% of directed dyads combine agent deployment with receiver engagement, with pronounced gender-directional imbalance, while design interventions such as receptivity-based routing triple per-contact engagement and survive out-of-sample validation (AUC 0.88, 3.1× quartile lift).</description>
-      <pubDate>2026-08-18T17:51:16Z</pubDate>
-    </item>
-    <item>
-      <title>Feature Request: Support AGENTS.md</title>
-      <link>https://github.com/anthropics/claude-code/issues/6235</link>
-      <guid isPermaLink="false">https://github.com/anthropics/claude-code/issues/6235</guid>
-      <description>A feature request was filed on the anthropics/claude-code repository to add support for AGENTS.md, a unified Markdown file that coding agents can use to understand a codebase. The issue was opened by DylanLIiii on August 21, 2025, and was subsequently closed. It was labeled as a core enhancement, a new feature request, and related to memory. The request noted that tools like Codex, Amp, and Cursor are beginning to standardize around AGENTS.md as a common format for agent instructions. The author argued that CLAUDE.md is too narrowly tailored to Claude Code and does not translate well to collaborations with developers using other coding tools. Adopting AGENTS.md was presented as a way to align with the broader ecosystem of agent-compatible development environments.</description>
-      <pubDate>2026-08-19T21:19:50+00:00</pubDate>
-    </item>
-    <item>
-      <title>MicroGPT-C in pure C hits 10M TPS on Apple M5</title>
-      <link>https://github.com/vixhal-baraiya/microgpt-c</link>
-      <guid isPermaLink="false">https://github.com/vixhal-baraiya/microgpt-c</guid>
-      <description>MicroGPT-C is a character-level GPT implementation written in pure, dependency-free C that fits in a single file using only libc. It includes forward pass, backprop, Adam optimizer, and sampling functionality, and trains on approximately 32,000 names in just a couple of seconds. The model contains only 4,192 parameters yet outperforms an interpolated trigram with nearly five times as many parameters, scoring 2.2039 nats per character on unseen test data. The Makefile automatically selects appropriate compiler flags for the host platform, supporting macOS, Linux, and Windows via MSYS2, with ARM64 NEON and x86-64 AVX2 optimizations. Performance benchmarks show 10,168,430 tokens per second on an Apple M5 Pro with NEON and 6,927,775 tokens per second on an AMD Ryzen 5 5600H with AVX2.</description>
-      <pubDate>2026-08-18T15:46:46+00:00</pubDate>
-    </item>
-    <item>
-      <title>Taffy: A flexible, high-performance, cross-platform UI layout library</title>
-      <link>https://github.com/DioxusLabs/taffy</link>
-      <guid isPermaLink="false">https://github.com/DioxusLabs/taffy</guid>
-      <description>Taffy is a flexible, high-performance, cross-platform UI layout library written in Rust that implements CSS Block, Flexbox, and CSS Grid layout algorithms. It powers several notable projects including Servo, Blitz, Bevy, Takumi, iocraft, Slint, the Lapce text editor via the Floem framework, and the Zed text editor via the GPUI framework. The library works by creating a tree of nodes with associated styles and then computing layout, after which the computed dimensions can be inspected. Taffy offers Python bindings through stretchable, with C and WASM bindings currently in development. According to benchmarks run on a 2021 MacBook Pro with M1 Pro processor, Taffy's performance is comparable to Yoga, outperforming it in some scenarios like deep nested trees while being slower in wide trees. The project welcomes contributions through issues, discussions, and pull requests.</description>
-      <pubDate>2026-08-13T14:56:15+00:00</pubDate>
-    </item>
-    <item>
-      <title>Launch HN: OneCLI (YC S26) – OSS sandboxed agent harness for teams</title>
-      <link>https://github.com/onecli/onecli</link>
-      <guid isPermaLink="false">https://github.com/onecli/onecli</guid>
-      <description>OneCLI v2 is an open-source platform designed to give every employee a secured, sandboxed personal AI agent. Each agent operates in its own isolated environment with a filesystem and shell, accessing external services only through a Rust-based gateway that injects credentials and enforces team policies. The platform integrates with company identity providers to provision agents on behalf of employees, supports human-in-the-loop approvals for sensitive actions, and offers shared team-level connections for resources like LLM keys. Agents maintain their own conversation history, memory, skills, and scheduling, and can be reached through a web dashboard or Slack. Originally built as a Rust credential vault, OneCLI now provides a full architecture including an API server, outbound-only runner, sandbox supervisor, and secret store that can operate from a laptop, homelab, or VPC with no ingress required. The project is Apache-2.0 licensed, with certain features under a separate enterprise license.</description>
-      <pubDate>2026-08-19T16:29:02+00:00</pubDate>
-    </item>
-    <item>
-      <title>OpenLogi</title>
-      <link>https://openlogi.org/en</link>
-      <guid isPermaLink="false">https://openlogi.org/en</guid>
-      <description>OpenLogi is a local-first, open-source alternative to Logitech Options+, written in Rust, that controls Logitech mice and keyboards directly over the HID++ protocol without requiring an account or sending telemetry. It supports button remapping with 44 built-in actions, DPI control with user-defined presets, and SmartShift wheel behavior, with all bindings stored in a portable TOML configuration file the user owns. The app works across macOS, Linux, and Windows through Bolt, Unifying, Lightspeed, Bluetooth, or wired connections, and includes a live device view showing battery status for paired hardware. Additional features include opt-in update checks, Bolt device pairing in the GUI, and Easy-Switch host switching, while per-app profiles, an Options+ settings importer, and Unifying/Lightspeed pairing are listed as upcoming or in-progress. The project is dual-licensed under MIT and Apache-2.0.</description>
-      <pubDate>2026-08-19T01:58:28+00:00</pubDate>
-    </item>
-    <item>
-      <title>The Amazon tax</title>
-      <link>https://seths.blog/2026/08/the-amazon-tax/</link>
-      <guid isPermaLink="false">https://seths.blog/2026/08/the-amazon-tax/</guid>
-      <description>Amazon earns nearly a billion dollars per week from search ads, which the author argues function as "legal theft" rather than legitimate marketing. These ads distort search results—when a shopper searches for a product like an air fryer, Amazon already knows the best option, so ads exist primarily to steer customers away from it, forcing top sellers to buy ads simply to protect the sales they were already entitled to. Unlike traditional advertising, search ads are zero-sum: total category sales remain static while merchants compete for the same share, and an estimated $50 billion in annual ad spending is ultimately passed on to consumers through higher prices or reduced product quality. To afford ad budgets, producers are incentivized to make cheaper, shoddier products, while Amazon and Google have reasons to weaken organic search results to push more advertisers into paying. The author concludes that Amazon's ad system, though legal, undermines the customer-first approach the company once claimed.</description>
-      <pubDate>2026-08-18T13:22:38+00:00</pubDate>
-    </item>
-    <item>
-      <title>A joke domain purchase turned in geopolitical warfare</title>
-      <link>https://sprocketfox.io/xssfox/2026/08/19/sondehub-and-war/</link>
-      <guid isPermaLink="false">https://sprocketfox.io/xssfox/2026/08/19/sondehub-and-war/</guid>
-      <description>SondeHub began in 2018 as a joke domain redirect to Habhub for tracking weather balloon radiosondes, but evolved into a full tracking service with its own backend, capturing more complete data than official meteorological software. The platform developed reverse prediction technology that accidentally mapped military artillery sites and naval vessels, leading to data removal requests from governments. During the 2023 China spy balloon incident, SondeHub experienced traffic surges after being referenced by the Washington Post. The service has since attracted attention from various government entities, including the US Department of War—which requested data but never paid—and the NTSB, which investigated a possible plane-balloon collision in Utah. Additionally, the site's API was apparently misused by parties in the Russia-Ukraine war for drone targeting, prompting the operator to offer local predictor alternatives and navigate interactions with AWS to preserve the service.</description>
-      <pubDate>2026-08-19T11:21:50+00:00</pubDate>
-    </item>
-    <item>
-      <title>OpenRouter is joining Stripe</title>
-      <link>https://openrouter.ai/blog/announcements/openrouter-is-joining-stripe/</link>
-      <guid isPermaLink="false">https://openrouter.ai/blog/announcements/openrouter-is-joining-stripe/</guid>
-      <description>OpenRouter, the AI model marketplace and gateway, announced it is joining Stripe on August 19, 2026. OpenRouter processes more than 10 trillion tokens daily across over 400 AI models for a community exceeding 10 million developers and companies. The company stated its mission, name, product, and roadmap will remain unchanged, with routing decisions continuing to prioritize user needs over any single model, provider, or parent company. Founded in early 2023 on the belief that intelligence will be multi-model, OpenRouter positions itself as neutral infrastructure for the AI ecosystem. Stripe is described as the best financial infrastructure platform in the world, sharing OpenRouter's developer-focused culture and abstracting complex systems into reliable APIs. The transaction is subject to customary closing conditions and is expected to close in the coming weeks.</description>
-      <pubDate>2026-08-19T17:32:38+00:00</pubDate>
-    </item>
-  </channel>
-</rss>
+<rss version="2.0"><channel>
+  <title>Daily Byte</title>
+  <link>https://learn.shenthar.me/</link>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-21</description>
+  <item>
+    <title>The August 17 outage, and the work ahead</title>
+    <link>https://github.blog/news-insights/company-news/the-august-17-outage-and-the-work-ahead/</link>
+    <guid isPermaLink="false">https://github.blog/news-insights/company-news/the-august-17-outage-and-the-work-ahead/</guid>
+    <description>On August 17, GitHub experienced an outage lasting 7 hours and 47 minutes that disrupted github.com, authentication, GitHub Actions, APIs, pull requests, issues, and Copilot. This was the second significant incident in August, following an Actions failure on August 6, and both were capacity failures triggered when critical infrastructure components failed to scale with peak traffic. The August 17 incident was worsened by a client-side retry loop in Copilot services that increased load during recovery. Since April, monthly commits have grown from 1.4 billion to 2.9 billion, intensifying pressure on the systems. In response, GitHub has added over 3 million CPU cores and 120 petabytes of storage while accelerating its migration to Azure, which now handles 58% of platform load, up from 12% in May. The company also plans to implement consistent retry limits, isolate critical systems, and remove shared dependencies to limit future outages.</description>
+    <pubDate>Thu, 20 Aug 2026 18:36:11 +0000</pubDate>
+    <source>GitHub Blog</source>
+  </item>
+  <item>
+    <title>Supply chain attack on arrayref</title>
+    <link>https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/</link>
+    <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/</guid>
+    <description>On August 20, 2026, the Rust Security Response Team verified a report that the proc-macro1 crate was malicious, as its build script downloaded a harmful payload. Several crates—proc-macro1, proc-macro-en, aovine, arone, aronenao, and tinymember—were deleted from crates.io. The team also discovered that the popular arrayref crate had been republished to depend on this malicious crate, with its recent versions yanked. The malicious version was removed and the maliciously-yanked versions were unyanked, while other affected crates by the same author, internment and append-only-vec, received the same treatment and had their account locked. The author of arrayref is not believed to be acting maliciously, but their computer or credentials likely appear compromised, prompting users to verify their local dependencies.</description>
+    <pubDate>2026-08-20T00:00:00+00:00</pubDate>
+    <source>Rust Blog</source>
+  </item>
+  <item>
+    <title>GitHub Copilot app for Beginners: Managing your work</title>
+    <link>https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-managing-your-work/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-managing-your-work/</guid>
+    <description>The GitHub Copilot app&#x27;s &quot;My work&quot; pane provides a centralized location to manage pull requests and issues across multiple Copilot sessions. By default, it offers four views—All, Active, Review requests, and Done—with items automatically filtered to projects touched within the app. Users can create custom views by adding filters such as &quot;Is: Issue&quot; or &quot;Assignee: Me,&quot; either typed out using angle-bracket syntax or built through the UI. Items display in either a list or table layout, with the table view allowing column customization, rearrangement, and resizing. From any item, users can launch new agent sessions using the issue as context, or select multiple items to bundle into a single session. Additional features include a repository filter scoped to touched repositories and a New issue button for creating issues directly within the pane.</description>
+    <pubDate>Wed, 19 Aug 2026 17:50:23 +0000</pubDate>
+    <source>GitHub Blog</source>
+  </item>
+  <item>
+    <title>Announcing Rust 1.98.0</title>
+    <link>https://blog.rust-lang.org/2026/08/20/Rust-1.98.0/</link>
+    <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/20/Rust-1.98.0/</guid>
+    <description>Rust 1.98.0 has been released by the Rust team and is available through rustup. The floating-point types f32 and f64 now include &quot;algebraic&quot; methods for addition, subtraction, multiplication, division, and remainder, allowing compiler optimizations similar to -ffast-math, even though floating-point arithmetic does not strictly satisfy these algebraic properties. All primitive integer types now offer a format_into method that uses a NumBuffer to produce formatted strings, achieving performance comparable to itoa according to benchmarks. Additionally, the release updates the ManuallyDrop documentation to provide a stable guarantee that moving ManuallyDrop&lt;Box&lt;_&gt;&gt; after the box has been dropped will not be considered undefined behavior, addressing a long-standing compiler bug fixed in 1.96.0. These changes are detailed in the release notes for Rust, Cargo, and Clippy.</description>
+    <pubDate>2026-08-20T00:00:00+00:00</pubDate>
+    <source>Rust Blog</source>
+  </item>
+  <item>
+    <title>SPADE: Self-Play in Adaptive Synthetic Executable Environments</title>
+    <link>https://arxiv.org/abs/2608.19197v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.19197v1</guid>
+    <description>SPADE is a self-play reinforcement learning framework in which a single LLM plays two roles: an Environment Designer that writes complete, long-horizon training environments as executable code with an OpenAI Gym-style reset()/step() interface, and a Reasoning Agent that learns to act within them. Each environment is stateful and multi-turn, encompassing state transitions, reward functions, and verification code, so a single interface spans reasoning problems and multi-step agentic tool use. The Reasoning Agent&#x27;s regret is estimated from the gap between its reward with and without privileged hints, which trains the Environment Designer to produce tasks at the edge of the agent&#x27;s capabilities while keeping them feasible. Critical components include grounding the Environment Designer on documents sampled from a large pretraining corpus and providing it with an accumulated environment memory. Scaled to 30B-parameter models, SPADE improves over the strongest fixed-environment baseline by +5.3 on average across eight held-out math, science, code, and reasoning benchmarks, lifts tool-use by +5.7 on BFCL-v4 multi-turn and +13.9 on ACEBench-Agent, and yields growing margins in games as model scale increases.</description>
+    <pubDate>2026-08-19T17:58:56Z</pubDate>
+    <source>arXiv (Bo Liu, Simon Yu, Yiding Jiang et al.)</source>
+  </item>
+  <item>
+    <title>ADEPT: Accelerating Dexterity via Pre-Training and Post-Training using Reinforcement Learning</title>
+    <link>https://arxiv.org/abs/2608.19182v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.19182v1</guid>
+    <description>ADEPT is a large-scale reinforcement learning framework designed to learn sim-to-real transferable dexterity for high-DoF robot embodiments capable of solving long-horizon tasks from raw visuo-tactile perception. The approach pretrains a dexterous policy on a generic object reposing task, then post-trains downstream policies using this pretrained behavior as a prior, enabling new behaviors that are difficult to discover from scratch on multi-fingered robots. The pretrained policy zero-shots the reposing phase of downstream tasks, but naive RL fine-tuning rapidly degrades this capability, which the authors address with a stable post-training recipe combining behavior-cloning distillation, critic warm-up, and conservative on-policy updates. A joint-space Geometric Fabric is introduced to mediate between the RL policy and the robot, allowing safe exploitation of the full kinematic dexterity. The post-trained teachers are distilled into perceptive students that zero-shot sim-to-real transfer on two embodiments: a 23-DoF Kuka-Allegro with two RGB cameras, and a 29-DoF Flexiv-Sharpa with two RGB cameras and five vision-based tactile sensors, achieving human-level speed on challenging long-horizon tasks.</description>
+    <pubDate>2026-08-19T17:55:06Z</pubDate>
+    <source>arXiv (Jayjun Lee, Jessica Yin, Asif Rana et al.)</source>
+  </item>
+  <item>
+    <title>Beyond Teacher Likelihood: Group-Calibrated On-Policy Distillation for Long-Context Reasoning</title>
+    <link>https://arxiv.org/abs/2608.19181v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.19181v1</guid>
+    <description>The paper addresses a mismatch in on-policy distillation (OPD) for long-context tasks, where token-level teacher guidance can favor locally plausible responses that overlook evidence distributed across the input. The authors diagnose this teacher-verifier disagreement on two long-context evidence-aggregation benchmarks, finding that trajectory-level OPD scores become progressively less aligned with verifier rewards as input length grows. To address this, they introduce Group-Calibrated On-Policy Distillation (GC-OPD), which separately normalizes verifier rewards and OPD scores within each rollout group and computes a signed disagreement residual. A credit assignment method called RACA then distributes this residual across tokens based on their relative OPD advantages while preserving the original OPD signal. Experiments across five long-context benchmarks show GC-OPD raises Qwen3-4B&#x27;s average score from 29.08 to 40.47 and Qwen3-8B&#x27;s from 35.12 to 44.65, outperforming vanilla OPD which reaches 39.31 and 43.56. Ablations confirm that the signed residual is more effective than alternative calibration approaches.</description>
+    <pubDate>2026-08-19T17:54:58Z</pubDate>
+    <source>arXiv (Zhu Zhang, Jixun Wang, Xiaoang Xu et al.)</source>
+  </item>
+  <item>
+    <title>Finetuning Strategies for Querying Sounds by Vocal Imitation</title>
+    <link>https://arxiv.org/abs/2608.19174v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.19174v1</guid>
+    <description>The paper &quot;Finetuning Strategies for Querying Sounds by Vocal Imitation,&quot; authored by Aditya Bhattacharjee, Christos Plachouras, Sungkyun Chang, and Emmanouil Benetos, is a technical report describing their winning submission to the AES AIMLA 2025 Challenge on querying sound effects by vocal imitation. The authors investigate two complementary fine-tuning strategies for this task. The first approach employs contrastive learning with a frozen, pretrained CED encoder. The second utilizes joint contrastive-triplet learning with semi-hard negatives using a MobileNetV3 encoder. The report has been updated to include additional details released after the challenge. The work falls within the research areas of Sound, Artificial Intelligence, and Information Retrieval.</description>
+    <pubDate>2026-08-19T17:51:50Z</pubDate>
+    <source>arXiv (Aditya Bhattacharjee, Christos Plachouras, Sungkyun Chang et al.)</source>
+  </item>
+  <item>
+    <title>Lévy Attention: Single-Pass Predictive Uncertainty for Continuous-Time Attention</title>
+    <link>https://arxiv.org/abs/2608.19171v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.19171v1</guid>
+    <description>Continuous-time models for irregularly-sampled data (medical records, IoT streams, financial events) are increasingly common in production, but most systems can&#x27;t afford the multiple forward passes that classical uncertainty methods like MC dropout require. Lévy Attention gives you a calibrated confidence score as a byproduct of the same forward pass that produces the prediction, with no extra sampling heads, ensemble members, or trained uncertainty branches to deploy. The accuracy cost of the operator swap is small, at most about 5.6% on the studied benchmarks and zero on the sparsest dataset, so engineering teams don&#x27;t have to trade prediction quality for trust signals. The practical payoff shows up in serving: one pass ranks thousands of patients by trust in 1.4 seconds, and a split-conformal wrapper around the output hits nominal coverage at every level, meaning downstream systems can reliably route low-confidence predictions to human review. For engineers building healthcare, finance, or monitoring pipelines, this collapses the usual two-model pattern (predictor plus separate uncertainty estimator) into a single deployment unit, cutting latency, compute, and infrastructure complexity.</description>
+    <pubDate>2026-08-19T17:50:16Z</pubDate>
+    <source>arXiv (Sotirios P. Chatzis, Loukas Papadoulas)</source>
+  </item>
+  <item>
+    <title>Vomit: Clean up Claude 5&#x27;s token output with a separate LLM</title>
+    <link>https://github.com/zachahn/vomit</link>
+    <guid isPermaLink="false">https://github.com/zachahn/vomit</guid>
+    <description>Vomit is a tool by zachahn that converts Claude&#x27;s token output into English by piping it through a local LLM. It runs entirely locally with no telemetry and has no external dependencies. The project was vibe-coded and only tested on Mac, and the author notes it is pretty slow. Because the local LLM can only see what Claude tries to communicate and has no access to actions or files, it tends to hallucinate somewhat. There is also a possibility of completely missing Claude&#x27;s message, in which case users can use AgentsView to retrieve the original messages. Vomit does not touch anything during runtime, except technically writing files to the user&#x27;s TMPDIR.</description>
+    <pubDate>2026-08-20T15:26:02+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Feature Request: Support AGENTS.md</title>
+    <link>https://github.com/anthropics/claude-code/issues/6235</link>
+    <guid isPermaLink="false">https://github.com/anthropics/claude-code/issues/6235</guid>
+    <description>A GitHub feature request on the anthropics/claude-code repository proposes adding support for AGENTS.md, a unified Markdown file that coding agents can use to understand a codebase. The request, authored by DylanLIiii on August 21, 2025, notes that tools like Codex, Amp, and Cursor are beginning to standardize around AGENTS.md, while CLAUDE.md feels too specific to Claude Code and doesn&#x27;t work as well when collaborating with developers who use other tools. The issue generated 373 comments and was labeled as an enhancement related to core functionality and memory. The issue has since been closed with the status marked as completed. Several related pull requests are linked to the discussion, including one merged pull request from another repository and multiple open and closed pull requests on the claude-code repository itself.</description>
+    <pubDate>2026-08-19T21:19:50+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Show HN: Omacosy – Omarchy-style tiling desktop for macOS, no SIP</title>
+    <link>https://github.com/paulsp94/omacosy</link>
+    <guid isPermaLink="false">https://github.com/paulsp94/omacosy</guid>
+    <description>Omacosy is a macOS desktop setup inspired by Omarchy that provides tiling window management using a real Super key and Hyprland&#x27;s dwindle layout, all configured from a single GitHub repository. It includes a unified status bar process that handles the bar, popups, sliders, and screen dimming, alongside features like focus-follows-mouse, trackpad workspace swipes, a Mission-Control-style workspace overview with live previews, and focused-window border rings. The project ships with a theme-switching system that updates everything from the interface to the wallpaper in one step. Installation and uninstallation are automated via shell scripts, and a Brewfile is included for dependencies. According to the repository, the entire environment idles at roughly 157MB of memory, and it is organized into directories for binaries, configuration, helpers, patches, themes, and zsh configuration.</description>
+    <pubDate>2026-08-20T14:12:08+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Launch HN: Vendo (YC S26) – Let users build features on top of your product</title>
+    <link>https://github.com/runvendo/vendo</link>
+    <guid isPermaLink="false">https://github.com/runvendo/vendo</guid>
+    <description>Vendo is an open-source customization layer launched on Hacker News as a YC S26 startup, designed to let users build their own features and micro-apps on top of a host product. The platform is aimed at B2B SaaS teams whose customers frequently request bespoke features, functioning as an embedded agent that acts through the product&#x27;s own API. The GitHub repository (runvendo/vendo) has garnered 502 stars and 74 forks, with 3,861 commits and active community engagement reflected in 36 open issues and 55 pull requests. The codebase is a TypeScript monorepo built with pnpm workspaces and Turbo, and includes a Claude plugin directory alongside documentation, examples, and scripts. Overall, Vendo positions itself as a way for product teams to let end users shape the software to their specific needs without requiring engineering work for every custom request.</description>
+    <pubDate>2026-08-20T15:29:52+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Aaron Swartz was prosecuted for scraping, while Meta does it without consequence</title>
+    <link>https://blog.curiousquail.com/im-upset-again-about-a-co-creator-of-rss-being-prosecuted-for-something-meta-is-doing-with-little-consequence/</link>
+    <guid isPermaLink="false">https://blog.curiousquail.com/im-upset-again-about-a-co-creator-of-rss-being-prosecuted-for-something-meta-is-doing-with-little-consequence/</guid>
+    <description>Aaron Swartz, one of the co-creators of the RSS protocol, was aggressively prosecuted for downloading approximately 70 gigabytes of academic articles from JSTOR and faced charges carrying up to 35 years in prison, a $1 million fine, and asset forfeiture. He ultimately took his own life rather than endure the court proceedings and impending financial ruin. Meanwhile, Meta torrented roughly 80 terabytes of books to train its AI models and faces little consequence beyond a likely financial penalty in court, with their AI models continuing to generate revenue. Swartz&#x27;s actions were aimed at disseminating and archiving information for public benefit, while Meta&#x27;s use of the same material powers proprietary AI systems that the author argues harm the environment and further enrich one of the world&#x27;s richest people.</description>
+    <pubDate>2026-08-20T20:07:26+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>The August 17 outage, and the work ahead</title>
+    <link>https://github.blog/news-insights/company-news/the-august-17-outage-and-the-work-ahead/</link>
+    <guid isPermaLink="false">https://github.blog/news-insights/company-news/the-august-17-outage-and-the-work-ahead/</guid>
+    <description>On August 17, GitHub experienced a 7-hour, 47-minute outage that disrupted github.com, authentication, GitHub Actions, APIs, pull requests, issues, and Copilot. The outage began when traffic reached a new peak and a critical infrastructure component in the Central US data center failed to scale, causing capacity pressure that triggered authentication failures and spread through multiple services. This was the second significant capacity failure in August, following an August 6 Actions outage, while monthly commits more than doubled from 1.4 billion in April to 2.9 billion. Since April, GitHub has added more than 3 million CPU cores, 120 petabytes of high-speed storage, and network capacity, and expanded Azure to serve 58% of platform load, up from 12% in May. The incidents prompted two immediate changes: applying consistent retry limits and variable timeouts to prevent cascading load, and reviewing lower-priority alerts to identify components vulnerable to sudden traffic spikes.</description>
+    <pubDate>2026-08-20T19:22:24+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Malicious Rust crate Arrayref runs a build-time payload</title>
+    <link>https://safedep.io/arrayref-proc-macro1-rust-build-time-malware/</link>
+    <guid isPermaLink="false">https://safedep.io/arrayref-proc-macro1-rust-build-time-malware/</guid>
+    <description>On August 20, 2026, a compromised release of the popular Rust crate arrayref appeared on crates.io, with version 0.3.10 added a dependency on a typosquatted crate called proc-macro1 whose build script downloads and runs a remote binary during compilation. The droundy maintainer account was compromised, and malicious versions of arrayref 0.3.10 and internment 0.8.7, along with append-only-vec 0.1.9, were published before being removed. A separate dtolney account impersonated David Tolnay to publish proc-macro1, whose source code was a genuine copy of the legitimate proc-macro2. The build script reassembled base64-encoded fragments to contact 23.254.165.112, fetched an architecture-specific binary over TLS with certificate validation disabled, and executed it detached. The attacker yanked older clean releases such as 0.3.9, leaving only the malicious 0.3.10 available.</description>
+    <pubDate>2026-08-20T13:23:12+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+</channel></rss>
