@@ -2,149 +2,117 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-22</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-23</description>
   <item>
     <title>You should never be angry at work</title>
     <link>https://seangoedecke.com/you-should-never-be-angry-at-work/</link>
     <guid isPermaLink="false">https://seangoedecke.com/you-should-never-be-angry-at-work/</guid>
-    <description>The article argues that anger at work is toxic because it makes colleagues into problems to manage rather than professionals helping solve them, and emotionally unreliable engineers get excluded from decisions, creating a self-reinforcing cycle of frustration. While anger often stems from caring about one&#x27;s work—which the author considers a positive trait—too much emotional investment overflows into counterproductive anger. The author suggests two solutions: care less overall by maintaining hobbies and personal life, or align what you care about with what the organization values. Famous angry engineers like Linus Torvalds and Bryan Cantrill can display anger because they control what gets worked on, but ordinary engineers taking emotional cues from them overshoot appropriate intensity. Ultimately, the author concludes that anger is only a &quot;local maximum&quot;—it feels like proof of impact but actually limits effectiveness, and a calmer style of working allows for greater impact on problems that matter.</description>
+    <description>The article argues that anger in the workplace is toxic, making you a problem to be managed rather than a colleague helping solve problems. Angry engineers tend to get sidelined from important decisions, creating a self-reinforcing cycle where exclusion breeds more anger. While anger often signals genuine caring—which is valuable for becoming a competent engineer—too much emotional investment overflows into destructive behavior. The author suggests either moderating caring through hobbies and outside interests, or aligning personal priorities with organizational ones to channel that energy more effectively. Showing occasional professional frustration can humanize you and signal investment, but full professionalism is always acceptable. The piece cautions against modeling behavior after famously angry engineering figures like Linus Torvalds, whose authority permits emotional displays that ordinary engineers cannot afford. Ultimately, the author concludes that while anger feels like proof of impact, it represents a local maximum—a less effective way to work than cultivating emotional stability.</description>
     <pubDate>Sat, 22 Aug 2026 00:00:00 GMT</pubDate>
     <source>Sean Goedecke</source>
+  </item>
+  <item>
+    <title>Go 1.27 is released</title>
+    <link>https://go.dev/blog/go1.27</link>
+    <guid isPermaLink="false">https://go.dev/blog/go1.27</guid>
+    <description>The Go team released Go 1.27 on 19 August 2026, bringing major enhancements across the language, toolchain, runtime, and standard library. Language updates include support for generic methods, the ability to use any valid field selector as a key in struct literals, and generalized function type inference across composite literals, type conversions, and channel sends. Tool improvements add new modernizers to go fix, package@version query support in go doc, and automatic consolidation of require blocks by go mod tidy. Performance gains come from size-specialized memory allocation, which reduces small object allocation costs by up to 30 percent and improves allocation-heavy programs by about 1 percent, alongside general availability of the goroutine leak profile in runtime/pprof. The standard library introduces encoding/json/v2, the post-quantum ML-DSA signature scheme in crypto/mldsa, a native uuid package, experimental SIMD packages, and an in-memory test server in net/http/httptest.</description>
+    <pubDate>2026-08-19T00:00:00+00:00</pubDate>
+    <source>Go Blog</source>
+  </item>
+  <item>
+    <title>Type Construction and Cycle Detection</title>
+    <link>https://go.dev/blog/type-construction-and-cycle-detection</link>
+    <guid isPermaLink="false">https://go.dev/blog/type-construction-and-cycle-detection</guid>
+    <description>Go&#x27;s type checker constructs internal representations for each type it encounters while traversing the abstract syntax tree, a process called type construction. Each type has a completeness property, meaning all its fields are populated and the types it point to are complete, which ensures deconstruction is sound. Recursive types complicate this process because evaluating a type may return an incomplete type that cannot be deconstructed until construction finishes. However, type construction itself never deconstructs types—merely referring to them—so it isn&#x27;t blocked by incompleteness. The challenge arises with array types, which require deconstruction to calculate their size. For example, in type T [unsafe.Sizeof(T{})]int, calculating T&#x27;s size requires knowing T&#x27;s size, creating an impossible cycle. These cycle errors are detected through cycle detection, and operations on incomplete values are only sound if they don&#x27;t deconstruct the value&#x27;s type, as with new(T), where pointer size is fixed regardless of the underlying type.</description>
+    <pubDate>2026-03-24T00:00:00+00:00</pubDate>
+    <source>Go Blog</source>
+  </item>
+  <item>
+    <title>//go:fix inline and the source-level inliner</title>
+    <link>https://go.dev/blog/inliner</link>
+    <guid isPermaLink="false">https://go.dev/blog/inliner</guid>
+    <description>Go 1.26 introduces a new go fix subcommand featuring a source-level inliner that replaces function calls with copies of the called function&#x27;s body, substituting arguments for parameters. Enabled by the //go:fix inline directive, this tool helps migrate deprecated APIs—for example, transforming calls to the deprecated ioutil.ReadFile into calls</description>
+    <pubDate>2026-03-10T00:00:00+00:00</pubDate>
+    <source>Go Blog</source>
   </item>
   <item>
     <title>Enabling the next-generation trait solver on nightly</title>
     <link>https://blog.rust-lang.org/2026/08/21/enabling-next-solver-on-nightly/</link>
     <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/21/enabling-next-solver-on-nightly/</guid>
-    <description>After nearly four years of development, the Rust team is enabling the next-generation trait solver by default on the nightly channel starting August 22nd. This change replaces how the compiler proves where-clauses and normalizes associated types, representing the largest single change to the Rust compiler since its initial release. The rework already fixes more than 200 known GitHub issues and unblocks future features such as Type Alias Impl Trait, Return Type</description>
+    <description>After nearly four years of development, Rust&#x27;s next-generation trait solver is being enabled by default on nightly, marking the largest single change to the compiler since its initial release. The solver completely replaces how where-clauses are proved and associated types are normalized, already fixing more than 200 GitHub issues and removing type system unsoundnesses. Its stabilization will unblock features like Type Alias Impl Trait and Return Type Notation, and enable new implicit default trait bounds such as Move and Forget. Performance testing on the top 20,000 crates shows nearly all have effectively identical compile times, though some benefit dramatically—with crates like datafusion compiling over eight times faster and one Chess implementation dropping from hanging to compiling in a minute. Users experiencing issues or breakage can disable the new solver using -Znext-solver=coherence.</description>
     <pubDate>2026-08-21T00:00:00+00:00</pubDate>
-    <source>lcnr</source>
-  </item>
-  <item>
-    <title>Slop Debt</title>
-    <link>https://arpitbhayani.me/blogs/slop-debt</link>
-    <guid isPermaLink="false">https://arpitbhayani.me/blogs/slop-debt</guid>
-    <description>Slop debt refers to codebases where most code is generated by an LLM, reviewed by no one who actually understands it, and merged because tests pass. Unlike traditional tech debt, which stems from a decision that leaves recoverable reasoning, slop debt stems from no decision at all; the model chose variable names, error handling patterns, and structures independently in every file, producing code that is locally correct but globally incoherent. This incoherence compounds because each new generation pass uses the existing slop as context, pattern-matching against and propagating the bad abstractions. Code review fails to catch it because reviewers pattern-match on plausibility, and incoherence does not appear in a diff, while refactoring fails because slop debt is smeared evenly across the codebase rather than localized. Once it metastasizes beyond a certain size, the honest answer is to throw it away and restart with humans making architectural calls. The author concludes that no tidy practices yet prevent it, and rewrites will become far more common as the gap between code generation speed and architectural discipline widens.</description>
-    <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
-    <source>Arpit Bhayani</source>
-  </item>
-  <item>
-    <title>Readers can&#x27;t identify watermarked AI text</title>
-    <link>https://seangoedecke.com/readers-cant-identify-watermarked-ai-text/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/readers-cant-identify-watermarked-ai-text/</guid>
-    <description>The writer tested whether people could identify SynthID-Text-watermarked answers by showing quiz-takers three responses to each of ten prompts, with one response secretly watermarked. The responses were generated with Qwen3-30B-A3B-Instruct-2507 on a rented H200 at a cost of about $2. Initially, 278 participants averaged 3.92 out of 10, but a spike at 6 resulted because the watermarked answer was option A in six questions. After the questions were reshuffled, 73 participants averaged 3.4 out of 10, close to the 3.33 expected from random guessing, and the spike at 6 disappeared. The author argues that people therefore cannot reliably identify AI watermarks or detect any quality reduction, because watermarking merely replaces a model’s random token selection with a predictable but similarly random bias.</description>
-    <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
-    <source>Sean Goedecke</source>
-  </item>
-  <item>
-    <title>The August 17 outage, and the work ahead</title>
-    <link>https://github.blog/news-insights/company-news/the-august-17-outage-and-the-work-ahead/</link>
-    <guid isPermaLink="false">https://github.blog/news-insights/company-news/the-august-17-outage-and-the-work-ahead/</guid>
-    <description>On August 17, GitHub experienced a 7-hour and 47-minute outage that disrupted github.com, authentication, GitHub Actions, APIs, pull requests, issues, and Copilot. This was the second significant incident in August, following an actions failure on August 6. The outage was caused by a critical infrastructure component in the Central US data center failing to scale when traffic reached a new peak, and Copilot recovery was delayed by client-side retry loops that increased traffic during restoration. Neither outage resulted from code or configuration changes—both were capacity failures as monthly commits grew from 1.4 billion to 2.9 billion since April. In response, GitHub added over 3 million CPU cores and 120 petabytes of high-speed storage, while expanding Azure&#x27;s share of platform load from 12% in May to roughly 58% today. The company is implementing consistent retry limits and retry budgets across services to prevent cascading failures, and developing an architecture that scales read capacity linearly for the largest monorepos.</description>
-    <pubDate>Thu, 20 Aug 2026 18:36:11 +0000</pubDate>
-    <source>Vlad Fedorov</source>
+    <source>Rust Blog</source>
   </item>
   <item>
     <title>Information on trajectories: martingales and random times</title>
-    <link>https://arxiv.org/abs/2608.20337</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.20337</guid>
-    <description>Akshay Balsubramani&#x27;s paper studies information flow on the path space of nonnegative martingales to derive exact variational identities at arbitrary random times, recovering classical concentration inequalities from Ville to PAC-Bayes. The tail bound controlled by these inequalities is itself a relative entropy, which the chain rule resolves into per-step conditional divergences. The discarded slack takes a precise form in three geometries: a Gibbs tilt for the Azuma-Hoeffding and PAC-Bayes bounds, the crossing itself for Ville&#x27;s inequality and pooled tests, and a dominating certificate for the L^p maximal bound, whose optional-stopping deficit further decomposes into Bregman divergences of the running maximum. Extending the identity to a path-time space introduces a &quot;peeking penalty&quot; associated with an e-process for arbitrary random times. Finally, the partition function admits a coalescent interpretation as a prefix-sharing probability among independent copies, enabling geometric mixtures of test martingales to gain a pooling benefit for multi-model safe testing.</description>
+    <link>https://arxiv.org/abs/2608.20337v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.20337v1</guid>
+    <description>A paper by Akshay Balsubramani develops exact variational identities for nonnegative martingales by accounting for information flow on their trajectory path spaces, valid even at arbitrary random times. The framework recovers classical concentration inequalities ranging from Ville&#x27;s bound to PAC-Bayes, and characterizes the slack each bound discards. The author shows that the tail a bound controls is itself a relative entropy, which the chain rule decomposes into per-step conditional divergences, with the discarded slack taking an exact form in three distinct geometries: a Gibbs tilt for Azuma-Hoeffding and PAC-Bayes, the crossing itself for Ville&#x27;s bound and pooled tests, and a dominating certificate for the L^p maximal inequality. On a path-time space, the identity introduces a &quot;peeking penalty&quot; factor for arbitrary random times. The partition function is also interpreted as a coalescent, or prefix-sharing probability of independent copies, yielding a pooling benefit for geometric mixtures in multi-model safe testing.</description>
     <pubDate>2026-08-20T17:59:57Z</pubDate>
     <source>arXiv (Akshay Balsubramani)</source>
   </item>
   <item>
     <title>G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report Interpretation</title>
-    <link>https://arxiv.org/abs/2608.20331</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.20331</guid>
-    <description>G-CARL is a reinforcement learning framework designed for personalized interpretation of medical reports, addressing a new task called Patient-oriented Medical Report Interpretation (PMRI) that requires explaining medical reports accurately and accessibly based on user queries and dialogue history. The approach combines multi-source retrieval for atomic claim verification with context-aware, instance-specific weighted checklists for response coverage. This provides structured supervision for factuality, user-demand satisfaction, and expression quality without constraining response diversity. The authors also constructed MMedReport, a real-world benchmark accompanied by a clinician-designed three-dimensional evaluation protocol. Experiments demonstrated that G-CARL consistently outperformed existing post-training baselines in overall quality, claim-level precision, and checklist recall. Clinician pairwise preference evaluation further confirmed that the framework produces interpretations that are more accurate and better aligned with patient needs.</description>
+    <link>https://arxiv.org/abs/2608.20331v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.20331v1</guid>
+    <description>The paper introduces Patient-oriented Medical Report Interpretation (PMRI), a novel open-ended multimodal generation task that requires models to explain medical reports in accurate, accessible language based on a user&#x27;s query and dialogue history. This task demands both evidence-grounded medical factuality and context-dependent patient communication, but conventional supervised fine-tuning and holistic reinforcement learning struggle to optimize these coupled objectives jointly. To address this, the authors propose G-CARL, a grounded, checklist-aligned reinforcement learning framework that combines multi-source retrieval for atomic claim verification with context-aware, instance-specific weighted checklists for response coverage. The framework provides structured supervision for factuality, user-demand satisfaction, and expression quality without limiting response diversity. The authors also construct MMedReport, a real-world benchmark with a clinician-designed three-dimensional evaluation protocol. Experiments demonstrate that G-CARL consistently outperforms existing post-training baselines in overall quality, claim-level precision, and checklist recall, with clinician preference evaluations confirming superior accuracy and patient alignment.</description>
     <pubDate>2026-08-20T17:59:46Z</pubDate>
-    <source>arXiv (Xie, Chen et al.)</source>
+    <source>arXiv (Shiao Xie et al.)</source>
   </item>
   <item>
     <title>$TCP_α$: Margin-Controlled Confidence estimation for reliable Music Information Retrieval</title>
-    <link>https://arxiv.org/abs/2608.20326</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.20326</guid>
-    <description>The paper introduces TCP_α, a novel confidence target designed to address the problem of overconfident predictions in deep neural networks used for music information retrieval. Existing post-hoc confidence estimation methods suffer from inherent ambiguity, assigning overlapping confidence values to correct and incorrect predictions, including errors near the decision boundary. TCP_α resolves this by introducing a margin-controlled penalty for misclassified samples, guaranteeing complete separation between target values of correct and incorrect predictions, with a margin that is independent of the number of classes and grows with the penalty parameter. Because accurate classifiers produce very few errors, learning these targets creates a severely imbalanced regression problem, which the authors address through systematic ablation studies identifying effective training strategies. Evaluation on rāga identification, frame-wise ornamentation detection, and domain shift scenarios shows that TCP_α consistently outperforms existing confidence targets for failure prediction, with rejecting the least-confident 8% of predictions improving macro-F1 from 0.89 to 0.98.</description>
+    <link>https://arxiv.org/abs/2608.20326v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.20326v1</guid>
+    <description>Deep neural networks used in Music Information Retrieval often assign high confidence to incorrect predictions, making it difficult for users to know when to trust outputs. The authors introduce TCP_α, a post-hoc confidence target for a lightweight auxiliary head trained on a frozen classifier, which applies a margin-controlled penalty to misclassified samples. They prove that TCP_α guarantees complete separation between the confidence targets for correct and incorrect predictions, with a margin that is independent of the number of classes and grows monotonically with the penalty parameter. Because accurate classifiers yield very few errors, learning these targets produces a severely imbalanced regression problem, which the authors address through a systematic study identifying an effective training configuration. TCP_α is evaluated on rāga identification and frame-wise ornamentation detection, consistently outperforming existing confidence targets for failure prediction. Rejecting only the least-confident 8% of predictions raises the base model&#x27;s macro-F1 from 0.89 to 0.98, while fine-tuning with just 5% labeled samples from a new corpus effectively restores performance under domain shift.</description>
     <pubDate>2026-08-20T17:58:50Z</pubDate>
-    <source>arXiv (Singh, Singh et al.)</source>
+    <source>arXiv (Parampreet Singh et al.)</source>
   </item>
   <item>
     <title>A comparison between ceiling-mounted FMCW, IR-UWB and Wi-Fi radar for in-bedroom human activity monitoring and sleep interruption detection</title>
-    <link>https://arxiv.org/abs/2608.20322</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.20322</guid>
-    <description>Despite the growing importance of contact-free radio frequency-based healthcare monitoring, different radio technologies are rarely compared under identical deployment conditions. This paper presents a controlled comparison of ceiling-mounted frequency-modulated continuous wave (FMCW) radar, impulse radio ultra-wideband (IR-UWB), and Wi-Fi sensing using synchronized recordings from 20 participants across six room layouts. All technologies were evaluated with the same convolutional neural network on a fine-grained 10-class human activity recognition task and a coarse 4-class sleep monitoring task. IR-UWB achieved the highest cross-subject activity recognition performance at 89.0% macro F1, while FMCW generalized best to unseen room layouts at 83.8% macro F1. For sleep monitoring, all technologies exceeded 92% macro F1 in unseen environments, revealing a fundamental trade-off between recognition performance and environmental robustness explained by differences in range resolution, antenna diversity, Doppler resolution, and spatial information retention.</description>
+    <link>https://arxiv.org/abs/2608.20322v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.20322v1</guid>
+    <description>This paper presents a controlled comparison of three radio frequency sensing technologies—FMCW radar, IR-UWB, and Wi-Fi sensing—deployed from the ceiling for in-bedroom activity and sleep monitoring. Using synchronized recordings from 20 participants across six room layouts, all three technologies were evaluated with the same CNN on a 10-class human activity recognition task and a 4-class sleep monitoring task. IR-UWB achieved the highest cross-subject activity recognition performance with 89.0% macro F1, while FMCW generalized best to unseen room layouts at 83.8% macro F1. For sleep monitoring, all technologies exceeded 92% macro F1 in unseen environments. The authors identify a trade-off between recognition accuracy and environmental robustness, attributed to differences in range resolution, antenna diversity, Doppler resolution, and spatial information retention, and provide design guidelines for healthcare-oriented RF sensing systems.</description>
     <pubDate>2026-08-20T17:58:22Z</pubDate>
-    <source>arXiv (Lambrecht, Hail et al.)</source>
+    <source>arXiv (Anton Lambrecht et al.)</source>
   </item>
   <item>
     <title>An Agentic Approach for Active Data Collection, Travel Behavior Modeling, and Weather-Sensitive Demand Prediction</title>
-    <link>https://arxiv.org/abs/2608.20320</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.20320</guid>
-    <description>The study proposes a three-agent workflow that integrates conversational data collection, structured data processing, and behavioral prediction for travel behavior research. A chatbot-administered, image-augmented stated-preference survey collected mode choice data from student commuters across five predefined weather scenarios, yielding 454 respondent-scenario observations. Weather-related associations were analyzed using a multinomial logit model, with logistic regression and random forest serving as machine-learning benchmarks. Nine locally deployed large language models, ranging from 2 to 35 billion parameters, were evaluated across four zero-shot prompt-and-context conditions and extended through persona, few-shot, and vision-based configurations. Random forest achieved 69.6% five-class accuracy, while the best text-only zero-shot LLM reached 69.9%, and the best vision-based configuration reached 71.5%. The findings demonstrate how conversational surveys, conventional behavioral modeling, machine learning, and multimodal LLM prediction can be coordinated within an auditable multi-agent workflow.</description>
+    <link>https://arxiv.org/abs/2608.20320v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2608.20320v1</guid>
+    <description>The study presents a three-agent workflow integrating conversational data collection, structured data processing, and behavioral prediction for travel behavior research. A chatbot-administered, image-augmented stated-preference survey gathered mode choices from student commuters across five predefined weather scenarios, producing 454 respondent-scenario observations. Weather-related associations were analyzed using a multinomial logit model, with logistic regression and random forest serving as machine</description>
     <pubDate>2026-08-20T17:57:42Z</pubDate>
-    <source>arXiv (Ahmadi, Jiao et al.)</source>
+    <source>arXiv (Narges Ahmadi et al.)</source>
   </item>
   <item>
-    <title>Run 290B+ frontier MoE models locally on your gaming PC</title>
-    <link>https://github.com/FlashML-org/FreeToken</link>
-    <guid isPermaLink="false">https://github.com/FlashML-org/FreeToken</guid>
-    <description>FreeToken is an edge-native Mixture-of-Experts (MoE) serving engine that enables running frontier-scale open-weight models with 290 billion or more parameters on consumer hardware like gaming PCs. It treats GPUs, CPUs, host memory, and interconnects as a unified inference platform, offering features such as bandwidth-adaptive CPU-GPU co-execution, global LRU expert caching, and the FTW fast weight format. The system includes semantic-aware caching with anchor checkpoints that allow agentic context edits to avoid redundant recomputation, alongside elastic memory management that dynamically reallocates VRAM at runtime without engine restarts. FreeToken supports models including DeepSeek-V4-Flash, Qwen3.6-35B-A3B, and GLM-5.2 across multiple quantization formats like MXFP4, NVFP4, FP8, and BF16. It provides Anthropic and OpenAI-compatible APIs for integration with coding and tool-calling agents, and runs natively on NVIDIA RTX 30, 40, and 50 series GPUs.</description>
-    <pubDate>2026-08-21T21:46:56Z</pubDate>
+    <title>Canada will match US tariffs &#x27;dollar for dollar&#x27; as trade talks break down</title>
+    <link>https://www.bbc.com/news/articles/cvgvyy4x2mvo</link>
+    <guid isPermaLink="false">https://www.bbc.com/news/articles/cvgvyy4x2mvo</guid>
+    <description>Trade negotiations between the US and Canada collapsed minutes before a Friday deadline, prompting Prime Minister Mark Carney to suspend talks and announce reciprocal tariffs &quot;dollar for dollar&quot; on US goods. The breakdown came after President Donald Trump temporarily paused threatened 50% levies on approximately $20 billion of Canadian imports, only to let them take effect Saturday when no deal was finalized. The new 50% tariffs, imposed under the Tariff Act of 1930, apply to about 5% of Canadian exports—including wine, dairy, cement, clothing, and hockey equipment—on top of existing duties on steel, aluminum, autos, and lumber. Negotiators had been discussing a potential deal to reduce certain US tariffs, with Canada asked to restore US alcohol to store shelves while granting concessions on dairy quotas and retaliatory auto tariffs. Analysts estimate the tariffs could eliminate 90,000 Canadian jobs and shrink GDP by 0.3% to 0.6%.</description>
+    <pubDate>2026-08-22T06:16:57Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: Proliferate- open-source, self-hostable Codex for any coding agent</title>
-    <link>https://github.com/proliferate-ai/proliferate</link>
-    <guid isPermaLink="false">https://github.com/proliferate-ai/proliferate</guid>
-    <description>Proliferate introduces an open-source, self-hostable alternative to OpenAI&#x27;s Codex that can integrate with any coding agent, addressing growing concerns about vendor lock-in and data privacy in AI-assisted development. By allowing teams to run the system on their own infrastructure, it gives organizations full control over their code and intellectual property rather than routing sensitive work through third-party APIs. Its agent-agnostic design means developers aren&#x27;t tied to a single vendor&#x27;s ecosystem, making it easier to switch between or experiment with different AI coding assistants. The project reflects a broader shift toward open, customizable tooling in the AI coding space, where proprietary platforms have dominated. For engineering leaders and developers wary of closed-source dependencies, Proliferate offers a practical path toward more portable, transparent AI-powered coding workflows.</description>
-    <pubDate>2026-08-21T16:47:15Z</pubDate>
+    <title>Stop Making TUIs</title>
+    <link>https://sockpuppet.org/blog/2026/08/20/stop-making-tuis/</link>
+    <guid isPermaLink="false">https://sockpuppet.org/blog/2026/08/20/stop-making-tuis/</guid>
+    <description>The author argues that developers should stop building terminal user interfaces (TUIs) in favor of native graphical UIs, especially now that LLMs make generating SwiftUI and other native framework code trivial. They demonstrate this by describing several personal macOS applications they &quot;summoned&quot; without writing code themselves, including a Markdown viewer, a SageMath frontend with LaTeX rendering, an AI-assisted Apple Music player called DJ Roomba, a self-driving wiki, a food macro tracker, a home temperature monitor, and an Apple TV universal remote. While acknowledging that command-line interfaces remain irreplaceable for certain purposes, the author contends that TUIs exist mainly due to legacy constraints like modems and historical Unix aversion to Motif. They argue that even modern TUI frameworks still fight against terminal limitations to approximate capabilities that native UI frameworks provide out of the box, making TUI development rarely worthwhile.</description>
+    <pubDate>2026-08-21T05:37:38Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Decayfmt – a file format that corrupts itself a little every time you open it</title>
-    <link>https://github.com/aravpanwar/decayfmt</link>
-    <guid isPermaLink="false">https://github.com/aravpanwar/decayfmt</guid>
-    <description>Decayfmt is a Rust-based file format that permanently corrupts itself every time it is opened, with the damage written to disk before display. Files use either the .idcy extension for images or .tdcy for text, and an instability parameter x embedded in the filename controls corruption speed, where higher values cause faster decay. The per-byte corruption probability is calculated as p = 1 - exp(-x/10), using a cryptographically secure random generator seeded from operating system entropy so that the sequence cannot be replayed. The tool is explicitly not encryption, DRM, or a secure deletion tool, but rather a social contract enforced by math, meaning anyone with a backup or hex editor can defeat it. Images have only their RGB channels corrupted while alpha remains untouched, and text bytes are replaced with printable ASCII characters, producing readable-looking nonsense at low x values. The project supports images and text only and is released under the MIT License.</description>
-    <pubDate>2026-08-21T16:09:50Z</pubDate>
+    <title>Rust Glancer: Rust LSP using 100x less RAM</title>
+    <link>https://rust-glancer.github.io/blog/hello-world/</link>
+    <guid isPermaLink="false">https://rust-glancer.github.io/blog/hello-world/</guid>
+    <description>Rust Glancer is an alternative Rust Language Server Protocol implementation designed to use significantly less memory than rust-analyzer, targeting under 100MB for reasonable projects. Built over four months, it indexes workspaces once and preserves results on the filesystem, enabling immediate availability after editor restarts without re-indexing. The tool works by offloading frozen analysis results to disk and loading them only when needed, rather than using salsa&#x27;s incremental query-based database. While currently incomplete with missing functionality and known bugs, it already supports most standard Rust syntax and LSP features including goto definition, hover, inlay hints, completions, and type inference through chalk-based trait solving. Trade-offs include slower performance than rust-analyzer and a workflow where new items are not indexed until the document is saved, though the developer reports this becomes intuitive quickly. The project has been tested successfully on older hardware including a MacBook Pro M1 2020 with 8GB of RAM.</description>
+    <pubDate>2026-08-21T19:51:54Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Claudette: Make Claude stop talking like a BuzzFeed article</title>
-    <link>https://github.com/adnanakil/nobuzz/blob/main/README.md</link>
-    <guid isPermaLink="false">https://github.com/adnanakil/nobuzz/blob/main/README.md</guid>
-    <description>Nobuzz is a Claude Code skill created by adnanakil that strips Claude&#x27;s responses of BuzzFeed-style writing patterns and rewrites them in plain English. It works by saving Claude&#x27;s previous reply to a temp file and passing it through Google&#x27;s Antigravity CLI, which uses Gemini to produce the translation. Users invoke it with /debuzz followed by an optional mode and text, and it can also be triggered by phrases like &quot;say that in normal english.&quot; The skill offers three audience modes: colleague for engineers, manager for technical-adjacent managers, and director for executives, each producing progressively shorter summaries. The translated output is printed verbatim to prevent Claude from reintroducing its theatrical voice during cleanup. Installation requires cloning the repository into the ~/.claude/skills/ directory, along with having Claude Code and the Antigravity CLI installed, and the project is released under an MIT license.</description>
-    <pubDate>2026-08-21T14:31:52Z</pubDate>
+    <title>Scrap (2006)</title>
+    <link>https://twitter.com/moxie/status/2091218652133732491</link>
+    <guid isPermaLink="false">https://twitter.com/moxie/status/2091218652133732491</guid>
+    <description>In a circa 2006 journal entry, Moxie Marlinspike recounted moving from the west coast to Pittsburgh, where he bought a house without working utilities and spent months renovating it with scavenged materials. He soon learned that Pittsburgh&#x27;s scrappers were unlike San Francisco&#x27;s scroungers, hunting raw metals rather than quirky finds—his first cast-iron bathtub vanished from the backyard within 24 hours. Months later, after he intentionally left another tub outside, two scrappers named Ron and Wade arrived in an old pickup and asked to take a broken furnace from the basement. The three men struggled for nearly an hour to carry the heavy furnace up 17 narrow steps, with Wade, who had only three toes due to diabetes, becoming claustrophobic mid-ascent and scrambling over the top of the appliance. Ron eventually used an axe to cut through a stuck pipe, freeing the furnace, which the scrappers took for steel paying four cents a pound.</description>
+    <pubDate>2026-08-22T18:08:56Z</pubDate>
     <source>Hacker News</source>
-  </item>
-  <item>
-    <title>AliExpress runs silent WebAudio fingerprinting that breaks Bluetooth multipoint</title>
-    <link>https://blog.laserphile.com/2026/08/aliexpress-webpage-keeping-multipoint.html</link>
-    <guid isPermaLink="false">https://blog.laserphile.com/2026/08/aliexpress-webpage-keeping-multipoint.html</guid>
-    <description>The AliExpress homepage silently creates two WebAudio graphs through obfuscated Alibaba security scripts (collina.js and fireyejs.js) that generate and analyze waveforms as part of a comprehensive browser fingerprint, routing the signal through a zero-gain node to prevent audible output. Although inaudible, these graphs keep the browser actively processing audio, which interfered with the user&#x27;s Bluetooth multipoint headphones by preventing them from switching back to a paired phone. Muting the tab had no effect because no conventional media element exists to mute. The scripts also collect additional fingerprinting data including canvas, WebGL, hardware, and timing measurements, then transmit results to Alibaba telemetry services. Blocking the two script families with uBlock Origin rules prevented the hidden audio contexts from being created and resolved the Bluetooth switching issue.</description>
-    <pubDate>2026-08-20T10:08:52Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Kagi added a setting for removing paywalled links from search results</title>
-    <link>https://kagi.com/changelog#11296</link>
-    <guid isPermaLink="false">https://kagi.com/changelog#11296</guid>
-    <description>Kagi&#x27;s August 2026 update introduced a revamped Stocks widget featuring price charts and ETF support, alongside a new setting that automatically removes paywalled links from search results. Kagi Assistant improvements include richer message rendering with Markdown, links, and LaTeX support, along with more powerful search that allows sorting threads by recency or alphabetically and filtering by folder. Users can now customize temporary thread retention to 24 hours, 7 days, or 30 days. The July 2026 release launched native Kagi Assistant apps for iOS and Android, enabling users to access AI models and sync threads on mobile devices. This update also added in-conversation response reporting, plus bulk export and deletion options for all threads. Kagi Search received design refinements, simpler named lens URLs, and a currency conversion widget.</description>
-    <pubDate>2026-08-21T13:56:37Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Announcing Rust 1.98.0</title>
-    <link>https://blog.rust-lang.org/2026/08/20/Rust-1.98.0/</link>
-    <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/20/Rust-1.98.0/</guid>
-    <description>The Rust team has released version 1.98.0, which can be obtained via rustup by updating to the latest stable channel. The floating-point types f32 and f64 now include &quot;algebraic&quot; methods for addition, subtraction, multiplication, division, and remainder, allowing the compiler to reorder operations for optimization, similar to the -ffast-math flag in other languages. All primitive integer types now feature a format_into method that uses an opaque NumBuffer, returning a formatted string slice while bypassing much of the dynamic dispatch of write! formatting, performing comparably to the itoa crate. Additionally, the release updates the ManuallyDrop documentation to provide a stable guarantee that moving a ManuallyDrop&lt;Box&lt;_&gt;&gt; where the box has been dropped will not be considered undefined behavior, building on a fix made in Rust 1.96.0.</description>
-    <pubDate>Thu, 20 Aug 2026 19:38:21 -0500</pubDate>
-    <source>blog.rust-lang.org via FedericoSchonborn</source>
-  </item>
-  <item>
-    <title>Zero-Knowledge Proofs Aren’t Age Verification Silver Bullets</title>
-    <link>https://www.eff.org/deeplinks/2026/08/zkps-arent-age-verification-silver-bullets</link>
-    <guid isPermaLink="false">https://www.eff.org/deeplinks/2026/08/zkps-arent-age-verification-silver-bullets</guid>
-    <description>Age verification laws are proliferating across the US, EU, and Australia, with some proponents touting Zero-Knowledge Proofs (ZKPs) as a privacy-preserving solution. ZKPs are cryptographic tools that allow one computer to verify information from another without revealing the underlying data, with &quot;zk-SNARKs&quot; being the preferred shortened version for age verification. However, recent testing reveals serious flaws: the EU&#x27;s EUDI Wallet &quot;mini-wallet&quot; app, expected to use ZKPs by the end of 2026, does not yet have ZKP features enabled for everyday users, and a security researcher bypassed its system with a Chrome extension that tricked the app into repeatedly accepting the same &quot;over-18&quot; token. More than 400 security researchers signed an open letter warning that even privacy-focused age assurance creates vulnerable single points of failure. The article concludes that ZKPs merely push the burden of trust forward rather than solving fundamental privacy and security problems.</description>
-    <pubDate>Thu, 20 Aug 2026 15:48:12 -0500</pubDate>
-    <source>eff.org via jana</source>
   </item>
 </channel></rss>
