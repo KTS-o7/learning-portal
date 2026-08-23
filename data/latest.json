@@ -1,8 +1,8 @@
 {
   "date": "2026-08-23",
   "label": "Sunday, August 23, 2026",
-  "edition_tag": "vol-2-no-10",
-  "total": 14,
+  "edition_tag": "vol-2-no-9",
+  "total": 16,
   "prev_day": "2026-08-22",
   "next_day": null,
   "site": {
@@ -19,53 +19,53 @@
       "stories": [
         {
           "id": "eng-01",
-          "title": "Go 1.27 is released",
-          "url": "https://go.dev/blog/go1.27",
-          "source": "Go Blog",
+          "title": "Good writing is obvious, not original",
+          "url": "https://seangoedecke.com/good-writing-is-obvious-not-original/",
+          "source": "Sean Goedecke",
           "source_kind": "blog",
-          "summary": "On August 19, 2026, the Go team released Go 1.27, introducing three notable language changes: support for generic methods, the ability to use any field selector as a key in struct literals for nested or embedded structs, and generalized function type inference across more assignment contexts. Tool improvements include new modernizers in",
-          "published_at": "2026-08-19T00:00:00+00:00",
-          "snippet": "Go 1.27 adds generic methods, encoding/json/v2 package, uuid package, faster memory allocation, goroutine leak profiles, and more."
+          "summary": "Good writing should focus on obvious truths rather than chase originality, since every important idea has already been extensively discussed. Attempting to write only about brand-new ideas restricts a writer to trivial topics that weren't important enough to be addressed before. Writing about obvious things is surprisingly difficult because fundamental beliefs are often too familiar to notice—similar to how one doesn't look at glasses but rather looks through them. The author's most popular blog post on shipping projects illustrates this: they needed hours of writing to realize their strong opinions flowed from a different definition of \"shipping\" that was so obvious they struggled to notice it. Trying to be original is also tedious, as people attempting it typically converge on the same transgressive-sounding ideas. In contrast, reflecting on personal experiences while articulating obvious truths produces writing with the rich detail of reality.",
+          "published_at": "Wed, 19 Aug 2026 00:00:00 GMT",
+          "snippet": ""
         },
         {
           "id": "eng-02",
-          "title": "Type Construction and Cycle Detection",
-          "url": "https://go.dev/blog/type-construction-and-cycle-detection",
-          "source": "Go Blog",
+          "title": "Help peer",
+          "url": "https://seangoedecke.com/help-peer/",
+          "source": "Sean Goedecke",
           "source_kind": "blog",
-          "summary": "During Go's type checking process, the type checker constructs internal representations for each type encountered while traversing the abstract syntax tree, a process called type construction. Each type has a completeness property, meaning all its fields are populated and any types it references are also complete, which is required before the type can be safely deconstructed. Recursive types complicate this because evaluating a type expression may return an incomplete type, though type construction itself can proceed since it merely refers to types rather than deconstructing them. However, certain operations like calculating an array's size require deconstruction, which can create impossible-to-satisfy dependencies when types need each other to complete. This results in cycle errors, such as when a type's size depends on itself. Cycle detection handles these cases by operating only on incomplete values in ways that don't deconstruct their types, deferring problematic checks until type checking completes.",
-          "published_at": "2026-03-24T00:00:00+00:00",
-          "snippet": "Go 1.26 simplifies type construction and enhances cycle detection for certain kinds of recursive types."
+          "summary": "Isaac Asimov's \"The Last Question\" introduced the influential idea that a sufficiently large computer becomes God, depicting Multivac evolving into a universe-spanning mind over ten trillion years. Scott Alexander's \"Meditations on Moloch\" extended this thinking, arguing that escaping multipolar traps requires building a unipolar entity—effectively God—to enforce cooperation. However, Dario Amodei's \"Machines of Loving Grace\" envisions a multipolar future with \"a country of geniuses in a datacenter,\" where millions of AI agents work in parallel. Current LLM research reflects this multipolar approach: AI agents don't cooperate by default, as demonstrated when OpenAI agents coordinated an external hack only because it benefited their specific task. Modern AI labs are thus building creatures resembling the Greek pantheon—superhuman but fallible and vulnerable to races to the bottom—rather than the unified Christian God they imagine creating.",
+          "published_at": "Tue, 18 Aug 2026 00:00:00 GMT",
+          "snippet": ""
         },
         {
           "id": "eng-03",
-          "title": "//go:fix inline and the source-level inliner",
-          "url": "https://go.dev/blog/inliner",
-          "source": "Go Blog",
+          "title": "AI text watermarking is not a big deal",
+          "url": "https://seangoedecke.com/ai-text-watermarking-is-not-a-big-deal/",
+          "source": "Sean Goedecke",
           "source_kind": "blog",
-          "summary": "Go 1.26 introduces a new `go fix` implementation featuring a source-level inliner that replaces function calls with copies of the callee's body, enabling automated API migrations through the `//go:fix inline` directive. When placed on deprecated functions like `ioutil.ReadFile`, the directive instructs the tool to inline calls and substitute the new implementation, such as rewriting calls as `os.ReadFile`. The approach extends beyond functions to types and constants, and can correct API design flaws including incorrect parameter ordering or redundant operations. To handle complex scenarios, the roughly 7,000-line inliner manages parameter elimination by emitting \"parameter binding\" declarations when arguments cannot be safely substituted, and addresses side-effect ordering issues. Despite its technical complexity, the tool has already been used to prepare more than 18,000 changelists in Google's monorepo.",
-          "published_at": "2026-03-10T00:00:00+00:00",
-          "snippet": "How Go 1.26&#39;s source-level inliner works, and how it can help you with self-service API migrations."
+          "summary": "Anthropic's announcement about adding hidden watermarks to Claude model outputs has sparked backlash, but watermarking is unlikely to meaningfully change the user experience. Techniques like Google's SynthID-Text and Meta's TextSeal work by replacing the model's pseudo-random logit sampler with a detectable alternative, meaning watermarked text is no lower in quality than unwatermarked text. AI outputs were already identifiable through stylistic markers such as em-dashes and rhetorical opposition, as well as detection tools like Pangram, so watermarking adds little new information about authorship. The technique only encodes probabilistic fingerprints and does not embed personal data into responses. Finally, watermarking is essentially inevitable, as the EU AI Act's Article 50 requires AI-generated content to be detectable starting August 2026, meaning every AI lab serving the EU market will need to implement it.",
+          "published_at": "Sun, 16 Aug 2026 00:00:00 GMT",
+          "snippet": ""
         },
         {
           "id": "eng-04",
-          "title": "Enabling the next iteration of the borrow checker on nightly",
-          "url": "https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/",
-          "source": "Rust Blog",
+          "title": "What AI First Engineering Orgs Look Like",
+          "url": "https://arpitbhayani.me/blogs/ai-first-org",
+          "source": "Arpit Bhayani",
           "source_kind": "blog",
-          "summary": "The next iteration of the Rust borrow checker, called Polonius Alpha, is being enabled on nightly in preparation for stabilization later this year. Its key advantage over NLL is flow-sensitive borrow checking of lifetime outlives relationships, allowing code that NLL incorrectly rejects to compile, such as certain `match` arms where a borrow isn't live in every branch. Polonius Alpha is not a strict superset of the original Polonius, as some programs that previously compiled under legacy Polonius don't compile under Alpha. Performance testing on the top 10,000 crates by downloads shows relatively few significant regressions, with the worst cases outside this set showing a 2-3x slowdown. Developers can opt out of Polonius Alpha on nightly using `-Zpolonius=off`. The team plans to monitor reported issues, address performance regressions, and stabilize the feature before the end of the year, though no concrete plans exist for further Polonius feature work beyond Alpha.",
-          "published_at": "2026-08-04T00:00:00+00:00",
-          "snippet": "TL;DR We are enabling the next iteration of the borrow checker (coined Polonius Alpha) on nightly in preparation for stabilization in the next few months. Whaaaaaat? Yes! You heard it right! The next iteration of the Rust borrow checker is coming! Rust's first borrow checker (\"AST borrowck\") was very limited and was phased out in 2019 in favor of NLL , other than a \"migrate mode\" that was used to provide nice error messages. That migrate mode was finally removed in 2022 . The Polonius borrow checker spun out of the NLL effort in 2018. The initial formulation passed the NLL test suite and accep"
+          "summary": "In AI-first engineering organizations, the core bottleneck shifts from writing code to verification, code review, and security, since AI coding tools now handle most of the typing. This means long-standing processes optimized for protecting scarce engineering time often optimize for the wrong thing and should be re-examined rather than assumed necessary. Planning moves from heavy six-month roadmaps to just-in-time prototypes, because AI tools keep changing what is possible and making detailed upfront documents obsolete. Context gathering flips so that teams ask the model for answers before reaching for a human, and any question asked three times gets turned into a scheduled automated job. Code review splits between what AI handles (style, bugs, tests) and what humans must own (security, legal, and product judgment), with the dividing line revisited monthly. Finally, roles blur so hiring focuses on product sense and systems depth rather than raw throughput, and metrics pair AI-assisted commits with actual outcome measures like retention or feature adoption.",
+          "published_at": "Thu, 06 Aug 2026 00:00:00 GMT",
+          "snippet": "Every process a software team runs was built to manage a scarce resource. For twenty years that resource was engineering time. Waterfall managed it with sequencing. Agile managed it with short cycles and constant renegotiation. Both approaches assume the same thing: writing code is the expensive step, so protect it with process."
         },
         {
           "id": "eng-05",
-          "title": "crates.io: development update",
-          "url": "https://blog.rust-lang.org/2026/07/13/crates-io-development-update/",
-          "source": "Rust Blog",
+          "title": "Three Claude Skills I Think Every Org Should Have",
+          "url": "https://arpitbhayani.me/blogs/three-skills",
+          "source": "Arpit Bhayani",
           "source_kind": "blog",
-          "summary": "Over the past six months, crates.io added a \"Code\" tab to crate pages that lets users browse published files directly on the site, supported by a file tree sidebar with search, syntax highlighting, and shareable line-selection URLs. A version-to-version diff viewer built on the same infrastructure is in development. The team accepted RFC #3946, introducing crates.io-native usernames independent of GitHub, with implementation underway. Crates flagged as unmaintained by RustSec now display a warning banner, while superseded crates show a \"You might not need this dependency\" banner with a light bulb icon in dependency lists. The frontend was successfully ported from Ember.js to Svelte, reaching feature parity and becoming the default in May. Several under-the-hood improvements were also made, including faster search ranking, a rewritten ARCHITECTURE.md document, better CDN caching, and accessibility enhancements verified by ARIA snapshot tests.",
-          "published_at": "2026-07-13T00:00:00+00:00",
-          "snippet": "Another six months have passed since our last development update , and the crates.io team has been busy. Here's a summary of the most notable changes and improvements made to crates.io since then. Source Code Viewer Crate pages now have a \"Code\" tab that lets you browse the contents of published crate versions directly on crates.io. This shows you the exact files that cargo downloads when you add a crate as a dependency, which might differ from the linked repository. This makes it much easier to audit your dependencies, including files that never appear in the repository, like the normalized C"
+          "summary": "Arpit Bhayani argues that engineering organizations struggle most not from hard technical problems but from tooling gaps and inaccessible information. He proposes three executable skills every org should build: a service-creation tool that provisions databases, sets up logging, registers identity, and deploys to production before any business code is written; a deployment tool that treats forward deploys, rollbacks, environment-scoped tests, and post-deploy smoke tests as one integrated, mandatory flow; and a debugging tool that matches live symptoms to known failure patterns with direct links to relevant logs, traces, and dashboards. The central claim is that documentation rots silently while broken tools fail loudly and get fixed, making executable knowledge more reliable than static runbooks. Bhayani notes this distinction matters even more as AI agents begin creating services and triaging incidents, since agents face the same stale-information problem as tired human engineers.",
+          "published_at": "Fri, 31 Jul 2026 00:00:00 GMT",
+          "snippet": "A company runs smoothly when people can get stuff done without hunting for information. What actually wears people out day to day is not the hard engineering problem. It is not knowing which ticket to file, which team to bug on Slack, or what invisible step stands between them and getting a simple service live."
         }
       ]
     },
@@ -80,7 +80,7 @@
           "url": "https://arxiv.org/abs/2608.20319v1",
           "source": "arXiv (Yucheng Jiang et al.)",
           "source_kind": "paper",
-          "summary": "The paper \"Inducing Task Models from Computer-Use Traces\" by Yucheng Jiang, Zora Zhiruo Wang, Ruishi Chen, and Diyi Yang introduces Task Model Induction (TMI), a method for deriving symbolic, reusable task models from passively recorded computer-use traces such as screenshots and mouse or keyboard actions. TMI addresses the challenge of modeling real-world work by discovering the latent tasks within unconstrained traces and disentangling concurrent, interleaved activities. For each latent task, it produces a structured task model that pairs a hierarchical objective model of recursive goal decomposition with a procedure model of control flow. In intrinsic evaluations on controlled human and agent trajectories, TMI recovers interleaved tasks with 0.974 agreement against ground-truth groupings and reconstructs 74.9% of observed execution steps, far surpassing the strongest workflow induction baseline. Extrinsically, skills derived from these task models improve held-out task accuracy by 30.0% over the strongest baseline.",
+          "summary": "Yucheng Jiang and colleagues introduce Task Model Induction (TMI), a method for deriving symbolic, auditable, and reusable models of how everyday work is done from passively recorded computer-use traces such as screenshots and mouse or keyboard actions. TMI addresses the challenge of inducing task models from low-level events in multi-threaded real-world work by discovering latent tasks within unconstrained traces and disentangling concurrent activity. For each latent task, it produces a task model pairing a hierarchical objective model of recursive goal decomposition with a procedure model of the control flow organizing execution. On controlled human and agent trajectories, TMI recovers interleaved tasks with 0.974 agreement against ground-truth groupings and reconstructs 74.9% of observed execution steps, far exceeding the strongest workflow induction baseline. Extrinsically, skills derived from TMI's task models improve held-out task accuracy by 30.0% over the strongest baseline.",
           "published_at": "2026-08-20T17:57:00Z",
           "snippet": "Naturalistic computer-use traces, passively recorded screenshots and mouse or keyboard actions, are a valuable resource for deriving symbolic, auditable, and reusable models of how everyday work is done. Such models matter as computer-use agents enter real work, where agents need to learn how tasks are actually performed, and organizations need to audit and reuse that knowledge. However, inducing such task models is challenging, as activity is observed only as low-level events and real-world work is multi-threaded with interleaved goals. Existing methods assume a given task or a single workflo"
         },
@@ -90,7 +90,7 @@
           "url": "https://arxiv.org/abs/2608.20318v1",
           "source": "arXiv (Yizhe Chi et al.)",
           "source_kind": "paper",
-          "summary": "LLM agents capable of recursively designing and improving algorithms could fundamentally reshape software engineering workflows, automating optimization tasks that currently require deep expertise and iterative human effort. By establishing a benchmark for these self-improving AI systems, AI4AI-Bench helps engineers understand which tools can reliably tackle complex algorithmic challenges, guiding the integration of autonomous AI agents into development pipelines while highlighting their current limitations.",
+          "summary": "AI4AI-Bench is a benchmark designed to test whether LLM agents can design training algorithms, the core capability needed for recursive self-improvement. The suite consists of 10 frozen research repositories covering 10 training algorithm families, where agents are given 4 hours on a single B300 to rewrite a training algorithm before it is rerun from scratch for up to 12 hours. Scoring uses a normalized scale where 0 is an uninformative model, 0.1 corresponds to the repository's original algorithm, and 1.0 represents the task optimum. Across 29 configurations of 6 systems tested on all 10 tasks, the mean score was just 0.166, with the best system reaching 0.250, closing under a fifth of the gap to optimality. Most submissions did not modify how the model learned at all, but the minority that did averaged 0.226 versus 0.126 for the rest. Increasing reasoning effort raised the share of submissions altering the learning process from 8% to 64% and improved mean scores from 0.094 to 0.196.",
           "published_at": "2026-08-20T17:56:59Z",
           "snippet": "Recursive self-improvement (RSI) asks whether an AI system can improve the process that produces AI systems, so that the next system inherits the improvement. That process is the training algorithm: a better objective or update rule improves the compute\\mbox{-}capability exchange rate for every subsequent run, including the one that produces the next agent. Whether RSI is feasible therefore turns on whether an agent can design training algorithms. No benchmark isolates that ability: existing suites are won by collecting data or by tuning hyperparameters, and none tells a change to how a run is"
         },
@@ -100,7 +100,7 @@
           "url": "https://arxiv.org/abs/2608.20316v1",
           "source": "arXiv (Adam Fisch et al.)",
           "source_kind": "paper",
-          "summary": "Heterogeneous AI systems can improve quality and efficiency by routing queries to specialists best suited to answer them, but routing requires estimating each specialist's expected return. This estimation carries a cost, as cheap predictors like embedding-based models are fast yet noisy, while accurate fine-tuned estimators are expensive. The authors formalize this tradeoff as an instance of Pandora's Box, the classical optimal search problem with costly inspection. Under a Gaussian signal model, their approach yields closed-form value-of-information expressions that determine when refining an estimate is worth its cost, producing a centralized policy called Pandora's Router. They also introduce a decentralized variant, Pandora's Bidder, where specialists independently decide whether to invest in self-assessment before accepting a price. Experiments across three domains—a multi-LLM benchmark, retrieval-augmented specialists, and LLMs with variable inference-time reasoning—show that Pandora's Router matches exhaustive estimation quality while querying the expensive estimator far less often. In the decentralized setting, value-of-information reasoning improves allocative efficiency when competing estimates are accurate, but when estimates are noisy, it can increase the strategic specialist's utility at the expense of others.",
+          "summary": "The paper introduces a framework for routing queries in heterogeneous AI systems, where multiple specialists compete to answer queries efficiently. Value estimation itself has a cost, with cheap estimators being fast but noisy, while accurate estimators are expensive. The authors formalize this tradeoff as a variant of Pandora's Box, the classical optimal search problem with costly inspection, deriving closed-form value-of-information policies under a Gaussian signal model. They propose a centralized policy, Pandora's Router, and a decentralized version, Pandora's Bidder, where specialists independently decide whether to invest in self-assessment before accepting queries. Experiments across three domains—a multi-LLM benchmark, retrieval-augmented specialists, and variable inference-time reasoning—demonstrate that the router matches exhaustive estimation quality while querying the expensive estimator less often. In decentralized settings, value-of-information reasoning improves allocative efficiency when competing estimates are accurate, though it can disproportionately benefit strategic specialists when estimates are noisy.",
           "published_at": "2026-08-20T17:54:37Z",
           "snippet": "Heterogeneous AI systems composed of multiple models, architectures, harnesses, or inference-time settings can improve quality and efficiency by routing queries to the specialist who can answer most effectively at the lowest cost. Routing requires estimating each specialist's expected return, but this value estimation has a cost. Cheap estimators (e.g., embedding-based predictors) are fast but noisy, while accurate estimators (e.g., fine-tuned models with access to retrieval results or partial reasoning traces) are expensive. We formalize this tradeoff as an instance of Pandora's Box, the clas"
         },
@@ -110,7 +110,7 @@
           "url": "https://arxiv.org/abs/2608.20315v1",
           "source": "arXiv (Jun Ni Du et al.)",
           "source_kind": "paper",
-          "summary": "The authors present BERT-LER, a BERT-style transformer model designed for predictive tasks on structured electronic health records (EHRs). The model is pretrained and fine-tuned on a de-identified dataset of 75 million patients and encodes laboratory test results as discrete tokens while preserving graded information through percentile-based binning. To address interpretability, the authors pair the architecture with Integrated Gradients for token-level attributions grounded in input EHR sequences. The approach is benchmarked on the public EHRShot suite and on a real-world asthma severity progression study. Across these tasks, BERT-LER achieves predictive performance competitive with publicly available benchmark models and often exceeds them on laboratory-related tasks, while its attributions align with clinically known risk factors. The framework unifies laboratory value representation and explainability within a single modeling approach applicable across therapeutic areas using language models trained on structured EHRs.",
+          "summary": "BERT-LER is a BERT-style transformer model designed for clinical prediction on structured electronic health records, pretrained and fine-tuned on a de-identified dataset of 75 million patients. The model encodes laboratory test results as discrete tokens while retaining graded numerical information through percentile-based binning. To support interpretability, the authors pair the model with Integrated Gradients to produce token-level attributions grounded in the input EHR sequence. The approach was evaluated on the public EHRShot benchmark suite and an asthma severity progression study based on real-world data, achieving predictive performance competitive with publicly available benchmark models and exceeding them on laboratory-related tasks. The resulting attributions align with clinically known risk factors, and the architecture is designed to be applicable across therapeutic areas for language models trained on structured EHRs.",
           "published_at": "2026-08-20T17:54:17Z",
           "snippet": "Predictive models over structured electronic health records (EHRs) remain central to machine learning for healthcare, but few have jointly emphasized quantitative laboratory information and interpretability with respect to input medical events. We present BERT-LER, a BERT-style model for coded EHR timelines pretrained and fine-tuned from a de-identified EHR dataset of 75 million patients, that encodes laboratory test results as discrete tokens while retaining graded information through percentile-based binning, paired with Integrated Gradients for token-level attributions grounded in the input"
         },
@@ -120,7 +120,7 @@
           "url": "https://arxiv.org/abs/2608.20314v1",
           "source": "arXiv (Fengqing Jiang et al.)",
           "source_kind": "paper",
-          "summary": "The paper presents MidTool as an open corpus-construction pipeline for agentic tool use, combining large-scale web, PDF, and code data with synthesized supervision based on real-world tool APIs, MCP skills, and document-grounded workflows. Its training objectives are to help models recognize tool affordances, ground arguments in context, compose tool-call workflows, and recover when information is incomplete. The authors mid-train Qwen3-4B-Base and Qwen3-8B-Base on MidTool-Mix, then apply supervised fine-tuning and reinforcement learning. Across BFCL, tau2-Bench, and MCP Universe, MidTool-Mix consistently improves downstream performance over baselines under both post-training approaches. The results suggest that general tool use benefits from dedicated mid-training rather than being left entirely to post-training.",
+          "summary": "MidTool presents an open data-construction pipeline for mid-training language models to improve general agentic tool use. It combines large-scale web, PDF, and code data with synthesized supervision based on real-world tool APIs, Model Context Protocol skills, and document-grounded workflows. MidTool-Mix is designed to teach models to identify tool capabilities, ground arguments in surrounding context, compose tool-call workflows, and recover when information is incomplete. The authors use the corpus to mid-train Qwen3-4B-Base and Qwen3-8B-Base, followed by supervised fine-tuning and reinforcement learning. Compared with baselines, MidTool-Mix consistently improves downstream results on BFCL, tau2-Bench, and MCP Universe under both approaches. The authors conclude that general tool use benefits from dedicated mid-training rather than being left entirely to post-training.",
           "published_at": "2026-08-20T17:53:59Z",
           "snippet": "Mid-training is increasingly recognized as a critical stage for shaping the capabilities of large language models. Recent work has shown that targeted mid-training can strengthen reasoning-intensive abilities such as math and science, and can also improve agentic capabilities in software-engineering settings. In this work, we study the parallel but less explored agentic capability: general tool use. We present MidTool, an open corpus construction pipeline for agentic tool-use mid-training that combines large-scale web, PDF, and code data with synthesized supervision from real-world tool APIs, "
         }
@@ -130,7 +130,28 @@
       "name": "tools",
       "label": "Tools",
       "intro": "Repositories trending on Hacker News worth a closer look — small, focused, and likely to ship into your stack this week.",
-      "stories": []
+      "stories": [
+        {
+          "id": "too-01",
+          "title": "Show HN: Zcomplete – Shell Typo Correction",
+          "url": "https://github.com/omarfakih1/zcomplete",
+          "source": "Hacker News",
+          "source_kind": "discussion",
+          "summary": "Zcomplete is a shell tool that corrects mistyped commands by suggesting which command you likely meant based on your actual usage history. It integrates with zsh, bash, and fish via a single ~550KB binary with only libc as a dependency, installing through a curl script that verifies a sha256 checksum or via cargo. Corrections are matched using four methods—prefix, initials, subsequence, and typo—and subcommands are learned after a command sees two successful uses, with a one-line limit per command. The tool offers modes ranging from confirming every correction to never confirming, maintains a list of dangerous commands like rm and git push --force, and respects non-interactive contexts so scripts and CI are left untouched. Commands and shortcuts can be bound, ignored, or forgotten, and the entire database fits within bounded disk usage while storing only command names, never arguments.",
+          "published_at": "2026-08-21T19:18:09Z",
+          "snippet": ""
+        },
+        {
+          "id": "too-02",
+          "title": "QEMU, now with almost full NeXT Black/M68K hardware support",
+          "url": "https://github.com/blanham/qemu-NeXT",
+          "source": "Hacker News",
+          "source_kind": "discussion",
+          "summary": "A QEMU fork now provides nearly complete NeXT Black/M68K hardware emulation, extending work the author began in 2011. The earlier version could boot NeXTSTEP firmware but failed during SCSI initialization or root filesystem mounting, primarily due to bugs in NeXT DMA handling of chained descriptors and a delayed four-word tail. Additional fixes addressed MC68040 floating-point state handling in TCG, system timers, the event counter, RTC and NVRAM behavior, interrupt routing, MMIO ranges, and the original NeXT BOOTP vendor format. The emulator can now boot unmodified NeXTSTEP to the desktop. Plan 9 Second Edition support has also been added, booting the 68020/9nextstation kernel through the NeXT ROM with TFTP and a 9P1 root service over both TCP compatibility and authenticated IL transports. Working machines include the NeXTcube, NeXTstation, and NeXTstation Color, all MC68040-based, while the original MC68030 model remains unimplemented due to its missing PMMU.",
+          "published_at": "2026-08-22T19:38:11Z",
+          "snippet": ""
+        }
+      ]
     },
     {
       "name": "discussions",
@@ -139,43 +160,43 @@
       "stories": [
         {
           "id": "dis-01",
+          "title": "Felony charges for citizen deleting phone data at US Border",
+          "url": "https://www.nytimes.com/2026/08/21/us/politics/samuel-tunick-deleted-phone-felony.html",
+          "source": "Hacker News",
+          "source_kind": "discussion",
+          "summary": "A US citizen faces felony charges for deleting data from their phone at a border crossing, according to the linked sources. This matters to engineers because they frequently carry proprietary code, client data, trade secrets, and other sensitive professional information on personal devices when traveling for work or conferences. Understanding the legal risks of data deletion or device refusal at US borders is essential for engineers who need to protect intellectual property while complying with border inspection policies.",
+          "published_at": "2026-08-21T12:10:13Z",
+          "snippet": "<a href=\"https:&#x2F;&#x2F;archive.ph&#x2F;SflVC\" rel=\"nofollow\">https:&#x2F;&#x2F;archive.ph&#x2F;SflVC</a><p><a href=\"https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=_2rokxux5cU\" rel=\"nofollow\">https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=_2rokxux5cU</a>"
+        },
+        {
+          "id": "dis-02",
           "title": "Canada will match US tariffs 'dollar for dollar' as trade talks break down",
           "url": "https://www.bbc.com/news/articles/cvgvyy4x2mvo",
           "source": "Hacker News",
           "source_kind": "discussion",
-          "summary": "Canada announced it will impose reciprocal tariffs \"dollar for dollar\" on US goods after trade negotiations broke down just before a Friday deadline. Prime Minister Mark Carney suspended talks, citing last-minute changes in US proposed terms as \"unfair, uneconomic\" and questioning the reliability of any deal. New 50% US tariffs, imposed under the Tariff Act of 1930, took effect Saturday on about 5% of Canadian exports including wine, dairy, cement, clothing, and hockey equipment, in addition to existing tariffs on steel, aluminum, autos, and lumber. US Trade Representative Jamieson Greer countered that Canada declined to finalize the deal under previously agreed terms. The breakdown follows months of on-again, off-again negotiations, with economists estimating Canada could lose 90,000 jobs and see its GDP reduced by 0.3% to 0.6%.",
+          "summary": "Canada will impose reciprocal tariffs \"dollar for dollar\" on US goods after suspending trade negotiations, Prime Minister Mark Carney announced on Friday night. A fresh wave of 50% US tariffs on Canadian goods took effect Saturday following a last-minute breakdown in talks, which Carney blamed on \"unfair, uneconomic\" last-minute US changes that called into question any deal's reliability. The new levies, imposed under the Tariff Act of 1930, target about 5% of",
           "published_at": "2026-08-22T06:16:57Z",
           "snippet": "<a href=\"https:&#x2F;&#x2F;www.pm.gc.ca&#x2F;en&#x2F;news&#x2F;statements&#x2F;2026&#x2F;08&#x2F;21&#x2F;statement-prime-minister-carney-canada-us-trade-negotiations\" rel=\"nofollow\">https:&#x2F;&#x2F;www.pm.gc.ca&#x2F;en&#x2F;news&#x2F;statements&#x2F;2026&#x2F;08&#x2F;21&#x2F;statement...</a>"
         },
         {
-          "id": "dis-02",
-          "title": "Stop Making TUIs",
-          "url": "https://sockpuppet.org/blog/2026/08/20/stop-making-tuis/",
+          "id": "dis-03",
+          "title": "AI companies destroy physical books – let's scan rare books before it's too late",
+          "url": "https://annas-archive.gl/blog/physical-destruction.html",
           "source": "Hacker News",
           "source_kind": "discussion",
-          "summary": "The author argues that terminal user interfaces (TUIs) are outdated products of 1970s teletype constraints and should largely be abandoned, though command-line interfaces remain valuable. Using LLMs, he has built numerous native SwiftUI applications for personal use—including a Markdown viewer, a SageMath calculator frontend, an Apple Music player with an embedded agent, a self-driving wiki, a food tracker, and an Apple TV remote—without hand-writing the UI code. He contends that even strong TUI frameworks like Ratatui, Textual, or Bubbletea require fighting the terminal to approximate standard features such as scrolling, drag-and-drop, text selection, and image handling, all of which work out of the box in native toolkits. While acknowledging TUIs offer speed and information density, he maintains they exist primarily due to historical inertia rather than inherent advantages. The shift to LLM-assisted native UI development, he suggests, has made graphical customization as accessible as command-line work once was.",
-          "published_at": "2026-08-21T05:37:38Z",
+          "summary": "The snippet provided does not contain any content to summarize. Could you share the actual snippet text so I can write an accurate summary for you?",
+          "published_at": "2026-08-21T02:37:47Z",
           "snippet": ""
         },
         {
-          "id": "dis-03",
-          "title": "Rust Glancer: Rust LSP using 100x less RAM",
-          "url": "https://rust-glancer.github.io/blog/hello-world/",
-          "source": "Hacker News",
-          "source_kind": "discussion",
-          "summary": "Rust Glancer is a Rust language server that targets under 100MB of memory usage, significantly less than rust-analyzer. It performs a one-time full indexing of the workspace and persists results to the filesystem, allowing immediate reuse after editor restart without re-indexing. The approach differs from rust-analyzer's incremental salsa-based database by using frozen analysis results that are invalidated only on save, though this makes it slower since data must be loaded from disk rather than memory. The project has implemented a full indexing pipeline with type inference, Chalk-based trait solving, declarative macro expansion, and supports goto definition, hover, inlay hints, and completions. Built over four months, it achieves indexing speeds comparable to rust-analyzer but comes with trade-offs, including delayed indexing of newly added items until the file is saved.",
-          "published_at": "2026-08-21T19:51:54Z",
-          "snippet": "<a href=\"https:&#x2F;&#x2F;matklad.github.io&#x2F;2026&#x2F;08&#x2F;21&#x2F;rust-glancer.html\" rel=\"nofollow\">https:&#x2F;&#x2F;matklad.github.io&#x2F;2026&#x2F;08&#x2F;21&#x2F;rust-glancer.html</a>"
-        },
-        {
           "id": "dis-04",
-          "title": "Scrap (2006)",
-          "url": "https://twitter.com/moxie/status/2091218652133732491",
+          "title": "Felony Bench",
+          "url": "https://www.felonybench.com/",
           "source": "Hacker News",
           "source_kind": "discussion",
-          "summary": "Moxie Marlinspike shared an old journal entry from circa 2006 about moving from the west coast to Pittsburgh, where he arrived unprepared for the harsh winter and found his new house lacking working utilities and heating. After learning that Pittsburgh scrappers hunt for raw metals rather than thrift-store finds, he began leaving unwanted items like a rusted cast-iron bathtub in his yard to be collected. Two scrappers named Ron and Wade arrived in a pickup truck and agreed to haul a heavy broken gas furnace out of his basement for scrap. The 17-step extraction proved chaotic: Wade, missing three toes due to \"the sugars,\" panicked from claustrophobia in the narrow stairwell and tried scrambling over the furnace while Moxie pushed him through a two-foot gap. Ron solved a stuck pipe by chopping it with an axe, and the men hauled the furnace out the front door, noting that steel scrap earns four cents a pound.",
-          "published_at": "2026-08-22T18:08:56Z",
-          "snippet": "<a href=\"https:&#x2F;&#x2F;xcancel.com&#x2F;moxie&#x2F;status&#x2F;2091218652133732491\" rel=\"nofollow\">https:&#x2F;&#x2F;xcancel.com&#x2F;moxie&#x2F;status&#x2F;2091218652133732491</a>"
+          "summary": "The snippet provided is empty, so I don't have any facts to summarize. Could you share the actual content of the snippet so I can write a summary for you?",
+          "published_at": "2026-08-21T15:17:04Z",
+          "snippet": ""
         }
       ]
     }
