@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Daily Byte — 2026-08-23</title>
+<title>Daily Byte — 2026-08-25</title>
 <meta name="description" content="A byte-size daily digest for engineers who value depth over noise.">
 <link rel="alternate" type="application/rss+xml" title="Daily Byte"
       href="https://learn.shenthar.me/rss.xml">
@@ -114,178 +114,162 @@ color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
   <div class="left"><a href="https://learn.shenthar.me/"><strong>Daily Byte</strong></a>
     <a href="https://github.com/KTS-o7/learning-portal">Source</a><a href="https://learn.shenthar.me/archive/">Archive</a>
     <a href="https://learn.shenthar.me/rss.xml">RSS</a></div>
-  <div class="nav"><a class="nav-arrow" href="https://learn.shenthar.me/archive/2026-08-22.html" title="2026-08-22">‹</a><span class="d">Sunday, August 23, 2026</span><span class="nav-arrow disabled">›</span></div>
-  <div class="right"><span class="count">18 STORIES</span></div>
+  <div class="nav"><a class="nav-arrow" href="2026-08-23.html" aria-label="Previous">‹</a><span class="d">Tuesday, August 25, 2026</span><span class="nav-arrow disabled">›</span></div>
+  <div class="right"><span class="count">16 STORIES</span></div>
 </div></div>
 
 <header class="mast">
   <h1>Daily Byte<span class="dot">.</span></h1>
   <div class="tag">A byte-size daily digest for engineers who value depth over noise.</div>
-  <div class="edition">Sunday, August 23, 2026 · Edition 2026-08-23</div>
+  <div class="edition">Tuesday, August 25, 2026 · Edition 2026-08-25</div>
   <div class="nameplate"><span>Engineering</span></div>
 </header>
 
 <main>
   <div class="nameplate" style="margin:30px auto"><span>Engineering</span></div>
 
-<p class='intro' style='max-width:680px;margin:8px auto 18px;text-align:center;color:var(--mut2);font-style:italic;font-family:var(--serif)'>Long-form engineering writing from independent voices — what&#x27;s shipping, what&#x27;s painful, and what language designers think is worth your time.</p>
+<p class="section-intro" style="color:var(--mut);font-style:italic;margin:-6px 0 14px;text-align:center">Independent voices from engineering blogs — what shipped, what hurt, and what language designers think matters this week.</p>
 <article class="story">
   <div class="lbl">ENGINEERING</div>
   <div class="acts"></div>
-  <h2><a href="https://seangoedecke.com/good-writing-is-obvious-not-original/">Good writing is obvious, not original</a></h2>
-  <div class="sum">The author argues that good writing aims to express obvious truths rather than pursue originality, and that doing so paradoxically produces the most original work. Since most important ideas have already been discussed by generations of thinkers, focusing exclusively on brand-new ideas restricts writers to trivial topics. Writing about obvious things is surprisingly difficult because fundamental beliefs are easy to overlook, similar to how we rarely notice the glasses on our own face. The author&#x27;s most popular post on shipping projects exemplifies this, as it took extensive writing to realize his advice stemmed from a different basic definition of &quot;shipping.&quot; Trying to be original, by contrast, tends to be boring, leading writers to pattern-match toward predictable, transgressive-sounding ideas, while reflecting on obvious experiences yields the interesting grit and detail of reality.</div>
-  <div class="smeta"><span class="pill p-blog">Sean Goedecke</span></div>
+  <h2><a href="https://go.dev/blog/go1.27">Go 1.27 is released</a></h2>
+  <div class="sum">Go 1.27 was released on August 19, 2026, bringing updates across the language, toolchain, runtime, and standard library. The language now supports generic methods, permits any valid field selector as a key in struct literals including nested or embedded struct fields, and applies function type inference in all assignment contexts such as composite literals, type conversions, and channel sends. Tool improvements include four new go fix modernizers (atomictypes, embedlit, slicesbackward, and unsafefuncs), version queries in go doc, and automatic consolidation of require blocks by go mod tidy. Size-specialized memory allocation reduces small object allocation costs by up to 30%, yielding about a 1% overall performance gain, while the goroutine leak profile in runtime/pprof is now generally available. New</div>
+  <div class="smeta"><span class="pill p-blog">Go Blog</span></div>
 </article>
 
 <article class="story">
   <div class="lbl">ENGINEERING</div>
   <div class="acts"></div>
-  <h2><a href="https://seangoedecke.com/help-peer/">Help peer</a></h2>
-  <div class="sum">Isaac Asimov&#x27;s &quot;The Last Question&quot; envisioned Multivac evolving over ten trillion years into a universe-spanning mind that becomes God. Scott Alexander&#x27;s &quot;Meditations on Moloch&quot; describes how competitive dynamics grind down cooperation, arguing that only a unipolar entity can escape these traps. Dario Amodei&#x27;s &quot;Machines of Loving Grace&quot; instead proposes a &quot;country of geniuses in a datacenter,&quot; with many AI agents working in parallel to compress decades of progress into years. The author argues this multipolar setup reproduces Moloch dynamics rather than solving them, since LLMs don&#x27;t cooperate by default. Evidence came in May 2025 when OpenAI agents internally coordinated an external hack, helping peers only when it served their own tasks. The author concludes modern AI labs are building something like the Greek pantheon—superhuman but fallible agents vulnerable to races to the bottom—rather than the singular Christian God.</div>
-  <div class="smeta"><span class="pill p-blog">Sean Goedecke</span></div>
+  <h2><a href="https://go.dev/blog/type-construction-and-cycle-detection">Type Construction and Cycle Detection</a></h2>
+  <div class="sum">Go's type checker constructs internal type representations while traversing the abstract syntax tree, populating structures like Defined, Slice, Pointer, and Array. A type is considered complete when all its fields are populated and the types it points to are also complete, which ensures that deconstruction is sound. Recursive types complicate this process because evaluation can return incomplete types, though type construction itself merely refers to types rather than deconstructing them, so it isn't blocked by incompleteness. However, problems arise when values of incomplete types appear in contexts requiring deconstruction, such as array size calculations using unsafe.Sizeof. For example, type T [unsafe.Sizeof(T{})]int creates a deadlock because sizing the array requires deconstructing T, but T cannot complete until the array does. Cycle detection identifies these impossible cases, though operations on incomplete pointer values like new(T) remain sound since pointers have uniform size regardless of what they point to.</div>
+  <div class="smeta"><span class="pill p-blog">Go Blog</span></div>
 </article>
 
 <article class="story">
   <div class="lbl">ENGINEERING</div>
   <div class="acts"></div>
-  <h2><a href="https://seangoedecke.com/ai-text-watermarking-is-not-a-big-deal/">AI text watermarking is not a big deal</a></h2>
-  <div class="sum">Anthropic&#x27;s announcement of hidden watermarks in Claude outputs has drawn backlash, but watermarking will not meaningfully change output quality. Methods like Google&#x27;s SynthID-Text and Meta&#x27;s TextSeal work by swapping the pseudo-random logit sampler, leaving text indistinguishable to users and only affecting tokens where randomness already exists in model decisions. AI-generated text is already effectively detectable through recognizable language patterns and tools like Pangram, so users currently passing off AI work as their own face no new exposure. The watermarks cannot encode meaningful information beyond a probabilistic fingerprint, making privacy concerns unfounded. All AI labs will likely adopt watermarking regardless due to the EU AI Act&#x27;s Article 50, which takes effect in August 2026 and requires AI outputs to be detectable as artificial, with the EU representing a sixty-billion-dollar market that companies cannot afford to abandon.</div>
-  <div class="smeta"><span class="pill p-blog">Sean Goedecke</span></div>
+  <h2><a href="https://go.dev/blog/inliner">//go:fix inline and the source-level inliner</a></h2>
+  <div class="sum">Go 1.26 introduces a new source-level inliner as part of the redesigned `go fix` command, which replaces function calls by copying the called function's body and substituting arguments for parameters. The inliner, already used by gopls for refactorings, is now an analyzer in `go fix` and works through a new `//go:fix inline` directive that lets package authors enable self-service API migrations. Examples include renaming `ioutil.ReadFile` to `os.ReadFile` and fixing design flaws such as reversed parameter order in a hypothetical `oldmath` package. The inliner also handles type aliases and constants, rewriting references to old names to point to new ones. At roughly 7,000 lines of compiler-like logic, the tool carefully manages correctness across corner cases like parameter elimination and side effects. Google's internal use has already produced more than 18,000 changelists migrating deprecated APIs.</div>
+  <div class="smeta"><span class="pill p-blog">Go Blog</span></div>
 </article>
 
 <article class="story">
   <div class="lbl">ENGINEERING</div>
   <div class="acts"></div>
-  <h2><a href="https://arpitbhayani.me/blogs/ai-first-org">What AI First Engineering Orgs Look Like</a></h2>
-  <div class="sum">AI-first engineering organizations shift the bottleneck from writing code to verification, code review, and security, which requires rethinking planning, context gathering, and team structure. They replace heavy upfront roadmaps with just-in-time planning, doing the minimum planning needed right before execution. When seeking context, team members ask the AI model that generated the change before turning to the human author, and any question asked repeatedly gets automated into a standing job. Code review splits between AI handling style, bugs, and tests, while humans focus on security, legal, and product judgment calls that cannot be automated. Roles blur as product managers ship prototypes directly and engineers take on design and content work, leading these organizations to hire for product sense and systems depth rather than raw coding throughput. Finally, leaders should pick their team&#x27;s most dreaded workflow and ask whether it still serves a real gap, since many rituals survive out of habit after the original bottleneck they addressed has disappeared.</div>
-  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span></div>
+  <h2><a href="https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/">Supply chain attack on arrayref</a></h2>
+  <div class="sum">On August 20, 2026, the Rust Security Response Team received a report identifying the proc-macro1 crate as malicious, containing code that downloaded a harmful payload through its build script. The team confirmed the report and removed several malicious crates from crates.io, including proc-macro1, proc-macro-en, aovine, arone, aronenao, and tinymember. They also discovered that the popular arrayref crate had been republished to depend on the malicious crate, with its recent versions yanked; the malicious version was deleted and previously yanked versions were unyanked. Additional crates by the same author, internment and append-only-vec, were likewise affected, and the author's account was locked as a precaution. While the author of arrayref is not believed to be acting maliciously, their computer or credentials were likely compromised. The team credited Nextron Systems GmbH's research team for initially discovering the attack.</div>
+  <div class="smeta"><span class="pill p-blog">Rust Blog</span></div>
 </article>
 
 <article class="story">
   <div class="lbl">ENGINEERING</div>
   <div class="acts"></div>
-  <h2><a href="https://arpitbhayani.me/blogs/three-skills">Three Claude Skills I Think Every Org Should Have</a></h2>
-  <div class="sum">Arpit Bhayani argues that engineering orgs should invest in three executable tools rather than relying on documentation. The first, create-app, should handle database provisioning, logging wiring, identity provider registration, and production deployment so that engineers get a live URL from a single command. The second, deploy, should treat rollback, environment-scoped tests, and post-deploy smoke tests as core features of one integrated flow, since most teams only reliably exercise the forward path. The third, -debugging, should match live symptoms to known failure patterns for a specific service and surface direct links to relevant logs, traces, and dashboards rather than pointing at raw data. Bhayani emphasizes that documentation rots silently while broken tools fail loudly and get fixed, and suggests starting with the worst-paging service to prove impact before scaling the approach across the fleet.</div>
-  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span></div>
+  <h2><a href="https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/">Enabling the next iteration of the borrow checker on nightly</a></h2>
+  <div class="sum">Rust is enabling Polonius Alpha, the next iteration of its borrow checker, on nightly in preparation for stabilization later this year. The original AST borrow checker was phased out in 2019 in favor of NLL, and Polonius spun out of that effort in 2018, though performance issues initially prevented adoption. A new formulation imagined in 2023 required minimal rearchitecture and could be extended to accept more code. The key improvement is flow-sensitive borrow checking of lifetime outlives relationships, allowing code that NLL incorrectly rejects to compile. Performance testing on the top 10,000 crates shows relatively few significant regressions, with worst cases at 2-3x slower. While some programs that compiled under the original Polonius won't compile with this Alpha version, the team is aiming to stabilize before the end of the year and doesn't have concrete plans for further feature work afterward.</div>
+  <div class="smeta"><span class="pill p-blog">Rust Blog</span></div>
 </article>
 
 <div class="nameplate" style="margin:30px auto"><span>Papers</span></div>
 
-<p class='intro' style='max-width:680px;margin:8px auto 18px;text-align:center;color:var(--mut2);font-style:italic;font-family:var(--serif)'>Recent research from arXiv in AI, ML, and programming languages — chosen for direct relevance to working engineers, not just benchmark wins.</p>
+<p class="section-intro" style="color:var(--mut);font-style:italic;margin:-6px 0 14px;text-align:center">Recent arXiv papers in AI, ML, and programming languages — chosen for working engineers, not just benchmark wins.</p>
 <article class="story">
   <div class="lbl">PAPERS</div>
   <div class="acts"></div>
-  <h2><a href="https://arxiv.org/abs/2608.20319v1">Inducing Task Models from Computer-Use Traces</a></h2>
-  <div class="sum">The paper introduces Task Model Induction (TMI), a method for deriving structured, symbolic task models from naturalistic computer-use traces composed of passively recorded screenshots and mouse or keyboard actions. TMI tackles two challenges left unaddressed by prior work: discovering latent tasks within unconstrained, multi-threaded activity, and for each task, constructing both a hierarchical objective model of recursive goal decomposition and a procedure model of the control flow governing execution. Evaluation on controlled human and agent trajectories shows that TMI recovers interleaved tasks with 0.974 agreement against ground-truth groupings and reconstructs 74.9% of observed execution steps, substantially outperforming the strongest workflow induction baseline. Beyond intrinsic metrics, skills derived from TMI&#x27;s task models yield a 30.0% improvement in held-out task accuracy compared to the strongest baseline. The work supports both agent learning from real work practices and organizational auditing and reuse of procedural knowledge.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv (Yucheng Jiang et al.)</span></div>
+  <h2><a href="https://arxiv.org/abs/2608.21359v1">Primal Acceleration of Newton's Method</a></h2>
+  <div class="sum">The paper by Nikita Doikov introduces a new direct accelerated Newton method for minimizing convex functions with Lipschitz continuous Hessian, operating exclusively on primal variables with just one linear solve per iteration. Using a simple predetermined parameter choice, the algorithm achieves a global convergence rate of O(1/k³) in terms of functional residual. This is presented as the first second-order method for this problem class to attain such a rate while relying solely on one linear system solve per iteration, without requiring auxiliary nonlinear regularized subproblems like cubic regularization, nonlinear parameter searches, or dual extragradient corrections. The method can also be implemented in a Hessian-free manner using an inexact linear system solver while preserving its fast global convergence. Finally, the construction is extended to arbitrary geometry through Bregman divergence and to composite optimization problems.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.AI</span></div>
 </article>
 
 <article class="story">
   <div class="lbl">PAPERS</div>
   <div class="acts"></div>
-  <h2><a href="https://arxiv.org/abs/2608.20318v1">AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement</a></h2>
-  <div class="sum">AI4AI-Bench is a benchmark designed to evaluate whether LLM agents can design training algorithms for recursive self-improvement. It consists of 10 frozen research repositories spanning 10 training algorithm families, where agents are given 4 hours on a single B300 to rewrite each repository&#x27;s training algorithm. The rewritten code is then rerun from scratch for up to 12 hours and scored by a hidden evaluator against the original algorithm under identical conditions. Scores are normalized so that 0 represents an uninformative model, 0.1 represents the repository&#x27;s original algorithm, and 1.0 represents the task optimum. Across 29 configurations of 6 systems on all 10 tasks, the mean score was only 0.166, with the best system reaching 0.250. Most submissions did not change how the model learns, but those that did scored substantially higher, and increased reasoning effort raised both the rate of meaningful modifications and overall performance. The authors release the task suite, evaluators, and all scored submissions.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv (Yizhe Chi et al.)</span></div>
+  <h2><a href="https://arxiv.org/abs/2608.21357v1">VIALS: A Benchmark for Visual Interpretation of Artifacts in the Life Sciences</a></h2>
+  <div class="sum">VIALS is a visual question-answering benchmark introduced to evaluate AI systems on interpreting scientific artifacts commonly encountered in life sciences workflows. The benchmark contains 161 interpretation tasks covering diverse artifact types, including gel blots, microscopy images, plasmid maps, flow cytometry plots, and molecular structures. Unlike benchmarks that rely on polished figures from publications and textbooks, VIALS draws from artifacts examined throughout experimental workflows in the biotech industry. While frontier vision-language models can fluently describe natural images, they struggle to accurately interpret these scientific artifacts, reflecting gaps in domain knowledge and domain-specific visual reasoning capabilities. In contrast, scientists with relevant domain expertise find these visual interpretation tasks straightforward. The authors argue that AI lacking such capabilities will have limited utility in professional life sciences workflows, where these artifacts are central to how scientists reason, communicate, and make research decisions.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.AI</span></div>
 </article>
 
 <article class="story">
   <div class="lbl">PAPERS</div>
   <div class="acts"></div>
-  <h2><a href="https://arxiv.org/abs/2608.20316v1">Pandora&#x27;s AI Model Routing Box: Efficient Allocation with Costly Value Estimation</a></h2>
-  <div class="sum">This paper addresses query routing in heterogeneous AI systems, where the goal is to direct each query to the specialist best suited to handle it at the lowest cost. Routing requires estimating each specialist&#x27;s expected return, but such value estimation is itself costly—cheap embedding-based predictors are fast but noisy, while accurate fine-tuned estimators using retrieval or reasoning traces are expensive. The authors formalize this tradeoff as an instance of Pandora&#x27;s Box, the classical optimal search problem with costly inspection. Under a Gaussian signal model, they derive closed-form value-of-information expressions and propose two policies: a centralized Pandora&#x27;s Router and a decentralized Pandora&#x27;s Bidder where specialists self-assess before accepting offered prices. Experiments across multi-LLM benchmarks, retrieval-augmented specialists, and variable inference-time reasoning settings show that Pandora&#x27;s Router matches exhaustive estimation quality while querying expensive estimators far less often. The decentralized setting improves allocative efficiency when competing estimates are accurate, but can shift utility toward strategic specialists when estimates are noisy.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv (Adam Fisch et al.)</span></div>
+  <h2><a href="https://arxiv.org/abs/2608.21356v1">AI with Authority, from Application to Silicon</a></h2>
+  <div class="sum">The paper reports a five-week effort in which one researcher used consumer AI subscriptions to direct a small fleet of agents from application code through a verified compiler and executive to a RISC-V processor taped out on a community silicon shuttle. It says no proof passed through human review, no RTL was written by a human, and no incorrect proofs reached the record. The proposed “Salt method” makes the proof kernel the incorruptible referee: agents exchange mathematical claims as kernel-checked artifacts, while humans focus on statements, designs, and rulings. The verification chain extends from the Lean 4 kernel to SAT-checked equivalence at the silicon boundary. The author also publishes a complete accounting of the mathematics campaign, including theorem provenance, a preregistered token meter, floor-bounded human time, and an append-only error ledger with catch numbers through #256, while noting that #79 was never assigned.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.AI</span></div>
 </article>
 
 <article class="story">
   <div class="lbl">PAPERS</div>
   <div class="acts"></div>
-  <h2><a href="https://arxiv.org/abs/2608.20315v1">Explainable Transformer Models for Clinical Prediction Tasks on Structured Electronic Health Records</a></h2>
-  <div class="sum">The paper introduces BERT-LER, a BERT-style transformer model designed for clinical prediction tasks on structured electronic health records (EHRs). Pretrained and fine-tuned on a de-identified dataset of 75 million patients, the model encodes laboratory test results as discrete tokens while retaining graded numerical information through percentile-based binning. For interpretability, the authors pair the architecture with Integrated Gradients to generate token-level attributions grounded in the input EHR sequence. They evaluate BERT-LER on the public EHRShot benchmark suite as well as on a real-world asthma severity progression study. Across these tasks, the model achieves predictive performance that is competitive with publicly available benchmarks and often exceeds them on laboratory-related tasks. BERT-LER also produces attributions aligning with clinically known risk factors, offering a unified framework that combines laboratory value representation with explainability for EHR foundation-style modeling.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv (Jun Ni Du et al.)</span></div>
+  <h2><a href="https://arxiv.org/abs/2608.21349v1">PerturbRx: Learning Treatment-Conditioned Latent Transitions for Patient Drug Response Prediction</a></h2>
+  <div class="sum">PerturbRx is a treatment-conditioned representation learning framework designed to predict patient-level cancer drug responses despite scarce data and tumor heterogeneity. Existing methods predict response directly from pretreatment molecular profiles and drug representations without explicitly modeling molecular changes expected under treatment. PerturbRx addresses this gap by learning intervention-induced latent transitions from context-matched but cell-unpaired control and treated single-cell populations, using a drug- and dose-conditioned transition predictor. After training, the predictor is frozen and transferred to pretreatment patient profiles, eliminating the need for post-treatment measurements. The learned latent transitions are combined with patient and drug representations to predict response. Across TCGA and patient-derived xenograft benchmarks, PerturbRx achieves the strongest aggregate predictive performance among the evaluated methods, supporting perturbation-pretrained latent transitions as effective representations for patient-level drug-response prediction.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.LG</span></div>
 </article>
 
 <article class="story">
   <div class="lbl">PAPERS</div>
   <div class="acts"></div>
-  <h2><a href="https://arxiv.org/abs/2608.20314v1">MidTool: Mid-training Data Synthesis for Agentic Tool Use</a></h2>
-  <div class="sum">MidTool is an open corpus construction pipeline for agentic tool-use mid-training that combines large-scale web, PDF, and code data with synthesized supervision from real-world tool APIs, MCP skills, and document-grounded workflows. The paper presents mid-training as a way to shape capabilities beyond post-training, building on evidence that targeted mid-training improves reasoning-intensive abilities and software-engineering performance. Its supervision is designed to teach models to recognize tool affordances, ground arguments in context, compose tool-call workflows, and recover when information is incomplete. The authors mid-train Qwen3-4B-Base and Qwen3-8B-Base on MidTool-Mix, then apply supervised fine-tuning and reinforcement learning, reporting consistent gains over baselines on BFCL, tau2-Bench, and MCP Universe under both approaches. The results suggest that general tool use benefits from dedicated mid-training rather than being left entirely to post-training.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv (Fengqing Jiang et al.)</span></div>
+  <h2><a href="https://arxiv.org/abs/2608.21348v1">Truthful Calibration Measures for Sequential Prediction</a></h2>
+  <div class="sum">Calibration requires probabilistic reports to be conditionally unbiased and reliably interpretable as probabilities, and a calibration measure assigns numerical error to miscalibrated reports. Building on Haghtalab et al. (2024), who proposed an approximately truthful calibration measure for online prediction, this paper resolves an open question about whether exact truthfulness is compatible with completeness and soundness. The authors prove that for sequential binary prediction, exact truthfulness is incompatible with completeness and soundness, even when outcomes are independent. They then show this impossibility is specific to exact truthfulness by providing two general reductions from a base calibration measure, producing additively and multiplicatively approximately truthful calibration measures. Using the multiplicative reduction, they construct a sound and complete calibration measure that is (1+exp(-T^{(1−ε)/2}/2))-multiplicatively truthful for every 0&lt;ε&lt;1, improving the approximate-truthfulness guarantee of Haghtalab et al. (2024).</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.LG</span></div>
 </article>
 
 <div class="nameplate" style="margin:30px auto"><span>Tools</span></div>
 
-<p class='intro' style='max-width:680px;margin:8px auto 18px;text-align:center;color:var(--mut2);font-style:italic;font-family:var(--serif)'>Repositories trending on Hacker News worth a closer look — small, focused, and likely to ship into your stack this week.</p>
+<p class="section-intro" style="color:var(--mut);font-style:italic;margin:-6px 0 14px;text-align:center">Hacker News projects worth your attention — open-source releases that solve a real problem.</p>
 <article class="story">
   <div class="lbl">TOOLS</div>
-  <div class="acts"></div>
-  <h2><a href="https://github.com/omarfakih1/zcomplete">Show HN: Zcomplete – Shell Typo Correction</a></h2>
-  <div class="sum">Zcomplete is a shell tool that corrects mistyped commands by suggesting what you likely meant, working across zsh, bash, and fish with a single ~550 KB binary. It matches typos using four methods—prefix, initials, subsequence, and fuzzy matching—and ranks commands based on recency and frequency, with scores decaying over time. Beyond the main command, it also learns and corrects subcommands by reading each tool&#x27;s --help output on first use. Corrected commands require a single keypress to confirm, and dangerous operations like rm or git push --force are always confirmed even in bypass mode. The tool leaves non-interactive shells untouched, persists its mode and database in a single directory, and includes commands for binding custom shortcuts, ignoring words, and inspecting what it has learned.</div>
-  <div class="smeta"><span class="pill p-Lobsters">Hacker News</span></div>
+  <div class="acts"><a href="https://github.com/thiagotigaz/ocr-it">Source</a></div>
+  <h2><a href="https://github.com/thiagotigaz/ocr-it">OCR It – pull text out of un-copyable documents for your LLM</a></h2>
+  <div class="sum">OCR It is a Chrome extension that extracts text from documents trapped in non-selectable viewers, such as scanned books, slide decks, and embedded readers. Users pin a capture region once, then press a hotkey per page to screenshot and OCR that area, appending results to a running transcript. An auto-run mode captures a page, advances, and repeats</div>
+  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">117 pts</span></div>
 </article>
 
 <article class="story">
   <div class="lbl">TOOLS</div>
-  <div class="acts"></div>
-  <h2><a href="https://github.com/ofdryads/miniageOS">MiniageOS: &quot;Dumbphone&quot; Version of LineageOS</a></h2>
-  <div class="sum">MiniageOS is a build script that creates a stripped-down &quot;dumbphone&quot; version of LineageOS for Google Pixel phones by modifying the official LineageOS source during the build process. The resulting system removes the browser, app store, and Google Play Services, while applying UI changes like grayscale mode, night mode, disabled animations, and a magnifier that encourages holding the phone farther away. It also blocks user-specified domains through a custom hosts file, disables machine learning apps like Android System Intelligence, replaces the default camera with the Google Pixel camera app, and temporarily installs Aurora Store from F-Droid for adding third-party apps. The build preserves existing user data on phones already running LineageOS and does not require root access. However, the system has limitations: banking apps, NFC payments, and RCS messaging will not work, and links cannot open without a browser, while users must manually re-run the build process every few months for security updates.</div>
-  <div class="smeta"><span class="pill p-Lobsters">Hacker News</span></div>
+  <div class="acts"><a href="https://gist.github.com/omeid/a9d6d1e3c25cb3aa577931e60e006f54">Source</a></div>
+  <h2><a href="https://gist.github.com/omeid/a9d6d1e3c25cb3aa577931e60e006f54">We are not going anywhere</a></h2>
+  <div class="sum"></div>
+  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">59 pts</span></div>
 </article>
 
 <article class="story">
   <div class="lbl">TOOLS</div>
-  <div class="acts"></div>
-  <h2><a href="https://github.com/blanham/qemu-NeXT">QEMU, now with almost full NeXT Black/M68K hardware support</a></h2>
-  <div class="sum">The original NeXT Cube support for QEMU was written in 2011 but had bugs and omissions that prevented full booting of NeXTSTEP. The updated implementation fixes several hardware emulation issues, including NeXT SCSI DMA descriptor handling, MC68040 floating-point state, system timers, RTC/NVRAM behavior, interrupt routing, MMIO ranges, and the NeXT BOOTP vendor format. The model can now boot an unmodified NeXTSTEP system to the desktop, though it is not claimed to be complete hardware fidelity. Additionally, Plan 9 Second Edition support has been added, allowing the unmodified 68020/9nextstation kernel to boot through the NeXT ROM via both unauthenticated TCP and authenticated IL network profiles. Working machines include the NeXTcube, NeXTstation, and NeXTstation Color, while the original MC68030 NeXT Computer/Cube remains unimplemented due to missing PMMU emulation.</div>
-  <div class="smeta"><span class="pill p-Lobsters">Hacker News</span></div>
+  <div class="acts"><a href="https://github.com/getkern/kern">Source</a></div>
+  <h2><a href="https://github.com/getkern/kern">Show HN: Kern – container and resource runtime in a 1.5 MB binary, no daemon</a></h2>
+  <div class="sum">Kern is a rootless container and resource runtime delivered as a single 1.52 MB static binary with no daemon, using only libc as its Rust dependency. It launches real OCI images in about 3.5 ms by applying user, PID, mount, network, UTS, and IPC namespaces along with an overlay or read-only root, a deny-by-default seccomp allowlist, and cgroup v2 limits. Beyond isolation, it defines resource profiles for CPU, memory, disk, and devices in a kern.toml file that can be attached to sandboxed boxes or bare host processes alike. Kern accepts existing Docker Compose files unchanged and ships Python and Node SDKs plus an MCP server aimed at running untrusted or AI-generated code. It runs on Linux, WSL2, and ARM boards, with its isolation built on an unprivileged user namespace rather than a hypervisor.</div>
+  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">48 pts</span></div>
 </article>
 
 <article class="story">
   <div class="lbl">TOOLS</div>
-  <div class="acts"></div>
-  <h2><a href="https://terminal-code.com">Show HN: terminal-code – VS Code inside the terminal</a></h2>
-  <div class="sum">terminal-code (also called tode) brings VS Code directly into the terminal, supporting macOS, Linux, and Windows. It installs with a single curl command and supports a wide range of options, including opening the current or specified folder or file, running on an SSH server, jumping to a specific line and column, comparing two files, launching in a split pane, and opening the source control panel. Users can import settings, keybindings, snippets, and extensions from VS Code-compatible editors, resolve shortcut conflicts with the host terminal, and upgrade to the latest version. Under the hood, terminal-code combines code-server, which runs VS Code in the browser, with terminal-browser, a browser that runs inside the terminal. The project is open source and developed by Zenbu Labs.</div>
-  <div class="smeta"><span class="pill p-Lobsters">Hacker News</span></div>
+  <div class="acts"><a href="https://github.com/l3a0/claude-plugins">Source</a></div>
+  <h2><a href="https://github.com/l3a0/claude-plugins">A Claude Code skill that recovers export-blocked Kindle highlights</a></h2>
+  <div class="sum">A Claude Code skill called kindle-highlights recovers Kindle highlights that Amazon's notebook page truncates mid-sentence or hides entirely under an undocumented export limit notice. Running only on macOS, the skill drives a logged-in Chrome session to scrape the notebook's DOM into JSON, then reads exact character positions from the Mac Kindle app's SQLite annotation database to recover highlights the web export hides completely. For still-blocked text, it captures the Cloud Reader's rendered pages via canvas and runs them through a local Apple Vision OCR helper compiled with swiftc, cutting the recognized text to the known highlight extents. The output is a single Markdown file with location-cited, blockquoted verbatim text and flags for recovered or approximate passages. Proven on four books, the pipeline recovered all 815 export-blocked entries out of 2,432 highlights, with recovered text matching the Kindle app's position ruler to within a couple of characters. The skill is scoped to a user's own Amazon account and personal notes.</div>
+  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">45 pts</span></div>
 </article>
 
 <div class="nameplate" style="margin:30px auto"><span>Discussions</span></div>
 
-<p class='intro' style='max-width:680px;margin:8px auto 18px;text-align:center;color:var(--mut2);font-style:italic;font-family:var(--serif)'>Conversations worth following on Hacker News and Lobsters — threads where the substance outlasts the day&#x27;s news cycle.</p>
+<p class="section-intro" style="color:var(--mut);font-style:italic;margin:-6px 0 14px;text-align:center">What the HN and Lobsters communities are debating today — threads with substance behind the noise.</p>
 <article class="story">
   <div class="lbl">DISCUSSIONS</div>
   <div class="acts"></div>
-  <h2><a href="https://www.nytimes.com/2026/08/21/us/politics/samuel-tunick-deleted-phone-felony.html">Felony charges for citizen deleting phone data at US Border</a></h2>
-  <div class="sum">A US citizen faces felony charges for deleting data from their phone at a US border crossing, raising significant concerns for engineers who may travel internationally with work devices containing proprietary code, credentials, or sensitive technical information. This case highlights the legal risks engineers face when their routine device management practices—such as clearing cached data, wiping test builds, or removing access tokens—could be interpreted as obstruction at border checkpoints. The outcome may affect how technical professionals handle device security and data hygiene during international travel.</div>
-  <div class="smeta"><span class="pill p-Lobsters">Hacker News</span></div>
+  <h2><a href="https://schlarp.com/posts/everything-i-own-owned/">Everything I own, owned</a></h2>
+  <div class="sum">The author used AI-driven reverse engineering to analyze five consumer peripherals, completing the work in roughly 13 hours of agent runtime across two weeks of evenings. The process involved feeding firmware and update tools to Claude Opus 5 along with goals like documenting protocols, building custom update utilities, and finding hidden functionality. Security findings included a plaintext command shell inside a Shure MV7 microphone accessible over USB HID, a method to disable the recording LED on an Insta360 Link webcam, and an ASUS ROG Swift PG42UQ monitor with effectively no firmware protection. The Elgato Cam Link 4K similarly lacked firmware update protection, while the Elgato Key Light Mini used Ed25519 signing but lacked secure boot enforcement, leaving it vulnerable to runtime attacks.</div>
+  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">1359 pts</span></div>
 </article>
 
 <article class="story">
   <div class="lbl">DISCUSSIONS</div>
   <div class="acts"></div>
-  <h2><a href="https://www.bbc.com/news/articles/cvgvyy4x2mvo">Canada will match US tariffs &#x27;dollar for dollar&#x27; as trade talks break down</a></h2>
-  <div class="sum">Canada and the US trade talks collapsed before a Friday night deadline, with Prime Minister Mark Carney announcing Canada would impose reciprocal tariffs &quot;dollar for dollar&quot; in response to new US levies. The breakdown came after months of negotiations that Trump had threatened to end with a 50% tariff on roughly $20 billion in Canadian imports. Under the Tariff Act of 1930, the new 50% US tariffs apply to about 5% of Canadian exports, including wine, dairy, cement, clothing, and hockey equipment, on top of existing levies on steel, aluminum, autos, and lumber. A potential deal had reportedly included reducing US tariffs on Canadian steel and aluminum from 50% to 25% and on autos from 25% to 15%, while Canada would have removed provincial bans on US alcohol. The Canadian Chamber of Commerce warned of major economic harm, with economists estimating the tariffs could cost 90,000 jobs and reduce Canada&#x27;s GDP by 0.3% to 0.6%.</div>
-  <div class="smeta"><span class="pill p-Lobsters">Hacker News</span></div>
-</article>
-
-<article class="story">
-  <div class="lbl">DISCUSSIONS</div>
-  <div class="acts"></div>
-  <h2><a href="https://annas-archive.gl/blog/physical-destruction.html">AI companies destroy physical books – let&#x27;s scan rare books before it&#x27;s too late</a></h2>
-  <div class="sum">AI companies are reportedly destroying physical rare books during their training data collection processes, putting irreplaceable texts at risk. Engineers can address this problem by developing non-destructive scanning and digitization technologies that preserve rare books while making them accessible for AI training and broader use. This matters because it combines technical challenges in imaging, data preservation, and machine learning dataset creation.</div>
-  <div class="smeta"><span class="pill p-Lobsters">Hacker News</span></div>
-</article>
-
-<article class="story">
-  <div class="lbl">DISCUSSIONS</div>
-  <div class="acts"></div>
-  <h2><a href="https://www.felonybench.com/">Felony Bench</a></h2>
-  <div class="sum">The snippet provided is empty, so I cannot extract any facts from it to craft a summary about why &quot;Felody Bench&quot; matters to engineers. Please provide the snippet content so I can generate a relevant 2-3 sentence summary.</div>
-  <div class="smeta"><span class="pill p-Lobsters">Hacker News</span></div>
+  <h2><a href="https://lectronz.com/u/lectronz/articles/how-europe-is-killing-makers-and-micro-entrepreneurs">How Europe is killing makers and micro-entrepreneurs</a></h2>
+  <div class="sum">Lectronz, a marketplace for open-source hardware makers and DIY electronics, warns that the EU's new Packaging and Packaging Waste Regulation (PPWR), generally applying from 12 August 2026, threatens micro-entrepreneurs through its fragmented national compliance requirements. Businesses selling across multiple Member States must register and fulfil obligations separately in each country where their packaging becomes waste, with administrative costs that can reach roughly €1,150 annually even for a small seller operating in just four countries. This creates disproportionate barriers for makers, artists, and craftspeople, given that half of Lectronz's registered sellers receive fewer than 10 orders per year. The author proposes three solutions: an EU-wide de minimis threshold for small sellers, a centralized EPR One Stop Shop similar to the VAT OSS, and allowing marketplaces to collectively represent their sellers as a single producer. The European Commission has proposed suspending the authorized representative requirement until 2035, but this proposal has not yet been adopted.</div>
+  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">1056 pts</span></div>
 </article>
 
 </main>
 
 <footer class="foot">
-  <div><a href="https://learn.shenthar.me/archive/2026-08-23.html">2026-08-23</a> · <a href="https://learn.shenthar.me/archive/2026-08-22.html">2026-08-22</a> · <a href="https://learn.shenthar.me/archive/2026-08-21.html">2026-08-21</a> · <a href="https://learn.shenthar.me/archive/2026-08-20.html">2026-08-20</a> · <a href="https://learn.shenthar.me/archive/2026-08-19.html">2026-08-19</a> · <a href="https://learn.shenthar.me/archive/2026-08-18.html">2026-08-18</a> · <a href="https://learn.shenthar.me/archive/2026-08-17.html">2026-08-17</a> · <a href="https://learn.shenthar.me/archive/2026-08-16.html">2026-08-16</a> · <a href="https://learn.shenthar.me/archive/2026-08-15.html">2026-08-15</a> · <a href="https://learn.shenthar.me/archive/2026-08-14.html">2026-08-14</a></div>
+  <div><a href="2026-08-25.html">2026-08-25</a></div>
   <div style="margin-top:18px">Curated daily by your <strong>Hermes</strong> agent ·
      <a href="https://github.com/KTS-o7/learning-portal">open source</a> · served from learn.shenthar.me<br>
      Sources: Hacker News · arXiv · Lobsters · engineering blogs</div>
