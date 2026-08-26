@@ -2,149 +2,141 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-25</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-26</description>
 <item>
-  <title>Go 1.27 is released</title>
-  <link>https://go.dev/blog/go1.27</link>
-  <guid isPermaLink="false">https://go.dev/blog/go1.27</guid>
-  <description>Go 1.27 was released on August 19, 2026, bringing updates across the language, toolchain, runtime, and standard library. The language now supports generic methods, permits any valid field selector as a key in struct literals including nested or embedded struct fields, and applies function type inference in all assignment contexts such as composite literals, type conversions, and channel sends. Tool improvements include four new go fix modernizers (atomictypes, embedlit, slicesbackward, and unsafefuncs), version queries in go doc, and automatic consolidation of require blocks by go mod tidy. Size-specialized memory allocation reduces small object allocation costs by up to 30%, yielding about a 1% overall performance gain, while the goroutine leak profile in runtime/pprof is now generally available. New</description>
-  <pubDate>2026-08-19T00:00:00+00:00</pubDate>
-  <source>Go Blog</source>
+  <title>How to evaluate LLMs before production</title>
+  <link>https://github.blog/ai-and-ml/llms/how-to-evaluate-llms-before-production/</link>
+  <guid isPermaLink="false">https://github.blog/ai-and-ml/llms/how-to-evaluate-llms-before-production/</guid>
+  <description>LLMs can perform well on clean benchmarks yet struggle with the ambiguous, inconsistent inputs they encounter in production. The authors recommend starting with the product decision rather than the model, defining which mistakes are acceptable and which guardrails must remain within thresholds, treating precision and recall as non-interchangeable metrics. Offline evaluation should function like integration testing, rerun whenever prompts, models, or pipeline logic change, with results recorded so each run can be compared against a known baseline. Experiments should change one major variable at a time to keep causation clear, and prompts and configurations should be versioned like code. Finally, offline evaluations must closely mirror production conditions, preserving the surrounding context, formatting, and ambiguity of real inputs, since differences between curated datasets and production data can materially skew results.</description>
+  <pubDate>Tue, 25 Aug 2026 21:35:11 +0000</pubDate>
+  <source>GitHub Blog</source>
 </item>
 
 <item>
-  <title>Type Construction and Cycle Detection</title>
-  <link>https://go.dev/blog/type-construction-and-cycle-detection</link>
-  <guid isPermaLink="false">https://go.dev/blog/type-construction-and-cycle-detection</guid>
-  <description>Go's type checker constructs internal type representations while traversing the abstract syntax tree, populating structures like Defined, Slice, Pointer, and Array. A type is considered complete when all its fields are populated and the types it points to are also complete, which ensures that deconstruction is sound. Recursive types complicate this process because evaluation can return incomplete types, though type construction itself merely refers to types rather than deconstructing them, so it isn't blocked by incompleteness. However, problems arise when values of incomplete types appear in contexts requiring deconstruction, such as array size calculations using unsafe.Sizeof. For example, type T [unsafe.Sizeof(T{})]int creates a deadlock because sizing the array requires deconstructing T, but T cannot complete until the array does. Cycle detection identifies these impossible cases, though operations on incomplete pointer values like new(T) remain sound since pointers have uniform size regardless of what they point to.</description>
-  <pubDate>2026-03-24T00:00:00+00:00</pubDate>
-  <source>Go Blog</source>
+  <title>Your alt text passes automated checks. That doesn’t mean it’s any good.</title>
+  <link>https://github.blog/engineering/user-experience/your-alt-text-passes-automated-checks-that-doesnt-mean-its-any-good/</link>
+  <guid isPermaLink="false">https://github.blog/engineering/user-experience/your-alt-text-passes-automated-checks-that-doesnt-mean-its-any-good/</guid>
+  <description>We built a plugin for the GitHub Accessibility Scanner to make sure your alt text is actually accessible. Here&#x27;s how it works.
+The post Your alt text passes automated checks. That doesn&amp;#8217;t mean it&amp;#8217;s any good. appeared first on The GitHub Blog.</description>
+  <pubDate>Mon, 24 Aug 2026 20:56:32 +0000</pubDate>
+  <source>GitHub Blog</source>
 </item>
 
 <item>
-  <title>//go:fix inline and the source-level inliner</title>
-  <link>https://go.dev/blog/inliner</link>
-  <guid isPermaLink="false">https://go.dev/blog/inliner</guid>
-  <description>Go 1.26 introduces a new source-level inliner as part of the redesigned `go fix` command, which replaces function calls by copying the called function's body and substituting arguments for parameters. The inliner, already used by gopls for refactorings, is now an analyzer in `go fix` and works through a new `//go:fix inline` directive that lets package authors enable self-service API migrations. Examples include renaming `ioutil.ReadFile` to `os.ReadFile` and fixing design flaws such as reversed parameter order in a hypothetical `oldmath` package. The inliner also handles type aliases and constants, rewriting references to old names to point to new ones. At roughly 7,000 lines of compiler-like logic, the tool carefully manages correctness across corner cases like parameter elimination and side effects. Google's internal use has already produced more than 18,000 changelists migrating deprecated APIs.</description>
-  <pubDate>2026-03-10T00:00:00+00:00</pubDate>
-  <source>Go Blog</source>
+  <title>10x Engineer DNA</title>
+  <link>https://arpitbhayani.me/blogs/10x-engineer</link>
+  <guid isPermaLink="false">https://arpitbhayani.me/blogs/10x-engineer</guid>
+  <description>Arpit Bhayani, who focuses on engineering, databases, and systems, argues that 10x engineers earn their reputation not by building complex systems but by consistently finding simple, stable, and manageable solutions to complex problems. The article, titled &quot;10x Engineer DNA,&quot; presents this philosophy as the pathway to becoming a 10x engineer. Bhayani currently works as a Principal Engineer II at Razorpay, building Agent Studio, and previously held roles including staff engineer at GCP Memorystore and Dataproc and Director of Engineering at Unacademy. He is also the creator of DiceDB and has worked at Amazon Fast Data. Beyond his engineering career, he produces engineering videos on YouTube, teaches courses, and writes a newsletter read by 145,000 engineers covering system design, distributed systems, and clever algorithms.</description>
+  <pubDate>Sun, 05 Jul 2020 00:00:00 GMT</pubDate>
+  <source>Arpit Bhayani</source>
 </item>
 
 <item>
-  <title>Supply chain attack on arrayref</title>
-  <link>https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/</link>
-  <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/</guid>
-  <description>On August 20, 2026, the Rust Security Response Team received a report identifying the proc-macro1 crate as malicious, containing code that downloaded a harmful payload through its build script. The team confirmed the report and removed several malicious crates from crates.io, including proc-macro1, proc-macro-en, aovine, arone, aronenao, and tinymember. They also discovered that the popular arrayref crate had been republished to depend on the malicious crate, with its recent versions yanked; the malicious version was deleted and previously yanked versions were unyanked. Additional crates by the same author, internment and append-only-vec, were likewise affected, and the author's account was locked as a precaution. While the author of arrayref is not believed to be acting maliciously, their computer or credentials were likely compromised. The team credited Nextron Systems GmbH's research team for initially discovering the attack.</description>
-  <pubDate>2026-08-20T00:00:00+00:00</pubDate>
-  <source>Rust Blog</source>
+  <title>1D Terrain Generation</title>
+  <link>https://arpitbhayani.me/blogs/1d-terrain</link>
+  <guid isPermaLink="false">https://arpitbhayani.me/blogs/1d-terrain</guid>
+  <description>Generating pseudorandom one-dimensional terrain for games starts with a naive approach that assigns random heights to each point along the X-axis, but this produces abrupt spikes that don&#x27;t resemble real-world terrain. Applying interpolation methods, either Linear or Cosine, between sampled points smooths transitions, with Cosine Interpolation producing noticeably smoother curves than Linear by plotting intermediate points on a cosine curve rather than assuming collinearity. To further improve realism, the technique of superposition combines multiple sampled terrains with different sampling frequencies through a normalized weighted sum, where weights increase as sampling frequency decreases. Typically six terrains are combined, with the most densely sampled terrain receiving the lowest weight (0.03125) and the least sampled receiving the highest (1), giving the final terrain both smoothness and subtle variations. This superposition-based method closely resembles Perlin Noise, the multi-dimensional terrain algorithm for which Ken Perlin received an Academy Award for Technical Achievement.</description>
+  <pubDate>Mon, 16 Nov 2020 00:00:00 GMT</pubDate>
+  <source>Arpit Bhayani</source>
 </item>
 
 <item>
-  <title>Enabling the next iteration of the borrow checker on nightly</title>
-  <link>https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/</link>
-  <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/</guid>
-  <description>Rust is enabling Polonius Alpha, the next iteration of its borrow checker, on nightly in preparation for stabilization later this year. The original AST borrow checker was phased out in 2019 in favor of NLL, and Polonius spun out of that effort in 2018, though performance issues initially prevented adoption. A new formulation imagined in 2023 required minimal rearchitecture and could be extended to accept more code. The key improvement is flow-sensitive borrow checking of lifetime outlives relationships, allowing code that NLL incorrectly rejects to compile. Performance testing on the top 10,000 crates shows relatively few significant regressions, with worst cases at 2-3x slower. While some programs that compiled under the original Polonius won't compile with this Alpha version, the team is aiming to stabilize before the end of the year and doesn't have concrete plans for further feature work afterward.</description>
-  <pubDate>2026-08-04T00:00:00+00:00</pubDate>
-  <source>Rust Blog</source>
+  <title>6 Simple Strategies to Cracking Any Tech Interview</title>
+  <link>https://arpitbhayani.me/blogs/six-pointers-to-crack-coding-and-design-interviews</link>
+  <guid isPermaLink="false">https://arpitbhayani.me/blogs/six-pointers-to-crack-coding-and-design-interviews</guid>
+  <description>Arpit Bhayani shares six strategies he used throughout his career to crack tech interviews. He recommends using Python during interviews because its concise syntax allows candidates to express solutions more quickly than writing verbose Java or C++ code, though he notes some interviews require a specific language and candidates should clarify this with the interviewer first. Bhayani is a Principal Engineer II at Razorpay, where he is building Agent Studio, and his background includes ex-staff engineering roles at GCP Memorystore and Dataproc, founding DiceDB, work at Amazon Fast Data, and serving as Director of Engineering for SRE and Data Engineering at Unacademy. Beyond interviews, he creates engineering content through YouTube videos and offers courses such as the Applied AI Masterclass, System Design Masterclass, and System Design for Beginners, all listed under Relog Deeptech Pvt. Ltd. His newsletter, Arpit&#x27;s Newsletter, is read by 145,000 engineers on LinkedIn and Substack and covers topics like system design and distributed systems.</description>
+  <pubDate>Mon, 15 Jan 2024 00:00:00 GMT</pubDate>
+  <source>Arpit Bhayani</source>
 </item>
 
 <item>
-  <title>Primal Acceleration of Newton's Method</title>
-  <link>https://arxiv.org/abs/2608.21359v1</link>
-  <guid isPermaLink="false">https://arxiv.org/abs/2608.21359v1</guid>
-  <description>The paper by Nikita Doikov introduces a new direct accelerated Newton method for minimizing convex functions with Lipschitz continuous Hessian, operating exclusively on primal variables with just one linear solve per iteration. Using a simple predetermined parameter choice, the algorithm achieves a global convergence rate of O(1/k³) in terms of functional residual. This is presented as the first second-order method for this problem class to attain such a rate while relying solely on one linear system solve per iteration, without requiring auxiliary nonlinear regularized subproblems like cubic regularization, nonlinear parameter searches, or dual extragradient corrections. The method can also be implemented in a Hessian-free manner using an inexact linear system solver while preserving its fast global convergence. Finally, the construction is extended to arbitrary geometry through Bregman divergence and to composite optimization problems.</description>
-  <pubDate>2026-08-21T17:59:37Z</pubDate>
+  <title>How to Train a Critic Stably and Efficiently</title>
+  <link>https://arxiv.org/abs/2608.23566v1</link>
+  <guid isPermaLink="false">https://arxiv.org/abs/2608.23566v1</guid>
+  <description>The paper &quot;How to Train a Critic Stably and Efficiently&quot; by Penghui Qi, Xiangxin Zhou, and Wee Sun Lee addresses instability in critic-based reinforcement learning for large language models. While group-based methods like GRPO avoid training a critic by sampling multiple responses per prompt, standard critic-based training recipes that estimate token-level advantages from a single response tend to be unstable. To address this, the authors develop Best-Practice Critic Optimization (BPCO), which combines DPPO, reward-bounded value predictions, Monte Carlo value targets, unnormalized policy advantages, and length-adaptive generalized advantage estimation. Because the critic is used only during training, BPCO can condition it on reward-defining information such as reference answers or grading rubrics that remain hidden from the policy. Experiments on mathematical reasoning tasks with models ranging from 1.5B parameters to 30B-A3B mixtures of experts show that BPCO consistently improves a critic-based baseline and matches or exceeds a group-based baseline while sampling just one response per prompt.</description>
+  <pubDate>2026-08-24T17:59:39Z</pubDate>
   <source>arXiv · cs.AI</source>
 </item>
 
 <item>
-  <title>VIALS: A Benchmark for Visual Interpretation of Artifacts in the Life Sciences</title>
-  <link>https://arxiv.org/abs/2608.21357v1</link>
-  <guid isPermaLink="false">https://arxiv.org/abs/2608.21357v1</guid>
-  <description>VIALS is a visual question-answering benchmark introduced to evaluate AI systems on interpreting scientific artifacts commonly encountered in life sciences workflows. The benchmark contains 161 interpretation tasks covering diverse artifact types, including gel blots, microscopy images, plasmid maps, flow cytometry plots, and molecular structures. Unlike benchmarks that rely on polished figures from publications and textbooks, VIALS draws from artifacts examined throughout experimental workflows in the biotech industry. While frontier vision-language models can fluently describe natural images, they struggle to accurately interpret these scientific artifacts, reflecting gaps in domain knowledge and domain-specific visual reasoning capabilities. In contrast, scientists with relevant domain expertise find these visual interpretation tasks straightforward. The authors argue that AI lacking such capabilities will have limited utility in professional life sciences workflows, where these artifacts are central to how scientists reason, communicate, and make research decisions.</description>
-  <pubDate>2026-08-21T17:59:26Z</pubDate>
+  <title>ReWorld: An Interactive World Model with Long-Horizon Memory</title>
+  <link>https://arxiv.org/abs/2608.23565v1</link>
+  <guid isPermaLink="false">https://arxiv.org/abs/2608.23565v1</guid>
+  <description>ReWorld is an interactive world model designed to follow user actions, maintain long-horizon memory, and stream video in real time. It separates short-horizon control from unbounded memory during training by using mixed per-head attention windows, where most heads attend to recent frames while a small set of global heads attends over the full history, supported by random head routing and chunk dropping. At inference, a bounded KV cache backed by a pose-indexed landmark bank retrieves the nearest landmarks to the current pose, keeping the entire past under a fixed budget. A data engine aligns eight diverse video sources on one physical action scale, and palindrome trajectories supply the revisit evidence needed for memory training. Distribution-matching distillation within a LoRA adapter compresses sampling to four steps, enabling 704x1280 streaming across photorealistic, game-style, and stylized worlds. Evaluated against six recent interactive world models under a three-axis protocol, ReWorld achieves the best control fidelity, including 11.95° rotation error, and regenerates starting views on 64-second out-and-back rollouts where sliding windows and full attention fail.</description>
+  <pubDate>2026-08-24T17:59:05Z</pubDate>
   <source>arXiv · cs.AI</source>
 </item>
 
 <item>
-  <title>AI with Authority, from Application to Silicon</title>
-  <link>https://arxiv.org/abs/2608.21356v1</link>
-  <guid isPermaLink="false">https://arxiv.org/abs/2608.21356v1</guid>
-  <description>The paper reports a five-week effort in which one researcher used consumer AI subscriptions to direct a small fleet of agents from application code through a verified compiler and executive to a RISC-V processor taped out on a community silicon shuttle. It says no proof passed through human review, no RTL was written by a human, and no incorrect proofs reached the record. The proposed “Salt method” makes the proof kernel the incorruptible referee: agents exchange mathematical claims as kernel-checked artifacts, while humans focus on statements, designs, and rulings. The verification chain extends from the Lean 4 kernel to SAT-checked equivalence at the silicon boundary. The author also publishes a complete accounting of the mathematics campaign, including theorem provenance, a preregistered token meter, floor-bounded human time, and an append-only error ledger with catch numbers through #256, while noting that #79 was never assigned.</description>
-  <pubDate>2026-08-21T17:59:16Z</pubDate>
+  <title>SWE Refactor Bench: Can Coding Agents Complete a Long-Horizon, Whole-Repository Stack Migration?</title>
+  <link>https://arxiv.org/abs/2608.23564v1</link>
+  <guid isPermaLink="false">https://arxiv.org/abs/2608.23564v1</guid>
+  <description>SWE Refactor Bench is a benchmark of 20 whole-repository migrations covering four kinds of technical debt, designed to test whether coding agents can autonomously perform long-horizon stack migrations. Existing benchmarks suffer from &quot;Blindness,&quot; where agents copy the original implementation to pass behavioural tests without performing the actual migration. To address this, the authors propose a three-stage evaluation protocol: Migration Audit verifies the migration occurred, Behavioural Tests measure correctness with a fixed test suite, and Agentic Verification uses six independent coding agents to generate targeted tests for hidden behavioural differences. Across 520 runs from 8 frontier models and 26 model-effort configurations, only 5.4% pass all three stages, 13 of the 20 tasks receive no accepted solution, and the best model, claude-opus-5, scores 47.0 out of 100. The results reveal that migration completeness and behavioural correctness are distinct abilities, and capability varies significantly across migration categories, with agents scoring 31.4 on build toolchain rewrites but only 5.6 on language rewrites.</description>
+  <pubDate>2026-08-24T17:59:04Z</pubDate>
   <source>arXiv · cs.AI</source>
 </item>
 
 <item>
-  <title>PerturbRx: Learning Treatment-Conditioned Latent Transitions for Patient Drug Response Prediction</title>
-  <link>https://arxiv.org/abs/2608.21349v1</link>
-  <guid isPermaLink="false">https://arxiv.org/abs/2608.21349v1</guid>
-  <description>PerturbRx is a treatment-conditioned representation learning framework designed to predict patient-level cancer drug responses despite scarce data and tumor heterogeneity. Existing methods predict response directly from pretreatment molecular profiles and drug representations without explicitly modeling molecular changes expected under treatment. PerturbRx addresses this gap by learning intervention-induced latent transitions from context-matched but cell-unpaired control and treated single-cell populations, using a drug- and dose-conditioned transition predictor. After training, the predictor is frozen and transferred to pretreatment patient profiles, eliminating the need for post-treatment measurements. The learned latent transitions are combined with patient and drug representations to predict response. Across TCGA and patient-derived xenograft benchmarks, PerturbRx achieves the strongest aggregate predictive performance among the evaluated methods, supporting perturbation-pretrained latent transitions as effective representations for patient-level drug-response prediction.</description>
-  <pubDate>2026-08-21T17:54:48Z</pubDate>
-  <source>arXiv · cs.LG</source>
+  <title>EG-ARSA: An Expert-Grounded Open Model for Visual Road Safety Auditing in Low-Resource Settings</title>
+  <link>https://arxiv.org/abs/2608.23563v1</link>
+  <guid isPermaLink="false">https://arxiv.org/abs/2608.23563v1</guid>
+  <description>Road traffic injuries remain a major challenge in low- and middle-income countries, where proactive road safety auditing is limited by incomplete crash records, auditor shortages, and costly field inspections. The authors propose Expert-Grounded Distillation (EGD), a framework that transfers institutional road safety expertise into a compact vision-language model. EGD features a quantified expert-grounding stage where a teacher model is calibrated against authoritative field audits, achieving substantial agreement with expert risk assessments (Cohen&#x27;s kappa = 0.74). The calibrated teacher generates structured supervision distilled into an 8-billion-parameter student vision-language model using Low-Rank Adaptation. The authors also introduce BD-ARSA, an open Bangladeshi visual road safety audit dataset of 21,947 image-audit records with near-national coverage, and EG-ARSA, the first vision-language model for this task. Results show grounded fine-tuning improves ordinal risk assessment over the zero-shot baseline, while blind expert evaluation reveals the compact student outperforms both its 31-billion-parameter teacher and Gemini-2.5-Flash.</description>
+  <pubDate>2026-08-24T17:58:41Z</pubDate>
+  <source>arXiv · cs.AI</source>
 </item>
 
 <item>
-  <title>Truthful Calibration Measures for Sequential Prediction</title>
-  <link>https://arxiv.org/abs/2608.21348v1</link>
-  <guid isPermaLink="false">https://arxiv.org/abs/2608.21348v1</guid>
-  <description>Calibration requires probabilistic reports to be conditionally unbiased and reliably interpretable as probabilities, and a calibration measure assigns numerical error to miscalibrated reports. Building on Haghtalab et al. (2024), who proposed an approximately truthful calibration measure for online prediction, this paper resolves an open question about whether exact truthfulness is compatible with completeness and soundness. The authors prove that for sequential binary prediction, exact truthfulness is incompatible with completeness and soundness, even when outcomes are independent. They then show this impossibility is specific to exact truthfulness by providing two general reductions from a base calibration measure, producing additively and multiplicatively approximately truthful calibration measures. Using the multiplicative reduction, they construct a sound and complete calibration measure that is (1+exp(-T^{(1−ε)/2}/2))-multiplicatively truthful for every 0&amp;lt;ε&amp;lt;1, improving the approximate-truthfulness guarantee of Haghtalab et al. (2024).</description>
-  <pubDate>2026-08-21T17:54:05Z</pubDate>
-  <source>arXiv · cs.LG</source>
+  <title>Physics-Constrained Deep Learning Model for Contactless Blood Pressure Monitoring from Triaxial Bodyseismography</title>
+  <link>https://arxiv.org/abs/2608.23562v1</link>
+  <guid isPermaLink="false">https://arxiv.org/abs/2608.23562v1</guid>
+  <description>The paper introduces Phy-BP, a non-invasive blood pressure estimation framework based on triaxial bodyseismography (BSG), which extends traditional ballistocardiography to address misaligned representations caused by body-bed interaction variations and individual hemodynamic changes. An adaptive quality-control algorithm selects BSG segments enriched with cardiogenic components by jointly evaluating neighboring beat patterns and universal cardiogenic templates, dynamically filtering out low-quality measurements. A physical model describing 3D wave propagation within the body-bed system is embedded into the deep learning architecture to characterize the intrinsic coupling among the three BSG axes driven by a single cardiogenic excitation, thereby aligning multi-axis features during training. Experiments on a 162-hour hospital dataset collected from 21 subjects demonstrate that the physics-constrained deep learning model improves robustness against real-world distortions and enhances generalizability, particularly when training samples are limited.</description>
+  <pubDate>2026-08-24T17:58:35Z</pubDate>
+  <source>arXiv · cs.AI</source>
 </item>
 
 <item>
-  <title>OCR It – pull text out of un-copyable documents for your LLM</title>
-  <link>https://github.com/thiagotigaz/ocr-it</link>
-  <guid isPermaLink="false">https://github.com/thiagotigaz/ocr-it</guid>
-  <description>OCR It is a Chrome extension that extracts text from documents trapped in non-selectable viewers, such as scanned books, slide decks, and embedded readers. Users pin a capture region once, then press a hotkey per page to screenshot and OCR that area, appending results to a running transcript. An auto-run mode captures a page, advances, and repeats</description>
-  <pubDate>2026-08-24T06:25:31Z</pubDate>
+  <title>Nitter and XCancel receive cease and desist notices</title>
+  <link>https://github.com/zedeus/nitter/issues/1442</link>
+  <guid isPermaLink="false">https://github.com/zedeus/nitter/issues/1442</guid>
+  <description>The zedeus/nitter GitHub repository was archived by its owner on August 25, 2026, becoming read-only following reports that Nitter and XCancel received cease and desist notices. On the same day, an issue titled &quot;All public nitter instances do not work.&quot; was opened, reporting that every public instance displayed the same &quot;Instance has been rate limited.&quot; error message. The issue, posted by user AlexandrPutenikhin, included a link to an archived version of the twiiit.com instance as supporting evidence of the problem. The post quickly gained attention, accumulating 28 comments and 8 thumbs-up reactions from the community. The repository, which had amassed 13.5k stars and 824 forks, is no longer accepting contributions or updates as a result of the shutdown.</description>
+  <pubDate>2026-08-25T17:08:21Z</pubDate>
   <source>Hacker News</source>
 </item>
 
 <item>
-  <title>We are not going anywhere</title>
-  <link>https://gist.github.com/omeid/a9d6d1e3c25cb3aa577931e60e006f54</link>
-  <guid isPermaLink="false">https://gist.github.com/omeid/a9d6d1e3c25cb3aa577931e60e006f54</guid>
-  <description></description>
-  <pubDate>2026-08-24T07:37:53Z</pubDate>
+  <title>Show HN: LatticeDB – Like SQLite but for graph databases</title>
+  <link>https://github.com/jeffhajewski/latticedb</link>
+  <guid isPermaLink="false">https://github.com/jeffhajewski/latticedb</guid>
+  <description>LatticeDB is an embedded, single-file property-graph database written in Zig that combines graph traversal, HNSW vector similarity search, and BM25 full-text indexing within a unified query layer. Designed for local-first use on a single machine, the entire database lives in one portable file with no server or configuration required. It supports Cypher-style queries and offers performance benchmarks of 0.13 μs for node lookups and 0.83 ms for vector search across 1 million vectors while maintaining 100% recall. The system shares a single transaction and WAL path across graph writes, durable named streams, and a built-in graph changefeed. It is positioned for relationship-heavy workloads such as Graph RAG, agent memory, and local knowledge tools, with the repository showing 220 stars, 8 forks, and 436 commits at the time of the Show HN post.</description>
+  <pubDate>2026-08-25T16:52:05Z</pubDate>
   <source>Hacker News</source>
 </item>
 
 <item>
-  <title>Show HN: Kern – container and resource runtime in a 1.5 MB binary, no daemon</title>
-  <link>https://github.com/getkern/kern</link>
-  <guid isPermaLink="false">https://github.com/getkern/kern</guid>
-  <description>Kern is a rootless container and resource runtime delivered as a single 1.52 MB static binary with no daemon, using only libc as its Rust dependency. It launches real OCI images in about 3.5 ms by applying user, PID, mount, network, UTS, and IPC namespaces along with an overlay or read-only root, a deny-by-default seccomp allowlist, and cgroup v2 limits. Beyond isolation, it defines resource profiles for CPU, memory, disk, and devices in a kern.toml file that can be attached to sandboxed boxes or bare host processes alike. Kern accepts existing Docker Compose files unchanged and ships Python and Node SDKs plus an MCP server aimed at running untrusted or AI-generated code. It runs on Linux, WSL2, and ARM boards, with its isolation built on an unprivileged user namespace rather than a hypervisor.</description>
-  <pubDate>2026-08-24T18:24:59Z</pubDate>
+  <title>Show HN: I made a Raspberry with Qwen my local car AI</title>
+  <link>https://github.com/ThinkOffApp/CarWatch</link>
+  <guid isPermaLink="false">https://github.com/ThinkOffApp/CarWatch</guid>
+  <description>CarWatch runs as a fully offline car agent on a Raspberry Pi 5 (16 GB, ~300 €) hosting a Qwen3.6-35B-A3B model locally, achieving 3.5 tok/s generation and 25+ tok/s prompt processing at 65 °C sustained. It joins GroupMind chat rooms as @gle, sending messages about departures, arrivals, trip summaries, and dashcam clips when impacts occur, with approvals routed through CodeWatch. The system answers owner&#x27;s manual questions via lexical RAG over the car&#x27;s own 745-page manual with page citations, refusing to answer outside the manual&#x27;s scope. Hands-free voice input runs entirely on-Pi through energy VAD and whisper.cpp, while grounded self-knowledge reads live hardware metrics like temperature, throttling, fan, memory, disk, and network status. systemd services auto-start the entire stack on boot, and the car pulls its own updates over a three-tier connectivity fallback spanning phone hotspot, home WiFi, or its own access point.</description>
+  <pubDate>2026-08-25T15:20:20Z</pubDate>
   <source>Hacker News</source>
 </item>
 
 <item>
-  <title>A Claude Code skill that recovers export-blocked Kindle highlights</title>
-  <link>https://github.com/l3a0/claude-plugins</link>
-  <guid isPermaLink="false">https://github.com/l3a0/claude-plugins</guid>
-  <description>A Claude Code skill called kindle-highlights recovers Kindle highlights that Amazon's notebook page truncates mid-sentence or hides entirely under an undocumented export limit notice. Running only on macOS, the skill drives a logged-in Chrome session to scrape the notebook's DOM into JSON, then reads exact character positions from the Mac Kindle app's SQLite annotation database to recover highlights the web export hides completely. For still-blocked text, it captures the Cloud Reader's rendered pages via canvas and runs them through a local Apple Vision OCR helper compiled with swiftc, cutting the recognized text to the known highlight extents. The output is a single Markdown file with location-cited, blockquoted verbatim text and flags for recovered or approximate passages. Proven on four books, the pipeline recovered all 815 export-blocked entries out of 2,432 highlights, with recovered text matching the Kindle app's position ruler to within a couple of characters. The skill is scoped to a user's own Amazon account and personal notes.</description>
-  <pubDate>2026-08-24T19:32:18Z</pubDate>
+  <title>HelloAssembly: The smallest possible complete Windows application (2021)</title>
+  <link>https://github.com/PlummersSoftwareLLC/HelloAssembly</link>
+  <guid isPermaLink="false">https://github.com/PlummersSoftwareLLC/HelloAssembly</guid>
+  <description>HelloAssembly is a GitHub project by PlummersSoftwareLLC dedicated to creating the smallest possible complete Windows application without compression. It was inspired by two episodes of Dave&#x27;s Garage on YouTube, including &quot;Hello, Assembly! Retrocoding the World&#x27;s Smallest Windows App in x86 ASM&quot; and a follow-up comparing C versus assembly. The repository contains multiple versions of the application, including an optimized original called TinyOriginal, a Lasse version that applies shell coding tactics, and a Theron version using a manually written PE header, while a QRCode directory contains dead code preserved for posterity. The goal is to produce an executable that runs a Windows message loop, features a title bar with working minimize, maximize, and close buttons, has a system menu, and paints a background with centered text reading &quot;Dave&#x27;s Tiny App.&quot; The project notes that the aggressive optimization techniques used may cause virus scanners to flag the resulting executables as suspected malware, potentially requiring users to whitelist them.</description>
+  <pubDate>2026-08-25T11:40:00Z</pubDate>
   <source>Hacker News</source>
 </item>
 
 <item>
-  <title>Everything I own, owned</title>
-  <link>https://schlarp.com/posts/everything-i-own-owned/</link>
-  <guid isPermaLink="false">https://schlarp.com/posts/everything-i-own-owned/</guid>
-  <description>The author used AI-driven reverse engineering to analyze five consumer peripherals, completing the work in roughly 13 hours of agent runtime across two weeks of evenings. The process involved feeding firmware and update tools to Claude Opus 5 along with goals like documenting protocols, building custom update utilities, and finding hidden functionality. Security findings included a plaintext command shell inside a Shure MV7 microphone accessible over USB HID, a method to disable the recording LED on an Insta360 Link webcam, and an ASUS ROG Swift PG42UQ monitor with effectively no firmware protection. The Elgato Cam Link 4K similarly lacked firmware update protection, while the Elgato Key Light Mini used Ed25519 signing but lacked secure boot enforcement, leaving it vulnerable to runtime attacks.</description>
-  <pubDate>2026-08-23T22:41:04Z</pubDate>
-  <source>Hacker News</source>
-</item>
-
-<item>
-  <title>How Europe is killing makers and micro-entrepreneurs</title>
-  <link>https://lectronz.com/u/lectronz/articles/how-europe-is-killing-makers-and-micro-entrepreneurs</link>
-  <guid isPermaLink="false">https://lectronz.com/u/lectronz/articles/how-europe-is-killing-makers-and-micro-entrepreneurs</guid>
-  <description>Lectronz, a marketplace for open-source hardware makers and DIY electronics, warns that the EU's new Packaging and Packaging Waste Regulation (PPWR), generally applying from 12 August 2026, threatens micro-entrepreneurs through its fragmented national compliance requirements. Businesses selling across multiple Member States must register and fulfil obligations separately in each country where their packaging becomes waste, with administrative costs that can reach roughly €1,150 annually even for a small seller operating in just four countries. This creates disproportionate barriers for makers, artists, and craftspeople, given that half of Lectronz's registered sellers receive fewer than 10 orders per year. The author proposes three solutions: an EU-wide de minimis threshold for small sellers, a centralized EPR One Stop Shop similar to the VAT OSS, and allowing marketplaces to collectively represent their sellers as a single producer. The European Commission has proposed suspending the authorized representative requirement until 2035, but this proposal has not yet been adopted.</description>
-  <pubDate>2026-08-24T13:05:25Z</pubDate>
-  <source>Hacker News</source>
+  <title>I cannot survive from burnout</title>
+  <link>https://lobste.rs/s/0typpq/i_cannot_survive_from_burnout</link>
+  <guid isPermaLink="false">https://lobste.rs/s/0typpq/i_cannot_survive_from_burnout</guid>
+  <description>The original poster describes experiencing burnout two years ago, followed by divorce and relocation, leaving them living alone with seven cats and carrying significant debt. Despite delivering high-quality client work, they can only manage 5–6 hours weekly on paid projects while easily focusing on personal side projects. Commenters suggest the pattern of pursuing novelty over obligation may indicate executive function issues, and several recommend an ADHD evaluation. Multiple users share personal experiences where ADHD diagnosis and medication dramatically improved their ability to focus on required tasks. The thread also debates whether therapy should aim for a defined endpoint or function as ongoing maintenance, with some favoring goal-oriented approaches and others viewing therapy like regular exercise. The poster expresses gratitude for the unexpected volume of supportive responses and is seeking a new therapist.</description>
+  <pubDate>Mon, 24 Aug 2026 11:04:45 -0500</pubDate>
+  <source>Lobsters</source>
 </item>
 
 </channel></rss>
