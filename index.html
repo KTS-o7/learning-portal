@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Daily Byte — 2026-08-26</title>
+<title>Daily Byte — 2026-08-27</title>
 <meta name="description" content="A byte-size daily digest for engineers who value depth over noise.">
 <link rel="alternate" type="application/rss+xml" title="Daily Byte"
       href="https://learn.shenthar.me/rss.xml">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
-<style><style>/* ---------- Daily Byte: newspaper edition ---------- */
+<style>/* ---------- Daily Byte: newspaper edition ---------- */
 :root{
   --paper:#fbf1c7; --paper2:#f9f5d7; --rule:#d8c9a8; --ink:#3c3836;
   --mut:#504945; --mut2:#79756b; --ac:#b57614; --ln:#076678;
@@ -107,67 +107,66 @@ color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
   .story .smeta{font-size:11.5px;gap:10px}
   .nameplate{margin:22px auto 0}
 }
-</style></style>
+</style>
 </head>
 <body>
 <div class="chrome"><div class="chrome-in">
   <div class="left"><a href="https://learn.shenthar.me/"><strong>Daily Byte</strong></a>
     <a href="https://github.com/KTS-o7/learning-portal">Source</a><a href="https://learn.shenthar.me/archive/">Archive</a>
     <a href="https://learn.shenthar.me/rss.xml">RSS</a></div>
-  <div class="nav"><a class="nav-arrow" href="archive/2026-08-25.html" title="Previous">‹</a><span class="d">Wednesday, August 26, 2026</span></div>
-  <div class="right"><span class="count">15 STORIES</span></div>
+  <div class="nav"><a class="nav-arrow" href="https://learn.shenthar.me/archive/2026-08-26.html" title="Previous edition">‹</a><span class="d">Thursday, August 27, 2026</span></div>
+  <div class="right"><span class="count">16 STORIES</span></div>
 </div></div>
 
 <header class="mast">
   <h1>Daily Byte<span class="dot">.</span></h1>
   <div class="tag">A byte-size daily digest for engineers who value depth over noise.</div>
-  <div class="edition">Wednesday, August 26, 2026 · Edition 2026-08-26</div>
+  <div class="edition">Thursday, August 27, 2026 · Edition 2026-08-27</div>
   <div class="nameplate"><span>Engineering</span></div>
 </header>
 
 <main>
   <div class="nameplate" style="margin:30px auto"><span>Engineering</span></div>
 
-<p class="section-intro" style="color:var(--mut);font-style:italic;margin:-6px 0 14px;text-align:center">Independent voices from engineering blogs — what shipped, what hurt, and what language designers think matters this week.</p>
+<p class="section-intro" style="color:var(--mut);font-style:italic;margin:-6px 0 14px;text-align:center">Notes from independent engineering blogs and language teams — depth over news, lessons over launches.</p>
 <article class="story">
   <div class="lbl">ENGINEERING</div>
   <div class="acts"></div>
-  <h2><a href="https://github.blog/ai-and-ml/llms/how-to-evaluate-llms-before-production/">How to evaluate LLMs before production</a></h2>
-  <div class="sum">LLMs can perform well on clean benchmarks yet struggle with the ambiguous, inconsistent inputs they encounter in production. The authors recommend starting with the product decision rather than the model, defining which mistakes are acceptable and which guardrails must remain within thresholds, treating precision and recall as non-interchangeable metrics. Offline evaluation should function like integration testing, rerun whenever prompts, models, or pipeline logic change, with results recorded so each run can be compared against a known baseline. Experiments should change one major variable at a time to keep causation clear, and prompts and configurations should be versioned like code. Finally, offline evaluations must closely mirror production conditions, preserving the surrounding context, formatting, and ambiguity of real inputs, since differences between curated datasets and production data can materially skew results.</div>
-  <div class="smeta"><span class="pill p-blog">GitHub Blog</span></div>
+  <h2><a href="https://jvns.ca/blog/2024/11/09/new-microblog/">New microblog with TILs</a></h2>
+  <div class="sum">On November 9, 2024, Julia announced a new TIL (&quot;today I learned&quot;) section on her site, created a couple weeks earlier to archive interesting tools and facts she had been sharing on Mastodon and Bluesky. The section addresses her need for a place to post brief recommendations—like SQLite&#x27;s litecli, Go&#x27;s easy cross-compiling, cryptographic best practices, and the diff tool diffdiff—without writing full blog posts. She built a /til/ folder with tweet-like styling, a `rake new_til` task for quick post creation, and a separate RSS feed, often completing posts in about two minutes. The project was inspired by Simon Willison&#x27;s TIL blog. While she appreciates the POSSE approach, she prefers keeping most social media content ephemeral and reserves her own site for blog posts, comics at wizardzines.com, and now TILs at jvns.ca/til/, each with email lists and RSS feeds.</div>
+  <div class="smeta"><span class="pill p-blog">Julia Evans</span> · 655d</div>
 </article>
 
 <article class="story">
   <div class="lbl">ENGINEERING</div>
   <div class="acts"></div>
-  <h2><a href="https://github.blog/engineering/user-experience/your-alt-text-passes-automated-checks-that-doesnt-mean-its-any-good/">Your alt text passes automated checks. That doesn’t mean it’s any good.</a></h2>
-  <div class="sum">We built a plugin for the GitHub Accessibility Scanner to make sure your alt text is actually accessible. Here&#x27;s how it works.
-The post Your alt text passes automated checks. That doesn&amp;#8217;t mean it&amp;#8217;s any good. appeared first on The GitHub Blog.</div>
-  <div class="smeta"><span class="pill p-blog">GitHub Blog</span></div>
+  <h2><a href="https://jvns.ca/blog/2024/11/18/how-to-import-a-javascript-library/">Importing a frontend Javascript library without a build system</a></h2>
+  <div class="sum">Frontend libraries can often be loaded directly into a browser via script tags or ES module imports, bypassing npm and bundlers entirely. This approach matters for legacy codebases, CMS integrations, quick prototypes, and environments where installing dependencies isn&#x27;t feasible, but it also forces you to manage versioning manually, handle global namespace pollution, and forgo optimizations like tree-shaking and automatic TypeScript type resolution that a build system would normally provide.</div>
+  <div class="smeta"><span class="pill p-blog">Julia Evans</span> · 646d</div>
 </article>
 
 <article class="story">
   <div class="lbl">ENGINEERING</div>
   <div class="acts"></div>
-  <h2><a href="https://arpitbhayani.me/blogs/10x-engineer">10x Engineer DNA</a></h2>
-  <div class="sum">Arpit Bhayani, who focuses on engineering, databases, and systems, argues that 10x engineers earn their reputation not by building complex systems but by consistently finding simple, stable, and manageable solutions to complex problems. The article, titled &quot;10x Engineer DNA,&quot; presents this philosophy as the pathway to becoming a 10x engineer. Bhayani currently works as a Principal Engineer II at Razorpay, building Agent Studio, and previously held roles including staff engineer at GCP Memorystore and Dataproc and Director of Engineering at Unacademy. He is also the creator of DiceDB and has worked at Amazon Fast Data. Beyond his engineering career, he produces engineering videos on YouTube, teaches courses, and writes a newsletter read by 145,000 engineers covering system design, distributed systems, and clever algorithms.</div>
-  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span></div>
+  <h2><a href="https://jvns.ca/blog/2024/11/29/why-pipes-get-stuck-buffering/">Why pipes sometimes get &quot;stuck&quot;: buffering</a></h2>
+  <div class="sum">When commands are piped together, programs often buffer their output—saving up around 8KB of data before writing—to reduce system calls and improve performance. This causes pipes to appear &quot;stuck&quot; because programs like grep use block buffering when writing to pipes but line buffering when writing directly to a terminal, so output only appears once the buffer fills or the program exits. Commands such as tail, cat, and tee don&#x27;t buffer, but grep, sed, awk, tcpdump, jq, and tr do buffer by default when writing to pipes. Most of these offer flags to disable buffering, including --line-buffered for grep, -u for sed, -l for tcpdump, and -u for jq. Pressing Ctrl-C kills processes before buffers flush, losing buffered output, though sending SIGTERM to the producing program lets it flush its buffer. Common workarounds include using line-buffer flags, replacing multiple greps with a single awk command, or running programs that finish quickly to avoid the buffering issue altogether.</div>
+  <div class="smeta"><span class="pill p-blog">Julia Evans</span> · 635d</div>
 </article>
 
 <article class="story">
   <div class="lbl">ENGINEERING</div>
   <div class="acts"></div>
-  <h2><a href="https://arpitbhayani.me/blogs/1d-terrain">1D Terrain Generation</a></h2>
-  <div class="sum">Generating pseudorandom one-dimensional terrain for games starts with a naive approach that assigns random heights to each point along the X-axis, but this produces abrupt spikes that don&#x27;t resemble real-world terrain. Applying interpolation methods, either Linear or Cosine, between sampled points smooths transitions, with Cosine Interpolation producing noticeably smoother curves than Linear by plotting intermediate points on a cosine curve rather than assuming collinearity. To further improve realism, the technique of superposition combines multiple sampled terrains with different sampling frequencies through a normalized weighted sum, where weights increase as sampling frequency decreases. Typically six terrains are combined, with the most densely sampled terrain receiving the lowest weight (0.03125) and the least sampled receiving the highest (1), giving the final terrain both smoothness and subtle variations. This superposition-based method closely resembles Perlin Noise, the multi-dimensional terrain algorithm for which Ken Perlin received an Academy Award for Technical Achievement.</div>
-  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span></div>
+  <h2><a href="https://arpitbhayani.me/blogs/atomicity">Decoding Atomicity - The A in ACID</a></h2>
+  <div class="sum">Atomicity, the &quot;A&quot; in ACID, requires that every database transaction be treated as a single unit of execution, meaning either all statements are applied or none are, even after power failures, errors, or crashes. A money transfer between accounts illustrates this: if subtracting from one account and adding to another are only partially applied, money could be lost or never credited. Most databases implement atomicity through logging changes along with transaction start and finish markers, applying or dropping them based on the final state, or alternatively by keeping pre-transaction copies for rollbacks. At the file system level, atomicity is achieved by opening and locking files using system calls like open and flock in shared or exclusive mode. At the hardware level, atomic instructions such as test-and-set, fetch-and-add, and compare-and-swap provide atomic operations. This concept extends beyond databases and can be applied to any system or even to high-level business logic by borrowing atomic instruction constructs.</div>
+  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span> · 1882d</div>
 </article>
 
 <article class="story">
   <div class="lbl">ENGINEERING</div>
   <div class="acts"></div>
-  <h2><a href="https://arpitbhayani.me/blogs/six-pointers-to-crack-coding-and-design-interviews">6 Simple Strategies to Cracking Any Tech Interview</a></h2>
-  <div class="sum">Arpit Bhayani shares six strategies he used throughout his career to crack tech interviews. He recommends using Python during interviews because its concise syntax allows candidates to express solutions more quickly than writing verbose Java or C++ code, though he notes some interviews require a specific language and candidates should clarify this with the interviewer first. Bhayani is a Principal Engineer II at Razorpay, where he is building Agent Studio, and his background includes ex-staff engineering roles at GCP Memorystore and Dataproc, founding DiceDB, work at Amazon Fast Data, and serving as Director of Engineering for SRE and Data Engineering at Unacademy. Beyond interviews, he creates engineering content through YouTube videos and offers courses such as the Applied AI Masterclass, System Design Masterclass, and System Design for Beginners, all listed under Relog Deeptech Pvt. Ltd. His newsletter, Arpit&#x27;s Newsletter, is read by 145,000 engineers on LinkedIn and Substack and covers topics like system design and distributed systems.</div>
-  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span></div>
+  <h2><a href="https://arpitbhayani.me/blogs/consistency">Decoding Consistency - The C in ACID</a></h2>
+  <div class="sum">Consistency in ACID refers to the correctness of data, ensuring it never loses its integrity under any circumstance. Database systems allow rules to be enforced through constraints, cascades, and triggers such as Foreign Key constraints, Check constraints, and On Delete or On Update Cascades. An ACID-compliant database engine guarantees that data continues to follow all configured rules, moving from one consistent state to another even during thousands of concurrent transactions. When a transaction violates a rule, the engine rolls back the changes to restore a previous consistent state, while successful transactions establish a newer consistent state. A practical example is preventing an account from having a negative balance. Integrity constraints are validated as changes are applied, and cascade operations execute synchronously with the transaction, though some engines offer asynchronous options for leaner transactions.</div>
+  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span> · 1882d</div>
 </article>
 
 <div class="nameplate" style="margin:30px auto"><span>Papers</span></div>
@@ -176,94 +175,101 @@ The post Your alt text passes automated checks. That doesn&amp;#8217;t mean it&a
 <article class="story">
   <div class="lbl">PAPERS</div>
   <div class="acts"></div>
-  <h2><a href="https://arxiv.org/abs/2608.23566v1">How to Train a Critic Stably and Efficiently</a></h2>
-  <div class="sum">The paper &quot;How to Train a Critic Stably and Efficiently&quot; by Penghui Qi, Xiangxin Zhou, and Wee Sun Lee addresses instability in critic-based reinforcement learning for large language models. While group-based methods like GRPO avoid training a critic by sampling multiple responses per prompt, standard critic-based training recipes that estimate token-level advantages from a single response tend to be unstable. To address this, the authors develop Best-Practice Critic Optimization (BPCO), which combines DPPO, reward-bounded value predictions, Monte Carlo value targets, unnormalized policy advantages, and length-adaptive generalized advantage estimation. Because the critic is used only during training, BPCO can condition it on reward-defining information such as reference answers or grading rubrics that remain hidden from the policy. Experiments on mathematical reasoning tasks with models ranging from 1.5B parameters to 30B-A3B mixtures of experts show that BPCO consistently improves a critic-based baseline and matches or exceeds a group-based baseline while sampling just one response per prompt.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.AI</span></div>
+  <h2><a href="https://arxiv.org/abs/2608.24221v1">DeepRepoQA: Code Repository Question Answering with Deep Agent Exploration</a></h2>
+  <div class="sum">DeepRepoQA is a novel question answering framework designed to address repository-level code understanding, a critical yet under-explored problem in software engineering. Existing methods rely primarily on surface-level code retrieval and struggle with deep reasoning across multiple files, complex software architectures, and long-range code dependencies. To overcome these limitations, DeepRepoQA employs an agentic framework in which LLM agents find answers through a systematic tree search over the repository structure. A Monte-Carlo Tree Search (MCTS) mechanism enables agents to dynamically search, navigate, and inspect code, supporting effective multi-hop reasoning over long-range dependencies. Comprehensive experiments on the SWE-QA benchmark show substantial performance gains over strong baselines, validating the effectiveness of systematic MCTS-guided exploration for multi-hop repository reasoning. The framework was developed by Weihan Peng, Yuling Shi, Yingwei Ma, Longfei Yun, Beijun Shen, and Xiaodong Gu.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.PL</span> · 1d</div>
 </article>
 
 <article class="story">
   <div class="lbl">PAPERS</div>
   <div class="acts"></div>
-  <h2><a href="https://arxiv.org/abs/2608.23565v1">ReWorld: An Interactive World Model with Long-Horizon Memory</a></h2>
-  <div class="sum">ReWorld is an interactive world model designed to follow user actions, maintain long-horizon memory, and stream video in real time. It separates short-horizon control from unbounded memory during training by using mixed per-head attention windows, where most heads attend to recent frames while a small set of global heads attends over the full history, supported by random head routing and chunk dropping. At inference, a bounded KV cache backed by a pose-indexed landmark bank retrieves the nearest landmarks to the current pose, keeping the entire past under a fixed budget. A data engine aligns eight diverse video sources on one physical action scale, and palindrome trajectories supply the revisit evidence needed for memory training. Distribution-matching distillation within a LoRA adapter compresses sampling to four steps, enabling 704x1280 streaming across photorealistic, game-style, and stylized worlds. Evaluated against six recent interactive world models under a three-axis protocol, ReWorld achieves the best control fidelity, including 11.95° rotation error, and regenerates starting views on 64-second out-and-back rollouts where sliding windows and full attention fail.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.AI</span></div>
+  <h2><a href="https://arxiv.org/abs/2608.24391v1">IncSFS: Incremental Full-Sparse Flow-Sensitive Pointer Analysis for C/C++</a></h2>
+  <div class="sum">Pointer analysis is a fundamental technique for compiler optimization and program analysis, but flow-sensitive pointer analysis offers high precision while being difficult to scale to large projects. To address rapid iteration scenarios where software evolves continuously, the authors introduce IncSFS, the first incremental full-sparse flow-sensitive pointer analysis algorithm for C/C++ programs. IncSFS transforms the value-flow graph into a constraint graph and performs strongly connected component detection to ensure precision, then propagates increases and decreases in points-to sets in an interleaved manner, supporting both code deletion and insertion within a single analysis pass. The algorithm is guaranteed to terminate and compute the least fixed point when the points-to relation remains object-acyclic. Experiments on six large-scale real-world projects demonstrate that IncSFS achieves average speedups of 9.60x over full flow-sensitive pointer analysis, 5.84x over the traditional reset-recompute approach, and 15.8% improvement over state-of-the-art incremental pointer analysis algorithms that propagate points-to-set changes.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.PL</span> · 1d</div>
 </article>
 
 <article class="story">
   <div class="lbl">PAPERS</div>
   <div class="acts"></div>
-  <h2><a href="https://arxiv.org/abs/2608.23564v1">SWE Refactor Bench: Can Coding Agents Complete a Long-Horizon, Whole-Repository Stack Migration?</a></h2>
-  <div class="sum">SWE Refactor Bench is a benchmark of 20 whole-repository migrations covering four kinds of technical debt, designed to test whether coding agents can autonomously perform long-horizon stack migrations. Existing benchmarks suffer from &quot;Blindness,&quot; where agents copy the original implementation to pass behavioural tests without performing the actual migration. To address this, the authors propose a three-stage evaluation protocol: Migration Audit verifies the migration occurred, Behavioural Tests measure correctness with a fixed test suite, and Agentic Verification uses six independent coding agents to generate targeted tests for hidden behavioural differences. Across 520 runs from 8 frontier models and 26 model-effort configurations, only 5.4% pass all three stages, 13 of the 20 tasks receive no accepted solution, and the best model, claude-opus-5, scores 47.0 out of 100. The results reveal that migration completeness and behavioural correctness are distinct abilities, and capability varies significantly across migration categories, with agents scoring 31.4 on build toolchain rewrites but only 5.6 on language rewrites.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.AI</span></div>
+  <h2><a href="https://arxiv.org/abs/2608.24478v1">NoC-Out: A Formally-verified Network-on-Chip Library for Rule-based Hardware Designs</a></h2>
+  <div class="sum">Network-on-Chip (NoC) systems serve as the communication backbone of multiprocessor chips, making their correctness critical, yet no prior approach offered formally-verified NoCs with strong guarantees without tedious manual effort. The authors introduce NoC-Out, the first library and generator for formally-verified k-dimensional NoC designs. The tool builds on Kôika, a rule-based hardware description language embedded in the Rocq theorem prover, which the authors extended with support for concurrent yet efficient hardware designs and a program logic enabling modular, automated reasoning. Given a configuration, NoC-Out produces a k-dimensional torus NoC in Kôika that can be compiled to Verilog. Each generated NoC comes equipped with a proof that it refines the authors&#x27; formal specification, with no additional verification required. The specification establishes a strong liveness guarantee that applies to all generated designs. The authors&#x27; evaluation further indicates that this verification approach is necessary for synthesizing efficient NoCs in rule-based hardware description languages.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.PL</span> · 1d</div>
 </article>
 
 <article class="story">
   <div class="lbl">PAPERS</div>
   <div class="acts"></div>
-  <h2><a href="https://arxiv.org/abs/2608.23563v1">EG-ARSA: An Expert-Grounded Open Model for Visual Road Safety Auditing in Low-Resource Settings</a></h2>
-  <div class="sum">Road traffic injuries remain a major challenge in low- and middle-income countries, where proactive road safety auditing is limited by incomplete crash records, auditor shortages, and costly field inspections. The authors propose Expert-Grounded Distillation (EGD), a framework that transfers institutional road safety expertise into a compact vision-language model. EGD features a quantified expert-grounding stage where a teacher model is calibrated against authoritative field audits, achieving substantial agreement with expert risk assessments (Cohen&#x27;s kappa = 0.74). The calibrated teacher generates structured supervision distilled into an 8-billion-parameter student vision-language model using Low-Rank Adaptation. The authors also introduce BD-ARSA, an open Bangladeshi visual road safety audit dataset of 21,947 image-audit records with near-national coverage, and EG-ARSA, the first vision-language model for this task. Results show grounded fine-tuning improves ordinal risk assessment over the zero-shot baseline, while blind expert evaluation reveals the compact student outperforms both its 31-billion-parameter teacher and Gemini-2.5-Flash.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.AI</span></div>
+  <h2><a href="https://arxiv.org/abs/2608.24565v1">MGQL: An Executable, Small-Step Semantics of GQL</a></h2>
+  <div class="sum">MGQL is the first mechanized, small-step operational semantics for a substantial read-only fragment of the ISO Graph Query Language (GQL), standardized as ISO/IEC 39075 in 2024. While GQL&#x27;s semantics is codified informally across over 600 pages of prose, prior formalizations either reduce semantic complexity by omitting features such as bag semantics, schemas, and composite queries, or reduce syntactic complexity by covering only isolated fragments like pattern-matching. Grounded in the ISO/IEC 39075 standard, MGQL models multi-graph property graphs with mixed edge directionality and supports a large fraction of GQL pattern constructs, including quantified paths and edges, directional and undirected matching, label expressions, pattern lists, and composite queries. A schema-aware type system refines variable types via closed-graph schemas, tracks nullability, supports multiple composite query operators, and models quantified-path bindings with list types. The authors prove the type system sound, ensuring well-formed queries yield results conforming to their declared schemas, and the paper was accepted at OOPSLA 2026.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.PL</span> · 1d</div>
 </article>
 
 <article class="story">
   <div class="lbl">PAPERS</div>
   <div class="acts"></div>
-  <h2><a href="https://arxiv.org/abs/2608.23562v1">Physics-Constrained Deep Learning Model for Contactless Blood Pressure Monitoring from Triaxial Bodyseismography</a></h2>
-  <div class="sum">The paper introduces Phy-BP, a non-invasive blood pressure estimation framework based on triaxial bodyseismography (BSG), which extends traditional ballistocardiography to address misaligned representations caused by body-bed interaction variations and individual hemodynamic changes. An adaptive quality-control algorithm selects BSG segments enriched with cardiogenic components by jointly evaluating neighboring beat patterns and universal cardiogenic templates, dynamically filtering out low-quality measurements. A physical model describing 3D wave propagation within the body-bed system is embedded into the deep learning architecture to characterize the intrinsic coupling among the three BSG axes driven by a single cardiogenic excitation, thereby aligning multi-axis features during training. Experiments on a 162-hour hospital dataset collected from 21 subjects demonstrate that the physics-constrained deep learning model improves robustness against real-world distortions and enhances generalizability, particularly when training samples are limited.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.AI</span></div>
+  <h2><a href="https://arxiv.org/abs/2608.24644v1">A Literate Programming Environment for Human and Machine Agents</a></h2>
+  <div class="sum">A literate programming environment for human and machine agents is introduced, designed to support the construction of literate programs alongside language-aware machine agents. The environment comprises a grammar for executable program essays, a parser that treats names as first-class objects, and an internal name-graph that links prose, names, and executable artifacts. It also includes a binding mechanism for existing languages and testing toolsets. This design enables co-location of code with its most relevant natural language and structured data context, making better use of Large Language Model context windows. Additionally, it provides LLM coding agents with a toolset analogous to the symbol-aware search and usage information available in human programmer-facing Integrated Development Environments. A working implementation has been developed with bindings to three established programming languages and several example programs.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.PL</span> · 1d</div>
 </article>
 
 <div class="nameplate" style="margin:30px auto"><span>Tools</span></div>
 
-<p class="section-intro" style="color:var(--mut);font-style:italic;margin:-6px 0 14px;text-align:center">Hacker News projects worth your attention — open-source releases that solve a real problem.</p>
+<p class="section-intro" style="color:var(--mut);font-style:italic;margin:-6px 0 14px;text-align:center">Open-source releases and notable GitHub projects trending on Hacker News today.</p>
 <article class="story">
   <div class="lbl">TOOLS</div>
-  <div class="acts"><a href="https://github.com/zedeus/nitter/issues/1442">Source</a></div>
-  <h2><a href="https://github.com/zedeus/nitter/issues/1442">Nitter and XCancel receive cease and desist notices</a></h2>
-  <div class="sum">The zedeus/nitter GitHub repository was archived by its owner on August 25, 2026, becoming read-only following reports that Nitter and XCancel received cease and desist notices. On the same day, an issue titled &quot;All public nitter instances do not work.&quot; was opened, reporting that every public instance displayed the same &quot;Instance has been rate limited.&quot; error message. The issue, posted by user AlexandrPutenikhin, included a link to an archived version of the twiiit.com instance as supporting evidence of the problem. The post quickly gained attention, accumulating 28 comments and 8 thumbs-up reactions from the community. The repository, which had amassed 13.5k stars and 824 forks, is no longer accepting contributions or updates as a result of the shutdown.</div>
-  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">621 pts</span></div>
+  <div class="acts"></div>
+  <h2><a href="https://github.com/tailscale/tailcat">Tailcat – Like netcat, but over Tailscale’s data plane</a></h2>
+  
+  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">471 pts</span> · 7h</div>
 </article>
 
 <article class="story">
   <div class="lbl">TOOLS</div>
-  <div class="acts"><a href="https://github.com/jeffhajewski/latticedb">Source</a></div>
-  <h2><a href="https://github.com/jeffhajewski/latticedb">Show HN: LatticeDB – Like SQLite but for graph databases</a></h2>
-  <div class="sum">LatticeDB is an embedded, single-file property-graph database written in Zig that combines graph traversal, HNSW vector similarity search, and BM25 full-text indexing within a unified query layer. Designed for local-first use on a single machine, the entire database lives in one portable file with no server or configuration required. It supports Cypher-style queries and offers performance benchmarks of 0.13 μs for node lookups and 0.83 ms for vector search across 1 million vectors while maintaining 100% recall. The system shares a single transaction and WAL path across graph writes, durable named streams, and a built-in graph changefeed. It is positioned for relationship-heavy workloads such as Graph RAG, agent memory, and local knowledge tools, with the repository showing 220 stars, 8 forks, and 436 commits at the time of the Show HN post.</div>
-  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">106 pts</span></div>
-</article>
-
-<article class="story">
-  <div class="lbl">TOOLS</div>
-  <div class="acts"><a href="https://github.com/ThinkOffApp/CarWatch">Source</a></div>
-  <h2><a href="https://github.com/ThinkOffApp/CarWatch">Show HN: I made a Raspberry with Qwen my local car AI</a></h2>
-  <div class="sum">CarWatch runs as a fully offline car agent on a Raspberry Pi 5 (16 GB, ~300 €) hosting a Qwen3.6-35B-A3B model locally, achieving 3.5 tok/s generation and 25+ tok/s prompt processing at 65 °C sustained. It joins GroupMind chat rooms as @gle, sending messages about departures, arrivals, trip summaries, and dashcam clips when impacts occur, with approvals routed through CodeWatch. The system answers owner&#x27;s manual questions via lexical RAG over the car&#x27;s own 745-page manual with page citations, refusing to answer outside the manual&#x27;s scope. Hands-free voice input runs entirely on-Pi through energy VAD and whisper.cpp, while grounded self-knowledge reads live hardware metrics like temperature, throttling, fan, memory, disk, and network status. systemd services auto-start the entire stack on boot, and the car pulls its own updates over a three-tier connectivity fallback spanning phone hotspot, home WiFi, or its own access point.</div>
-  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">98 pts</span></div>
-</article>
-
-<article class="story">
-  <div class="lbl">TOOLS</div>
-  <div class="acts"><a href="https://github.com/PlummersSoftwareLLC/HelloAssembly">Source</a></div>
-  <h2><a href="https://github.com/PlummersSoftwareLLC/HelloAssembly">HelloAssembly: The smallest possible complete Windows application (2021)</a></h2>
-  <div class="sum">HelloAssembly is a GitHub project by PlummersSoftwareLLC dedicated to creating the smallest possible complete Windows application without compression. It was inspired by two episodes of Dave&#x27;s Garage on YouTube, including &quot;Hello, Assembly! Retrocoding the World&#x27;s Smallest Windows App in x86 ASM&quot; and a follow-up comparing C versus assembly. The repository contains multiple versions of the application, including an optimized original called TinyOriginal, a Lasse version that applies shell coding tactics, and a Theron version using a manually written PE header, while a QRCode directory contains dead code preserved for posterity. The goal is to produce an executable that runs a Windows message loop, features a title bar with working minimize, maximize, and close buttons, has a system menu, and paints a background with centered text reading &quot;Dave&#x27;s Tiny App.&quot; The project notes that the aggressive optimization techniques used may cause virus scanners to flag the resulting executables as suspected malware, potentially requiring users to whitelist them.</div>
-  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">83 pts</span></div>
+  <div class="acts"></div>
+  <h2><a href="https://github.com/Eginn-33/csca-masterlist-tools">Six government passport CAs that Python rejects and OpenSSL accepts</a></h2>
+  
+  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">12 pts</span> · 6h</div>
 </article>
 
 <div class="nameplate" style="margin:30px auto"><span>Discussions</span></div>
 
-<p class="section-intro" style="color:var(--mut);font-style:italic;margin:-6px 0 14px;text-align:center">What the HN and Lobsters communities are debating today — threads with substance behind the noise.</p>
+<p class="section-intro" style="color:var(--mut);font-style:italic;margin:-6px 0 14px;text-align:center">Threads worth reading on Hacker News and Lobsters, beyond the obvious top-voted.</p>
 <article class="story">
   <div class="lbl">DISCUSSIONS</div>
   <div class="acts"></div>
-  <h2><a href="https://lobste.rs/s/0typpq/i_cannot_survive_from_burnout">I cannot survive from burnout</a></h2>
-  <div class="sum">The original poster describes experiencing burnout two years ago, followed by divorce and relocation, leaving them living alone with seven cats and carrying significant debt. Despite delivering high-quality client work, they can only manage 5–6 hours weekly on paid projects while easily focusing on personal side projects. Commenters suggest the pattern of pursuing novelty over obligation may indicate executive function issues, and several recommend an ADHD evaluation. Multiple users share personal experiences where ADHD diagnosis and medication dramatically improved their ability to focus on required tasks. The thread also debates whether therapy should aim for a defined endpoint or function as ongoing maintenance, with some favoring goal-oriented approaches and others viewing therapy like regular exercise. The poster expresses gratitude for the unexpected volume of supportive responses and is seeking a new therapist.</div>
-  <div class="smeta"><span class="pill p-HN">Lobsters</span></div>
+  <h2><a href="https://fzakaria.com/2026/08/24/actually-queryable-executables">Queryable Executables</a></h2>
+  
+  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">307 pts</span> · 1d</div>
 </article>
 
+<article class="story">
+  <div class="lbl">DISCUSSIONS</div>
+  <div class="acts"></div>
+  <h2><a href="https://www.lighthousenewsletter.com/p/rag-is-simpler-than-you-think">RAG Is Simpler Than You Think</a></h2>
+  
+  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">430 pts</span> · 16h</div>
+</article>
+
+<article class="story">
+  <div class="lbl">DISCUSSIONS</div>
+  <div class="acts"></div>
+  <h2><a href="https://openstreetmap.us/news/2026/08/oim-charter-project/">Oldinsurancemaps.net is now a Charter Project</a></h2>
+  
+  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">173 pts</span> · 16h</div>
+</article>
+
+<article class="story">
+  <div class="lbl">DISCUSSIONS</div>
+  <div class="acts"></div>
+  <h2><a href="https://var0.xyz/posts/beyond-recall-and-the-illusion-of-competence.html">Beyond Recall and the Illusion of Competence</a></h2>
+  
+  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">94 pts</span> · 15h</div>
+</article>
 
 </main>
 
 <footer class="foot">
-  <div><a href="archive/2026-08-26.html">2026-08-26</a></div>
+  <div><a class="ln" href="https://learn.shenthar.me/archive/2026-08-27.html">2026-08-27</a> <a class="ln" href="https://learn.shenthar.me/archive/2026-08-26.html">2026-08-26</a> <a class="ln" href="https://learn.shenthar.me/archive/2026-08-25.html">2026-08-25</a> <a class="ln" href="https://learn.shenthar.me/archive/2026-08-23.html">2026-08-23</a> <a class="ln" href="https://learn.shenthar.me/archive/2026-08-22.html">2026-08-22</a> <a class="ln" href="https://learn.shenthar.me/archive/2026-08-21.html">2026-08-21</a> <a class="ln" href="https://learn.shenthar.me/archive/2026-08-20.html">2026-08-20</a> <a class="ln" href="https://learn.shenthar.me/archive/2026-08-19.html">2026-08-19</a></div>
   <div style="margin-top:18px">Curated daily by your <strong>Hermes</strong> agent ·
      <a href="https://github.com/KTS-o7/learning-portal">open source</a> · served from learn.shenthar.me<br>
      Sources: Hacker News · arXiv · Lobsters · engineering blogs</div>
