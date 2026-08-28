@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Daily Byte — 2026-08-27</title>
+<title>Daily Byte — 2026-08-28</title>
 <meta name="description" content="A byte-size daily digest for engineers who value depth over noise.">
 <link rel="alternate" type="application/rss+xml" title="Daily Byte"
       href="https://learn.shenthar.me/rss.xml">
@@ -114,14 +114,14 @@ color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
   <div class="left"><a href="https://learn.shenthar.me/"><strong>Daily Byte</strong></a>
     <a href="https://github.com/KTS-o7/learning-portal">Source</a><a href="https://learn.shenthar.me/archive/">Archive</a>
     <a href="https://learn.shenthar.me/rss.xml">RSS</a></div>
-  <div class="nav"><a class="nav-arrow" href="https://learn.shenthar.me/archive/2026-08-26.html" title="Previous edition">‹</a><span class="d">Thursday, August 27, 2026</span></div>
-  <div class="right"><span class="count">16 STORIES</span></div>
+  <div class="nav"><a class="nav-arrow" href="https://learn.shenthar.me/archive/2026-08-27.html" title="Previous edition" aria-label="Previous edition">‹</a><span class="d">Friday, August 28, 2026</span><span class="nav-arrow disabled" aria-label="No newer edition">›</span></div>
+  <div class="right"><span class="count">18 STORIES</span></div>
 </div></div>
 
 <header class="mast">
   <h1>Daily Byte<span class="dot">.</span></h1>
   <div class="tag">A byte-size daily digest for engineers who value depth over noise.</div>
-  <div class="edition">Thursday, August 27, 2026 · Edition 2026-08-27</div>
+  <div class="edition">Friday, August 28, 2026 · Edition 2026-08-28</div>
   <div class="nameplate"><span>Engineering</span></div>
 </header>
 
@@ -129,147 +129,166 @@ color:var(--mut2);font-size:12.5px;letter-spacing:.04em}
   <div class="nameplate" style="margin:30px auto"><span>Engineering</span></div>
 
 <p class="section-intro" style="color:var(--mut);font-style:italic;margin:-6px 0 14px;text-align:center">Notes from independent engineering blogs and language teams — depth over news, lessons over launches.</p>
+
 <article class="story">
-  <div class="lbl">ENGINEERING</div>
+  <div class="lbl">BLOG</div>
   <div class="acts"></div>
-  <h2><a href="https://jvns.ca/blog/2024/11/09/new-microblog/">New microblog with TILs</a></h2>
-  <div class="sum">On November 9, 2024, Julia announced a new TIL (&quot;today I learned&quot;) section on her site, created a couple weeks earlier to archive interesting tools and facts she had been sharing on Mastodon and Bluesky. The section addresses her need for a place to post brief recommendations—like SQLite&#x27;s litecli, Go&#x27;s easy cross-compiling, cryptographic best practices, and the diff tool diffdiff—without writing full blog posts. She built a /til/ folder with tweet-like styling, a `rake new_til` task for quick post creation, and a separate RSS feed, often completing posts in about two minutes. The project was inspired by Simon Willison&#x27;s TIL blog. While she appreciates the POSSE approach, she prefers keeping most social media content ephemeral and reserves her own site for blog posts, comics at wizardzines.com, and now TILs at jvns.ca/til/, each with email lists and RSS feeds.</div>
-  <div class="smeta"><span class="pill p-blog">Julia Evans</span> · 655d</div>
+  <h2><a href="https://go.dev/blog/generic-methods">Generic Methods</a></h2>
+  <div class="sum">Go 1.27 introduces type parameters on concrete methods, addressing a limitation present since generics were added in Go 1.18. While the earlier generics proposal omitted method type parameters because generic interface methods are difficult to implement efficiently, the Go team concluded that concrete generic methods are still valuable for code organization even though they cannot help implement interfaces. This addition enables more expressive chaining patterns, such as calling methods like Map on a generic List type that return new collections of different element types. Generic methods must be instantiated before use, either explicitly or implicitly, and can be converted to functions via method expressions for those who prefer that calling style. Generic interface methods remain unsupported because ensuring interface values could dispatch to any possible instantiation would require generating code for every type argument, which is impractical under Go&#x27;s instantiation approach.</div>
+  <div class="smeta"><span class="pill p-blog">Go Blog</span> · <span class="age">2d</span></div>
 </article>
 
 <article class="story">
-  <div class="lbl">ENGINEERING</div>
+  <div class="lbl">BLOG</div>
   <div class="acts"></div>
-  <h2><a href="https://jvns.ca/blog/2024/11/18/how-to-import-a-javascript-library/">Importing a frontend Javascript library without a build system</a></h2>
-  <div class="sum">Frontend libraries can often be loaded directly into a browser via script tags or ES module imports, bypassing npm and bundlers entirely. This approach matters for legacy codebases, CMS integrations, quick prototypes, and environments where installing dependencies isn&#x27;t feasible, but it also forces you to manage versioning manually, handle global namespace pollution, and forgo optimizations like tree-shaking and automatic TypeScript type resolution that a build system would normally provide.</div>
-  <div class="smeta"><span class="pill p-blog">Julia Evans</span> · 646d</div>
+  <h2><a href="https://arpitbhayani.me/blogs/never-bad-mouth-your-ex-exployer">Never Bad-Mouth Your Past Employers</a></h2>
+  <div class="sum">When asked in interviews why they want to leave their current job, many candidates vent their frustrations and badmouth current or former employers. However, Arpit Bhayani advises against this practice, noting that expressing negative feelings in a professional context can lead to severe consequences, including reputational damage. The tech industry is small, and after roughly a decade of experience, almost everyone becomes a first- or second-degree connection, making professional conduct especially important. While technical skills remain crucial, the ability to collaborate well and handle challenging situations professionally is equally valued. As Bhayani puts it, nobody wants to work with a &quot;genius jerk,&quot; meaning candidates should always speak about ex-employers thoughtfully and maintain their professional reputation throughout interviews.</div>
+  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span></div>
 </article>
 
 <article class="story">
-  <div class="lbl">ENGINEERING</div>
+  <div class="lbl">BLOG</div>
   <div class="acts"></div>
-  <h2><a href="https://jvns.ca/blog/2024/11/29/why-pipes-get-stuck-buffering/">Why pipes sometimes get &quot;stuck&quot;: buffering</a></h2>
-  <div class="sum">When commands are piped together, programs often buffer their output—saving up around 8KB of data before writing—to reduce system calls and improve performance. This causes pipes to appear &quot;stuck&quot; because programs like grep use block buffering when writing to pipes but line buffering when writing directly to a terminal, so output only appears once the buffer fills or the program exits. Commands such as tail, cat, and tee don&#x27;t buffer, but grep, sed, awk, tcpdump, jq, and tr do buffer by default when writing to pipes. Most of these offer flags to disable buffering, including --line-buffered for grep, -u for sed, -l for tcpdump, and -u for jq. Pressing Ctrl-C kills processes before buffers flush, losing buffered output, though sending SIGTERM to the producing program lets it flush its buffer. Common workarounds include using line-buffer flags, replacing multiple greps with a single awk command, or running programs that finish quickly to avoid the buffering issue altogether.</div>
-  <div class="smeta"><span class="pill p-blog">Julia Evans</span> · 635d</div>
+  <h2><a href="https://arpitbhayani.me/blogs/read-rca-docs">The Best Engineering Lessons Happen During Outages</a></h2>
+  <div class="sum">Arpit Bhayani, Principal Engineer II at Razorpay, argues that the best engineering lessons emerge during production outages, as these situations reveal practical, real-world insights about systems, coding blunders, and tuning parameters. He actively participates in incident calls even when not on-call, noting that observing how senior engineers resolve issues under pressure with calm composure has shaped him into a better engineer. Bhayani also makes it a habit to read old postmortem documents (RCAs) from his workplaces, and he advises early-career engineers not to shy away from on-call duties and RCA reading. He dissects 18 production outages from companies like GitHub, Atlassian, and Spotify on his YouTube playlist, including one GitHub incident caused by a primary key exceeding its maximum value, which illustrated techniques for running data migrations without downtime.</div>
+  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span></div>
 </article>
 
 <article class="story">
-  <div class="lbl">ENGINEERING</div>
+  <div class="lbl">BLOG</div>
   <div class="acts"></div>
-  <h2><a href="https://arpitbhayani.me/blogs/atomicity">Decoding Atomicity - The A in ACID</a></h2>
-  <div class="sum">Atomicity, the &quot;A&quot; in ACID, requires that every database transaction be treated as a single unit of execution, meaning either all statements are applied or none are, even after power failures, errors, or crashes. A money transfer between accounts illustrates this: if subtracting from one account and adding to another are only partially applied, money could be lost or never credited. Most databases implement atomicity through logging changes along with transaction start and finish markers, applying or dropping them based on the final state, or alternatively by keeping pre-transaction copies for rollbacks. At the file system level, atomicity is achieved by opening and locking files using system calls like open and flock in shared or exclusive mode. At the hardware level, atomic instructions such as test-and-set, fetch-and-add, and compare-and-swap provide atomic operations. This concept extends beyond databases and can be applied to any system or even to high-level business logic by borrowing atomic instruction constructs.</div>
-  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span> · 1882d</div>
+  <h2><a href="https://seangoedecke.com/you-dont-have-to-be-smart-if-you-think-clearly/">You don&#x27;t have to be smart if you can think clearly</a></h2>
+  <div class="sum">A distinction is drawn between &quot;smart&quot; engineers who rely on rapid intuitive leaps and &quot;strong&quot; engineers who can think clearly and methodically even when problems aren&#x27;t solved instantly. Smart engineers often struggle or panic when encountering problems they can&#x27;t immediately solve, since their professional identity is tied to quick problem-solving. Strong engineers, by contrast, use deliberate processes to work through challenges, focusing on invariants—beliefs about the system known to be true—to identify which assumptions might be false. The comparison is made to Formula 1 cars: high top speed but unusable at normal speeds due to specialized tires and brakes. The author connects this skill to Keats&#x27; concept of &quot;negative capability&quot;—being comfortable in uncertainty without forcing premature conclusions. Engineers who can think clearly during uncertainty tend to be highly effective, regardless of their ability to make intuitive leaps.</div>
+  <div class="smeta"><span class="pill p-blog">Sean Goedecke</span></div>
 </article>
 
 <article class="story">
-  <div class="lbl">ENGINEERING</div>
+  <div class="lbl">BLOG</div>
   <div class="acts"></div>
-  <h2><a href="https://arpitbhayani.me/blogs/consistency">Decoding Consistency - The C in ACID</a></h2>
-  <div class="sum">Consistency in ACID refers to the correctness of data, ensuring it never loses its integrity under any circumstance. Database systems allow rules to be enforced through constraints, cascades, and triggers such as Foreign Key constraints, Check constraints, and On Delete or On Update Cascades. An ACID-compliant database engine guarantees that data continues to follow all configured rules, moving from one consistent state to another even during thousands of concurrent transactions. When a transaction violates a rule, the engine rolls back the changes to restore a previous consistent state, while successful transactions establish a newer consistent state. A practical example is preventing an account from having a negative balance. Integrity constraints are validated as changes are applied, and cascade operations execute synchronously with the transaction, though some engines offer asynchronous options for leaner transactions.</div>
-  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span> · 1882d</div>
+  <h2><a href="https://arpitbhayani.me/blogs/when-in-doubt-code-it-out">When In Doubt, Code It Out</a></h2>
+  <div class="sum">Prototypes are fast, deliberately low-quality experiments designed for learning and gathering information, not for production or strict best practices. They help engineers validate technical feasibility, estimate project effort more reliably, and discover whether people care about a proposed solution. A short demo can reveal interest or disinterest before weeks of investment. Building a prototype is also an effective way to learn system design, advanced algorithms, and unfamiliar ideas through hands-on work. Since most prototypes take no more than 200 lines and are meant to be discarded, their value comes from the understanding they create. Approaching uncertain ideas as experiments and coding them out can lead to more informed decisions.</div>
+  <div class="smeta"><span class="pill p-blog">Arpit Bhayani</span></div>
 </article>
 
 <div class="nameplate" style="margin:30px auto"><span>Papers</span></div>
 
 <p class="section-intro" style="color:var(--mut);font-style:italic;margin:-6px 0 14px;text-align:center">Recent arXiv papers in AI, ML, and programming languages — chosen for working engineers, not just benchmark wins.</p>
+
 <article class="story">
-  <div class="lbl">PAPERS</div>
+  <div class="lbl">PAPER</div>
   <div class="acts"></div>
-  <h2><a href="https://arxiv.org/abs/2608.24221v1">DeepRepoQA: Code Repository Question Answering with Deep Agent Exploration</a></h2>
-  <div class="sum">DeepRepoQA is a novel question answering framework designed to address repository-level code understanding, a critical yet under-explored problem in software engineering. Existing methods rely primarily on surface-level code retrieval and struggle with deep reasoning across multiple files, complex software architectures, and long-range code dependencies. To overcome these limitations, DeepRepoQA employs an agentic framework in which LLM agents find answers through a systematic tree search over the repository structure. A Monte-Carlo Tree Search (MCTS) mechanism enables agents to dynamically search, navigate, and inspect code, supporting effective multi-hop reasoning over long-range dependencies. Comprehensive experiments on the SWE-QA benchmark show substantial performance gains over strong baselines, validating the effectiveness of systematic MCTS-guided exploration for multi-hop repository reasoning. The framework was developed by Weihan Peng, Yuling Shi, Yingwei Ma, Longfei Yun, Beijun Shen, and Xiaodong Gu.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.PL</span> · 1d</div>
+  <h2><a href="https://arxiv.org/abs/2608.27205v1">Profit based evaluation of machine learning for nitrogen recommendations in winter wheat</a></h2>
+  <div class="sum">The paper evaluates machine learning for nitrogen recommendations in winter wheat by scoring advice directly on profit rather than prediction accuracy, using 892 measured yield response curves from two long-running UK experiments across a wide range of price scenarios. Standard UK nitrogen advice ignores prices, yet recent price swings shifted the most profitable rate by tens of kilograms per hectare, motivating a price-aware approach. On the test bench, machine learning models failed as predictors: no model recovered the best rate within farm tolerance, and benchmark noise showed none could, so at normal prices every model lost to the standard advice on profit. The gain instead came from a simple correction step applied after the model, which cut profit losses by a quarter, with the same frozen correction reducing losses by 43% at the second site without retraining. A hybrid of standard advice with a damped correction removed bias and trimmed rare large losses, leading the authors to conclude that machine learning is best used as a profit-scored correction to standard advice rather than as a replacement.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.LG</span> · <span class="age">10h</span></div>
 </article>
 
 <article class="story">
-  <div class="lbl">PAPERS</div>
+  <div class="lbl">PAPER</div>
   <div class="acts"></div>
-  <h2><a href="https://arxiv.org/abs/2608.24391v1">IncSFS: Incremental Full-Sparse Flow-Sensitive Pointer Analysis for C/C++</a></h2>
-  <div class="sum">Pointer analysis is a fundamental technique for compiler optimization and program analysis, but flow-sensitive pointer analysis offers high precision while being difficult to scale to large projects. To address rapid iteration scenarios where software evolves continuously, the authors introduce IncSFS, the first incremental full-sparse flow-sensitive pointer analysis algorithm for C/C++ programs. IncSFS transforms the value-flow graph into a constraint graph and performs strongly connected component detection to ensure precision, then propagates increases and decreases in points-to sets in an interleaved manner, supporting both code deletion and insertion within a single analysis pass. The algorithm is guaranteed to terminate and compute the least fixed point when the points-to relation remains object-acyclic. Experiments on six large-scale real-world projects demonstrate that IncSFS achieves average speedups of 9.60x over full flow-sensitive pointer analysis, 5.84x over the traditional reset-recompute approach, and 15.8% improvement over state-of-the-art incremental pointer analysis algorithms that propagate points-to-set changes.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.PL</span> · 1d</div>
+  <h2><a href="https://arxiv.org/abs/2608.27203v1">Common Geodesics Do Not Guarantee Fisher Consistency of the Structured SVM: Minimal Counterexamples and a Tree-Metric Classification</a></h2>
+  <div class="sum">The paper demonstrates that a previously established necessary condition for Fisher consistency of the structured support vector machine—that the task loss be a metric in which every output triple has a common geodesic point—is not sufficient for the canonical coordinate-wise argmax decoder. The authors construct minimal counterexamples, showing that a four-output unit star admits an optimal score vector whose maximizers are all strictly non-Bayes, with four outputs being the minimum among metrics satisfying the common-geodesic condition. They provide a complete classification of positively weighted tree metrics, proving that argmax consistency holds if and only if the tree is a path, with failures on branching trees confined to boundary distributions. For full-support counterexamples under the common-geodesic condition, five outputs are shown to be necessary and sufficient, with the complete bipartite graph K_{2,3} as the smallest member of an infinite K_{m,n} family. The three-dimensional Hamming cube also yields a full-support counterexample, and all optimality claims are verified via exact primal-dual certificates.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.LG</span> · <span class="age">10h</span></div>
 </article>
 
 <article class="story">
-  <div class="lbl">PAPERS</div>
+  <div class="lbl">PAPER</div>
   <div class="acts"></div>
-  <h2><a href="https://arxiv.org/abs/2608.24478v1">NoC-Out: A Formally-verified Network-on-Chip Library for Rule-based Hardware Designs</a></h2>
-  <div class="sum">Network-on-Chip (NoC) systems serve as the communication backbone of multiprocessor chips, making their correctness critical, yet no prior approach offered formally-verified NoCs with strong guarantees without tedious manual effort. The authors introduce NoC-Out, the first library and generator for formally-verified k-dimensional NoC designs. The tool builds on Kôika, a rule-based hardware description language embedded in the Rocq theorem prover, which the authors extended with support for concurrent yet efficient hardware designs and a program logic enabling modular, automated reasoning. Given a configuration, NoC-Out produces a k-dimensional torus NoC in Kôika that can be compiled to Verilog. Each generated NoC comes equipped with a proof that it refines the authors&#x27; formal specification, with no additional verification required. The specification establishes a strong liveness guarantee that applies to all generated designs. The authors&#x27; evaluation further indicates that this verification approach is necessary for synthesizing efficient NoCs in rule-based hardware description languages.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.PL</span> · 1d</div>
+  <h2><a href="https://arxiv.org/abs/2608.27187v1">When Interference Graphs Evolve: Doubly Robust Estimation of Dynamic Peer Effects</a></h2>
+  <div class="sum">The paper addresses the challenge of estimating peer effects when interaction graphs change over time. The author introduces a controlled contrast framework that distinguishes between pre-assignment network history, dynamic peer exposure, and post-assignment network change, indexing potential outcomes by own treatment, temporally aggregated peer exposure, and a post-assignment evolution summary. The proposed Dynamic Network Doubly Robust estimator, DynaNet-DR, combines a temporally factorized propensity with normalized augmentation. Under conditions including consistency, sequential exchangeability, positivity, and weak dependence, the canonical estimator is consistent when either the outcome regression or propensity estimator is consistent. The implementation incorporates representative-score prediction, fixed clipping, and finite-sample stabilization. Semi-synthetic benchmarks on fixed real temporal graph sequences demonstrate favorable estimation accuracy, while a MathOverflow study serves as an observational illustration.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.LG</span> · <span class="age">11h</span></div>
 </article>
 
 <article class="story">
-  <div class="lbl">PAPERS</div>
+  <div class="lbl">PAPER</div>
   <div class="acts"></div>
-  <h2><a href="https://arxiv.org/abs/2608.24565v1">MGQL: An Executable, Small-Step Semantics of GQL</a></h2>
-  <div class="sum">MGQL is the first mechanized, small-step operational semantics for a substantial read-only fragment of the ISO Graph Query Language (GQL), standardized as ISO/IEC 39075 in 2024. While GQL&#x27;s semantics is codified informally across over 600 pages of prose, prior formalizations either reduce semantic complexity by omitting features such as bag semantics, schemas, and composite queries, or reduce syntactic complexity by covering only isolated fragments like pattern-matching. Grounded in the ISO/IEC 39075 standard, MGQL models multi-graph property graphs with mixed edge directionality and supports a large fraction of GQL pattern constructs, including quantified paths and edges, directional and undirected matching, label expressions, pattern lists, and composite queries. A schema-aware type system refines variable types via closed-graph schemas, tracks nullability, supports multiple composite query operators, and models quantified-path bindings with list types. The authors prove the type system sound, ensuring well-formed queries yield results conforming to their declared schemas, and the paper was accepted at OOPSLA 2026.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.PL</span> · 1d</div>
+  <h2><a href="https://arxiv.org/abs/2608.27182v1">TraceBench: Controlled Evaluation of LLM Agents for Time-Series Root-Cause Attribution</a></h2>
+  <div class="sum">TraceBench is a simulation-based framework for generating controlled root-cause attribution tasks that evaluate LLM agents on time-series data from physical dynamical systems. In each task, an agent receives simulated time-series observations and must determine whether a system parameter was altered, and if so, which one. The authors generated tasks from three interpretable mechanical systems and systematically evaluated four LLM agents under controlled experimental conditions. Their results show that agents benefit substantially from domain context and explore data primarily through numerical console output rather than visualizations. Agents also generally performed worse when required to produce a Python script mapping each sample to a predicted label than when submitting predictions directly. The authors released their datasets, agent trajectories, experimental results, and a leaderboard on the TraceBench website.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.LG</span> · <span class="age">11h</span></div>
 </article>
 
 <article class="story">
-  <div class="lbl">PAPERS</div>
+  <div class="lbl">PAPER</div>
   <div class="acts"></div>
-  <h2><a href="https://arxiv.org/abs/2608.24644v1">A Literate Programming Environment for Human and Machine Agents</a></h2>
-  <div class="sum">A literate programming environment for human and machine agents is introduced, designed to support the construction of literate programs alongside language-aware machine agents. The environment comprises a grammar for executable program essays, a parser that treats names as first-class objects, and an internal name-graph that links prose, names, and executable artifacts. It also includes a binding mechanism for existing languages and testing toolsets. This design enables co-location of code with its most relevant natural language and structured data context, making better use of Large Language Model context windows. Additionally, it provides LLM coding agents with a toolset analogous to the symbol-aware search and usage information available in human programmer-facing Integrated Development Environments. A working implementation has been developed with bindings to three established programming languages and several example programs.</div>
-  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.PL</span> · 1d</div>
+  <h2><a href="https://arxiv.org/abs/2608.27180v1">You may implement this later: Cofunctors as partial implementations</a></h2>
+  <div class="sum">Vincent Wang-Maścianica’s paper presents cofunctors, also called retrofunctors, as a model of partial implementations. Unlike ordinary functors, which assign every operation in a specification a concrete instantiation at the outset, cofunctors accept an additional argument representing a state-dependent family of choices that may be made later. This interpretation allows system construction to defer backend decisions such as data representations and algorithms. The author emphasizes that cofunctors themselves are not new, but argues that their conceptual and purposive reading as partial implementations offers a novel perspective. The work is classified under Programming Languages and Logic in Computer Science and was submitted to arXiv in August 2026.</div>
+  <div class="smeta"><span class="pill p-arxiv">arXiv · cs.PL</span> · <span class="age">11h</span></div>
 </article>
 
 <div class="nameplate" style="margin:30px auto"><span>Tools</span></div>
 
 <p class="section-intro" style="color:var(--mut);font-style:italic;margin:-6px 0 14px;text-align:center">Open-source releases and notable GitHub projects trending on Hacker News today.</p>
+
 <article class="story">
-  <div class="lbl">TOOLS</div>
+  <div class="lbl">DISCUSSION</div>
   <div class="acts"></div>
-  <h2><a href="https://github.com/tailscale/tailcat">Tailcat – Like netcat, but over Tailscale’s data plane</a></h2>
-  
-  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">471 pts</span> · 7h</div>
+  <h2><a href="https://github.com/SenteLabsAI/OpenExecutive">CEO fired developers to make room for AI. Developers create open source AI CEO</a></h2>
+  <div class="sum">OpenExecutive is an open-source AI system developed by SenteLabsAI that operates as a virtual executive team, featuring eight specialist agents covering strategy, finance, HR, legal, operations, marketing, product, and board communications, all responding through a single unified executive voice. The platform is built on Python 3.11 with FastAPI, uses Anthropic Claude models (Sonnet 4-6 as default and Opus 4-7 for deep reasoning), and relies on ChromaDB for vector storage and SQLite for episodic memory that persists across sessions. It incorporates MBA-level built-in knowledge alongside user-uploaded company documents for context-aware responses, with prompt caching designed to achieve up to 85% cache hit rates. Users can interact through multiple interfaces including a Next.js web UI, Slack, email, Telegram, Google Chat, Discord, and CLI, and the system supports deployment to Fly.io with separate dev and QA environments. The project has gained notable traction with 1.5k stars on GitHub and is licensed under Apache 2.0.</div>
+  <div class="smeta"><span class="pill p-HN">Hacker News</span> · <span class="age">23h</span></div>
 </article>
 
 <article class="story">
-  <div class="lbl">TOOLS</div>
+  <div class="lbl">DISCUSSION</div>
   <div class="acts"></div>
-  <h2><a href="https://github.com/Eginn-33/csca-masterlist-tools">Six government passport CAs that Python rejects and OpenSSL accepts</a></h2>
-  
-  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">12 pts</span> · 6h</div>
+  <h2><a href="https://github.com/tailscale/tailcat">Tailcat – Like netcat, but over Tailscale’s data plane</a></h2>
+  <div class="sum">Tailcat is a userspace CLI and Go library that functions like netcat but transmits data over Tailscale&#x27;s WireGuard-encrypted data plane without requiring the Tailscale control plane or account. One endpoint runs as a server and generates a short connection token derived from its WireGuard public key, which is shared out of band with the client to establish an end-to-end encrypted tunnel. Connections bootstrap through a DERP relay and then attempt NAT traversal for direct peer-to-peer UDP when possible. The tool supports multiple modes, including piping stdin/stdout, forwarding local TCP ports, running an auth-free SSH server, pinging, SOCKS5 proxying, and acting as an exit node. Keys can be ephemeral by default or saved for persistent addresses, and servers can restrict access to specific client public keys with the --allow flag.</div>
+  <div class="smeta"><span class="pill p-HN">Hacker News</span> · <span class="age">1d</span></div>
+</article>
+
+<article class="story">
+  <div class="lbl">DISCUSSION</div>
+  <div class="acts"></div>
+  <h2><a href="https://github.com/experientiallabs/experiential">Show HN: We built open OpenRouter that turns usage into a better model</a></h2>
+  <div class="sum">Experiential is an open source gateway and router for agent workflows that provides a single OpenAI-compatible API across hosted, bring-your-own-key, and local models. It allows users to control which users and agents can access specific models and set spending limits per use case. The platform can convert production traffic into a custom router or model optimized for quality, speed, and cost. Users can install it locally via pip and start a gateway with a single command, or use the hosted version at platform.experientiallabs.ai. The system supports collecting OpenTelemetry traces to build simulation-based routers and fine-tune open source models through Tinker. The repository is licensed under Apache-2.0 and has 475 stars with 50 forks.</div>
+  <div class="smeta"><span class="pill p-HN">Hacker News</span> · <span class="age">4h</span></div>
+</article>
+
+<article class="story">
+  <div class="lbl">DISCUSSION</div>
+  <div class="acts"></div>
+  <h2><a href="https://github.com/kelviq/tare">Show HN: My Claude quota ran out in 10 minutes, so I made a tool to find out why</a></h2>
+  <div class="sum">Kelviq built &quot;tare,&quot; a Claude Code skill that diagnoses why users burn through their AI quota so quickly, after their own 10-minute outage revealed runaway background token usage. The tool installs via a single npx command and works by teaching Claude Code to analyze its own local session logs, so users can ask plain-English questions like &quot;why did I hit my usage limit yesterday?&quot; or &quot;which of my projects is eating my quota?&quot; All analysis runs locally with no network connections, and shareable summaries strip out prompts, file paths, and identifiers. The tool deduplicates Claude Code&#x27;s verbose log format (which inflates totals by about 86%) and attributes costs to the context that tools caused, not just what they returned. It can identify patterns like hundreds of short parallel sessions indicating automation rather than human use, and produces HTML reports for browsing or spreadsheets for export.</div>
+  <div class="smeta"><span class="pill p-HN">Hacker News</span> · <span class="age">8h</span></div>
 </article>
 
 <div class="nameplate" style="margin:30px auto"><span>Discussions</span></div>
 
 <p class="section-intro" style="color:var(--mut);font-style:italic;margin:-6px 0 14px;text-align:center">Threads worth reading on Hacker News and Lobsters, beyond the obvious top-voted.</p>
+
 <article class="story">
-  <div class="lbl">DISCUSSIONS</div>
+  <div class="lbl">DISCUSSION</div>
   <div class="acts"></div>
-  <h2><a href="https://fzakaria.com/2026/08/24/actually-queryable-executables">Queryable Executables</a></h2>
-  
-  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">307 pts</span> · 1d</div>
+  <h2><a href="https://www.businessinsider.com/nvidia-in-talks-to-buy-hugging-face-13-billion-dollars-2026-8">Nvidia agrees to acquire Hugging Face for $13B</a></h2>
+  <div class="sum">Nvidia is in talks to acquire Hugging Face, the open-source AI platform, in a deal that would value the company at more than $13 billion. Acquisition conversations have taken place in recent weeks, though no agreement has been reached and the discussions could still fall apart, according to a person familiar with the matter. Business Insider first reported that Hugging Face was fielding takeover interest. Nvidia already has ties to Hugging Face, having participated in its 2023 funding round that valued the company at $4.5 billion, though Hugging Face later turned down a $500 million Nvidia investment offer over concerns about a dominant investor. Microsoft also met with Hugging Face, but those talks are no longer ongoing. Founded in 2016 by Clément Delangue, Julien Chaumond, and Thomas Wolf, Hugging Face hosts millions of AI models and datasets used by developers across the industry, including those working with Nvidia competitors such as AMD and Intel.</div>
+  <div class="smeta"><span class="pill p-HN">Hacker News</span> · <span class="age">1d</span></div>
 </article>
 
 <article class="story">
-  <div class="lbl">DISCUSSIONS</div>
+  <div class="lbl">DISCUSSION</div>
   <div class="acts"></div>
-  <h2><a href="https://www.lighthousenewsletter.com/p/rag-is-simpler-than-you-think">RAG Is Simpler Than You Think</a></h2>
-  
-  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">430 pts</span> · 16h</div>
+  <h2><a href="https://z.ai/blog/glm-5.3-flash">GLM-5.3-Flash</a></h2>
+  <div class="sum"></div>
+  <div class="smeta"><span class="pill p-HN">Hacker News</span> · <span class="age">1d</span></div>
 </article>
 
 <article class="story">
-  <div class="lbl">DISCUSSIONS</div>
+  <div class="lbl">DISCUSSION</div>
   <div class="acts"></div>
-  <h2><a href="https://openstreetmap.us/news/2026/08/oim-charter-project/">Oldinsurancemaps.net is now a Charter Project</a></h2>
-  
-  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">173 pts</span> · 16h</div>
+  <h2><a href="https://ducklabs.com/news/2026/08/26/ducklabs-to-join-aws">AWS Acquires DuckLabs</a></h2>
+  <div class="sum">AWS has announced its acquisition of DuckLabs, effective in early September, with the team remaining together in Amsterdam to continue work on DuckDB, DuckLake, Quack, and related open-source projects. DuckLabs, founded five years ago and bootstrapped, grew to over 30 employees and built DuckDB into a widely used analytical database with more than one million daily downloads. DuckDB, DuckLake, and Quack will remain free and open source under the MIT license, with the nonprofit DuckDB Foundation continuing to steward them. The DuckLabs and AWS teams had collaborated for over a year prior to the acquisition, and AWS has committed to supporting DuckDB&#x27;s continued development and community long term. Looking ahead, the DuckDB Foundation will add a technical advisory board, and DuckLabs plans to open the extension stack so extensions signed by other developers can run in DuckDB.</div>
+  <div class="smeta"><span class="pill p-HN">Hacker News</span> · <span class="age">1d</span></div>
 </article>
 
 <article class="story">
-  <div class="lbl">DISCUSSIONS</div>
+  <div class="lbl">DISCUSSION</div>
   <div class="acts"></div>
-  <h2><a href="https://var0.xyz/posts/beyond-recall-and-the-illusion-of-competence.html">Beyond Recall and the Illusion of Competence</a></h2>
-  
-  <div class="smeta"><span class="pill p-HN">Hacker News</span><span class="pts">94 pts</span> · 15h</div>
+  <h2><a href="https://www.wsj.com/politics/policy/u-s-state-department-pauses-immigrant-visa-applications-25b31b23">U.S. State Department pauses immigrant visa applications</a></h2>
+  <div class="sum"></div>
+  <div class="smeta"><span class="pill p-HN">Hacker News</span> · <span class="age">1d</span></div>
 </article>
-
 </main>
 
 <footer class="foot">
-  <div><a class="ln" href="https://learn.shenthar.me/archive/2026-08-27.html">2026-08-27</a> <a class="ln" href="https://learn.shenthar.me/archive/2026-08-26.html">2026-08-26</a> <a class="ln" href="https://learn.shenthar.me/archive/2026-08-25.html">2026-08-25</a> <a class="ln" href="https://learn.shenthar.me/archive/2026-08-23.html">2026-08-23</a> <a class="ln" href="https://learn.shenthar.me/archive/2026-08-22.html">2026-08-22</a> <a class="ln" href="https://learn.shenthar.me/archive/2026-08-21.html">2026-08-21</a> <a class="ln" href="https://learn.shenthar.me/archive/2026-08-20.html">2026-08-20</a> <a class="ln" href="https://learn.shenthar.me/archive/2026-08-19.html">2026-08-19</a></div>
+  <div><a href="https://learn.shenthar.me/archive/2026-08-28.html" style="margin-right:10px">2026-08-28</a> · <a href="https://learn.shenthar.me/archive/2026-08-27.html" style="margin-right:10px">2026-08-27</a> · <a href="https://learn.shenthar.me/archive/2026-08-26.html" style="margin-right:10px">2026-08-26</a> · <a href="https://learn.shenthar.me/archive/2026-08-25.html" style="margin-right:10px">2026-08-25</a> · <a href="https://learn.shenthar.me/archive/2026-08-23.html" style="margin-right:10px">2026-08-23</a> · <a href="https://learn.shenthar.me/archive/2026-08-22.html" style="margin-right:10px">2026-08-22</a></div>
   <div style="margin-top:18px">Curated daily by your <strong>Hermes</strong> agent ·
      <a href="https://github.com/KTS-o7/learning-portal">open source</a> · served from learn.shenthar.me<br>
      Sources: Hacker News · arXiv · Lobsters · engineering blogs</div>
