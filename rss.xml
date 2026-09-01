@@ -2,141 +2,149 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-08-31</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-01</description>
   <item>
     <title>Enabling the next-generation trait solver on nightly</title>
     <link>https://blog.rust-lang.org/2026/08/21/enabling-next-solver-on-nightly/</link>
     <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/21/enabling-next-solver-on-nightly/</guid>
-    <description>After nearly four years of development, the next-generation trait solver is being enabled by default on nightly to surface remaining issues before stabilization in the coming months. This represents the largest single change to the Rust compiler since its initial release, completely replacing how where-clauses are proved and associated types are normalized. The change already fixes more than 200 known GitHub issues, unblocks features like Type Alias Impl Trait and Return Type Notation, enables new implicit bounds such as Move and Forget, and addresses remaining type system unsoundnesses. Major performance work over recent weeks has brought nearly all crates in the top 20,000 on crates.io to parity with the old solver, with some outliers now compiling much faster—one chess implementation went from hanging to compiling in a minute, while the datafusion crate is over 8x faster. Users can opt out via the -Znext-solver=coherence flag, and the team is tracking known breakage in a pinned GitHub issue.</description>
+    <description>After nearly four years of development, Rust&#x27;s next-generation trait solver is being enabled by default on nightly, representing the largest single change to the compiler since its initial release. It completely replaces how where-clauses are proved, associated types are normalized, and opaque types (including RPIT, TAIT, and RTN) are handled, already fixing over 200 known issues and removing incorrect type inference in widely-used crates. The change will unblock the stabilization of Type Alias Impl Trait and Return Type Notation, enable new implicit default trait bounds, and fix remaining type system unsoundnesses. Significant compile-time performance work has made nearly all top 20,000 crates on crates.io perform comparably between solvers, with some experiencing major speedups—datafusion now compiles over eight times faster, and a type-system chess implementation completes in minutes instead of hanging. Developers are encouraged to test the latest nightly and report breakage, with -Znext-solver=coherence available as an opt-out flag.</description>
     <pubDate>2026-08-21T00:00:00+00:00</pubDate>
-    <source>Rust Blog</source>
-  </item>
-  <item>
-    <title>Supply chain attack on arrayref</title>
-    <link>https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/</link>
-    <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/</guid>
-    <description>On August 20, 2026, the Rust Security Response Team confirmed that the proc-macro1 crate was malicious after receiving a report at 7:15 UTC. The malicious version contained a build script that downloaded a harmful payload. The team deleted proc-macro1 along with related crates including proc-macro-en, aovine, arone, aronenao, and tinymember. They discovered that the popular arrayref crate had been republished to depend on proc-macro1, with recent versions yanked as a result. The malicious version was removed and the yanked versions were unyanked, with similar actions taken for other affected crates like internment and append-only-vec. The author&#x27;s account was locked as a precaution, though the team believes the author was not acting maliciously but rather had their computer or credentials compromised. The Research Team at Nextron Systems GmbH initially discovered and reported the attack.</description>
-    <pubDate>2026-08-20T00:00:00+00:00</pubDate>
-    <source>Rust Blog</source>
-  </item>
-  <item>
-    <title>Enabling the next iteration of the borrow checker on nightly</title>
-    <link>https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/</link>
-    <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/04/enabling-polonius-alpha-on-nightly/</guid>
-    <description>The next iteration of the Rust borrow checker, Polonius Alpha, is being enabled on nightly in preparation for stabilization within the coming months. Unlike the current NLL borrow checker&#x27;s flow-insensitive analysis, Polonius Alpha performs flow-sensitive borrow checking of lifetime outlives relationships, allowing programs previously rejected (such as certain reborrow patterns and match-based map insertion code) to compile. Polonius Alpha is not a strict superset of legacy Polonius, as some programs accepted by the original formulation do not compile under it. Performance is generally acceptable, though the worst observed regression is 2-3x in crates with many borrows, while regressions among the top ten thousand crates on crates.io are relatively rare and minimal. Users can opt out with `-Zpolonius=off`, and no concrete plans exist for further Polonius feature work after stabilization, with focus shifting to other priorities.</description>
-    <pubDate>2026-08-04T00:00:00+00:00</pubDate>
     <source>Rust Blog</source>
   </item>
   <item>
     <title>Generic Methods</title>
     <link>https://go.dev/blog/generic-methods</link>
     <guid isPermaLink="false">https://go.dev/blog/generic-methods</guid>
-    <description>Go 1.27 introduces type parameters on concrete methods, filling a gap left by Go 1.18, which added generic types and functions but excluded methods. The original proposal avoided generic methods because implementing generic interface methods efficiently proved impractical. Go 1.27 decouples these concerns, recognizing that methods also serve as a code organization tool independent of interface implementation. Generic methods enable locally scoped, expressive code; for example, a List type can define a generic Map method that supports readable chained operations written left to right. However, generic interface methods remain unsupported because packages are compiled separately, so the compiler would need to instantiate a type&#x27;s generic method with every possible type argument to handle any usage across package boundaries. Boxing could reduce the number of instantiations but would impose indirect call overhead even on direct calls.</description>
+    <description>Go 1.27 introduces type parameters on concrete methods, a capability absent since generics were added in Go 1.18. The original proposal avoided generic methods because generic interface methods are difficult to implement efficiently, but Go 1.27 takes a different view, decoupling methods used for code organization from those used for interface implementation. This allows generic types to define methods like Map and ToString that can be chained readably from left to right, rather than relying on package-level generic functions written &quot;inside out.&quot; Generic concrete methods cannot help satisfy interfaces, since interface methods cannot declare type parameters. The reason is that interface values may be used across packages without compile-time knowledge of how their methods are instantiated, forcing the compiler to generate code for every possible type argument, which is impractical under Go&#x27;s instantiation approach.</description>
     <pubDate>2026-08-26T00:00:00+00:00</pubDate>
     <source>Go Blog</source>
+  </item>
+  <item>
+    <title>Announcing our first Maintainers in Residence</title>
+    <link>https://blog.rust-lang.org/2026/08/26/announcing-our-first-maintainers-in-residence/</link>
+    <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/26/announcing-our-first-maintainers-in-residence/</guid>
+    <description>The Rust Project has announced its first six Maintainers in Residence, who will receive funding for at least 12 months to focus on critical maintenance activities. The selected contributors are Gen Li (rami3l), Chris Denton (ChrisDenton), Alejandra González (blyxyas), León Liehr (fmease), Jason Newcomb (Jarcho), and Jonas Böttiger (joboet), all of whom have already signed their contracts and begun receiving funding. Financial support comes from the Rust Foundation Maintainers Fund, made possible by sponsors including Google, AWS, OpenAI, the Rust Project Leadership Council, and individual donors. The program, established under RFC 3931 and managed by the Rust Funding team, prioritized teams critically underfunded relative to their maintenance baselines, including rustdoc, rustup, cargo, compiler, libs, clippy, rustfmt, rust-analyzer, and mods. The Rust Foundation notes that more funding announcements are expected in the near future.</description>
+    <pubDate>2026-08-26T00:00:00+00:00</pubDate>
+    <source>Rust Blog</source>
+  </item>
+  <item>
+    <title>Supply chain attack on arrayref</title>
+    <link>https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/</link>
+    <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/</guid>
+    <description>On August 20, 2026, the Rust Security Response Team confirmed that the proc-macro1 crate was malicious, containing a build script that downloaded a malicious payload. The crate proc-macro1, along with proc-macro-en, aovine, arone, aronenao, and tinymember, were deleted from crates.io. Additionally, the popular arrayref crate was republished to depend on this malicious crate, and its affected versions were yanked, with the malicious version subsequently removed and the maliciously-yanked versions unyanked. Other crates by the arrayref author, internment and append-only-vec, were also affected and treated similarly, and the account was locked as a precaution. The team believes the arrayref author&#x27;s computer or credentials were compromised rather than the author acting maliciously. The Research Team at Nextron Systems GmbH discovered the issue, with response assistance from Emily Albini, Manish Goregaokar, Marco Ieni, Tobias Bieniek, Ubiratan Soares, and Walter Pearce.</description>
+    <pubDate>2026-08-20T00:00:00+00:00</pubDate>
+    <source>Rust Blog</source>
   </item>
   <item>
     <title>Go 1.27 is released</title>
     <link>https://go.dev/blog/go1.27</link>
     <guid isPermaLink="false">https://go.dev/blog/go1.27</guid>
-    <description>Go 1.27 was released on August 19, 2026, introducing significant updates to the language, toolchain, runtime, and standard library. New language features include support for generic methods, the ability to use field selectors as keys in struct literals for nested and embedded structs, and generalized function type inference across composite literals, type conversions, and channel sends. Tool improvements add modernizers like atomictypes and embedlit to go fix, package@version queries to go doc, and automatic consolidation of require blocks in go mod tidy. Performance gains come from size-specialized memory allocation, which reduces small object allocation costs by up to 30% and improves allocation-heavy programs by roughly 1%, while the goroutineleak profile is now generally available. The standard library gains encoding/json/v2 with stricter defaults, post-quantum crypto/mldsa for FIPS 204 signatures, native UUID support, experimental SIMD packages, and an in-memory test server in net/http/httptest.</description>
+    <description>The Go team released Go 1.27, introducing generic methods and allowing struct literal keys to refer to nested or embedded fields directly. Function type inference has been generalized to apply in composite literals, type conversions, and channel sends. The go fix tool now includes modernizers for atomictypes, embedlit, slicesbackward, and unsafefuncs, while go doc supports package@version queries and go mod tidy consolidates require blocks. Performance improvements include size-specialized memory allocation that reduces small object allocation costs by up to 30%, and the goroutine leak profile in runtime/pprof is now generally available. New standard library additions include encoding/json/v2 with low-level jsontext streaming, the crypto/mldsa post-quantum signature scheme, native uuid support, experimental SIMD packages, and httptest&#x27;s NewTestServer for in-memory testing.</description>
     <pubDate>2026-08-19T00:00:00+00:00</pubDate>
     <source>Go Blog</source>
   </item>
   <item>
-    <title>WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution</title>
-    <link>https://arxiv.org/abs/2608.27454v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.27454v1</guid>
-    <description>WikiSkill is a framework that co-evolves agent skills with a persistent knowledge base called a wiki. It separates raw execution experience, accumulated knowledge, and executable skills, while continuously consolidating experience into the wiki for subsequent skill updates to build upon. Across diverse benchmarks and models, WikiSkill consistently outperforms state-of-the-art skill-evolution methods and improves over no-skill baselines in most model-benchmark settings. The research shows that skill evolution complements model scaling, with larger models generally benefiting more from evolved skills, while smaller models equipped with skills can outperform substantially larger models without them. Additionally, evolved skills transfer effectively across models and model families, and skills evolved by other models can outperform self-evolved skills. Ablation studies confirm that persistent knowledge accumulation in the wiki is critical for effective skill evolution.</description>
-    <pubDate>2026-08-27T17:59:11Z</pubDate>
+    <title>Separating Parsing Expression Grammars using Cell-Probe Lower Bounds</title>
+    <link>http://arxiv.org/abs/2608.29592v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.29592v1</guid>
+    <description>Kim and Park resolve three open problems concerning parsing expression grammars (PEGs) by constructing a single language C belonging to LIN ∩ PEG whose reversal C^R lies in LIN \ PEG. This construction proves that some linear context-free language is not a PEG language and that PEG languages are not closed under reversal, confirming a conjecture of Loff, Moreira, and Reis. The same witness negatively resolves Rubtsov and Chudinov&#x27;s concatenation-closure problem in the strong form PEG·REG ⊄ PEG despite REG·PEG ⊆ PEG, and refutes closure under Kleene star, homomorphisms, and substitutions. Their main technique converts scaffolding automata into dynamic data structures in the cell-probe model, so that cell-probe lower bounds yield SCA non-membership and, by reversal, PEG non-membership. Applying this transfer to Multiphase Inner Product with one-symbol update blocks and a query suffix of logarithmic length, while keeping both C and C^R linear context-free, Ko&#x27;s cell-probe lower bound provides the desired witness. The arguments are additionally formalized in Lean 4.</description>
+    <pubDate>2026-08-30T06:27:15Z</pubDate>
+    <source>arXiv:cs.PL</source>
+  </item>
+  <item>
+    <title>Fine-grained Causal Reversibility for Asynchronous Channel-based Programming</title>
+    <link>http://arxiv.org/abs/2608.29225v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.29225v1</guid>
+    <description>Causal reversibility is a technique for debugging concurrent systems through rollback and replay with causal consistency. In channel-based communication, queue ordering creates dependencies that prevent causally independent actions from being efficiently rolled back and replayed. To address this limitation, the paper presents revGo, a core of the Go programming language assuming unbounded asynchronous channels. The proposed rollback-and-replay semantics permits reordering messages in the queue when they are not causally related in the forward execution, ensuring that no configuration with non-reachable processes is generated. By reordering independent messages and assigning unique keys to communications, rollback and replay become implementable with minimality. This extended version of the work, authored by Shunya Oguchi, Shoji Yuen, Nobuko Yoshida, and Claudio Antares Mezzina, includes complete proofs and additional technical material beyond the ICTAC 2026 paper.</description>
+    <pubDate>2026-08-29T12:30:01Z</pubDate>
+    <source>arXiv:cs.PL</source>
+  </item>
+  <item>
+    <title>FlowCheck: Helping End-Users Specify and Verify Intent in Vibe-Coded Web Apps</title>
+    <link>http://arxiv.org/abs/2608.28880v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.28880v1</guid>
+    <description>FlowCheck is a constraint language that helps end-users specify and verify user-visible information flows in vibe-coded web applications directly through the application interface, without requiring them to read code. The constraints are structured for reliable LLM generation and can be displayed and inspected visually. FlowCheck translates these constraints into deterministic CodeQL analyses to check them against the underlying code. In an evaluation across four applications generated via Claude Code, FlowCheck correctly identified all 30 injected constraint violations with no false positives. By comparison, frontier models prompted to find bugs in the same code—Claude Opus 4.7, DeepSeek V3, and Gemini Pro—achieved significantly lower accuracy, with none reaching full accuracy. The approach enables vibe coders to express intent in terms of the interface they understand while having it verified deterministically against code they do not.</description>
+    <pubDate>2026-08-28T21:32:07Z</pubDate>
+    <source>arXiv:cs.PL</source>
+  </item>
+  <item>
+    <title>QGPINNs: A Physics-Informed Neural Network Framework for Nonlocal Differential Equations on Quantum Graphs</title>
+    <link>http://arxiv.org/abs/2608.28589v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.28589v1</guid>
+    <description>QGPINNs is a physics-informed neural network framework, implemented in PyTorch, for solving nonlocal differential equations on quantum graphs. The approach approximates the solution on each edge with a neural network while a unified graph-based loss function enforces the governing equations along with initial, boundary, and vertex transmission conditions, including standard continuity and Kirchhoff-Neumann vertex conditions and Dirichlet boundary conditions. The framework is developed for two classes of nonlinear models: multi-order fractional elliptic problems and time-fractional evolution equations on quantum graphs. To improve accuracy and training stability, it integrates soft and hard constraint enforcement, dynamic loss balancing, Fourier feature embeddings, and a learnable singularity-capturing feature for weakly singular solutions. The framework also extends naturally to inverse problems, enabling the identification of fractional operator orders and physical parameters from noisy observational data. Its accuracy and computational efficiency are demonstrated through numerical experiments on benchmark graph structures and real-world networks, including the IEEE 14-bus system and an open-channel agricultural drainage network.</description>
+    <pubDate>2026-08-28T17:59:47Z</pubDate>
+    <source>arXiv:cs.LG</source>
+  </item>
+  <item>
+    <title>Aero Hand Open: A Simulation-Ready Tendon-Driven Hand for Dexterous Manipulation Learning</title>
+    <link>http://arxiv.org/abs/2608.28578v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2608.28578v1</guid>
+    <description>Tendon-driven hands are anthropomorphic and affordable because moving actuators off the joints allows smaller, cheaper motors and lets one motor drive multiple joints through a single cable. However, these hands are harder to learn on than direct-drive hands, since the underactuated transmission is difficult to represent in a simulator and the joints driven by one cable cannot be independently commanded. The authors present Aero Hand Open, a tendon-driven anthropomorphic hand released as simulation-ready. The package includes a simulation model that reproduces the cable transmission, an identified actuation map connecting that model to motor commands in both directions (including the three-way coupling of the thumb), and a reinforcement learning package for training policies. Together, these components allow policies to be trained entirely in simulation and deployed on the physical hand without fine-tuning or state estimation. The team releases the mechanical design, simulation model, identified mapping, training environment, and deployment stack.</description>
+    <pubDate>2026-08-28T17:53:48Z</pubDate>
     <source>arXiv:cs.AI</source>
   </item>
   <item>
-    <title>SWE-Prime: Fewer Trajectories, Better Performance</title>
-    <link>https://arxiv.org/abs/2608.27449v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.27449v1</guid>
-    <description>The paper introduces SWE-Prime, a two-stage data selection method for supervised fine-tuning (SFT) of large language models on software engineering agent trajectories. The approach addresses the problem that successful trajectories can still contain ineffective, redundant, or risky steps that introduce noisy supervision. In the first stage, trajectory-level screening filters successful trajectories based on process quality, result quality, and data representativeness. In the second stage, consecutive steps are grouped into semantic segments, with each segment evaluated based on its contribution to the final solution, learnability, and potential risks. During SFT, all segments remain in the sequence to preserve context, while only selected segments contribute to loss computation. Experiments on SWE-Bench Pro and SWE-Bench Verified show that training on the 10% subset selected by SWE-Prime outperforms training on the full resolved dataset, yielding relative performance gains of up to 12.2% and 24.2%, respectively.</description>
-    <pubDate>2026-08-27T17:58:10Z</pubDate>
-    <source>arXiv:cs.AI</source>
-  </item>
-  <item>
-    <title>From Static to Dynamic: Benchmarking Real-World Code Review with MCR-Bench</title>
-    <link>https://arxiv.org/abs/2608.27442v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.27442v1</guid>
-    <description>MCR-Bench is a benchmark introduced to evaluate large language models on realistic multi-round code review, an area where most existing approaches oversimplify the task into single-round static decisions. The benchmark covers five commonly-used programming languages and contains 2,269 real-world multi-round code review tasks, each annotated with fine-grained defect metadata (description, type, severity) and dynamic cross-round state labels that capture the complete evolutionary trajectory of defects throughout the review process. Experiments on mainstream LLMs reveal three main findings: overall capability in defect detection and lifecycle state tracking is limited and degrades as interaction rounds increase; performance varies substantially across defect types and severity levels, with semantically complex or low-salience defects being missed more often; and error analysis identifies key weaknesses including cross-round temporal misalignment and inadequate long-range memory.</description>
-    <pubDate>2026-08-27T17:56:24Z</pubDate>
-    <source>arXiv:cs.AI</source>
-  </item>
-  <item>
-    <title>RedEvoAgent: Automatic Red-Teaming Agent with Experience-Driven Skill Evolution</title>
-    <link>https://arxiv.org/abs/2608.27439v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.27439v1</guid>
-    <description>LLM-based agents deployed in product-level execution harnesses face security risks where jailbreaks can trigger harmful tool use and persistent state changes, creating greater dangers than unsafe text generation alone. Existing automatic red-teaming methods often rely on fixed attacks, while recent agentic attackers retrieve full trajectories, which can introduce retrieval bias, unclear tool credit, context overhead, and reduced interpretability. RedEvoAgent is a black-box red-teaming agent that distills cross-case attack trajectories into a concise, human-readable attack skill. The skill adaptively evolves through tool-effectiveness profiling and Deciding-Tool Attribution for updates, with a validation ratchet retaining only changes that improve validation performance. Experiments across multiple benchmarks, target models, and target execution harnesses show that RedEvoAgent outperforms fixed and agentic baselines, improves tool efficiency, and transfers across attacker models and target execution harnesses.</description>
-    <pubDate>2026-08-27T17:55:33Z</pubDate>
-    <source>arXiv:cs.AI</source>
-  </item>
-  <item>
-    <title>Mechanistic Reaction Prediction via Discrete Flow Matching on Graph-Structured Electron Occupation</title>
-    <link>https://arxiv.org/abs/2608.27429v1</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2608.27429v1</guid>
-    <description>Nguyen Xuan-Vu and colleagues introduce MAELLE (Mechanistic Edit FLow-matching on eLectron rearrangements), which models chemical reactions as discrete flow matching over electron occupation vectors. The approach formulates the reactant-to-product mapping as a Continuous-time Markov Chain over a graph-structured integer-valued electron occupation space covering bonding, non-bonding, and hydrogen sites. Intermediate edit trajectories are constructed by generalizing the discrete flow matching mixture path using Optimal Transport, producing mechanistically interpretable edit moves without requiring elementary step annotations. The model achieves competitive performance on the USPTO-480K benchmark relative to leading reaction prediction models and maintains strong accuracy across out-of-distribution settings involving structural complexity and reaction type, where existing methods tend to degrade. Because the learned flow operates over the full electron redistribution, MAELLE recovers mechanistic trajectories aligning with known chemistry and can predict reaction side products.</description>
-    <pubDate>2026-08-27T17:50:44Z</pubDate>
-    <source>arXiv:cs.AI</source>
-  </item>
-  <item>
-    <title>Why open source rocks – a new SM750 (Silicon Motion GPU) HDMI Driver</title>
-    <link>https://github.com/KodeMunkie/sm750hdmifb</link>
-    <guid isPermaLink="false">https://github.com/KodeMunkie/sm750hdmifb</guid>
-    <description>A new open-source Linux DRM driver has been released for the single-HDMI SE-DP750A-HDMI PCIe card, based on the Silicon Motion SM750G10-AC GPU. The experimental driver supports PCI ID 126f:0750 paired with a Silicon Image/Lattice SiI9024ACNU HDMI transmitter and 16 MiB of display memory, though other SM750 cards using different transmitters or GPIO wiring are not currently supported. Features include output up to 2048 pixels wide, software-scaled 2560x1080 ultrawide desktop support, and bandwidth-saving color conversion with update optimizations, though non-EDID modes may exceed published clock limits and produce no signal. Installation is via a DKMS package on Ubuntu 24.04 and Linux Mint 22, with the package blacklisting the older sm750fb driver that would otherwise claim the card. The kernel module is named sm750hdmidrm.ko to avoid confusion with the legacy driver, and users are advised to keep SSH access available for recovery when testing non-standard modes.</description>
-    <pubDate>2026-08-30T18:49:08Z</pubDate>
+    <title>Launch HN: Hebbian Robotics (YC S26) – Build scalable robotics data pipelines</title>
+    <link>https://github.com/Hebbian-Robotics/hflow</link>
+    <guid isPermaLink="false">https://github.com/Hebbian-Robotics/hflow</guid>
+    <description>Hebbian Robotics, a Y Combinator S26 company, has released HFlow, an open source SDK designed for building scalable multimodal data pipelines in robotics and physical AI. The project is hosted on GitHub under the Hebbian-Robotics organization and has gained notable community traction with 212 stars and 118 forks. HFlow is licensed under Apache 2.0 and is structured as a monorepo containing benchmarks, documentation, examples, packages, references, scripts, tests, and core source code. The repository includes 191 commits and standard community files such as a code of conduct, contributing guidelines, and security policy. The project&#x27;s tagline emphasizes its focus on enabling scalable data pipelines for robotics and physical AI applications.</description>
+    <pubDate>2026-08-31T15:02:41+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>monty-go: Pure-Go wrapper for Pydantic&#x27;s Monty Python Interpreter</title>
-    <link>https://github.com/fugue-labs/monty-go</link>
-    <guid isPermaLink="false">https://github.com/fugue-labs/monty-go</guid>
-    <description>monty-go is a pure-Go wrapper for Pydantic&#x27;s Monty Python interpreter, designed to safely run LLM-generated Python code from Go without containers, CGO, or subprocesses. The library compiles Monty to WebAssembly and loads it via the wazero runtime, embedding a 2.9MB WASM binary directly in the Go binary with sub-millisecond startup. Its core use case is letting LLMs write Python code instead of making sequential tool calls, condensing multiple model calls into one by allowing the code to invoke Go functions as needed. When the Python code calls an external function, Monty pauses execution so the Go code can handle it, then resumes, creating a sandboxed bridge between the two languages. The library is installed via `go get github.com/fugue-labs/monty-go` and draws inspiration from Anthropic&#x27;s Programmatic Tool Calling and Code Execution with MCP, as well as Cloudflare&#x27;s Code Mode.</description>
-    <pubDate>2026-08-30T12:02:09Z</pubDate>
+    <title>uv: Deduplicate all files in the wheel cache</title>
+    <link>https://github.com/astral-sh/uv/pull/21327</link>
+    <guid isPermaLink="false">https://github.com/astral-sh/uv/pull/21327</guid>
+    <description>This pull request by Charlie Marsh, merged into the astral-sh/uv repository on August 31, 2026, adds file-level deduplication to uv&#x27;s wheel cache. Previously, uv only deduplicated wheels at the content-addressed level, leaving individual files within and across wheels unduplicated. The change stores every file under its BLAKE3 hash in a new files-v0 bucket and hardlinks these objects into their original locations in the archive-v0 bucket, leaving the installation step unchanged. Cache cleanup automatically removes file objects when their hardlink count drops to one. According to a referenced prior proposal, the optimization saves significant space, such as 275.7 MiB for executables and native libraries through 3,088 distinct file objects replacing 3,336 hardlinked files, with further savings for any payload file at least 10 units in size.</description>
+    <pubDate>2026-08-31T06:03:02+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: I missed the moving blocks, so I built a real Linux disk defragmenter</title>
-    <link>https://github.com/gbin/defragger</link>
-    <guid isPermaLink="false">https://github.com/gbin/defragger</guid>
-    <description>A graphical Linux disk defragmenter called Defragger has been released as alpha software, written in Rust 1.85+ and licensed under MIT or Apache 2.0. The creator built it after moving from Windows to Linux over 20 years ago and missing the visual block map of the old Windows defragmenter, which made the machine feel &quot;legible&quot; by letting users watch the filesystem reorganize itself. Though modern Linux filesystems rarely need defragmenting, the project became a practical tool when the author was testing a high-throughput logger and found that fragmentation was adding measurable variance even on NVMe storage. Defragger visualizes how files, free space, and filesystem metadata are allocated, identifies fragmented files, and reorganizes supported filesystems directly without shelling out to e4defrag or filefrag. The ext4 path has received the most testing, while FAT write support is newer and recommended only for disposable or fully backed-up volumes, with the project warning users to back up important data before use.</description>
-    <pubDate>2026-08-25T18:57:27Z</pubDate>
+    <title>Show HN: FnScribe – Open-source, offline dictation for macOS</title>
+    <link>https://github.com/AlgorithmicResearchGroup/fnscribe</link>
+    <guid isPermaLink="false">https://github.com/AlgorithmicResearchGroup/fnscribe</guid>
+    <description>FnScribe is an open-source, offline dictation tool designed for macOS that transcribes voice locally, keeping audio private. The app lives in the menu bar and inserts transcriptions into whichever application is currently focused. Users can hold the fn/Globe key, speak, and release to dictate, or use a hands-free mode for longer thoughts. It requires macOS 13 Ventura or later and runs on both Apple Silicon and 64-bit Intel Macs. Installation involves downloading a DMG file, dragging FnScribe to the Applications folder, and granting Microphone and Keyboard access when prompted.</description>
+    <pubDate>2026-08-28T06:45:47+00:00</pubDate>
     <source>Hacker News</source>
+  </item>
+  <item>
+    <title>VibeCoded AI-Slop License v1.0</title>
+    <link>https://gist.github.com/NicolasCARPi/3fd349ed1ed52ae6b835d5364cda4cd6</link>
+    <guid isPermaLink="false">https://gist.github.com/NicolasCARPi/3fd349ed1ed52ae6b835d5364cda4cd6</guid>
+    <description>A GitHub gist titled &quot;VibeCoded AI-Slop License v1.0&quot; was posted by user NicolasCARPi, presenting a satirical license for AI-generated software. The license grants complete freedom to use, modify, distribute, or sell the software without requiring attribution or permission, and acknowledges that the code may have been partially or entirely written by AI systems responding to vague prompts. It explicitly disclaims any expectation of quality, support, warranty, or liability, noting that the authors may not have written, read, tested, or understood the software. The gist has received 31 stars and 3 forks, with comments ranging from praise calling it &quot;based&quot; to criticism arguing that copyright claims on generative AI outputs are legally questionable in most jurisdictions.</description>
+    <pubDate>Mon, 31 Aug 2026 06:40:14 -0500</pubDate>
+    <source>Lobsters</source>
   </item>
   <item>
     <title>“I just chose words carefully”</title>
     <link>https://unsung.aresluna.org/i-just-chose-words-carefully/</link>
     <guid isPermaLink="false">https://unsung.aresluna.org/i-just-chose-words-carefully/</guid>
-    <description>Monospace typesetting is widely disliked because it can&#x27;t distribute spaces evenly. Regular text and right-aligned text work reasonably well, but centering is tricky without half-spaces, and full justification produces uncomfortably large gaps. Hyphenation, the standard solution for justified text, also feels unpleasant in monospace since hyphens draw attention and disrupt copy-pasting. As an alternative, writers can manually rewrite their text so that words precisely fill each line, eliminating double spaces entirely. In the late 1990s, rs1n applied this technique to a 17,000-word guide to Super Metroid, achieving a perfect right margin on every line using only a basic ASCII editor. While such careful rewrites are common for printed books to avoid widows and orphans, they are rare in onscreen writing, though UI designers often massage button and tooltip strings to fit specific widths.</description>
-    <pubDate>2026-08-30T22:49:48Z</pubDate>
+    <description>Monospace typesetting presents unique challenges: regular and right-aligned text are manageable, but centering lacks a half-space option and full justification creates uneven, overly large spaces. Hyphenation, the typical solution, feels unpleasant in monospace because hyphens draw too much attention and disrupt copy and paste. One creative alternative is rewriting text so words precisely add up to the line length, eliminating double spaces entirely. In the late 1990s, rs1n used this technique for his 17,000-word Super Metroid guide, crafting every line in an ASCII editor to end perfectly on a letter. While such painstaking rewrites are uncommon in onscreen writing, UI designers often spend hours fitting button strings and tooltips within tight widths in dense interfaces.</description>
+    <pubDate>2026-08-30T22:49:48+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Cores in space: The core memory module from a 1980 Spacelab computer</title>
-    <link>https://www.righto.com/2026/08/spacelab-core-memory.html</link>
-    <guid isPermaLink="false">https://www.righto.com/2026/08/spacelab-core-memory.html</guid>
-    <description>Spacelab, a reusable laboratory carried in the Space Shuttle&#x27;s cargo bay, used a French-built minicomputer called the Mitra 125 MS equipped with 128 kilobytes of magnetic core memory instead of silicon memory. The core memory stack, which took up roughly a third of the computer, consisted of seven boards including four core plane boards, two driver boards, and an interface board. Each bit was stored in a tiny ferrite ring that could be magnetized in two directions, with cores arranged in grids using coincident current addressing via X and Y lines. Reading a core destroyed its value, requiring the bit to be rewritten afterward, while inhibit lines controlled writing different values to different planes. Diode matrices solved sneak path problems in the wiring, and core memory remained the dominant storage technology until semiconductor memory eventually replaced it.</description>
-    <pubDate>2026-08-30T20:00:25Z</pubDate>
+    <title>OpenShot 4.0 – Open-source video editor</title>
+    <link>https://www.openshot.org/blog/2026/08/30/openshot-40-record-edit-color-like-never-before/</link>
+    <guid isPermaLink="false">https://www.openshot.org/blog/2026/08/30/openshot-40-record-edit-color-like-never-before/</guid>
+    <description>OpenShot 4.0 introduces direct recording of screens, webcams, microphones, and system audio into a single project workspace, with platform-native support on Windows, macOS, Linux X11, and Linux Wayland with PipeWire. A new dedicated Color View adds color correction and grading tools, including separate wheels for global adjustments, shadows, midtones, and highlights, editable Bézier curves, .cube LUT support, and video scopes such as Luma Waveform, Histogram, RGB Parade, and Vectorscope with a skin-tone reference line. The Color Grade effect is fully keyframable, and preset options like Auto Contrast, Lift Shadows, Warm Up, and Boost Color provide quick starting points. Ten new effects join the video engine, including an Audio Visualization tool with multiple display modes, a Beat Sync effect for audio-reactive color layers, and an Object Mask feature that uses locally run ONNX-format machine learning models (YOLO, EfficientSAM, and Cutie) to isolate subjects without requiring cloud processing.</description>
+    <pubDate>2026-08-31T09:59:05+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Creepy Crawlies</title>
-    <link>https://people.kernel.org/monsieuricon/creepy-crawlies</link>
-    <guid isPermaLink="false">https://people.kernel.org/monsieuricon/creepy-crawlies</guid>
-    <description>Linux kernel developers are losing about 20% of their compute capacity to AI scrapers that render every git commit as HTML across git.kernel.org, even though cloning the repositories would be far more efficient. Out of 6 million daily requests for commits, only roughly 2% are estimated to come from legitimate users, while scrapers systematically crawl the same content across 922 forks of linux.git. The site initially responded by banning bot IPs and ASNs, then deployed Anubis proof-of-work challenges, raising difficulty from 4 to 5 as bots learned to solve them. Today, 33% of scraper traffic successfully bypasses Anubis, and the operators are now turning off features to reduce crawlable URLs and gating expensive anonymous access. The underlying issue persists because companies continue launching AI products that monetize residential proxies, turning ordinary devices into scraping infrastructure.</description>
-    <pubDate>2026-08-29T17:49:01Z</pubDate>
+    <title>Google Has Removed MV2 Extensions from the Chrome Web Store, Including UBO</title>
+    <link>https://webiterate.dev/google-removed-extensions-ublock-origin-108/</link>
+    <guid isPermaLink="false">https://webiterate.dev/google-removed-extensions-ublock-origin-108/</guid>
+    <description>Google has removed all Manifest Version 2 (MV2) extensions from the Chrome Web Store, including the widely-used ad blocker uBlock Origin (UBO). This action is part of Google&#x27;s long-planned transition to Manifest V3 (MV3), the new extension platform that imposes significant restrictions on the capabilities of content-blocking tools. Under MV3, extensions have limited access to certain web request APIs that advanced ad blockers rely on, rendering many existing tools either non-functional or less effective. While users who had already installed MV2 extensions prior to removal may continue using them, they can no longer receive updates through the store, and new users are unable to install them. Critics, including extension developers and privacy advocates, have raised concerns that MV3 will weaken users&#x27; ability to block ads, trackers, and malicious content. The shift has also affected other popular extensions that previously relied on the older MV2 framework.</description>
+    <pubDate>2026-08-31T21:10:58+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Haiku R1/beta6 has been released</title>
-    <link>https://www.haiku-os.org/news/2026-08-26_haiku_r1_beta6</link>
-    <guid isPermaLink="false">https://www.haiku-os.org/news/2026-08-26_haiku_r1_beta6</guid>
-    <description>Haiku R1/beta6 has been released approximately two years after the previous beta version, and the release comes only about a week after Haiku&#x27;s 25th birthday. The announcement provides links to Release Notes, a Press contact for media inquiries, and a Get Haiku page where users can either download the release or upgrade from an existing installation. The official site notes that Haiku and the HAIKU logo are registered trademarks of Haiku, Inc., with copyright coverage from 2001 to 2026. Additional resources on the page include the main feed, Blog-O-Sphere feed, community policies, and social media accounts on Twitter, Mastodon, and LinkedIn.</description>
-    <pubDate>2026-08-30T16:01:10Z</pubDate>
+    <title>Playa Phone</title>
+    <link>https://playaphone.com/</link>
+    <guid isPermaLink="false">https://playaphone.com/</guid>
+    <description>During Burning Man week, a modified phone booth called Playa Phone stands at the corner of 3:30 and Ceiba in Black Rock City, Nevada, in front of the Temple of the Flying Spaghetti Monster. Anyone can dial +1 (775) 557-4848 to make a free five-minute call almost anywhere in the world, or to reach a random Burner who happens to pick up the receiver. Callers may receive a busy signal if the phone is in use or hear it ring six times before hanging up if no one answers. The booth is an ordinary phone whose internal components have been replaced to bypass payment and route calls over the Internet. SFGATE has covered the project, and a Reddit announcement features shared experiences and answers to common questions.</description>
+    <pubDate>2026-08-31T14:52:26+00:00</pubDate>
     <source>Hacker News</source>
   </item>
 </channel></rss>
