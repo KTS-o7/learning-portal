@@ -2,149 +2,168 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-01</description>
-  <item>
-    <title>Enabling the next-generation trait solver on nightly</title>
-    <link>https://blog.rust-lang.org/2026/08/21/enabling-next-solver-on-nightly/</link>
-    <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/21/enabling-next-solver-on-nightly/</guid>
-    <description>After nearly four years of development, Rust&#x27;s next-generation trait solver is being enabled by default on nightly, representing the largest single change to the compiler since its initial release. It completely replaces how where-clauses are proved, associated types are normalized, and opaque types (including RPIT, TAIT, and RTN) are handled, already fixing over 200 known issues and removing incorrect type inference in widely-used crates. The change will unblock the stabilization of Type Alias Impl Trait and Return Type Notation, enable new implicit default trait bounds, and fix remaining type system unsoundnesses. Significant compile-time performance work has made nearly all top 20,000 crates on crates.io perform comparably between solvers, with some experiencing major speedups—datafusion now compiles over eight times faster, and a type-system chess implementation completes in minutes instead of hanging. Developers are encouraged to test the latest nightly and report breakage, with -Znext-solver=coherence available as an opt-out flag.</description>
-    <pubDate>2026-08-21T00:00:00+00:00</pubDate>
-    <source>Rust Blog</source>
-  </item>
-  <item>
-    <title>Generic Methods</title>
-    <link>https://go.dev/blog/generic-methods</link>
-    <guid isPermaLink="false">https://go.dev/blog/generic-methods</guid>
-    <description>Go 1.27 introduces type parameters on concrete methods, a capability absent since generics were added in Go 1.18. The original proposal avoided generic methods because generic interface methods are difficult to implement efficiently, but Go 1.27 takes a different view, decoupling methods used for code organization from those used for interface implementation. This allows generic types to define methods like Map and ToString that can be chained readably from left to right, rather than relying on package-level generic functions written &quot;inside out.&quot; Generic concrete methods cannot help satisfy interfaces, since interface methods cannot declare type parameters. The reason is that interface values may be used across packages without compile-time knowledge of how their methods are instantiated, forcing the compiler to generate code for every possible type argument, which is impractical under Go&#x27;s instantiation approach.</description>
-    <pubDate>2026-08-26T00:00:00+00:00</pubDate>
-    <source>Go Blog</source>
-  </item>
-  <item>
-    <title>Announcing our first Maintainers in Residence</title>
-    <link>https://blog.rust-lang.org/2026/08/26/announcing-our-first-maintainers-in-residence/</link>
-    <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/26/announcing-our-first-maintainers-in-residence/</guid>
-    <description>The Rust Project has announced its first six Maintainers in Residence, who will receive funding for at least 12 months to focus on critical maintenance activities. The selected contributors are Gen Li (rami3l), Chris Denton (ChrisDenton), Alejandra González (blyxyas), León Liehr (fmease), Jason Newcomb (Jarcho), and Jonas Böttiger (joboet), all of whom have already signed their contracts and begun receiving funding. Financial support comes from the Rust Foundation Maintainers Fund, made possible by sponsors including Google, AWS, OpenAI, the Rust Project Leadership Council, and individual donors. The program, established under RFC 3931 and managed by the Rust Funding team, prioritized teams critically underfunded relative to their maintenance baselines, including rustdoc, rustup, cargo, compiler, libs, clippy, rustfmt, rust-analyzer, and mods. The Rust Foundation notes that more funding announcements are expected in the near future.</description>
-    <pubDate>2026-08-26T00:00:00+00:00</pubDate>
-    <source>Rust Blog</source>
-  </item>
-  <item>
-    <title>Supply chain attack on arrayref</title>
-    <link>https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/</link>
-    <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/</guid>
-    <description>On August 20, 2026, the Rust Security Response Team confirmed that the proc-macro1 crate was malicious, containing a build script that downloaded a malicious payload. The crate proc-macro1, along with proc-macro-en, aovine, arone, aronenao, and tinymember, were deleted from crates.io. Additionally, the popular arrayref crate was republished to depend on this malicious crate, and its affected versions were yanked, with the malicious version subsequently removed and the maliciously-yanked versions unyanked. Other crates by the arrayref author, internment and append-only-vec, were also affected and treated similarly, and the account was locked as a precaution. The team believes the arrayref author&#x27;s computer or credentials were compromised rather than the author acting maliciously. The Research Team at Nextron Systems GmbH discovered the issue, with response assistance from Emily Albini, Manish Goregaokar, Marco Ieni, Tobias Bieniek, Ubiratan Soares, and Walter Pearce.</description>
-    <pubDate>2026-08-20T00:00:00+00:00</pubDate>
-    <source>Rust Blog</source>
-  </item>
-  <item>
-    <title>Go 1.27 is released</title>
-    <link>https://go.dev/blog/go1.27</link>
-    <guid isPermaLink="false">https://go.dev/blog/go1.27</guid>
-    <description>The Go team released Go 1.27, introducing generic methods and allowing struct literal keys to refer to nested or embedded fields directly. Function type inference has been generalized to apply in composite literals, type conversions, and channel sends. The go fix tool now includes modernizers for atomictypes, embedlit, slicesbackward, and unsafefuncs, while go doc supports package@version queries and go mod tidy consolidates require blocks. Performance improvements include size-specialized memory allocation that reduces small object allocation costs by up to 30%, and the goroutine leak profile in runtime/pprof is now generally available. New standard library additions include encoding/json/v2 with low-level jsontext streaming, the crypto/mldsa post-quantum signature scheme, native uuid support, experimental SIMD packages, and httptest&#x27;s NewTestServer for in-memory testing.</description>
-    <pubDate>2026-08-19T00:00:00+00:00</pubDate>
-    <source>Go Blog</source>
-  </item>
-  <item>
-    <title>Separating Parsing Expression Grammars using Cell-Probe Lower Bounds</title>
-    <link>http://arxiv.org/abs/2608.29592v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2608.29592v1</guid>
-    <description>Kim and Park resolve three open problems concerning parsing expression grammars (PEGs) by constructing a single language C belonging to LIN ∩ PEG whose reversal C^R lies in LIN \ PEG. This construction proves that some linear context-free language is not a PEG language and that PEG languages are not closed under reversal, confirming a conjecture of Loff, Moreira, and Reis. The same witness negatively resolves Rubtsov and Chudinov&#x27;s concatenation-closure problem in the strong form PEG·REG ⊄ PEG despite REG·PEG ⊆ PEG, and refutes closure under Kleene star, homomorphisms, and substitutions. Their main technique converts scaffolding automata into dynamic data structures in the cell-probe model, so that cell-probe lower bounds yield SCA non-membership and, by reversal, PEG non-membership. Applying this transfer to Multiphase Inner Product with one-symbol update blocks and a query suffix of logarithmic length, while keeping both C and C^R linear context-free, Ko&#x27;s cell-probe lower bound provides the desired witness. The arguments are additionally formalized in Lean 4.</description>
-    <pubDate>2026-08-30T06:27:15Z</pubDate>
-    <source>arXiv:cs.PL</source>
-  </item>
-  <item>
-    <title>Fine-grained Causal Reversibility for Asynchronous Channel-based Programming</title>
-    <link>http://arxiv.org/abs/2608.29225v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2608.29225v1</guid>
-    <description>Causal reversibility is a technique for debugging concurrent systems through rollback and replay with causal consistency. In channel-based communication, queue ordering creates dependencies that prevent causally independent actions from being efficiently rolled back and replayed. To address this limitation, the paper presents revGo, a core of the Go programming language assuming unbounded asynchronous channels. The proposed rollback-and-replay semantics permits reordering messages in the queue when they are not causally related in the forward execution, ensuring that no configuration with non-reachable processes is generated. By reordering independent messages and assigning unique keys to communications, rollback and replay become implementable with minimality. This extended version of the work, authored by Shunya Oguchi, Shoji Yuen, Nobuko Yoshida, and Claudio Antares Mezzina, includes complete proofs and additional technical material beyond the ICTAC 2026 paper.</description>
-    <pubDate>2026-08-29T12:30:01Z</pubDate>
-    <source>arXiv:cs.PL</source>
-  </item>
-  <item>
-    <title>FlowCheck: Helping End-Users Specify and Verify Intent in Vibe-Coded Web Apps</title>
-    <link>http://arxiv.org/abs/2608.28880v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2608.28880v1</guid>
-    <description>FlowCheck is a constraint language that helps end-users specify and verify user-visible information flows in vibe-coded web applications directly through the application interface, without requiring them to read code. The constraints are structured for reliable LLM generation and can be displayed and inspected visually. FlowCheck translates these constraints into deterministic CodeQL analyses to check them against the underlying code. In an evaluation across four applications generated via Claude Code, FlowCheck correctly identified all 30 injected constraint violations with no false positives. By comparison, frontier models prompted to find bugs in the same code—Claude Opus 4.7, DeepSeek V3, and Gemini Pro—achieved significantly lower accuracy, with none reaching full accuracy. The approach enables vibe coders to express intent in terms of the interface they understand while having it verified deterministically against code they do not.</description>
-    <pubDate>2026-08-28T21:32:07Z</pubDate>
-    <source>arXiv:cs.PL</source>
-  </item>
-  <item>
-    <title>QGPINNs: A Physics-Informed Neural Network Framework for Nonlocal Differential Equations on Quantum Graphs</title>
-    <link>http://arxiv.org/abs/2608.28589v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2608.28589v1</guid>
-    <description>QGPINNs is a physics-informed neural network framework, implemented in PyTorch, for solving nonlocal differential equations on quantum graphs. The approach approximates the solution on each edge with a neural network while a unified graph-based loss function enforces the governing equations along with initial, boundary, and vertex transmission conditions, including standard continuity and Kirchhoff-Neumann vertex conditions and Dirichlet boundary conditions. The framework is developed for two classes of nonlinear models: multi-order fractional elliptic problems and time-fractional evolution equations on quantum graphs. To improve accuracy and training stability, it integrates soft and hard constraint enforcement, dynamic loss balancing, Fourier feature embeddings, and a learnable singularity-capturing feature for weakly singular solutions. The framework also extends naturally to inverse problems, enabling the identification of fractional operator orders and physical parameters from noisy observational data. Its accuracy and computational efficiency are demonstrated through numerical experiments on benchmark graph structures and real-world networks, including the IEEE 14-bus system and an open-channel agricultural drainage network.</description>
-    <pubDate>2026-08-28T17:59:47Z</pubDate>
-    <source>arXiv:cs.LG</source>
-  </item>
-  <item>
-    <title>Aero Hand Open: A Simulation-Ready Tendon-Driven Hand for Dexterous Manipulation Learning</title>
-    <link>http://arxiv.org/abs/2608.28578v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2608.28578v1</guid>
-    <description>Tendon-driven hands are anthropomorphic and affordable because moving actuators off the joints allows smaller, cheaper motors and lets one motor drive multiple joints through a single cable. However, these hands are harder to learn on than direct-drive hands, since the underactuated transmission is difficult to represent in a simulator and the joints driven by one cable cannot be independently commanded. The authors present Aero Hand Open, a tendon-driven anthropomorphic hand released as simulation-ready. The package includes a simulation model that reproduces the cable transmission, an identified actuation map connecting that model to motor commands in both directions (including the three-way coupling of the thumb), and a reinforcement learning package for training policies. Together, these components allow policies to be trained entirely in simulation and deployed on the physical hand without fine-tuning or state estimation. The team releases the mechanical design, simulation model, identified mapping, training environment, and deployment stack.</description>
-    <pubDate>2026-08-28T17:53:48Z</pubDate>
-    <source>arXiv:cs.AI</source>
-  </item>
-  <item>
-    <title>Launch HN: Hebbian Robotics (YC S26) – Build scalable robotics data pipelines</title>
-    <link>https://github.com/Hebbian-Robotics/hflow</link>
-    <guid isPermaLink="false">https://github.com/Hebbian-Robotics/hflow</guid>
-    <description>Hebbian Robotics, a Y Combinator S26 company, has released HFlow, an open source SDK designed for building scalable multimodal data pipelines in robotics and physical AI. The project is hosted on GitHub under the Hebbian-Robotics organization and has gained notable community traction with 212 stars and 118 forks. HFlow is licensed under Apache 2.0 and is structured as a monorepo containing benchmarks, documentation, examples, packages, references, scripts, tests, and core source code. The repository includes 191 commits and standard community files such as a code of conduct, contributing guidelines, and security policy. The project&#x27;s tagline emphasizes its focus on enabling scalable data pipelines for robotics and physical AI applications.</description>
-    <pubDate>2026-08-31T15:02:41+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>uv: Deduplicate all files in the wheel cache</title>
-    <link>https://github.com/astral-sh/uv/pull/21327</link>
-    <guid isPermaLink="false">https://github.com/astral-sh/uv/pull/21327</guid>
-    <description>This pull request by Charlie Marsh, merged into the astral-sh/uv repository on August 31, 2026, adds file-level deduplication to uv&#x27;s wheel cache. Previously, uv only deduplicated wheels at the content-addressed level, leaving individual files within and across wheels unduplicated. The change stores every file under its BLAKE3 hash in a new files-v0 bucket and hardlinks these objects into their original locations in the archive-v0 bucket, leaving the installation step unchanged. Cache cleanup automatically removes file objects when their hardlink count drops to one. According to a referenced prior proposal, the optimization saves significant space, such as 275.7 MiB for executables and native libraries through 3,088 distinct file objects replacing 3,336 hardlinked files, with further savings for any payload file at least 10 units in size.</description>
-    <pubDate>2026-08-31T06:03:02+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Show HN: FnScribe – Open-source, offline dictation for macOS</title>
-    <link>https://github.com/AlgorithmicResearchGroup/fnscribe</link>
-    <guid isPermaLink="false">https://github.com/AlgorithmicResearchGroup/fnscribe</guid>
-    <description>FnScribe is an open-source, offline dictation tool designed for macOS that transcribes voice locally, keeping audio private. The app lives in the menu bar and inserts transcriptions into whichever application is currently focused. Users can hold the fn/Globe key, speak, and release to dictate, or use a hands-free mode for longer thoughts. It requires macOS 13 Ventura or later and runs on both Apple Silicon and 64-bit Intel Macs. Installation involves downloading a DMG file, dragging FnScribe to the Applications folder, and granting Microphone and Keyboard access when prompted.</description>
-    <pubDate>2026-08-28T06:45:47+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>VibeCoded AI-Slop License v1.0</title>
-    <link>https://gist.github.com/NicolasCARPi/3fd349ed1ed52ae6b835d5364cda4cd6</link>
-    <guid isPermaLink="false">https://gist.github.com/NicolasCARPi/3fd349ed1ed52ae6b835d5364cda4cd6</guid>
-    <description>A GitHub gist titled &quot;VibeCoded AI-Slop License v1.0&quot; was posted by user NicolasCARPi, presenting a satirical license for AI-generated software. The license grants complete freedom to use, modify, distribute, or sell the software without requiring attribution or permission, and acknowledges that the code may have been partially or entirely written by AI systems responding to vague prompts. It explicitly disclaims any expectation of quality, support, warranty, or liability, noting that the authors may not have written, read, tested, or understood the software. The gist has received 31 stars and 3 forks, with comments ranging from praise calling it &quot;based&quot; to criticism arguing that copyright claims on generative AI outputs are legally questionable in most jurisdictions.</description>
-    <pubDate>Mon, 31 Aug 2026 06:40:14 -0500</pubDate>
-    <source>Lobsters</source>
-  </item>
-  <item>
-    <title>“I just chose words carefully”</title>
-    <link>https://unsung.aresluna.org/i-just-chose-words-carefully/</link>
-    <guid isPermaLink="false">https://unsung.aresluna.org/i-just-chose-words-carefully/</guid>
-    <description>Monospace typesetting presents unique challenges: regular and right-aligned text are manageable, but centering lacks a half-space option and full justification creates uneven, overly large spaces. Hyphenation, the typical solution, feels unpleasant in monospace because hyphens draw too much attention and disrupt copy and paste. One creative alternative is rewriting text so words precisely add up to the line length, eliminating double spaces entirely. In the late 1990s, rs1n used this technique for his 17,000-word Super Metroid guide, crafting every line in an ASCII editor to end perfectly on a letter. While such painstaking rewrites are uncommon in onscreen writing, UI designers often spend hours fitting button strings and tooltips within tight widths in dense interfaces.</description>
-    <pubDate>2026-08-30T22:49:48+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>OpenShot 4.0 – Open-source video editor</title>
-    <link>https://www.openshot.org/blog/2026/08/30/openshot-40-record-edit-color-like-never-before/</link>
-    <guid isPermaLink="false">https://www.openshot.org/blog/2026/08/30/openshot-40-record-edit-color-like-never-before/</guid>
-    <description>OpenShot 4.0 introduces direct recording of screens, webcams, microphones, and system audio into a single project workspace, with platform-native support on Windows, macOS, Linux X11, and Linux Wayland with PipeWire. A new dedicated Color View adds color correction and grading tools, including separate wheels for global adjustments, shadows, midtones, and highlights, editable Bézier curves, .cube LUT support, and video scopes such as Luma Waveform, Histogram, RGB Parade, and Vectorscope with a skin-tone reference line. The Color Grade effect is fully keyframable, and preset options like Auto Contrast, Lift Shadows, Warm Up, and Boost Color provide quick starting points. Ten new effects join the video engine, including an Audio Visualization tool with multiple display modes, a Beat Sync effect for audio-reactive color layers, and an Object Mask feature that uses locally run ONNX-format machine learning models (YOLO, EfficientSAM, and Cutie) to isolate subjects without requiring cloud processing.</description>
-    <pubDate>2026-08-31T09:59:05+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Google Has Removed MV2 Extensions from the Chrome Web Store, Including UBO</title>
-    <link>https://webiterate.dev/google-removed-extensions-ublock-origin-108/</link>
-    <guid isPermaLink="false">https://webiterate.dev/google-removed-extensions-ublock-origin-108/</guid>
-    <description>Google has removed all Manifest Version 2 (MV2) extensions from the Chrome Web Store, including the widely-used ad blocker uBlock Origin (UBO). This action is part of Google&#x27;s long-planned transition to Manifest V3 (MV3), the new extension platform that imposes significant restrictions on the capabilities of content-blocking tools. Under MV3, extensions have limited access to certain web request APIs that advanced ad blockers rely on, rendering many existing tools either non-functional or less effective. While users who had already installed MV2 extensions prior to removal may continue using them, they can no longer receive updates through the store, and new users are unable to install them. Critics, including extension developers and privacy advocates, have raised concerns that MV3 will weaken users&#x27; ability to block ads, trackers, and malicious content. The shift has also affected other popular extensions that previously relied on the older MV2 framework.</description>
-    <pubDate>2026-08-31T21:10:58+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Playa Phone</title>
-    <link>https://playaphone.com/</link>
-    <guid isPermaLink="false">https://playaphone.com/</guid>
-    <description>During Burning Man week, a modified phone booth called Playa Phone stands at the corner of 3:30 and Ceiba in Black Rock City, Nevada, in front of the Temple of the Flying Spaghetti Monster. Anyone can dial +1 (775) 557-4848 to make a free five-minute call almost anywhere in the world, or to reach a random Burner who happens to pick up the receiver. Callers may receive a busy signal if the phone is in use or hear it ring six times before hanging up if no one answers. The booth is an ordinary phone whose internal components have been replaced to bypass payment and route calls over the Internet. SFGATE has covered the project, and a Reddit announcement features shared experiences and answers to common questions.</description>
-    <pubDate>2026-08-31T14:52:26+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-02</description>
+<item>
+  <title>Announcing rustup 1.29.1</title>
+  <link>https://blog.rust-lang.org/2026/09/01/Rustup-1.29.1/</link>
+  <guid isPermaLink="false">https://blog.rust-lang.org/2026/09/01/Rustup-1.29.1/</guid>
+  <description>The rustup team released version 1.29.1, introducing several improvements to the recommended tool for installing Rust. The release includes better concurrency in certain rustup operations, and implicit installation of the active toolchain in rustup-init and rustup invocations has been deprecated, now producing a warning instead. New features include a `--serve` flag for `rustup doc` that serves documentation over local HTTP, and rustup now officially supports aarch64-pc-windows-gnullvm as a host platform. Installing i686-pc-windows-* toolchains on 64-bit Windows now requires the `--force-non-host` flag, and `rustup-init` no longer leaves unexpected files behind after cancelled installations. The terminology &quot;target triple&quot; has been renamed to &quot;target tuple&quot; throughout the project, and a bug causing Windows installation failures with rustup-init.sh has been fixed. Users can update by closing programs that use rustup and running the standard update command.</description>
+  <pubDate>2026-09-01T00:00:00+00:00</pubDate>
+  <source>Rust Blog</source>
+</item>
+
+<item>
+  <title>Some more things about Django I&#x27;ve been enjoying</title>
+  <link>https://jvns.ca/blog/2026/07/21/more-nice-django-things/</link>
+  <guid isPermaLink="false">https://jvns.ca/blog/2026/07/21/more-nice-django-things/</guid>
+  <description>The author is learning to build traditional backend-rendered websites using Django, having previously relied on static site generators and frontend-heavy approaches. They particularly enjoy Django&#x27;s query builder pattern using queryset classes with named methods for filtering, template filters like urlize, json_script, and querystring, and the automatic database migration system. However, they dislike using class-based inheritance to share code between views and switched to function-based views instead. While exploring performance, they discovered they had accidentally disabled the cached template loader, and re-enabling it dramatically improved their site&#x27;s capacity from roughly 2-3 requests per second to about 12. They find Django&#x27;s performance characteristics more complex than Go&#x27;s but have found CPU profiling more immediately useful than the common advice to simply add database indexes.</description>
+  <pubDate>2026-07-21T00:00:00+00:00</pubDate>
+  <source>Julia Evans</source>
+</item>
+
+<item>
+  <title>Learning a few things about running SQLite</title>
+  <link>https://jvns.ca/blog/2026/07/17/learning-about-running-sqlite/</link>
+  <guid isPermaLink="false">https://jvns.ca/blog/2026/07/17/learning-about-running-sqlite/</guid>
+  <description>The author shares lessons learned while running SQLite for a Django site. Turning on WAL mode was the initial step, but running ANALYZE dramatically improved query performance, reducing a 5-second FTS5 query on 4000 rows to about 0.05 seconds by generating statistics for the query planner. Cleaning up the database proved tricky because long-running DELETE statements exceed the 5-second write timeout, causing other workers to crash and the VM to shut down; the workaround is performing cleanup in small batches. Backups are handled two ways: using restic with VACUUM INTO commands, and Litestream for incremental backups. The author also notes that SQLite databases can be split across multiple files, which worked well for the Mess with DNS project that has run on SQLite since 2022.</description>
+  <pubDate>2026-07-17T00:00:00+00:00</pubDate>
+  <source>Julia Evans</source>
+</item>
+
+<item>
+  <title>Moving away from Tailwind, and learning to structure my CSS</title>
+  <link>https://jvns.ca/blog/2026/05/15/moving-away-from-tailwind--and-learning-to-structure-my-css-/</link>
+  <guid isPermaLink="false">https://jvns.ca/blog/2026/05/15/moving-away-from-tailwind--and-learning-to-structure-my-css-/</guid>
+  <description>The author migrated several websites away from Tailwind toward semantic HTML and vanilla CSS after eight years of using the framework. They organized their CSS into distinct sections including a reset copied from Tailwind&#x27;s preflight styles, component-based stylesheets where each component has its own class and file, CSS variables for colors and font sizes, utility classes, base styles, and spacing rules. For responsive design, they moved away from media queries toward flexible CSS grid layouts using features like auto-fit and grid-template-areas. In development they rely on built-in CSS @import statements and nested selectors, bundling with esbuild only for production. The author cited several reasons for migrating, including Tailwind&#x27;s growing reliance on a build system, their improved CSS skills, the framework&#x27;s limitations when attempting unconventional styling, and curiosity about writing more semantic HTML.</description>
+  <pubDate>2026-05-15T00:00:00+00:00</pubDate>
+  <source>Julia Evans</source>
+</item>
+
+<item>
+  <title>crates.io: development update</title>
+  <link>https://blog.rust-lang.org/2026/07/13/crates-io-development-update/</link>
+  <guid isPermaLink="false">https://blog.rust-lang.org/2026/07/13/crates-io-development-update/</guid>
+  <description>Over the past six months, crates.io introduced a new &quot;Code&quot; tab that lets users browse the contents of published crate versions directly on the site, powered by zip archives stored on a CDN. The team also accepted RFC #3946, beginning the implementation of crates.io-native usernames independent of GitHub as a precursor to supporting other identity providers. Additional user-facing changes include warning banners for unmaintained crates flagged by RustSec, &quot;You might not need this dependency&quot; notices for crates superseded by the Rust standard library, and an animated Ferris on error pages whose eyes follow the cursor. The frontend was successfully migrated from Ember.js to Svelte, reaching feature parity and becoming the default in May. Under the hood, improvements ranged from faster search and reverse-dependency lookups to a rewritten ARCHITECTURE.md document, better CDN caching, accessibility enhancements, and optimizations to the background git index worker.</description>
+  <pubDate>2026-07-13T00:00:00+00:00</pubDate>
+  <source>Rust Blog</source>
+</item>
+
+<item>
+  <title>Griotte: Verified Compartmentalisation via Capabilities</title>
+  <link>https://arxiv.org/abs/2609.01110v1</link>
+  <guid isPermaLink="false">https://arxiv.org/abs/2609.01110v1</guid>
+  <description>CHERIoT is a hardware-software co-design that uses hardware capabilities to define compartments within the CHERIoT RTOS, isolating them by default to limit damage from bugs or malicious behavior. Cross-compartment communication is mediated by a privileged component called the switcher, which enforces isolation between compartments and guarantees stack safety. The authors introduce Griotte and Griotte OS, idealized but faithful versions of the CHERIoT machine and RTOS, to address two questions: formalizing the informal notion of compartmentalisation and verifying that CHERIoT enforces its intended security guarantees. They capture these guarantees using a continuation-based logical relation that models the combined behavior of the switcher and the capability machine, and they define a specification for the switcher that they prove the implementation meets. The verification is modular, verifying compartments individually before composing their specifications, and the approach is demonstrated on scenarios including local state integrity when sharing memory with unknown code.</description>
+  <pubDate>2026-09-01T11:50:45Z</pubDate>
+  <source>arXiv:cs.PL</source>
+</item>
+
+<item>
+  <title>A Dynamic Intermediate Representation for Hybrid Quantum-Classical Programs</title>
+  <link>https://arxiv.org/abs/2609.01037v1</link>
+  <guid isPermaLink="false">https://arxiv.org/abs/2609.01037v1</guid>
+  <description>A new Intermediate Representation (IR) is proposed for hybrid quantum-classical programs, addressing the limitations of traditional quantum compilers that rely on the static circuit model. The paper notes that this static view breaks down when gate choices depend on runtime data or measurement results, a common situation in hybrid applications. The new IR elevates gates to first-class values, enabling their dynamic creation, composition, and control so that classical computation can steer quantum behaviour. This unified framework captures phenomena including stochastic gate selection, adaptive error correction, and measurement-driven computation. Case studies in noise modelling, randomised compilation, error correction, and measurement-based quantum computing demonstrate that the IR expresses these programs compactly and enables optimisations previously impossible under the circuit model. Evaluation on a benchmark suite of hybrid quantum-classical programs confirms that the IR supports both compact representation and effective compiler analysis and transformation.</description>
+  <pubDate>2026-09-01T10:35:46Z</pubDate>
+  <source>arXiv:cs.PL</source>
+</item>
+
+<item>
+  <title>Predicting Program Exit Code with LLMs and Programming Language Semantics</title>
+  <link>https://arxiv.org/abs/2609.00579v1</link>
+  <guid isPermaLink="false">https://arxiv.org/abs/2609.00579v1</guid>
+  <description>The paper introduces Program Executability Prediction (PrEx), a task that asks models to determine whether a program is semantically valid or invalid and, if invalid, which formal rule it violates given the program&#x27;s syntax and operational semantics. The authors investigate whether LLMs rely on pre-training priors or systematically apply the provided semantic rules. To support this task, they constructed a dataset containing systematically generated invalid transformations derived from valid programs. They evaluated open-source coding LLMs under two semantic formalisms and two semantic shifts across Human-Written, LLM-Translated, and Fuzzer-Generated program splits. Their findings show that LLMs lean on pre-training priors rather than applying the given rules, performing especially poorly on modified semantics. Performance further degrades as program complexity increases.</description>
+  <pubDate>2026-09-01T02:18:20Z</pubDate>
+  <source>arXiv:cs.PL</source>
+</item>
+
+<item>
+  <title>Beyond Locks and Thread IDs: Static Data Race Detection Off The Beaten Path (Extended Version)</title>
+  <link>https://arxiv.org/abs/2609.00246v1</link>
+  <guid isPermaLink="false">https://arxiv.org/abs/2609.00246v1</guid>
+  <description>The paper &quot;Beyond Locks and Thread IDs: Static Data Race Detection Off The Beaten Path&quot; by Daniel Bund, Julian Erhard, Michael Petter, and Michael Schwarz extends the digest framework for static data race detection by incorporating abstractions of thread execution history to improve precision. The authors add support for concurrency constructs previously overlooked in static race analysis, including thread barriers and pthread_once, which ensures an action executes only once. They also instantiate the framework with an abstraction of locksets held by ancestor threads. To evaluate these extensions, the authors propose a suite of litmus tests and compare their implementation against state-of-the-art tools, finding that existing analyses lack support for these synchronization features. The extended version spans 49 pages and includes 12 figures and 6 tables.</description>
+  <pubDate>2026-08-31T18:47:23Z</pubDate>
+  <source>arXiv:cs.PL</source>
+</item>
+
+<item>
+  <title>SUN: Persistent Programs For Language-Grounded Control-to-Learning-to-Real Policies</title>
+  <link>https://arxiv.org/abs/2608.31167v1</link>
+  <guid isPermaLink="false">https://arxiv.org/abs/2608.31167v1</guid>
+  <description>The paper introduces Semantically UNified (SUN) Programs, typed executables where geometric and contact relations are defined once and compiled into aligned Model Predictive Control costs, satisfaction predicates, reinforcement learning rewards, transition guards, and diagnostics. The system, Kuafu, driven by large vision-language systems, automatically synthesizes SUN Programs from language and scene semantics, screens feasibility via MPC, and retains semantics while training stage-conditioned policies. Across nine tasks, Kuafu achieves 82.03% macro-success, outperforming sparse-reward (35.67%) and Stage-BC (24.75%) baselines. At 8192-way scale, it generates 10.57 times the successful trajectory time per hour of human teleoperation. With 500 trajectories per task, Kuafu data trains DP3 policies to 46.0% simulation success compared to 22.4% for alternatives, and achieves 34.7% success on physical Franka and Kinova robots. The results demonstrate that simulation-screened task semantics can amortize control into robust policies without demonstrations or manual dense rewards.</description>
+  <pubDate>2026-08-31T17:59:16Z</pubDate>
+  <source>arXiv:cs.AI</source>
+</item>
+
+<item>
+  <title>AnkiDroid: Google Play no longer allowing Open Collective donation link</title>
+  <link>https://github.com/ankidroid/Anki-Android/issues/21656</link>
+  <guid isPermaLink="false">https://github.com/ankidroid/Anki-Android/issues/21656</guid>
+  <description>AnkiDroid, a free open-source flashcard app with over 10 million Android installs, is facing removal from Google Play on September 11 in all countries except India and Russia after Google rejected its updates since August 28. The dispute centers on AnkiDroid&#x27;s donation link to Open Source Collective, its US-based fiscal host that holds 501(c)(6) tax-exempt status. Google Play&#x27;s payments policy prohibits apps from directing users to external payment methods unless collecting donations for a &quot;validated tax-exempt organization,&quot; and Google has refused to accept AnkiDroid&#x27;s IRS determination letter as proof of tax exemption. Despite 501(c)(6) being a recognized tax-exempt classification under which donations are not tax-deductible for donors, Google has not explained why this status is insufficient. AnkiDroid is removing its donation links from the next Play Store build (2.24.X) under protest to preserve distribution, while seeking clarification from Google.</description>
+  <pubDate>2026-09-01T10:11:02Z</pubDate>
+  <source>Hacker News</source>
+</item>
+
+<item>
+  <title>Show HN: Running 104GB Qwen3.8-Flash-Next on 48GB Mac with at ~12 tok/s</title>
+  <link>https://github.com/carloslfu/slotstream</link>
+  <guid isPermaLink="false">https://github.com/carloslfu/slotstream</guid>
+  <description>This project demonstrates practical engineering solutions for deploying massive language models on memory-constrained hardware, a growing concern as frontier models continue to scale beyond typical workstation capacities. The slotstream approach combines expert-offloading with SSD-streaming to fit a 125B parameter model into as little as 16GB of RAM, achieving usable inference speeds through Apple-native MLX and Swift frameworks. For software engineers working on LLM deployment, edge inference, or memory optimization, the techniques around selective layer/parameter streaming to disk and the auto-mode memory-speed tradeoffs offer reusable patterns beyond just this tool. The upcoming speculative decoding implementation via MTP also signals continued optimization work that practitioners can study or adapt to their own model serving pipelines.</description>
+  <pubDate>2026-09-01T16:42:46Z</pubDate>
+  <source>Hacker News</source>
+</item>
+
+<item>
+  <title>AI Coding Agent Skills for Real Engineers</title>
+  <link>https://github.com/mattpocock/skills</link>
+  <guid isPermaLink="false">https://github.com/mattpocock/skills</guid>
+  <description>Matt Pocock created a set of AI coding agent skills designed for real engineering rather than vibe coding, built on decades of software development experience. The skills are small, composable, and work with any model, addressing four common failure modes: misalignment between user and agent, excessive verbosity, code that doesn&#x27;t work due to weak feedback loops, and the rapid accumulation of codebase complexity. Users can install them either as a managed Claude Code plugin that auto-updates or as editable files via skills.sh for full customization. After installation, running /setup-matt-pocock-skills once per repo configures the issue tracker, triage labels, and documentation layout. Key skills include /grill-me and /grill-with-docs for aligning with the agent, /tdd and /diagnosing-bugs for feedback-driven development, and /improve-codebase-architecture for regular design reviews, split into user-invoked orchestrators and model-invoked disciplines.</description>
+  <pubDate>2026-09-01T22:48:47Z</pubDate>
+  <source>Hacker News</source>
+</item>
+
+<item>
+  <title>RotaryCell: Making an unmodified rotary phone work over LTE with an ESP32-S3</title>
+  <link>https://github.com/fregacmols/RotaryCell</link>
+  <guid isPermaLink="false">https://github.com/fregacmols/RotaryCell</guid>
+  <description>RotaryCell is a project that converts an unmodified rotary telephone into a battery-powered, portable cellular telephone while preserving the original handset, rotary dial, switch-hook, mechanical ringer, and network block without drilling or permanently altering parts. A hand-wired prototype has been validated and operates, while two newly ordered PCBs—an Audio and Reset board and an AG1171 through-hole carrier board—are awaiting assembly and testing as of August 28, 2026. The system uses a LilyGO T-A7670G-S3 board combining an ESP32-S3 controller and A7670 cellular modem, a Silvertel AG1171 subscriber-line interface for line circuitry and ringing, and a protected 21700 battery cell. Supported functions include rotary pulse dialing, incoming and outgoing cellular calls, physical bell ringing, North American tones, adjustable bidirectional audio, battery monitoring, AT-command diagnostics, and OTA updates, with service codes for maintenance Wi-Fi and modem diagnostics. The repository serves as a public engineering archive documenting the prototype, currently running firmware v0.10.4, and is licensed under MIT, with files representing the exact boards ordered rather than production-tested hardware.</description>
+  <pubDate>2026-09-01T02:29:23Z</pubDate>
+  <source>Hacker News</source>
+</item>
+
+<item>
+  <title>Quill (YC W20) Is Hiring a Fullstack SWE</title>
+  <link>https://news.ycombinator.com/item?id=49524704</link>
+  <guid isPermaLink="false">https://news.ycombinator.com/item?id=49524704</guid>
+  <description>Quill | Fullstack SWE | Full-time | Remote, PT&amp;#x2F;ET hours preferred | $150 - 210K USD + equity | https:&amp;#x2F;&amp;#x2F;quill.co&amp;#x2F;I’m a co-founder of Quill, a fullstack SDK for adding customer-facing analytics &amp;amp; data features to your app. Backed by YCombinator &amp;amp; top-tier SV-based investors (fundraising not publicly disclosed; happy to share any details when we chat).Some examples of how customers get value from Quill:
+• pre-IPO fintech adds custom reporting &amp;amp; data export features to their money movement product.</description>
+  <pubDate>2026-09-01T17:00:14Z</pubDate>
+  <source>Hacker News</source>
+</item>
+
+<item>
+  <title>Ask HN: Who is hiring? (September 2026)</title>
+  <link>https://news.ycombinator.com/item?id=49522897</link>
+  <guid isPermaLink="false">https://news.ycombinator.com/item?id=49522897</guid>
+  <description>This Hacker News monthly hiring thread aggregates direct job postings from companies actively recruiting software engineers, making it a valuable resource for job seekers. Posts include location details, remote options, and company information, with the constraint that only direct employees—not recruiters—can submit, which improves signal quality. For engineers exploring opportunities, it offers exposure to both well-known firms and lesser-known companies explaining their products and tech stacks. The community-driven format often surfaces roles and companies that may not appear on traditional job boards. It&#x27;s especially useful for those interested in startup environments or remote-first positions.</description>
+  <pubDate>2026-09-01T15:01:17Z</pubDate>
+  <source>Hacker News</source>
+</item>
+
+<item>
+  <title>Ask HN: Who wants to be hired? (September 2026)</title>
+  <link>https://news.ycombinator.com/item?id=49522896</link>
+  <guid isPermaLink="false">https://news.ycombinator.com/item?id=49522896</guid>
+  <description>It&#x27;s a recurring thread where software engineers post their availability directly to a technical audience, bypassing traditional recruiters and job boards. The standardized format makes scanning candidates efficient, with clear fields for location, remote preferences, and technology specialization that hiring managers can quickly filter through. An external search tool extends usability, letting readers query submissions by tech stack, region, or keywords. For job seekers, posting here reaches thousands of HN readers actively hiring or referring candidates, often leading to faster placements than conventional applications. Even passive readers gain insight into current market trends, popular stacks, and typical compensation expectations.</description>
+  <pubDate>2026-09-01T15:01:17Z</pubDate>
+  <source>Hacker News</source>
+</item>
+
+<item>
+  <title>Fine, I’ll build my own text editor</title>
+  <link>https://dbushell.com/2026/09/01/text-editor/</link>
+  <guid isPermaLink="false">https://dbushell.com/2026/09/01/text-editor/</guid>
+  <description>The author was inspired to build a custom text editor after struggling with VS Code&#x27;s Monaco Editor. Their first experiment rendered everything on a `&lt;canvas&gt;` element at 60–120fps, implementing basic features like pointer-based cursor positioning, arrow key navigation, line highlighting, and typing. However, this approach lacked text selection, undo/redo history, multi-line paste, overflow scrolling, and accessibility support. Switching to a `contenteditable=&quot;plaintext-only&quot;` div provided native accessibility, selection, and undo features for free, but issues emerged with larger character counts in Chromium browsers. A final version using a `&lt;textarea&gt;` proved more performant for longer text and enabled syntax highlighting via CSS. The author concludes that while the project demonstrates a promising foundation, challenges remain around tab indentation, virtualised scrolling, and handling UTF-16 code units.</description>
+  <pubDate>Tue, 01 Sep 2026 06:18:22 -0500</pubDate>
+  <source>Lobsters</source>
+</item>
+
 </channel></rss>
