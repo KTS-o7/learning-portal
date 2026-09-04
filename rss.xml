@@ -2,149 +2,125 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-03</description>
-<item>
-  <title>Goroutine Leak Profiles</title>
-  <link>https://go.dev/blog/goroutine-leak-profiles</link>
-  <guid isPermaLink="false">https://go.dev/blog/goroutine-leak-profiles</guid>
-  <description>Go 1.27 introduces a goroutine leak profiler that detects goroutines permanently blocked on channels or primitives in the sync package. A leak occurs when a goroutine remains blocked under conditions that can never be satisfied, while existing tools like the goleak library and Go 1.25&#x27;s synctest package only address testing scenarios, and traditional goroutine profiles cannot distinguish leaked goroutines from those temporarily blocked in high numbers by design. The new profiler is accessible through the runtime/pprof package as the goroutineleak type, or automatically through net/http/pprof at the /debug/pprof/goroutineleak endpoint. It produces precise results with little-to-no false positives by adapting the existing garbage collector, starting with unblocked goroutines as roots and incrementally adding blocked goroutines whose blocking primitives are reachable through live goroutines. The trade-off is that it only detects leaks involving channels and sync primitives, though this covers a large subset of real-world cases.</description>
-  <pubDate>2026-09-02T00:00:00+00:00Z</pubDate>
-  <source>Go Blog</source>
-</item>
-
-<item>
-  <title>Decoding the new AI lingo: Loops, harnesses, squads, hill climbing… oh my!</title>
-  <link>https://github.blog/ai-and-ml/decoding-the-new-ai-lingo-loops-harnesses-squads-hill-climbing-oh-my/</link>
-  <guid isPermaLink="false">https://github.blog/ai-and-ml/decoding-the-new-ai-lingo-loops-harnesses-squads-hill-climbing-oh-my/</guid>
-  <description>New AI tools have introduced a flood of terminology into software development, with terms ranging from useful new patterns to rebranded existing concepts. Loop engineering refers to designing repeatable, scheduled systems around agents instead of issuing one-shot prompts, while Ralph loops are a brute-force variation where an agent continuously works until a task is complete. Squads describe groups of agents with specialized roles such as planning, vetting, implementing, testing, and reviewing, and fleets refer to parallel agents working simultaneously. A harness encompasses everything surrounding a model—tools, permissions, memory, and orchestration—with harness engineering focused on improving that surrounding system. Hill climbing describes the iterative process of improving agents and harnesses using evaluations and feedback. Finally, model accessibility falls into three categories: closed models accessed only via API, open weight models that expose parameters but not training data, and fully open source models where code, data, and methods are all available.</description>
-  <pubDate>2026-09-02T21:00:00+00:00Z</pubDate>
-  <source>GitHub Blog</source>
-</item>
-
-<item>
-  <title>How we make AI coding more cost efficient without sacrificing task quality</title>
-  <link>https://github.blog/ai-and-ml/github-copilot/how-we-make-ai-coding-more-cost-efficient-without-sacrificing-task-quality/</link>
-  <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/how-we-make-ai-coding-more-cost-efficient-without-sacrificing-task-quality/</guid>
-  <description>GitHub Copilot optimized efficiency by focusing on complete task outcomes rather than simply shortening individual tool outputs, since concise responses can force agents to repeat work and increase total cost. Evaluations using RTK showed that compressing tool responses caused models to reopen original outputs or rerun commands, making tasks slower and more expensive globally. The team built a selective output compressor that preserves source-like output, reorganizes search results without dropping content, and compresses only repetitive noise from install, build, test, and lint commands. Removing unused line-number prefixes from the view tool reduced model-inference cost by roughly 5% offline and 3% online without affecting edit success. A meta-prompting loop shortened the task tool prompt by half, though an online experiment exposed a regression where agents ran sequentially until a regression test and a one-sentence fix restored parallelism. Finally, the harness delivers completed background work to agents without requiring an extra retrieval turn.</description>
-  <pubDate>2026-09-02T18:00:00+00:00Z</pubDate>
-  <source>GitHub Blog</source>
-</item>
-
-<item>
-  <title>Generic Methods</title>
-  <link>https://go.dev/blog/generic-methods</link>
-  <guid isPermaLink="false">https://go.dev/blog/generic-methods</guid>
-  <description>Go 1.27 adds type parameters to concrete methods, allowing methods such as `(List[E]) Map[R any]` to be locally scoped and used in readable method chains. The change addresses a limitation of Go 1.18, which required package-level generic functions when a type’s operation needed different result types. A generic method must be instantiated explicitly or implicitly before it is called or converted to a function. Go does not add type parameters to interface methods, so a generic concrete method cannot satisfy an interface or participate in interface implementation. The article explains that generic interface methods would require producing code for all possible instantiations because interface values can be backed by separately defined types; boxing type arguments could reduce the number of instantiations but introduce indirect-call overhead.</description>
-  <pubDate>2026-08-26T00:00:00+00:00Z</pubDate>
-  <source>Go Blog</source>
-</item>
-
-<item>
-  <title>Go 1.27 is released</title>
-  <link>https://go.dev/blog/go1.27</link>
-  <guid isPermaLink="false">https://go.dev/blog/go1.27</guid>
-  <description>Go 1.27 was released on 19 August 2026, introducing major enhancements across the language, toolchain, runtime, and standard library. The language now supports generic methods, allows struct literal keys to be any valid field selector for nested or embedded structs, and generalizes function type inference to all assignment contexts. Tool improvements include new modernizers in `go fix` (atomictypes, embedlit, slicesbackward, and unsafefuncs), package@version queries in `go doc`, and automatic consolidation of multiple require blocks by `go mod tidy`. Performance gains come from size-specialized memory allocation, which reduces small object allocation costs by up to 30%, and the goroutine leak profile in runtime/pprof is now generally available. Standard library additions include encoding/json/v2, crypto/mldsa for post-quantum signatures, native UUID support, experimental SIMD packages, and NewTestServer in net/http/httptest.</description>
-  <pubDate>2026-08-19T00:00:00+00:00Z</pubDate>
-  <source>Go Blog</source>
-</item>
-
-<item>
-  <title>Automated Vulnerability Injection in Smart Contracts Using Large Language Models</title>
-  <link>https://arxiv.org/abs/2609.02624v1</link>
-  <guid isPermaLink="false">https://arxiv.org/abs/2609.02624v1</guid>
-  <description>Assessing vulnerability detection tools for smart contracts requires datasets with known ground truth, which are scarce and difficult to build manually. The paper proposes an approach using Large Language Models to automatically inject vulnerabilities into Solidity smart contracts, targeting 49 vulnerability types from OpenSCV. Injected contracts are validated through a multi-step pipeline that checks compilation, execution, business logic, and the presence of the intended vulnerability. Applied to real-world contracts from SmartBugs, LLMs generated nearly 1,000 candidate variants, but after deduplication and validation, only 32 confirmed vulnerable contracts spanning 25 vulnerability types survived, yielding a 16.58% survival rate. Surviving contracts concentrated in structurally simpler targets and vulnerability types with localized syntactic patterns. The authors report challenges including LLM non-determinism and difficulty preserving contract semantics, and use the validated contracts to assess three static analyzers, revealing complementary yet incomplete coverage profiles, demonstrating feasibility while exposing limitations in scalability and diversity.</description>
-  <pubDate>2026-09-02T14:03:09+00:00Z</pubDate>
-  <source>arXiv:cs.AI</source>
-</item>
-
-<item>
-  <title>Collective creativity in hybrid societies</title>
-  <link>https://arxiv.org/abs/2609.02620v1</link>
-  <guid isPermaLink="false">https://arxiv.org/abs/2609.02620v1</guid>
-  <description>Generative AI is changing how cultural artifacts are created and circulated, and researchers disagree about whether these tools enrich or impoverish culture. The authors argue this disagreement stems from conflating two distinct components of creativity: novelty, a property of single artifacts, and diversity, a property of populations. They contend that creativity in the context of generative AI is best understood as a property of hybrid collectives, or populations of interacting people and algorithms, rather than of individuals. While AI-assisted ideation reliably raises the novelty of individual output while narrowing aggregate diversity, this outcome is not inevitable, since humans and models search in complementary ways. Mixed groups can outperform and out-diversify groups of either kind alone, and machine-discovered solutions can enter human culture and persist there. What ultimately decides the outcome is composition: which agents are present, in what proportion, and how they are connected.</description>
-  <pubDate>2026-09-02T13:59:08+00:00Z</pubDate>
-  <source>arXiv:cs.AI</source>
-</item>
-
-<item>
-  <title>Competitive Market Behavior of LLMs</title>
-  <link>https://arxiv.org/abs/2609.02580v1</link>
-  <guid isPermaLink="false">https://arxiv.org/abs/2609.02580v1</guid>
-  <description>Large language models (LLMs) are increasingly deployed as economic agents, yet their suitability for participating in market mechanisms designed for humans remains unclear. The authors address this question by replicating seminal economic experiments with LLM agents placed in a double auction environment, testing whether such markets deliver efficient resource allocation. They find that markets populated by LLM agents exhibit slower or no convergence toward market equilibrium, resulting in less efficient allocations than markets populated by humans. Analysis of individual trading decisions reveals substantial heterogeneity both across model families and market roles. A lexical analysis of Chain-of-Thought traces shows that the decision to execute a trade rather than continue incrementally adjusting prices is associated with a shift from strategic considerations toward urgency. The authors publicly release their testing framework to support future evaluations of LLM agents in economic settings.</description>
-  <pubDate>2026-09-02T13:24:42+00:00Z</pubDate>
-  <source>arXiv:cs.AI</source>
-</item>
-
-<item>
-  <title>ProbeMatchDTI: Probe-Driven Multi-Scale Biochemical Pattern Matching for Drug-Target Interaction Prediction</title>
-  <link>https://arxiv.org/abs/2609.02549v1</link>
-  <guid isPermaLink="false">https://arxiv.org/abs/2609.02549v1</guid>
-  <description>ProbeMatchDTI is a pattern-probe-driven framework designed for drug-target interaction (DTI) prediction in AI-driven drug discovery. Existing biochemical representation learning approaches tend to favor strong molecular patterns during passive feature aggregation, suppressing weak but binding-relevant signals such as functional groups and residue-context patterns. To address this limitation, ProbeMatchDTI introduces two components: IterProbe, which retains contextual states across refinement depths and uses learnable probes to select them at each position before cross-entity matching, and BindingProbe, which characterizes drug-protein complementarity at both local biochemical-unit and whole-pair levels. Together, these modules jointly model fine-grained interactions and multi-scale biochemical correspondences while preserving weaker binding-relevant associations. Experiments show the framework achieves 2.0% and 0.5% higher AUC-ROC on BindingDB and DrugBank, respectively. The authors further integrate ProbeMatchDTI predictions with an evidence-guided downstream drug-discovery workflow for candidate refinement and validation planning.</description>
-  <pubDate>2026-09-02T13:00:50+00:00Z</pubDate>
-  <source>arXiv:cs.AI</source>
-</item>
-
-<item>
-  <title>Learn from Whoever Is Right: Answer-Verified Multi-Teacher Distillation for Multi-Domain LLMs</title>
-  <link>https://arxiv.org/abs/2609.02548v1</link>
-  <guid isPermaLink="false">https://arxiv.org/abs/2609.02548v1</guid>
-  <description>Modern large language models often build strong capabilities in individual domains through reinforcement learning, but integrating those capabilities into a single deployable model is difficult. Existing multi-teacher approaches route each sample to a teacher based on domain labels, which can be unreliable since the matched teacher is not always correct on a given sample. The authors introduce Multi-Teacher Self-Distillation Policy Optimization (MT-SDPO), an on-policy distillation method that unifies several frozen teachers into one student model. MT-SDPO consists of three components: self-anchors that supervise a rollout using a correct rollout from its own group, answer-verified eligibility that only allows teachers to supervise samples when their answers pass a verifier, and privileged distillation that merges all verified feedback into a context read by an exponential moving average self-teacher but hidden from the student. Across five students from three model families, MT-SDPO lifted the weakest domain of Qwen3-8B by 14.79 points and narrowed its domain gap by 74.7%, demonstrating that verified reliability, not domain membership, should determine which teacher provides supervision.</description>
-  <pubDate>2026-09-02T13:00:45+00:00Z</pubDate>
-  <source>arXiv:cs.AI</source>
-</item>
-
-<item>
-  <title>Fable 5.1 World Modeling</title>
-  <link>https://github.com/PhiloLabs/fable51-worlds</link>
-  <guid isPermaLink="false">https://github.com/PhiloLabs/fable51-worlds</guid>
-  <description></description>
-  <pubDate>2026-09-02T19:49:01+00:00Z</pubDate>
-  <source>Hacker News</source>
-</item>
-
-<item>
-  <title>WebLLM: high-performance in-browser LLM inference engine</title>
-  <link>https://github.com/mlc-ai/web-llm</link>
-  <guid isPermaLink="false">https://github.com/mlc-ai/web-llm</guid>
-  <description>WebLLM is a high-performance in-browser LLM inference engine that brings language model inference directly to web browsers with WebGPU hardware acceleration, requiring no server-side support. It is fully compatible with the OpenAI API, supporting features such as streaming, JSON-mode structured generation, and logit-level control. The engine natively supports a wide range of model families, including Llama 3, Phi 3, Gemma, Mistral, and Qwen, with options for integrating custom models in MLC format. Developers can install WebLLM via npm, yarn, or pnpm, or import it directly through a CDN for use on platforms like JSFiddle and CodePen. The engine is created using CreateMLCEngine, which loads models asynchronously and supports multiple cache backends including the browser Cache API, IndexedDB, Origin Private File System, and an experimental cross-origin storage extension. Advanced usage includes Web Worker and Service Worker support for offloading computation, as well as Chrome extension integration.</description>
-  <pubDate>2026-09-02T14:02:35+00:00Z</pubDate>
-  <source>Hacker News</source>
-</item>
-
-<item>
-  <title>Normalized Fascism in Open Source: $12 Million Given to DHH</title>
-  <link>https://brennan.day/normalized-fascism-in-open-source-12-million-given-to-dhh/</link>
-  <guid isPermaLink="false">https://brennan.day/normalized-fascism-in-open-source-12-million-given-to-dhh/</guid>
-  <description>Open source has increasingly become a culture welcoming far-right ideology, with millions of dollars backing projects and figures who espouse bigotry. David Heinemeier Hansson, creator of Ruby on Rails and a Shopify board member, described a London march calling for the &quot;remigration&quot; of non-white residents as &quot;heartwarming&quot; and recently launched the Omacom Foundation to fund his Linux distribution, Omarchy. Twelve executives, including the CEOs of Shopify, Stripe, Dell, Cloudflare, Block, Dropbox, and Coinbase, pledged $1 million each as Founding Patrons, while companies like 1Password and 37signals contribute $100,000 annually for three years. Similar patterns appear across other projects: Ladybird browser founder Andreas Kling refused gender-neutral documentation as &quot;personal politics,&quot; Hyprland developer Vaxry was banned for enabling harassment of trans community members, and Brave CEO Brendan Eich&#x27;s company gave payments to Kiwi Farms. The author calls for vocal opposition and aggressive boycotts of these companies.</description>
-  <pubDate>2026-09-02T01:31:38-05:00</pubDate>
-  <source>Lobsters</source>
-</item>
-
-<item>
-  <title>Dependent if expressions without dependent types</title>
-  <link>https://haskellforall.com/2026/09/dependent-if-expressions</link>
-  <guid isPermaLink="false">https://haskellforall.com/2026/09/dependent-if-expressions</guid>
-  <description>The article presents a folklore trick for implementing dependent if expressions without dependent types, working in any language with Hindley-Milner type inference. In Haskell, it requires only the RebindableSyntax extension. The technique uses Church encoding, where booleans are represented as functions accepting two arguments representing the &quot;then&quot; and &quot;else&quot; branches and returning one of them. By removing type signatures and the RankNTypes extension, the compiler infers more general types where the result type can vary based on which boolean value is passed in. This allows the Bool type to be a function whose arguments and result can all have different types, tracking information flow at the type level. Notably, mixing true and false together in a list causes the type to degrade gracefully, requiring the same type for both branches rather than allowing different types.</description>
-  <pubDate>2026-09-02T12:52:36-05:00</pubDate>
-  <source>Lobsters</source>
-</item>
-
-<item>
-  <title>Static Allocation, Constant Work</title>
-  <link>https://matklad.github.io/2026/09/02/static-allocation-constant-work.html</link>
-  <guid isPermaLink="false">https://matklad.github.io/2026/09/02/static-allocation-constant-work.html</guid>
-  <description>The article advocates for two related systems programming principles: static allocation, which means pre-allocating a maximum number of objects at startup rather than dynamically allocating at runtime, and constant work, which means operating on a fixed set of slots rather than tracking live items separately. Under static allocation, the system fails fast at startup if insufficient memory exists, but avoids catastrophic failures like OOM kills during overload. Under constant work, all slots are initialized to a neutral reserved state and orders merely circulate through them, with explicit state transition functions and runtime assertions verified by deterministic simulation testing. Full iteration over all slots is preferred over iterating only active indexes because it is easier for the compiler to vectorize and for the CPU cache to prefetch. Together, these principles ensure P100 latency stays flat regardless of load and that performance issues surface during rollout rather than during peak traffic. The author notes these are useful techniques, not universal solutions.</description>
-  <pubDate>2026-09-02T13:19:13-05:00</pubDate>
-  <source>Lobsters</source>
-</item>
-
-<item>
-  <title>Implementing FMA and finding bugs in C and Rust standard libraries</title>
-  <link>https://shnatsel.github.io/implementing-fma-finding-bugs-in-std/</link>
-  <guid isPermaLink="false">https://shnatsel.github.io/implementing-fma-finding-bugs-in-std/</guid>
-  <description>While implementing FMA for fearless_simd, the author discovered his translation of a formally verified algorithm mishandled subnormal values, producing incorrect results. He traced the same bug to Rust&#x27;s standard library and musl libc, where a FreeBSD implementation from 2005-2011 had been copy-pasted. Fixing fearless_simd was straightforward, but the standard library fix is more complex because it must also correctly set floating-point status flags. Along the way, the author also uncovered a separate rustc ABI bug for the f128 type on 32-bit ARM. As of writing, fearless_simd and the rustc bug are fixed, but his Rust standard library pull request still awaits review and musl has not merged a fix despite active discussion. The bug only affects platforms without hardware FMA, such as old Intel CPUs lacking AVX2, Hygon x86 chips, 32-bit ARM, and various embedded systems, where it causes rare results to be off by one least significant bit.</description>
-  <pubDate>2026-09-02T11:19:44-05:00</pubDate>
-  <source>Lobsters</source>
-</item>
-
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-04</description>
+  <item>
+    <title>Cloudflare Implements Cache Transcoding to Optimize Cache Storage with Zstandard</title>
+    <link>https://arpitbhayani.me/notes/cloudflare-implements-cache-transcoding-to-optimize-cache-storage-with-zstandard</link>
+    <guid isPermaLink="false">https://arpitbhayani.me/notes/cloudflare-implements-cache-transcoding-to-optimize-cache-storage-with-zstandard</guid>
+    <description>Cloudflare implemented Cache Transcoding to optimize cache storage by compressing cached responses with Zstandard. When a response enters the cache, the proxy encodes the body with zstd before writing it to disk, and it remains compressed throughout its cached lifecycle and while moving between data centers. The content is only decoded right before reaching the client. To avoid wasted CPU cycles, Cloudflare skips already-compressed assets like images and videos, focusing the compression on text-based content such as HTML, CSS, JSON, and JavaScript. Using zstd level 3, the approach achieves a 2.8x reduction in storage. This tradeoff works because cached assets are read far more often than they are written, making it worthwhile to pay a small repeated decode cost in exchange for compressing once.</description>
+    <pubDate>Thu, 03 Sep 2026 00:00:00 GMT</pubDate>
+    <source>Arpit Bhayani</source>
+  </item>
+  <item>
+    <title>Choose a Depth, Not a Duration, To Navigate Rabbit Holes</title>
+    <link>https://arpitbhayani.me/notes/choose-a-depth-not-a-duration-to-navigate-rabbit-holes</link>
+    <guid isPermaLink="false">https://arpitbhayani.me/notes/choose-a-depth-not-a-duration-to-navigate-rabbit-holes</guid>
+    <description>The author argues that curiosity-driven rabbit holes are not inherently problematic—the real issue is failing to know when to stop. Rather than timeboxing, which can keep you going down branches unrelated to what you actually need to know, the author recommends choosing a depth instead of a duration. Once a depth limit is set, anything below that point is treated as a fair assumption or black box that doesn&#x27;t need to be opened. This approach works because rabbit holes aren&#x27;t flat: the initial layers are usually directly relevant, while deeper exploration often means learning about &quot;the implementation of the implementation,&quot; which rarely changes how you use the layer above it. Timeboxing optimizes for how much time you spend, while depth-boxing optimizes for understanding what actually matters.</description>
+    <pubDate>Tue, 01 Sep 2026 00:00:00 GMT</pubDate>
+    <source>Arpit Bhayani</source>
+  </item>
+  <item>
+    <title>Design Multi-Context Processing Tools as Capabilities, Not Endpoints</title>
+    <link>https://arpitbhayani.me/notes/design-multi-context-processing-tools-as-capabilities-not-endpoints</link>
+    <guid isPermaLink="false">https://arpitbhayani.me/notes/design-multi-context-processing-tools-as-capabilities-not-endpoints</guid>
+    <description>A common anti-pattern when designing MCP tools is mapping them one-to-one onto a REST API. A typical user API with seven endpoints would produce seven separate tool entries loaded into the model&#x27;s context window, consuming tokens and causing cost and context pollution. Instead, tools should be designed as capabilities rather than endpoints, consolidating operations like user creation, updates, and permissions into a single tool such as manage_user that returns a clean summary. In most current MCP clients, every registered tool schema is loaded into context before the prompt is processed, so keeping the tool surface small matters. Some clients now support dynamic or lazy tool discovery, but this is not yet the default, making a service-layer design the safer choice over a pass-through proxy.</description>
+    <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
+    <source>Arpit Bhayani</source>
+  </item>
+  <item>
+    <title>How to protect yourself from workslop</title>
+    <link>https://seangoedecke.com/how-to-protect-yourself-from-workslop/</link>
+    <guid isPermaLink="false">https://seangoedecke.com/how-to-protect-yourself-from-workslop/</guid>
+    <description>Workslop refers to colleagues or managers communicating by pasting large amounts of AI-generated text, creating an asymmetric burden where producing the content takes minimal effort while reading it remains time-consuming. If you have sufficient authority, the simplest response is to ask the person to stop. For colleagues forwarding AI outputs from tools like Claude Code, you can treat them as a slow interface to that coding agent. Using AI to combat AI is another option—pasting workslop into your own LLM to extract key points or generate a response saves time, though it perpetuates the cycle. Biasing toward calls and in-person meetings makes it harder to offload effort through AI, while ignoring or skimming workslop matches the sender&#x27;s low effort. AI content only counts as workslop when the effort to produce it is genuinely asymmetrical; otherwise, it should be treated like a normal message.</description>
+    <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
+    <source>Sean Goedecke</source>
+  </item>
+  <item>
+    <title>You have to beat the models at something</title>
+    <link>https://seangoedecke.com/you-have-to-beat-the-models-at-something/</link>
+    <guid isPermaLink="false">https://seangoedecke.com/you-have-to-beat-the-models-at-something/</guid>
+    <description>In 2025, the author argued that software engineers should be assessed by &quot;value over replacement&quot;—how much they would produce compared to the average engineer in their position—rather than by the revenue of products they happened to work on. This metric has become more important as LLM coding costs have dropped to around one hundred dollars per month, making replacement-level engineering far cheaper than in the 2010s when writing code carried high fixed costs. Engineers must honestly consider what they can do that advanced models cannot, since the AI coding trend is unlikely to reverse by 2027. Capabilities difficult at the start of 2026, such as making working changes to large codebases, are no longer challenging, so retreating to specialized engineering areas offers only short-term protection. Instead, the author recommends focusing on tasks models consistently fail at and are unlikely to improve at fundamentally, such as deep codebase familiarity and technical communication.</description>
+    <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
+    <source>Sean Goedecke</source>
+  </item>
+  <item>
+    <title>Headroom-Drift Replay: A Primitive for Principled Replay Control in GRPO</title>
+    <link>https://arxiv.org/abs/2609.03941v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2609.03941v1</guid>
+    <description>Headroom-Drift Replay is a group-level replay control primitive introduced for GRPO that separates trajectory reuse into two decisions: Headroom ranks stored groups by remaining learning value, while Drift gates them by compatibility with the current policy. The method addresses the bottleneck of repeated fresh rollout generation in RL-based post-training for reasoning models, particularly in agentic settings where environment interaction dominates wall-clock cost. Unlike existing replay approaches embedded within larger training pipelines, this primitive isolates replay selection as a standalone intervention without altering the fresh on-policy stream or adding auxiliary generation or training machinery. Experiments across mathematical reasoning, multimodal reasoning, and Agentic Search benchmarks show that this single intervention outperforms naive replay and matches or exceeds broader replay methods on Avg Mean@32. In Agentic Search, where environment interaction dominates cost, the approach delivers comparable quality at materially lower wall-clock time. The work was accepted at COLM 2026.</description>
+    <pubDate>2026-09-03T14:45:47Z</pubDate>
+    <source>arXiv:cs.AI</source>
+  </item>
+  <item>
+    <title>Masked Autoregressive Speech Enhancement with Continuous Neural Audio Codec Representations</title>
+    <link>https://arxiv.org/abs/2609.03940v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2609.03940v1</guid>
+    <description>Yoto Fujita, Simon Leglaive, and Laurent Girin present a new method for speech enhancement called masked autoregressive speech enhancement (MARSE), which uses continuous neural audio codec representations rather than the discrete token representations employed in most prior masked generative modeling approaches. Building on recent findings that continuous NAC latent representations improve speech quality and intelligibility, MARSE iteratively decodes masked clean speech frames from these continuous representations. The authors systematically compare several decoding policies while holding constant the underlying Conformer-based DNN, the DAC neural audio codec, and the training setup, isolating the impact of the decoding strategy. Their experiments demonstrate that MARSE provides a flexible trade-off between speech enhancement performance and computational cost. The work was presented at the 19th International Workshop on Acoustic Signal Enhancement (IWAENC) in September 2026, with accompanying audio examples and code made available online.</description>
+    <pubDate>2026-09-03T14:45:42Z</pubDate>
+    <source>arXiv:cs.AI</source>
+  </item>
+  <item>
+    <title>Towards Numerical TOHTN Planning with SMT-based HTN-SAT Encoding</title>
+    <link>https://arxiv.org/abs/2609.03938v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2609.03938v1</guid>
+    <description>Researchers Gaspard Quenard, Takudzwa Togarepi, Damien Pellier, and Humbert Fiorino investigate numerical Totally-Ordered HTN (TOHTN) planning in their paper published in the Proceedings of the 9th ICAPS Workshop on Hierarchical Planning (HPlan 2026). Although HTN planning has attracted significant attention in recent years, support for numerical reasoning remains very limited. The authors demonstrate how standard SAT-based encodings can be naturally extended with SMT to handle numeric fluents. They also introduce a benchmark suite for numerical TOHTN planning, providing a first common basis for evaluation in this setting. Experimental results indicate that this simple encoding already constitutes a competitive baseline. The work opens the way toward more expressive approaches to HTN planning.</description>
+    <pubDate>2026-09-03T14:44:37Z</pubDate>
+    <source>arXiv:cs.AI</source>
+  </item>
+  <item>
+    <title>RATL: Learning from Retrieved Residuals for Robust Multivariate Time-Series Forecasting</title>
+    <link>https://arxiv.org/abs/2609.03937v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2609.03937v1</guid>
+    <description>RATL is a plug-in residual-retrieval and feedback-correction method designed for multivariate time-series forecasting. It freezes a base forecaster to build retrieval keys and converts the model&#x27;s historical forecast residuals into a train-only memory specific to that base model. At inference, RATL retrieves residual trajectories from similar historical contexts under causal availability constraints, then uses a set-aware router operating over forecast blocks and variables to select and combine these trajectories. Experiments on real-world benchmarks, primarily using iTransformer as the frozen base forecaster, show that RATL improves base-forecaster performance in most settings. Ablations indicate that learned routing strengthens raw residual feedback, while validation-based correction-strength selection limits residual leakage. Overall, the approach shifts the retrieved object from historical target values to base-model-specific historical forecast errors, offering a plug-in, residual-memory-based paradigm for learned feedback correction in continuous-output forecasting.</description>
+    <pubDate>2026-09-03T14:44:31Z</pubDate>
+    <source>arXiv:cs.AI</source>
+  </item>
+  <item>
+    <title>Sparse auto-regressive modeling for scene generation from multi-view images</title>
+    <link>https://arxiv.org/abs/2609.03931v1</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2609.03931v1</guid>
+    <description>The paper introduces SPAR3S, a sparse voxel-aligned 3D latent generative model for conditional scene completion from sparse, unconstrained multi-view images, without requiring ground-truth 3D supervision. The approach formulates 3D scene generation in a structured, compact voxel-aligned latent space where only occupied voxels are represented, learning this representation directly from multi-view images through photometric supervision using differentiable 3D Gaussian Splatting. Given a partial set of observed voxels encoded from sparse input views, scene completion reduces to predicting missing latent tokens and their spatial support within the voxel grid. To accomplish this, the authors train a masked autoregressive transformer that jointly models voxel occupancy and latent token values, enabling spatially consistent generation of unseen regions. Experiments on synthetic indoor scenes show higher novel-view quality than prior work, and additional validation on the RealEstate10K dataset demonstrates generalization to real-world data.</description>
+    <pubDate>2026-09-03T14:41:34Z</pubDate>
+    <source>arXiv:cs.AI</source>
+  </item>
+  <item>
+    <title>Audacity 4.0</title>
+    <link>https://github.com/audacity/audacity/releases/tag/Audacity-4.0.0</link>
+    <guid isPermaLink="false">https://github.com/audacity/audacity/releases/tag/Audacity-4.0.0</guid>
+    <description>Audacity 4.0, released on September 3, rebuilds the application&#x27;s interface on Qt and introduces a new clip-editing model with direct clip selection, multi-clip editing, grouping, and a dedicated splitting tool. The redesigned interface includes movable toolbars and panels, saveable workspaces, light and dark themes, and a new home screen displaying recent projects with preview thumbnails. Playback and recording have been improved, allowing the playhead to be dragged during playback and recording to start anywhere on the timeline. The release uses a new .aup4 project format, though .aup3 projects can still be opened and converted. Several Audacity 3 features are not available in this version, including Time Tracks, Note/MIDI tracks, the Mixer, Macro Manager, VAMP and LADSPA plugin support, and Play-at-speed, with the developers planning to add them in future releases.</description>
+    <pubDate>2026-09-03T10:53:08+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>GPT-6 Astra</title>
+    <link>https://openai.com/index/gpt-6-astra/</link>
+    <guid isPermaLink="false">https://openai.com/index/gpt-6-astra/</guid>
+    <description>System Card: &lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;deploymentsafety.openai.com&amp;#x2F;gpt-6-astra&quot; rel=&quot;nofollow&quot;&gt;https:&amp;#x2F;&amp;#x2F;deploymentsafety.openai.com&amp;#x2F;gpt-6-astra&lt;/a&gt;&lt;p&gt;Related ongoing threads:&lt;p&gt;&lt;i&gt;OpenAI&amp;#x27;s GPT-6 Astra on ARC-AGI-3&lt;/i&gt; - &lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;news.ycombinator.com&amp;#x2F;item?id=49555691&quot;&gt;https:&amp;#x2F;&amp;#x2F;news.ycombinator.com&amp;#x2F;item?id=49555691&lt;/a&gt;&lt;p&gt;&lt;i&gt;GPT-6 Astra makes major gains in the Artificial Analysis Coding Agent Index&lt;/i&gt; - &lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;news.ycombinator.com&amp;#x2F;item?id=49556147&quot;&gt;https:&amp;#x2F;&amp;#x2F;news.ycombinator.com&amp;#x2F;item?id=49556147&lt;</description>
+    <pubDate>2026-09-03T18:41:05+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>.name Termination</title>
+    <link>https://neil.fraser.name/news/2026/09/03/</link>
+    <guid isPermaLink="false">https://neil.fraser.name/news/2026/09/03/</guid>
+    <description>Nearly 25 years ago, Neil Fraser registered neil.fraser.name to host his website, email, and APIs, later also registering beverley.fraser.name for his daughter shortly after her birth. On April 15, 2026, Verisign proposed eliminating the entire third level of the .name hierarchy, and ICANN approved this action on July 28, 2026. Unlike dubious third-level operations, .name was designed exclusively as a third-level registry with full whois records, originally run by Global Name Registry before Verisign acquired it. As a result, the website will disappear in February despite being paid through 2040, along with the email address and IoT devices dependent on the domain. Fraser warns that if someone else registers fraser.name, they could hijack neil.fraser.name and seize control of hundreds of accounts linked to that email. He is one of approximately 22,000 people affected by this change.</description>
+    <pubDate>2026-09-03T14:54:39+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>.name Termination</title>
+    <link>https://neil.fraser.name/news/2026/09/03/</link>
+    <guid isPermaLink="false">https://neil.fraser.name/news/2026/09/03/</guid>
+    <description>Nearly twenty-five years ago, Neil Fraser registered neil.fraser.name to host his website, email address, and API server, and later registered beverly.fraser.name for his daughter. On 15 April 2026, Verisign proposed eliminating the entire 3rd-level of the &#x27;.name&#x27; hierarchy, and on 28 July 2026, ICANN approved the proposal. Fraser, who learned of the decision shortly before writing, notes that &#x27;.name&#x27; was designed exclusively as a 3rd-level operation, similar to *.ny.us or *.co.uk. The termination will cause his website, email, and IoT devices to stop working, despite his domain being registered and paid for until 2040. Furthermore, if someone else acquires the vacated fraser.name domain, they could recreate neil.fraser.name and hijack hundreds of accounts linked to that address. Fraser is one of 22,000 people affected by the change and plans to seek legal counsel.</description>
+    <pubDate>Thu, 03 Sep 2026 09:55:14 -0500</pubDate>
+    <source>Lobsters</source>
+  </item>
+  <item>
+    <title>Audacity 4.0.0 Released</title>
+    <link>https://github.com/audacity/audacity/releases/tag/Audacity-4.0.0</link>
+    <guid isPermaLink="false">https://github.com/audacity/audacity/releases/tag/Audacity-4.0.0</guid>
+    <description>Audacity 4.0.0 was released on September 3, rebuilding the application interface on Qt with native high-DPI rendering and introducing a new clip-editing model. Clips can now be selected directly via their headers, edited together in groups, moved freely between mono and stereo tracks, and split using a dedicated tool activated by holding the S key. The separate Select, Envelope, Draw, and Multi-tool modes were removed in favor of context-sensitive functions, and the new Home screen displays recent projects with preview thumbnails. The release also adds live playback and recording meters in track headers, consistent rotary controls with fine adjustment, and support for VST3, Nyquist, LV2 on Linux, and Audio Units on macOS, with ASIO support included in official Windows builds. Audacity 4 introduces the new .aup4 project format, though .aup3 projects can still open and convert. Several Audacity 3 features, including Time Tracks, Note/MIDI tracks, Macro Manager, Sync-Lock, and LADSPA/VAMP plugin hosting, are not available in this release but may return in future versions.</description>
+    <pubDate>Thu, 03 Sep 2026 08:52:43 -0500</pubDate>
+    <source>Lobsters</source>
+  </item>
 </channel></rss>
