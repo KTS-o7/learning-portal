@@ -1,0 +1,214 @@
+{
+  "date": "2026-09-07",
+  "label": "Monday, September 7, 2026",
+  "edition_tag": "vol-2-no-33",
+  "total": 17,
+  "prev_day": "2026-09-06",
+  "next_day": null,
+  "site": {
+    "name": "Daily Byte",
+    "tagline": "A byte-size daily digest for engineers who value depth over noise.",
+    "base_url": "https://learn.shenthar.me",
+    "repo": "https://github.com/KTS-o7/learning-portal"
+  },
+  "sections": [
+    {
+      "name": "engineering",
+      "label": "Engineering",
+      "intro": "Field reports from independent engineers and language-team notes.",
+      "stories": [
+        {
+          "id": "eng-01",
+          "title": "Goroutine Leak Profiles",
+          "url": "https://go.dev/blog/goroutine-leak-profiles",
+          "source": "Go Blog",
+          "source_kind": "blog",
+          "summary": "Go's concurrency features, while powerful, can lead to goroutine leaks—situations where a goroutine remains blocked because the conditions to unblock it can never be met. Leaked goroutines accumulate and degrade performance through excessive memory and CPU usage. Existing debugging tools like the goleak library and the Go 1.25 synctest package are limited to testing environments and cannot detect leaks in production. Goroutine profiles offer only a rudimentary check and cannot distinguish leaks from temporarily blocked goroutines. Go 1.27 addresses this gap with a new goroutine leak profiler accessible via the runtime/pprof package's goroutineleak",
+          "published_at": "2026-09-02T00:00:00+00:00",
+          "snippet": "Go 1.27 includes new goroutine leak profiles."
+        },
+        {
+          "id": "eng-02",
+          "title": "Generic Methods",
+          "url": "https://go.dev/blog/generic-methods",
+          "source": "Go Blog",
+          "source_kind": "blog",
+          "summary": "Go 1.18 introduced generics to types and functions but excluded methods because generic interface methods were difficult to implement efficiently. Go 1.27 takes a different approach, adding support for generic concrete methods. The article demonstrates how these methods improve code organization, allowing type-specific operations like a Map method on a List[E] type that returns a List[R]. This eliminates the need for package-level generic functions and enables more readable left-to-right method chaining, while method expressions can still convert generic methods back to functions when desired. Importantly, a generic concrete method on a type does not cause that type to implement any interface, since interface implementation is a property of the type itself rather than of individual methods. Go 1.27's syntax continues to forbid type parameters on interface methods, preserving the efficiency of type-erased interface dispatch.",
+          "published_at": "2026-08-26T00:00:00+00:00",
+          "snippet": "Go 1.27 adds generic methods—a highly desired language feature."
+        },
+        {
+          "id": "eng-03",
+          "title": "Go 1.27 is released",
+          "url": "https://go.dev/blog/go1.27",
+          "source": "Go Blog",
+          "source_kind": "blog",
+          "summary": "Go 1.27 was released on August 19, 2026, bringing notable changes across the language, toolchain, runtime, and standard library. The language now supports generic methods, allows struct literal keys to be any valid field selector including those of embedded structs, and generalizes function type inference to all assignment contexts. Tool improvements include new modernizers in go fix, package@version queries in go doc, and automatic consolidation of require blocks by go mod tidy. Performance gains come from size-specialized memory allocation, which reduces small object allocation costs by up to 30%, alongside a generally available goroutine leak profile in runtime/pprof. New standard library additions include encoding/json/v2, crypto/mldsa for post-quantum signatures, a uuid package, experimental SIMD support, and an in-memory test server in net/http/httptest.",
+          "published_at": "2026-08-19T00:00:00+00:00",
+          "snippet": "Go 1.27 adds generic methods, encoding/json/v2 package, uuid package, faster memory allocation, goroutine leak profiles, and more."
+        },
+        {
+          "id": "eng-04",
+          "title": "Enabling the next-generation trait solver on nightly",
+          "url": "https://blog.rust-lang.org/2026/08/21/enabling-next-solver-on-nightly/",
+          "source": "Rust Blog",
+          "source_kind": "blog",
+          "summary": "After nearly four years of development, the next-generation trait solver is being enabled by default on nightly, representing the largest single change to the Rust compiler since its initial release. It replaces how the compiler proves where-clauses, normalizes associated types, and handles opaque types like return-position impl Trait, fixing over 200 GitHub issues and several type system unsoundnesses. Enabling this solver unblocks features such as Type Alias Impl Trait and Return Type Notation, and will allow adding new implicit default trait bounds like Move and Forget. While some breakage is expected due to improvements in type inference and the removal of undesirable behavior, the new solver also delivers significant compile-time performance benefits for many crates, with one example showing the datafusion crate compiling more than eight times faster. The Rust team encourages users to test the latest nightly and report any bugs or regressions through a pinned GitHub issue.",
+          "published_at": "2026-08-21T00:00:00+00:00",
+          "snippet": "After nearly 4 years of active development, the next-generation trait solver is close to stabilization. We are enabling it by default on nightly to surface any remaining issues and plan to stabilize it in the next months. This is the largest single change to the Rust compiler since its initial release. It completely replaces how we prove where-clauses, normalize associated types, and much more. Please try out the latest nightly and open an issue if you encounter any bugs or regressions. This is an internal component of the compiler. The main benefits of this rework will come in the future. The"
+        },
+        {
+          "id": "eng-05",
+          "title": "Supply chain attack on arrayref",
+          "url": "https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/",
+          "source": "Rust Blog",
+          "source_kind": "blog",
+          "summary": "On August 20, 2026, the Rust Security Response Team received a report that the proc-macro1 crate was malicious, which they verified after discovering it contained a build script that downloaded a malicious payload. The proc-macro1 crate and several similar typosquatted crates including proc-macro-en, aovine, arone, aronenao, and tinymember were deleted from crates.io. The popular arrayref crate had been republished to depend on this malicious crate, so the team removed the malicious version and unyanked the previously yanked versions of arrayref, internment, and append-only-vec, while locking the author's account as a precaution. The team does not believe the arrayref author acted maliciously but suspects their computer or credentials were compromised. Researchers at Nextron Systems GmbH initially discovered and reported the attack, with additional assistance from several Rust community members during the incident response.",
+          "published_at": "2026-08-20T00:00:00+00:00",
+          "snippet": " What happened On 2026-08-20 at 7:15 UTC we got a report that the proc-macro1 crate was malicious. The Rust Security Response Team verified this to be the case: the crate had a build script that was downloading a malicious payload. This crate proc-macro1 and others like it (proc-macro-en, aovine, arone, aronenao, tinymember) have been deleted. Furthermore, we discovered that the popular arrayref crate had recently been republished and made to depend on this crate, with the most recent versions yanked. We have removed the malicious version and unyanked the maliciously-yanked versions. Other cra"
+        }
+      ]
+    },
+    {
+      "name": "papers",
+      "label": "Papers",
+      "intro": "Fresh research from arXiv across agents, learning, and programming languages.",
+      "stories": [
+        {
+          "id": "pap-01",
+          "title": "Compile by Training: Turning Natural-Language Specifications into Local Neural Functions",
+          "url": "http://arxiv.org/abs/2609.04199v1",
+          "source": "arXiv",
+          "source_kind": "paper",
+          "summary": "The paper introduces \"compile by training,\" a method that transforms natural-language specifications into reusable neural functions. At compile time, teacher models generate task-specific examples used to train a small adapter for a compact interpreter, allowing the resulting function to run without the teachers and to be stored, versioned, and composed like ordinary software. On FuzzyBench-Hard, where the Program-as-Weights fast compiler produced no exact matches, the approach reaches 83.6% semantic accuracy, though at the cost of roughly a minute of compile time rather than seconds. The authors deployed the compiler in a public interactive service and demonstrated its utility through three applications: a multi-site website helper, a language-controlled 3D avatar, and a bidirectional English-Claudish translator. The work was presented at EMNLP 2026 System Demonstrations.",
+          "published_at": "2026-09-03T17:59:49Z",
+          "snippet": "Many recurring text functions are easy to describe but difficult to implement with rules, while calling a large remote model for every input introduces repeated cost, latency, and dependency on a provider. We present compile by training, which turns a natural-language specification into a reusable neural function. At compile time, teacher models generate task-specific examples that are used to train a small adapter for a compact interpreter. The resulting function runs without the teachers and can be stored, versioned, and composed like ordinary software. On FuzzyBench-Hard, a subset on which "
+        },
+        {
+          "id": "pap-02",
+          "title": "Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints",
+          "url": "http://arxiv.org/abs/2609.04198v1",
+          "source": "arXiv",
+          "source_kind": "paper",
+          "summary": "Two preregistered campaigns auditing the stability of language-model judges on shared serving endpoints failed at instrument validation, with same-window repeat rankings reaching only Spearman 0.400 against a required 0.90 and byte-identical next-day replays reaching 0.78 against a required 0.99 across 52,988 audited request attempts. Three mechanisms explained the gap: a label-to-meaning mapping that biased readouts as strongly as the signal, candidate gaps seven orders of magnitude below the instrument's own noise floor, and byte-identical inputs returning different rankings. Follow-up experiments showed that waiting did not improve reliability, that four providers shared the noise floor with medians between 0.74 and 0.88, and that self-hosting on batch-invariant kernels helped only while the server was quiet. The authors distill the evidence into a three-level snapshot-identity ladder, eight design rules, and a reporting checklist, noting that a pilot at roughly 2% of the study's call volume would have exposed both unreachable gates in advance. Their core conclusion is that on shared endpoints, a model name is not a frozen instrument, so preregistered evaluations must measure their instrument before freezing any gate on it.",
+          "published_at": "2026-09-03T17:59:43Z",
+          "snippet": "Language-model judges now gate training data, score generations, and drive leaderboards. The judge is then a measurement instrument, resting on one rarely stated assumption: the same request, sent to the same model name, reads the same tomorrow. We audited that assumption in two preregistered campaigns with every threshold fixed in advance; neither got past validating its instrument. Across 52,988 audited request attempts, same-window repeat rankings agreed at Spearman 0.400 against a required 0.90, and byte-identical next-day replays agreed at 0.78 against a required 0.99, each time with the "
+        },
+        {
+          "id": "pap-03",
+          "title": "ESPO: Error-Structured Prompt Optimization via Diagnose, Diversify, and Stabilize",
+          "url": "http://arxiv.org/abs/2609.04197v1",
+          "source": "arXiv",
+          "source_kind": "paper",
+          "summary": "This matters to software engineers because prompt engineering for production LLM features often devolves into bloated, fragile prompts that grow with every bug fix, and ESPO's structured approach offers a way to systematically reduce errors rather than accumulate patches. The technique could be directly applied to improve reliability and reduce maintenance costs of LLM-powered features like code review, test generation, or customer support bots where prompt quality directly affects user experience. More broadly, the Diagnose-Propose-Select framework provides a reusable methodology for any engineer managing prompt pipelines, turning prompt tuning from an ad-hoc art into a more disciplined engineering practice.",
+          "published_at": "2026-09-03T17:59:37Z",
+          "snippet": "Evolutionary prompt optimizers such as GEPA suffer from prompt bloat: each iteration appends rules and caveats, producing prompts up to 3$\\times$ longer yet no more accurate. We trace this to three deficiencies - incomplete error observation, limited search diversity, and unreliable selection - and propose ESPO (Error-Structured Prompt Optimization), which decomposes prompt optimization into three phases: Diagnose clusters all training errors into structural patterns in one round; Propose generates candidates via four complementary strategies with independent biases; Select applies bootstrap s"
+        },
+        {
+          "id": "pap-04",
+          "title": "One Editor, Many Edits: A Unified Training-Free Framework for Diverse Video Editing",
+          "url": "http://arxiv.org/abs/2609.04190v1",
+          "source": "arXiv",
+          "source_kind": "paper",
+          "summary": "The paper \"One Editor, Many Edits: A Unified Training-Free Framework for Diverse Video Editing\" by Adheesh Sunil Juvekar and eight co-authors introduces EditVid, a training-free framework that unifies diverse video editing paradigms within a single system. EditVid combines sparse causal memory for local coherence, correspondence-based post-attention token injection for long-range identity preservation, and soft latent blending for edit locality. The same framework supports both instruction-guided and reference-guided edits, enabling style transfer, attribute modification, object insertion, part-level editing, and subject replacement. On the FiVE benchmark, EditVid achieves 78.16 FiVE-Acc, substantially outperforming the strongest evaluated training-free baseline at 58.95, while also obtaining competitive results on IVEBench. A user study further demonstrated a 51.8% overall preference for EditVid over seven competing methods.",
+          "published_at": "2026-09-03T17:59:01Z",
+          "snippet": "Video editing spans diverse editing paradigms, yet achieving high-quality instruction-guided and subject-guided editing within a single unified framework remains challenging. We introduce EditVid, a training-free framework combining sparse causal memory for local coherence, correspondence-based post-attention token injection for long-range identity preservation, and soft latent blending for edit locality. The same framework supports instruction-guided and reference-guided edits, including style transfer, attribute modification, object insertion, part-level editing, and subject replacement. On "
+        },
+        {
+          "id": "pap-05",
+          "title": "Seeing Before Synthesizing: VLM-Guided Transition Event Discovery for Weakly-Supervised Dense Video Captioning",
+          "url": "http://arxiv.org/abs/2609.04183v1",
+          "source": "arXiv",
+          "source_kind": "paper",
+          "summary": "Weakly-Supervised Dense Video Captioning aims to localize and describe multiple events in untrimmed videos using only an ordered set of event-level captions per video. Existing approaches synthesize auxiliary transition captions via LLMs, but these lack visual grounding and are rigidly assigned to every inter-event gap at fixed locations and durations. To address these limitations, the authors propose Seeing Before Synthesizing (SBS), a framework that adaptively delivers visually grounded linguistic guidance only where warranted. The approach leverages a Vision-Language Model to generate frame-level narratives for inter-event gaps and detect transitions from semantic variation across them. For identified transitions, SBS refines inter-event temporal masks by blending the temporal midpoint with the semantic change point and selecting the width that maximizes vision-language alignment. Experiments on ActivityNet Captions and YouCook2 demonstrate state-of-the-art performance in both captioning and localization.",
+          "published_at": "2026-09-03T17:58:02Z",
+          "snippet": "Weakly-Supervised Dense Video Captioning aims to localize and describe multiple events in untrimmed videos given only an ordered set of event-level captions per video. Recent work synthesizes auxiliary transition captions via LLM to provide additional vision-language alignment, but these captions lack visual grounding and are rigidly assigned to every inter-event gap at a fixed location and duration. To address these, we propose Seeing Before Synthesizing (SBS), a framework that adaptively provides visually grounded linguistic guidance only where warranted. Leveraging a VLM, we generate frame-"
+        }
+      ]
+    },
+    {
+      "name": "tools",
+      "label": "Tools",
+      "intro": "Open-source tools trending on Hacker News — small commits worth knowing about.",
+      "stories": [
+        {
+          "id": "tool-01",
+          "title": "Show HN: Mador – Make any DOM reactive with a tiny 80-line Proxy state tuple",
+          "url": "https://github.com/marsbos/mador",
+          "source": "Hacker News",
+          "source_kind": "discussion",
+          "summary": "Mador is a small reactive DOM runtime, around 855 bytes minified, designed for situations where a page needs light reactivity without adopting a full framework. It works with existing HTML and JavaScript, providing no components, templates, or virtual DOM. The library exposes reactive state through a tuple of read and write functions, with bindings defined by a CSS selector, an update callback, and a read function that selects the relevant state. Mador tracks which properties a binding reads and only re-runs it when those specific dependencies change. Writes are batched so multiple state changes in a single write are processed together, and bindings are tied to their DOM elements so they are automatically removed when matching elements disappear. Distributed as a native ES module through npm or CDN, Mador is released under the MIT license.",
+          "published_at": "2026-09-06T20:45:13Z",
+          "snippet": ""
+        },
+        {
+          "id": "tool-02",
+          "title": "Nitter and XCancel resume service after legal advice",
+          "url": "https://github.com/zedeus/nitter/commit/1428b4c2b4246f92a7e5b2673438e5fb39fcc4a3",
+          "source": "Hacker News",
+          "source_kind": "discussion",
+          "summary": "Nitter is a free, open-source alternative Twitter front-end focused on privacy and performance, inspired by the Invidious project. On 24 August 2026, X Corp. sent cease and desist letters demanding a permanent takedown of Nitter instances and the project's repository. However, following legal advice, the Nitter project will continue, with more details to be announced soon. The project's README was updated to reflect this status change and to reorganize the donations section, adding new funding platforms. Nitter's features include requiring no JavaScript, displaying zero ads, routing all requests through the backend to prevent Twitter from tracking users, using Twitter's unofficial API, supporting RSS feeds, themes, and mobile devices, and being licensed under AGPLv3 with no proprietary instances permitted.",
+          "published_at": "2026-09-06T17:49:47Z",
+          "snippet": "<a href=\"https:&#x2F;&#x2F;github.com&#x2F;zedeus&#x2F;nitter\" rel=\"nofollow\">https:&#x2F;&#x2F;github.com&#x2F;zedeus&#x2F;nitter</a><p><a href=\"https:&#x2F;&#x2F;xcancel.com&#x2F;cdclegal\" rel=\"nofollow\">https:&#x2F;&#x2F;xcancel.com&#x2F;cdclegal</a><p><a href=\"https:&#x2F;&#x2F;nitter.net&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;nitter.net&#x2F;</a><p><a href=\"https:&#x2F;&#x2F;xcancel.com&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;xcancel.com&#x2F;</a>"
+        },
+        {
+          "id": "tool-03",
+          "title": "Show HN: Kadō – open-source habit tracker, with non-binary habit score, for iOS",
+          "url": "https://github.com/scastiel/kado",
+          "source": "Hacker News",
+          "source_kind": "discussion",
+          "summary": "Kadō is an open-source habit tracker for iPhone and iPad, licensed under MIT and shipping on the App Store at version 1.7. Unlike traditional streak-based trackers, it uses a non-binary habit score—an exponential moving average inspired by Loop Habit Tracker—so a single missed day doesn't erase progress. The app is privacy-first: data is stored locally with SwiftData, optional iCloud sync goes through the user's private CloudKit database, and there is no account, subscription, analytics, or third-party SDK. It is built natively for iOS 17+ using SwiftUI, SwiftData, WidgetKit, App Intents, and StoreKit 2, with widgets, Siri and Shortcuts integration, per-habit reminders, and lossless JSON and CSV export/import. Apple Watch support and HealthKit auto-completion were descoped after launch due to lack of demand, while upcoming work focuses on Live Activities for timer habits and additional v1.x polish.",
+          "published_at": "2026-09-06T14:34:46Z",
+          "snippet": ""
+        }
+      ]
+    },
+    {
+      "name": "discussions",
+      "label": "Discussions",
+      "intro": "What the Hacker News and Lobsters threads are arguing about right now.",
+      "stories": [
+        {
+          "id": "dis-01",
+          "title": "Making a Python interpreter in 1024 bytes",
+          "url": "https://austinhenley.com/blog/python1024.html",
+          "source": "Hacker News",
+          "source_kind": "discussion",
+          "summary": "The author created a minimal Python interpreter in 1024 bytes of C code without macros or libraries, using recursive descent parsing with no error handling. The implementation supports a subset of Python syntax including expressions, variables, if statements, while loops, for loops, functions, and string literals, while limiting variable names to single lowercase characters and omitting comparison operators (though truthiness still works). Loops and functions work by saving source positions and jumping back to reparse the code each iteration, while the C call stack handles recursion. To shrink the readable 4800-byte version down to 1024 bytes, the author applied code golfing tricks like using ASCII values instead of character constants and chaining conditions with logical operators. The author estimates that targeting only a fizzbuzz program could reduce the size below 800 bytes.",
+          "published_at": "2026-09-06T23:14:08Z",
+          "snippet": ""
+        },
+        {
+          "id": "dis-02",
+          "title": "GrapheneOS Overhauled Default Apps and Secure Clipboard",
+          "url": "https://grapheneos.social/@GrapheneOS/117225539756835649",
+          "source": "Hacker News",
+          "source_kind": "discussion",
+          "summary": "",
+          "published_at": "2026-09-06T20:24:00Z",
+          "snippet": ""
+        },
+        {
+          "id": "dis-03",
+          "title": "It took a year to ship WebAssembly in Anubis",
+          "url": "https://anubis.techaro.lol/blog/2026/anubis-wasm/",
+          "source": "Hacker News",
+          "source_kind": "discussion",
+          "summary": "It took a year to ship WebAssembly in Anubis. Anubis protects websites from aggressive AI-company scraping by presenting visitors with a proof-of-work challenge modeled on Hashcash. The challenge adds negligible work for individual users while making scraping much more expensive at scale, reducing the downtime and resource-accessibility problems bots can cause for everyone. Anubis is ultimately a temporary measure intended to buy time for better browser fingerprinting and detection of headless browsers, potentially allowing legitimate users to pass without seeing the challenge. It relies on modern JavaScript features, so plugins such as JShelter must be disabled for the domain, and a no-JavaScript solution remains unfinished.",
+          "published_at": "2026-09-06T20:32:38Z",
+          "snippet": ""
+        },
+        {
+          "id": "dis-04",
+          "title": "Your intellectual fly is open (2025)",
+          "url": "https://bcantrill.dtrace.org/2025/12/05/your-intellectual-fly-is-open/",
+          "source": "Hacker News",
+          "source_kind": "discussion",
+          "summary": "The author reflects that LinkedIn has become an important social network, comparing it to Gerald Ford as a clumsy but functional option amid the collapse of other platforms. Despite LinkedIn's own enthusiastic prompting to \"rewrite it with AI,\" too many users are relying on LLMs to generate posts, producing writing riddled with stylistic tells like emojis, single-sentence paragraphs, em-dashes, and formulaic constructions. Beyond poor style, the deeper problem is authenticity: when posts are obviously LLM-generated, readers can no longer tell whether the underlying ideas are real, and many stop reading altogether. The author acknowledges LLMs are genuinely useful for brainstorming, comprehension, and editing, but argues they are poor writers and produce content that strips away the writer's distinctive voice. The piece closes with a plea for users to trust their own voices and write their own posts so their messages receive the credit they deserve.",
+          "published_at": "2026-09-06T11:56:43Z",
+          "snippet": ""
+        }
+      ]
+    }
+  ]
+}
