@@ -1,9 +1,9 @@
 {
-  "date": "2026-09-06",
-  "label": "Sunday, September 6, 2026",
-  "edition_tag": "vol-2-no-32",
-  "total": 9,
-  "prev_day": "2026-09-05",
+  "date": "2026-09-07",
+  "label": "Monday, September 7, 2026",
+  "edition_tag": "vol-2-no-33",
+  "total": 17,
+  "prev_day": "2026-09-06",
   "next_day": null,
   "site": {
     "name": "Daily Byte",
@@ -15,115 +15,197 @@
     {
       "name": "engineering",
       "label": "Engineering",
-      "intro": "Independent voices, language-team notes, and field reports from working engineers.",
+      "intro": "Field reports from independent engineers and language-team notes.",
       "stories": [
         {
           "id": "eng-01",
-          "title": "AI makes pull requests less central in open-source contribution",
-          "url": "https://arpitbhayani.me/notes/ai-makes-pull-requests-less-central-in-open-source-contribution",
-          "source": "Arpit Bhayani",
+          "title": "Goroutine Leak Profiles",
+          "url": "https://go.dev/blog/goroutine-leak-profiles",
+          "source": "Go Blog",
           "source_kind": "blog",
-          "summary": "AI is shifting open-source contribution away from pull requests as the primary unit of value, particularly for utility software rather than mission-critical projects. While AI can generate most of the code a maintainer needs, it cannot determine what a project should become or evaluate UX trade-offs. As a result, the community's role is evolving from writing code to shaping project direction through precise, well-reproduced bug reports and thoughtful issue raising, which the author considers more valuable than unsolicited AI-generated pull requests. Looking ahead, the author predicts that every repository will eventually operate with a software factory running behind it, where execution begins automatically once a human approves a ready issue or pull request. Repositories will also need strong guidelines for feature requests and bug reports to streamline initial agentic assessment.",
-          "published_at": "",
-          "snippet": "Artificial intelligence is causing a shift in how contributions are made to open-source projects. The community's primary role will evolve from submitting code to defining project direction and providing valuable bug reports."
+          "summary": "Go's concurrency features, while powerful, can lead to goroutine leaks—situations where a goroutine remains blocked because the conditions to unblock it can never be met. Leaked goroutines accumulate and degrade performance through excessive memory and CPU usage. Existing debugging tools like the goleak library and the Go 1.25 synctest package are limited to testing environments and cannot detect leaks in production. Goroutine profiles offer only a rudimentary check and cannot distinguish leaks from temporarily blocked goroutines. Go 1.27 addresses this gap with a new goroutine leak profiler accessible via the runtime/pprof package's goroutineleak",
+          "published_at": "2026-09-02T00:00:00+00:00",
+          "snippet": "Go 1.27 includes new goroutine leak profiles."
         },
         {
           "id": "eng-02",
-          "title": "Demystifying Kafka's Exactly-Once Semantics: Idempotence, Transactions, and Fencing",
-          "url": "https://arpitbhayani.me/videos/demystifying-kafkas-exactly-once-semantics-idempotence-transactions-fencing",
-          "source": "Arpit Bhayani",
+          "title": "Generic Methods",
+          "url": "https://go.dev/blog/generic-methods",
+          "source": "Go Blog",
           "source_kind": "blog",
-          "summary": "Kafka provides at-least-once delivery by default and achieves exactly-once delivery through three distinct layers. The first layer, producer idempotence, assigns each producer a unique Producer ID (PID) and attaches incrementing per-partition sequence numbers to message batches, allowing brokers to deduplicate retries from a single producer instance. The second layer addresses the \"zombie instance\" problem through user-defined transactional.id values paired with epochs, ensuring only the producer with the highest epoch can write and effectively fencing out stale instances. The third layer uses a Two-Phase Commit protocol managed by a Transaction Coordinator, with state stored in the internal __transaction_state topic, to enable atomic writes across multiple partitions. Importantly, Kafka guarantees exactly-once delivery and storage, not processing, so consumers must implement their own idempotency logic when exactly-once processing is required.",
-          "published_at": "",
-          "snippet": "Kafka's exactly-once semantics ensures messages are delivered and persisted exactly once, even in the face of retries and failures. This deep dive explores the three layers of its implementation: producer idempotence for single-producer retries, transactional IDs and epochs to handle zombie producers, and a distributed two-phase commit protocol for atomic writes across multiple partitions. It clarifies that this guarantee applies to delivery, not processing."
+          "summary": "Go 1.18 introduced generics to types and functions but excluded methods because generic interface methods were difficult to implement efficiently. Go 1.27 takes a different approach, adding support for generic concrete methods. The article demonstrates how these methods improve code organization, allowing type-specific operations like a Map method on a List[E] type that returns a List[R]. This eliminates the need for package-level generic functions and enables more readable left-to-right method chaining, while method expressions can still convert generic methods back to functions when desired. Importantly, a generic concrete method on a type does not cause that type to implement any interface, since interface implementation is a property of the type itself rather than of individual methods. Go 1.27's syntax continues to forbid type parameters on interface methods, preserving the efficiency of type-erased interface dispatch.",
+          "published_at": "2026-08-26T00:00:00+00:00",
+          "snippet": "Go 1.27 adds generic methods—a highly desired language feature."
         },
         {
           "id": "eng-03",
-          "title": "Cloudflare Implements Cache Transcoding to Optimize Cache Storage with Zstandard",
-          "url": "https://arpitbhayani.me/notes/cloudflare-implements-cache-transcoding-to-optimize-cache-storage-with-zstandard",
-          "source": "Arpit Bhayani",
+          "title": "Go 1.27 is released",
+          "url": "https://go.dev/blog/go1.27",
+          "source": "Go Blog",
           "source_kind": "blog",
-          "summary": "Cloudflare has implemented a technique called Cache Transcoding to optimize cache storage and reduce costs. When a response enters the cache, their proxy encodes the body using Zstandard compression before writing it to disk, keeping the data compressed while it remains cached and travels between data centers. The content is only decoded right before being delivered to the client. Cloudflare selectively applies this compression to text-based files such as HTML, CSS, JSON, and JavaScript, while skipping images and videos since these formats are already compressed and recompressing them would waste CPU resources. Using zstd level 3, they achieved a 2.8x reduction in size. The tradeoff favors this approach because cached assets are read far more often than they are written, making the small repeated decode cost worthwhile compared to the storage savings.",
-          "published_at": "",
-          "snippet": "Cloudflare employs Cache Transcoding, compressing text assets like HTML and CSS with Zstandard before caching them. This method significantly reduces storage and costs by accepting a small, repeated decode cost for frequently read cached data."
+          "summary": "Go 1.27 was released on August 19, 2026, bringing notable changes across the language, toolchain, runtime, and standard library. The language now supports generic methods, allows struct literal keys to be any valid field selector including those of embedded structs, and generalizes function type inference to all assignment contexts. Tool improvements include new modernizers in go fix, package@version queries in go doc, and automatic consolidation of require blocks by go mod tidy. Performance gains come from size-specialized memory allocation, which reduces small object allocation costs by up to 30%, alongside a generally available goroutine leak profile in runtime/pprof. New standard library additions include encoding/json/v2, crypto/mldsa for post-quantum signatures, a uuid package, experimental SIMD support, and an in-memory test server in net/http/httptest.",
+          "published_at": "2026-08-19T00:00:00+00:00",
+          "snippet": "Go 1.27 adds generic methods, encoding/json/v2 package, uuid package, faster memory allocation, goroutine leak profiles, and more."
         },
         {
           "id": "eng-04",
-          "title": "Some more things about Django I've been enjoying",
-          "url": "https://jvns.ca/blog/2026/07/21/more-nice-django-things/",
-          "source": "Julia Evans",
+          "title": "Enabling the next-generation trait solver on nightly",
+          "url": "https://blog.rust-lang.org/2026/08/21/enabling-next-solver-on-nightly/",
+          "source": "Rust Blog",
           "source_kind": "blog",
-          "summary": "The author is learning Django to build traditional backend-rendered websites and appreciates several features. They enjoy Django's QuerySet pattern, defining custom methods like `approved()` or `future()` that chain together to create readable queries like `Events.objects.approved().for_tab(tab)`. They also find template filters such as `querystring` useful for generating links that modify URL parameters, and they praise Django's automatic database migrations, having completed 19 so far. While they find class-based view inheritance confusing and prefer function-based views, they don't mind using inheritance to interface with Django's own classes. Performance tuning revealed that an accidentally disabled cached template loader was a major bottleneck: enabling it improved throughput from roughly 2-3 to about 12 requests per second on a small VM. The author notes that starting with CPU profiling has been more helpful than chasing slow database queries, particularly because they use SQLite.",
-          "published_at": "",
-          "snippet": ""
+          "summary": "After nearly four years of development, the next-generation trait solver is being enabled by default on nightly, representing the largest single change to the Rust compiler since its initial release. It replaces how the compiler proves where-clauses, normalizes associated types, and handles opaque types like return-position impl Trait, fixing over 200 GitHub issues and several type system unsoundnesses. Enabling this solver unblocks features such as Type Alias Impl Trait and Return Type Notation, and will allow adding new implicit default trait bounds like Move and Forget. While some breakage is expected due to improvements in type inference and the removal of undesirable behavior, the new solver also delivers significant compile-time performance benefits for many crates, with one example showing the datafusion crate compiling more than eight times faster. The Rust team encourages users to test the latest nightly and report any bugs or regressions through a pinned GitHub issue.",
+          "published_at": "2026-08-21T00:00:00+00:00",
+          "snippet": "After nearly 4 years of active development, the next-generation trait solver is close to stabilization. We are enabling it by default on nightly to surface any remaining issues and plan to stabilize it in the next months. This is the largest single change to the Rust compiler since its initial release. It completely replaces how we prove where-clauses, normalize associated types, and much more. Please try out the latest nightly and open an issue if you encounter any bugs or regressions. This is an internal component of the compiler. The main benefits of this rework will come in the future. The"
         },
         {
           "id": "eng-05",
-          "title": "Learning a few things about running SQLite",
-          "url": "https://jvns.ca/blog/2026/07/17/learning-about-running-sqlite/",
-          "source": "Julia Evans",
+          "title": "Supply chain attack on arrayref",
+          "url": "https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/",
+          "source": "Rust Blog",
           "source_kind": "blog",
-          "summary": "The author has been learning practical lessons about running SQLite as the database for a Django site, where the database is small (around 10,000 rows). After enabling WAL mode, a query using FTS5 full-text search on 4,000 rows took 5 seconds; running ANALYZE to generate statistics for the query planner reduced the time to about 0.05 seconds. Cleanup operations on unwanted rows have sometimes resulted in queries exceeding 5 seconds, which the author has handled by working in small batches. For backups, the author uses two methods: restic combined with sqlite3's \"VACUUM INTO\" command (though these have occasionally been killed and required unlocking), and more recently Litestream for incremental backups to AWS with a 400-hour retention setting. On a previous project, Mess with DNS, splitting tables into three separate database files proved helpful, and that site has run on SQLite successfully for four years since 2022.",
-          "published_at": "",
-          "snippet": ""
+          "summary": "On August 20, 2026, the Rust Security Response Team received a report that the proc-macro1 crate was malicious, which they verified after discovering it contained a build script that downloaded a malicious payload. The proc-macro1 crate and several similar typosquatted crates including proc-macro-en, aovine, arone, aronenao, and tinymember were deleted from crates.io. The popular arrayref crate had been republished to depend on this malicious crate, so the team removed the malicious version and unyanked the previously yanked versions of arrayref, internment, and append-only-vec, while locking the author's account as a precaution. The team does not believe the arrayref author acted maliciously but suspects their computer or credentials were compromised. Researchers at Nextron Systems GmbH initially discovered and reported the attack, with additional assistance from several Rust community members during the incident response.",
+          "published_at": "2026-08-20T00:00:00+00:00",
+          "snippet": " What happened On 2026-08-20 at 7:15 UTC we got a report that the proc-macro1 crate was malicious. The Rust Security Response Team verified this to be the case: the crate had a build script that was downloading a malicious payload. This crate proc-macro1 and others like it (proc-macro-en, aovine, arone, aronenao, tinymember) have been deleted. Furthermore, we discovered that the popular arrayref crate had recently been republished and made to depend on this crate, with the most recent versions yanked. We have removed the malicious version and unyanked the maliciously-yanked versions. Other cra"
         }
       ]
     },
     {
       "name": "papers",
       "label": "Papers",
-      "intro": "Fresh research from arXiv, spanning agents, learning systems, and programming languages.",
-      "stories": []
+      "intro": "Fresh research from arXiv across agents, learning, and programming languages.",
+      "stories": [
+        {
+          "id": "pap-01",
+          "title": "Compile by Training: Turning Natural-Language Specifications into Local Neural Functions",
+          "url": "http://arxiv.org/abs/2609.04199v1",
+          "source": "arXiv",
+          "source_kind": "paper",
+          "summary": "The paper introduces \"compile by training,\" a method that transforms natural-language specifications into reusable neural functions. At compile time, teacher models generate task-specific examples used to train a small adapter for a compact interpreter, allowing the resulting function to run without the teachers and to be stored, versioned, and composed like ordinary software. On FuzzyBench-Hard, where the Program-as-Weights fast compiler produced no exact matches, the approach reaches 83.6% semantic accuracy, though at the cost of roughly a minute of compile time rather than seconds. The authors deployed the compiler in a public interactive service and demonstrated its utility through three applications: a multi-site website helper, a language-controlled 3D avatar, and a bidirectional English-Claudish translator. The work was presented at EMNLP 2026 System Demonstrations.",
+          "published_at": "2026-09-03T17:59:49Z",
+          "snippet": "Many recurring text functions are easy to describe but difficult to implement with rules, while calling a large remote model for every input introduces repeated cost, latency, and dependency on a provider. We present compile by training, which turns a natural-language specification into a reusable neural function. At compile time, teacher models generate task-specific examples that are used to train a small adapter for a compact interpreter. The resulting function runs without the teachers and can be stored, versioned, and composed like ordinary software. On FuzzyBench-Hard, a subset on which "
+        },
+        {
+          "id": "pap-02",
+          "title": "Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints",
+          "url": "http://arxiv.org/abs/2609.04198v1",
+          "source": "arXiv",
+          "source_kind": "paper",
+          "summary": "Two preregistered campaigns auditing the stability of language-model judges on shared serving endpoints failed at instrument validation, with same-window repeat rankings reaching only Spearman 0.400 against a required 0.90 and byte-identical next-day replays reaching 0.78 against a required 0.99 across 52,988 audited request attempts. Three mechanisms explained the gap: a label-to-meaning mapping that biased readouts as strongly as the signal, candidate gaps seven orders of magnitude below the instrument's own noise floor, and byte-identical inputs returning different rankings. Follow-up experiments showed that waiting did not improve reliability, that four providers shared the noise floor with medians between 0.74 and 0.88, and that self-hosting on batch-invariant kernels helped only while the server was quiet. The authors distill the evidence into a three-level snapshot-identity ladder, eight design rules, and a reporting checklist, noting that a pilot at roughly 2% of the study's call volume would have exposed both unreachable gates in advance. Their core conclusion is that on shared endpoints, a model name is not a frozen instrument, so preregistered evaluations must measure their instrument before freezing any gate on it.",
+          "published_at": "2026-09-03T17:59:43Z",
+          "snippet": "Language-model judges now gate training data, score generations, and drive leaderboards. The judge is then a measurement instrument, resting on one rarely stated assumption: the same request, sent to the same model name, reads the same tomorrow. We audited that assumption in two preregistered campaigns with every threshold fixed in advance; neither got past validating its instrument. Across 52,988 audited request attempts, same-window repeat rankings agreed at Spearman 0.400 against a required 0.90, and byte-identical next-day replays agreed at 0.78 against a required 0.99, each time with the "
+        },
+        {
+          "id": "pap-03",
+          "title": "ESPO: Error-Structured Prompt Optimization via Diagnose, Diversify, and Stabilize",
+          "url": "http://arxiv.org/abs/2609.04197v1",
+          "source": "arXiv",
+          "source_kind": "paper",
+          "summary": "This matters to software engineers because prompt engineering for production LLM features often devolves into bloated, fragile prompts that grow with every bug fix, and ESPO's structured approach offers a way to systematically reduce errors rather than accumulate patches. The technique could be directly applied to improve reliability and reduce maintenance costs of LLM-powered features like code review, test generation, or customer support bots where prompt quality directly affects user experience. More broadly, the Diagnose-Propose-Select framework provides a reusable methodology for any engineer managing prompt pipelines, turning prompt tuning from an ad-hoc art into a more disciplined engineering practice.",
+          "published_at": "2026-09-03T17:59:37Z",
+          "snippet": "Evolutionary prompt optimizers such as GEPA suffer from prompt bloat: each iteration appends rules and caveats, producing prompts up to 3$\\times$ longer yet no more accurate. We trace this to three deficiencies - incomplete error observation, limited search diversity, and unreliable selection - and propose ESPO (Error-Structured Prompt Optimization), which decomposes prompt optimization into three phases: Diagnose clusters all training errors into structural patterns in one round; Propose generates candidates via four complementary strategies with independent biases; Select applies bootstrap s"
+        },
+        {
+          "id": "pap-04",
+          "title": "One Editor, Many Edits: A Unified Training-Free Framework for Diverse Video Editing",
+          "url": "http://arxiv.org/abs/2609.04190v1",
+          "source": "arXiv",
+          "source_kind": "paper",
+          "summary": "The paper \"One Editor, Many Edits: A Unified Training-Free Framework for Diverse Video Editing\" by Adheesh Sunil Juvekar and eight co-authors introduces EditVid, a training-free framework that unifies diverse video editing paradigms within a single system. EditVid combines sparse causal memory for local coherence, correspondence-based post-attention token injection for long-range identity preservation, and soft latent blending for edit locality. The same framework supports both instruction-guided and reference-guided edits, enabling style transfer, attribute modification, object insertion, part-level editing, and subject replacement. On the FiVE benchmark, EditVid achieves 78.16 FiVE-Acc, substantially outperforming the strongest evaluated training-free baseline at 58.95, while also obtaining competitive results on IVEBench. A user study further demonstrated a 51.8% overall preference for EditVid over seven competing methods.",
+          "published_at": "2026-09-03T17:59:01Z",
+          "snippet": "Video editing spans diverse editing paradigms, yet achieving high-quality instruction-guided and subject-guided editing within a single unified framework remains challenging. We introduce EditVid, a training-free framework combining sparse causal memory for local coherence, correspondence-based post-attention token injection for long-range identity preservation, and soft latent blending for edit locality. The same framework supports instruction-guided and reference-guided edits, including style transfer, attribute modification, object insertion, part-level editing, and subject replacement. On "
+        },
+        {
+          "id": "pap-05",
+          "title": "Seeing Before Synthesizing: VLM-Guided Transition Event Discovery for Weakly-Supervised Dense Video Captioning",
+          "url": "http://arxiv.org/abs/2609.04183v1",
+          "source": "arXiv",
+          "source_kind": "paper",
+          "summary": "Weakly-Supervised Dense Video Captioning aims to localize and describe multiple events in untrimmed videos using only an ordered set of event-level captions per video. Existing approaches synthesize auxiliary transition captions via LLMs, but these lack visual grounding and are rigidly assigned to every inter-event gap at fixed locations and durations. To address these limitations, the authors propose Seeing Before Synthesizing (SBS), a framework that adaptively delivers visually grounded linguistic guidance only where warranted. The approach leverages a Vision-Language Model to generate frame-level narratives for inter-event gaps and detect transitions from semantic variation across them. For identified transitions, SBS refines inter-event temporal masks by blending the temporal midpoint with the semantic change point and selecting the width that maximizes vision-language alignment. Experiments on ActivityNet Captions and YouCook2 demonstrate state-of-the-art performance in both captioning and localization.",
+          "published_at": "2026-09-03T17:58:02Z",
+          "snippet": "Weakly-Supervised Dense Video Captioning aims to localize and describe multiple events in untrimmed videos given only an ordered set of event-level captions per video. Recent work synthesizes auxiliary transition captions via LLM to provide additional vision-language alignment, but these captions lack visual grounding and are rigidly assigned to every inter-event gap at a fixed location and duration. To address these, we propose Seeing Before Synthesizing (SBS), a framework that adaptively provides visually grounded linguistic guidance only where warranted. Leveraging a VLM, we generate frame-"
+        }
+      ]
     },
     {
       "name": "tools",
-      "label": "Tools & Projects",
-      "intro": "Notable open-source projects and releases shared on Hacker News.",
-      "stories": []
+      "label": "Tools",
+      "intro": "Open-source tools trending on Hacker News — small commits worth knowing about.",
+      "stories": [
+        {
+          "id": "tool-01",
+          "title": "Show HN: Mador – Make any DOM reactive with a tiny 80-line Proxy state tuple",
+          "url": "https://github.com/marsbos/mador",
+          "source": "Hacker News",
+          "source_kind": "discussion",
+          "summary": "Mador is a small reactive DOM runtime, around 855 bytes minified, designed for situations where a page needs light reactivity without adopting a full framework. It works with existing HTML and JavaScript, providing no components, templates, or virtual DOM. The library exposes reactive state through a tuple of read and write functions, with bindings defined by a CSS selector, an update callback, and a read function that selects the relevant state. Mador tracks which properties a binding reads and only re-runs it when those specific dependencies change. Writes are batched so multiple state changes in a single write are processed together, and bindings are tied to their DOM elements so they are automatically removed when matching elements disappear. Distributed as a native ES module through npm or CDN, Mador is released under the MIT license.",
+          "published_at": "2026-09-06T20:45:13Z",
+          "snippet": ""
+        },
+        {
+          "id": "tool-02",
+          "title": "Nitter and XCancel resume service after legal advice",
+          "url": "https://github.com/zedeus/nitter/commit/1428b4c2b4246f92a7e5b2673438e5fb39fcc4a3",
+          "source": "Hacker News",
+          "source_kind": "discussion",
+          "summary": "Nitter is a free, open-source alternative Twitter front-end focused on privacy and performance, inspired by the Invidious project. On 24 August 2026, X Corp. sent cease and desist letters demanding a permanent takedown of Nitter instances and the project's repository. However, following legal advice, the Nitter project will continue, with more details to be announced soon. The project's README was updated to reflect this status change and to reorganize the donations section, adding new funding platforms. Nitter's features include requiring no JavaScript, displaying zero ads, routing all requests through the backend to prevent Twitter from tracking users, using Twitter's unofficial API, supporting RSS feeds, themes, and mobile devices, and being licensed under AGPLv3 with no proprietary instances permitted.",
+          "published_at": "2026-09-06T17:49:47Z",
+          "snippet": "<a href=\"https:&#x2F;&#x2F;github.com&#x2F;zedeus&#x2F;nitter\" rel=\"nofollow\">https:&#x2F;&#x2F;github.com&#x2F;zedeus&#x2F;nitter</a><p><a href=\"https:&#x2F;&#x2F;xcancel.com&#x2F;cdclegal\" rel=\"nofollow\">https:&#x2F;&#x2F;xcancel.com&#x2F;cdclegal</a><p><a href=\"https:&#x2F;&#x2F;nitter.net&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;nitter.net&#x2F;</a><p><a href=\"https:&#x2F;&#x2F;xcancel.com&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;xcancel.com&#x2F;</a>"
+        },
+        {
+          "id": "tool-03",
+          "title": "Show HN: Kadō – open-source habit tracker, with non-binary habit score, for iOS",
+          "url": "https://github.com/scastiel/kado",
+          "source": "Hacker News",
+          "source_kind": "discussion",
+          "summary": "Kadō is an open-source habit tracker for iPhone and iPad, licensed under MIT and shipping on the App Store at version 1.7. Unlike traditional streak-based trackers, it uses a non-binary habit score—an exponential moving average inspired by Loop Habit Tracker—so a single missed day doesn't erase progress. The app is privacy-first: data is stored locally with SwiftData, optional iCloud sync goes through the user's private CloudKit database, and there is no account, subscription, analytics, or third-party SDK. It is built natively for iOS 17+ using SwiftUI, SwiftData, WidgetKit, App Intents, and StoreKit 2, with widgets, Siri and Shortcuts integration, per-habit reminders, and lossless JSON and CSV export/import. Apple Watch support and HealthKit auto-completion were descoped after launch due to lack of demand, while upcoming work focuses on Live Activities for timer habits and additional v1.x polish.",
+          "published_at": "2026-09-06T14:34:46Z",
+          "snippet": ""
+        }
+      ]
     },
     {
       "name": "discussions",
       "label": "Discussions",
-      "intro": "High-signal threads worth your attention — questions, debates, and show-and-tell.",
+      "intro": "What the Hacker News and Lobsters threads are arguing about right now.",
       "stories": [
         {
           "id": "dis-01",
-          "title": "Show HN: TERMy – A fast terminal assistant that does not use LLMs",
-          "url": "https://github.com/gioblu/NPC-Forge/blob/main/docs/development.md",
-          "source": "HN",
+          "title": "Making a Python interpreter in 1024 bytes",
+          "url": "https://austinhenley.com/blog/python1024.html",
+          "source": "Hacker News",
           "source_kind": "discussion",
-          "summary": "A developer frustrated with AI subscription costs for trivial terminal commands created TERMy, a fast terminal assistant that operates without large language models. After experiments with training transformers and Mamba architectures from scratch produced unsatisfactory results, the developer pivoted to a deterministic approach using NPC-Forge, a framework built around the NDF 0.0 dataset format. This format defines intents with vocabulary tags, named-entity regex patterns, and tool calls, allowing the system to match user input to predefined commands without any training. The core parser and runtime, FlintParser and FlintNPC, were implemented in roughly 1000 lines of code in both Python and JavaScript, running on CPU and responding in milliseconds. The developer argues that harnesses like Copilot should route trivial requests to deterministic NPCs like TERMy first, reserving heavy LLMs as a last resort to reduce compute waste.",
-          "published_at": "Fri, 04 Sep 2026 09:03:26 +0000",
-          "snippet": "I love research and development, you may have heard of me because of PJON (Padded Jittering Operative Network). It is a network protocol I started developing in 2010, which was recently implemented in silicon by the ETH Zurich university thanks to the research of Pius Sieber. I am excited to share with you TERMy, a terminal assistant built on top of the NPC-Forge framework. Unlike everything else being built today, TERMy does not use embeddings, machine-learning or LLMs. It runs on the CPU (even on a Raspberry Pi Zero) both in the terminal or client-side in a browser tab and responds in milliseconds. It is a cynical but very knowledgeable Linux terminal assistant that translates your natural language into shell commands without relying on a single artificial neuron. I had a chance to focus for 2 months on my personal projects since early July, during the strange times of AI price hikes and the end of subsidized tokenmaxing. I was curious to see if I could develop from scratch a terminal assistant capable of handling simple natural language requests. I have a bad memory and got used to ask to copilot \"activate the virtual environment\" or similar trivial operations spending a non negligible sum every month. I started thinking, maybe I can do something to make my workflow more efficient? Do I really need trillions of parameters to accomplish those tasks? How it Works When you type a prompt, it goes through a lightweight NLU pipeline written in ~1000 lines of Python that implement the following steps: 1. Strip expletives, interjections, encouraging, discouraging and thanking words (remove noise) 2. Sentiment analysis 3. Exact Match (very fast) 4. Template Match (slower) 5. Probabilistic Match (even slower) Step 5 relies on: 1. IDF (Inverse Document Frequency) to identify rare words. 2. BOW (Bag Of Words) to accommodate word inversions. 3. IDF weighted Levenshtein to safely handle typos. Permission gating is hardcoded into the dataset and enforced for all potentially destructive commands, so it's inherently safer than letting an unpredictable LLM run wild on your machine. - TERMy in operation: https://www.youtube.com/watch?v=qeIp0xePLBg - Variance and typo tolerance: https://www.youtube.com/watch?v=tQvGDk6fkk0 - Copilot integration: https://www.youtube.com/watch?v=Wzzouhq2a8A - Advanced features: https://www.youtube.com/watch?v=qeIp0xePLBg - Source Code: https://github.com/gioblu/NPC-Forge"
+          "summary": "The author created a minimal Python interpreter in 1024 bytes of C code without macros or libraries, using recursive descent parsing with no error handling. The implementation supports a subset of Python syntax including expressions, variables, if statements, while loops, for loops, functions, and string literals, while limiting variable names to single lowercase characters and omitting comparison operators (though truthiness still works). Loops and functions work by saving source positions and jumping back to reparse the code each iteration, while the C call stack handles recursion. To shrink the readable 4800-byte version down to 1024 bytes, the author applied code golfing tricks like using ASCII values instead of character constants and chaining conditions with logical operators. The author estimates that targeting only a fizzbuzz program could reduce the size below 800 bytes.",
+          "published_at": "2026-09-06T23:14:08Z",
+          "snippet": ""
         },
         {
           "id": "dis-02",
-          "title": "Trusting-Trust Attack against an Entire Linux Distribution (via the strip utility)",
-          "url": "https://arxiv.org/abs/2607.24888",
-          "source": "Lobsters",
+          "title": "GrapheneOS Overhauled Default Apps and Secure Clipboard",
+          "url": "https://grapheneos.social/@GrapheneOS/117225539756835649",
+          "source": "Hacker News",
           "source_kind": "discussion",
-          "summary": "This paper demonstrates a \"Trusting-Trust\" style supply chain attack that compromises an entire Linux distribution by injecting malicious code into the `strip` utility from GNU binutils. Because `strip` processes nearly every compiled binary during package builds, a tampered version silently implants backdoors into the distribution's packages while leaving source code untouched and reproducible. Engineers and security teams should care because this attack bypasses source code audits and reproducible build defenses, proving that even carefully reviewed supply chains remain vulnerable to compromised toolchain binaries.",
-          "published_at": "Sat, 05 Sep 2026 10:59:15 +0000",
-          "snippet": "\"Ken Thompson's trusting-trust attack, in which a compromised compiler backdoors the programs it builds and reproduces the backdoor in subsequent rebuilds of itself, is widely regarded as a threat specific to compilers. We show that it is not.\" A few weeks ago I came across this https://www.teamten.com/lawrence/writings/coding-machines/ : it's clearly fictional (and furthermore is \"pre-AI\" in that it was written in 2009) but is interesting in that it raises the question of whether one or more computers could- without \"intention\" embed code meeting the \"trusting trust\" criteria in GCC."
+          "summary": "",
+          "published_at": "2026-09-06T20:24:00Z",
+          "snippet": ""
         },
         {
           "id": "dis-03",
-          "title": "Surviving Code Reviews in the era of AI",
-          "url": "https://lobste.rs/s/7tpc5q",
-          "source": "Lobsters",
+          "title": "It took a year to ship WebAssembly in Anubis",
+          "url": "https://anubis.techaro.lol/blog/2026/anubis-wasm/",
+          "source": "Hacker News",
           "source_kind": "discussion",
-          "summary": "The article addresses how to cope with code reviews when coworkers use AI to produce pull requests averaging 6,000 lines of diff, far too large to review effectively. Commenters recommend enforcing firm size limits (around 400 lines), rejecting oversized PRs, and breaking large changes into stacked PRs, where LLMs can help split work despite being mediocre at choosing good splits. AI review tools should be used only as a first pass, since LLM-generated explanations tend to be verbose, jargon-packed, and inconsistent. Effective personal strategies include teaching coworkers review standards directly, requiring plain-language PR descriptions explaining purpose and reasoning, and asking management to clarify review expectations. If the workplace culture won't accommodate these changes, the article warns you may be at a \"slop company\" and suggests considering whether to stay or leave.",
-          "published_at": "Fri, 04 Sep 2026 13:12:13 +0000",
-          "snippet": "My coworkers are all fully AI pilled. As a consequence, every PR that comes my way for review is on average ~6k lines of diff. It's well established that even PRs an order of magnitude smaller than this are too big to be effectively reviewed. I'm still clinging to the idea that us humans should understand how the systems we are building work, so I'm hesitant to use AI for reviews aside from more general question answering. Much of what it produces in the way of explanations are difficult to follow and overly verbose anyway. I'm sure I'm not the only person here who has been dealing with this problem, so I'm curious if anyone here has found any strategies (organizational or personal) which have helped weather this maelstrom."
+          "summary": "It took a year to ship WebAssembly in Anubis. Anubis protects websites from aggressive AI-company scraping by presenting visitors with a proof-of-work challenge modeled on Hashcash. The challenge adds negligible work for individual users while making scraping much more expensive at scale, reducing the downtime and resource-accessibility problems bots can cause for everyone. Anubis is ultimately a temporary measure intended to buy time for better browser fingerprinting and detection of headless browsers, potentially allowing legitimate users to pass without seeing the challenge. It relies on modern JavaScript features, so plugins such as JShelter must be disabled for the domain, and a no-JavaScript solution remains unfinished.",
+          "published_at": "2026-09-06T20:32:38Z",
+          "snippet": ""
         },
         {
           "id": "dis-04",
-          "title": "Bespoke: A Programming Language for People Who Say Please",
-          "url": "https://blog.hofstede.it/bespoke-a-programming-language-for-people-who-say-please/",
-          "source": "Lobsters",
+          "title": "Your intellectual fly is open (2025)",
+          "url": "https://bcantrill.dtrace.org/2025/12/05/your-intellectual-fly-is-open/",
+          "source": "Hacker News",
           "source_kind": "discussion",
-          "summary": "Bespoke is a proposed statically and nominally typed programming language in which all interactions with the compiler, output console, and host environment must use formal, courteous phrasing. Source files use the .charming extension, British spelling is enforced, and types must be written in full. Boolean literals are limited to Quite True and Patently False, while direct mutation like carriageCount = 42 produces diagnostic B-101 (\"Blunt Imperative\") and halts compilation. Control flow is ceremonial: if-statements pose hypothetical questions before the court, functions are introduced as diplomatic proposals, and exceptions are raised as awkward predicaments or regrettable circumstances. Memory management requires a formal request to the \"groundskeeper,\" and mutexes are framed as requests for exclusive audience; deadlocks are recorded as \"Exemplary Stalements of Mutual Deference.\" The author presents Bespoke as a satirical proposal, unrelated to Josiah Winslow's 2025 esolang of the same name.",
-          "published_at": "Sat, 05 Sep 2026 07:13:58 +0000",
+          "summary": "The author reflects that LinkedIn has become an important social network, comparing it to Gerald Ford as a clumsy but functional option amid the collapse of other platforms. Despite LinkedIn's own enthusiastic prompting to \"rewrite it with AI,\" too many users are relying on LLMs to generate posts, producing writing riddled with stylistic tells like emojis, single-sentence paragraphs, em-dashes, and formulaic constructions. Beyond poor style, the deeper problem is authenticity: when posts are obviously LLM-generated, readers can no longer tell whether the underlying ideas are real, and many stop reading altogether. The author acknowledges LLMs are genuinely useful for brainstorming, comprehension, and editing, but argues they are poor writers and produce content that strips away the writer's distinctive voice. The piece closes with a plea for users to trust their own voices and write their own posts so their messages receive the credit they deserve.",
+          "published_at": "2026-09-06T11:56:43Z",
           "snippet": ""
         }
       ]
