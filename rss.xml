@@ -2,72 +2,149 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-06</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-08</description>
   <item>
-    <title>AI makes pull requests less central in open-source contribution</title>
-    <link>https://arpitbhayani.me/notes/ai-makes-pull-requests-less-central-in-open-source-contribution</link>
-    <guid isPermaLink="false">https://arpitbhayani.me/notes/ai-makes-pull-requests-less-central-in-open-source-contribution</guid>
-    <description>AI is shifting open-source contribution away from pull requests as the primary unit of value, particularly for utility software rather than mission-critical projects. While AI can generate most of the code a maintainer needs, it cannot determine what a project should become or evaluate UX trade-offs. As a result, the community&#x27;s role is evolving from writing code to shaping project direction through precise, well-reproduced bug reports and thoughtful issue raising, which the author considers more valuable than unsolicited AI-generated pull requests. Looking ahead, the author predicts that every repository will eventually operate with a software factory running behind it, where execution begins automatically once a human approves a ready issue or pull request. Repositories will also need strong guidelines for feature requests and bug reports to streamline initial agentic assessment.</description>
-    <source>Arpit Bhayani</source>
+    <title>Automatically detecting AI text in my browser</title>
+    <link>https://seangoedecke.com/deckard/</link>
+    <guid isPermaLink="false">https://seangoedecke.com/deckard/</guid>
+    <description>The author built Deckard, a Chrome extension that automatically detects AI-generated text on visited websites by running a local machine learning model on the user&#x27;s Mac without needing a web server. The extension uses the TMR/Oxidane INT8 model, which benchmarked at a 1.595% false positive rate and 19.35% detection of AI text, performing better than other tested local models but far worse than Pangram&#x27;s commercial offering. Pangram claims a 99.66% detection rate with only 0.004% false positives. Deckard consumes 400MB-1.2</description>
+    <pubDate>Tue, 08 Sep 2026 00:00:00 GMT</pubDate>
+    <source>Sean Goedecke</source>
   </item>
   <item>
-    <title>Demystifying Kafka&#x27;s Exactly-Once Semantics: Idempotence, Transactions, and Fencing</title>
-    <link>https://arpitbhayani.me/videos/demystifying-kafkas-exactly-once-semantics-idempotence-transactions-fencing</link>
-    <guid isPermaLink="false">https://arpitbhayani.me/videos/demystifying-kafkas-exactly-once-semantics-idempotence-transactions-fencing</guid>
-    <description>Kafka provides at-least-once delivery by default and achieves exactly-once delivery through three distinct layers. The first layer, producer idempotence, assigns each producer a unique Producer ID (PID) and attaches incrementing per-partition sequence numbers to message batches, allowing brokers to deduplicate retries from a single producer instance. The second layer addresses the &quot;zombie instance&quot; problem through user-defined transactional.id values paired with epochs, ensuring only the producer with the highest epoch can write and effectively fencing out stale instances. The third layer uses a Two-Phase Commit protocol managed by a Transaction Coordinator, with state stored in the internal __transaction_state topic, to enable atomic writes across multiple partitions. Importantly, Kafka guarantees exactly-once delivery and storage, not processing, so consumers must implement their own idempotency logic when exactly-once processing is required.</description>
-    <source>Arpit Bhayani</source>
+    <title>Rust debugging survey 2026 results</title>
+    <link>https://blog.rust-lang.org/2026/09/07/rust-debugging-survey-2026-results/</link>
+    <guid isPermaLink="false">https://blog.rust-lang.org/2026/09/07/rust-debugging-survey-2026-results/</guid>
+    <description>A 2026 Rust debugging survey with over 2,300 responses revealed that more than 80% of respondents identified as Advanced or Intermediate users, yet over half do not currently use a debugger for Rust. Print debugging and the dbg! macro were the most popular debugging approaches across all operating systems, with lldb in an IDE ranking highest among dedicated debuggers. The most commonly cited reason for avoiding debuggers was that logs or print debugging were easier or faster, reported by roughly 81% of respondents. Among those who do use debuggers, over 51% experienced issues stepping through code, with async code being the most problematic at about 28%. The top pain point was poor representation of values at slightly over 74%, followed by being unable to print variables. Additionally, nearly 62% of library authors were unaware of the debugger_visualizer attribute, suggesting significant room for improving both the tooling and community awareness of existing debugging enhancements.</description>
+    <pubDate>2026-09-07T00:00:00+00:00</pubDate>
+    <source>Rust Blog</source>
   </item>
   <item>
-    <title>Cloudflare Implements Cache Transcoding to Optimize Cache Storage with Zstandard</title>
-    <link>https://arpitbhayani.me/notes/cloudflare-implements-cache-transcoding-to-optimize-cache-storage-with-zstandard</link>
-    <guid isPermaLink="false">https://arpitbhayani.me/notes/cloudflare-implements-cache-transcoding-to-optimize-cache-storage-with-zstandard</guid>
-    <description>Cloudflare has implemented a technique called Cache Transcoding to optimize cache storage and reduce costs. When a response enters the cache, their proxy encodes the body using Zstandard compression before writing it to disk, keeping the data compressed while it remains cached and travels between data centers. The content is only decoded right before being delivered to the client. Cloudflare selectively applies this compression to text-based files such as HTML, CSS, JSON, and JavaScript, while skipping images and videos since these formats are already compressed and recompressing them would waste CPU resources. Using zstd level 3, they achieved a 2.8x reduction in size. The tradeoff favors this approach because cached assets are read far more often than they are written, making the small repeated decode cost worthwhile compared to the storage savings.</description>
-    <source>Arpit Bhayani</source>
+    <title>Project HydraFusion: Frontier quality via multi-model orchestration</title>
+    <link>https://github.blog/ai-and-ml/github-copilot/project-hydrafusion-frontier-quality-via-multi-model-orchestration/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/project-hydrafusion-frontier-quality-via-multi-model-orchestration/</guid>
+    <description>Project HydraFusion is a GitHub Copilot research preview that delivers frontier-quality coding assistance through runtime orchestration of multiple AI models from different providers. It chooses between three execution patterns per request: Single (one model solves directly), Cascade (an efficient model drafts and a quality gate decides whether to escalate), and Critique (a draft is independently reviewed by a different model family and revised). In controlled offline evaluations, HydraFusion matched or exceeded the Opus 5 baseline across TerminalBench 2.1, DeepSWE, and CheckpointBench benchmarks while substantially reducing estimated workflow costs. Specifically, it delivered 67% lower cost with a 4.9-point quality gain on TerminalBench 2.1, and 36-65% lower costs on the other benchmarks with minor quality differences. The system is accessible through /experimental in GitHub Copilot CLI, with usage priced at each underlying model&#x27;s standard rate.</description>
+    <pubDate>Fri, 04 Sep 2026 16:04:14 +0000</pubDate>
+    <source>GitHub Blog</source>
   </item>
   <item>
-    <title>Some more things about Django I&#x27;ve been enjoying</title>
-    <link>https://jvns.ca/blog/2026/07/21/more-nice-django-things/</link>
-    <guid isPermaLink="false">https://jvns.ca/blog/2026/07/21/more-nice-django-things/</guid>
-    <description>The author is learning Django to build traditional backend-rendered websites and appreciates several features. They enjoy Django&#x27;s QuerySet pattern, defining custom methods like `approved()` or `future()` that chain together to create readable queries like `Events.objects.approved().for_tab(tab)`. They also find template filters such as `querystring` useful for generating links that modify URL parameters, and they praise Django&#x27;s automatic database migrations, having completed 19 so far. While they find class-based view inheritance confusing and prefer function-based views, they don&#x27;t mind using inheritance to interface with Django&#x27;s own classes. Performance tuning revealed that an accidentally disabled cached template loader was a major bottleneck: enabling it improved throughput from roughly 2-3 to about 12 requests per second on a small VM. The author notes that starting with CPU profiling has been more helpful than chasing slow database queries, particularly because they use SQLite.</description>
-    <source>Julia Evans</source>
+    <title>Radical responsibility means treating people like tools</title>
+    <link>https://seangoedecke.com/radical-responsibility-means-treating-people-like-tools/</link>
+    <guid isPermaLink="false">https://seangoedecke.com/radical-responsibility-means-treating-people-like-tools/</guid>
+    <description>The article critiques the concept of &quot;radical responsibility&quot; as defined by Conscious Leadership, which calls for taking full responsibility for one&#x27;s circumstances instead of placing blame. The author argues that while this approach can help successful leaders achieve their goals, it has a problematic dimension: by asserting complete responsibility, it forces people to view others instrumentally, as useful assets or useless liabilities rather than as peers who can be trusted and sometimes disappointed. This mindset treats people like tools to be adjusted rather than held accountable. The author suggests that genuinely treating others as people means sharing responsibility with them, which involves assigning both praise and blame rather than hoarding all responsibility. The piece cites Sartre&#x27;s &quot;Being and Nothingness&quot; on the gap between role-playing success and actually achieving it, and references Peter Strawson&#x27;s &quot;Freedom and Resentment&quot; regarding the objective attitude toward others.</description>
+    <pubDate>Fri, 04 Sep 2026 00:00:00 GMT</pubDate>
+    <source>Sean Goedecke</source>
   </item>
   <item>
-    <title>Learning a few things about running SQLite</title>
-    <link>https://jvns.ca/blog/2026/07/17/learning-about-running-sqlite/</link>
-    <guid isPermaLink="false">https://jvns.ca/blog/2026/07/17/learning-about-running-sqlite/</guid>
-    <description>The author has been learning practical lessons about running SQLite as the database for a Django site, where the database is small (around 10,000 rows). After enabling WAL mode, a query using FTS5 full-text search on 4,000 rows took 5 seconds; running ANALYZE to generate statistics for the query planner reduced the time to about 0.05 seconds. Cleanup operations on unwanted rows have sometimes resulted in queries exceeding 5 seconds, which the author has handled by working in small batches. For backups, the author uses two methods: restic combined with sqlite3&#x27;s &quot;VACUUM INTO&quot; command (though these have occasionally been killed and required unlocking), and more recently Litestream for incremental backups to AWS with a 400-hour retention setting. On a previous project, Mess with DNS, splitting tables into three separate database files proved helpful, and that site has run on SQLite successfully for four years since 2022.</description>
-    <source>Julia Evans</source>
+    <title>GitHub Copilot app for Beginners: Run several agents at once</title>
+    <link>https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-run-several-agents-at-once/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-run-several-agents-at-once/</guid>
+    <description>The GitHub Copilot app lets users run multiple AI agents on the same project simultaneously, with each session operating independently on its own Git worktree. Because the sessions are isolated, they don&#x27;t interfere with one another and can run in parallel, allowing users to start new tasks whenever they want without disturbing work already in progress. Each session keeps its own context, so users can switch between them freely without re-explaining their work. The sessions view displays each task as a card showing its title and progress, making it easy to track multiple ongoing jobs. An example demonstrates running three tasks at once on the tailspin-toys repository, including adding a funded sort feature, performing an accessibility review, and running tests. The article recommends starting two small tasks at the same time as a low-stakes way to experience parallel agent sessions.</description>
+    <pubDate>Thu, 03 Sep 2026 16:00:00 +0000</pubDate>
+    <source>GitHub Blog</source>
   </item>
   <item>
-    <title>Show HN: TERMy – A fast terminal assistant that does not use LLMs</title>
-    <link>https://github.com/gioblu/NPC-Forge/blob/main/docs/development.md</link>
-    <guid isPermaLink="false">https://github.com/gioblu/NPC-Forge/blob/main/docs/development.md</guid>
-    <description>A developer frustrated with AI subscription costs for trivial terminal commands created TERMy, a fast terminal assistant that operates without large language models. After experiments with training transformers and Mamba architectures from scratch produced unsatisfactory results, the developer pivoted to a deterministic approach using NPC-Forge, a framework built around the NDF 0.0 dataset format. This format defines intents with vocabulary tags, named-entity regex patterns, and tool calls, allowing the system to match user input to predefined commands without any training. The core parser and runtime, FlintParser and FlintNPC, were implemented in roughly 1000 lines of code in both Python and JavaScript, running on CPU and responding in milliseconds. The developer argues that harnesses like Copilot should route trivial requests to deterministic NPCs like TERMy first, reserving heavy LLMs as a last resort to reduce compute waste.</description>
-    <pubDate>Fri, 04 Sep 2026 09:03:26 +0000</pubDate>
-    <source>HN</source>
+    <title>UniMate: One Unified Model to Animate Diverse Skeletons</title>
+    <link>http://arxiv.org/abs/2609.05415v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.05415v1</guid>
+    <description>UniMate is a unified foundation model that synthesizes articulated motion for arbitrary skeletons given a rigged 3D asset and a text prompt, eliminating the need for test-time optimization or per-skeleton retraining. It employs a topology-aware diffusion transformer that integrates skeletal topology into attention through three mechanisms: a graph-aware attention bias derived from pairwise joint relations and geodesic distances, a spectral rotary position embedding that generalizes RoPE to arbitrary kinematic trees via the graph Laplacian, and a global topological conditioner attention-pooled from the rest-pose skeleton. To train the model, the authors curated UniML3D, a dataset of 13,006 motion sequences spanning bipedal, quadrupedal, avian, marine, insectoid, serpentine, and articulated rigid objects with unified canonicalization and text pairing. Experiments show that UniMate outperforms state-of-the-art baselines in quality, generalization, and efficiency, while supporting zero-shot cross-topology transfer, in-betweening, expansion, and text-guided editing.</description>
+    <pubDate>2026-09-04T17:59:00Z</pubDate>
+    <source>arXiv</source>
   </item>
   <item>
-    <title>Trusting-Trust Attack against an Entire Linux Distribution (via the strip utility)</title>
-    <link>https://arxiv.org/abs/2607.24888</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2607.24888</guid>
-    <description>This paper demonstrates a &quot;Trusting-Trust&quot; style supply chain attack that compromises an entire Linux distribution by injecting malicious code into the `strip` utility from GNU binutils. Because `strip` processes nearly every compiled binary during package builds, a tampered version silently implants backdoors into the distribution&#x27;s packages while leaving source code untouched and reproducible. Engineers and security teams should care because this attack bypasses source code audits and reproducible build defenses, proving that even carefully reviewed supply chains remain vulnerable to compromised toolchain binaries.</description>
-    <pubDate>Sat, 05 Sep 2026 10:59:15 +0000</pubDate>
-    <source>Lobsters</source>
+    <title>Diffusion TV: Experiencing Diffusion Models through Tangible, Embodied Interaction</title>
+    <link>http://arxiv.org/abs/2609.05404v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.05404v1</guid>
+    <description>Diffusion TV is an interactive AI art installation by Sihwa Park that offers a tangible, embodied experience of diffusion models through a modified CRT TV. By physically manipulating the TV&#x27;s antenna, audiences control the clarity of AI-generated images and sounds, metaphorically enacting the denoising process that underlies diffusion-based generation. A tuning knob allows participants to switch between three channels featuring AI-generated animals representing the Past (extinct species), Present (endangered species), and Future (speculative creatures), situating the interaction within a temporal and ecological narrative. Through continuous audiovisual feedback and physical interaction, the work foregrounds the generative process over final outputs, inviting audiences to explore intermediate states as experiential material. Rather than providing explicit technical explanation, Diffusion TV presents an alternative, embodied mode of explainable AI that encourages exploratory engagement with generative technologies. The project was presented at the Explainable AI for the Arts Workshop 2026 (XAIxArts 2026).</description>
+    <pubDate>2026-09-04T17:51:48Z</pubDate>
+    <source>arXiv</source>
   </item>
   <item>
-    <title>Surviving Code Reviews in the era of AI</title>
-    <link>https://lobste.rs/s/7tpc5q</link>
-    <guid isPermaLink="false">https://lobste.rs/s/7tpc5q</guid>
-    <description>The article addresses how to cope with code reviews when coworkers use AI to produce pull requests averaging 6,000 lines of diff, far too large to review effectively. Commenters recommend enforcing firm size limits (around 400 lines), rejecting oversized PRs, and breaking large changes into stacked PRs, where LLMs can help split work despite being mediocre at choosing good splits. AI review tools should be used only as a first pass, since LLM-generated explanations tend to be verbose, jargon-packed, and inconsistent. Effective personal strategies include teaching coworkers review standards directly, requiring plain-language PR descriptions explaining purpose and reasoning, and asking management to clarify review expectations. If the workplace culture won&#x27;t accommodate these changes, the article warns you may be at a &quot;slop company&quot; and suggests considering whether to stay or leave.</description>
-    <pubDate>Fri, 04 Sep 2026 13:12:13 +0000</pubDate>
-    <source>Lobsters</source>
+    <title>RegionFed: Federated Learning for Personalized Query Understanding in Heterogeneous Retail Environments</title>
+    <link>http://arxiv.org/abs/2609.05403v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.05403v1</guid>
+    <description>Retail search systems serve diverse geographic regions with distinct query patterns and vocabularies, creating data heterogeneity that challenges both privacy-preserving training and personalization. Standard federated learning produces global models that sacrifice regional performance, while existing personalized FL methods operating at the parameter level catastrophically collapse on modern transformers, falling below 10% accuracy on T5 due to tied embeddings and LayerNorm interactions. RegionFed addresses these failures by operating entirely at the gradient level, using the ℓ₂ conflict between regional and global gradients as a unified signal to diagnose heterogeneity, route regions to appropriate personalization strategies, and adaptively control personalization strength. Because it treats models as differentiable black boxes, RegionFed deploys on T5-Small, T5-3B, RoBERTa, and CNN with zero code changes. Across the Amazon ESCI, Amazon Reviews, and LEAF-FEMNIST datasets, RegionFed-Meta achieves 92.27% accuracy, closing the gap to the privacy-violating centralized upper bound of 92.04% while providing (ε≈0.60)-differential privacy and O(1/√T) convergence.</description>
+    <pubDate>2026-09-04T17:50:10Z</pubDate>
+    <source>arXiv</source>
   </item>
   <item>
-    <title>Bespoke: A Programming Language for People Who Say Please</title>
-    <link>https://blog.hofstede.it/bespoke-a-programming-language-for-people-who-say-please/</link>
-    <guid isPermaLink="false">https://blog.hofstede.it/bespoke-a-programming-language-for-people-who-say-please/</guid>
-    <description>Bespoke is a proposed statically and nominally typed programming language in which all interactions with the compiler, output console, and host environment must use formal, courteous phrasing. Source files use the .charming extension, British spelling is enforced, and types must be written in full. Boolean literals are limited to Quite True and Patently False, while direct mutation like carriageCount = 42 produces diagnostic B-101 (&quot;Blunt Imperative&quot;) and halts compilation. Control flow is ceremonial: if-statements pose hypothetical questions before the court, functions are introduced as diplomatic proposals, and exceptions are raised as awkward predicaments or regrettable circumstances. Memory management requires a formal request to the &quot;groundskeeper,&quot; and mutexes are framed as requests for exclusive audience; deadlocks are recorded as &quot;Exemplary Stalements of Mutual Deference.&quot; The author presents Bespoke as a satirical proposal, unrelated to Josiah Winslow&#x27;s 2025 esolang of the same name.</description>
-    <pubDate>Sat, 05 Sep 2026 07:13:58 +0000</pubDate>
-    <source>Lobsters</source>
+    <title>A Deep Generative Model for Synthesizing Labeled Wireless Signals</title>
+    <link>http://arxiv.org/abs/2609.05396v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.05396v1</guid>
+    <description>Wireless signals with position-related labels are essential for performance evaluation and model training in wireless sensing, yet acquiring real-world datasets is costly due to measurement and labeling expenses. Traditional synthesis methods depend on environmental models, requiring extensive hyper-parameter tuning and producing signals that lack sufficient realism. To address these limitations, the authors propose Inter-Instance Generative Adversarial Networks (IIns-GAN), a novel deep learning-based method for generating realistic labeled wireless signals. The approach is adaptive to different environment scenarios and well-suited for diverse model training tasks, including distance estimation and environment identification. Extensive experiments on public Ultra-Wideband (UWB) datasets demonstrate that the signals generated by IIns-GAN closely mirror the physical characteristics of real-world measurements. These synthetic signals significantly improve model training performance across various wireless sensing applications.</description>
+    <pubDate>2026-09-04T17:44:54Z</pubDate>
+    <source>arXiv</source>
+  </item>
+  <item>
+    <title>Multi-Step Tool-Calling over Korean Open Public APIs: A Benchmark and a Data-Synthesis Recipe</title>
+    <link>http://arxiv.org/abs/2609.05395v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.05395v1</guid>
+    <description>Researchers address the challenge of deploying open-source LLM agents for multi-step tool-calling across live government APIs, where data-sovereignty regulations necessitate on-premise solutions but open-source models typically underperform. To measure this gap, the authors introduce KOPA-Bench, a Korean Open Public API Benchmark comprising 145 real-world tasks. They also present EDGE, an Execution-grounded Dynamic Graph framework for synthesizing tool-calling training data driven by live execution. EDGE constructs a graph mapping how tool outputs can feed into other tools&#x27; inputs, retains only links verified through actual API calls, and traverses these successful connections to generate executable multi-step trajectories. A 9B model fine-tuned with GRPO on EDGE-generated data nearly matches the performance of an untuned 27B model from the same family, showing substantial improvements on both KOPA-Bench and the BFCL benchmark. The work was accepted to the EMNLP 2026 Industry Track.</description>
+    <pubDate>2026-09-04T17:44:52Z</pubDate>
+    <source>arXiv</source>
+  </item>
+  <item>
+    <title>bzip3</title>
+    <link>https://github.com/iczelia/bzip3</link>
+    <guid isPermaLink="false">https://github.com/iczelia/bzip3</guid>
+    <description>The bzip3 repository, hosted under the user iczelia on GitHub with 1.4k stars and 62 forks, contains a file compression utility described as a better, faster, and stronger spiritual successor to BZip2. The project boasts higher compression ratios and better performance than its predecessor by combining an order-0 context mixing entropy coder, a fast Burrows-Wheeler transform using suffix arrays, and an RLE with a Lempel Ziv plus Prediction pass built on LZ77-style string matching and PPM-style context modeling. Like BZip2, BZip3 is particularly effective at compressing text or code. The repository&#x27;s root directory includes standard project files such as CMakeLists.txt, configure.ac, Makefile.am, and bootstrap.sh, alongside utility tools named bunzip3, bz3cat, bz3grep, bz3less, bz3more, and bz3most. Installation can be performed by running bootstrap.sh followed by configure, make, and make install, or alternatively through system package managers such as Homebrew on macOS.</description>
+    <pubDate>2026-09-07T13:35:13Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Show HN: Mador – Make any DOM reactive with a tiny 80-line Proxy state tuple</title>
+    <link>https://github.com/marsbos/mador</link>
+    <guid isPermaLink="false">https://github.com/marsbos/mador</guid>
+    <description>Mador is a small reactive DOM runtime built around an 80-line Proxy-based state tuple, designed for developers who want reactivity without adopting a full framework. It exposes a single `mador()` function that returns a `[read, write]` pair, where `read` binds a CSS selector and a derived state value to a callback that updates matching DOM elements, and `write` mutates the underlying state. The library is distributed as a native ES module available through npm or directly from a CDN like jsDelivr, requiring no build step to use. A typical example shows a shared `count` value being rendered simultaneously into multiple elements (e.g., `.counter` and `.another-counter`) that automatically update when `write` increments the state. The project is open-source on GitHub under the marsbos account, with a directory structure including `src`, `examples`, and a `build.mjs` script, positioning it as a lightweight alternative for adding reactivity directly to existing markup.</description>
+    <pubDate>2026-09-06T20:45:13Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Show HN: Engrim – A universal, local-first SQLite memory engine for AI CLIs</title>
+    <link>https://github.com/timgordontg/engrim</link>
+    <guid isPermaLink="false">https://github.com/timgordontg/engrim</guid>
+    <description>Engrim is a local-first, project-scoped SQLite memory engine designed for AI command-line interfaces. Created by timgordontg, it functions as a universal cross-model and cross-agent episodic memory store that allows developers to switch between AI environments like Google Antigravity, Claude Code, Cursor MCP, and Windsurf mid-project without losing architectural decisions, user constraints, or project state. The tool addresses &quot;attention dilution&quot; by replacing vast context windows with approximately 4,000 characters of curated episodic working memory, arguing that models are disposable utilities while project decisions are not. Connected AI agents can automatically write to memory via MCP tools when making architectural decisions, or developers can manually save entries using the `engrim add` command, allowing them to clear agent sessions and have context reload intact. Engrim is distributed under an MIT license, supports Python 3.10+, and is available on PyPI.</description>
+    <pubDate>2026-09-07T04:49:36Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Show HN: Stuxnet – A reconstructed source code of the infamous cyber-weapon</title>
+    <link>https://github.com/Sadpainy/Stuxnet</link>
+    <guid isPermaLink="false">https://github.com/Sadpainy/Stuxnet</guid>
+    <description>A GitHub repository by user Sadpainy contains a reconstructed source code version of the Stuxnet cyber-weapon, derived from reverse engineering of the original binaries discovered in 2010. The code is intended solely for academic study, malware analysis training, and defensive research, licensed under GPL v3. Stuxnet is recognized as the first known cyber-weapon designed to cause physical destruction to industrial control systems, specifically targeting Siemens SIMATIC WinCC, Step 7 software, and S7-300/400 PLCs to manipulate frequency converter drives and damage centrifuge rotors. The worm propagated through USB drives using LNK exploits, network shares via Print Spooler, and peer-to-peer connections. Its payload modified PLC block logic (OB1/OB35) to alter motor frequencies, while employing rootkit capabilities through MRxCls.sys and MRxNet.sys drivers to hide files, processes, and registry entries.</description>
+    <pubDate>2026-09-07T22:12:38Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Keep Our Servers Running</title>
+    <link>https://blog.archive.org/2026/09/01/keep-our-servers-running-your-recurring-donation-goes-3x-this-september/</link>
+    <guid isPermaLink="false">https://blog.archive.org/2026/09/01/keep-our-servers-running-your-recurring-donation-goes-3x-this-september/</guid>
+    <description>The Internet Archive has launched a September fundraising campaign to support the infrastructure powering its digital library. Recurring donations of $25 or more made during September will be matched 2:1, tripling their impact: a $25 monthly gift becomes $75, a $50 gift becomes $150, and a $100 gift becomes $300. The organization maintains 210 petabytes of knowledge and operates independently, building its own servers, storage, and systems rather than relying on corporate contractors. The Internet Archive provides free access to all users without charging fees, selling data, or displaying ads. Recurring gifts from donors averaging around $25 provide the dependable, ongoing support needed to keep books readable, websites accessible, and infrastructure running year after year.</description>
+    <pubDate>2026-09-07T03:29:51Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Your intellectual fly is open when you use an LLM to author a post (2025)</title>
+    <link>https://bcantrill.dtrace.org/2025/12/05/your-intellectual-fly-is-open/</link>
+    <guid isPermaLink="false">https://bcantrill.dtrace.org/2025/12/05/your-intellectual-fly-is-open/</guid>
+    <description>The author says LinkedIn has become important to them, despite its clumsy, boring, but comparatively un-crooked character and its survival as other social media platforms have imploded. They argue that too many people use LLMs to generate posts, encouraged by LinkedIn’s “rewrite it with AI” feature, even though the resulting writing is often poor and full of recognizable stylistic tics. These include excessive emojis, one-sentence paragraphs, “it’s not just… but also” formulas, and inappropriate em-dashes, making generated writing difficult to ignore. For the author, LLM-authored posts obscure the line between a person’s real perspective and fabricated content, causing them and many others to stop reading. The author still considers LLMs useful for brainstorming, understanding text, and editing, but maintains that they should not replace the author’s own voice.</description>
+    <pubDate>2026-09-06T11:56:43Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>A/I shuts down</title>
+    <link>https://keepitfree.ai/announcements/a/i-shuts-down-stay-human/</link>
+    <guid isPermaLink="false">https://keepitfree.ai/announcements/a/i-shuts-down-stay-human/</guid>
+    <description>The Autistici/Inventati (A/I) collective announced it is shutting down after being designated a global terrorist organization. For 25 years, the collective had maintained a free, privacy-friendly, and autonomous digital infrastructure, but decided to discontinue all its services to protect its users and communities from autocrats, fascists, and agencies engaged in extra-legal actions. The collective stated that continuing operations endangered not only users but anyone associated with the organization, and that repression had become increasingly disproportionate. Remaining online after August 26, 2026 was considered a victory, but circumstances ultimately forced them to stop. A/I pledged to provide instructions for backing up blogs, mailboxes, and websites, while warning that the autistici.org domain had already been made unreachable and similar disruptions could occur in the coming days.</description>
+    <pubDate>2026-09-06T14:34:34Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Isar Aerospace reaches orbit and deploys payloads on second flight</title>
+    <link>https://isaraerospace.com/press/history-for-european-spaceflight-isar-aerospace-reaches-orbit-and-deploys-payloads-on-second-flight</link>
+    <guid isPermaLink="false">https://isaraerospace.com/press/history-for-european-spaceflight-isar-aerospace-reaches-orbit-and-deploys-payloads-on-second-flight</guid>
+    <description>Isar Aerospace became the first European commercial space company to successfully deliver satellites into orbit on its second flight, with mission &quot;Onward and Upward&quot; lifting off from Andøya Space in Norway on 5 September 2026 at 10:12 pm CEST. The Spectrum vehicle passed MaxQ, completed MECO and stage separation, ignited its second stage, crossed the Kármán line at 100 kilometers altitude, jettisoned its payload fairing, and successfully separated its spacecraft after a circularization burn. The mission&#x27;s payloads were selected through the Microlauncher Competition of the German Space Agency at DLR. Founded in 2018 and headquartered near Munich, the company has grown to over 400 employees across five international locations and is now producing Spectrum vehicles 3-7. A new 40,000 m² production facility will eventually enable manufacturing of up to 40 launch vehicles per year, while an additional launch complex is under construction in Nova Scotia, Canada.</description>
+    <pubDate>2026-09-06T07:21:06Z</pubDate>
+    <source>Hacker News</source>
   </item>
 </channel></rss>
