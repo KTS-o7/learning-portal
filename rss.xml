@@ -2,149 +2,133 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-08</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-09</description>
   <item>
     <title>Automatically detecting AI text in my browser</title>
     <link>https://seangoedecke.com/deckard/</link>
     <guid isPermaLink="false">https://seangoedecke.com/deckard/</guid>
-    <description>The author built Deckard, a Chrome extension that automatically detects AI-generated text on visited websites by running a local machine learning model on the user&#x27;s Mac without needing a web server. The extension uses the TMR/Oxidane INT8 model, which benchmarked at a 1.595% false positive rate and 19.35% detection of AI text, performing better than other tested local models but far worse than Pangram&#x27;s commercial offering. Pangram claims a 99.66% detection rate with only 0.004% false positives. Deckard consumes 400MB-1.2</description>
+    <description>The author created Deckard, a Chrome extension that automatically detects AI-generated text on websites by running a local AI detection model in the background. Built on the Raschka ModernBERT open-source model, Deckard uses Chrome&#x27;s native messaging instead of a web server, consuming between 400MB and 1.2GB of memory and shutting itself off after five minutes of inactivity. While Pangram remains the dominant AI detection service with a claimed 99.66% detection rate, the author found local open-source models significantly less effective, with detection rates ranging from roughly 19% to 56% and false positive rates around 2%. Despite being far inferior to Pangram, Deckard proved useful enough to flag known AI content such as YouTube summaries, without noticeable impact on battery life or laptop temperature. The author recommends the tool for those who understand its limitations and anticipates swapping in better local models as AI detection technology continues to improve.</description>
     <pubDate>Tue, 08 Sep 2026 00:00:00 GMT</pubDate>
     <source>Sean Goedecke</source>
+  </item>
+  <item>
+    <title>Goroutine Leak Profiles</title>
+    <link>https://go.dev/blog/goroutine-leak-profiles</link>
+    <guid isPermaLink="false">https://go.dev/blog/goroutine-leak-profiles</guid>
+    <description>A goroutine is considered leaked when it is blocked on a concurrency primitive or system operation whose unblocking conditions can never be met. Leaks are notoriously difficult to detect, and existing tools like the goleak library and the synctest package introduced in Go 1.25 cannot reliably check for leaks in production systems. Go 1.27 addresses this gap with a new goroutine leak profiler that detects leaks precisely with minimal false positives, though it only covers goroutines permanently blocked on channels or sync package primitives. The feature is exposed through the runtime/pprof package and the net/http/pprof endpoints, allowing developers to collect profiles at the /debug/pprof/goroutineleak endpoint and pinpoint offending operations like blocked channel sends. Under the hood, the profiler adapts the existing tri-color mark-and-sweep garbage collector by starting from unblocked goroutines as mark roots and inductively adding blocked goroutines whose blocking primitives are reachable from live goroutines.</description>
+    <pubDate>2026-09-02T00:00:00+00:00</pubDate>
+    <source>Go Blog</source>
+  </item>
+  <item>
+    <title>Generic Methods</title>
+    <link>https://go.dev/blog/generic-methods</link>
+    <guid isPermaLink="false">https://go.dev/blog/generic-methods</guid>
+    <description>Go 1.27 introduces type parameters on concrete methods, a capability that Go 1.18&#x27;s generics proposal declined because it didn&#x27;t extend to interface methods. Go 1.27&#x27;s developers reconsidered, reasoning that concrete methods serve as an organizational tool beyond just implementing interfaces, so these concerns can be decoupled. This enables methods like Map on a generic List type to return a List of a different type parameter, producing more readable chained calls than &quot;inside-out&quot; function composition. Generic methods require instantiation before use, either explicitly or implicitly, and can be converted to function form via method expressions. Generic interface methods remain unsupported because, across separately compiled packages, the compiler would need to instantiate methods with every possible type argument.</description>
+    <pubDate>2026-08-26T00:00:00+00:00</pubDate>
+    <source>Go Blog</source>
+  </item>
+  <item>
+    <title>Go 1.27 is released</title>
+    <link>https://go.dev/blog/go1.27</link>
+    <guid isPermaLink="false">https://go.dev/blog/go1.27</guid>
+    <description>The Go team released Go 1.27 on 19 August 2026, introducing major enhancements across the language, toolchain, runtime, and standard library. Language updates include support for generic methods, allowing a single method to work across multiple integer types as shown in math/rand/v2.Rand. Struct literals can now use any valid field selector, enabling direct initialization of fields in nested or embedded structs. Function type inference has been generalized to apply in all assignment contexts, including composite literals, type conversions, and channel sends. The toolchain received new modernizers in go fix, version query support in go doc, and automatic consolidation of require blocks in go mod tidy. Runtime improvements include size-specialized memory allocation reducing small object allocation costs by up to 30%, while new standard library additions encompass encoding/json/v2, crypto/mldsa for post-quantum signatures, a uuid package, and experimental SIMD support.</description>
+    <pubDate>2026-08-19T00:00:00+00:00</pubDate>
+    <source>Go Blog</source>
   </item>
   <item>
     <title>Rust debugging survey 2026 results</title>
     <link>https://blog.rust-lang.org/2026/09/07/rust-debugging-survey-2026-results/</link>
     <guid isPermaLink="false">https://blog.rust-lang.org/2026/09/07/rust-debugging-survey-2026-results/</guid>
-    <description>A 2026 Rust debugging survey with over 2,300 responses revealed that more than 80% of respondents identified as Advanced or Intermediate users, yet over half do not currently use a debugger for Rust. Print debugging and the dbg! macro were the most popular debugging approaches across all operating systems, with lldb in an IDE ranking highest among dedicated debuggers. The most commonly cited reason for avoiding debuggers was that logs or print debugging were easier or faster, reported by roughly 81% of respondents. Among those who do use debuggers, over 51% experienced issues stepping through code, with async code being the most problematic at about 28%. The top pain point was poor representation of values at slightly over 74%, followed by being unable to print variables. Additionally, nearly 62% of library authors were unaware of the debugger_visualizer attribute, suggesting significant room for improving both the tooling and community awareness of existing debugging enhancements.</description>
+    <description>Over 2,300 developers responded to the 2026 Rust Debugging Survey, with more than 80% rating themselves as Intermediate or Advanced users. Despite this expertise, more than half of respondents do not currently use a debugger for Rust, with print debugging and the dbg! macro being the most popular debugging methods. Beyond those, lldb in an IDE was the most common debugger choice, especially on Windows, WSL, and macOS. About 87% of debugger users employ them for line-by-line stepping, while roughly 51% reported issues doing so, with async code being the most problematic at about 28%. The top pain point overall was poor representation of values, reported by 74% of respondents, and 62% of library authors were unaware of the debugger_visualizer attribute. The survey suggests improvements like leveraging Debug implementations to display values in debuggers.</description>
     <pubDate>2026-09-07T00:00:00+00:00</pubDate>
     <source>Rust Blog</source>
   </item>
   <item>
-    <title>Project HydraFusion: Frontier quality via multi-model orchestration</title>
-    <link>https://github.blog/ai-and-ml/github-copilot/project-hydrafusion-frontier-quality-via-multi-model-orchestration/</link>
-    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/project-hydrafusion-frontier-quality-via-multi-model-orchestration/</guid>
-    <description>Project HydraFusion is a GitHub Copilot research preview that delivers frontier-quality coding assistance through runtime orchestration of multiple AI models from different providers. It chooses between three execution patterns per request: Single (one model solves directly), Cascade (an efficient model drafts and a quality gate decides whether to escalate), and Critique (a draft is independently reviewed by a different model family and revised). In controlled offline evaluations, HydraFusion matched or exceeded the Opus 5 baseline across TerminalBench 2.1, DeepSWE, and CheckpointBench benchmarks while substantially reducing estimated workflow costs. Specifically, it delivered 67% lower cost with a 4.9-point quality gain on TerminalBench 2.1, and 36-65% lower costs on the other benchmarks with minor quality differences. The system is accessible through /experimental in GitHub Copilot CLI, with usage priced at each underlying model&#x27;s standard rate.</description>
-    <pubDate>Fri, 04 Sep 2026 16:04:14 +0000</pubDate>
-    <source>GitHub Blog</source>
+    <title>ProcArena: A Multi-Scenario Benchmark for LLMs on Direct and Interactive PL/SQL Development from Natural Language</title>
+    <link>http://arxiv.org/abs/2609.06527v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.06527v1</guid>
+    <description>ProcArena is an execution-based benchmark designed to evaluate large language models on natural-language-to-PL/SQL development across both Direct and Interactive modes. It contains 3,998 executable tasks across 157 databases, covering nine development subscenarios in PostgreSQL and Oracle, including from-scratch development, code modification, debugging, and optimization. Direct tasks are constructed using Iterative Logic Enhancement with scenario-specific adapters, while paired Interactive tasks are derived through Knowledge Integration and Requirement Perturbation while preserving executable targets. The benchmark employs a controlled Solver-User Simulator protocol that enables models to clarify user intent and inspect the database environment without revealing hidden execution feedback. Evaluation of seven language models showed best average scores of only 62.2% in Direct mode and 57.8% in Interactive mode, demonstrating that realistic NL-to-PL/SQL development remains challenging, particularly in interactive settings.</description>
+    <pubDate>2026-09-06T10:47:47Z</pubDate>
+    <source>Hang Zhang</source>
   </item>
   <item>
-    <title>Radical responsibility means treating people like tools</title>
-    <link>https://seangoedecke.com/radical-responsibility-means-treating-people-like-tools/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/radical-responsibility-means-treating-people-like-tools/</guid>
-    <description>The article critiques the concept of &quot;radical responsibility&quot; as defined by Conscious Leadership, which calls for taking full responsibility for one&#x27;s circumstances instead of placing blame. The author argues that while this approach can help successful leaders achieve their goals, it has a problematic dimension: by asserting complete responsibility, it forces people to view others instrumentally, as useful assets or useless liabilities rather than as peers who can be trusted and sometimes disappointed. This mindset treats people like tools to be adjusted rather than held accountable. The author suggests that genuinely treating others as people means sharing responsibility with them, which involves assigning both praise and blame rather than hoarding all responsibility. The piece cites Sartre&#x27;s &quot;Being and Nothingness&quot; on the gap between role-playing success and actually achieving it, and references Peter Strawson&#x27;s &quot;Freedom and Resentment&quot; regarding the objective attitude toward others.</description>
-    <pubDate>Fri, 04 Sep 2026 00:00:00 GMT</pubDate>
-    <source>Sean Goedecke</source>
+    <title>Not Just Oversmoothing: Detecting the Echo Chamber Effect in Graph Neural Networks</title>
+    <link>http://arxiv.org/abs/2609.06521v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.06521v1</guid>
+    <description>The paper identifies a failure mode in Graph Neural Networks (GNNs) called the Echo Chamber Effect, which occurs when intra-community representations become indistinguishable while inter-community separation persists during message passing. Existing oversmoothing diagnostics rely on global aggregation measures that overlook these heterogeneous community-level dynamics, since real-world graphs exhibit two-timescale behavior with fast collapse within communities and slow convergence across them. To quantify this phenomenon, the authors introduce the Echo Chamber Index (ECI), which stratifies pairwise distances by community membership and detects when global energy diminishes while inter-community separation is maintained. They show theoretically that feature retention mechanisms can preserve echo chambers, with consequences depending on label structure: aligned communities sharpen classification, while misaligned ones provably hinder it. To address this, they propose Community-Aware Split Propagation (CASP), a lightweight plugin that decouples intra- and inter-community aggregation by learning their balance from label structure. Experiments demonstrate that CASP improves diverse backbone GNNs across most evaluated homophilic and heterophilic benchmarks.</description>
+    <pubDate>2026-09-06T10:42:28Z</pubDate>
+    <source>Asela Hevapathige</source>
   </item>
   <item>
-    <title>GitHub Copilot app for Beginners: Run several agents at once</title>
-    <link>https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-run-several-agents-at-once/</link>
-    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-run-several-agents-at-once/</guid>
-    <description>The GitHub Copilot app lets users run multiple AI agents on the same project simultaneously, with each session operating independently on its own Git worktree. Because the sessions are isolated, they don&#x27;t interfere with one another and can run in parallel, allowing users to start new tasks whenever they want without disturbing work already in progress. Each session keeps its own context, so users can switch between them freely without re-explaining their work. The sessions view displays each task as a card showing its title and progress, making it easy to track multiple ongoing jobs. An example demonstrates running three tasks at once on the tailspin-toys repository, including adding a funded sort feature, performing an accessibility review, and running tests. The article recommends starting two small tasks at the same time as a low-stakes way to experience parallel agent sessions.</description>
-    <pubDate>Thu, 03 Sep 2026 16:00:00 +0000</pubDate>
-    <source>GitHub Blog</source>
+    <title>Role-Specific Predictive Geometries for Nonstationary Multivariate Graph-Signal Forecasting</title>
+    <link>http://arxiv.org/abs/2609.06519v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.06519v1</guid>
+    <description>The paper addresses forecasting multivariate graph signals when node-level trajectories are nonstationary but stable relations persist. Using an error-correction representation, the authors introduce role-specific predictive geometries where directed Long relations act on estimated equilibrium coordinates and directed Short relations act on lagged differences. Matrix-valued Long responses mix equilibrium coordinates before graph propagation, while Short responses use graph-filtered transient designs. A direct multi-horizon estimator couples forecast corrections across adjacent horizons, with temporal cross-fitting and Frisch-Waugh-Lovell partialling-out providing conditional predictive interpretations for selected edges relative to a graph-temporal backbone. In controlled experiments, the method recovers all planted Long and Short relations (20/20 each) and both role families in every Dual realization (10/10). Across four real-world benchmarks, the proposed predictor outperforms the G-VARMA backbone on three datasets, with all 25 fold-horizon comparisons favorable on the five-fold financial benchmark.</description>
+    <pubDate>2026-09-06T10:29:55Z</pubDate>
+    <source>Yanbo Chen</source>
   </item>
   <item>
-    <title>UniMate: One Unified Model to Animate Diverse Skeletons</title>
-    <link>http://arxiv.org/abs/2609.05415v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.05415v1</guid>
-    <description>UniMate is a unified foundation model that synthesizes articulated motion for arbitrary skeletons given a rigged 3D asset and a text prompt, eliminating the need for test-time optimization or per-skeleton retraining. It employs a topology-aware diffusion transformer that integrates skeletal topology into attention through three mechanisms: a graph-aware attention bias derived from pairwise joint relations and geodesic distances, a spectral rotary position embedding that generalizes RoPE to arbitrary kinematic trees via the graph Laplacian, and a global topological conditioner attention-pooled from the rest-pose skeleton. To train the model, the authors curated UniML3D, a dataset of 13,006 motion sequences spanning bipedal, quadrupedal, avian, marine, insectoid, serpentine, and articulated rigid objects with unified canonicalization and text pairing. Experiments show that UniMate outperforms state-of-the-art baselines in quality, generalization, and efficiency, while supporting zero-shot cross-topology transfer, in-betweening, expansion, and text-guided editing.</description>
-    <pubDate>2026-09-04T17:59:00Z</pubDate>
-    <source>arXiv</source>
+    <title>Model-Adaptive and Risk-Constrained Frequency Hopping Against Predictive Jammers</title>
+    <link>http://arxiv.org/abs/2609.06514v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.06514v1</guid>
+    <description>The paper addresses adaptive frequency hopping against predictive jammers by tackling two challenges: model uncertainty across operating regimes and policy exposure from persistent hopping patterns. The authors propose D-PACT-AFH, a model-adaptive and risk-constrained adversarial contextual-bandit framework in which a Tsallis-FTRL master algorithm combines a global linear learner with a partitioned local learner and selects the model class online. Two variants extend this framework: D-PACT-Hit incorporates channel-wise marginal hit risk into model selection, while D-PACT-Safe applies a minimum-Kullback-Leibler projection to enforce a per-slot risk budget. The authors establish theoretical guarantees, including estimator validity under non-anticipating attacks, an oracle decomposition relative to the better fixed base learner, and an exact conditional-risk guarantee for the Safe projection. Experiments across diverse channel regimes and jammer types demonstrate effective model adaptation, with D-PACT-AFH recovering 95.5% of the local learner&#x27;s gain under observable switching while avoiding 77.7% of its degradation in a negative-control regime.</description>
+    <pubDate>2026-09-06T10:17:09Z</pubDate>
+    <source>Yanbo Chen</source>
   </item>
   <item>
-    <title>Diffusion TV: Experiencing Diffusion Models through Tangible, Embodied Interaction</title>
-    <link>http://arxiv.org/abs/2609.05404v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.05404v1</guid>
-    <description>Diffusion TV is an interactive AI art installation by Sihwa Park that offers a tangible, embodied experience of diffusion models through a modified CRT TV. By physically manipulating the TV&#x27;s antenna, audiences control the clarity of AI-generated images and sounds, metaphorically enacting the denoising process that underlies diffusion-based generation. A tuning knob allows participants to switch between three channels featuring AI-generated animals representing the Past (extinct species), Present (endangered species), and Future (speculative creatures), situating the interaction within a temporal and ecological narrative. Through continuous audiovisual feedback and physical interaction, the work foregrounds the generative process over final outputs, inviting audiences to explore intermediate states as experiential material. Rather than providing explicit technical explanation, Diffusion TV presents an alternative, embodied mode of explainable AI that encourages exploratory engagement with generative technologies. The project was presented at the Explainable AI for the Arts Workshop 2026 (XAIxArts 2026).</description>
-    <pubDate>2026-09-04T17:51:48Z</pubDate>
-    <source>arXiv</source>
+    <title>Bi-HYCO: Bi-Objective Cooperative Learning for PDE Parameter Identification under Fragmented Observations</title>
+    <link>http://arxiv.org/abs/2609.06511v1</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.06511v1</guid>
+    <description>The authors propose Bi-Objective HYCO (Bi-HYCO), a cooperative learning framework for identifying PDE parameters when physical and synthetic models receive fragmented observations. The method retains both model representations along with their local observational objectives and couples their predicted states at unlabeled interaction points, which serve as a communication mechanism in a common state space without augmenting data. The two criteria form a vector-valued objective solved via weighted scalarizations, and the authors prove sufficient decrease, finite sequence length, and convergence to a mixed critical point under Kurdyka-Lojasiewicz-type assumptions. Experiments on elliptic transmission problems and two-dimensional Navier-Stokes equations assess parameter and state reconstruction alongside noise and scalarization effects, with comparisons to PINN and XPINN baselines. Ablations indicate that removing state interaction while keeping aggregation degrades parameter recovery, particularly for the Navier-Stokes case</description>
+    <pubDate>2026-09-06T09:59:44Z</pubDate>
+    <source>Umberto Biccari</source>
   </item>
   <item>
-    <title>RegionFed: Federated Learning for Personalized Query Understanding in Heterogeneous Retail Environments</title>
-    <link>http://arxiv.org/abs/2609.05403v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.05403v1</guid>
-    <description>Retail search systems serve diverse geographic regions with distinct query patterns and vocabularies, creating data heterogeneity that challenges both privacy-preserving training and personalization. Standard federated learning produces global models that sacrifice regional performance, while existing personalized FL methods operating at the parameter level catastrophically collapse on modern transformers, falling below 10% accuracy on T5 due to tied embeddings and LayerNorm interactions. RegionFed addresses these failures by operating entirely at the gradient level, using the ℓ₂ conflict between regional and global gradients as a unified signal to diagnose heterogeneity, route regions to appropriate personalization strategies, and adaptively control personalization strength. Because it treats models as differentiable black boxes, RegionFed deploys on T5-Small, T5-3B, RoBERTa, and CNN with zero code changes. Across the Amazon ESCI, Amazon Reviews, and LEAF-FEMNIST datasets, RegionFed-Meta achieves 92.27% accuracy, closing the gap to the privacy-violating centralized upper bound of 92.04% while providing (ε≈0.60)-differential privacy and O(1/√T) convergence.</description>
-    <pubDate>2026-09-04T17:50:10Z</pubDate>
-    <source>arXiv</source>
-  </item>
-  <item>
-    <title>A Deep Generative Model for Synthesizing Labeled Wireless Signals</title>
-    <link>http://arxiv.org/abs/2609.05396v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.05396v1</guid>
-    <description>Wireless signals with position-related labels are essential for performance evaluation and model training in wireless sensing, yet acquiring real-world datasets is costly due to measurement and labeling expenses. Traditional synthesis methods depend on environmental models, requiring extensive hyper-parameter tuning and producing signals that lack sufficient realism. To address these limitations, the authors propose Inter-Instance Generative Adversarial Networks (IIns-GAN), a novel deep learning-based method for generating realistic labeled wireless signals. The approach is adaptive to different environment scenarios and well-suited for diverse model training tasks, including distance estimation and environment identification. Extensive experiments on public Ultra-Wideband (UWB) datasets demonstrate that the signals generated by IIns-GAN closely mirror the physical characteristics of real-world measurements. These synthetic signals significantly improve model training performance across various wireless sensing applications.</description>
-    <pubDate>2026-09-04T17:44:54Z</pubDate>
-    <source>arXiv</source>
-  </item>
-  <item>
-    <title>Multi-Step Tool-Calling over Korean Open Public APIs: A Benchmark and a Data-Synthesis Recipe</title>
-    <link>http://arxiv.org/abs/2609.05395v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.05395v1</guid>
-    <description>Researchers address the challenge of deploying open-source LLM agents for multi-step tool-calling across live government APIs, where data-sovereignty regulations necessitate on-premise solutions but open-source models typically underperform. To measure this gap, the authors introduce KOPA-Bench, a Korean Open Public API Benchmark comprising 145 real-world tasks. They also present EDGE, an Execution-grounded Dynamic Graph framework for synthesizing tool-calling training data driven by live execution. EDGE constructs a graph mapping how tool outputs can feed into other tools&#x27; inputs, retains only links verified through actual API calls, and traverses these successful connections to generate executable multi-step trajectories. A 9B model fine-tuned with GRPO on EDGE-generated data nearly matches the performance of an untuned 27B model from the same family, showing substantial improvements on both KOPA-Bench and the BFCL benchmark. The work was accepted to the EMNLP 2026 Industry Track.</description>
-    <pubDate>2026-09-04T17:44:52Z</pubDate>
-    <source>arXiv</source>
-  </item>
-  <item>
-    <title>bzip3</title>
-    <link>https://github.com/iczelia/bzip3</link>
-    <guid isPermaLink="false">https://github.com/iczelia/bzip3</guid>
-    <description>The bzip3 repository, hosted under the user iczelia on GitHub with 1.4k stars and 62 forks, contains a file compression utility described as a better, faster, and stronger spiritual successor to BZip2. The project boasts higher compression ratios and better performance than its predecessor by combining an order-0 context mixing entropy coder, a fast Burrows-Wheeler transform using suffix arrays, and an RLE with a Lempel Ziv plus Prediction pass built on LZ77-style string matching and PPM-style context modeling. Like BZip2, BZip3 is particularly effective at compressing text or code. The repository&#x27;s root directory includes standard project files such as CMakeLists.txt, configure.ac, Makefile.am, and bootstrap.sh, alongside utility tools named bunzip3, bz3cat, bz3grep, bz3less, bz3more, and bz3most. Installation can be performed by running bootstrap.sh followed by configure, make, and make install, or alternatively through system package managers such as Homebrew on macOS.</description>
-    <pubDate>2026-09-07T13:35:13Z</pubDate>
+    <title>I-have-ADHD: A skill to stop coding agents from burying the answer</title>
+    <link>https://github.com/ayghri/i-have-adhd</link>
+    <guid isPermaLink="false">https://github.com/ayghri/i-have-adhd</guid>
+    <description>The &quot;i-have-adhd&quot; repository is a skill/plugin for coding assistants that prevents them from &quot;burying the answer&quot; in unnecessary preamble and tangents. With 30.6k stars and 1.9k forks on GitHub, it provides ADHD-friendly outputs by enforcing 10 rules, including leading with the next action, numbering multi-step tasks, ending with one concrete next step, suppressing tangents, restating state every turn, providing specific time estimates, capping lists at five items, and omitting preambles, recaps, and closers. An example contrasts verbose responses starting with &quot;Great question!&quot; against action-first responses with numbered steps and a clear next instruction. The rules are documented in SKILL.md and can be customized by forking and editing the file. The skill was loosely adapted from &quot;The Adult ADHD Tool Kit&quot; by J. Russell Ramsay and Anthony L. Rostain and supports English, Chinese, Brazilian Portuguese, Japanese, Vietnamese, Korean, and Thai.</description>
+    <pubDate>2026-09-08T14:13:26Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: Mador – Make any DOM reactive with a tiny 80-line Proxy state tuple</title>
-    <link>https://github.com/marsbos/mador</link>
-    <guid isPermaLink="false">https://github.com/marsbos/mador</guid>
-    <description>Mador is a small reactive DOM runtime built around an 80-line Proxy-based state tuple, designed for developers who want reactivity without adopting a full framework. It exposes a single `mador()` function that returns a `[read, write]` pair, where `read` binds a CSS selector and a derived state value to a callback that updates matching DOM elements, and `write` mutates the underlying state. The library is distributed as a native ES module available through npm or directly from a CDN like jsDelivr, requiring no build step to use. A typical example shows a shared `count` value being rendered simultaneously into multiple elements (e.g., `.counter` and `.another-counter`) that automatically update when `write` increments the state. The project is open-source on GitHub under the marsbos account, with a directory structure including `src`, `examples`, and a `build.mjs` script, positioning it as a lightweight alternative for adding reactivity directly to existing markup.</description>
-    <pubDate>2026-09-06T20:45:13Z</pubDate>
+    <title>Kimi K3 (2.8T) at 1 token/s on a MacBook Pro, streamed from four SSDs</title>
+    <link>https://github.com/argonautlabsai/deltafin</link>
+    <guid isPermaLink="false">https://github.com/argonautlabsai/deltafin</guid>
+    <description>Running a 2.8 trillion-parameter model like Kimi K3 at usable speeds on a consumer MacBook Pro—by streaming weights from four SSDs—shows that frontier-scale LLMs can now run on commodity hardware without expensive GPU clusters. For software engineers, this demonstrates a practical path to local deployment of massive models, with meaningful implications for infrastructure costs, latency tuning, and data privacy in production AI systems.</description>
+    <pubDate>2026-09-08T20:07:55Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: Engrim – A universal, local-first SQLite memory engine for AI CLIs</title>
-    <link>https://github.com/timgordontg/engrim</link>
-    <guid isPermaLink="false">https://github.com/timgordontg/engrim</guid>
-    <description>Engrim is a local-first, project-scoped SQLite memory engine designed for AI command-line interfaces. Created by timgordontg, it functions as a universal cross-model and cross-agent episodic memory store that allows developers to switch between AI environments like Google Antigravity, Claude Code, Cursor MCP, and Windsurf mid-project without losing architectural decisions, user constraints, or project state. The tool addresses &quot;attention dilution&quot; by replacing vast context windows with approximately 4,000 characters of curated episodic working memory, arguing that models are disposable utilities while project decisions are not. Connected AI agents can automatically write to memory via MCP tools when making architectural decisions, or developers can manually save entries using the `engrim add` command, allowing them to clear agent sessions and have context reload intact. Engrim is distributed under an MIT license, supports Python 3.10+, and is available on PyPI.</description>
-    <pubDate>2026-09-07T04:49:36Z</pubDate>
+    <title>Navier-Stokes – Tristan Buckmaster [pdf]</title>
+    <link>https://cims.nyu.edu/~tristanb/statement.pdf</link>
+    <guid isPermaLink="false">https://cims.nyu.edu/~tristanb/statement.pdf</guid>
+    <description>Tristan Buckmaster&#x27;s work on the Navier-Stokes equations addresses fundamental questions in fluid dynamics that underpin many computational simulations. Software engineers working in computational fluid dynamics, graphics rendering, or physics engines would benefit from understanding these mathematical advances, as they inform numerical methods and stability criteria for simulating fluid behavior. Progress on these equations can lead to more accurate and efficient algorithms for modeling real-world fluid systems in software.</description>
+    <pubDate>2026-09-08T05:42:28Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: Stuxnet – A reconstructed source code of the infamous cyber-weapon</title>
-    <link>https://github.com/Sadpainy/Stuxnet</link>
-    <guid isPermaLink="false">https://github.com/Sadpainy/Stuxnet</guid>
-    <description>A GitHub repository by user Sadpainy contains a reconstructed source code version of the Stuxnet cyber-weapon, derived from reverse engineering of the original binaries discovered in 2010. The code is intended solely for academic study, malware analysis training, and defensive research, licensed under GPL v3. Stuxnet is recognized as the first known cyber-weapon designed to cause physical destruction to industrial control systems, specifically targeting Siemens SIMATIC WinCC, Step 7 software, and S7-300/400 PLCs to manipulate frequency converter drives and damage centrifuge rotors. The worm propagated through USB drives using LNK exploits, network shares via Print Spooler, and peer-to-peer connections. Its payload modified PLC block logic (OB1/OB35) to alter motor frequencies, while employing rootkit capabilities through MRxCls.sys and MRxNet.sys drivers to hide files, processes, and registry entries.</description>
-    <pubDate>2026-09-07T22:12:38Z</pubDate>
+    <title>On the Navier–Stokes Millennium Prize Problem</title>
+    <link>https://openai.com/index/navier-stokes-solution/</link>
+    <guid isPermaLink="false">https://openai.com/index/navier-stokes-solution/</guid>
+    <description>The Navier–Stokes equations underpin fluid simulations used in aerospace, weather modeling, and visual effects, so any resolution of their mathematical behavior would directly affect the reliability of software engineers&#x27; numerical methods. A proven guarantee of smooth solutions—or knowledge of where they break down—would inform how confidently engineers design algorithms for large-scale CFD systems. Even partial insights shape the development of more stable, efficient simulation code.</description>
+    <pubDate>2026-09-08T17:13:21Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Keep Our Servers Running</title>
-    <link>https://blog.archive.org/2026/09/01/keep-our-servers-running-your-recurring-donation-goes-3x-this-september/</link>
-    <guid isPermaLink="false">https://blog.archive.org/2026/09/01/keep-our-servers-running-your-recurring-donation-goes-3x-this-september/</guid>
-    <description>The Internet Archive has launched a September fundraising campaign to support the infrastructure powering its digital library. Recurring donations of $25 or more made during September will be matched 2:1, tripling their impact: a $25 monthly gift becomes $75, a $50 gift becomes $150, and a $100 gift becomes $300. The organization maintains 210 petabytes of knowledge and operates independently, building its own servers, storage, and systems rather than relying on corporate contractors. The Internet Archive provides free access to all users without charging fees, selling data, or displaying ads. Recurring gifts from donors averaging around $25 provide the dependable, ongoing support needed to keep books readable, websites accessible, and infrastructure running year after year.</description>
-    <pubDate>2026-09-07T03:29:51Z</pubDate>
+    <title>Mistral raises €3B</title>
+    <link>https://mistral.ai/news/mistral-makes-sovereign-open-weight-ai-to-frontier/</link>
+    <guid isPermaLink="false">https://mistral.ai/news/mistral-makes-sovereign-open-weight-ai-to-frontier/</guid>
+    <description>Mistral has raised €3 billion in a Series D funding round at a post-money valuation exceeding €21 billion, marking the largest equity fundraising ever completed by a European technology company. The round was led by Samsung Electronics, with co-leads Scaleup Europe Fund, managed by EQT, and existing investor PSG Equity. The capital will expand Mistral&#x27;s frontier research, scale compute capacity for training powerful models, and accelerate commercial growth and international expansion. The company now operates across 20 countries and supports more than 125 global enterprises, including Airbus, ASML, and HSBC, through its full-stack open-weight AI offering focused on sovereign deployment. New investors Advent, BlackRock, and the Grand Duchy of Luxembourg joined alongside existing backers such as ASML, NVIDIA, a16z, BNP Paribas, Bpifrance, and General Catalyst.</description>
+    <pubDate>2026-09-08T05:06:23Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Your intellectual fly is open when you use an LLM to author a post (2025)</title>
-    <link>https://bcantrill.dtrace.org/2025/12/05/your-intellectual-fly-is-open/</link>
-    <guid isPermaLink="false">https://bcantrill.dtrace.org/2025/12/05/your-intellectual-fly-is-open/</guid>
-    <description>The author says LinkedIn has become important to them, despite its clumsy, boring, but comparatively un-crooked character and its survival as other social media platforms have imploded. They argue that too many people use LLMs to generate posts, encouraged by LinkedIn’s “rewrite it with AI” feature, even though the resulting writing is often poor and full of recognizable stylistic tics. These include excessive emojis, one-sentence paragraphs, “it’s not just… but also” formulas, and inappropriate em-dashes, making generated writing difficult to ignore. For the author, LLM-authored posts obscure the line between a person’s real perspective and fabricated content, causing them and many others to stop reading. The author still considers LLMs useful for brainstorming, understanding text, and editing, but maintains that they should not replace the author’s own voice.</description>
-    <pubDate>2026-09-06T11:56:43Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>A/I shuts down</title>
-    <link>https://keepitfree.ai/announcements/a/i-shuts-down-stay-human/</link>
-    <guid isPermaLink="false">https://keepitfree.ai/announcements/a/i-shuts-down-stay-human/</guid>
-    <description>The Autistici/Inventati (A/I) collective announced it is shutting down after being designated a global terrorist organization. For 25 years, the collective had maintained a free, privacy-friendly, and autonomous digital infrastructure, but decided to discontinue all its services to protect its users and communities from autocrats, fascists, and agencies engaged in extra-legal actions. The collective stated that continuing operations endangered not only users but anyone associated with the organization, and that repression had become increasingly disproportionate. Remaining online after August 26, 2026 was considered a victory, but circumstances ultimately forced them to stop. A/I pledged to provide instructions for backing up blogs, mailboxes, and websites, while warning that the autistici.org domain had already been made unreachable and similar disruptions could occur in the coming days.</description>
-    <pubDate>2026-09-06T14:34:34Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Isar Aerospace reaches orbit and deploys payloads on second flight</title>
-    <link>https://isaraerospace.com/press/history-for-european-spaceflight-isar-aerospace-reaches-orbit-and-deploys-payloads-on-second-flight</link>
-    <guid isPermaLink="false">https://isaraerospace.com/press/history-for-european-spaceflight-isar-aerospace-reaches-orbit-and-deploys-payloads-on-second-flight</guid>
-    <description>Isar Aerospace became the first European commercial space company to successfully deliver satellites into orbit on its second flight, with mission &quot;Onward and Upward&quot; lifting off from Andøya Space in Norway on 5 September 2026 at 10:12 pm CEST. The Spectrum vehicle passed MaxQ, completed MECO and stage separation, ignited its second stage, crossed the Kármán line at 100 kilometers altitude, jettisoned its payload fairing, and successfully separated its spacecraft after a circularization burn. The mission&#x27;s payloads were selected through the Microlauncher Competition of the German Space Agency at DLR. Founded in 2018 and headquartered near Munich, the company has grown to over 400 employees across five international locations and is now producing Spectrum vehicles 3-7. A new 40,000 m² production facility will eventually enable manufacturing of up to 40 launch vehicles per year, while an additional launch complex is under construction in Nova Scotia, Canada.</description>
-    <pubDate>2026-09-06T07:21:06Z</pubDate>
-    <source>Hacker News</source>
+    <title>How to build a f**king printer</title>
+    <link>https://nishantjosh.dev/blogs/how-to-build-a-fking-printer/</link>
+    <guid isPermaLink="false">https://nishantjosh.dev/blogs/how-to-build-a-fking-printer/</guid>
+    <description>The author set out to build an e-ink display and ended up turning the Xteink X3 e-reader into a fully functional printer called &quot;penguin.&quot; They implemented the Internet Printing Protocol (IPP) over HTTP, accepting Apple raster and PWG raster formats at 300 dpi, and used Bonjour with the _universal subtype for driverless discovery on macOS. The biggest challenge was the device&#x27;s tiny 400 KB of RAM, which couldn&#x27;t hold an entire uncompressed Letter-sized page (~8.4 MB). To solve this, they piped incoming pages through decode, shrink, and dither transformations, writing each finished row directly into the display&#x27;s existing screen buffer instead of building a separate image in memory. This cut image-buffer RAM use from roughly 113 KB to 62 KB, leaving room for the Wi-Fi stack. The first successful test print was a Mushoku Tensei manga page rendered in about a second, and saved printouts now live in a folder on the SD card.</description>
+    <pubDate>Tue, 08 Sep 2026 16:39:21 -0500</pubDate>
+    <source>Lobsters</source>
   </item>
 </channel></rss>
