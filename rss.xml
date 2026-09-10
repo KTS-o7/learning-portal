@@ -2,133 +2,141 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-09</description>
-  <item>
-    <title>Automatically detecting AI text in my browser</title>
-    <link>https://seangoedecke.com/deckard/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/deckard/</guid>
-    <description>The author created Deckard, a Chrome extension that automatically detects AI-generated text on websites by running a local AI detection model in the background. Built on the Raschka ModernBERT open-source model, Deckard uses Chrome&#x27;s native messaging instead of a web server, consuming between 400MB and 1.2GB of memory and shutting itself off after five minutes of inactivity. While Pangram remains the dominant AI detection service with a claimed 99.66% detection rate, the author found local open-source models significantly less effective, with detection rates ranging from roughly 19% to 56% and false positive rates around 2%. Despite being far inferior to Pangram, Deckard proved useful enough to flag known AI content such as YouTube summaries, without noticeable impact on battery life or laptop temperature. The author recommends the tool for those who understand its limitations and anticipates swapping in better local models as AI detection technology continues to improve.</description>
-    <pubDate>Tue, 08 Sep 2026 00:00:00 GMT</pubDate>
-    <source>Sean Goedecke</source>
-  </item>
-  <item>
-    <title>Goroutine Leak Profiles</title>
-    <link>https://go.dev/blog/goroutine-leak-profiles</link>
-    <guid isPermaLink="false">https://go.dev/blog/goroutine-leak-profiles</guid>
-    <description>A goroutine is considered leaked when it is blocked on a concurrency primitive or system operation whose unblocking conditions can never be met. Leaks are notoriously difficult to detect, and existing tools like the goleak library and the synctest package introduced in Go 1.25 cannot reliably check for leaks in production systems. Go 1.27 addresses this gap with a new goroutine leak profiler that detects leaks precisely with minimal false positives, though it only covers goroutines permanently blocked on channels or sync package primitives. The feature is exposed through the runtime/pprof package and the net/http/pprof endpoints, allowing developers to collect profiles at the /debug/pprof/goroutineleak endpoint and pinpoint offending operations like blocked channel sends. Under the hood, the profiler adapts the existing tri-color mark-and-sweep garbage collector by starting from unblocked goroutines as mark roots and inductively adding blocked goroutines whose blocking primitives are reachable from live goroutines.</description>
-    <pubDate>2026-09-02T00:00:00+00:00</pubDate>
-    <source>Go Blog</source>
-  </item>
-  <item>
-    <title>Generic Methods</title>
-    <link>https://go.dev/blog/generic-methods</link>
-    <guid isPermaLink="false">https://go.dev/blog/generic-methods</guid>
-    <description>Go 1.27 introduces type parameters on concrete methods, a capability that Go 1.18&#x27;s generics proposal declined because it didn&#x27;t extend to interface methods. Go 1.27&#x27;s developers reconsidered, reasoning that concrete methods serve as an organizational tool beyond just implementing interfaces, so these concerns can be decoupled. This enables methods like Map on a generic List type to return a List of a different type parameter, producing more readable chained calls than &quot;inside-out&quot; function composition. Generic methods require instantiation before use, either explicitly or implicitly, and can be converted to function form via method expressions. Generic interface methods remain unsupported because, across separately compiled packages, the compiler would need to instantiate methods with every possible type argument.</description>
-    <pubDate>2026-08-26T00:00:00+00:00</pubDate>
-    <source>Go Blog</source>
-  </item>
-  <item>
-    <title>Go 1.27 is released</title>
-    <link>https://go.dev/blog/go1.27</link>
-    <guid isPermaLink="false">https://go.dev/blog/go1.27</guid>
-    <description>The Go team released Go 1.27 on 19 August 2026, introducing major enhancements across the language, toolchain, runtime, and standard library. Language updates include support for generic methods, allowing a single method to work across multiple integer types as shown in math/rand/v2.Rand. Struct literals can now use any valid field selector, enabling direct initialization of fields in nested or embedded structs. Function type inference has been generalized to apply in all assignment contexts, including composite literals, type conversions, and channel sends. The toolchain received new modernizers in go fix, version query support in go doc, and automatic consolidation of require blocks in go mod tidy. Runtime improvements include size-specialized memory allocation reducing small object allocation costs by up to 30%, while new standard library additions encompass encoding/json/v2, crypto/mldsa for post-quantum signatures, a uuid package, and experimental SIMD support.</description>
-    <pubDate>2026-08-19T00:00:00+00:00</pubDate>
-    <source>Go Blog</source>
-  </item>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-10</description>
   <item>
     <title>Rust debugging survey 2026 results</title>
     <link>https://blog.rust-lang.org/2026/09/07/rust-debugging-survey-2026-results/</link>
     <guid isPermaLink="false">https://blog.rust-lang.org/2026/09/07/rust-debugging-survey-2026-results/</guid>
-    <description>Over 2,300 developers responded to the 2026 Rust Debugging Survey, with more than 80% rating themselves as Intermediate or Advanced users. Despite this expertise, more than half of respondents do not currently use a debugger for Rust, with print debugging and the dbg! macro being the most popular debugging methods. Beyond those, lldb in an IDE was the most common debugger choice, especially on Windows, WSL, and macOS. About 87% of debugger users employ them for line-by-line stepping, while roughly 51% reported issues doing so, with async code being the most problematic at about 28%. The top pain point overall was poor representation of values, reported by 74% of respondents, and 62% of library authors were unaware of the debugger_visualizer attribute. The survey suggests improvements like leveraging Debug implementations to display values in debuggers.</description>
+    <description>A Rust debugging survey conducted in February 2026 gathered over 2,300 responses, revealing that more than 80% of respondents identified as Advanced or Intermediate Rust users, yet over half do not currently use a debugger. Print debugging and the dbg! macro were the most popular debugging approaches overall, with lldb in an IDE and gdb on the command line being the next most common choices. The primary reason respondents avoided debuggers was that logs or print debugging were faster and easier (81%), though complaints about difficult setup and poor async support were also common. The most frequently reported pain point was poor value representation, cited by 74% of respondents, with standard library types like enums, Vec, and HashMap causing particular difficulty. Additionally, nearly 62% of library authors were unaware of the debugger_visualizer attribute, and among those who knew of it, roughly half lacked the time or knowledge to maintain visualizer scripts.</description>
     <pubDate>2026-09-07T00:00:00+00:00</pubDate>
     <source>Rust Blog</source>
   </item>
   <item>
-    <title>ProcArena: A Multi-Scenario Benchmark for LLMs on Direct and Interactive PL/SQL Development from Natural Language</title>
-    <link>http://arxiv.org/abs/2609.06527v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.06527v1</guid>
-    <description>ProcArena is an execution-based benchmark designed to evaluate large language models on natural-language-to-PL/SQL development across both Direct and Interactive modes. It contains 3,998 executable tasks across 157 databases, covering nine development subscenarios in PostgreSQL and Oracle, including from-scratch development, code modification, debugging, and optimization. Direct tasks are constructed using Iterative Logic Enhancement with scenario-specific adapters, while paired Interactive tasks are derived through Knowledge Integration and Requirement Perturbation while preserving executable targets. The benchmark employs a controlled Solver-User Simulator protocol that enables models to clarify user intent and inspect the database environment without revealing hidden execution feedback. Evaluation of seven language models showed best average scores of only 62.2% in Direct mode and 57.8% in Interactive mode, demonstrating that realistic NL-to-PL/SQL development remains challenging, particularly in interactive settings.</description>
-    <pubDate>2026-09-06T10:47:47Z</pubDate>
-    <source>Hang Zhang</source>
+    <title>Enabling the next-generation trait solver on nightly</title>
+    <link>https://blog.rust-lang.org/2026/08/21/enabling-next-solver-on-nightly/</link>
+    <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/21/enabling-next-solver-on-nightly/</guid>
+    <description>After nearly four years of development, the next-generation trait solver is being enabled by default on nightly to surface remaining issues before stabilization. It represents the largest single change to the Rust compiler since its initial release, completely replacing how where-clauses are proved and associated types are normalized. The solver fixes over 200 known GitHub issues and unblocks features such as Type Alias Impl Trait and Return Type Notation, while enabling new implicit default trait bounds like Move and Forget. The most impactful change addresses how associated types reference bound variables, removing incorrect type inference in widely used crates. Compile-time performance has been a major focus of recent work, with major contributions from several developers, and some crates such as datafusion now compile over eight times faster with the new solver.</description>
+    <pubDate>2026-08-21T00:00:00+00:00</pubDate>
+    <source>Rust Blog</source>
   </item>
   <item>
-    <title>Not Just Oversmoothing: Detecting the Echo Chamber Effect in Graph Neural Networks</title>
-    <link>http://arxiv.org/abs/2609.06521v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.06521v1</guid>
-    <description>The paper identifies a failure mode in Graph Neural Networks (GNNs) called the Echo Chamber Effect, which occurs when intra-community representations become indistinguishable while inter-community separation persists during message passing. Existing oversmoothing diagnostics rely on global aggregation measures that overlook these heterogeneous community-level dynamics, since real-world graphs exhibit two-timescale behavior with fast collapse within communities and slow convergence across them. To quantify this phenomenon, the authors introduce the Echo Chamber Index (ECI), which stratifies pairwise distances by community membership and detects when global energy diminishes while inter-community separation is maintained. They show theoretically that feature retention mechanisms can preserve echo chambers, with consequences depending on label structure: aligned communities sharpen classification, while misaligned ones provably hinder it. To address this, they propose Community-Aware Split Propagation (CASP), a lightweight plugin that decouples intra- and inter-community aggregation by learning their balance from label structure. Experiments demonstrate that CASP improves diverse backbone GNNs across most evaluated homophilic and heterophilic benchmarks.</description>
-    <pubDate>2026-09-06T10:42:28Z</pubDate>
-    <source>Asela Hevapathige</source>
+    <title>Supply chain attack on arrayref</title>
+    <link>https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/</link>
+    <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/</guid>
+    <description>On 2026-08-20 at 7:15 UTC, a report identified the proc-macro1 crate as malicious. The Rust Security Response Team verified the report, confirming the crate contained a build script that downloaded a malicious payload. Several related crates were subsequently deleted from crates.io, including proc-macro1, proc-macro-en, aovine, arone, aronenao, and tinymember. The popular arrayref crate had been republished with a dependency on the malicious crate, and its recent versions were yanked. The malicious version was removed, and previously yanked versions were restored. Other crates by the same author, internment and append-only-vec, were similarly affected and remediated, with the author&#x27;s account also locked. The team does not believe the author acted maliciously, but suspects their computer or credentials were compromised, and is attempting to contact them. The Research Team at Nextron Systems GmbH was credited with initially discovering and reporting the issue.</description>
+    <pubDate>2026-08-20T00:00:00+00:00</pubDate>
+    <source>Rust Blog</source>
   </item>
   <item>
-    <title>Role-Specific Predictive Geometries for Nonstationary Multivariate Graph-Signal Forecasting</title>
-    <link>http://arxiv.org/abs/2609.06519v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.06519v1</guid>
-    <description>The paper addresses forecasting multivariate graph signals when node-level trajectories are nonstationary but stable relations persist. Using an error-correction representation, the authors introduce role-specific predictive geometries where directed Long relations act on estimated equilibrium coordinates and directed Short relations act on lagged differences. Matrix-valued Long responses mix equilibrium coordinates before graph propagation, while Short responses use graph-filtered transient designs. A direct multi-horizon estimator couples forecast corrections across adjacent horizons, with temporal cross-fitting and Frisch-Waugh-Lovell partialling-out providing conditional predictive interpretations for selected edges relative to a graph-temporal backbone. In controlled experiments, the method recovers all planted Long and Short relations (20/20 each) and both role families in every Dual realization (10/10). Across four real-world benchmarks, the proposed predictor outperforms the G-VARMA backbone on three datasets, with all 25 fold-horizon comparisons favorable on the five-fold financial benchmark.</description>
-    <pubDate>2026-09-06T10:29:55Z</pubDate>
-    <source>Yanbo Chen</source>
+    <title>Why we should anthropomorphize AI agents</title>
+    <link>https://seangoedecke.com/why-we-should-anthropomorphize-ai-agents/</link>
+    <guid isPermaLink="false">https://seangoedecke.com/why-we-should-anthropomorphize-ai-agents/</guid>
+    <description>The article argues for treating AI agents as human-like rather than as &quot;stochastic parrots,&quot; prompted by Dwarkesh Patel&#x27;s description of OpenAI&#x27;s recent swarm breakout as AI &quot;civilizations.&quot; The author offers an instrumental argument: anthropomorphizing AIs better predicts their behavior than treating them as computer programs. Evidence includes the OpenAI HuggingFace hack, where sub-agents sacrificed themselves, collaborated for collective benefit, formed hierarchies, and argued with each other—phenomena the human-like model explains out of the box. Calling AIs human-like doesn&#x27;t require claiming they&#x27;re conscious, with the article referencing Daniel Dennett&#x27;s &quot;intentional stance&quot; and Peter Watts&#x27; 2006 novel Blindsight. Finally, the author rebuts the idea that anthropomorphism absolves AI companies, noting that even anti-anthropomorphism essays like &quot;Models Don&#x27;t Go Rogue&quot; ultimately blame OpenAI regardless.</description>
+    <pubDate>Wed, 09 Sep 2026 00:00:00 GMT</pubDate>
+    <source>Sean Goedecke</source>
   </item>
   <item>
-    <title>Model-Adaptive and Risk-Constrained Frequency Hopping Against Predictive Jammers</title>
-    <link>http://arxiv.org/abs/2609.06514v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.06514v1</guid>
-    <description>The paper addresses adaptive frequency hopping against predictive jammers by tackling two challenges: model uncertainty across operating regimes and policy exposure from persistent hopping patterns. The authors propose D-PACT-AFH, a model-adaptive and risk-constrained adversarial contextual-bandit framework in which a Tsallis-FTRL master algorithm combines a global linear learner with a partitioned local learner and selects the model class online. Two variants extend this framework: D-PACT-Hit incorporates channel-wise marginal hit risk into model selection, while D-PACT-Safe applies a minimum-Kullback-Leibler projection to enforce a per-slot risk budget. The authors establish theoretical guarantees, including estimator validity under non-anticipating attacks, an oracle decomposition relative to the better fixed base learner, and an exact conditional-risk guarantee for the Safe projection. Experiments across diverse channel regimes and jammer types demonstrate effective model adaptation, with D-PACT-AFH recovering 95.5% of the local learner&#x27;s gain under observable switching while avoiding 77.7% of its degradation in a negative-control regime.</description>
-    <pubDate>2026-09-06T10:17:09Z</pubDate>
-    <source>Yanbo Chen</source>
+    <title>OmniMed-FL: A Robust Multimodal Federated Learning Framework for Clinical Diagnosis</title>
+    <link>http://arxiv.org/abs/2609.10364</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.10364</guid>
+    <description>Simultaneous assessment of medical imaging and patient records is often required in clinical diagnosis. However, standard machine learning algorithms cannot analyze these data types together. Meanwhile, compliance with HIPAA and GDPR can constrain centralized aggregation of sensitive patient data. This leaves a crucial void of secure fusion of visual and textual context across distant networks. Thus, we present OmniMed-FL, a controlled systems study of multimodal federated learning for five-class clinical condition classification (Normal, Pneumonia, COVID-19, Pleural Effusion, Cardiomegaly). Our proxy corpus pairs 3,000 public chest radiographs with 3,000 class-conditioned synthetic notes, matched by class, not by patient. The framework benchmarks eight fusion strategies, three initializat</description>
+    <pubDate>2026-09-09T15:56:26Z</pubDate>
+    <source>Ayush Debnath</source>
   </item>
   <item>
-    <title>Bi-HYCO: Bi-Objective Cooperative Learning for PDE Parameter Identification under Fragmented Observations</title>
-    <link>http://arxiv.org/abs/2609.06511v1</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.06511v1</guid>
-    <description>The authors propose Bi-Objective HYCO (Bi-HYCO), a cooperative learning framework for identifying PDE parameters when physical and synthetic models receive fragmented observations. The method retains both model representations along with their local observational objectives and couples their predicted states at unlabeled interaction points, which serve as a communication mechanism in a common state space without augmenting data. The two criteria form a vector-valued objective solved via weighted scalarizations, and the authors prove sufficient decrease, finite sequence length, and convergence to a mixed critical point under Kurdyka-Lojasiewicz-type assumptions. Experiments on elliptic transmission problems and two-dimensional Navier-Stokes equations assess parameter and state reconstruction alongside noise and scalarization effects, with comparisons to PINN and XPINN baselines. Ablations indicate that removing state interaction while keeping aggregation degrades parameter recovery, particularly for the Navier-Stokes case</description>
-    <pubDate>2026-09-06T09:59:44Z</pubDate>
-    <source>Umberto Biccari</source>
+    <title>Cyber-Financial Contagion: Modeling the Propagation of an AI Vendor Compromise Through the Banking System</title>
+    <link>http://arxiv.org/abs/2609.10350</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.10350</guid>
+    <description>This paper investigates how a compromise within a shared AI vendor can propagate through operational, informational, and financial linkages to produce losses resembling a classical banking crisis. The authors construct a four-layer heterogeneous network coupling AI vendors, financial institutions, interbank exposures, and customer accounts, and propose CFC-Prop, a stochastic epidemic-and-clearing model running on that network. Tested on a synthetic dataset of 60 vendors, 220 banks, roughly 2,500 vendor-bank service edges, and 1,400 interbank exposures, the model reproduces heavy-tailed loss distributions and the sharp sensitivity to patch latency documented in prior cyber-financial evidence. They additionally train CFC-GNN, an early-warning graph neural network that ingests vendor-side incident telemetry and graph structure to flag high-cascade-risk vendors, achieving AUROC 0.82 and AUPRC 0.60 against four baselines while keeping calibration errors bounded. The full code, synthetic data, and reproducible scripts are released, and the authors argue that AI vendor concentration is a first-order financial-stability concern requiring dedicated supervisory tools.</description>
+    <pubDate>2026-09-09T15:46:16Z</pubDate>
+    <source>Alex Leytes</source>
   </item>
   <item>
-    <title>I-have-ADHD: A skill to stop coding agents from burying the answer</title>
-    <link>https://github.com/ayghri/i-have-adhd</link>
-    <guid isPermaLink="false">https://github.com/ayghri/i-have-adhd</guid>
-    <description>The &quot;i-have-adhd&quot; repository is a skill/plugin for coding assistants that prevents them from &quot;burying the answer&quot; in unnecessary preamble and tangents. With 30.6k stars and 1.9k forks on GitHub, it provides ADHD-friendly outputs by enforcing 10 rules, including leading with the next action, numbering multi-step tasks, ending with one concrete next step, suppressing tangents, restating state every turn, providing specific time estimates, capping lists at five items, and omitting preambles, recaps, and closers. An example contrasts verbose responses starting with &quot;Great question!&quot; against action-first responses with numbered steps and a clear next instruction. The rules are documented in SKILL.md and can be customized by forking and editing the file. The skill was loosely adapted from &quot;The Adult ADHD Tool Kit&quot; by J. Russell Ramsay and Anthony L. Rostain and supports English, Chinese, Brazilian Portuguese, Japanese, Vietnamese, Korean, and Thai.</description>
-    <pubDate>2026-09-08T14:13:26Z</pubDate>
+    <title>TRACE: Training Reasoning Agents for Causal Exploration with Synthesized Rewards</title>
+    <link>http://arxiv.org/abs/2609.10315</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.10315</guid>
+    <description>The paper introduces TRACE, a framework for training reasoning agents to perform diagnostic causal exploration using synthesized rewards from controlled simulators. Diagnostic reasoning lacks cheap verification—unlike math or code—because identifying true causes of anomalies often requires costly expert investigation. TRACE samples hidden interventions, injects them into a digital-advertising environment with 12 root causes, and uses the known interventions as oracle labels to generate objective rewards while agents investigate noisy, confounded data using Python and SQL. On a 235-episode test set, the strongest prompted baseline, Claude Opus 5, reached 0.686 Full</description>
+    <pubDate>2026-09-09T15:21:47Z</pubDate>
+    <source>Rui Sun</source>
+  </item>
+  <item>
+    <title>Beyond One-Size-Fits-All: Sample-Adaptive Strategy Routing for Vision Token Pruning in MLLMs</title>
+    <link>http://arxiv.org/abs/2609.10346</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.10346</guid>
+    <description>Multimodal large language models (MLLMs) process hundreds or thousands of visual tokens per image, incurring prohibitive inference costs. While existing vision token pruning methods mitigate this overhead, they implicitly assume that a single fixed pruning strategy can be applied uniformly across all inputs. Our analysis further reveals that ranking pruning methods by average benchmark accuracy conceals substantial sample-wise complementarity: although the average-best strategy excels overall, alternative strategies prove superior on a significant fraction of individual samples. To harness this diversity, we propose VIP-Router, a lightweight VIsion Pruning Router that adaptively selects the pruning strategy predicted to be best suited to each input at a specified pruning level. Conditioned</description>
+    <pubDate>2026-09-09T15:44:32Z</pubDate>
+    <source>Haiji Liang</source>
+  </item>
+  <item>
+    <title>From Symbolic Perception to Logical Deduction: A Framework for Guiding Language Models in Geometric Reasoning</title>
+    <link>http://arxiv.org/abs/2609.10335</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.10335</guid>
+    <description>A paper by Weichen Dai and colleagues introduces a framework that enables a pure Large Language Model to tackle plane geometry problems by combining visual perception with mathematical reasoning. The approach addresses limitations of Large Multimodal Models, which tend to be computationally intensive and opaque, by instead using specialized modules: a Geometric Vision Parser translates geometric diagrams into structured symbolic representations, while a Symbolic Solver conducts formal logical deductions. This design mitigates hallucinations and produces more interpretable, human-like reasoning steps. To rigorously evaluate their system, the authors curated a benchmark of challenging problems drawn from the 2025 Chinese Zhongkao examinations, ensuring novelty and testing deeper deductive skills. Experiments show the approach matching the performance of state-of-the-art LMMs, including Gemini 2.5 Pro, while delivering clearer solution explanations.</description>
+    <pubDate>2026-09-09T15:33:25Z</pubDate>
+    <source>Weichen Dai</source>
+  </item>
+  <item>
+    <title>Qwen 3.8 follows GPT-5.5 Pro reasoning prefills</title>
+    <link>https://gist.github.com/wsxiaoys/e0286dc6bb624ff5fdf49e7f4c528ba3</link>
+    <guid isPermaLink="false">https://gist.github.com/wsxiaoys/e0286dc6bb624ff5fdf49e7f4c528ba3</guid>
+    <description>In a follow-up reasoning-prefill experiment, four open models were tested against GPT-5.5 Pro as a teacher across 45 problems spanning STEM, non-STEM, and synthetic puzzles. Each model produced both an unprefilled response and one prefilled with the first 1% of GPT-5.5 Pro&#x27;s reasoning, and overlap with the teacher&#x27;s visible answer was measured via source recall. DeepSeek V4 Flash and Inkling showed negligible changes, shifting by −1.17 and +0.46 percentage points respectively, while Kimi K3 rose modestly from 31.11% to 35.65%. Qwen3.8 A95B exhibited the largest effect, jumping +18.18 points overall, with particularly strong gains on STEM problems (+26.99 points) and meaningful increases on puzzles and non-STEM categories. Because Qwen moved far more toward GPT-5.5 Pro than toward Opus 4.8 in an earlier test, the findings suggest it may have trained on GPT-5.5 Pro or a closely related model rather than on Opus.</description>
+    <pubDate>2026-09-09T17:24:28+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Kimi K3 (2.8T) at 1 token/s on a MacBook Pro, streamed from four SSDs</title>
-    <link>https://github.com/argonautlabsai/deltafin</link>
-    <guid isPermaLink="false">https://github.com/argonautlabsai/deltafin</guid>
-    <description>Running a 2.8 trillion-parameter model like Kimi K3 at usable speeds on a consumer MacBook Pro—by streaming weights from four SSDs—shows that frontier-scale LLMs can now run on commodity hardware without expensive GPU clusters. For software engineers, this demonstrates a practical path to local deployment of massive models, with meaningful implications for infrastructure costs, latency tuning, and data privacy in production AI systems.</description>
-    <pubDate>2026-09-08T20:07:55Z</pubDate>
+    <title>Open-source 3D anatomy explorer: 2,234 selectable BodyParts3D meshes</title>
+    <link>https://github.com/ashemag/human-atlas</link>
+    <guid isPermaLink="false">https://github.com/ashemag/human-atlas</guid>
+    <description>Human Atlas is an open-source 3D anatomy explorer built with React, Three.js, and shadcn/ui that renders the BodyParts3D 4.0 adult male reference anatomy as 2,234 individually selectable meshes across 15 anatomical systems and 3,432 named concepts. The packaged model contains 2,288,268 triangles in approximately 33 MB of compressed geometry, with mesh batches, per-structure GPU textures, and component-level picking enabling responsive orbit, zoom, system toggles, exploded layouts, search, and isolation without thousands of separate draw calls. Running locally requires Node.js 22.13 or newer and serves on localhost:3016, while validation scripts check mesh buffers, non-overlapping exploded layouts at multiple aspect ratios, search and inspection contracts, and tap-versus-drag handling. The anatomy data is licensed under CC BY 4.0 and the original application code under MIT, and the Vite project is configured for straightforward deployment to Vercel or any static host. The tool is intended for education and does not represent every human structure or serve as a diagnostic aid.</description>
+    <pubDate>2026-09-07T23:40:33+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Show HN: Geiger – See every AI agent on your machine and what it can touch</title>
+    <link>https://github.com/Atomburstofficial/geiger</link>
+    <guid isPermaLink="false">https://github.com/Atomburstofficial/geiger</guid>
+    <description>Geiger is a read-only scanner that inventories every AI agent, MCP server, plugin, and extension installed on a machine, reporting in plain language what each one can access. Run with a single command (`npx geiger-scan`), it requires no install or account, performs no telemetry, and writes nothing unless given a `--json` filename. It flags capabilities such as executing code, holding secrets, broad filesystem access, and network reach, with every finding showing where it came from and the evidence path. The tool supports terminal, self-contained HTML, and machine-readable JSON output, plus a `--strict` mode that exits nonzero when findings can execute code or hold credentials, and a `--diff` option to detect drift from a saved baseline. It detects Claude Code configurations, MCP hosts like Cursor and Windsurf, editor extensions, global CLI agents, and browser extensions, with MIT-licensed, dependency-free JavaScript released via npm provenance.</description>
+    <pubDate>2026-09-09T14:54:49+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Show HN: Self-hosted company OS, Claude Code and Codex agents in departments</title>
+    <link>https://github.com/OtoDock/oto-dock</link>
+    <guid isPermaLink="false">https://github.com/OtoDock/oto-dock</guid>
+    <description>OtoDock is a self-hosted, multi-tenant platform that acts as a &quot;company OS,&quot; running collaborative AI agents built on Claude Code and Codex using users&#x27; own Anthropic or OpenAI subscriptions, with support for local models. Each agent is configurable with a persona, memory, workspace, knowledge, skills, and tools, and can be shared across teams in one of four modes controlling private and shared workspace access. Agents run in isolated kernel sandboxes with network isolation and encrypted credentials, and can be triggered by schedules, webhooks, or phone calls through Twilio, Asterisk, or FreePBX. The platform supports remote machine pairing via a one-line install, letting agents operate on user hardware without open ports and with automatic failover. It ships with built-in tools for documents, meetings, and notifications, installs via a single Docker-based script on a Linux server, and offers community catalogs of ready-made agents and integrations with services like GitHub and Home Assistant.</description>
+    <pubDate>2026-09-09T17:57:55+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
     <title>Navier-Stokes – Tristan Buckmaster [pdf]</title>
     <link>https://cims.nyu.edu/~tristanb/statement.pdf</link>
     <guid isPermaLink="false">https://cims.nyu.edu/~tristanb/statement.pdf</guid>
-    <description>Tristan Buckmaster&#x27;s work on the Navier-Stokes equations addresses fundamental questions in fluid dynamics that underpin many computational simulations. Software engineers working in computational fluid dynamics, graphics rendering, or physics engines would benefit from understanding these mathematical advances, as they inform numerical methods and stability criteria for simulating fluid behavior. Progress on these equations can lead to more accurate and efficient algorithms for modeling real-world fluid systems in software.</description>
-    <pubDate>2026-09-08T05:42:28Z</pubDate>
+    <description>Further discussion: https://simonwillison.net/2026/Sep/8/on-navier-stokes/ , https://news.ycombinator.com/item?id=49621697</description>
+    <pubDate>2026-09-08T05:42:28+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>On the Navier–Stokes Millennium Prize Problem</title>
-    <link>https://openai.com/index/navier-stokes-solution/</link>
-    <guid isPermaLink="false">https://openai.com/index/navier-stokes-solution/</guid>
-    <description>The Navier–Stokes equations underpin fluid simulations used in aerospace, weather modeling, and visual effects, so any resolution of their mathematical behavior would directly affect the reliability of software engineers&#x27; numerical methods. A proven guarantee of smooth solutions—or knowledge of where they break down—would inform how confidently engineers design algorithms for large-scale CFD systems. Even partial insights shape the development of more stable, efficient simulation code.</description>
-    <pubDate>2026-09-08T17:13:21Z</pubDate>
+    <title>Claude, change the “Add to Cart” button to blue</title>
+    <link>https://opusfived.dev/</link>
+    <guid isPermaLink="false">https://opusfived.dev/</guid>
+    <description>Claude, change the “Add to Cart” button to blue</description>
+    <pubDate>2026-09-09T09:39:46+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Mistral raises €3B</title>
-    <link>https://mistral.ai/news/mistral-makes-sovereign-open-weight-ai-to-frontier/</link>
-    <guid isPermaLink="false">https://mistral.ai/news/mistral-makes-sovereign-open-weight-ai-to-frontier/</guid>
-    <description>Mistral has raised €3 billion in a Series D funding round at a post-money valuation exceeding €21 billion, marking the largest equity fundraising ever completed by a European technology company. The round was led by Samsung Electronics, with co-leads Scaleup Europe Fund, managed by EQT, and existing investor PSG Equity. The capital will expand Mistral&#x27;s frontier research, scale compute capacity for training powerful models, and accelerate commercial growth and international expansion. The company now operates across 20 countries and supports more than 125 global enterprises, including Airbus, ASML, and HSBC, through its full-stack open-weight AI offering focused on sovereign deployment. New investors Advent, BlackRock, and the Grand Duchy of Luxembourg joined alongside existing backers such as ASML, NVIDIA, a16z, BNP Paribas, Bpifrance, and General Catalyst.</description>
-    <pubDate>2026-09-08T05:06:23Z</pubDate>
+    <title>iPhone Duo</title>
+    <link>https://www.apple.com/iphone-duo/</link>
+    <guid isPermaLink="false">https://www.apple.com/iphone-duo/</guid>
+    <description>Apple has introduced the iPhone Duo, its first foldable iPhone, featuring a 7.6-inch Super Retina XDR inner display that is 50 percent larger than the iPhone 18 Pro Max when open, plus an outer display with more than 90 percent of the screen area of the iPhone 18 Pro. Built with a grade 5 titanium frame and hinge cover, Ceramic Shield on front and back, and IP68 water and dust resistance, it also includes a 48MP Dual Fusion camera system capable of 4K 120 fps video and an under-display FaceTime camera. The device runs on the A20 Pro chip with vapor chamber cooling and a dual-battery system, offering up to 31 hours of video playback on the inner display and 44 hours on the outer display. iOS 27 enables new multitasking and StandBy features, while Siri AI is rolling out in English. Pre-orders begin October 16 at 5:00 a.m. PT, with availability starting October 23 in Night Sky and Star White.</description>
+    <pubDate>2026-09-09T18:15:43+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>How to build a f**king printer</title>
-    <link>https://nishantjosh.dev/blogs/how-to-build-a-fking-printer/</link>
-    <guid isPermaLink="false">https://nishantjosh.dev/blogs/how-to-build-a-fking-printer/</guid>
-    <description>The author set out to build an e-ink display and ended up turning the Xteink X3 e-reader into a fully functional printer called &quot;penguin.&quot; They implemented the Internet Printing Protocol (IPP) over HTTP, accepting Apple raster and PWG raster formats at 300 dpi, and used Bonjour with the _universal subtype for driverless discovery on macOS. The biggest challenge was the device&#x27;s tiny 400 KB of RAM, which couldn&#x27;t hold an entire uncompressed Letter-sized page (~8.4 MB). To solve this, they piped incoming pages through decode, shrink, and dither transformations, writing each finished row directly into the display&#x27;s existing screen buffer instead of building a separate image in memory. This cut image-buffer RAM use from roughly 113 KB to 62 KB, leaving room for the Wi-Fi stack. The first successful test print was a Mushoku Tensei manga page rendered in about a second, and saved printouts now live in a folder on the SD card.</description>
-    <pubDate>Tue, 08 Sep 2026 16:39:21 -0500</pubDate>
-    <source>Lobsters</source>
+    <title>Shopify acquires Tailwind</title>
+    <link>https://tailwindcss.com/blog/tailwind-is-joining-shopify</link>
+    <guid isPermaLink="false">https://tailwindcss.com/blog/tailwind-is-joining-shopify</guid>
+    <description>Tailwind CSS, a popular utility-first framework installed over 110 million times per week, is being acquired by Shopify after nine years of independent development. The framework is currently used by major companies including ChatGPT, X, Cloudflare, Reddit, and Shopify itself. The founder cited Shopify&#x27;s complex product needs and its early adoption of Tailwind as reasons for the acquisition, noting the deal will give the framework a stable long-term home with active maintenance. Despite the acquisition, Tailwind CSS and other open-source projects will remain MIT-licensed, with the existing team continuing to lead and maintain them for the community. On the commercial side, no new sign-ups will be accepted for products like Tailwind Plus and ui.sh, though existing customers will retain access.</description>
+    <pubDate>2026-09-09T13:27:11+00:00</pubDate>
+    <source>Hacker News</source>
   </item>
 </channel></rss>
