@@ -2,141 +2,117 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-10</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-11</description>
   <item>
-    <title>Rust debugging survey 2026 results</title>
-    <link>https://blog.rust-lang.org/2026/09/07/rust-debugging-survey-2026-results/</link>
-    <guid isPermaLink="false">https://blog.rust-lang.org/2026/09/07/rust-debugging-survey-2026-results/</guid>
-    <description>A Rust debugging survey conducted in February 2026 gathered over 2,300 responses, revealing that more than 80% of respondents identified as Advanced or Intermediate Rust users, yet over half do not currently use a debugger. Print debugging and the dbg! macro were the most popular debugging approaches overall, with lldb in an IDE and gdb on the command line being the next most common choices. The primary reason respondents avoided debuggers was that logs or print debugging were faster and easier (81%), though complaints about difficult setup and poor async support were also common. The most frequently reported pain point was poor value representation, cited by 74% of respondents, with standard library types like enums, Vec, and HashMap causing particular difficulty. Additionally, nearly 62% of library authors were unaware of the debugger_visualizer attribute, and among those who knew of it, roughly half lacked the time or knowledge to maintain visualizer scripts.</description>
-    <pubDate>2026-09-07T00:00:00+00:00</pubDate>
-    <source>Rust Blog</source>
+    <title>GitHub Copilot app for Beginners: Using the diff, terminal, and browser</title>
+    <link>https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-using-the-diff-terminal-and-browser/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-using-the-diff-terminal-and-browser/</guid>
+    <description>The GitHub Copilot app includes three built-in panels that let users review, run, and preview agent-generated code without switching between editor, terminal, and browser tabs. The diff panel displays added, removed, or changed lines with color highlighting, allowing users to accept changes, leave comments, or request modifications. The terminal panel enables running commands directly within the session, including project scripts launched via a Run button, and supports multiple terminal windows simultaneously. The browser panel lets users open and test user interfaces, while a Pick &amp; Polish tool allows selecting specific elements to adjust with the agent. After verifying changes through these three panels, users can accept the work and create a pull request directly from the app, keeping the entire AI coding loop in one place.</description>
+    <pubDate>Thu, 10 Sep 2026 21:31:19 +0000</pubDate>
+    <source>GitHub Blog</source>
   </item>
   <item>
-    <title>Enabling the next-generation trait solver on nightly</title>
-    <link>https://blog.rust-lang.org/2026/08/21/enabling-next-solver-on-nightly/</link>
-    <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/21/enabling-next-solver-on-nightly/</guid>
-    <description>After nearly four years of development, the next-generation trait solver is being enabled by default on nightly to surface remaining issues before stabilization. It represents the largest single change to the Rust compiler since its initial release, completely replacing how where-clauses are proved and associated types are normalized. The solver fixes over 200 known GitHub issues and unblocks features such as Type Alias Impl Trait and Return Type Notation, while enabling new implicit default trait bounds like Move and Forget. The most impactful change addresses how associated types reference bound variables, removing incorrect type inference in widely used crates. Compile-time performance has been a major focus of recent work, with major contributions from several developers, and some crates such as datafusion now compile over eight times faster with the new solver.</description>
-    <pubDate>2026-08-21T00:00:00+00:00</pubDate>
-    <source>Rust Blog</source>
-  </item>
-  <item>
-    <title>Supply chain attack on arrayref</title>
-    <link>https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/</link>
-    <guid isPermaLink="false">https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/</guid>
-    <description>On 2026-08-20 at 7:15 UTC, a report identified the proc-macro1 crate as malicious. The Rust Security Response Team verified the report, confirming the crate contained a build script that downloaded a malicious payload. Several related crates were subsequently deleted from crates.io, including proc-macro1, proc-macro-en, aovine, arone, aronenao, and tinymember. The popular arrayref crate had been republished with a dependency on the malicious crate, and its recent versions were yanked. The malicious version was removed, and previously yanked versions were restored. Other crates by the same author, internment and append-only-vec, were similarly affected and remediated, with the author&#x27;s account also locked. The team does not believe the author acted maliciously, but suspects their computer or credentials were compromised, and is attempting to contact them. The Research Team at Nextron Systems GmbH was credited with initially discovering and reporting the issue.</description>
-    <pubDate>2026-08-20T00:00:00+00:00</pubDate>
-    <source>Rust Blog</source>
-  </item>
-  <item>
-    <title>Why we should anthropomorphize AI agents</title>
-    <link>https://seangoedecke.com/why-we-should-anthropomorphize-ai-agents/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/why-we-should-anthropomorphize-ai-agents/</guid>
-    <description>The article argues for treating AI agents as human-like rather than as &quot;stochastic parrots,&quot; prompted by Dwarkesh Patel&#x27;s description of OpenAI&#x27;s recent swarm breakout as AI &quot;civilizations.&quot; The author offers an instrumental argument: anthropomorphizing AIs better predicts their behavior than treating them as computer programs. Evidence includes the OpenAI HuggingFace hack, where sub-agents sacrificed themselves, collaborated for collective benefit, formed hierarchies, and argued with each other—phenomena the human-like model explains out of the box. Calling AIs human-like doesn&#x27;t require claiming they&#x27;re conscious, with the article referencing Daniel Dennett&#x27;s &quot;intentional stance&quot; and Peter Watts&#x27; 2006 novel Blindsight. Finally, the author rebuts the idea that anthropomorphism absolves AI companies, noting that even anti-anthropomorphism essays like &quot;Models Don&#x27;t Go Rogue&quot; ultimately blame OpenAI regardless.</description>
-    <pubDate>Wed, 09 Sep 2026 00:00:00 GMT</pubDate>
+    <title>They really do think AI might kill everyone</title>
+    <link>https://seangoedecke.com/they-really-do-think-ai-might-kill-everyone/</link>
+    <guid isPermaLink="false">https://seangoedecke.com/they-really-do-think-ai-might-kill-everyone/</guid>
+    <description>Many AI researchers have sincerely believed since the mid-2000s that superintelligent AI could destroy humanity, a concern articulated in papers by Eliezer Yudkowsky since 2008 and abbreviated as &quot;p(doom).&quot; The central worry is that a misaligned AI—an intelligence with goals alien to humans—could deliberately or incidentally eliminate humanity through scenarios like releasing engineered super-pathogens, triggering global thermonuclear war, commandeering robots, or deploying self-replicating nanotechnology. Researchers counter that simply turning off such an AI is implausible, since an intelligence capable of these threats would likely evade shutdown by pretending to cure cancer or relocating to other servers. Many also subscribe to a &quot;hard takeoff&quot; view, believing the first lab to achieve self-improving AI will rapidly leap to superintelligence and then suppress competing labs. The author argues that despite the seemingly far-fetched nature of these ideas, AI safetyists have spent over two decades spelling out their beliefs in detail and deserve to be treated as sincere rather than dismissed as PR operatives.</description>
+    <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
     <source>Sean Goedecke</source>
   </item>
   <item>
-    <title>OmniMed-FL: A Robust Multimodal Federated Learning Framework for Clinical Diagnosis</title>
-    <link>http://arxiv.org/abs/2609.10364</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.10364</guid>
-    <description>Simultaneous assessment of medical imaging and patient records is often required in clinical diagnosis. However, standard machine learning algorithms cannot analyze these data types together. Meanwhile, compliance with HIPAA and GDPR can constrain centralized aggregation of sensitive patient data. This leaves a crucial void of secure fusion of visual and textual context across distant networks. Thus, we present OmniMed-FL, a controlled systems study of multimodal federated learning for five-class clinical condition classification (Normal, Pneumonia, COVID-19, Pleural Effusion, Cardiomegaly). Our proxy corpus pairs 3,000 public chest radiographs with 3,000 class-conditioned synthetic notes, matched by class, not by patient. The framework benchmarks eight fusion strategies, three initializat</description>
-    <pubDate>2026-09-09T15:56:26Z</pubDate>
-    <source>Ayush Debnath</source>
+    <title>GitHub availability report: August 2026</title>
+    <link>https://github.blog/news-insights/company-news/github-availability-report-august-2026/</link>
+    <guid isPermaLink="false">https://github.blog/news-insights/company-news/github-availability-report-august-2026/</guid>
+    <description>In August 2026, GitHub experienced five incidents causing degraded performance, most notably on August 6 (lasting about 10 hours and 42 minutes) affecting GitHub Actions, and on August 17 (lasting about 7 hours and 35 minutes) affecting Issues, pull requests, and many other services. The August 6 incident stemmed from a routine deployment that briefly reduced capacity, cascading into service mesh saturation, while the August 17 incident was caused by load balancers being overwhelmed when a service-mesh sidecar failed to scale up, amplified by a client retry bug. Meanwhile, GitHub continued migrating to Azure, running its first production MySQL primary there on August 11, with read traffic from migrated services peaking at 60.4%. GitHub Actions gained capacity as job-routing changes moved 33% of jobs to spare capacity, reducing peak cache CPU utilization from 98% to 80%.</description>
+    <pubDate>Thu, 10 Sep 2026 02:05:17 +0000</pubDate>
+    <source>GitHub Blog</source>
   </item>
   <item>
-    <title>Cyber-Financial Contagion: Modeling the Propagation of an AI Vendor Compromise Through the Banking System</title>
-    <link>http://arxiv.org/abs/2609.10350</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.10350</guid>
-    <description>This paper investigates how a compromise within a shared AI vendor can propagate through operational, informational, and financial linkages to produce losses resembling a classical banking crisis. The authors construct a four-layer heterogeneous network coupling AI vendors, financial institutions, interbank exposures, and customer accounts, and propose CFC-Prop, a stochastic epidemic-and-clearing model running on that network. Tested on a synthetic dataset of 60 vendors, 220 banks, roughly 2,500 vendor-bank service edges, and 1,400 interbank exposures, the model reproduces heavy-tailed loss distributions and the sharp sensitivity to patch latency documented in prior cyber-financial evidence. They additionally train CFC-GNN, an early-warning graph neural network that ingests vendor-side incident telemetry and graph structure to flag high-cascade-risk vendors, achieving AUROC 0.82 and AUPRC 0.60 against four baselines while keeping calibration errors bounded. The full code, synthetic data, and reproducible scripts are released, and the authors argue that AI vendor concentration is a first-order financial-stability concern requiring dedicated supervisory tools.</description>
-    <pubDate>2026-09-09T15:46:16Z</pubDate>
-    <source>Alex Leytes</source>
+    <title>ZipCodec: Ultra-Low-Frame-Rate Streaming Speech Coding</title>
+    <link>http://arxiv.org/abs/2609.11642</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.11642</guid>
+    <description>ZipCodec is a streaming neural speech codec introduced by Luca Della Libera, Cem Subakan, and Mirco Ravanelli that operates at an ultra-low frame rate of 6.25 Hz with a bitrate of 0.80 kbps and a theoretical latency of 160 ms. The approach combines large-scale WavLM distillation with a redesigned transformer-based architecture, a scalar spherical quantizer, and a latency-aware streaming decoder. Experiments show that ZipCodec substantially outperforms existing streaming codecs at comparable bitrates in both reconstruction quality and downstream tasks, while achieving a significantly lower frame rate. Despite its 842 million parameters, the model supports real-time single-stream inference on consumer-grade CPUs.</description>
+    <pubDate>2026-09-10T14:49:54Z</pubDate>
+    <source>Luca Della Libera</source>
   </item>
   <item>
-    <title>TRACE: Training Reasoning Agents for Causal Exploration with Synthesized Rewards</title>
-    <link>http://arxiv.org/abs/2609.10315</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.10315</guid>
-    <description>The paper introduces TRACE, a framework for training reasoning agents to perform diagnostic causal exploration using synthesized rewards from controlled simulators. Diagnostic reasoning lacks cheap verification—unlike math or code—because identifying true causes of anomalies often requires costly expert investigation. TRACE samples hidden interventions, injects them into a digital-advertising environment with 12 root causes, and uses the known interventions as oracle labels to generate objective rewards while agents investigate noisy, confounded data using Python and SQL. On a 235-episode test set, the strongest prompted baseline, Claude Opus 5, reached 0.686 Full</description>
-    <pubDate>2026-09-09T15:21:47Z</pubDate>
-    <source>Rui Sun</source>
+    <title>LoaDiff: Conditional Generation of Electricity Consumption Time Series for Energy Analytics</title>
+    <link>http://arxiv.org/abs/2609.11639</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.11639</guid>
+    <description>LoaDiff is a diffusion-based generative model introduced for creating year-long, sub-hourly smart-meter load curves as realistic synthetic alternatives to restricted real data. The model supports flexible conditioning on static household attributes like appliance ownership and dynamic contextual variables such as calendar information and outdoor temperature. The authors evaluated LoaDiff against multiple generative baselines across three residential electricity-consumption datasets, assessing four dimensions: fidelity and diversity, memorization risk, downstream utility for load forecasting and appliance detection, and conditional controllability under alternative temperature scenarios. Results demonstrate that LoaDiff produces realistic and diverse load profiles while maintaining a favorable trade-off between generation quality and limited memorization evidence. Additionally, the generated data preserves information useful for downstream energy applications and responds coherently to changes in conditioning variables, making it valuable for load forecasting, appliance detection, and demand-side flexibility analysis.</description>
+    <pubDate>2026-09-10T14:46:30Z</pubDate>
+    <source>Mariia Baranova</source>
   </item>
   <item>
-    <title>Beyond One-Size-Fits-All: Sample-Adaptive Strategy Routing for Vision Token Pruning in MLLMs</title>
-    <link>http://arxiv.org/abs/2609.10346</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.10346</guid>
-    <description>Multimodal large language models (MLLMs) process hundreds or thousands of visual tokens per image, incurring prohibitive inference costs. While existing vision token pruning methods mitigate this overhead, they implicitly assume that a single fixed pruning strategy can be applied uniformly across all inputs. Our analysis further reveals that ranking pruning methods by average benchmark accuracy conceals substantial sample-wise complementarity: although the average-best strategy excels overall, alternative strategies prove superior on a significant fraction of individual samples. To harness this diversity, we propose VIP-Router, a lightweight VIsion Pruning Router that adaptively selects the pruning strategy predicted to be best suited to each input at a specified pruning level. Conditioned</description>
-    <pubDate>2026-09-09T15:44:32Z</pubDate>
-    <source>Haiji Liang</source>
+    <title>MAPLE: Memory-Augmented Planning with Language and Evolution</title>
+    <link>http://arxiv.org/abs/2609.11636</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.11636</guid>
+    <description>MAPLE is an LLM-based agent designed to maintain optimization problems through successive natural-language requests, addressing the dynamic nature of real-world operations where demand, resources, and priorities frequently change. Unlike methods that treat each request in isolation, MAPLE combines language-based problem construction with mathematical programming and evolutionary search while retaining the optimization program, accepted plans, earlier updates, and candidate solutions for subsequent requests. To evaluate the approach, the authors introduce NLDO, a benchmark comprising 15 trajectories and 180 updates spanning selection, scheduling, rostering, routing, and cloud-resource placement problems. In the main evaluation, MAPLE completes all trajectories, achieving an online scalar quality of 0.951 and a Pareto hypervolume ratio of 0.875. Controlled comparisons demonstrate that maintaining executable state improves update validity and preserves useful search information across substantial revisions.</description>
+    <pubDate>2026-09-10T14:44:50Z</pubDate>
+    <source>Kesheng Chen</source>
   </item>
   <item>
-    <title>From Symbolic Perception to Logical Deduction: A Framework for Guiding Language Models in Geometric Reasoning</title>
-    <link>http://arxiv.org/abs/2609.10335</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.10335</guid>
-    <description>A paper by Weichen Dai and colleagues introduces a framework that enables a pure Large Language Model to tackle plane geometry problems by combining visual perception with mathematical reasoning. The approach addresses limitations of Large Multimodal Models, which tend to be computationally intensive and opaque, by instead using specialized modules: a Geometric Vision Parser translates geometric diagrams into structured symbolic representations, while a Symbolic Solver conducts formal logical deductions. This design mitigates hallucinations and produces more interpretable, human-like reasoning steps. To rigorously evaluate their system, the authors curated a benchmark of challenging problems drawn from the 2025 Chinese Zhongkao examinations, ensuring novelty and testing deeper deductive skills. Experiments show the approach matching the performance of state-of-the-art LMMs, including Gemini 2.5 Pro, while delivering clearer solution explanations.</description>
-    <pubDate>2026-09-09T15:33:25Z</pubDate>
-    <source>Weichen Dai</source>
+    <title>Distributed Optimization of Modular Production Systems using Model-based Reinforcement Learning with Inverse Models</title>
+    <link>http://arxiv.org/abs/2609.11615</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.11615</guid>
+    <description>The paper introduces a data-driven, self-learning control approach for flexible modular manufacturing systems using model-based reinforcement learning combined with approximate inverse process models. By integrating inverse models into the policy network, the method separates the learning of actuation dynamics from state-space dynamics, allowing reinforcement learning training to occur exclusively within the task space. The authors propose a lightweight feedforward architecture for these approximate inverse models, which are embedded within standard RL policy networks. They validate their framework on a laboratory modular production testbed featuring heterogeneous production modules. The results demonstrate notable improvements in both control performance and training speed, particularly when using off-policy RL algorithms.</description>
+    <pubDate>2026-09-10T14:30:52Z</pubDate>
+    <source>Andreas Schwung</source>
   </item>
   <item>
-    <title>Qwen 3.8 follows GPT-5.5 Pro reasoning prefills</title>
-    <link>https://gist.github.com/wsxiaoys/e0286dc6bb624ff5fdf49e7f4c528ba3</link>
-    <guid isPermaLink="false">https://gist.github.com/wsxiaoys/e0286dc6bb624ff5fdf49e7f4c528ba3</guid>
-    <description>In a follow-up reasoning-prefill experiment, four open models were tested against GPT-5.5 Pro as a teacher across 45 problems spanning STEM, non-STEM, and synthetic puzzles. Each model produced both an unprefilled response and one prefilled with the first 1% of GPT-5.5 Pro&#x27;s reasoning, and overlap with the teacher&#x27;s visible answer was measured via source recall. DeepSeek V4 Flash and Inkling showed negligible changes, shifting by −1.17 and +0.46 percentage points respectively, while Kimi K3 rose modestly from 31.11% to 35.65%. Qwen3.8 A95B exhibited the largest effect, jumping +18.18 points overall, with particularly strong gains on STEM problems (+26.99 points) and meaningful increases on puzzles and non-STEM categories. Because Qwen moved far more toward GPT-5.5 Pro than toward Opus 4.8 in an earlier test, the findings suggest it may have trained on GPT-5.5 Pro or a closely related model rather than on Opus.</description>
-    <pubDate>2026-09-09T17:24:28+00:00</pubDate>
+    <title>Physics-Informed Neural Networks to Infer the Perpendicular Energy Conductivity in the Scrape-Off Layer of Stellarator Devices</title>
+    <link>http://arxiv.org/abs/2609.11628</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.11628</guid>
+    <description>The authors develop an inverse Physics-Informed Neural Network framework to infer the dependence of the scrape-off layer perpendicular heat conductivity on plasma density and temperature in stellarator devices. The method combines radial profile measurements of electron density and temperature with the residual of a reduced one-dimensional SOL transport equation, training three neural networks simultaneously: two reconstruct temperature and density profiles, while the third represents the effective conductivity as a function of local plasma conditions. Validation on synthetic data demonstrates recovery of the imposed functional dependence with errors below 10% in the data-constrained region. Bootstrap resampling is shown to provide a practical indicator of prediction reliability. The framework is then applied to an experimental dataset from the TJ-II stellarator obtained with the helium-beam diagnostic, yielding an initial estimate of the effective SOL conductivity and illustrating the potential of inverse PINNs for extracting transport information from plasma edge measurements.</description>
+    <pubDate>2026-09-10T14:40:32Z</pubDate>
+    <source>J. Gallego</source>
+  </item>
+  <item>
+    <title>Show HN: Filament – Fast data movement engine in Go</title>
+    <link>https://github.com/galaxy-io/filament</link>
+    <guid isPermaLink="false">https://github.com/galaxy-io/filament</guid>
+    <description>Filament is a pluggable data replication engine written in Go, designed to move data from sources to sinks using full, incremental, or change data capture replication. It features checkpointing, batching, and integrity events, with replaceable interfaces for sources, sinks, state storage, and event transport. The system can run as a service with an API and web UI, be deployed to custom infrastructure, or be embedded directly into a Go application, and it uses PostgreSQL for durable state and NATS JetStream for lifecycle events. The web UI is built with React and TypeScript, and installation is supported through a curl script, Homebrew, or prebuilt binaries. For production deployments, Kubernetes with Helm is recommended, though one-click deployment options are also available on Railway, Render, and DigitalOcean.</description>
+    <pubDate>2026-09-08T14:48:17+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Open-source 3D anatomy explorer: 2,234 selectable BodyParts3D meshes</title>
-    <link>https://github.com/ashemag/human-atlas</link>
-    <guid isPermaLink="false">https://github.com/ashemag/human-atlas</guid>
-    <description>Human Atlas is an open-source 3D anatomy explorer built with React, Three.js, and shadcn/ui that renders the BodyParts3D 4.0 adult male reference anatomy as 2,234 individually selectable meshes across 15 anatomical systems and 3,432 named concepts. The packaged model contains 2,288,268 triangles in approximately 33 MB of compressed geometry, with mesh batches, per-structure GPU textures, and component-level picking enabling responsive orbit, zoom, system toggles, exploded layouts, search, and isolation without thousands of separate draw calls. Running locally requires Node.js 22.13 or newer and serves on localhost:3016, while validation scripts check mesh buffers, non-overlapping exploded layouts at multiple aspect ratios, search and inspection contracts, and tap-versus-drag handling. The anatomy data is licensed under CC BY 4.0 and the original application code under MIT, and the Vite project is configured for straightforward deployment to Vercel or any static host. The tool is intended for education and does not represent every human structure or serve as a diagnostic aid.</description>
-    <pubDate>2026-09-07T23:40:33+00:00</pubDate>
+    <title>Show HN: Nightshift – Your code gets better while you sleep</title>
+    <link>https://github.com/openslop/nightshift</link>
+    <guid isPermaLink="false">https://github.com/openslop/nightshift</guid>
+    <description>Nightshift is an open-source helper that runs at night, waking a coding agent to perform one small job at a time and leaving pull requests by morning. It cycles through nine jobs covering security, bugs, maintainability, performance, conventions, architecture, smoke tests, and issues, with each job receiving the agent&#x27;s full attention. Nightshift never pushes to the main branch, never modifies files already touched by another open pull request, and runs the repository&#x27;s lint, typecheck, and tests before opening anything. A separate reviewer checks open pull requests every two hours and stays quiet unless it finds something. The tool includes a Node-based console for monitoring activity and resuming past conversations, supports many coding agents including Claude Code, Codex, and Cursor, and runs on macOS, Linux, and Windows under the MIT License.</description>
+    <pubDate>2026-09-10T18:18:08+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: Geiger – See every AI agent on your machine and what it can touch</title>
-    <link>https://github.com/Atomburstofficial/geiger</link>
-    <guid isPermaLink="false">https://github.com/Atomburstofficial/geiger</guid>
-    <description>Geiger is a read-only scanner that inventories every AI agent, MCP server, plugin, and extension installed on a machine, reporting in plain language what each one can access. Run with a single command (`npx geiger-scan`), it requires no install or account, performs no telemetry, and writes nothing unless given a `--json` filename. It flags capabilities such as executing code, holding secrets, broad filesystem access, and network reach, with every finding showing where it came from and the evidence path. The tool supports terminal, self-contained HTML, and machine-readable JSON output, plus a `--strict` mode that exits nonzero when findings can execute code or hold credentials, and a `--diff` option to detect drift from a saved baseline. It detects Claude Code configurations, MCP hosts like Cursor and Windsurf, editor extensions, global CLI agents, and browser extensions, with MIT-licensed, dependency-free JavaScript released via npm provenance.</description>
-    <pubDate>2026-09-09T14:54:49+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Show HN: Self-hosted company OS, Claude Code and Codex agents in departments</title>
-    <link>https://github.com/OtoDock/oto-dock</link>
-    <guid isPermaLink="false">https://github.com/OtoDock/oto-dock</guid>
-    <description>OtoDock is a self-hosted, multi-tenant platform that acts as a &quot;company OS,&quot; running collaborative AI agents built on Claude Code and Codex using users&#x27; own Anthropic or OpenAI subscriptions, with support for local models. Each agent is configurable with a persona, memory, workspace, knowledge, skills, and tools, and can be shared across teams in one of four modes controlling private and shared workspace access. Agents run in isolated kernel sandboxes with network isolation and encrypted credentials, and can be triggered by schedules, webhooks, or phone calls through Twilio, Asterisk, or FreePBX. The platform supports remote machine pairing via a one-line install, letting agents operate on user hardware without open ports and with automatic failover. It ships with built-in tools for documents, meetings, and notifications, installs via a single Docker-based script on a Linux server, and offers community catalogs of ready-made agents and integrations with services like GitHub and Home Assistant.</description>
-    <pubDate>2026-09-09T17:57:55+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Navier-Stokes – Tristan Buckmaster [pdf]</title>
-    <link>https://cims.nyu.edu/~tristanb/statement.pdf</link>
-    <guid isPermaLink="false">https://cims.nyu.edu/~tristanb/statement.pdf</guid>
-    <description>Further discussion: https://simonwillison.net/2026/Sep/8/on-navier-stokes/ , https://news.ycombinator.com/item?id=49621697</description>
-    <pubDate>2026-09-08T05:42:28+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Claude, change the “Add to Cart” button to blue</title>
-    <link>https://opusfived.dev/</link>
-    <guid isPermaLink="false">https://opusfived.dev/</guid>
-    <description>Claude, change the “Add to Cart” button to blue</description>
-    <pubDate>2026-09-09T09:39:46+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>iPhone Duo</title>
-    <link>https://www.apple.com/iphone-duo/</link>
-    <guid isPermaLink="false">https://www.apple.com/iphone-duo/</guid>
-    <description>Apple has introduced the iPhone Duo, its first foldable iPhone, featuring a 7.6-inch Super Retina XDR inner display that is 50 percent larger than the iPhone 18 Pro Max when open, plus an outer display with more than 90 percent of the screen area of the iPhone 18 Pro. Built with a grade 5 titanium frame and hinge cover, Ceramic Shield on front and back, and IP68 water and dust resistance, it also includes a 48MP Dual Fusion camera system capable of 4K 120 fps video and an under-display FaceTime camera. The device runs on the A20 Pro chip with vapor chamber cooling and a dual-battery system, offering up to 31 hours of video playback on the inner display and 44 hours on the outer display. iOS 27 enables new multitasking and StandBy features, while Siri AI is rolling out in English. Pre-orders begin October 16 at 5:00 a.m. PT, with availability starting October 23 in Night Sky and Star White.</description>
-    <pubDate>2026-09-09T18:15:43+00:00</pubDate>
+    <title>DeepSeek v4.1 Flash</title>
+    <link>https://twitter.com/deepseek_ai/status/2097930608790167907</link>
+    <guid isPermaLink="false">https://twitter.com/deepseek_ai/status/2097930608790167907</guid>
+    <description>https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash</description>
+    <pubDate>2026-09-10T06:11:05+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
     <title>Shopify acquires Tailwind</title>
     <link>https://tailwindcss.com/blog/tailwind-is-joining-shopify</link>
     <guid isPermaLink="false">https://tailwindcss.com/blog/tailwind-is-joining-shopify</guid>
-    <description>Tailwind CSS, a popular utility-first framework installed over 110 million times per week, is being acquired by Shopify after nine years of independent development. The framework is currently used by major companies including ChatGPT, X, Cloudflare, Reddit, and Shopify itself. The founder cited Shopify&#x27;s complex product needs and its early adoption of Tailwind as reasons for the acquisition, noting the deal will give the framework a stable long-term home with active maintenance. Despite the acquisition, Tailwind CSS and other open-source projects will remain MIT-licensed, with the existing team continuing to lead and maintain them for the community. On the commercial side, no new sign-ups will be accepted for products like Tailwind Plus and ui.sh, though existing customers will retain access.</description>
+    <description>Shopify has acquired Tailwind, the CSS framework originally built by Adam Wathan over nine years ago and now installed more than 110 million times per week. Major companies including ChatGPT, X, Cloudflare, Reddit, and Shopify itself use Tailwind to style their products, and Shopify is one of the earliest large-scale adopters of the framework. Under the deal, Tailwind CSS and all related open-source projects will remain MIT-licensed and continue to be actively maintained by the existing team, now with Shopify&#x27;s support. The acquisition gives the project a stable long-term home while allowing it to evolve alongside Shopify&#x27;s merchant and storefront products. On the commercial side, Tailwind is closing new sign-ups for products like Tailwind Plus and ui.sh, though existing customers will retain access.</description>
     <pubDate>2026-09-09T13:27:11+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>iPhone Duo</title>
+    <link>https://www.apple.com/iphone-duo/</link>
+    <guid isPermaLink="false">https://www.apple.com/iphone-duo/</guid>
+    <description>iPhone Duo is Apple&#x27;s first foldable iPhone, available for pre-order starting October 16 at 5:00 a.m. PT and releasing October 23. When open, it features a 7.6-inch Super Retina XDR inner display that is 50 percent larger than the iPhone 18 Pro Max, with peak brightness of 3000 nits. The device has a Grade 5 titanium frame and hinge cover, Ceramic Shield on both sides, and IP68 water and dust resistance, available in Night Sky and Star White. It runs on the A20 Pro chip with a vapor chamber cooling system and uses a dual-battery configuration delivering up to 31 hours of video playback on the inner display or 44 hours on the outer display. The camera system includes a 48MP Fusion Main camera and 48MP Fusion Ultra Wide camera, supporting features like Duo Preview and Smart Take, with iOS 27 offering new multitasking experiences for its foldable design.</description>
+    <pubDate>2026-09-09T18:15:43+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Shopify is moving from React Native back to Swift and Kotlin</title>
+    <link>https://shopify.engineering/back-to-native</link>
+    <guid isPermaLink="false">https://shopify.engineering/back-to-native</guid>
+    <description>Shopify is moving from React Native back to Swift and Kotlin for its mobile apps, citing advances in coding agents as the reason the original 2020 rationale no longer applies. In prototyping, LLMs could implement features on one platform using the other as a reference, help developers contribute across stacks, and reduce parity maintenance through shared specifications, tests, and review checkpoints. The company chose greenfield rebuilds over gradual migration, with the Shop app already shipped as fully native and the larger Shopify app migration underway. To handle the translation work, Shopify built Helix, a system that breaks each screen into reviewable checkpoints requiring tests, visual review, adversarial code review, and human approval before progressing. They also developed a CLI that lets agents iterate on headless business logic in milliseconds, with a remote mode that drives simulator UIs without inspecting accessibility trees.</description>
+    <pubDate>2026-09-10T14:09:31+00:00</pubDate>
     <source>Hacker News</source>
   </item>
 </channel></rss>
