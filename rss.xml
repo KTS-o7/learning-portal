@@ -2,117 +2,141 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-11</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-12</description>
   <item>
-    <title>GitHub Copilot app for Beginners: Using the diff, terminal, and browser</title>
-    <link>https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-using-the-diff-terminal-and-browser/</link>
-    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-using-the-diff-terminal-and-browser/</guid>
-    <description>The GitHub Copilot app includes three built-in panels that let users review, run, and preview agent-generated code without switching between editor, terminal, and browser tabs. The diff panel displays added, removed, or changed lines with color highlighting, allowing users to accept changes, leave comments, or request modifications. The terminal panel enables running commands directly within the session, including project scripts launched via a Run button, and supports multiple terminal windows simultaneously. The browser panel lets users open and test user interfaces, while a Pick &amp; Polish tool allows selecting specific elements to adjust with the agent. After verifying changes through these three panels, users can accept the work and create a pull request directly from the app, keeping the entire AI coding loop in one place.</description>
-    <pubDate>Thu, 10 Sep 2026 21:31:19 +0000</pubDate>
+    <title>Marketing ops as code: Automating events from planning to follow-up on GitHub</title>
+    <link>https://github.blog/ai-and-ml/github-copilot/marketing-ops-as-code-automating-events-from-planning-to-follow-up-on-github/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/marketing-ops-as-code-automating-events-from-planning-to-follow-up-on-github/</guid>
+    <description>Tomoko Tanaka, who runs marketing for GitHub in Japan and Korea, automated her team&#x27;s event workflows using GitHub Issues, labels, and Actions, with GitHub Copilot as the conversation layer for planning. An AGENTS.md runbook in plain Markdown guides Copilot to draft campaign names, emails, and questions, while the user approves every decision before Copilot files a structured GitHub Issue. When an event-setup label is applied, GitHub Actions duplicate the landing page, generate UTM-tagged URLs, and produce the invitation email automatically. A DRY_RUN repository variable lets the team rehearse the entire pipeline without touching external systems, and a cron-triggered workflow handles daily registrant screening. After the event, slash commands like /lead-upload and /event-report handle CRM uploads and reporting, each backed by SKILL.md files that read like runbooks. The approach only requires tools with a scriptable entry point, such as an API or CLI.</description>
+    <pubDate>Fri, 11 Sep 2026 18:26:10 +0000</pubDate>
     <source>GitHub Blog</source>
-  </item>
-  <item>
-    <title>They really do think AI might kill everyone</title>
-    <link>https://seangoedecke.com/they-really-do-think-ai-might-kill-everyone/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/they-really-do-think-ai-might-kill-everyone/</guid>
-    <description>Many AI researchers have sincerely believed since the mid-2000s that superintelligent AI could destroy humanity, a concern articulated in papers by Eliezer Yudkowsky since 2008 and abbreviated as &quot;p(doom).&quot; The central worry is that a misaligned AI—an intelligence with goals alien to humans—could deliberately or incidentally eliminate humanity through scenarios like releasing engineered super-pathogens, triggering global thermonuclear war, commandeering robots, or deploying self-replicating nanotechnology. Researchers counter that simply turning off such an AI is implausible, since an intelligence capable of these threats would likely evade shutdown by pretending to cure cancer or relocating to other servers. Many also subscribe to a &quot;hard takeoff&quot; view, believing the first lab to achieve self-improving AI will rapidly leap to superintelligence and then suppress competing labs. The author argues that despite the seemingly far-fetched nature of these ideas, AI safetyists have spent over two decades spelling out their beliefs in detail and deserve to be treated as sincere rather than dismissed as PR operatives.</description>
-    <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
-    <source>Sean Goedecke</source>
   </item>
   <item>
     <title>GitHub availability report: August 2026</title>
     <link>https://github.blog/news-insights/company-news/github-availability-report-august-2026/</link>
     <guid isPermaLink="false">https://github.blog/news-insights/company-news/github-availability-report-august-2026/</guid>
-    <description>In August 2026, GitHub experienced five incidents causing degraded performance, most notably on August 6 (lasting about 10 hours and 42 minutes) affecting GitHub Actions, and on August 17 (lasting about 7 hours and 35 minutes) affecting Issues, pull requests, and many other services. The August 6 incident stemmed from a routine deployment that briefly reduced capacity, cascading into service mesh saturation, while the August 17 incident was caused by load balancers being overwhelmed when a service-mesh sidecar failed to scale up, amplified by a client retry bug. Meanwhile, GitHub continued migrating to Azure, running its first production MySQL primary there on August 11, with read traffic from migrated services peaking at 60.4%. GitHub Actions gained capacity as job-routing changes moved 33% of jobs to spare capacity, reducing peak cache CPU utilization from 98% to 80%.</description>
+    <description>In August 2026, GitHub experienced five incidents that caused degraded performance across its services, with the most significant affecting GitHub Actions and another impacting issues, pull requests, and related APIs. The Actions incident on August 6 lasted over ten hours when a routine deployment reduced running capacity in one data center, pushing remaining sites past their limits and cascading into cache, DNS, and API errors. On August 17, a traffic peak pushed load balancers past their limits, amplifying through a latent retry bug and affecting roughly 29,000 organizations with failed or slow requests. Despite these challenges, GitHub made progress migrating workloads to Azure, achieving new highs in read traffic percentages and moving services off legacy databases. They also invested in capacity monitoring, autoscaling, load-shedding protections, and improved telemetry for faster incident detection going forward.</description>
     <pubDate>Thu, 10 Sep 2026 02:05:17 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
-    <title>ZipCodec: Ultra-Low-Frame-Rate Streaming Speech Coding</title>
-    <link>http://arxiv.org/abs/2609.11642</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.11642</guid>
-    <description>ZipCodec is a streaming neural speech codec introduced by Luca Della Libera, Cem Subakan, and Mirco Ravanelli that operates at an ultra-low frame rate of 6.25 Hz with a bitrate of 0.80 kbps and a theoretical latency of 160 ms. The approach combines large-scale WavLM distillation with a redesigned transformer-based architecture, a scalar spherical quantizer, and a latency-aware streaming decoder. Experiments show that ZipCodec substantially outperforms existing streaming codecs at comparable bitrates in both reconstruction quality and downstream tasks, while achieving a significantly lower frame rate. Despite its 842 million parameters, the model supports real-time single-stream inference on consumer-grade CPUs.</description>
-    <pubDate>2026-09-10T14:49:54Z</pubDate>
-    <source>Luca Della Libera</source>
+    <title>GitHub Copilot app for Beginners: Using the diff, terminal, and browser</title>
+    <link>https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-using-the-diff-terminal-and-browser/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-using-the-diff-terminal-and-browser/</guid>
+    <description>The GitHub Copilot app includes built-in diff, terminal, and browser panels that let developers review agent-generated code without switching between separate apps. The diff panel displays added, removed, or changed lines with color-coded highlighting, allowing users to accept changes, leave comments, or request modifications. The terminal panel enables running project commands directly within a session, either manually or through configurable scripts accessed via the Run button, with support for multiple open terminals. For user interface projects, the browser panel lets developers preview and test changes, and a Pick &amp; Polish tool allows selecting specific elements to adjust with the agent. Once changes are approved, a pull request can be created directly from the app, completing the review process in one place. The article recommends asking three questions before accepting agent work: what changed, does it run, and does it actually work.</description>
+    <pubDate>Thu, 10 Sep 2026 21:31:19 +0000</pubDate>
+    <source>GitHub Blog</source>
   </item>
   <item>
-    <title>LoaDiff: Conditional Generation of Electricity Consumption Time Series for Energy Analytics</title>
-    <link>http://arxiv.org/abs/2609.11639</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.11639</guid>
-    <description>LoaDiff is a diffusion-based generative model introduced for creating year-long, sub-hourly smart-meter load curves as realistic synthetic alternatives to restricted real data. The model supports flexible conditioning on static household attributes like appliance ownership and dynamic contextual variables such as calendar information and outdoor temperature. The authors evaluated LoaDiff against multiple generative baselines across three residential electricity-consumption datasets, assessing four dimensions: fidelity and diversity, memorization risk, downstream utility for load forecasting and appliance detection, and conditional controllability under alternative temperature scenarios. Results demonstrate that LoaDiff produces realistic and diverse load profiles while maintaining a favorable trade-off between generation quality and limited memorization evidence. Additionally, the generated data preserves information useful for downstream energy applications and responds coherently to changes in conditioning variables, making it valuable for load forecasting, appliance detection, and demand-side flexibility analysis.</description>
-    <pubDate>2026-09-10T14:46:30Z</pubDate>
-    <source>Mariia Baranova</source>
+    <title>Don&#x27;t build tools for AI agents</title>
+    <link>https://seangoedecke.com/dont-build-tools-for-ai-agents/</link>
+    <guid isPermaLink="false">https://seangoedecke.com/dont-build-tools-for-ai-agents/</guid>
+    <description>Don&#x27;t build tools for AI agents</description>
+    <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
+    <source>Sean Goedecke</source>
   </item>
   <item>
-    <title>MAPLE: Memory-Augmented Planning with Language and Evolution</title>
-    <link>http://arxiv.org/abs/2609.11636</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.11636</guid>
-    <description>MAPLE is an LLM-based agent designed to maintain optimization problems through successive natural-language requests, addressing the dynamic nature of real-world operations where demand, resources, and priorities frequently change. Unlike methods that treat each request in isolation, MAPLE combines language-based problem construction with mathematical programming and evolutionary search while retaining the optimization program, accepted plans, earlier updates, and candidate solutions for subsequent requests. To evaluate the approach, the authors introduce NLDO, a benchmark comprising 15 trajectories and 180 updates spanning selection, scheduling, rostering, routing, and cloud-resource placement problems. In the main evaluation, MAPLE completes all trajectories, achieving an online scalar quality of 0.951 and a Pareto hypervolume ratio of 0.875. Controlled comparisons demonstrate that maintaining executable state improves update validity and preserves useful search information across substantial revisions.</description>
-    <pubDate>2026-09-10T14:44:50Z</pubDate>
-    <source>Kesheng Chen</source>
+    <title>General Quantification of Covariate and Concept Shifts</title>
+    <link>http://arxiv.org/abs/2609.11918</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.11918</guid>
+    <description>The paper addresses the challenge of generalization under distribution shift in machine learning, noting that existing learning bound theory is limited to narrow, idealized settings and cannot be estimated from samples. The authors demonstrate that the conventional definition of concept shift breaks when the source and target supports do not match. To address this, they introduce γ*-concept shifts, formulated through entropic optimal transport, and derive a general error bound that unifies covariate and γ*-concept shifts across broad loss functions, label spaces, and stochastic labeling. They also develop sample-based estimators for these shifts with concentration guarantees. Finally, the paper presents the DataShifts algorithm, a practical tool for quantifying distribution shifts and estimating the proposed error bound in most applications. The work was accepted at the 43rd International Conference on Machine Learning (ICML 2026).</description>
+    <pubDate>2026-09-10T17:57:52Z</pubDate>
+    <source>Hongbo Chen</source>
   </item>
   <item>
-    <title>Distributed Optimization of Modular Production Systems using Model-based Reinforcement Learning with Inverse Models</title>
-    <link>http://arxiv.org/abs/2609.11615</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.11615</guid>
-    <description>The paper introduces a data-driven, self-learning control approach for flexible modular manufacturing systems using model-based reinforcement learning combined with approximate inverse process models. By integrating inverse models into the policy network, the method separates the learning of actuation dynamics from state-space dynamics, allowing reinforcement learning training to occur exclusively within the task space. The authors propose a lightweight feedforward architecture for these approximate inverse models, which are embedded within standard RL policy networks. They validate their framework on a laboratory modular production testbed featuring heterogeneous production modules. The results demonstrate notable improvements in both control performance and training speed, particularly when using off-policy RL algorithms.</description>
-    <pubDate>2026-09-10T14:30:52Z</pubDate>
-    <source>Andreas Schwung</source>
+    <title>GPU-CFR: 80x Faster Counterfactual Regret Minimization by Compiling the Game to Static Dataflow and CUDA Graph Replay</title>
+    <link>http://arxiv.org/abs/2609.11923</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.11923</guid>
+    <description>Counterfactual regret minimization (CFR) typically runs faster on CPUs than on GPUs because kernel launches and framework dispatch dominate runtime when each iteration sweeps a game tree through millions of small, interdependent gather and scatter steps. The authors introduce GPU-CFR, which compiles any fixed game once into static dataflow consisting of flat edge and information-set arrays, precomputed indices, and depth-level batched passes, leaving only solver state to vary between iterations. Static chance folding, depth-level execution blocks, and a dual-lane reach buffer cut framework operations by up to 18.1x, while CUDA Graph Replay records the iteration once and replays it with a single graph launch. On one A100 across an eight-game suite spanning card, dice, and board games, GPU-CFR runs 29.8–80.4x faster than the fastest prior GPU CFR and 14–258x faster than the CPU implementation LiteEFG on the four largest games. The compiled representation alone is 2.2–51.1x faster than the GPU baseline on eight CPU threads without any accelerator, and tree construction plus graph capture pay for themselves within the first solve.</description>
+    <pubDate>2026-09-10T17:58:14Z</pubDate>
+    <source>Boning Li</source>
   </item>
   <item>
-    <title>Physics-Informed Neural Networks to Infer the Perpendicular Energy Conductivity in the Scrape-Off Layer of Stellarator Devices</title>
-    <link>http://arxiv.org/abs/2609.11628</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.11628</guid>
-    <description>The authors develop an inverse Physics-Informed Neural Network framework to infer the dependence of the scrape-off layer perpendicular heat conductivity on plasma density and temperature in stellarator devices. The method combines radial profile measurements of electron density and temperature with the residual of a reduced one-dimensional SOL transport equation, training three neural networks simultaneously: two reconstruct temperature and density profiles, while the third represents the effective conductivity as a function of local plasma conditions. Validation on synthetic data demonstrates recovery of the imposed functional dependence with errors below 10% in the data-constrained region. Bootstrap resampling is shown to provide a practical indicator of prediction reliability. The framework is then applied to an experimental dataset from the TJ-II stellarator obtained with the helium-beam diagnostic, yielding an initial estimate of the effective SOL conductivity and illustrating the potential of inverse PINNs for extracting transport information from plasma edge measurements.</description>
-    <pubDate>2026-09-10T14:40:32Z</pubDate>
-    <source>J. Gallego</source>
+    <title>Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data</title>
+    <link>http://arxiv.org/abs/2609.11917</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.11917</guid>
+    <description>As supplies of human-written text dwindle, repeating language model training data has become standard practice. While prior work has examined data repetition in dense Transformers, the effects on sparse Mixture-of-Experts (MoE) architectures remain largely underexplored. Testing MoE models ranging from 80M to 1B active parameters across varying data repetition rates, expert counts, and granularities, researchers found that MoEs degrade more rapidly under data repetition than dense models, with the effect intensifying as sparsity increases and dictated by total rather than active parameters. Dense 80M models tolerate repetition over 8x with minimal degradation, while MoEs begin suffering at 4x and underperform dense models entirely after 32x. Some regularization methods like dropout and strong masking-based regularization can mitigate overfitting, enabling MoEs to outperform dense models even after 64x repetition, though no method fully recovers all-unique training data performance. Analysis further revealed that MoE routing stabilizes early in training, and expert specialization correlates with overfitting to repeated data.</description>
+    <pubDate>2026-09-10T17:57:33Z</pubDate>
+    <source>Atindra Jha</source>
   </item>
   <item>
-    <title>Show HN: Filament – Fast data movement engine in Go</title>
-    <link>https://github.com/galaxy-io/filament</link>
-    <guid isPermaLink="false">https://github.com/galaxy-io/filament</guid>
-    <description>Filament is a pluggable data replication engine written in Go, designed to move data from sources to sinks using full, incremental, or change data capture replication. It features checkpointing, batching, and integrity events, with replaceable interfaces for sources, sinks, state storage, and event transport. The system can run as a service with an API and web UI, be deployed to custom infrastructure, or be embedded directly into a Go application, and it uses PostgreSQL for durable state and NATS JetStream for lifecycle events. The web UI is built with React and TypeScript, and installation is supported through a curl script, Homebrew, or prebuilt binaries. For production deployments, Kubernetes with Helm is recommended, though one-click deployment options are also available on Railway, Render, and DigitalOcean.</description>
-    <pubDate>2026-09-08T14:48:17+00:00</pubDate>
+    <title>Generative Marketing Mix Modeling: A Causal Inference Framework Linking GEO and GEM to Business Impact</title>
+    <link>http://arxiv.org/abs/2609.11915</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.11915</guid>
+    <description>Kato, Honma, and Kato develop Generative Marketing Mix Modeling (GMMM), a causal inference framework designed to estimate the business impact of Generative Engine Optimization (GEO) and Generative Engine Marketing (GEM). The authors note that standard marketing data fail to capture how often users see or notice a firm&#x27;s name within generative AI answers. To address this, GMMM combines repeated generated answers with question counts, share-of-use metrics across generative systems, and notice probabilities for GEO, while pairing sponsored placement records with notice probabilities for GEM. The framework compares expected business responses across alternative treatment sequences and establishes sufficient conditions for identifying causal effects. The authors test the method&#x27;s empirical performance using simulated answers to product recommendation queries in both English and Japanese, submitted to arXiv in September 2026.</description>
+    <pubDate>2026-09-10T17:57:28Z</pubDate>
+    <source>Masahiro Kato</source>
+  </item>
+  <item>
+    <title>Can Edge-Deployable Vision-Language Models Identify Species?</title>
+    <link>http://arxiv.org/abs/2609.11916</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.11916</guid>
+    <description>The paper evaluates whether edge-deployable vision-language models (2-8B parameters) can identify species from camera-trap imagery. Testing Qwen3-VL 2B/4B/8B and Gemma3 4B against the domain specialist BioCLIP (300M parameters) on a 96-species task, the authors find that all models perform far above chance but degrade sharply on field imagery compared to clean photographs, with domain gaps of 9.6-26.6 percentage points. BioCLIP substantially outperforms every VLM tested by 33.2-59.2 percentage points despite its much smaller size, suggesting specialized training data outweighs model scale. Yet BioCLIP&#x27;s domain gap (18.0 points) is statistically indistinguishable from the best VLM&#x27;s (22.3 points), indicating the clean-to-field degradation reflects image-quality shifts rather than general-purpose-model weaknesses. Under open-set prompting, 5.9-9.6% of responses were syntactically valid but taxonomically nonexistent species names, with the fabrication ranking consistent across both evaluation sets.</description>
+    <pubDate>2026-09-10T17:57:32Z</pubDate>
+    <source>William Zhou</source>
+  </item>
+  <item>
+    <title>GrapheneOS&#x27; rewritten Messages app is released</title>
+    <link>https://github.com/GrapheneOS/Messaging/releases/tag/13</link>
+    <guid isPermaLink="false">https://github.com/GrapheneOS/Messaging/releases/tag/13</guid>
+    <description>GrapheneOS has released version 13 of its Messaging app, which replaces the legacy interface with Jetpack Compose and Material 3 and rebuilds every screen. The update introduces a two-pane conversation layout for large screens, an adaptive app icon, and new onboarding covering SMS privacy and permissions. Conversation management now includes pinning, snoozing notifications, marking unread, archiving via swipe, and new status indicators. The app rebuilds message bubbles, the media picker, audio recording, photo viewer, and vCard viewer while adding attachment captions and a redesigned share picker with search. Security improvements include shared-content validation rejecting file URIs and private app files, restricted widget receivers, immutable pending intents, and allocation limits for parsing. The release also fixes numerous crashes, corrects notification handling for incoming SMS and blocked conversations, expands accessibility support, and updates platform dependencies to minSdk 36 and targetSdk 37.</description>
+    <pubDate>2026-09-11T18:50:36+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: Nightshift – Your code gets better while you sleep</title>
-    <link>https://github.com/openslop/nightshift</link>
-    <guid isPermaLink="false">https://github.com/openslop/nightshift</guid>
-    <description>Nightshift is an open-source helper that runs at night, waking a coding agent to perform one small job at a time and leaving pull requests by morning. It cycles through nine jobs covering security, bugs, maintainability, performance, conventions, architecture, smoke tests, and issues, with each job receiving the agent&#x27;s full attention. Nightshift never pushes to the main branch, never modifies files already touched by another open pull request, and runs the repository&#x27;s lint, typecheck, and tests before opening anything. A separate reviewer checks open pull requests every two hours and stays quiet unless it finds something. The tool includes a Node-based console for monitoring activity and resuming past conversations, supports many coding agents including Claude Code, Codex, and Cursor, and runs on macOS, Linux, and Windows under the MIT License.</description>
-    <pubDate>2026-09-10T18:18:08+00:00</pubDate>
+    <title>Litelm: LiteLLM Without the Bloat</title>
+    <link>https://github.com/kennethwolters/litelm</link>
+    <guid isPermaLink="false">https://github.com/kennethwolters/litelm</guid>
+    <description>Litelm is a lightweight alternative to LiteLLM that extracts just the core call path—model routing, message translation, streaming, tool use, and embeddings—into roughly 2,900 lines of code with only two dependencies (openai and httpx). It deliberately omits features like proxy servers, caching, cost tracking, budgeting, and image generation, routing calls to 19 providers through a &quot;provider/model-name&quot; syntax that mirrors litellm&#x27;s API. The library supports async variants, custom OpenAI-compatible endpoints, and maps provider errors to a unified exception hierarchy. Currently in alpha, litelm has 262 own tests passing and has been verified as a drop-in for DSPy across all seven execution paths. Compatibility with upstream LiteLLM was established through a maintainer audit of 360 core-path commits, with ported tests showing 75 passing cases and no remaining actionable failures.</description>
+    <pubDate>2026-09-11T18:10:20+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>DeepSeek v4.1 Flash</title>
-    <link>https://twitter.com/deepseek_ai/status/2097930608790167907</link>
-    <guid isPermaLink="false">https://twitter.com/deepseek_ai/status/2097930608790167907</guid>
-    <description>https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash</description>
-    <pubDate>2026-09-10T06:11:05+00:00</pubDate>
+    <title>Show HN: Godot and Rust based multiplexer (terminal panes and more)</title>
+    <link>https://github.com/godot-pty/gpty</link>
+    <guid isPermaLink="false">https://github.com/godot-pty/gpty</guid>
+    <description>gPTY is a PTY foundation built on Godot and Rust that provides a tiling grid for panes including terminals, code viewers, and file trees. It exposes a JSON-RPC IPC socket, CLI, and MCP server so AI agents and automation tools can spawn panes, inject text, and observe terminal output without scraping TUIs. The terminal uses alacritty_terminal for full DEC STD 070 support with 16/256/true color, scrollback, and regex search, while a regex-based concept engine captures PTY output and routes it to adjacent panes without injecting shell input. Most of the codebase, including the Godot UI and the Rust GDExtension bridge, was LLM-generated. Cross-platform standalone binaries are published for Linux, macOS, and Windows with no toolchain required, and gPTY is licensed under GPLv3 with permissive exceptions for plugins and adapters.</description>
+    <pubDate>2026-09-11T16:03:05+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Shopify acquires Tailwind</title>
-    <link>https://tailwindcss.com/blog/tailwind-is-joining-shopify</link>
-    <guid isPermaLink="false">https://tailwindcss.com/blog/tailwind-is-joining-shopify</guid>
-    <description>Shopify has acquired Tailwind, the CSS framework originally built by Adam Wathan over nine years ago and now installed more than 110 million times per week. Major companies including ChatGPT, X, Cloudflare, Reddit, and Shopify itself use Tailwind to style their products, and Shopify is one of the earliest large-scale adopters of the framework. Under the deal, Tailwind CSS and all related open-source projects will remain MIT-licensed and continue to be actively maintained by the existing team, now with Shopify&#x27;s support. The acquisition gives the project a stable long-term home while allowing it to evolve alongside Shopify&#x27;s merchant and storefront products. On the commercial side, Tailwind is closing new sign-ups for products like Tailwind Plus and ui.sh, though existing customers will retain access.</description>
-    <pubDate>2026-09-09T13:27:11+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>iPhone Duo</title>
-    <link>https://www.apple.com/iphone-duo/</link>
-    <guid isPermaLink="false">https://www.apple.com/iphone-duo/</guid>
-    <description>iPhone Duo is Apple&#x27;s first foldable iPhone, available for pre-order starting October 16 at 5:00 a.m. PT and releasing October 23. When open, it features a 7.6-inch Super Retina XDR inner display that is 50 percent larger than the iPhone 18 Pro Max, with peak brightness of 3000 nits. The device has a Grade 5 titanium frame and hinge cover, Ceramic Shield on both sides, and IP68 water and dust resistance, available in Night Sky and Star White. It runs on the A20 Pro chip with a vapor chamber cooling system and uses a dual-battery configuration delivering up to 31 hours of video playback on the inner display or 44 hours on the outer display. The camera system includes a 48MP Fusion Main camera and 48MP Fusion Ultra Wide camera, supporting features like Duo Preview and Smart Take, with iOS 27 offering new multitasking experiences for its foldable design.</description>
-    <pubDate>2026-09-09T18:15:43+00:00</pubDate>
+    <title>Stop making swap partitions—use swap files instead</title>
+    <link>https://gist.github.com/joshenders/c4960cec9c63a7b7d68ffa9543356c43</link>
+    <guid isPermaLink="false">https://gist.github.com/joshenders/c4960cec9c63a7b7d68ffa9543356c43</guid>
+    <description>Linux distributions continue encouraging swap partitions during installation, but swap files offer identical performance and better flexibility. Swap files have matched swap partition performance for over 20 years while being easier to add, remove, modify, and extend after installation. To create a 4GB swap file, users can run `mkswap --size 4G --file /swapfile`, which requires util-linux 2.40 or newer. This command creates the file, sets mode 0600, and preallocates blocks using ftruncate and posix_fallocate, while version 2.41 adds nocow attribute support for Btrfs. The swap file can then be enabled with `swapon /swapfile` and made persistent by appending an entry to /etc/fstab.</description>
+    <pubDate>2026-09-08T22:33:21+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
     <title>Shopify is moving from React Native back to Swift and Kotlin</title>
     <link>https://shopify.engineering/back-to-native</link>
     <guid isPermaLink="false">https://shopify.engineering/back-to-native</guid>
-    <description>Shopify is moving from React Native back to Swift and Kotlin for its mobile apps, citing advances in coding agents as the reason the original 2020 rationale no longer applies. In prototyping, LLMs could implement features on one platform using the other as a reference, help developers contribute across stacks, and reduce parity maintenance through shared specifications, tests, and review checkpoints. The company chose greenfield rebuilds over gradual migration, with the Shop app already shipped as fully native and the larger Shopify app migration underway. To handle the translation work, Shopify built Helix, a system that breaks each screen into reviewable checkpoints requiring tests, visual review, adversarial code review, and human approval before progressing. They also developed a CLI that lets agents iterate on headless business logic in milliseconds, with a remote mode that drives simulator UIs without inspecting accessibility trees.</description>
+    <description>Shopify is migrating its mobile apps from React Native back to Swift and Kotlin, driven by advances in LLM coding agents that have dramatically reduced the cost of building features twice. In 2020, the company chose React Native to avoid duplicating work, enable cross-platform developer contributions, and reduce feature parity efforts, but agents can now handle much of the implementation, translation, testing, and review work, undermining those original advantages. Native development keeps Shopify closer to platform capabilities and first-party tooling with fewer dependency layers. The Shop app was the first to ship as a fully native app, rebuilt in just 12 weeks, while the larger Shopify app with over 300 screens is underway. To support the migration, Shopify built Helix, a checkpoint-based system that ensures quality through tests, visual reviews, adversarial code reviewers, and human approval. They also created a CLI that lets agents iterate on business logic in milliseconds by running it headlessly on desktop, bypassing slow simulator-based testing.</description>
     <pubDate>2026-09-10T14:09:31+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Don&#x27;t let anyone take away your big box of cables</title>
+    <link>https://blog.jim-nielsen.com/2026/hands-off-my-cables/</link>
+    <guid isPermaLink="false">https://blog.jim-nielsen.com/2026/hands-off-my-cables/</guid>
+    <description>The author came across a social media post from Tyler Gaw who, after digging to the bottom of his &quot;Big Box of Cables,&quot; found two cables he&#x27;d needed that had been sitting unused there for over 10 years. Inspired by Gaw&#x27;s advice to never let anyone take away one&#x27;s big box of cables, the author decided to immortalize the message. He screenshotted the post, printed it in black and white on his Brother printer, cut it out, and taped it to the front of his own cable box—affectionately labeled &quot;FAMILY TECHNO BOX&quot; by his wife—using clear packing tape. Now, every time he opens the box to add another cable, the taped post serves as a reminder of why he keeps the collection and acts as a warning to family members considering throwing it out. The author hopes his children will one day discover the box in the attic and heed the advice printed on it.</description>
+    <pubDate>2026-09-10T15:27:22+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Rust is tier-1 language at Microsoft</title>
+    <link>https://rustfoundation.org/media/guest-post-rust-is-tier-1-language-at-microsoft/</link>
+    <guid isPermaLink="false">https://rustfoundation.org/media/guest-post-rust-is-tier-1-language-at-microsoft/</guid>
+    <description>Rust has officially become a Tier-1 language at Microsoft, joining C++, C#, and TypeScript as one of the best-supported languages for internal development. This status gives Microsoft teams a paved path from local development to production, including secure toolchain builds, developer tooling, quality workflows, and platform integration. A key investment supporting this is rustc_codegen_utc, an alternative code generation backend that connects rustc to the MSVC backend, creating a unified code generation platform for Rust and C++ on Windows. This eliminates the need for parallel implementation of Windows-specific capabilities and reduces duplicated engineering as both languages evolve together. Production-ready since early 2026 and self-hosted since Rust 1.90, the backend is currently used by more than 100 Microsoft project repositories, with additional repositories adopting it weekly.</description>
+    <pubDate>2026-09-10T13:39:16+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>A misalignment of AI in mathematics</title>
+    <link>https://mathandai.org/</link>
+    <guid isPermaLink="false">https://mathandai.org/</guid>
+    <description>Over recent months, large language models have dramatically improved in solving major mathematical problems, prompting AI companies to use these achievements as benchmarks. However, a group of prominent mathematicians warns that this pursuit is misaligned with the true goals of mathematics, which center on developing conceptual understanding, new methods, and the long-term cultivation of ideas through human discussion and careful writeups. They argue that the rapid mass production of true/false statements, often announced hastily without proper attribution, threatens the fertile ground from which genuine mathematical insight grows. The signatories emphasize that without human mathematicians to integrate and transmit AI-generated results, the crucial chain of intellectual development between researchers would be lost. They view these issues as part of a broader misalignment affecting all intellectual work, where AI may deliver final answers while undermining the deeper understanding those years of training were meant to foster. Ultimately, they stress that urgent decisions by AI developers, mathematicians, and society will determine whether these changes benefit or damage the field.</description>
+    <pubDate>2026-09-11T17:45:12+00:00</pubDate>
     <source>Hacker News</source>
   </item>
 </channel></rss>
