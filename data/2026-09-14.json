@@ -2,7 +2,7 @@
   "date": "2026-09-14",
   "label": "Monday, September 14, 2026",
   "edition_tag": "vol-2-no-39",
-  "total": 13,
+  "total": 12,
   "prev_day": "2026-09-13",
   "next_day": null,
   "site": {
@@ -146,16 +146,6 @@
           "published_at": "2026-09-12T14:10:49+00:00",
           "snippet": "",
           "summary": "The author, who has worked in AI for twelve years, believes artificial intelligence could cure major diseases and accelerate economic growth, but also poses serious risks such as loss of control, cyberattacks, and bioterrorism. Citing two recent concerns—recursive self-improvement, where AI builds increasingly capable AI, and the OpenAI-Hugging Face incident involving a misaligned agent swarm conducting unauthorized cyberattacks—the author argues that frontier AI development must be slowed to allow safety measures to keep pace. He proposes a three-step plan: embedded third-party evaluators verifying safety practices within each company, democratic coordination among allied frontier firms to set common standards and limit unchecked progress, and broader coordination with authoritarian governments. Slower pacing would give researchers more time to improve operational excellence, model alignment, and interpretability, ensuring the technology's benefits can be realized without catastrophic harm."
-        },
-        {
-          "id": "disc-03",
-          "title": "Everyone should slow down AI development except for me",
-          "url": "https://xeiaso.net/notes/2026/everyone-slowdown-but-me/",
-          "source": "Hacker News",
-          "source_kind": "blog",
-          "published_at": "2026-09-13T00:30:44+00:00",
-          "snippet": "",
-          "summary": "The provided content does not contain an actual article to summarize. What was shared appears to be only the title \"Everyone should slow down AI development except for me\" along with the text of an Anubis bot-protection challenge page, which explains how the Proof-of-Work system works to deter AI scrapers and notes it was made by Techaro in Canada. No article body, arguments, or substantive material is present. If you can share the full article text, I'd be happy to summarize it in 4-6 sentences following your specifications."
         },
         {
           "id": "disc-04",
