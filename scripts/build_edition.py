@@ -285,6 +285,7 @@ def extract_body(url: str) -> str:
 
 BAD_PREFIXES = (
     "this article", "the provided text", "the provided article", "the provided snippet",
+    "the provided content",
     "as an ai model", "i'm unable", "i cannot", "i don't have", "i do not have",
     "the user wants", "the user is asking", "the user has asked",
     "let me analyze", "let me start", "let me write", "let me draft", "let me check",
@@ -564,6 +565,13 @@ def main():
         items.sort(key=lambda x: pos.get(id(x), 999))
 
     # ---- Build final JSON ----
+    # Drop slots where both summary and snippet are empty — the renderer
+    # can't display an empty card, and Cloudflare will cache the bad card.
+    for sec_items in by_section.values():
+        sec_items[:] = [
+            x for x in sec_items
+            if (x.get("summary") or "").strip() or (x.get("snippet") or "").strip()
+        ]
     total = sum(len(v) for v in by_section.values())
     edition_tag = f"vol-2-no-{34 + (NOW - datetime(2026, 9, 9, tzinfo=timezone.utc)).days}"
 
