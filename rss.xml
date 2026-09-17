@@ -2,141 +2,117 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-16</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-17</description>
   <item>
-    <title>Tell agents the why, not just the how</title>
-    <link>https://seangoedecke.com/tell-agents-the-why/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/tell-agents-the-why/</guid>
-    <description>Early AI agents required precise step-by-step instructions, but modern frontier models fail differently—making incorrect assumptions about the user&#x27;s goals or priorities rather than misunderstanding the task. The author illustrates this with GPT-6-Astra, which produces minified code unless explicitly told that humans will be reading it. The main advice is to give agents broad context about priorities and goals, not just specific technical specs. A sample prompt for a project called Deckard shared the author&#x27;s long-term aim of building a tool to hide AI content on web pages, short-term goals around running an AI detection model efficiently on a MacBook, personal context, and even initial guesses about which models might work—half of which was broad context. For work, the author writes a paragraph explaining relative priorities among bug-avoidance, observability, elegance, and performance, explicitly noting which can be traded off. Treating agents as expert advisors without supplying necessary context is compared to committing the XY problem.</description>
-    <pubDate>Tue, 15 Sep 2026 00:00:00 GMT</pubDate>
+    <title>Migrating the GitHub Copilot runtime to Rust, using Copilot</title>
+    <link>https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot/</guid>
+    <description>GitHub rewrote its Copilot agent runtime from TypeScript on Node.js/V8 into more than 800,000 lines of production Rust, with AI agents writing most of the code across 128 incrementally shipped pull requests. The rewrite, completed primarily by a single developer in a few months rather than the year or two a whole team would have needed before agents, addressed performance problems with embedding the JavaScript-based runtime across the Copilot SDK&#x27;s C#, TypeScript, Python, Rust, Go, and Java clients, each of which previously had to ship Node.js/V8. The new runtime exposes a C ABI for in-process consumption by all six SDK languages while still supporting stdin/stdout or socket-based out-of-process use. It backs numerous Microsoft and GitHub products, including VS Code, Visual Studio, the Copilot CLI, Copilot Studio, and Office applications. The porting effort processed roughly 430,000 lines of TypeScript while the runtime continued to gain capabilities.</description>
+    <pubDate>Thu, 17 Sep 2026 00:26:43 +0000</pubDate>
+    <source>GitHub Blog</source>
+  </item>
+  <item>
+    <title>Size-Specialized Memory Allocation</title>
+    <link>https://go.dev/blog/size-specialized-allocations</link>
+    <guid isPermaLink="false">https://go.dev/blog/size-specialized-allocations</guid>
+    <description>Go 1.27 introduces faster memory allocation for allocations under 80 bytes, making them 20-30% faster and allocation-heavy programs up to 1% faster. The runtime generates specialized mallocgc variants for each &quot;span class,&quot; which encodes both the size class (1-8 bytes through 65-80 bytes) and whether the allocation contains pointers. These specialized functions fall back to generic routines for corner cases like active GC, and the compiler can directly call them when the size is known at compile time, otherwise mallocgc dispatches dynamically. The biggest optimization is memory zeroing, where the compiler can inline clearing instructions when the size is constant, while additional gains come from eliminating span class calculation and manual inlining of helper functions. Stopping at 80 bytes balanced performance gains against instruction cache pressure and binary size. The most common allocation sizes (16 and 24 bytes) benefit most, since these cover interfaces, strings, and slices.</description>
+    <pubDate>2026-09-16T00:00:00+00:00</pubDate>
+    <source>Go Blog</source>
+  </item>
+  <item>
+    <title>Jev means structured output is interesting again</title>
+    <link>https://seangoedecke.com/jev-means-structured-output-is-interesting-again/</link>
+    <guid isPermaLink="false">https://seangoedecke.com/jev-means-structured-output-is-interesting-again/</guid>
+    <description>Jev is an AI model that takes human-language prompts but produces only structured output rather than autoregressively generating human-language tokens. Because it produces answers in parallel within a single forward pass, Jev is consistently fast, with response times ranging from about 70ms to 500ms, enabling new low-latency applications such as playing Doom in real time. However, the author argues that fast structured output is already achievable with existing LLMs by pre-filling responses and constraining generation to a single token, suggesting Jev lacks a substantial technical moat. Fine-tuning specifically for structured output may still give Jev an edge, but the model is unlikely to match the reasoning ability of frontier LLMs since it cannot use test-time compute. The author hopes Jev succeeds and inspires competition in the fast-structured-output space.</description>
+    <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
     <source>Sean Goedecke</source>
   </item>
   <item>
-    <title>GitHub Copilot app for Beginners: Using the diff, terminal, and browser</title>
-    <link>https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-using-the-diff-terminal-and-browser/</link>
-    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-using-the-diff-terminal-and-browser/</guid>
-    <description>The GitHub Copilot app now includes built-in diff, terminal, and browser panels, allowing users to review, run, and preview agent-generated code without switching between separate applications. The diff panel displays added lines in green and removed lines in red, letting users accept changes, leave comments, or request further modifications. The terminal panel enables running project commands directly within the session, including dev server scripts, and supports multiple terminal windows simultaneously. For projects with a user interface, the browser panel allows users to open and test features, using the Pick &amp; Polish tool to select specific elements and iterate with the agent. This side-by-side workflow lets users verify what changed, confirm the code runs, and validate functionality before accepting the agent&#x27;s work and creating a pull request.</description>
-    <pubDate>Thu, 10 Sep 2026 21:31:19 +0000</pubDate>
-    <source>GitHub Blog</source>
+    <title>Automated Instruction Encoding Synthesis for Modern GPU ISA Compression</title>
+    <link>http://arxiv.org/abs/2609.18662</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.18662</guid>
+    <description>The paper presents an automated encoding-synthesis framework that treats GPU instruction layout as a constrained slot-assignment problem, separating semantic field identity from physical bit positions and supporting tied, pinned, and free placement constraints. The framework is instantiated for NVIDIA SASS by normalizing raw public encoding text into a machine-readable specification and validating a resulting disassembler against nvdisasm on 3.78 million instructions, which is released as an open benchmark. Using CP-SAT synthesis, the approach generates both fixed-length and variable-length encodings, achieving a 33% instruction-footprint reduction on 142 Blackwell kernel inputs through variable-length synthesis, with comparable gains on Ampere and Hopper. Against a decoder generated from the NVIDIA-observed 128-bit layout, fixed-length synthesis cuts decoder area by 16%. The generated fetch/decode RTL meets 1.5 GHz in TSMC 22 nm with a replicated area delta of 0.12% of a GA100-class die, while the footprint savings correspond to roughly 9× that logic cost in instruction-SRAM bit-cell area.</description>
+    <pubDate>2026-09-16T13:41:42Z</pubDate>
+    <source>Mingyuan Ma</source>
   </item>
   <item>
-    <title>GitHub availability report: August 2026</title>
-    <link>https://github.blog/news-insights/company-news/github-availability-report-august-2026/</link>
-    <guid isPermaLink="false">https://github.blog/news-insights/company-news/github-availability-report-august-2026/</guid>
-    <description>In August 2026, GitHub experienced five incidents that degraded performance across its services, with the two most significant occurring on August 6 (a roughly 10-hour GitHub Actions outage affecting 74+ organizations) and August 17 (a roughly 7.5-hour incident impacting Issues, pull requests, APIs, Copilot, and authentication, with about 29,000 organizations seeing failures). Both incidents stemmed from capacity limits being exceeded during routine deployments or traffic peaks, compounded by service mesh scaling failures and client retry behavior that amplified the problems. Despite these setbacks, GitHub made progress on its Azure migration, running production MySQL primaries in Azure for the first time and achieving up to 64.3% read traffic from migrated services. Capacity and reliability improvements included moving the 24-table authentication-core cohort off the oldest shared database, removing about one million queries per second, and reducing GitHub Actions peak cache CPU utilization from 98% to 80% through job-routing changes.</description>
-    <pubDate>Thu, 10 Sep 2026 02:05:17 +0000</pubDate>
-    <source>GitHub Blog</source>
+    <title>Revisiting Distributed Sign-Based Variance Reduction</title>
+    <link>http://arxiv.org/abs/2609.18656</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.18656</guid>
+    <description>Sign-based methods reduce communication costs in distributed machine learning, but aggregating local signs can introduce bias when data are heterogeneous, causing existing sign-based variance reduction methods to miss optimal convergence rates. The authors present a counterexample showing that majority voting can fail to approach stationary points even with exact local gradients. To overcome this limitation, they propose tracking the global gradient at the server through unbiased compression of recursive gradient increments. This approach yields convergence rates of O(√(d/K) + √d(a/(nK))^(1/3)) for the ℓ1-norm and O(√(a/K) + √a/(nK)^(1/3)) for the ℓ2-norm, where K is the iteration number, n is the number of workers, d is the dimension, and a=1+ω with ω denoting the compressor&#x27;s relative variance. For finite-sum problems with M components, the method combines periodic exact gradient refreshes with compressed component-gradient differences, achieving sample complexities that match corresponding centralized bounds.</description>
+    <pubDate>2026-09-16T13:35:52Z</pubDate>
+    <source>Wei Jiang</source>
   </item>
   <item>
-    <title>Marketing ops as code: Automating events from planning to follow-up on GitHub</title>
-    <link>https://github.blog/ai-and-ml/github-copilot/marketing-ops-as-code-automating-events-from-planning-to-follow-up-on-github/</link>
-    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/marketing-ops-as-code-automating-events-from-planning-to-follow-up-on-github/</guid>
-    <description>If you can write down how you do your work, you can automate it. Here&#x27;s what I did to support GitHub&#x27;s APAC marketing team. The post Marketing ops as code: Automating events from planning to follow-up on GitHub appeared first on The GitHub Blog .</description>
-    <pubDate>Fri, 11 Sep 2026 18:26:10 +0000</pubDate>
-    <source>GitHub Blog</source>
+    <title>Learning to Program Adaptive Non-Local Observables for Machine Learning</title>
+    <link>http://arxiv.org/abs/2609.18655</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.18655</guid>
+    <description>The paper, authored by Yu-Ting Lee, Samuel Yen-Chi Chen, and Huan-Hsin Tseng, introduces QFWP-ANO, a novel architecture designed to enhance quantum neural networks (QNNs). Traditional variational quantum circuits (VQCs) are limited by local measurements, and while adaptive non-local observables (ANO) help by jointly optimizing circuit parameters and multi-qubit measurements, existing ANO-based VQCs use a single static observable that remains unchanged across all inputs. To address this limitation, QFWP-ANO employs a classical hypernetwork to dynamically program VQC parameters and/or non-local observables conditioned on each specific input. On multivariate time-series forecasting across four ETT datasets, the proposed method achieves the lowest mean squared error in 16 of 20 settings and the second-lowest in the remaining four, outperforming ANO-based and other strong baselines. Additionally, QFWP-ANO consistently surpasses ANO-VQCs on reinforcement learning tasks. These results establish input-conditioned ANO as an effective approach for improving QNNs.</description>
+    <pubDate>2026-09-16T13:35:31Z</pubDate>
+    <source>Yu-Ting Lee</source>
   </item>
   <item>
-    <title>Intrinsic Robot Rewarding: Reusing VLA Representations for Autonomous Evaluation and Policy Improvement</title>
-    <link>http://arxiv.org/abs/2609.17115</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.17115</guid>
-    <description>Intrinsic Robot Rewarding (IRR) proposes reusing the visual representations and demonstration data already available in vision-language-action (VLA) systems to evaluate robotic outcomes and provide feedback for policy improvement. Successful demonstration endpoints define task-specific references, while the policy&#x27;s frozen visual encoder provides the feature space in which new outcomes are assessed. The core reward mechanism adds a reference bank and scoring operation to the existing pipeline, eliminating the need for a separate learned evaluator or additional perception backbone. This approach aims to reduce integration effort, enable efficient reward computation, and minimize recurring human outcome scoring. The authors demonstrate the concept on an operational COMAU Racer 3 robot at technology readiness level 4 (TRL 4), presenting the reward formulation, central research questions, and an evaluation methodology linking reward reliability to task success and supervision effort. The intended contribution is a reusable framework for learning and improvement from data already present in industrial robot systems.</description>
-    <pubDate>2026-09-15T12:42:17Z</pubDate>
-    <source>Tobias Schaffer</source>
+    <title>Fallacy Benchmarks Measure Scheme Recognition, Not Fallacy Detection</title>
+    <link>http://arxiv.org/abs/2609.18644</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.18644</guid>
+    <description>Existing fallacy-detection benchmarks pair each fallacy class with a single &quot;valid&quot; or &quot;none&quot; class containing everything not labeled as a fallacy, a construction the authors argue is misleading. Because correct arguments using the same argumentation scheme represent only a few percent of these valid classes, classifiers can achieve low false-positive rates by learning scheme recognition rather than the ability to distinguish fallacious from correct arguments. When evaluated on scheme-matched correct negatives, false-positive rates rise dramatically, from 16.6% to 58.9% on CoCoLoFa and from 5.7% to 62.0% on Reddit. In a controlled comparison, classifiers label scheme-matched correct arguments as the source fallacy type 40.9 points more often than wrong-scheme arguments, while wrong-scheme items are identified by their actual scheme 85.9% of the time versus 0.4% for the source type. The same dissociation appears in three zero-shot LLM detectors that never saw these benchmarks. The authors release their constructed items as Scheme Foils and argue that reported false-positive rates should not be trusted until the valid class is audited for scheme-matched coverage.</description>
+    <pubDate>2026-09-16T13:28:39Z</pubDate>
+    <source>Navyansh Singh</source>
   </item>
   <item>
-    <title>High-Fidelity Digital Twin Data Models by Randomized Dynamic Mode Decomposition and Deep Learning with Applications in Fluid Dynamics</title>
-    <link>http://arxiv.org/abs/2609.17101</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.17101</guid>
-    <description>Diana A. Bistrian presents a framework for creating high-fidelity digital twin data models (DTMs) from numerical code outputs using non-intrusive techniques that do not require Galerkin projection of governing equations onto a reduced modes basis. The DTM is defined as a reduced-complexity model that mirrors the original process behavior, reproducing dynamics at lower CPU time and hardware costs while maintaining high accuracy. The proposed methodology combines randomized dynamic mode decomposition with deep learning artificial intelligence to produce outputs consistent with the original source data. The framework was validated on three shock wave phenomena of increasing complexity in numerical simulation. A thorough assessment was conducted to evaluate the performance of the new digital twin data models in terms of numerical accuracy and computational efficiency. The work was published in Modelling 2022, volume 3, issue 3, pages 314–332.</description>
-    <pubDate>2026-09-15T12:34:07Z</pubDate>
-    <source>Diana A. Bistrian</source>
-  </item>
-  <item>
-    <title>Bio-Inspired Palette Evolution in Indirectly Encoded Substrates: Timescale Compatibility Shapes Activation Function Discovery</title>
-    <link>http://arxiv.org/abs/2609.17067</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.17067</guid>
-    <description>This paper tackles meta-learning of activation function palettes for indirectly encoded neural networks by designing 13 evolutionary strategies, 11 inspired by biological adaptation mechanisms alongside baseline and oracle controls. Each strategy translates a biological principle into an operator—for instance, circadian-inspired oscillatory gating cycles functions in and out of the palette on a fixed schedule, while immune-inspired Clonal Selection permanently protects functions correlated with fitness. Across more than 3,000 runs on parity and non-parity problems, plus an independent replication with new seeds, bio-inspired strategies matched the tuned baseline&#x27;s solve rate while converging up to twice as fast, with the Circadian strategy halving total compute. The central finding is that timescale compatibility governs success: strategies whose characteristic timescale matches the evolutionary evaluation window consistently outperform those operating too slowly. Rankings also reversed across problem types, indicating no single strategy dominates all domains, though rescaling the slowest strategy bypassed the oscillatory barrier entirely, with all nine parity solutions using non-oscillatory activations paired with min or max aggregation.</description>
-    <pubDate>2026-09-15T12:10:19Z</pubDate>
-    <source>Romain Claret</source>
-  </item>
-  <item>
-    <title>Neuro-Symbolic Hierarchical Intention Anticipation in Human Behavior</title>
-    <link>http://arxiv.org/abs/2609.17064</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.17064</guid>
-    <description>Researchers from LISSI propose a neuro-symbolic framework for anticipating human goals before an observed behavior is complete, formulated as goal inference from partially observed multimodal episodes combined with structured prediction of the remaining behavior. A compact Hierarchical Planning Decoder is attached to a frozen neuro-symbolic recognition encoder and predicts the next actions, remaining activities, low-level intentions, and episode high-level intention across four ontological levels. Training uses soft neuro-symbolic regularization combining transition-coherence and hierarchical continuity losses, while inference applies hard reachability masks to enforce ontological validity. On a benchmark of 15,002 multimodal episodes built over NTU RGB+D 120 features, the advantage over the strongest sequential baseline grows with the anticipation horizon, rising from +1.7 points at step 1 to +7.3 points at step 3 in top-5 accuracy. Under compositional generalization with one held-out parent association, this lead expands to +4.9 points at step 1, while 96.8% of anticipated trajectories satisfy joint logic constraints compared to 88.1% for the strongest baseline and a 73.9% ground-truth floor. Soft logic terms alone cut HLI-reachability violations by 59.8 to 71.1% relative, and the hard masks eliminate them entirely.</description>
-    <pubDate>2026-09-15T12:09:03Z</pubDate>
-    <source>Farnaz Soleimani</source>
-  </item>
-  <item>
-    <title>Optimization over covariance matrices with a parameterized metric</title>
-    <link>http://arxiv.org/abs/2609.17089</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.17089</guid>
-    <description>The choice of Riemannian metric can strongly influence the convergence of gradient-based optimization over covariance matrices. Euclidean, Bures-Wasserstein and affine-invariant metrics are common choices, but their relative effectiveness depends on the objective. We introduce a two-parameter family defined by $X^{p}LX^{q}+X^{q}LX^{p}=U$, solved for $L$ at each tangent vector $U$, that contains all three as exact members, at $(0,0)$, $(1,0)$ and $(1,1)$, and extends past them. We treat the choice of member as a particular way of preconditioning for a given problem. To this end, we analyze the conditioning of the Riemannian Hessian at the solution. We show that it obeys a lower bound that depends on $(p,q)$ only through the exponent $r=p+q$. When the Euclidean Hessian is a pure power that m</description>
-    <pubDate>2026-09-15T12:22:39Z</pubDate>
-    <source>Yibang Li</source>
-  </item>
-  <item>
-    <title>OpenArm: An open-source 7DOF humanoid arm</title>
-    <link>https://github.com/enactic/OpenArm</link>
-    <guid isPermaLink="false">https://github.com/enactic/OpenArm</guid>
-    <description>OpenArm is an open-source 7DOF humanoid arm designed for physical AI research and deployment in contact-rich environments, featuring high backdrivability and compliance for safe human-robot interaction. It offers human-scale proportions and practical payload capabilities, with a complete bimanual system priced at $6,500 USD. The platform supports teleoperation, imitation learning, simulation, and real-world data collection across various research applications. OpenArm Cell provides a standardized environment with unified background, lighting, and camera placement, enabling reproducible research conditions worldwide. The project includes multiple repositories covering hardware CAD files, URDF descriptions, CAN control, ROS2 integration, teleoperation, Isaac Lab and MuJoCo simulations, datasets, and Dora dataflow nodes. Hardware is licensed under CERN-OHL-S-2.0 while software components use Apache-2.0.</description>
-    <pubDate>2026-09-13T14:17:49+00:00</pubDate>
-    <source>Hacker News</source>
+    <title>CoRe-MARL: Cooperative Redistribution Under Unknown Dynamics Using Recurrent Multi-Agent Reinforcement Learning</title>
+    <link>http://arxiv.org/abs/2609.18639</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.18639</guid>
+    <description>The authors introduce CoRe-MARL, a cooperative multi-agent reinforcement learning framework designed to optimize supply redistribution among decentralized local centers in emergency relief distribution networks operating under uncertain demand and supply dynamics. The problem is formulated as a decentralized partially observable Markov decision process, where each center acts as an agent learning a redistribution policy aimed at improving service in the worst-served region, reducing service gaps across regions, and protecting network-wide service. The approach incorporates a recurrent network to capture evolving supply and demand dynamics without direct observation, paired with multi-agent proximal policy optimization for centralized training and decentralized execution. In simulated environments with diverse trajectories, the recurrent MAPPO was compared against recurrent independent PPO and a local-only heuristic, demonstrating reduced service gaps and enhanced service for the worst-served center while maintaining competitive network-wide performance. The framework also showed consistent results across varied trajectory patterns, highlighting its adaptability to uncertain and evolving dynamics.</description>
+    <pubDate>2026-09-16T13:25:05Z</pubDate>
+    <source>Naimur Rahman Chowdhury</source>
   </item>
   <item>
     <title>Show HN: An e-ink frame that hears birds and draws them as 1800s illustrations</title>
     <link>https://github.com/arnegiacomo/fugleramme</link>
     <guid isPermaLink="false">https://github.com/arnegiacomo/fugleramme</guid>
-    <description>Fugleramme is an open-source e-ink frame that uses a Raspberry Pi to detect birds by audio and render them as hand-curated 1800s illustrations on an Inky Impression panel. It polls BirdNET-Go, a local AI classifier, and matches each species to one of over 800 cut-outs from real public-domain natural-history plates covering more than 400 species. Detected birds are arranged on a textured paper page, sized by body mass, with the display only refreshing when the bird list changes. The project works in web-only mode as well, and includes an admin page for configuration, automatic updates, and Docker or scripted installation. A live demo runs from the creator&#x27;s kitchen window in Bergen, Norway, and prebuilt frames are available on request.</description>
+    <description>Fugleramme is an open-source project that turns a Raspberry Pi with an Inky Impression e-ink panel into a live-updating bird display, detecting birds by sound via BirdNET-Go and rendering them as hand-curated 1800s natural-history illustrations on textured paper. The creator curated over 800 public-domain cut-outs covering more than 400 species, sorted by body mass and packed onto pages with empty windows showing a bare perch. Currently live in a Bergen, Norway kitchen window, it works best for Nordic, British, and central European species, with broader European and North American coverage planned. The frame can run with or without the e-ink panel as a web kiosk, and ships with multiple install options including a one-line script for Pi, Docker images, and a Python development setup. The project shares no code or art with similar projects like AvianVisitors or featherframe, and code is MIT licensed.</description>
     <pubDate>2026-09-15T12:31:10+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: Ordewell – turn one goal into an ordered plan of coding-agent tasks</title>
-    <link>https://github.com/ordewell/ordewell</link>
-    <guid isPermaLink="false">https://github.com/ordewell/ordewell</guid>
-    <description>Ordewell is a tool that converts a single development goal into an ordered plan of coding-agent tasks, each carrying its own runner, model, thinking effort, and mode, all editable before any tokens are spent. The planner researches the workspace read-only, asks clarifying questions when the goal is vague, and delivers the plan as its final message in a persistent chat session. Tasks execute in real coding-agent sessions following a dependency graph, and a task only completes when a unique completion marker appears in its runner&#x27;s output, with exit code kept as diagnostic evidence. Built-in runners include Claude Code, Codex, and OpenCode, which can serve as the planner on their own subscriptions without a separate API key, while 25 additional providers are supported via their respective keys. The same core is exposed through a VS Code extension, a tmux-based terminal UI, and a scriptable CLI, and custom runners can be added through plugin manifests.</description>
-    <pubDate>2026-09-15T13:31:37+00:00</pubDate>
+    <title>Reverse-engineered Jev-like model</title>
+    <link>https://github.com/vinnylarouge/jevlike</link>
+    <guid isPermaLink="false">https://github.com/vinnylarouge/jevlike</guid>
+    <description>The repository offers an independent starter model that mimics Jev&#x27;s input and output shape: it takes a piece of text and a list of options, then returns one probability per option in a single pass. Each option becomes a query vector that assigns attention weights to context tokens, producing a context vector scored by a shared dot product and normalized with a softmax. The default encoder learns byte embeddings from scratch, though users can optionally attach a frozen Hugging Face encoder like Qwen2.5-0.5B. Training data uses JSONL files with context, options, and a label index. In local experiments, the one-pass scorer reached about 98% accuracy on synthetic menus and roughly 26-29% on target-disjoint Wikispeedia next-click data, depending on the encoder, while running about 100 times faster than a small decoder writing 400 tokens. The release is licensed under MIT and explicitly notes it is a research starter, not a reproduction of Jev or TypeSafe&#x27;s private training method.</description>
+    <pubDate>2026-09-16T18:49:57+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>WangNet – 1.8 MB, zero-dependency Numberwang adjudication in 11 languages</title>
-    <link>https://github.com/GraafHenk/numberwang</link>
-    <guid isPermaLink="false">https://github.com/GraafHenk/numberwang</guid>
-    <description>WangNet is a 1.8 MB neural network stored as a JSON file that adjudicates whether numbers are Numberwang, requiring only Python 3.8 or newer with zero external dependencies. The roughly 100-line inference code runs without PyTorch or NumPy, reading characters directly through an embedding, two convolutional layers, and linear layers totaling 80,804 parameters. It supports 11 languages, accepts digits, words, arithmetic expressions, Roman numerals, and ordinals, and produces four verdicts ranging from &quot;not Numberwang&quot; to &quot;Wangernumb!&quot; On 486 held-out adjudications the model achieves 88.9% accuracy with a macro-F1 of 0.896, though arithmetic on unseen operands remains its weak spot at 44–72%. A hosted demo runs on Hugging Face Spaces using gradio, which is only needed for the interface and not the model itself.</description>
-    <pubDate>2026-09-15T19:27:35+00:00</pubDate>
+    <title>Introducing System One Models and Jev</title>
+    <link>https://typesafe.ai/blog/introducing-system-one-models-and-jev</link>
+    <guid isPermaLink="false">https://typesafe.ai/blog/introducing-system-one-models-and-jev</guid>
+    <description>Diogo Almeida, formerly of OpenAI, founded TypeSafe AI and announced the release of Jev, the company&#x27;s first System One Model, available in early access. Jev is built around Reinforcement Learning for Calibrated Decisions (RLCD) and is designed to make fast, structured decisions that software can consume directly, replacing sequential string generation with parallel sampling of type-safe outputs. The company claims Jev matches the intelligence of frontier LLMs on System One tasks while being roughly two orders of magnitude faster and cheaper, with response times between 70ms and 500ms compared to 3–329 seconds for existing models, and input pricing of $0.042 per million tokens with free outputs. Because possible outputs are defined in advance, Jev cannot make type errors or hallucinate, and every answer includes calibrated probabilities and confidence scores. Target use cases include AI-powered workflows acting as fuzzy decision rules, map-reduce processing over large datasets, real-time applications, and verifying or scoring outputs from other LLMs.</description>
+    <pubDate>2026-09-15T19:25:03+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>XCancel service is suspended until further notice</title>
-    <link>https://xcancel.com/#</link>
-    <guid isPermaLink="false">https://xcancel.com/#</guid>
-    <description>XCancel service is suspended until further notice</description>
-    <pubDate>2026-09-14T09:51:50+00:00</pubDate>
+    <title>An update on Wayback Machine access</title>
+    <link>https://blog.archive.org/2026/09/15/an-update-on-wayback-machine-access/</link>
+    <guid isPermaLink="false">https://blog.archive.org/2026/09/15/an-update-on-wayback-machine-access/</guid>
+    <description>Mark Graham, Director of the Wayback Machine, posted an update on September 15, 2026, addressing ongoing access issues with the Internet Archive&#x27;s Wayback Machine. The service has been overwhelmed by waves of high-volume automated traffic, prompting the team to put protections in place to keep it running. As part of these efforts, they rewrote the message users see when blocked with a 429 &quot;too many requests&quot; error. While these safeguards are necessary, they occasionally block real users by mistake. The team is actively working to improve their ability to distinguish abusive bots from genuine users. Anyone incorrectly blocked is encouraged to email info@archive.org with their operating system, browser, and IP address so the issue can be investigated.</description>
+    <pubDate>2026-09-15T17:52:18+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>iOS 27, iPadOS 27, and macOS 27</title>
-    <link>https://www.apple.com/newsroom/2026/09/major-updates-for-apples-software-platforms-are-now-available/</link>
-    <guid isPermaLink="false">https://www.apple.com/newsroom/2026/09/major-updates-for-apples-software-platforms-are-now-available/</guid>
-    <description>Apple&#x27;s iOS 27, iPadOS 27, macOS 27, and other platform updates introduce Siri AI, a more capable and conversational assistant powered by the next generation of Apple Intelligence, featuring personal context understanding, onscreen awareness, and integration across iPhone, iPad, Mac, Apple Watch, and Apple Vision Pro. New Apple Intelligence features enhance Photos with Spatial Reframing, Extend, and an upgraded Clean Up tool, while Image Playground now supports photorealistic styles and the SynthID standard for identifying AI-generated images. Safari gains tab organization, website change notifications, and custom extension creation, and Call Context surfaces relevant information during business calls. Updated parental controls and a redesigned Screen Time experience offer easier child account setup, age-based safeguards, Ask to Browse for Safari, enhanced Communication Safety for violent content, and daily time allowances for entertainment, games, and social media. Platform-wide improvements include faster performance, smoother cellular-to-Wi-Fi transitions, refined search capabilities, and Liquid Glass design updates with personalization options.</description>
-    <pubDate>2026-09-14T17:50:29+00:00</pubDate>
+    <title>Apple Reference Image: A New Approach for Verified Photography</title>
+    <link>https://security.apple.com/blog/apple-reference-image/</link>
+    <guid isPermaLink="false">https://security.apple.com/blog/apple-reference-image/</guid>
+    <description>Apple Reference Image is a new opt-in camera mode debuting on iPhone 18 Pro and iPhone 18 Pro Max that creates securely timestamped reference images accurately reflecting what the device&#x27;s sensor captured. The system works in two phases: first, a secure digital negative is created when the sensor cryptographically signs pixel data immediately after capture, preventing tampering; then, Private Cloud Compute (PCC) processes this negative into a viewable image within a verifiable, privacy-preserving environment. Apple Reference Image embeds both a lower-bound and upper-bound cryptographic timestamp, provided by Apple&#x27;s timestamp service on roughly 15-minute intervals, guaranteeing the photo was taken between the two times. The system is designed to resist sensor tampering, cryptographic attacks, and software jailbreaks, with fraudulent images revocable without exposing the photographer&#x27;s identity. Unlike C2PA-based approaches, which certify edits after capture, Apple Reference Image secures the entire pipeline from raw sensor data to final image, providing stronger semantic authenticity, resilience, and privacy guarantees.</description>
+    <pubDate>2026-09-16T02:07:31+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>I can&#x27;t stop thinking about Papua New Guinea</title>
-    <link>https://notnottalmud.substack.com/p/why-i-cant-stop-thinking-about-papua</link>
-    <guid isPermaLink="false">https://notnottalmud.substack.com/p/why-i-cant-stop-thinking-about-papua</guid>
-    <description>Papua New Guinea hosts nearly 1,000 distinct languages and was home to roughly a million people living undiscovered in its highlands until 1930, when Australian Mick Leahy stumbled upon them while prospecting for gold. People first arrived on the island around 50,000 years ago, and highland communities became effectively isolated from the coast about 10,000 years ago when agriculture developed there independently. New Guineans cultivated taro, bananas, and sugarcane, with bananas and sugarcane first domesticated on the island, eventually spreading worldwide. Because root vegetables spoiled quickly and highlanders lacked draft animals and writing, tribes never formed larger centralized societies, leaving small groups of a few hundred people in constant warfare and largely unable to travel or trade safely with neighbors. These encounters between isolated highlanders and outsiders were captured in thousands of photos and hours of film, and are detailed in the book &quot;First Contact&quot; along with a documentary built from Leahy&#x27;s original footage.</description>
-    <pubDate>2026-09-15T06:16:24+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>25 years of mass surveillance is enough</title>
-    <link>https://www.schneier.com/blog/archives/2026/09/25-years-of-mass-surveillance-is-enough.html</link>
-    <guid isPermaLink="false">https://www.schneier.com/blog/archives/2026/09/25-years-of-mass-surveillance-is-enough.html</guid>
-    <description>Following the September 11, 2001 attacks, the U.S. government shifted from targeted surveillance to mass techniques including the NSA&#x27;s bulk telephone records collection and the Upstream program. The USA Freedom Act in 2015 ended some indiscriminate collection, but Section 702 surveillance continues until at least 2027. Mass surveillance has expanded beyond intelligence agencies to law enforcement like ICE, private companies such as Google and Facebook, and technologies including Flock license plate readers and facial recognition, with FBI Director Kash Patel confirming the agency purchases information from data brokers. This shift raises Fourth Amendment concerns, allowing government access to personal data without individualized suspicion, probable cause, or particularized descriptions of what is being seized. Despite occasional claims of success, the national security community has never provided comprehensive analysis demonstrating these programs effectively prevent attacks or make people safer.</description>
-    <pubDate>2026-09-15T11:26:48+00:00</pubDate>
+    <title>Mistral X Mozilla: Private, Multilingual AI Browsing</title>
+    <link>https://mistral.ai/news/mistral-x-mozilla/</link>
+    <guid isPermaLink="false">https://mistral.ai/news/mistral-x-mozilla/</guid>
+    <description>Mistral and Mozilla have announced a partnership to bring open, private, and multilingual AI to web browsing through Firefox Smart Window (beta), Mozilla&#x27;s AI browsing assistant. Smart Window helps users understand complex searches, recall previously clicked content, and source information from their browser tabs. Mistral will power Smart Window initially for users in France and North America, with the United Kingdom and Germany expected to follow later in 2026. Both companies are open source advocates, and Mistral&#x27;s models are fine-tuned on regional languages and dialects to serve local cultural contexts. The partnership emphasizes user privacy, with conversations not saved on Mozilla&#x27;s servers by default and Mistral agreeing to zero data retention. Together, the companies aim to extend sovereign, privacy-focused AI from enterprise use to consumers worldwide.</description>
+    <pubDate>2026-09-16T08:08:57+00:00</pubDate>
     <source>Hacker News</source>
   </item>
 </channel></rss>
