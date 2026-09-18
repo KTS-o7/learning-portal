@@ -2,117 +2,141 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-17</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-18</description>
   <item>
     <title>Migrating the GitHub Copilot runtime to Rust, using Copilot</title>
     <link>https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot/</link>
     <guid isPermaLink="false">https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot/</guid>
-    <description>GitHub rewrote its Copilot agent runtime from TypeScript on Node.js/V8 into more than 800,000 lines of production Rust, with AI agents writing most of the code across 128 incrementally shipped pull requests. The rewrite, completed primarily by a single developer in a few months rather than the year or two a whole team would have needed before agents, addressed performance problems with embedding the JavaScript-based runtime across the Copilot SDK&#x27;s C#, TypeScript, Python, Rust, Go, and Java clients, each of which previously had to ship Node.js/V8. The new runtime exposes a C ABI for in-process consumption by all six SDK languages while still supporting stdin/stdout or socket-based out-of-process use. It backs numerous Microsoft and GitHub products, including VS Code, Visual Studio, the Copilot CLI, Copilot Studio, and Office applications. The porting effort processed roughly 430,000 lines of TypeScript while the runtime continued to gain capabilities.</description>
+    <description>GitHub migrated the Copilot agent runtime from TypeScript on Node.js to Rust, with AI agents writing most of the resulting 800,000 lines of production code across 128 pull requests. The rewrite was completed by primarily a single developer in only a few months, whereas it would have previously required a whole team of developers for a year or two. The original stack suffered from performance limitations, including spawning subprocesses, V8 overhead, and roughly 100 MB of working set per client, forcing every SDK consumer across C#, Python, Go, Java, and Rust to ship a second language runtime. Rust was chosen for its C ABI embedding capability, minimal dependencies, low startup and memory overhead, and predictable resource use. While the initial scope was estimated at 130,000 lines of TypeScript, approximately 430,000 lines ultimately passed through the port, and runtime performance improved by orders of magnitude.</description>
     <pubDate>Thu, 17 Sep 2026 00:26:43 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
-    <title>Size-Specialized Memory Allocation</title>
-    <link>https://go.dev/blog/size-specialized-allocations</link>
-    <guid isPermaLink="false">https://go.dev/blog/size-specialized-allocations</guid>
-    <description>Go 1.27 introduces faster memory allocation for allocations under 80 bytes, making them 20-30% faster and allocation-heavy programs up to 1% faster. The runtime generates specialized mallocgc variants for each &quot;span class,&quot; which encodes both the size class (1-8 bytes through 65-80 bytes) and whether the allocation contains pointers. These specialized functions fall back to generic routines for corner cases like active GC, and the compiler can directly call them when the size is known at compile time, otherwise mallocgc dispatches dynamically. The biggest optimization is memory zeroing, where the compiler can inline clearing instructions when the size is constant, while additional gains come from eliminating span class calculation and manual inlining of helper functions. Stopping at 80 bytes balanced performance gains against instruction cache pressure and binary size. The most common allocation sizes (16 and 24 bytes) benefit most, since these cover interfaces, strings, and slices.</description>
-    <pubDate>2026-09-16T00:00:00+00:00</pubDate>
-    <source>Go Blog</source>
+    <title>Be alert: targeted attacks on prominent Rustaceans</title>
+    <link>https://blog.rust-lang.org/2026/09/17/targeted-attacks/</link>
+    <guid isPermaLink="false">https://blog.rust-lang.org/2026/09/17/targeted-attacks/</guid>
+    <description>An ongoing campaign is targeting rust-lang members and owners of popular crates in an attempt to compromise devices and accounts for publishing malware. Attackers use positive pretexts—such as job, project, or contract discussions—as vectors, then attempt to get targets to install malicious software like fake audio codecs or execute commands via clipboard manipulation. They establish new but plausible company profiles, including LinkedIn presences, to pass initial scrutiny. Similar attacks previously targeted prominent Rust developers in June and briefly compromised the arrayref crate last month, though it remains unclear if these are all part of the same campaign. This attack style is known to be associated with DPRK and has been observed beyond the Rust community. Developers are advised to be suspicious of cold outreaches, use trusted platforms they control, verify MFA is enabled, check for unexpected logins, and contact help@crates.io or security@rust-lang.org with concerns.</description>
+    <pubDate>2026-09-17T00:00:00+00:00</pubDate>
+    <source>Rust Blog</source>
   </item>
   <item>
-    <title>Jev means structured output is interesting again</title>
-    <link>https://seangoedecke.com/jev-means-structured-output-is-interesting-again/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/jev-means-structured-output-is-interesting-again/</guid>
-    <description>Jev is an AI model that takes human-language prompts but produces only structured output rather than autoregressively generating human-language tokens. Because it produces answers in parallel within a single forward pass, Jev is consistently fast, with response times ranging from about 70ms to 500ms, enabling new low-latency applications such as playing Doom in real time. However, the author argues that fast structured output is already achievable with existing LLMs by pre-filling responses and constraining generation to a single token, suggesting Jev lacks a substantial technical moat. Fine-tuning specifically for structured output may still give Jev an edge, but the model is unlikely to match the reasoning ability of frontier LLMs since it cannot use test-time compute. The author hopes Jev succeeds and inspires competition in the fast-structured-output space.</description>
-    <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
-    <source>Sean Goedecke</source>
+    <title>GitHub Copilot app for Beginners: Using the diff, terminal, and browser</title>
+    <link>https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-using-the-diff-terminal-and-browser/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-using-the-diff-terminal-and-browser/</guid>
+    <description>The GitHub Copilot app now includes built-in diff, terminal, and browser panels that let developers review agent-generated code without switching between separate tools. The diff panel displays added, removed, or changed lines with additions highlighted in green and deletions in red, allowing users to accept changes, leave comments, or request further modifications. The terminal panel enables running project commands directly within the session, either manually or through configurable scripts accessed via a Run button, and supports multiple terminal windows at once. The browser panel allows previewing user interfaces and testing new features, with a Pick &amp; Polish tool that lets developers select elements and adjust them through the agent. Once changes pass review, run, and preview checks, users can accept them and create a pull request directly from the app.</description>
+    <pubDate>Thu, 10 Sep 2026 21:31:19 +0000</pubDate>
+    <source>GitHub Blog</source>
   </item>
   <item>
-    <title>Automated Instruction Encoding Synthesis for Modern GPU ISA Compression</title>
-    <link>http://arxiv.org/abs/2609.18662</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.18662</guid>
-    <description>The paper presents an automated encoding-synthesis framework that treats GPU instruction layout as a constrained slot-assignment problem, separating semantic field identity from physical bit positions and supporting tied, pinned, and free placement constraints. The framework is instantiated for NVIDIA SASS by normalizing raw public encoding text into a machine-readable specification and validating a resulting disassembler against nvdisasm on 3.78 million instructions, which is released as an open benchmark. Using CP-SAT synthesis, the approach generates both fixed-length and variable-length encodings, achieving a 33% instruction-footprint reduction on 142 Blackwell kernel inputs through variable-length synthesis, with comparable gains on Ampere and Hopper. Against a decoder generated from the NVIDIA-observed 128-bit layout, fixed-length synthesis cuts decoder area by 16%. The generated fetch/decode RTL meets 1.5 GHz in TSMC 22 nm with a replicated area delta of 0.12% of a GA100-class die, while the footprint savings correspond to roughly 9× that logic cost in instruction-SRAM bit-cell area.</description>
-    <pubDate>2026-09-16T13:41:42Z</pubDate>
-    <source>Mingyuan Ma</source>
+    <title>Marketing ops as code: Automating events from planning to follow-up on GitHub</title>
+    <link>https://github.blog/ai-and-ml/github-copilot/marketing-ops-as-code-automating-events-from-planning-to-follow-up-on-github/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/marketing-ops-as-code-automating-events-from-planning-to-follow-up-on-github/</guid>
+    <description>Tomoko Tanaka, who runs marketing for GitHub in Japan and Korea, turned her recurring event workflow into code by treating each GitHub Issue as an event. Issue forms capture structured event details, labels trigger GitHub Actions workflows, and a conversation with GitHub Copilot, guided by an AGENTS.md runbook, drafts campaign names, emails, and the issue itself before any automation fires. Once an &quot;event-setup&quot; label is applied, a workflow duplicates the landing page, generates UTM-tagged URLs, produces an invitation email, opens request issues with partner teams, and adds the event to project boards, all gated by a DRY_RUN repository variable for safe rehearsal. Registration screening runs on a daily cron schedule, while post-event cleanup uses slash commands like /lead-upload and /event-report backed by SKILL.md files, which are plain Markdown procedures the team can edit themselves.</description>
+    <pubDate>Fri, 11 Sep 2026 18:26:10 +0000</pubDate>
+    <source>GitHub Blog</source>
   </item>
   <item>
-    <title>Revisiting Distributed Sign-Based Variance Reduction</title>
-    <link>http://arxiv.org/abs/2609.18656</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.18656</guid>
-    <description>Sign-based methods reduce communication costs in distributed machine learning, but aggregating local signs can introduce bias when data are heterogeneous, causing existing sign-based variance reduction methods to miss optimal convergence rates. The authors present a counterexample showing that majority voting can fail to approach stationary points even with exact local gradients. To overcome this limitation, they propose tracking the global gradient at the server through unbiased compression of recursive gradient increments. This approach yields convergence rates of O(√(d/K) + √d(a/(nK))^(1/3)) for the ℓ1-norm and O(√(a/K) + √a/(nK)^(1/3)) for the ℓ2-norm, where K is the iteration number, n is the number of workers, d is the dimension, and a=1+ω with ω denoting the compressor&#x27;s relative variance. For finite-sum problems with M components, the method combines periodic exact gradient refreshes with compressed component-gradient differences, achieving sample complexities that match corresponding centralized bounds.</description>
-    <pubDate>2026-09-16T13:35:52Z</pubDate>
-    <source>Wei Jiang</source>
+    <title>Accelerating Sharded Data Parallelism at Scale with Federated Learning</title>
+    <link>http://arxiv.org/abs/2609.20359</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.20359</guid>
+    <description>Foundation models require months-long training on thousands of cutting-edge GPUs, where sharded data parallelism serves as the dominant strategy despite incurring prohibitive communication overhead at scale. Gianluca Mittone and Marco Aldinucci address this problem by introducing two hybrid algorithms, FL+FSDP and FL+HSDP, that interleave sharded data parallelism with FedAvg-style aggregations inspired by federated learning. These approaches decouple large deployments into smaller, loosely-coupled federation groups, minimizing inter-group traffic while keeping the global batch size bounded by the group size. In a Llama3.1 8B pre-training experiment on 512 A100 GPUs, the methods achieved up to 8.04× faster data processing and 4.48× lower evaluation perplexity than their counterparts under identical hyperparameters. The gains stem from reduced communication overhead and bounded growth of the global batch size.</description>
+    <pubDate>2026-09-17T13:21:52Z</pubDate>
+    <source>Gianluca Mittone</source>
   </item>
   <item>
-    <title>Learning to Program Adaptive Non-Local Observables for Machine Learning</title>
-    <link>http://arxiv.org/abs/2609.18655</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.18655</guid>
-    <description>The paper, authored by Yu-Ting Lee, Samuel Yen-Chi Chen, and Huan-Hsin Tseng, introduces QFWP-ANO, a novel architecture designed to enhance quantum neural networks (QNNs). Traditional variational quantum circuits (VQCs) are limited by local measurements, and while adaptive non-local observables (ANO) help by jointly optimizing circuit parameters and multi-qubit measurements, existing ANO-based VQCs use a single static observable that remains unchanged across all inputs. To address this limitation, QFWP-ANO employs a classical hypernetwork to dynamically program VQC parameters and/or non-local observables conditioned on each specific input. On multivariate time-series forecasting across four ETT datasets, the proposed method achieves the lowest mean squared error in 16 of 20 settings and the second-lowest in the remaining four, outperforming ANO-based and other strong baselines. Additionally, QFWP-ANO consistently surpasses ANO-VQCs on reinforcement learning tasks. These results establish input-conditioned ANO as an effective approach for improving QNNs.</description>
-    <pubDate>2026-09-16T13:35:31Z</pubDate>
-    <source>Yu-Ting Lee</source>
+    <title>COMPASS: Ordered Clustered Routing at 100K Scale</title>
+    <link>http://arxiv.org/abs/2609.20352</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.20352</guid>
+    <description>The paper &quot;COMPASS: Ordered Clustered Routing at 100K Scale&quot; addresses the Ordered Clustered Traveling Salesman Problem (OCTSP), where clusters of nodes must be visited in a prescribed order. The authors introduce the COMPASS algorithm, which combines search with learning-accelerated routing by orchestrating parallel sub-solvers. This approach has no quality ceiling, with solutions continuously improving as compute increases, and can reach exact solutions in time exponential in cluster size rather than total instance size. COMPASS accepts general distance matrices rather than being limited to coordinate-based inputs, distinguishing it from typical large-scale routing solvers. Empirically, it outperforms competing methods and successfully scales to 100,000 synthetic nodes as well as 28,500 real-world e-commerce nodes. The e-commerce result represents the largest reported routing solution over asymmetric distances, exceeding established ATSP benchmarks by a factor of nine.</description>
+    <pubDate>2026-09-17T13:17:42Z</pubDate>
+    <source>Ido Greenberg</source>
   </item>
   <item>
-    <title>Fallacy Benchmarks Measure Scheme Recognition, Not Fallacy Detection</title>
-    <link>http://arxiv.org/abs/2609.18644</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.18644</guid>
-    <description>Existing fallacy-detection benchmarks pair each fallacy class with a single &quot;valid&quot; or &quot;none&quot; class containing everything not labeled as a fallacy, a construction the authors argue is misleading. Because correct arguments using the same argumentation scheme represent only a few percent of these valid classes, classifiers can achieve low false-positive rates by learning scheme recognition rather than the ability to distinguish fallacious from correct arguments. When evaluated on scheme-matched correct negatives, false-positive rates rise dramatically, from 16.6% to 58.9% on CoCoLoFa and from 5.7% to 62.0% on Reddit. In a controlled comparison, classifiers label scheme-matched correct arguments as the source fallacy type 40.9 points more often than wrong-scheme arguments, while wrong-scheme items are identified by their actual scheme 85.9% of the time versus 0.4% for the source type. The same dissociation appears in three zero-shot LLM detectors that never saw these benchmarks. The authors release their constructed items as Scheme Foils and argue that reported false-positive rates should not be trusted until the valid class is audited for scheme-matched coverage.</description>
-    <pubDate>2026-09-16T13:28:39Z</pubDate>
-    <source>Navyansh Singh</source>
+    <title>Generating Heterogeneous 3D Geological Microstructures from 2D Images via a Stable Diffusion-Adversarial Model</title>
+    <link>http://arxiv.org/abs/2609.20358</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.20358</guid>
+    <description>Researchers Ali Aouf, Eric Laloy, Bart Rogiers, and Christophe De Vleeschouwer propose a hybrid deep generative model for reconstructing 3D geological microstructures from 2D images of clay and cementitious materials, which is relevant to fields ranging from materials science to geological waste disposal. The work addresses the high cost and technical limitations of 3D imaging by leveraging generative modeling. While prior GAN-based methods like SliceGAN perform well on homogeneous isotropic and anisotropic systems, they struggle to capture the finer detail of more complex heterogeneous microstructures. The authors address this limitation by combining denoising diffusion models with an adversarial loss, replacing the standard denoising loss because no 3D ground truth is available. Their experiments show that this hybrid approach yields stable training and produces microstructures with minimal slice artifacts. The generated volumes closely match ground-truth phase fractions and structural descriptors across varying levels of complexity.</description>
+    <pubDate>2026-09-17T13:21:48Z</pubDate>
+    <source>Ali Aouf</source>
   </item>
   <item>
-    <title>CoRe-MARL: Cooperative Redistribution Under Unknown Dynamics Using Recurrent Multi-Agent Reinforcement Learning</title>
-    <link>http://arxiv.org/abs/2609.18639</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.18639</guid>
-    <description>The authors introduce CoRe-MARL, a cooperative multi-agent reinforcement learning framework designed to optimize supply redistribution among decentralized local centers in emergency relief distribution networks operating under uncertain demand and supply dynamics. The problem is formulated as a decentralized partially observable Markov decision process, where each center acts as an agent learning a redistribution policy aimed at improving service in the worst-served region, reducing service gaps across regions, and protecting network-wide service. The approach incorporates a recurrent network to capture evolving supply and demand dynamics without direct observation, paired with multi-agent proximal policy optimization for centralized training and decentralized execution. In simulated environments with diverse trajectories, the recurrent MAPPO was compared against recurrent independent PPO and a local-only heuristic, demonstrating reduced service gaps and enhanced service for the worst-served center while maintaining competitive network-wide performance. The framework also showed consistent results across varied trajectory patterns, highlighting its adaptability to uncertain and evolving dynamics.</description>
-    <pubDate>2026-09-16T13:25:05Z</pubDate>
-    <source>Naimur Rahman Chowdhury</source>
+    <title>A Qualitative Model for Reasoning about Path and Support</title>
+    <link>http://arxiv.org/abs/2609.20349</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.20349</guid>
+    <description>Researchers have developed a hybrid qualitative reasoning model for the block-puzzle game Camelot Jr., where players construct multi-level bridges to connect two avatars on separate towers. The work aims to support AI agents capable of making commonsense spatial inferences, enabling human-like tutoring and player guidance during gameplay. To address the precise physics required for the domain, the model integrates mathematical center-of-mass stability logic with the qualitative solver, allowing it to evaluate whether platforms remain stable under varying configurations. By reasoning in symbolic representations, the system can translate game states into interpretable feedback for players, contributing to explainable game-playing agents. The approach is positioned as a way to train spatial reasoning skills in children through gameplay.</description>
+    <pubDate>2026-09-17T13:13:44Z</pubDate>
+    <source>Abhishek Jaiswal</source>
+  </item>
+  <item>
+    <title>Minimax-Optimal Online Contract Design with Unrestricted Bounded Contracts</title>
+    <link>http://arxiv.org/abs/2609.20353</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.20353</guid>
+    <description>The paper studies repeated contract design where a principal observes outcomes but not the underlying actions, and may use any bounded outcome-contingent payment vector. Because the agent&#x27;s best response can make expected profit discontinuous in those payments, learning is challenging. For every fixed number m≥2 of outcomes, the authors establish that the minimax regret over T rounds is of order T^(m/(m+1)), up to logarithmic factors. The upper bound applies to arbitrary action spaces and agent heterogeneity without smoothness or monotone-surplus assumptions, achieved through an effective-dimension reduction that normalizes the benchmark despite non-shift-invariant tie-breaking. Revealed preference then yields a monotone response map in payment-difference coordinates, and a learning policy built on a Lipschitz parametrization attains the rate using only observed outcome categories. A matching lower bound demonstrates that each additional contractible outcome provably increases the worst-case cost of learning.</description>
+    <pubDate>2026-09-17T13:17:56Z</pubDate>
+    <source>Rui Ai</source>
   </item>
   <item>
     <title>Show HN: An e-ink frame that hears birds and draws them as 1800s illustrations</title>
     <link>https://github.com/arnegiacomo/fugleramme</link>
     <guid isPermaLink="false">https://github.com/arnegiacomo/fugleramme</guid>
-    <description>Fugleramme is an open-source project that turns a Raspberry Pi with an Inky Impression e-ink panel into a live-updating bird display, detecting birds by sound via BirdNET-Go and rendering them as hand-curated 1800s natural-history illustrations on textured paper. The creator curated over 800 public-domain cut-outs covering more than 400 species, sorted by body mass and packed onto pages with empty windows showing a bare perch. Currently live in a Bergen, Norway kitchen window, it works best for Nordic, British, and central European species, with broader European and North American coverage planned. The frame can run with or without the e-ink panel as a web kiosk, and ships with multiple install options including a one-line script for Pi, Docker images, and a Python development setup. The project shares no code or art with similar projects like AvianVisitors or featherframe, and code is MIT licensed.</description>
+    <description>Fugleramme is an e-ink bird frame project designed for the Raspberry Pi 5 that uses a local microphone and BirdNET-Go to detect bird species in real time, then renders each detected bird as a hand-curated public-domain illustration from 1800s natural-history plates. The project includes over 800 cut-outs covering more than 400 species, with birds sized by body mass and packed onto a textured paper page on an Inky Impression 13.3&quot; Spectra 6 e-ink panel. Beyond the physical frame, Fugleramme also runs as a web kiosk, with an admin page for configuring the display and automatic updates. A live version currently runs from the creator&#x27;s kitchen window in Bergen, Norway, and the project supports Scandinavian, British, and central European bird coverage, with broader European and North American species in development. Installation can be done via a one-line shell script, Docker, or local development, and the code is released under MIT license with artwork available on Creative Commons terms.</description>
     <pubDate>2026-09-15T12:31:10+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Reverse-engineered Jev-like model</title>
-    <link>https://github.com/vinnylarouge/jevlike</link>
-    <guid isPermaLink="false">https://github.com/vinnylarouge/jevlike</guid>
-    <description>The repository offers an independent starter model that mimics Jev&#x27;s input and output shape: it takes a piece of text and a list of options, then returns one probability per option in a single pass. Each option becomes a query vector that assigns attention weights to context tokens, producing a context vector scored by a shared dot product and normalized with a softmax. The default encoder learns byte embeddings from scratch, though users can optionally attach a frozen Hugging Face encoder like Qwen2.5-0.5B. Training data uses JSONL files with context, options, and a label index. In local experiments, the one-pass scorer reached about 98% accuracy on synthetic menus and roughly 26-29% on target-disjoint Wikispeedia next-click data, depending on the encoder, while running about 100 times faster than a small decoder writing 400 tokens. The release is licensed under MIT and explicitly notes it is a research starter, not a reproduction of Jev or TypeSafe&#x27;s private training method.</description>
-    <pubDate>2026-09-16T18:49:57+00:00</pubDate>
+    <title>Cloudflare/Security-Audit-Skill</title>
+    <link>https://github.com/cloudflare/security-audit-skill</link>
+    <guid isPermaLink="false">https://github.com/cloudflare/security-audit-skill</guid>
+    <description>The Cloudflare/Security-Audit-Skill is a coding-agent skill that transforms an agent into a security auditor through a structured six-phase workflow: reconnaissance, coverage-led hunting, candidate validation, structured output, independent record verification, and target-neutral reporting. It originated from Cloudflare&#x27;s vulnerability discovery harness and uses isolated agents for adversarial validation, ensuring the agent that checks a finding is never the one that discovered it. The skill produces JSON-based findings categorized as confirmed, needs_validation, or rejected, validated against a schema with zero-dependency validators. Multiple runs against the same repository are additive, with prior ledgers used to target gaps and revalidate changed source. Key design principles include confirming only established boundary failures, requiring likelihood multiplied by impact for severity, and treating defense-in-depth gaps as hardening notes rather than vulnerabilities. The workflow requires a coding agent supporting tool use and parallel sub-agents, Node.js for validators, and an OS-enforced sandbox for executing target code safely.</description>
+    <pubDate>2026-09-17T04:36:55+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Introducing System One Models and Jev</title>
-    <link>https://typesafe.ai/blog/introducing-system-one-models-and-jev</link>
-    <guid isPermaLink="false">https://typesafe.ai/blog/introducing-system-one-models-and-jev</guid>
-    <description>Diogo Almeida, formerly of OpenAI, founded TypeSafe AI and announced the release of Jev, the company&#x27;s first System One Model, available in early access. Jev is built around Reinforcement Learning for Calibrated Decisions (RLCD) and is designed to make fast, structured decisions that software can consume directly, replacing sequential string generation with parallel sampling of type-safe outputs. The company claims Jev matches the intelligence of frontier LLMs on System One tasks while being roughly two orders of magnitude faster and cheaper, with response times between 70ms and 500ms compared to 3–329 seconds for existing models, and input pricing of $0.042 per million tokens with free outputs. Because possible outputs are defined in advance, Jev cannot make type errors or hallucinate, and every answer includes calibrated probabilities and confidence scores. Target use cases include AI-powered workflows acting as fuzzy decision rules, map-reduce processing over large datasets, real-time applications, and verifying or scoring outputs from other LLMs.</description>
-    <pubDate>2026-09-15T19:25:03+00:00</pubDate>
+    <title>Hister: A private search engine for the pages you visit and the files you keep</title>
+    <link>https://github.com/asciimoo/hister</link>
+    <guid isPermaLink="false">https://github.com/asciimoo/hister</guid>
+    <description>Hister is a private, local search engine that indexes the full contents of web pages you browse and files you keep, making them searchable through a web interface, terminal, or AI assistant via MCP. Installation involves downloading a binary for Linux, macOS, or Windows, with alternative methods including Homebrew, Docker, and Nix. A browser extension for Firefox or Chrome automatically saves visited pages, while users can also import browser history, index local directories, or crawl websites. Hister emphasizes privacy with no telemetry or mandatory cloud service, storing documents and indexes on the user&#x27;s own server, though optional semantic search sends document text to a user-configured embeddings endpoint. It supports powerful queries with field filters, phrases, wildcards, and negation, and offers multi-user capabilities. The project is open source under AGPLv3, built with Go 1.26, and developed on GitHub.</description>
+    <pubDate>2026-09-17T16:25:37+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>An update on Wayback Machine access</title>
-    <link>https://blog.archive.org/2026/09/15/an-update-on-wayback-machine-access/</link>
-    <guid isPermaLink="false">https://blog.archive.org/2026/09/15/an-update-on-wayback-machine-access/</guid>
-    <description>Mark Graham, Director of the Wayback Machine, posted an update on September 15, 2026, addressing ongoing access issues with the Internet Archive&#x27;s Wayback Machine. The service has been overwhelmed by waves of high-volume automated traffic, prompting the team to put protections in place to keep it running. As part of these efforts, they rewrote the message users see when blocked with a 429 &quot;too many requests&quot; error. While these safeguards are necessary, they occasionally block real users by mistake. The team is actively working to improve their ability to distinguish abusive bots from genuine users. Anyone incorrectly blocked is encouraged to email info@archive.org with their operating system, browser, and IP address so the issue can be investigated.</description>
-    <pubDate>2026-09-15T17:52:18+00:00</pubDate>
+    <title>Run QWEN3.8 27B on 16gb Nvidia GPUs</title>
+    <link>https://github.com/MiaAI-Lab/Qwen3.8-27B-16gb-NVIDIA-GPUs-one-click-install</link>
+    <guid isPermaLink="false">https://github.com/MiaAI-Lab/Qwen3.8-27B-16gb-NVIDIA-GPUs-one-click-install</guid>
+    <description>Mia&#x27;a AI Lab provides a one-click serving kit for Qwen3.8-27B that runs turboderp&#x27;s EXL3 quants on consumer NVIDIA GPUs with 12GB or more VRAM, optimized for 16GB cards across Windows and Linux. The kit builds its own Python environment, downloads weights resumably, exposes an OpenAI-compatible endpoint, and launches a chat UI without needing admin rights, the CUDA Toolkit, or Git. At setup it auto-selects a quant fitting the detected VRAM, with the 2.0 bpw floor coming from Mia-AiLab and everything from 2.5 bpw up pulled by revision from turboderp. Required components are an NVIDIA Turing or newer GPU, driver 570 or later, Python 3.11+, and Node 22.19+. Windows relies on a browser-driven installer, Linux runs setup in the terminal, and both share a unified simplex CLI for starting, stopping, troubleshooting, and running diagnostics through its doctor command.</description>
+    <pubDate>2026-09-17T19:46:57+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Apple Reference Image: A New Approach for Verified Photography</title>
-    <link>https://security.apple.com/blog/apple-reference-image/</link>
-    <guid isPermaLink="false">https://security.apple.com/blog/apple-reference-image/</guid>
-    <description>Apple Reference Image is a new opt-in camera mode debuting on iPhone 18 Pro and iPhone 18 Pro Max that creates securely timestamped reference images accurately reflecting what the device&#x27;s sensor captured. The system works in two phases: first, a secure digital negative is created when the sensor cryptographically signs pixel data immediately after capture, preventing tampering; then, Private Cloud Compute (PCC) processes this negative into a viewable image within a verifiable, privacy-preserving environment. Apple Reference Image embeds both a lower-bound and upper-bound cryptographic timestamp, provided by Apple&#x27;s timestamp service on roughly 15-minute intervals, guaranteeing the photo was taken between the two times. The system is designed to resist sensor tampering, cryptographic attacks, and software jailbreaks, with fraudulent images revocable without exposing the photographer&#x27;s identity. Unlike C2PA-based approaches, which certify edits after capture, Apple Reference Image secures the entire pipeline from raw sensor data to final image, providing stronger semantic authenticity, resilience, and privacy guarantees.</description>
-    <pubDate>2026-09-16T02:07:31+00:00</pubDate>
+    <title>Fujitsu launches made-in-Japan next-generation CPU FUJITSU-MONAKA</title>
+    <link>https://global.fujitsu/en-global/pr/news/2026/09/14-02</link>
+    <guid isPermaLink="false">https://global.fujitsu/en-global/pr/news/2026/09/14-02</guid>
+    <description>Fujitsu launches made-in-Japan next-generation CPU FUJITSU-MONAKA</description>
+    <pubDate>2026-09-15T17:28:38+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Mistral X Mozilla: Private, Multilingual AI Browsing</title>
-    <link>https://mistral.ai/news/mistral-x-mozilla/</link>
-    <guid isPermaLink="false">https://mistral.ai/news/mistral-x-mozilla/</guid>
-    <description>Mistral and Mozilla have announced a partnership to bring open, private, and multilingual AI to web browsing through Firefox Smart Window (beta), Mozilla&#x27;s AI browsing assistant. Smart Window helps users understand complex searches, recall previously clicked content, and source information from their browser tabs. Mistral will power Smart Window initially for users in France and North America, with the United Kingdom and Germany expected to follow later in 2026. Both companies are open source advocates, and Mistral&#x27;s models are fine-tuned on regional languages and dialects to serve local cultural contexts. The partnership emphasizes user privacy, with conversations not saved on Mozilla&#x27;s servers by default and Mistral agreeing to zero data retention. Together, the companies aim to extend sovereign, privacy-focused AI from enterprise use to consumers worldwide.</description>
-    <pubDate>2026-09-16T08:08:57+00:00</pubDate>
+    <title>Training a 4B model to produce 81% faster query plans than Postgres</title>
+    <link>https://rohanbansal.com/qorl</link>
+    <guid isPermaLink="false">https://rohanbansal.com/qorl</guid>
+    <description>The article describes an experiment training a 4B open-weights model using supervised fine-tuning and agentic reinforcement learning to generate Postgres query plans that outperform the database&#x27;s default optimizer. The starting model couldn&#x27;t produce valid plans for 99 of 113 join-heavy queries, but ultimately achieved an 81% improvement and a 44.7% latency reduction on those queries. The author built a Postgres measurement rig designed to minimize Linux page cache contention noise across concurrent containers, and developed a custom GRPO variant to score reinforcement learning rollouts in a noisy environment. Training was split across two machines: the vLLM server and trainer ran on a rented 2x H100 node while four Postgres containers ran on the author&#x27;s desk. Off-policy distillation incorporated roughly five hundred GPT-6 Astra agent trajectories, framing query optimization as an RL problem with the easily verifiable objective of minimizing query execution time.</description>
+    <pubDate>2026-09-16T18:50:00+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>How GLM built its own inference infrastructure</title>
+    <link>https://z.ai/blog/glm-built-its-inference-infrastructure</link>
+    <guid isPermaLink="false">https://z.ai/blog/glm-built-its-inference-infrastructure</guid>
+    <description>How GLM built its own inference infrastructure</description>
+    <pubDate>2026-09-17T08:27:09+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Nvidia announces native GPU programming in Rust</title>
+    <link>https://developer.nvidia.com/blog/introducing-cuda-rust-two-tracks-for-writing-gpu-kernels/</link>
+    <guid isPermaLink="false">https://developer.nvidia.com/blog/introducing-cuda-rust-two-tracks-for-writing-gpu-kernels/</guid>
+    <description>NVIDIA announced CUDA Rust with two approaches for writing GPU kernels in Rust: cuda-oxide for SIMT programming and cutile-rs for Tile-based programming. cuda-oxide is a custom rustc codegen backend that compiles Rust kernels to PTX through the Pliron IR framework and LLVM, requiring a pinned nightly toolchain and Linux. cutile-rs runs on stable Rust 1.89 or newer with CUDA 13.3, JIT-compiling kernels through CUDA Tile IR without custom LLVM. Both enforce memory safety at compile time—cuda-oxide uses DisjointSlice types and launch contracts, while cutile-rs uses tensor partitioning and ownership. NVIDIA recommends Tile first for new work and dropping to SIMT when low-level control is needed, and plans to support inter-language interoperability between CUDA Rust, CUDA C++, and CUDA Python. cutile-rs is already available on crates.io and used in HuggingFace&#x27;s Grout inference engine and mistral.rs, while cuda-oxide remains in early alpha.</description>
+    <pubDate>2026-09-16T11:15:53+00:00</pubDate>
     <source>Hacker News</source>
   </item>
 </channel></rss>

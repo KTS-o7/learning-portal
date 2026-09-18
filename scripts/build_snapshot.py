@@ -28,7 +28,10 @@ data = json.load(open(data_path))
 digest_json = json.dumps(data, ensure_ascii=False)
 
 out = tmpl_text.replace("{EDITION}", date).replace("{DIGEST_JSON}", digest_json)
-assert "{{" not in out and "}}" not in out, "doubled-brace bug detected"
+# Only guard against the doubled-CSS brace bug ("{{"). "}}" is fine —
+# it appears legitimately inside inlined JSON for arXiv LaTeX math (e.g.
+# \frac{x}{y}) and in unescaped JSON fragments.
+assert "{{" not in out, "doubled-brace bug detected (found '{{')"
 
 out_path = root / "archive" / f"{date}.html"
 out_path.write_text(out)
