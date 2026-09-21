@@ -2,36 +2,44 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-20</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-21</description>
   <item>
-    <title>Migrating the GitHub Copilot runtime to Rust, using Copilot</title>
-    <link>https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot/</link>
-    <guid isPermaLink="false">https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot/</guid>
-    <description>GitHub migrated the Copilot agent runtime from TypeScript on Node.js to Rust, resulting in over 800,000 lines of production Rust code shipped through 128 pull requests, with AI agents writing most of the code. The work was completed primarily by a single developer over a few months, an effort that would have previously taken a whole team a year or two, while the rest of the team continued expanding the runtime&#x27;s capabilities. The original architecture forced SDK users across six languages to spawn the CLI as a subprocess via JSON-RPC, incurring roughly 100 MB of V8 overhead per client, slow startup, and out-of-process communication for every function call. Rust was chosen because it supports clean in-process embedding through a C ABI, minimal dependencies, low startup and memory overhead, predictable resource use, and strong foreign function interface support for C#, TypeScript, Python, Go, and Java SDKs. Approximately 430,000 lines of TypeScript passed through the port, and the resulting runtime delivered orders-of-magnitude performance improvements.</description>
-    <pubDate>Thu, 17 Sep 2026 00:26:43 +0000</pubDate>
+    <title>Should you read the code, is RAG dead, and did Skills kill MCP?</title>
+    <link>https://github.blog/ai-and-ml/should-you-read-the-code-is-rag-dead-and-did-skills-kill-mcp/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/should-you-read-the-code-is-rag-dead-and-did-skills-kill-mcp/</guid>
+    <description>The article explores five AI hot takes from the GitHub Podcast, arguing that the truth usually lies beneath surface-level controversy. It emphasizes that developers must still review AI-generated code, though the depth of review should match the risk and context of the change. Employers care more about AI judgment and clear explanations of workflow than total dependence or refusal. Skills and MCP serve different purposes—MCP provides standard interfaces for tools while skills offer context, process guidance, and best practices—so neither has replaced the other. RAG remains relevant because grounded retrieval helps models produce better, more accurate answers, and code that confuses AI often confuses human developers too, signaling a maintainability problem. The piece concludes that real experimentation and building produce more value than endless debate, citing Pollinations AI&#x27;s credit-based contribution system and the Avian Visitors bird-listening e-ink display as examples.</description>
+    <pubDate>Fri, 18 Sep 2026 15:00:00 +0000</pubDate>
     <source>GitHub Blog</source>
+  </item>
+  <item>
+    <title>System One models like Jev can train their own replacements</title>
+    <link>https://seangoedecke.com/system-one-models-can-train-their-own-replacements/</link>
+    <guid isPermaLink="false">https://seangoedecke.com/system-one-models-can-train-their-own-replacements/</guid>
+    <description>System One models like Jev are fast, general-purpose classifiers that can be prompted for a wide variety of tasks, unlike traditional classifiers which require task-specific training and large datasets. Training bespoke classifiers remains beyond the skillset of most engineering teams, but Jev solves this by allowing any team to plug in a model with a simple prompt for specific tasks like deciding whether to notify a user about a Slack message. Although generic classifiers like Jev are larger and more expensive to run than specialized ones, it is easy to collect their input and output data once a prompt is working well. That collected data can then be used to train a cheaper, faster, hand-built classifier tailored to the specific task. The author expects this distillation pattern, of turning successful System One model usage into dedicated classifiers, to become common if such models take off.</description>
+    <pubDate>Sun, 20 Sep 2026 00:00:00 GMT</pubDate>
+    <source>Sean Goedecke</source>
   </item>
   <item>
     <title>Grit your teeth and ship it</title>
     <link>https://seangoedecke.com/grit-your-teeth-and-ship-it/</link>
     <guid isPermaLink="false">https://seangoedecke.com/grit-your-teeth-and-ship-it/</guid>
-    <description>A tension exists between producing high-quality work and actually shipping it, as Ira Glass observed when he noted that creative people have good taste but often find their early work disappointing. In programming, gifted developers with a strong desire for elegant, correct systems often struggle to ship because flaws in their code bother them emotionally, which can be fatal at tech companies where compromise with existing codebases is necessary. Some gifted programmers freeze up, retreat to safer tasks like refactoring tests, or quit entirely. Drawing on personal experience writing blog posts, the author notes that posts felt poorly written often resonated with audiences while posts considered strong went unnoticed. Since creators cannot predict which work will succeed, producing high volume yields better results than polishing a few pieces, making it essential to prioritize momentum and consistently force oneself to ship.</description>
+    <description>Being good at building and being good at shipping are two separate skills that often work against each other in the short term. Ira Glass famously noted that creative people have excellent taste but their early work doesn&#x27;t yet match that taste, and the only solution is to ship anyway. Gifted programmers often resist shipping because flaws in their code bother them emotionally, causing them to freeze up, retreat to smaller safe tasks like tweaking dev environments, or spin in shame until they quit. The author applies the same principle to his writing, publishing blog posts he considers poorly-written because biasing toward shipping builds momentum. He observes that shipping gets easier with practice, and there&#x27;s no correlation between which drafts he felt good about and which became popular with readers. As a result, producing a high volume of work yields better results than perfecting a small number of pieces, making it essential to be momentum-based rather than outcome-based.</description>
     <pubDate>Sun, 20 Sep 2026 00:00:00 GMT</pubDate>
     <source>Sean Goedecke</source>
   </item>
   <item>
-    <title>Should you read the code, is RAG dead, and did Skills kill MCP?</title>
-    <link>https://github.blog/ai-and-ml/should-you-read-the-code-is-rag-dead-and-did-skills-kill-mcp/</link>
-    <guid isPermaLink="false">https://github.blog/ai-and-ml/should-you-read-the-code-is-rag-dead-and-did-skills-kill-mcp/</guid>
-    <description>The GitHub Podcast explores five AI hot takes, pushing back against oversimplified claims. While developers remain responsible for AI-generated code, review intensity should match the risk rather than treating every change identically. Hiring now values AI judgment and the ability to explain when and how you use tools, not total adoption or refusal. Skills haven&#x27;t killed MCP because the two serve different roles: MCP provides standardized tool access while skills deliver project-specific context and best practices. RAG also remains relevant, grounding models in external information like documentation and codebases to reduce wasted tokens and improve accuracy. If a model can&#x27;t make sense of a codebase, that likely signals maintainability problems, and projects like Pollinations AI and Avian Visitors show how building creates more value than debating.</description>
-    <pubDate>Fri, 18 Sep 2026 15:00:00 +0000</pubDate>
+    <title>Migrating the GitHub Copilot runtime to Rust, using Copilot</title>
+    <link>https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot/</guid>
+    <description>GitHub completely rewrote its Copilot agent runtime from TypeScript on Node.js into more than 800,000 lines of production Rust, with AI agents writing most of the code across 128 pull requests. The project, which would have required a whole team a year or two before agents, was completed primarily by a single developer in just a few months, while the rest of the team continued expanding the runtime&#x27;s capabilities. The rewrite was motivated by performance problems caused by the original architecture, which intertwined the TUI and runtime and forced SDK consumers across six languages to spawn an out-of-process CLI hosting Node and V8, adding roughly 100 MB of working set per client. The new Rust runtime exposes a C ABI for clean in-process embedding, eliminating cross-process overhead. During the port, approximately 430,000 lines of TypeScript passed through the migration, and overall performance improved by orders of magnitude.</description>
+    <pubDate>Thu, 17 Sep 2026 00:26:43 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
     <title>Marketing ops as code: Automating events from planning to follow-up on GitHub</title>
     <link>https://github.blog/ai-and-ml/github-copilot/marketing-ops-as-code-automating-events-from-planning-to-follow-up-on-github/</link>
     <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/marketing-ops-as-code-automating-events-from-planning-to-follow-up-on-github/</guid>
-    <description>Tomoko Tanaka, who runs marketing for GitHub in Japan and Korea, automated her APAC event workflow using GitHub&#x27;s native tools, starting from a runbook file called AGENTS.md that guides GitHub Copilot through event planning conversations. Each event becomes a GitHub Issue created from structured forms, with labels acting as triggers for GitHub Actions workflows that duplicate landing pages, generate UTM-tagged URLs, produce invitation emails, file request issues, and update project boards. A DRY_RUN repository variable lets the team rehearse every workflow without touching external systems, while a daily cron job screens registrants and waitlists against defined criteria. Post-event follow-up runs through slash commands like /lead-upload and /event-report, each backed by a SKILL.md file written in prose. The whole system depends on the event platform&#x27;s API and the CRM&#x27;s CLI, and Tanaka argues that any marketer whose tools offer a scriptable entry point can apply the same pattern.</description>
+    <description>Tomoko Tanaka, who runs marketing for GitHub in Japan and Korea, automated her team&#x27;s event workflows by handing runbooks to GitHub Copilot rather than writing code herself. The system is built on three GitHub primitives: issue forms capture event details, labels act as triggers, and GitHub Actions workflows execute the work once an event-setup label is applied, handling landing page duplication, UTM generation, invitation drafting, and project board updates. An AGENTS.md file guides Copilot on naming conventions and regional details during the planning conversation, while a DRY_RUN repository variable lets the team rehearse without touching external systems. Daily registration screening runs on a schedule, and invite-only events are filtered against defined criteria. Post-event work is handled by slash commands like /lead-upload and /event-report, which are GitHub Copilot agent skills defined as Markdown runbook files, keeping the system flexible across APAC&#x27;s varied markets.</description>
     <pubDate>Fri, 11 Sep 2026 18:26:10 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
@@ -39,17 +47,17 @@
     <title>FAMOS: Feed-Forward 3D Articulation Modeling from Sparse Observations</title>
     <link>http://arxiv.org/abs/2609.20817</link>
     <guid isPermaLink="false">http://arxiv.org/abs/2609.20817</guid>
-    <description>FAMOS is a feed-forward model designed to predict movable-part segmentation and joint parameters from a sparse, unordered set of partial point clouds of articulated objects. Unlike prior feed-forward methods that infer articulation from a single observation and depend heavily on category-level shape priors, FAMOS aggregates cues across multiple views while still supporting a variable number of inputs, including single-view cases. At its core is a Multi-state Articulation Transformer that uses alternating state-wise and global attention to combine articulation evidence across observations. The model is trained with an observed articulation span objective that supervises the motion range each part exhibits across the input set, encouraging use of all available observations. To address limited training data, the authors introduce a procedural data generator that synthesizes self-annotated assets during training. Experiments on PartNet-Mobility, ACD, and ArtiCraft-10K demonstrate consistent improvements over both feed-forward and optimization-based baselines.</description>
+    <description>FAMOS is a feed-forward model designed to predict movable-part segmentation and joint parameters for articulated objects from a sparse, unordered set of partial point clouds. Unlike most feed-forward methods that infer articulation from a single observation and rely heavily on category-level shape priors, FAMOS jointly reasons over multiple observations while naturally supporting a variable number of inputs, including the single-view case. To aggregate articulation cues across observations, the authors introduce a Multi-state Articulation Transformer with alternating state-wise and global attention, along with an observed articulation span objective that encourages the model to leverage the full observation set by supervising each part&#x27;s motion range. To address limitations in the scale and diversity of existing datasets, they also propose a procedural data generator that synthesizes self-annotated assets during training. Experiments on PartNet-Mobility, ACD, and ArtiCraft-10K demonstrate consistent improvements over both feed-forward and optimization-based baselines.</description>
     <pubDate>2026-09-17T17:59:40Z</pubDate>
     <source>Kevin Qu</source>
   </item>
   <item>
-    <title>Workspace Models: Lightweight Robotic Memory via Saliency-Driven Supervision</title>
-    <link>http://arxiv.org/abs/2609.20820</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.20820</guid>
-    <description>Complex robotic manipulation tasks often require long-term memory of past events, but conditioning policies on full histories can introduce spurious correlations and degrade performance. Existing approaches instead rely on expensive vision-language model queries in-the-loop to process only task-salient information. The authors propose moving these computationally intensive VLM queries to training time in order to learn a compact latent memory they call the workspace token. Training proceeds in two stages: a VLM first identifies which current and historical information is needed for the task, and this supervision is then distilled into the workspace token using a set-reconstruction decoder loss. At deployment, the workspace token acts as a drop-in replacement for raw observations, enabling policies to solve memory-intensive tasks without in-the-loop VLM reasoning. Experiments in both simulation and hardware show that workspace tokens are not only more lightweight but also lead to better policy performance than existing alternatives.</description>
-    <pubDate>2026-09-17T17:59:53Z</pubDate>
-    <source>Nitish Dashora</source>
+    <title>Paint-Anything: Unified Any-Color Control for Image Generation and Editing</title>
+    <link>http://arxiv.org/abs/2609.20816</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.20816</guid>
+    <description>Paint-Anything is a method that enables any-color control for image generation and editing by allowing users to specify object colors using 24-bit hex values. It learns a shared hex-prompt interface through object-level color supervision and is trained on Paint-500K, a dataset constructed from real images via object grounding, perceptual color labeling, and editing-pair synthesis. To address shadow-induced inaccuracy in real-image color labels, the authors incorporate pure-color anchors whose pixels exactly match their paired hex values, applied only at high-noise timesteps. The paper also introduces Any Color Benchmark (ACBench), comprising ACBench-T2I and ACBench-Edit, to evaluate object-level hex color fidelity. On FLUX.2-4B, Paint-Anything improves ACBench-T2I and ACBench-Edit scores by 85.3% and 28.3% respectively over the base model, while also achieving the highest average CompColor score among compared methods.</description>
+    <pubDate>2026-09-17T17:59:30Z</pubDate>
+    <source>Ji Xie</source>
   </item>
   <item>
     <title>Coding Agents with an Obstacle-Aware Harness for Safe Robot Manipulation</title>
@@ -60,83 +68,83 @@
     <source>Bingxin Xu</source>
   </item>
   <item>
-    <title>Paint-Anything: Unified Any-Color Control for Image Generation and Editing</title>
-    <link>http://arxiv.org/abs/2609.20816</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.20816</guid>
-    <description>Paint-Anything is a method that enables any-color control for image generation and editing by letting users specify target object colors using 24-bit hex values. Unlike prior work that relies on dedicated color representations or specialized inference procedures, it learns a shared hex-prompt interface for both tasks through object-level color supervision. The authors build Paint-500K, a dataset constructed from real images using object grounding, perceptual color labeling, and editing-pair synthesis. To address noise from shadows in real-image labels, they complement supervision with pure-color anchors that exactly match their paired hex values, applied only at high-noise timesteps while low-noise training uses natural images. They also introduce Any Color Benchmark (ACBench), containing ACBench-T2I and ACBench-Edit for evaluating object-level hex color fidelity. Tested on FLUX.2-4B, Paint-Anything improves ACBench-T2I and ACBench-Edit scores by 85.3% and 28.3% over the base model and achieves the highest average CompColor score among compared methods.</description>
-    <pubDate>2026-09-17T17:59:30Z</pubDate>
-    <source>Ji Xie</source>
+    <title>Workspace Models: Lightweight Robotic Memory via Saliency-Driven Supervision</title>
+    <link>http://arxiv.org/abs/2609.20820</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.20820</guid>
+    <description>Complex robotic manipulation tasks frequently require a long-term memory of past events and actions. As conditioning on full histories renders policies prone to spurious correlations and degrades performance, many approaches to policy memory involve compressing historical information through expensive VLM queries in-the-loop to process only task-salient information. In this paper, we propose an alternative approach in which computationally intensive VLM queries are made during train-time to learn a lightweight latent memory that can be efficiently queried at deployment time. Our representation, which we call the \textbf{workspace token}, is trained by (1) using a VLM to identify current and historical information necessary for completing a task, then (2) distilling these into the workspace</description>
+    <pubDate>2026-09-17T17:59:53Z</pubDate>
+    <source>Nitish Dashora</source>
   </item>
   <item>
     <title>ERCPMP-Gx: Endoscopic Image and Video Dataset for Morphological, Histopathological, and Genomic Characterization of Colorectal Polyposis</title>
     <link>http://arxiv.org/abs/2609.20815</link>
     <guid isPermaLink="false">http://arxiv.org/abs/2609.20815</guid>
-    <description>The ERCPMP-Gx dataset was developed to support artificial intelligence applications in recognizing, characterizing, and classifying colorectal polyposis syndromes, which are precursor lesions to colorectal cancer. It comprises 160 endoscopic images and accompanying video clips, most acquired using the Olympus EVIS X1 system with white-light endoscopy, narrow-band imaging, magnifying NBI, and NBI with near focus modes. Approximately eighty percent of cases represent hereditary polyposis syndromes, including familial adenomatous polyposis, Peutz-Jeghers syndrome, juvenile polyposis syndrome, and ganglioneuroma syndrome, while the remaining twenty percent consist of non-hereditary polyps and polyp-mimicking lesions included for differential classification. Each released record is linked to standardized endoscopic annotations, representative histopathology, and clinically reported germline findings, forming an AI-ready patient-level annotation framework. The dataset is publicly available on Mendeley, addressing a gap left by existing public endoscopic datasets that focus on individual sporadic polyps rather than linking the polyposis phenotype to histopathology and germline findings at the patient level.</description>
+    <description>Hereditary polyposis syndromes, which are precursor lesions to colorectal cancer, require early identification, yet existing public endoscopic datasets focus on individual sporadic polyps without linking polyposis phenotypes to histopathology and germline findings at the patient level. The authors introduce ERCPMP-Gx, an endoscopic, histopathological, and genomic dataset designed to support AI applications in recognizing, characterizing, and classifying colorectal polyposis. The data was collected primarily using the Olympus EVIS X1 system with white-light endoscopy, narrow-band imaging, magnifying NBI, and NBI with near focus modes, yielding 160 images and accompanying video clips. Approximately 80% of cases represent hereditary polyposis syndromes—including familial adenomatous polyposis, Peutz-Jeghers syndrome, juvenile polyposis syndrome, and</description>
     <pubDate>2026-09-17T17:59:28Z</pubDate>
     <source>Zahra Ghaffari</source>
   </item>
   <item>
-    <title>We made Playwright 2x faster and 80% more token efficient</title>
-    <link>https://github.com/browserbase/stagehand</link>
-    <guid isPermaLink="false">https://github.com/browserbase/stagehand</guid>
-    <description>Stagehand is an SDK for extracting data and interacting with websites, built specifically for AI agents and available in TypeScript, Python, and Go. It claims to be 2x faster and 80% more token efficient than Playwright, using hybrid accessibility-tree trimming to provide agents with only the page context they need. The SDK runs as an extension next to the browser, reducing round-trip latency, and offers self-healing act, observe, and extract commands that adapt when sites change. The observe method returns real CSS selectors so sensitive input like credentials never reaches the model, while extract returns schema-validated data. Stagehand can run locally or on the Browserbase cloud platform, which adds a Model Gateway that automatically selects the cheapest model per action and server-side caching for repeated calls. It also exposes an MCP server for coding agents and offers Search and Fetch tools for lightweight web access without a browser.</description>
-    <pubDate>2026-09-18T16:25:23+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Show HN: CUA-S1 – A System One Model for Computer Use</title>
-    <link>https://github.com/trycua/cua</link>
-    <guid isPermaLink="false">https://github.com/trycua/cua</guid>
-    <description>Cua is an open-source platform that gives AI agents computers they can use, providing isolated cloud desktops, local macOS virtual machines, specialist decision models, and benchmarks for evaluating computer-use agents. The platform includes Cua Fleets for provisioning Linux cloud desktops and running commands, Cua Driver for operating native desktop apps and browsers across macOS, Windows, and Linux, and Lume for creating local macOS and Linux VMs on Apple Silicon. CUA-S1 is a family of small, specialized System 1 models designed for fast, bounded decisions, with the first research profile focusing on form-scoring decisions rather than generating response tokens. Cua Bench enables users to build and evaluate computer-use tasks, including simulated tasks that require no virtual machine or model API key. The project is hosted on GitHub under an MIT license, with CUA-S1 model weights hosted separately on Hugging Face.</description>
-    <pubDate>2026-09-19T15:52:51+00:00</pubDate>
+    <title>Laya on Mac M4 CoreML Offline</title>
+    <link>https://gist.github.com/fordnox/e592d0f68b543fd044be8e6d040863a0</link>
+    <guid isPermaLink="false">https://gist.github.com/fordnox/e592d0f68b543fd044be8e6d040863a0</guid>
+    <description>A GitHub Gist by fordnox shares a shell script for running Laya on a Mac M4 with CoreML offline support. The script creates a project directory, initializes a uv environment, installs the laya-coreml demo package, downloads a multilingual CoreML/ANE model from Hugging Face, and runs the laya-coreml-snake command. The author also posted a memory usage analysis using samply, showing the python3.12 process on macOS 27.0 ARM64 consumed 560.4M of physical memory with a peak of 778.0M. A comment by coezbek demonstrates using Laya through Cloudflare&#x27;s API at laya.inference.zaitlabs.com, where a query about failing payouts returned a noul urgency score of 0.7894.</description>
+    <pubDate>2026-09-20T15:58:52+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
     <title>Show HN: An e-ink frame that hears birds and draws them as 1800s illustrations</title>
     <link>https://github.com/arnegiacomo/fugleramme</link>
     <guid isPermaLink="false">https://github.com/arnegiacomo/fugleramme</guid>
-    <description>Fugleramme is an e-ink bird frame for Raspberry Pi that detects birds by audio using BirdNET-Go and renders them as hand-cut 1800s natural-history illustrations. The project, currently running from a kitchen window in Bergen, Norway, pairs a Raspberry Pi 5 with an Inky Impression 13.3&quot; e-ink panel and matches over 400 species to more than 800 curated public-domain cut</description>
+    <description>Fugleramme is an open-source e-ink frame that detects birds by audio in real time and renders them as hand-curated 1800s-style natural-history illustrations on an Inky Impression 13.3&quot; panel connected to a Raspberry Pi 5. It pairs with BirdNET-Go, which uses a microphone and local AI to classify species; Fugleramme polls the API, matches each species to an illustration, and repacks the page only when the bird list changes. The artwork includes over 800 cut-outs from public-domain Scandinavian, British, and central European plates covering more than 400 species, with birds sized by body mass and placed on a textured paper background, while no detections shows a bare perch. The frame can run without the e-ink panel as a web-only kiosk and can be installed via a script on a Raspberry Pi or in a Docker container. Released under the MIT license, a live version currently runs from a kitchen window in Bergen, Norway.</description>
     <pubDate>2026-09-15T12:31:10+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: I created an open source locally usable full fledged AI platform</title>
-    <link>https://github.com/theguysudo/ENZO</link>
-    <guid isPermaLink="false">https://github.com/theguysudo/ENZO</guid>
-    <description>ENZO is an open source AI platform that can be self-hosted via Docker or run on Google Colab, providing a unified workspace for chatting with 300+ models across 9 providers without accounts, subscriptions, or middleman fees. The platform is built in TypeScript with strict mode across approximately 44,000 lines of code and includes features like an agent builder, deep research mode, code generation, a music player, and a file converter. API keys are sealed in the browser using AES-256-GCM encryption under a non-extractable WebCrypto key, with optional passphrase protection. Security is emphasized through a 44-assertion black-box pentest run on every CI push alongside 298 unit and security tests. The current v1.4.0 release adds in-chat file conversion for PDFs and spreadsheets, Google Colab support, and self-healing Docker dependency checks.</description>
-    <pubDate>2026-09-19T23:47:35+00:00</pubDate>
+    <title>I turned Jev into a (lousy) chatbot</title>
+    <link>https://github.com/kyle-pena-nlp/jevchat/</link>
+    <guid isPermaLink="false">https://github.com/kyle-pena-nlp/jevchat/</guid>
+    <description>jevchat is a tool that turns Jev into a chatbot by asking it at every step which symbol should come next, drawing from a normalised probability distribution over an alphabet that can include letters, BPE tokens, or whole words. It supports several sampling strategies—choice, bisect, buckets, and refine—and two presentation modes: &quot;symbol,&quot; where Jev judges bare options, and &quot;hypothesis,&quot; where it judges the resulting completed strings, which the author found roughly triples top-1 accuracy and doubles the probability mass on the right symbol for character alphabets. The project was implemented by Claude based on the author&#x27;s descriptions of the algorithms. Installation uses Poetry with a git-ignored .env file holding the API key, and a command-line interface supports interactive chat with commands like /alphabet, /temp, and /reset, as well as a one-shot ask command. The interface shows the reply streaming in with live statistics on generation rate and top-scoring symbols, and Ctrl-C cancels mid-generation. Beam search is also available, and the project includes 158 offline tests using mocked clients, with only the bench command hitting the real API.</description>
+    <pubDate>2026-09-20T17:51:27+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Android 17 is the first since 3.x to add new APIs without releasing to the AOSP</title>
-    <link>https://grapheneos.social/@GrapheneOS/117282080803799576</link>
-    <guid isPermaLink="false">https://grapheneos.social/@GrapheneOS/117282080803799576</guid>
-    <description>Android 17 is the first since 3.x to add new APIs without releasing to the AOSP</description>
-    <pubDate>2026-09-18T19:03:09+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>I built non-autoregressive decision models with RL a year ago</title>
-    <link>https://laya.convaiinnovations.com/</link>
-    <guid isPermaLink="false">https://laya.convaiinnovations.com/</guid>
-    <description>The author built non-autoregressive decision models with reinforcement learning a year ago, publishing arXiv papers (2503.23303 and 2510.01237), open weights, and a dataset, then watched TypeSafe AI launch a similar closed-source product called Jev in September 2026. In response, they created Laya, an open-source Apache 2.0 family of bidirectional encoder models that output probabilities directly through three primitives: choice, score, and noul. Laya includes three specialized checkpoints bundled in a single Hugging Face repository, with a sub-millisecond router that detects Unicode scripts to dispatch text to the appropriate model, since English tokenizers catastrophically fail on non-Latin scripts while reporting high confidence. The model runs in 32.8 ms on a single GPU, is 6–8x faster than Jev, supports 100+ languages, and outperforms Jev on benchmarks like typed-decisions (0.766 vs 0.727) and DAIR Emotion (0.595 vs 0.480) at zero API cost. However, the author acknowledges that choice questions degrade beyond 20 options, scoring only 0.425 on Banking77&#x27;s 77-label task compared to Jev&#x27;s 0.870.</description>
-    <pubDate>2026-09-19T10:46:58+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Cloudflare Quick Tunnels</title>
-    <link>https://try.cloudflare.com/</link>
-    <guid isPermaLink="false">https://try.cloudflare.com/</guid>
-    <description>Cloudflare Quick Tunnels transform a locally running server into a public, encrypted URL hosted on Cloudflare&#x27;s edge with a single command, requiring no account, DNS configuration, or open ports. The cloudflared tool establishes an outbound-only connection to the nearest edge location, allowing traffic to the tunnel URL to travel through Cloudflare&#x27;s network back to the user&#x27;s machine. Setup takes about three seconds with no sign-up, config file, or DNS waiting, and the URL is generated almost immediately. Every tunnel comes with automatic HTTPS, DDoS filtering, and certificate management, routing traffic through any of Cloudflare&#x27;s 335+ edge cities. The feature now includes JSON output designed for coding agents and supports any web server, port, or stack, making it suitable for previews, CI, webhooks, and evaluation harnesses.</description>
-    <pubDate>2026-09-18T14:18:41+00:00</pubDate>
+    <title>Resident Evil 4 (GameCube) – complete byte-identical decompilation to C/C++</title>
+    <link>https://github.com/adonis-singh/re4</link>
+    <guid isPermaLink="false">https://github.com/adonis-singh/re4</guid>
+    <description>Resident Evil 4 (GameCube) – complete byte-identical decompilation to C/C++</description>
+    <pubDate>2026-09-20T17:38:27+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
     <title>AI-generated posters don’t have to be horrible</title>
     <link>https://john.hartnup.uk/2026/06/07/ai-event-posters.html</link>
     <guid isPermaLink="false">https://john.hartnup.uk/2026/06/07/ai-event-posters.html</guid>
-    <description>AI-generated posters often share a repetitive, easily-recognizable style that has become irritating through overuse. The author tested ChatGPT by providing invented event details for a spring fayre and requesting specific design aesthetics instead of the default look. Requesting particular styles—including Bauhaus/Modernist, Stamp/Letterpress, Japanese Minimal, Memphis Design, Designers Republic, a child&#x27;s painting with professional typography, 1980s punk fanzine, 90s drum and bass flyers, and a 1940s cubist exhibition poster—produced distinctive results that stand apart from typical identikit village fayre posters. While the AI-generated nature remains detectable, the varied approaches yielded designs that are visually interesting rather than generic. The author also notes that tools like Claude and Gemini can generate editable formats with real text and layers, and has compiled a catalogue of one hundred poster styles with ready-to-use prompts and examples.</description>
+    <description>AI-generated posters often share a repetitive, identikit style that has become irritating through overexposure. The author set out to demonstrate that AI tools like ChatGPT can produce more distinctive designs when prompted with specific aesthetic directions. By requesting styles such as Bauhaus/modernist, risograph print, Memphis Design, Japanese minimal, brutalist, and 90s rave flyer aesthetics, the author generated a varied series of posters that stood out from typical village fayre templates. Naming a specific design movement or style proved to be an effective strategy for avoiding the default AI look. The author acknowledges the posters still retain some AI characteristics, but argues they are distinctive and visually appealing rather than derivative. Inspired by the experiment, the author compiled a catalogue of one hundred poster styles with ready-to-paste prompts and example images for each.</description>
     <pubDate>2026-09-19T09:20:58+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>I built non-autoregressive decision models with RL a year ago</title>
+    <link>https://laya.convaiinnovations.com/</link>
+    <guid isPermaLink="false">https://laya.convaiinnovations.com/</guid>
+    <description>The author spent months building non-autoregressive decision models trained with reinforcement learning, publishing an arXiv paper and open-source weights in March 2025, followed by a second paper in September 2025. Frustrated when TypeSafe AI launched Jev in September 2026 as a proprietary version of the same concept, they developed Laya, a fully open-source Apache 2.0 alternative running in 32.8 milliseconds on a single GPU—6 to 8 times faster than Jev. Laya supports three decision primitives (choice, score, noul) across three specialized checkpoints, including a multilingual model covering 100+ languages. A built-in Router inspects Unicode scripts before inference, since the English-only model catastrophically fails on non-Latin scripts while falsely reporting high confidence. Benchmarks show Laya beating Jev on typed-decisions, AG News, and DAIR Emotion tasks, with 3x better calibration error, though the author openly acknowledges accuracy degrades on choice questions with more than 20 options.</description>
+    <pubDate>2026-09-19T10:46:58+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Two parallel neural ectoderm progenitors contribute to the developing brain</title>
+    <link>https://med.stanford.edu/news/all-news/2026/09/two-separate-brains.html</link>
+    <guid isPermaLink="false">https://med.stanford.edu/news/all-news/2026/09/two-separate-brains.html</guid>
+    <description>Stanford Medicine researchers have overturned the long-held view that the brain develops from a single progenitor cell, demonstrating that it instead arises from two separate neural ectoderm populations running in parallel from the earliest stages of embryonic development. The forebrain and midbrain originate from cells expressing the gene Otx2, while the hindbrain forms from cells expressing Gbx2, with the two populations showing fundamentally different chromatin configurations that lock each into its fate. This explains why scientists struggled for decades to grow hindbrain neurons in the lab, and enabled the team to successfully generate functional hindbrain motor neurons from human pluripotent stem cells for the first time. The same dual-origin pattern appears in chickens, zebrafish, and acorn worms, indicating the two nervous systems evolved independently over 550 million years before being packaged together. The findings open new avenues for studying diseases affecting the brain stem, including spinal muscular atrophy, ALS, and the hunger-regulating circuits targeted by drugs like semaglutide.</description>
+    <pubDate>2026-09-19T05:48:50+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>How to Write with an LLM</title>
+    <link>https://sockpuppet.org/blog/2026/09/17/how-to-write-with-an-llm/</link>
+    <guid isPermaLink="false">https://sockpuppet.org/blog/2026/09/17/how-to-write-with-an-llm/</guid>
+    <description>How to Write with an LLM</description>
+    <pubDate>2026-09-17T21:48:38+00:00</pubDate>
     <source>Hacker News</source>
   </item>
 </channel></rss>
