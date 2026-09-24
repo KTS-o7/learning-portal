@@ -2,92 +2,76 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-23</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-24</description>
   <item>
-    <title>Marketing ops as code: Automating events from planning to follow-up on GitHub</title>
-    <link>https://github.blog/ai-and-ml/github-copilot/marketing-ops-as-code-automating-events-from-planning-to-follow-up-on-github/</link>
-    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/marketing-ops-as-code-automating-events-from-planning-to-follow-up-on-github/</guid>
-    <description>Tomoko Tanaka, who runs marketing for GitHub in Japan and Korea, automated her event workflows using GitHub&#x27;s native tools rather than a packaged marketing automation platform. Events are managed through GitHub Issues, where Issue forms capture structured event details, labels like event-setup act as triggers, and GitHub Actions workflows carry out the work, from duplicating landing pages and generating UTM links to filing email requests and updating project boards. Planning begins as a conversation with GitHub Copilot, guided by a team runbook called AGENTS.md that defines naming conventions, time zones, and email templates. A daily cron-triggered workflow handles registration screening and waitlist vetting for invite-only events, while a DRY_RUN repository variable lets the team rehearse workflows without touching external systems. After each event, slash commands such as /lead-upload and /event-report, built from Markdown-based agent skills, reshape attendee data for CRM uploads and post reports back on the original issue.</description>
-    <pubDate>Fri, 11 Sep 2026 18:26:10 +0000</pubDate>
+    <title>Developers want more efficient software. Here’s what over 1000 GitHub users told us they need.</title>
+    <link>https://github.blog/news-insights/research/developers-want-more-efficient-software-heres-what-over-1000-github-users-told-us-they-need/</link>
+    <guid isPermaLink="false">https://github.blog/news-insights/research/developers-want-more-efficient-software-heres-what-over-1000-github-users-told-us-they-need/</guid>
+    <description>A survey of 1,039 GitHub users by GitHub and the Yale Program on Climate Change Communication found strong demand for tools, measurement, and practical guidance to reduce software-related energy waste. Eighty percent of respondents wanted tools for writing energy-efficient code, 78% sought best practices for reducing software&#x27;s environmental footprint, 74% wanted ways to measure impact, and 70% were interested in sustainability-focused open source projects. Respondents also expressed notable climate concern, with 79% worried about global warming and 86% saying it is happening, rates considerably higher than among U.S. adults overall. However, only 10% felt their software development has a large effect on their personal environmental impact. The report recommends starting with measurable inefficiencies in code, data, network, and frontend work, and using tools like GitHub&#x27;s open source Daily Efficiency Improver workflow to surface opportunities while keeping maintainers in control of final decisions.</description>
+    <pubDate>Wed, 23 Sep 2026 13:00:00 +0000</pubDate>
+    <source>GitHub Blog</source>
+  </item>
+  <item>
+    <title>Rendering huge pull requests in the GitHub Copilot app</title>
+    <link>https://github.blog/engineering/user-experience/rendering-huge-pull-requests-in-the-github-copilot-app/</link>
+    <guid isPermaLink="false">https://github.blog/engineering/user-experience/rendering-huge-pull-requests-in-the-github-copilot-app/</guid>
+    <description>GitHub rebuilt the pull request view in the Copilot app to handle extreme cases, including a test PR with 2,200 files, over a million changed lines, and more than 400 inline review comments. The challenge was that while code rows have predictable heights enabling virtualization with precomputed geometry, comment threads have unknown heights dependent on markdown wrapping, expandable sections, reply composers, and async images. To solve this, the team split the document&#x27;s height into two independent domains: deterministic code geometry that never rebuilds, and dynamic blocks (comments, drafts) measured lazily with stable keys anchored to files and lines rather than pixel coordinates. Instead of using one ResizeObserver per block, which created feedback loops, they implemented a single idle- and scroll-gated measurement pass scoped to roughly 2,400px of the viewport, with on-screen blocks prioritized and observers applied only for self-caused resizes. This approach kept first paint fast while correcting heights accurately as users scrolled through enormous diffs.</description>
+    <pubDate>Wed, 23 Sep 2026 18:29:49 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
     <title>Should you read the code, is RAG dead, and did Skills kill MCP?</title>
     <link>https://github.blog/ai-and-ml/should-you-read-the-code-is-rag-dead-and-did-skills-kill-mcp/</link>
     <guid isPermaLink="false">https://github.blog/ai-and-ml/should-you-read-the-code-is-rag-dead-and-did-skills-kill-mcp/</guid>
-    <description>The GitHub Podcast episode explores five AI hot takes, arguing each contains some truth but misses important nuance. Developers remain responsible for AI-generated code, though review depth should match the risk level rather than treating every line equally. Employers increasingly value judgment over mandatory AI use, seeking candidates who can explain when and how they incorporate AI into their workflow. Skills and MCP solve different problems—MCP provides standardized interfaces while skills offer project-specific context—so they complement rather than replace each other. RAG remains valuable for grounding AI responses in relevant external information despite being overshadowed by newer tools. Finally, difficulty fine-tuning models for a codebase often signals underlying maintainability problems that would challenge human teammates too, with the article recommending real projects like Pollinations AI and Avian Visitors over endless theoretical debate.</description>
+    <description>The GitHub Podcast episode explores five AI hot takes, arguing that hot takes become valuable when examined for their underlying assumptions and real-world applicability. While developers remain responsible for AI-generated code, review intensity should match risk rather than being uniform across all changes. Companies increasingly value candidates&#x27; judgment about when and how to use AI tools, not just usage itself. Skills and the Model Context Protocol solve different problems—MCP provides standardized interfaces for tools while skills offer project-specific context and best practices—and retrieval-augmented generation remains relevant for grounding AI responses in accurate, current information. Difficulty fine-tuning models for a codebase often signals maintainability problems that would also challenge human teammates. Written by GPS, a Senior Developer Experience Advocate at GitHub, the article emphasizes testing ideas through real work rather than permanent allegiance to any debate.</description>
     <pubDate>Fri, 18 Sep 2026 15:00:00 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
-    <title>Announcing a Maintainer in Residence: Scott Schafer for the Cargo team</title>
-    <link>https://blog.rust-lang.org/2026/09/22/announcing-a-maintainer-in-residence-scott-schafer-for-the-cargo-team/</link>
-    <guid isPermaLink="false">https://blog.rust-lang.org/2026/09/22/announcing-a-maintainer-in-residence-scott-schafer-for-the-cargo-team/</guid>
-    <description>The Rust Foundation Maintainers Fund (RFMF) has hired Scott Schafer (@muscraft) as a new full-time Maintainer in Residence for the Cargo team, funded for at least 12 months through RFMF with additional support from the Rust Leadership Council&#x27;s Project Priorities budget and AWS. Schafer, who joined the Cargo team three years ago, also leads the Rust Docker team and has implemented Cargo&#x27;s Workspace inheritance feature. He spearheaded a multi-year effort to switch the Rust compiler&#x27;s diagnostic rendering to the annotate-snippets crate, which was completed in Rust 1.93.0 and unblocked the Cargo linting system slated for the Rust 1.100.0 release. The position was created to help the Cargo team meet its growing maintenance demands, which had become harder due to team member departures and reduced funding for some contributors. While a single full-time maintainer isn&#x27;t expected to completely resolve these struggles, the funding team hopes it will provide meaningful relief and improve Cargo&#x27;s maintainability.</description>
-    <pubDate>2026-09-22T00:00:00+00:00</pubDate>
-    <source>Rust Blog</source>
+    <title>Improving Ensemble Filters with Flow Matching</title>
+    <link>http://arxiv.org/abs/2609.28015</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.28015</guid>
+    <description>Data assimilation involves estimating a dynamical state from partial and noisy observations. Classical ensemble filters are efficient but restricted by finite sample covariance and an affine Gaussian distribution assumption. The authors introduce the Flow Ensemble Filter (FlowEF), which uses conditional flow matching to transport the forecast ensemble from a classical baseline filter to an analysis ensemble. During training, FlowEF employs a localized Gaussian source, while at deployment it transports forecast ensemble members from a baseline filter. Its velocity field is conditioned on ensembles from the baseline filter and observations, enabling it to learn a nonlinear update while mapping each baseline ensemble independently. For sparsely observed dynamical systems, FlowEF improves both deterministic and probabilistic metrics over all four classical ensemble filters tested, and achieves the best performance among state-of-the-art generative data assimilation models.</description>
+    <pubDate>2026-09-23T12:37:45Z</pubDate>
+    <source>Haoyuan Chen</source>
   </item>
   <item>
-    <title>Migrating the GitHub Copilot runtime to Rust, using Copilot</title>
-    <link>https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot/</link>
-    <guid isPermaLink="false">https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot/</guid>
-    <description>The GitHub Copilot agent runtime, which backs products like VS Code and Office applications, was originally written in TypeScript on Node.js. Its architecture had problems: the TUI and runtime were intertwined, forcing the SDK to communicate out-of-process via JSON-RPC, which added significant memory and performance costs for every consumer. GitHub rewrote the runtime into more than 800,000 lines of production Rust, with AI agents writing most of the code across 128 pull requests that shipped incrementally rather than at a single cutover. What would have taken a team of developers a year or two before agents was completed primarily by a single developer in only a few months. The choice of Rust enabled a clean C ABI for in-process embedding, low startup and steady-state overhead, and performance improvements of orders of magnitude.</description>
-    <pubDate>Thu, 17 Sep 2026 00:26:43 +0000</pubDate>
-    <source>GitHub Blog</source>
+    <title>SoLiD26: A First Principles Solid-Liquid Interface Dataset for Machine-learned Interatomic Potentials</title>
+    <link>http://arxiv.org/abs/2609.28013</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.28013</guid>
+    <description>SoLiD26 is a curated dataset of 15.4 million first-principles atomic structures designed for training and evaluating machine-learned interatomic potentials (MLIPs) at solid-liquid interfaces. The configurations, containing up to 576 atoms across 15 chemical elements, were compiled from density functional theory (DFT) calculations, with most originating from ab initio molecular dynamics (AIMD) simulations. Each record includes atomic species, positions, simulation cell, periodic boundary conditions, potential energy, and atomic forces. SoLiD26 spans aqueous coinage metal interfaces, electrode-electrolyte systems, and selected bulk reference structures, all computed using VASP with the PBE functional and D3 dispersion corrections. The authors describe the data ingestion and preparation pipeline used to construct the dataset and demonstrate its utility by training a suite of MACE models on a simple train/validation/test split. Overall, the dataset enables development and benchmarking of MLIPs for structurally and chemically heterogeneous solid-liquid interfaces relevant to electrochemistry, catalysis, and corrosion.</description>
+    <pubDate>2026-09-23T12:36:34Z</pubDate>
+    <source>Jonas Busk</source>
   </item>
   <item>
-    <title>OMatG-flash: An All-Atom Flow Map with Reinforce Adjoint Matching for Scalable Materials Discovery</title>
-    <link>http://arxiv.org/abs/2609.26402</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.26402</guid>
-    <description>OMatG-flash is an all-atom flow map designed for inorganic crystal structure prediction and de novo generation. It serves as a Pareto-optimal inference engine that samples candidate materials with an order of magnitude fewer inference steps and less wall-clock time than existing flow and diffusion models, while achieving benchmark performance comparable to state-of-the-art systems. To enable post-training fine-tuning, the authors apply Reinforce Adjoint Matching to flow maps, further improving match rates and RMSE on the unconditional crystal structure prediction task. The model addresses the bottleneck in current materials discovery pipelines by accelerating the generation of high-quality inorganic material candidates. Overall, OMatG-flash demonstrates how flow maps can enhance sample throughput for data-intensive materials discovery workflows.</description>
-    <pubDate>2026-09-22T13:36:33Z</pubDate>
-    <source>Thomas Egg</source>
+    <title>Evaluating Open-Weight LLMs for Turkish Domain Documents Under Retrieval and Hardware Constraints</title>
+    <link>http://arxiv.org/abs/2609.28007</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.28007</guid>
+    <description>The paper evaluates five open-weight 7B-8B large language models for Turkish document question answering in a resource-constrained local deployment setting. The primary benchmark consists of 100 validated questions from a 109-page industrial R&amp;D report, with the protocol replicated on a 112-page public-sector report using an additional 100-question set. All models were tested locally on an NVIDIA RTX 3050 laptop GPU with 6 GB VRAM, employing controlled prompting, decoding, and 4-bit quantization. The authors introduce an evidence-annotated evaluation protocol that distinguishes retrieval failures from downstream reasoning failures without additional model calls. On the primary benchmark, end-to-end accuracy ranged from 49% to 75%, while seven retrieval configurations—including lexical, dense, and hybrid approaches—failed to significantly outperform a character TF-IDF baseline. The findings demonstrate that model selection, retrieval behavior, and hardware limits must be evaluated separately when deploying open-weight LLMs for Turkish domain documents.</description>
+    <pubDate>2026-09-23T12:33:57Z</pubDate>
+    <source>Imtiaz Ul Hassan</source>
   </item>
   <item>
-    <title>On the Lexical Superstition of Large Language Models for Code Comprehension: Re-evaluation on Code of Low Lexical Quality</title>
-    <link>http://arxiv.org/abs/2609.26388</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.26388</guid>
-    <description>This paper investigates whether large language models (LLMs) used for code comprehension place excessive weight on identifier names, even when renaming preserves program structure. The authors introduce Face/Off, a semantics-preserving identifier-renaming framework, and evaluate progressive naming conditions across multiple models and tasks. They find that lexical overemphasis is pervasive: performance generally decreases as identifier information is removed or made misleading, and outputs are often directed toward the meanings suggested by misleading names. This pattern persists under representative prompt-based and fine-tuning-based interventions, suggesting the problem is entrenched rather than easily mitigated. A type-inference control experiment establishes a boundary condition, showing naming effects are smaller when answers are locally recoverable without the target name. The authors conclude that current LLMs exhibit a systematic vulnerability in balancing lexical cues against program structure, motivating evaluation and modeling approaches that preserve benefits of natural code regularities while remaining grounded in formalized code semantics.</description>
-    <pubDate>2026-09-22T13:27:57Z</pubDate>
-    <source>Xin Shen</source>
+    <title>Learning from Failures: Heterogeneous Graph Memory for Small Language Model Tool-Using Agents</title>
+    <link>http://arxiv.org/abs/2609.28003</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.28003</guid>
+    <description>Small and medium-sized language models offer cost-effective executors for tool-using agents but often make structural errors in long-horizon, stateful environments, including missing required observations, performing premature writes, repeating failed calls, and violating action preconditions. These errors can lead to incorrect state updates, policy violations, and costly or irreversible consequences. Existing fine-tuning approaches require substantial data and computation, while flat memory may retrieve past actions without preserving their causal context or safety conditions. To address this, the authors propose FRESH, a Failure-aware Retrieval framework over Experience-Structured Heterogeneous graphs that transforms historical successes and failures into structured external experience. By explicitly modeling dependencies among tasks, actions, errors, repairs, and execution conditions, FRESH helps frozen language models reuse reliable strategies, avoid recurring failures, and make safer decisions. Experiments on τ-Bench and AppWorld with multiple open-source models show that FRESH consistently improves task success and tool-use reliability over no-memory agents and representative memory-based baselines.</description>
+    <pubDate>2026-09-23T12:31:39Z</pubDate>
+    <source>Jiaxing Li</source>
   </item>
   <item>
-    <title>Learning to Defer with Guidance on Real World Medical Data</title>
-    <link>http://arxiv.org/abs/2609.26384</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.26384</guid>
-    <description>Medical image interpretation is high-volume and time-consuming, and while AI interpretation can reduce workload, fully autonomous deployment raises safety concerns and low specificity may increase clinician burden. Learning to Defer (L2D) addresses this by selectively routing cases between autonomous prediction and human experts based on input features and AI/human performance. Although theoretical guarantees for L2D have been established, its performance has not previously been validated on real-world medical datasets with human reader annotations. The authors evaluate the predictor-rejector formulation of two-stage L2D on Collab-CXR, a multilabel chest X-ray dataset with multiple human annotations per case, marking the first such evaluation on real-world medical imaging data. They further introduce a new setup called L2D with Guidance, extending the decision space to three choices: predict autonomously, defer to a human expert, or defer to a human expert with AI guidance. Their results demonstrate that two-stage L2D with Guidance outperforms classic two-stage L2D, human-alone, AI-alone, and AI-guided human baselines, achieving this with simpler loss functions than formally defined L2D surrogates, as validated on the larger VinDr-CXR and CheXpert datasets.</description>
-    <pubDate>2026-09-22T13:26:20Z</pubDate>
-    <source>Emma Sun</source>
-  </item>
-  <item>
-    <title>TimeInteract: Towards Real-Time Interactive Intelligence for Streaming Time Series</title>
-    <link>http://arxiv.org/abs/2609.26389</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.26389</guid>
-    <description>Real-world time series evolve continuously, with meaningful changes potentially emerging at any moment. However, existing time-series language models (TSLMs) remain inherently static. They either receive complete sequences for offline processing or alternate between streaming input and response generation, which prevents processing of new observations during interaction. We introduce a new regime, Time-Series Interaction: a model continuously perceives incoming time-series observations and user intent, autonomously decides when to remain silent or respond, and continues processing new observations during response generation. To realize this, we develop TimeInteract with three key designs: a dual-view streaming TS encoder that captures local variations and historical dynamics, a response co</description>
-    <pubDate>2026-09-22T13:29:03Z</pubDate>
-    <source>Sheng Pan</source>
-  </item>
-  <item>
-    <title>Double Descent and Malign Overfitting in Diffusion Models</title>
-    <link>http://arxiv.org/abs/2609.26392</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.26392</guid>
-    <description>Conventional wisdom holds that overparameterization in deep learning is benign, with test error following a double-descent curve. However, for diffusion models—which are trained via regression on a quadratic score-matching loss—overfitting becomes catastrophic and drives the model into a memorization regime. Through experiments on U-Nets trained on CelebA combined with a random-features model with closed-form learning curves, the authors show that with a fixed number of noise realizations per training sample, the interpolation peak shifts to p~nm rather than p~n, though the test loss begins rising earlier at p~n, independently of m. This overfitting is malign because implicit regularization pushes the model toward the empirical score, which memorizes training data, rather than the true score. A bias-variance decomposition reveals that bias starts growing at p~n and continues increasing past the peak, while variance decays. Since diffusion models use m&gt;&gt;1, the peak is pushed to very large model sizes, leaving practical models on the rising branch. Nevertheless, optimally regularized large models—via ridge penalties or early stopping—outperform any unregularized models in both theory and experiments.</description>
-    <pubDate>2026-09-22T13:30:48Z</pubDate>
-    <source>Raphaël Urfin</source>
-  </item>
-  <item>
-    <title>WordPress: Unauthenticated path traversal leading to conditional RCE</title>
-    <link>https://github.com/WordPress/wordpress-develop/security/advisories/GHSA-7hp8-65ch-5whp</link>
-    <guid isPermaLink="false">https://github.com/WordPress/wordpress-develop/security/advisories/GHSA-7hp8-65ch-5whp</guid>
-    <description>A critical unauthenticated path traversal vulnerability in WordPress&#x27;s get_page_template() page-template resolution function can lead to conditional remote code execution, with a CVSS v4 score of 9.2. The flaw, tracked as CVE-2026-87902 and categorized as CWE-98, allows an attacker to include a readable local .php file outside the active theme directories. For RCE to occur, the active theme must contain a top-level directory starting with &quot;page-&quot; (such as &quot;page-templates&quot;), a chosen .php target file must be readable, and conditions such as register_argc_argv being enabled must be met. This configuration exists in legacy themes like Twenty Twelve and Twenty Fourteen, popular third-party themes including Neve, Hestia, and Sydney, the official PHP Docker image, and default cPanel setups using PHP prior to 8.5. The vulnerability affects WordPress versions from 4.7 through 7.1.1 and was patched in version 7.1.2, with fixes backported to all branches down to 4.7.37. The issue was responsibly disclosed by Robert Ressl.</description>
-    <pubDate>2026-09-22T16:33:45+00:00</pubDate>
-    <source>Hacker News</source>
+    <title>Shared Global KV with Layer-Specific Local History</title>
+    <link>http://arxiv.org/abs/2609.28006</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.28006</guid>
+    <description>Decoder-only Transformer language models cache keys and values (KV) to reuse past computation during generation. Sharing KV across layers saves storage but reduces the diversity of representations available across depth. We study what local memory should retain alongside shared global KV, separating historical content from the input source used to form it. At 126M parameters and 2K context, an eight-seed study finds about 1.4% lower held-out test perplexity with local history than with a current-token local branch. Capacity, entry-count and training-compute controls support the value of historical content. In a two-seed comparison, this value persists when adjacent layers share local inputs while retaining independent projections; source sharing also shortens exact cache-construction depen</description>
+    <pubDate>2026-09-23T12:33:40Z</pubDate>
+    <source>Xinglang Xian</source>
   </item>
   <item>
     <title>Native apps written in TypeScript and CSS</title>
     <link>https://github.com/geastack/examples</link>
     <guid isPermaLink="false">https://github.com/geastack/examples</guid>
-    <description>The GeaStack Examples repo provides example applications and tools for GeaStack, serving as the app gallery used by the simulator, embedded targets, GeaOS, Apple targets, the VS Code/Cursor extension, and marketing demos. Each example is a small package with a gea manifest in its package.json, and most apps are TSX apps targeting web, ESP32, and/or GeaOS. The web development loop is driven from the separate simulator repository, which requires the GEA_APPS_ROOT environment variable to be set or the --app-dir flag to point to an app directory. Compatible boards can be flashed using the Gea CLI with commands like npx gea flash. Every buildable app includes a &quot;gea&quot; field in its manifest specifying id, name, entry, runtime, and target compatibility. The project is MIT licensed, though the embedded board support code is GPL-3.0-only and requires a commercial license for closed-source firmware.</description>
+    <description>GeaStack Examples is a repository containing example applications and tools for the GeaStack platform, serving as an app gallery for the simulator, embedded targets, GeaOS, Apple targets, the VS Code/Cursor extension, and marketing demos. Each example is a small TSX package with a gea manifest in package.json that declares target compatibility for web, ESP32, and/or GeaOS. The web development loop is driven by a separate simulator repository, which reads apps from the path specified by the GEA_APPS_ROOT environment variable. Developers can run checks, builds, and tests within individual app folders, or flash compatible boards directly using the Gea CLI. The repository is released under the MIT license, though the embedded board support code under @geastack/chips uses GPL-3.0-only, requiring a commercial license for closed-source firmware distributions.</description>
     <pubDate>2026-09-22T19:42:20+00:00</pubDate>
     <source>Hacker News</source>
   </item>
@@ -95,48 +79,32 @@
     <title>ReBarUEFI: Resizable BAR for almost any UEFI system</title>
     <link>https://github.com/xCuri0/ReBarUEFI</link>
     <guid isPermaLink="false">https://github.com/xCuri0/ReBarUEFI</guid>
-    <description>ReBarUEFI is a UEFI DXE driver that enables Resizable BAR on systems lacking official support, delivering performance benefits and being necessary for Intel Arc GPUs to function optimally. Optional requirements include enabling 4G Decoding and having BIOS support for Large BARs, with patches available to fix most compatibility issues. Users add the FFS module to their firmware, ensure 4G decoding is enabled and CSM is off, then run ReBarState to configure the BAR size, typically setting it to 32 for unlimited. Technically, the module replaces the PreprocessController function of PciHostBridgeResourceAllocationProtocol to set the BAR size during PCI enumeration. UEFIPatch can apply numerous fixes, including removing BAR size limits, expanding MMIO space for various Intel architectures, and resolving X79 Above 4G Decoding issues. While Linux users can enable Resizable BAR without BIOS modification, Windows currently requires firmware modification to achieve the same result.</description>
+    <description>ReBarUEFI is a UEFI DXE driver that enables Resizable BAR on systems lacking official support, providing performance benefits and enabling optimal functionality for Intel Arc GPUs. The driver is added to a firmware&#x27;s DXE volume and replaces the PreprocessController function of PciHostBridgeResourceAllocationProtocol, checking for Resizable BAR capability and setting it according to the ReBarState NVRAM variable during PCI enumeration. Optional requirements include enabling 4G Decoding and BIOS support for Large BARs, with UEFIPatch patches available to address firmware issues handling 64-bit BARs, such as removing BAR size limits and expanding MMIO space on older platforms. Users follow a wiki guide for installation, enable 4G decoding with CSM off, and use the ReBarState tool to set the desired BAR size, typically starting with size 32. If an unsupported size causes boot failure, clearing CMOS will disable Resizable BAR, and Linux users can enable it without BIOS modification using recent kernels with pci=realloc, though no equivalent method currently exists for Windows.</description>
     <pubDate>2026-09-21T01:07:46+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: InstinctFlash – High-Performance Serving Runtime for Robotics Models</title>
-    <link>https://github.com/General-Instinct/InstinctFlash</link>
-    <guid isPermaLink="false">https://github.com/General-Instinct/InstinctFlash</guid>
-    <description>InstinctFlash is a high-performance serving framework for robotics models that recently added RTX 5090 and RTX 4090 support, alongside a full-source release covering eight robotics model families. On Jetson Thor, it delivers up to 33.78× speedup with LingBot-VA using FP8 and fewer sampling steps, with other measured gains including 7.88× for pi05 FP8 and 5.36× for LingBot-VA at 25V/50A. The framework auto-detects model families from checkpoints and serves them either in-process through a Python Runtime API or over the network via a msgpack-over-WebSocket protocol compatible with openpi clients. It organizes optimizations into six layers, from model distillation down to hardware-level execution, with defaults set to BITEXACT precision and optional FP8 or NUMERIC tiers. The release includes paired reproduction tools, smoke tests, and a validate command that certifies checkpoint publishability and non-inferiority.</description>
-    <pubDate>2026-09-22T15:20:06+00:00</pubDate>
+    <title>Show HN: Npunlock – Run custom C kernels for Intel NPUs</title>
+    <link>https://github.com/hsfzxjy/npunlock</link>
+    <guid isPermaLink="false">https://github.com/hsfzxjy/npunlock</guid>
+    <description>npunlock is a Python and native C toolkit that compiles user-written C into ACT-SHAVE machine code and runs those custom kernels inside Intel NPU graphs, bypassing the graph-only limitation of Intel&#x27;s public NPU software stack. It has been verified on Windows x64 with Meteor Lake / NPU3720 hardware and supports static dense FP16 unary and two-input custom kernels, a verified unary FP32 path, and one graph containing independent FP32-unary and FP16-binary custom branches. The toolchain relies on Intel&#x27;s MoviTools MVC_DEPEND package, which users must obtain separately, and does not require OpenVINO as a runtime, Python package, or compiler frontend. Installation is via source checkout, and the build bundles npunlock.dll and</description>
+    <pubDate>2026-09-22T12:58:02+00:00</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Web-based IBM 1620 emulator and IPL-V from 1963</title>
+    <link>https://github.com/pkimpel/retro-1620</link>
+    <guid isPermaLink="false">https://github.com/pkimpel/retro-1620</guid>
+    <description>The retro-1620 project provides a web browser-based emulator and operating environment for the IBM 1620 Model 2 computer, a 1960s transistorized, decimal system designed primarily for scientific and engineering applications. The IBM 1620 was produced in two variants—the original Model 1 released in 1959 and the object-code-compatible Model 2 in 1962—with roughly 2,000 systems built before IBM ended support in 1970. It used a two-address, memory-to-memory architecture with no software-accessible registers, fixed 12-digit instructions, and memory ranging from 20,000 to 60,000 decimal digits. The main goals of this project are creating an emulator for the Model 2 and recovering as much original software as possible, with the contents licensed under the MIT License. Peripherals supported by the system included the 1622 card reader/punch, 1443 line printer, 1311 disk drive, and 1627 plotter. Programming was primarily done using the SPS assembler or FORTRAN II, with a Monitor operating system available for disk-equipped installations.</description>
+    <pubDate>2026-09-23T00:06:25+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
     <title>Claude Opus 5.5</title>
     <link>https://www.anthropic.com/claude-opus-5-5</link>
     <guid isPermaLink="false">https://www.anthropic.com/claude-opus-5-5</guid>
-    <description>Anthropic has launched Claude Opus 5.5, the first model in its new Claude 5.5 family, which performs at the level of Claude Fable 5.1 on most tasks while costing 40% less to run than Opus 5. The model leads in agentic coding benchmarks, scoring 66.4% on Terminal-Bench 4.0, 54.4% on FrontierCode v1.1, and 57.8% on CursorBench 4.0, and also tops knowledge work and computer use evaluations. Pricing is set at $4 per million input tokens and $20 per million output tokens, with cache reads at $0.20 per million—a 60% reduction—and the model generates output over 30% faster than Opus 5. Opus 5.5 achieved the best scores to date on Anthropic&#x27;s automated behavioral audit and is more resistant to prompt injection than its predecessor. Because it is comparable to Claude Fable 5.1 in biology and cybersecurity, it is deployed with similar safeguards, and vetted organizations can apply for the Life Sciences Verification Program.</description>
+    <description>Anthropic has launched Claude Opus 5.5, the first model in its new Claude 5.5 family, performing at the level of Claude Fable 5.1 on most tasks while costing 40% less to run than Opus 5. It leads on agentic coding, computer use, and knowledge work benchmarks, with early testers reporting major efficiency gains such as completing a 680,000-line code migration in under a day and auditing a 200,000-line codebase in three hours. Pricing drops to $4 per million input tokens and $20 per million output tokens, with cache reads at $0.20 (60% less than Opus 5), and output generation is over 30% faster. Because Opus 5.5 is comparable to Fable 5.1 in biology and cybersecurity, it ships with safeguards similar to those for Fable 5.1, and vetted organizations can apply to use it for biology and cybersecurity work. Claude Sonnet 5.5 and Claude Haiku 5.5 will follow in the coming weeks with similar improvements.</description>
     <pubDate>2026-09-22T16:29:05+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>GPT-6 Sol and Luna</title>
-    <link>https://openai.com/index/introducing-gpt-6-sol-and-luna/</link>
-    <guid isPermaLink="false">https://openai.com/index/introducing-gpt-6-sol-and-luna/</guid>
-    <description>GPT-6 Sol and Luna</description>
-    <pubDate>2026-09-22T18:00:34+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>MiMo v2.6</title>
-    <link>https://mimo.xiaomi.com/mimo-v2-6</link>
-    <guid isPermaLink="false">https://mimo.xiaomi.com/mimo-v2-6</guid>
-    <description>MiMo v2.6</description>
-    <pubDate>2026-09-21T20:12:12+00:00</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Attention is all you have</title>
-    <link>https://alicegg.tech/2026/09/21/attention</link>
-    <guid isPermaLink="false">https://alicegg.tech/2026/09/21/attention</guid>
-    <description>The Tetris effect demonstrates that prolonged focus shapes one&#x27;s thoughts, yet modern users increasingly let algorithms decide what appears on their screens. Platforms like YouTube, Spotify, LinkedIn, and Reddit hijack attention through engagement-driven recommendations, including doomscrolling content, AI-generated music inserted to avoid royalties, and astroturfed opinions from fake accounts. Letting others dictate what you see is comparable to handing them the keys to your brain. The early internet required users to intentionally navigate through bookmarks to specific sites, with no algorithm inserting unwanted content between visits. This intentional web still exists through blogs and RSS feeds, though it demands adjustment to slower, less infinite content. Reclaiming focused attention, like building any habit, requires persistence.</description>
-    <pubDate>2026-09-21T14:26:56+00:00</pubDate>
     <source>Hacker News</source>
   </item>
 </channel></rss>

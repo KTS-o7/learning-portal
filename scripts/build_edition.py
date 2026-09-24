@@ -567,10 +567,29 @@ def main():
     # ---- Build final JSON ----
     # Drop slots where both summary and snippet are empty — the renderer
     # can't display an empty card, and Cloudflare will cache the bad card.
+    # Also drop slots whose summary is just a title echo or a URL (fetch
+    # failure with body-extract fallback) — those render as nearly-blank
+    # cards too. Real summaries are 100-150 words (>=600 chars at M3's pace).
+    def _is_junk_summary(item: dict) -> bool:
+        s = (item.get("summary") or "").strip()
+        if not s:
+            return True
+        # Title echo: summary equals (or starts with) the original title
+        title = (item.get("title") or "").strip()
+        if title and s.lower().startswith(title.lower()[:60]):
+            return True
+        # URL echo: summary is just a URL pasted in
+        if s.startswith("http://") or s.startswith("https://"):
+            return True
+        # Far too short to be a real summary
+        if len(s) < 200:
+            return True
+        return False
+
     for sec_items in by_section.values():
         sec_items[:] = [
             x for x in sec_items
-            if (x.get("summary") or "").strip() or (x.get("snippet") or "").strip()
+            if not _is_junk_summary(x) or len((x.get("snippet") or "").strip()) >= 200
         ]
     total = sum(len(v) for v in by_section.values())
     edition_tag = f"vol-2-no-{34 + (NOW - datetime(2026, 9, 9, tzinfo=timezone.utc)).days}"
