@@ -2,109 +2,117 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-24</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-25</description>
   <item>
-    <title>Developers want more efficient software. Here’s what over 1000 GitHub users told us they need.</title>
-    <link>https://github.blog/news-insights/research/developers-want-more-efficient-software-heres-what-over-1000-github-users-told-us-they-need/</link>
-    <guid isPermaLink="false">https://github.blog/news-insights/research/developers-want-more-efficient-software-heres-what-over-1000-github-users-told-us-they-need/</guid>
-    <description>A survey of 1,039 GitHub users by GitHub and the Yale Program on Climate Change Communication found strong demand for tools, measurement, and practical guidance to reduce software-related energy waste. Eighty percent of respondents wanted tools for writing energy-efficient code, 78% sought best practices for reducing software&#x27;s environmental footprint, 74% wanted ways to measure impact, and 70% were interested in sustainability-focused open source projects. Respondents also expressed notable climate concern, with 79% worried about global warming and 86% saying it is happening, rates considerably higher than among U.S. adults overall. However, only 10% felt their software development has a large effect on their personal environmental impact. The report recommends starting with measurable inefficiencies in code, data, network, and frontend work, and using tools like GitHub&#x27;s open source Daily Efficiency Improver workflow to surface opportunities while keeping maintainers in control of final decisions.</description>
-    <pubDate>Wed, 23 Sep 2026 13:00:00 +0000</pubDate>
+    <title>Platform-independent SIMD in Go</title>
+    <link>https://go.dev/blog/simd-experiment</link>
+    <guid isPermaLink="false">https://go.dev/blog/simd-experiment</guid>
+    <description>Go 1.26 and 1.27 include experimental SIMD APIs, with Go 1.27 introducing a portable, platform-agnostic simd package loosely based on Highway for C++. This package hides architectural differences by removing fixed-size vectors from the type system and supporting only operations common to all platforms, filling gaps with efficient emulation. It supports AVX, AVX2, and AVX512 on amd64, NEON on arm64, and wasm SIMD instructions, while emulating operations on platforms lacking SIMD support. Vector types are capitalized plurals like simd.Uint8s or simd.Float32s, loaded from and stored to slices, and the package includes arithmetic, comparison, conversion, shift, and masking operations. The experimental package is enabled with GOEXPERIMENT=simd, and ReduceSum is planned for a future release to allow cross-element vector reduction.</description>
+    <pubDate>2026-09-24T00:00:00+00:00</pubDate>
+    <source>Go Blog</source>
+  </item>
+  <item>
+    <title>AI-powered fuzzing with the GitHub Security Lab Taskflow Agent</title>
+    <link>https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent/</link>
+    <guid isPermaLink="false">https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent/</guid>
+    <description>GitHub Security Lab&#x27;s Fuzzing Taskflow is an autonomous fuzzing pipeline for C/C++ projects built on the Taskflow Agent framework. Pointed at a GitHub repository, the agent identifies entrypoints, analyzes the build system, writes harnesses, runs AFL++, interprets coverage reports, improves harnesses, triages crashes, and generates vulnerability reports without human intervention. The architecture separates decision-making from execution, with the LLM agent choosing what to fuzz while MCP tools handle compilation and AFL runs, and all state is persisted in a SQLite database. Each harness is compiled twice—once with AFL&#x27;s edge instrumentation for fuzzing and once with clang&#x27;s coverage mapping for human-readable reports—and the feedback loop uses plateau detection to stop when two consecutive iterations gain less than 1% line coverage. Time budgets double each round from 30 seconds to roughly 32 minutes per target, and the pipeline also ships structure-aware mutators and a persistent, deduplicated corpus that survives across iterations.</description>
+    <pubDate>Thu, 24 Sep 2026 18:26:12 +0000</pubDate>
+    <source>GitHub Blog</source>
+  </item>
+  <item>
+    <title>When chat is the wrong UI</title>
+    <link>https://github.blog/ai-and-ml/github-copilot/when-chat-is-the-wrong-ui/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/when-chat-is-the-wrong-ui/</guid>
+    <description>The article by Burke Holland argues that chat interfaces are often the wrong way to interact with AI, since they push users to rely on the agent itself as the tool rather than having it build dedicated tools. He proposes &quot;canvases&quot; as an alternative: full-stack applications that run inside the GitHub Copilot app and communicate bi-directionally with the Copilot agent. Canvases can call third-party APIs, execute code locally on the user&#x27;s machine, and serve as customizable interfaces for specific tasks. Examples include a Connect 4 game, a Winget package manager UI, a SQLite database tool, and a blog post editor. Holland suggests using canvases to automate development workflows through stages of research, prototyping, planning, implementation, iteration, and finalization, allowing users to step away from the loop as much as possible.</description>
+    <pubDate>Thu, 24 Sep 2026 20:00:00 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
     <title>Rendering huge pull requests in the GitHub Copilot app</title>
     <link>https://github.blog/engineering/user-experience/rendering-huge-pull-requests-in-the-github-copilot-app/</link>
     <guid isPermaLink="false">https://github.blog/engineering/user-experience/rendering-huge-pull-requests-in-the-github-copilot-app/</guid>
-    <description>GitHub rebuilt the pull request view in the Copilot app to handle extreme cases, including a test PR with 2,200 files, over a million changed lines, and more than 400 inline review comments. The challenge was that while code rows have predictable heights enabling virtualization with precomputed geometry, comment threads have unknown heights dependent on markdown wrapping, expandable sections, reply composers, and async images. To solve this, the team split the document&#x27;s height into two independent domains: deterministic code geometry that never rebuilds, and dynamic blocks (comments, drafts) measured lazily with stable keys anchored to files and lines rather than pixel coordinates. Instead of using one ResizeObserver per block, which created feedback loops, they implemented a single idle- and scroll-gated measurement pass scoped to roughly 2,400px of the viewport, with on-screen blocks prioritized and observers applied only for self-caused resizes. This approach kept first paint fast while correcting heights accurately as users scrolled through enormous diffs.</description>
+    <description>The GitHub Copilot app rebuilt its pull request view to handle extremely large PRs, testing it on an open-source pull request with 2,200 files, over a million changed lines, and more than 400 inline review comments. Code rows are easy to virtualize because their heights are deterministic and known upfront, but comments are not, since their height depends on markdown wrapping, expandable sections, reply composers, and async-loading images that only reveal themselves at render time. To solve this, the team split the document&#x27;s geometry into two independent domains: a deterministic code height computed exactly, and dynamic block heights that are estimated, then measured lazily, anchored to file, line, and side rather than pixel coordinates. They rejected a per-block ResizeObserver design because it created feedback loops, and instead shipped a single idle- and scroll-gated measurement pass scoped to the viewport. On-screen blocks are treated as ground truth and read in batch, with one exception where user-caused resizes like expanding a details block apply corrections in the same frame.</description>
     <pubDate>Wed, 23 Sep 2026 18:29:49 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
-    <title>Should you read the code, is RAG dead, and did Skills kill MCP?</title>
-    <link>https://github.blog/ai-and-ml/should-you-read-the-code-is-rag-dead-and-did-skills-kill-mcp/</link>
-    <guid isPermaLink="false">https://github.blog/ai-and-ml/should-you-read-the-code-is-rag-dead-and-did-skills-kill-mcp/</guid>
-    <description>The GitHub Podcast episode explores five AI hot takes, arguing that hot takes become valuable when examined for their underlying assumptions and real-world applicability. While developers remain responsible for AI-generated code, review intensity should match risk rather than being uniform across all changes. Companies increasingly value candidates&#x27; judgment about when and how to use AI tools, not just usage itself. Skills and the Model Context Protocol solve different problems—MCP provides standardized interfaces for tools while skills offer project-specific context and best practices—and retrieval-augmented generation remains relevant for grounding AI responses in accurate, current information. Difficulty fine-tuning models for a codebase often signals maintainability problems that would also challenge human teammates. Written by GPS, a Senior Developer Experience Advocate at GitHub, the article emphasizes testing ideas through real work rather than permanent allegiance to any debate.</description>
-    <pubDate>Fri, 18 Sep 2026 15:00:00 +0000</pubDate>
-    <source>GitHub Blog</source>
+    <title>An Analytical Theory of Auxiliary Learning</title>
+    <link>http://arxiv.org/abs/2609.29774</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.29774</guid>
+    <description>The paper develops an analytical theory to explain auxiliary learning, an optimization paradigm in which training on additional tasks improves a neural network&#x27;s performance on a target task. Using a teacher-student framework, the authors derive a closed system of differential equations describing the dynamics of online stochastic gradient descent in the large-input limit. For linear networks, they obtain a closed-form expression for generalization error to leading order in the learning rate, demonstrating how task correlations and label noise determine the benefit of auxiliary learning. For non-linear activation functions, they introduce a fluctuation-dissipation analytical theory linking main and auxiliary errors to the corresponding single-task error. Numerical experiments confirm the theoretical predictions, showing that auxiliary tasks improve generalization by balancing the forcing dynamics toward the optimal solution against gradient noise.</description>
+    <pubDate>2026-09-24T13:18:13Z</pubDate>
+    <source>Federico Milanesio</source>
   </item>
   <item>
-    <title>Improving Ensemble Filters with Flow Matching</title>
-    <link>http://arxiv.org/abs/2609.28015</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.28015</guid>
-    <description>Data assimilation involves estimating a dynamical state from partial and noisy observations. Classical ensemble filters are efficient but restricted by finite sample covariance and an affine Gaussian distribution assumption. The authors introduce the Flow Ensemble Filter (FlowEF), which uses conditional flow matching to transport the forecast ensemble from a classical baseline filter to an analysis ensemble. During training, FlowEF employs a localized Gaussian source, while at deployment it transports forecast ensemble members from a baseline filter. Its velocity field is conditioned on ensembles from the baseline filter and observations, enabling it to learn a nonlinear update while mapping each baseline ensemble independently. For sparsely observed dynamical systems, FlowEF improves both deterministic and probabilistic metrics over all four classical ensemble filters tested, and achieves the best performance among state-of-the-art generative data assimilation models.</description>
-    <pubDate>2026-09-23T12:37:45Z</pubDate>
-    <source>Haoyuan Chen</source>
+    <title>CORDIAL: Calibrating Ordinal LLM Outputs from Few Labels</title>
+    <link>http://arxiv.org/abs/2609.29807</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.29807</guid>
+    <description>CORDIAL is a calibration method proposed by Wang, Wang, and Halgamuge that corrects noisy ordinal outputs from large language models using a small channel of five interpretable parameters. The approach treats the model&#x27;s output distribution as a noisy reading of the true label and is small enough that its posterior can be averaged from just a handful of labels, while provably preserving first-order stochastic order. Evaluated on Amazon reviews and CMU-MOSEI transcripts across four LLMs, CORDIAL achieved the lowest log loss among nine calibrators in 76 of 80 settings when using between 5 and 100 labels. With only 20 labels and the main 7B reader, it matched the strongest baseline&#x27;s performance that required 28 to 54 labels. The same posterior framework also enables transferring priors learned from other tasks and fusing outputs from multiple LLMs, with unrestricted calibrators such as Dirichlet calibration only surpassing it once the calibration set grows into the hundreds or thousands.</description>
+    <pubDate>2026-09-24T13:41:29Z</pubDate>
+    <source>Xiangwei Wang</source>
   </item>
   <item>
-    <title>SoLiD26: A First Principles Solid-Liquid Interface Dataset for Machine-learned Interatomic Potentials</title>
-    <link>http://arxiv.org/abs/2609.28013</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.28013</guid>
-    <description>SoLiD26 is a curated dataset of 15.4 million first-principles atomic structures designed for training and evaluating machine-learned interatomic potentials (MLIPs) at solid-liquid interfaces. The configurations, containing up to 576 atoms across 15 chemical elements, were compiled from density functional theory (DFT) calculations, with most originating from ab initio molecular dynamics (AIMD) simulations. Each record includes atomic species, positions, simulation cell, periodic boundary conditions, potential energy, and atomic forces. SoLiD26 spans aqueous coinage metal interfaces, electrode-electrolyte systems, and selected bulk reference structures, all computed using VASP with the PBE functional and D3 dispersion corrections. The authors describe the data ingestion and preparation pipeline used to construct the dataset and demonstrate its utility by training a suite of MACE models on a simple train/validation/test split. Overall, the dataset enables development and benchmarking of MLIPs for structurally and chemically heterogeneous solid-liquid interfaces relevant to electrochemistry, catalysis, and corrosion.</description>
-    <pubDate>2026-09-23T12:36:34Z</pubDate>
-    <source>Jonas Busk</source>
+    <title>TopU-LBVS: A Realistic Multi Target Benchmark for Ligand Based Virtual Screening</title>
+    <link>http://arxiv.org/abs/2609.29740</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.29740</guid>
+    <description>TopU-LBVS is a multi-target benchmark designed to evaluate ligand-based virtual screening (LBVS) under realistic hard-negative conditions, addressing limitations in existing benchmarks such as random negatives, easy decoys, limited target coverage, and non-standardized protocols. Built from curated ChEMBL~35 bioactivity data, the benchmark spans 93 protein targets across 7 protein classes, with target-specific screening libraries containing property-matched, structurally similar decoys at a fixed 1:40 active-to-decoy ratio and compound counts ranging from roughly 400 to 10,000. The benchmark provides three fixed protocols: TopU-LBVS-full for cross-target generalization, TopU-LBVS-low for low-data learning within the hard-negative distribution, and TopU-LBVS-mini, a compact seven-target protocol paired with a random-decoy control. Across ten reference baselines spanning fingerprint methods, molecular GNNs, and modern molecular models, performance under random-decoy evaluation degrades sharply when tested with hard negatives. The authors release data, splits, evaluation code, and baseline implementations to enable reproducible comparison.</description>
+    <pubDate>2026-09-24T12:56:57Z</pubDate>
+    <source>Surbhi Kumar</source>
   </item>
   <item>
-    <title>Evaluating Open-Weight LLMs for Turkish Domain Documents Under Retrieval and Hardware Constraints</title>
-    <link>http://arxiv.org/abs/2609.28007</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.28007</guid>
-    <description>The paper evaluates five open-weight 7B-8B large language models for Turkish document question answering in a resource-constrained local deployment setting. The primary benchmark consists of 100 validated questions from a 109-page industrial R&amp;D report, with the protocol replicated on a 112-page public-sector report using an additional 100-question set. All models were tested locally on an NVIDIA RTX 3050 laptop GPU with 6 GB VRAM, employing controlled prompting, decoding, and 4-bit quantization. The authors introduce an evidence-annotated evaluation protocol that distinguishes retrieval failures from downstream reasoning failures without additional model calls. On the primary benchmark, end-to-end accuracy ranged from 49% to 75%, while seven retrieval configurations—including lexical, dense, and hybrid approaches—failed to significantly outperform a character TF-IDF baseline. The findings demonstrate that model selection, retrieval behavior, and hardware limits must be evaluated separately when deploying open-weight LLMs for Turkish domain documents.</description>
-    <pubDate>2026-09-23T12:33:57Z</pubDate>
-    <source>Imtiaz Ul Hassan</source>
+    <title>WeatherDiagFlow: Evidence-Grounded Radar Nowcasting with Diagnostic Flow Refinement</title>
+    <link>http://arxiv.org/abs/2609.29772</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.29772</guid>
+    <description>Radar nowcasting is essential for short-term warning and emergency response, yet conventional systems mainly return future radar fields and provide limited support for operational communication and post-event verification. We formulate radar nowcasting as an evidence-grounded forecast--bulletin--audit task, in which a numerical forecaster produces both future radar fields and structured diagnostic evidence. Forecast-time bulletins use only model-available evidence, whereas post-event audits incorporate future radar truth only after the forecast horizon is observed. Based on this task formulation, WeatherDiagFlow predicts motion, growth and decay, heavy-echo risk, and uncertainty to condition rolling flow refinement, while frozen-scaffold residual calibration improves long-lead strong-echo</description>
+    <pubDate>2026-09-24T13:17:42Z</pubDate>
+    <source>Chunlei Shi</source>
   </item>
   <item>
-    <title>Learning from Failures: Heterogeneous Graph Memory for Small Language Model Tool-Using Agents</title>
-    <link>http://arxiv.org/abs/2609.28003</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.28003</guid>
-    <description>Small and medium-sized language models offer cost-effective executors for tool-using agents but often make structural errors in long-horizon, stateful environments, including missing required observations, performing premature writes, repeating failed calls, and violating action preconditions. These errors can lead to incorrect state updates, policy violations, and costly or irreversible consequences. Existing fine-tuning approaches require substantial data and computation, while flat memory may retrieve past actions without preserving their causal context or safety conditions. To address this, the authors propose FRESH, a Failure-aware Retrieval framework over Experience-Structured Heterogeneous graphs that transforms historical successes and failures into structured external experience. By explicitly modeling dependencies among tasks, actions, errors, repairs, and execution conditions, FRESH helps frozen language models reuse reliable strategies, avoid recurring failures, and make safer decisions. Experiments on τ-Bench and AppWorld with multiple open-source models show that FRESH consistently improves task success and tool-use reliability over no-memory agents and representative memory-based baselines.</description>
-    <pubDate>2026-09-23T12:31:39Z</pubDate>
-    <source>Jiaxing Li</source>
+    <title>On Growth and Form, and Function: Reusable Regulatory Handles Control Phenotypic Variation</title>
+    <link>http://arxiv.org/abs/2609.29755</link>
+    <guid isPermaLink="false">http://arxiv.org/abs/2609.29755</guid>
+    <description>Inspired by D&#x27;Arcy Thompson&#x27;s 1917 &quot;On Growth and Form,&quot; researchers investigate how coherent large-scale transformations of morphology can be encoded as low-dimensional modulations of a self-organizing developmental system. They use neural cellular automata (NCAs) as bio-inspired models where a shared local regulatory network grows target morphologies from a single cell. Applying low-rank adaptation (LoRA) to pretrained NCAs, each developmental program is represented as a low-rank modulation of a fixed regulatory scaffold. Horizontal and vertical scaling of a fully grown 2D emoji phenotype can each be implemented by rank-one adaptations, whose linear combinations parametrically control phenotype size, generalize beyond the training distribution, and compose with target-specific adapters. Adaptations learned for one phenotype transfer zero-shot across structurally and semantically diverse phenotypes sharing the same scaffold while largely preserving internal features. From approximately 25,000 independently trained phenotype-specific NCA adapters, the authors identify latent low-dimensional directions that functionally control phenotypic variation including scaling, style, and symmetrical fission.</description>
+    <pubDate>2026-09-24T13:05:57Z</pubDate>
+    <source>Benedikt Hartl</source>
   </item>
   <item>
-    <title>Shared Global KV with Layer-Specific Local History</title>
-    <link>http://arxiv.org/abs/2609.28006</link>
-    <guid isPermaLink="false">http://arxiv.org/abs/2609.28006</guid>
-    <description>Decoder-only Transformer language models cache keys and values (KV) to reuse past computation during generation. Sharing KV across layers saves storage but reduces the diversity of representations available across depth. We study what local memory should retain alongside shared global KV, separating historical content from the input source used to form it. At 126M parameters and 2K context, an eight-seed study finds about 1.4% lower held-out test perplexity with local history than with a current-token local branch. Capacity, entry-count and training-compute controls support the value of historical content. In a two-seed comparison, this value persists when adjacent layers share local inputs while retaining independent projections; source sharing also shortens exact cache-construction depen</description>
-    <pubDate>2026-09-23T12:33:40Z</pubDate>
-    <source>Xinglang Xian</source>
-  </item>
-  <item>
-    <title>Native apps written in TypeScript and CSS</title>
-    <link>https://github.com/geastack/examples</link>
-    <guid isPermaLink="false">https://github.com/geastack/examples</guid>
-    <description>GeaStack Examples is a repository containing example applications and tools for the GeaStack platform, serving as an app gallery for the simulator, embedded targets, GeaOS, Apple targets, the VS Code/Cursor extension, and marketing demos. Each example is a small TSX package with a gea manifest in package.json that declares target compatibility for web, ESP32, and/or GeaOS. The web development loop is driven by a separate simulator repository, which reads apps from the path specified by the GEA_APPS_ROOT environment variable. Developers can run checks, builds, and tests within individual app folders, or flash compatible boards directly using the Gea CLI. The repository is released under the MIT license, though the embedded board support code under @geastack/chips uses GPL-3.0-only, requiring a commercial license for closed-source firmware distributions.</description>
-    <pubDate>2026-09-22T19:42:20+00:00</pubDate>
+    <title>Show HN: Whiteboard (YC W26) – An open-source IDE for thoughtful software design</title>
+    <link>https://github.com/devdotfast/whiteboard</link>
+    <guid isPermaLink="false">https://github.com/devdotfast/whiteboard</guid>
+    <description>Hello! We’re Sid, Alex, Ketan, and Milan. We’re building Whiteboard ( https://whiteboard.dev.fast/ ), an open-source desktop app where humans and agents can architect software together in a common workspace. Here’s our repo: https://github.com/devdotfast/whiteboard . We were missing the feeling of a “whiteboard session” with another dev where you leave with a deep understanding of a system, so we built this app for ourselves. Whiteboard plugs into the tools you already use - e.g. Claude Code, Codex, etc. – and gives your agent an SDK to draw on an in-app canvas to describe its work. We began with an MVP based on HTML artifacts and started rethinking the app as we ran into limitations: 1. Built on top of CodeOSS: We found that in pure HTML tools it was hard to connect a spec or diagram to c</description>
+    <pubDate>2026-09-24T17:21:36+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>ReBarUEFI: Resizable BAR for almost any UEFI system</title>
-    <link>https://github.com/xCuri0/ReBarUEFI</link>
-    <guid isPermaLink="false">https://github.com/xCuri0/ReBarUEFI</guid>
-    <description>ReBarUEFI is a UEFI DXE driver that enables Resizable BAR on systems lacking official support, providing performance benefits and enabling optimal functionality for Intel Arc GPUs. The driver is added to a firmware&#x27;s DXE volume and replaces the PreprocessController function of PciHostBridgeResourceAllocationProtocol, checking for Resizable BAR capability and setting it according to the ReBarState NVRAM variable during PCI enumeration. Optional requirements include enabling 4G Decoding and BIOS support for Large BARs, with UEFIPatch patches available to address firmware issues handling 64-bit BARs, such as removing BAR size limits and expanding MMIO space on older platforms. Users follow a wiki guide for installation, enable 4G decoding with CSM off, and use the ReBarState tool to set the desired BAR size, typically starting with size 32. If an unsupported size causes boot failure, clearing CMOS will disable Resizable BAR, and Linux users can enable it without BIOS modification using recent kernels with pci=realloc, though no equivalent method currently exists for Windows.</description>
-    <pubDate>2026-09-21T01:07:46+00:00</pubDate>
+    <title>WaveDigger: Dig into wireless signals to discover their physical locations</title>
+    <link>https://github.com/christianrowlands/wavedigger</link>
+    <guid isPermaLink="false">https://github.com/christianrowlands/wavedigger</guid>
+    <description>WaveDigger is a web application that locates the physical positions of Wi-Fi access points and cell towers using their network identifiers. Built with Next.js, TypeScript, and deck.gl, it allows users to search by BSSID (MAC address) for Wi-Fi access points or by parameters like MCC, MNC, TAC, and Cell ID/NCI for LTE and 5G NR towers, with 5G searches returning the target cell plus surrounding cells in the same cluster. The app features automatic BSSID input validation, interactive map visualization, search history tracking, and responsive design for desktop and mobile. It queries Apple&#x27;s undocumented WLOC API using protobuf definitions and reverse-engineered protocols developed by the apple-corelocation-experiments team. A hosted version is available at wavedigger.networksurvey.app, and the project is licensed under AGPL v3.0, with a roadmap that includes export functionality and a TAC-cluster browsing view.</description>
+    <pubDate>2026-09-23T12:57:07+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: Npunlock – Run custom C kernels for Intel NPUs</title>
-    <link>https://github.com/hsfzxjy/npunlock</link>
-    <guid isPermaLink="false">https://github.com/hsfzxjy/npunlock</guid>
-    <description>npunlock is a Python and native C toolkit that compiles user-written C into ACT-SHAVE machine code and runs those custom kernels inside Intel NPU graphs, bypassing the graph-only limitation of Intel&#x27;s public NPU software stack. It has been verified on Windows x64 with Meteor Lake / NPU3720 hardware and supports static dense FP16 unary and two-input custom kernels, a verified unary FP32 path, and one graph containing independent FP32-unary and FP16-binary custom branches. The toolchain relies on Intel&#x27;s MoviTools MVC_DEPEND package, which users must obtain separately, and does not require OpenVINO as a runtime, Python package, or compiler frontend. Installation is via source checkout, and the build bundles npunlock.dll and</description>
-    <pubDate>2026-09-22T12:58:02+00:00</pubDate>
+    <title>Search – A small, fast WebKit browser for macOS</title>
+    <link>https://github.com/driceroland/Search</link>
+    <guid isPermaLink="false">https://github.com/driceroland/Search</guid>
+    <description>Search is a small macOS web browser built by Office Commun that uses Apple&#x27;s WebKit engine, keeping its size to about 3 MB and enabling instant launches without bundling a second browser engine. It strips away toolbars, start pages, sidebars, and accounts, offering only a single field for addresses or searches plus a row of tabs that can sit across the top or down the left. Built-in features include a network-level ad blocker, per-site element hiding, reading mode, picture-in-picture video, and password storage in the macOS keychain, with Chrome extension support layered over WebKit&#x27;s extension engine. All user data stays on the Mac with no sync, account, telemetry, or analytics, and the only outbound request is a daily update check. The browser&#x27;s roughly 12,700 lines of Swift source are publicly available under an MIT license and can be built locally with swift build or ./build.sh.</description>
+    <pubDate>2026-09-24T09:11:52+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Web-based IBM 1620 emulator and IPL-V from 1963</title>
-    <link>https://github.com/pkimpel/retro-1620</link>
-    <guid isPermaLink="false">https://github.com/pkimpel/retro-1620</guid>
-    <description>The retro-1620 project provides a web browser-based emulator and operating environment for the IBM 1620 Model 2 computer, a 1960s transistorized, decimal system designed primarily for scientific and engineering applications. The IBM 1620 was produced in two variants—the original Model 1 released in 1959 and the object-code-compatible Model 2 in 1962—with roughly 2,000 systems built before IBM ended support in 1970. It used a two-address, memory-to-memory architecture with no software-accessible registers, fixed 12-digit instructions, and memory ranging from 20,000 to 60,000 decimal digits. The main goals of this project are creating an emulator for the Model 2 and recovering as much original software as possible, with the contents licensed under the MIT License. Peripherals supported by the system included the 1622 card reader/punch, 1443 line printer, 1311 disk drive, and 1627 plotter. Programming was primarily done using the SPS assembler or FORTRAN II, with a Monitor operating system available for disk-equipped installations.</description>
-    <pubDate>2026-09-23T00:06:25+00:00</pubDate>
+    <title>Show HN: Treepeat – Code similarity detection using Tree-sitter</title>
+    <link>https://github.com/dsummersl/treepeat</link>
+    <guid isPermaLink="false">https://github.com/dsummersl/treepeat</guid>
+    <description>Treepeat is an open-source code similarity detection tool that uses Tree-sitter AST analysis and locality-sensitive hashing to identify duplicate and near-duplicate code blocks within a codebase. It offers three rulesets—none, default, and loose—that control normalization by either ignoring only whitespace and strings or fully anonymizing identifiers and constants. The tool supports numerous languages including Python, JavaScript, TypeScript, Go, Rust, Java, Kotlin, Lua, SQL, Bash, CSS, HTML, and Astro, and is installed via pip. Its main detect command provides configurable flags such as --similarity for thresholds, --min-lines for match size, --diff for side-by-side comparisons, and --format sarif for CI integration. Additional subcommands include list-ruleset, which displays normalization rules, and treesitter, which shows how source code is normalized into tokens for debugging similarity results.</description>
+    <pubDate>2026-09-22T16:53:25+00:00</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Claude Opus 5.5</title>
-    <link>https://www.anthropic.com/claude-opus-5-5</link>
-    <guid isPermaLink="false">https://www.anthropic.com/claude-opus-5-5</guid>
-    <description>Anthropic has launched Claude Opus 5.5, the first model in its new Claude 5.5 family, performing at the level of Claude Fable 5.1 on most tasks while costing 40% less to run than Opus 5. It leads on agentic coding, computer use, and knowledge work benchmarks, with early testers reporting major efficiency gains such as completing a 680,000-line code migration in under a day and auditing a 200,000-line codebase in three hours. Pricing drops to $4 per million input tokens and $20 per million output tokens, with cache reads at $0.20 (60% less than Opus 5), and output generation is over 30% faster. Because Opus 5.5 is comparable to Fable 5.1 in biology and cybersecurity, it ships with safeguards similar to those for Fable 5.1, and vetted organizations can apply to use it for biology and cybersecurity work. Claude Sonnet 5.5 and Claude Haiku 5.5 will follow in the coming weeks with similar improvements.</description>
-    <pubDate>2026-09-22T16:29:05+00:00</pubDate>
+    <title>Claude discovers a novel enzyme system with CRISPR-like repeats</title>
+    <link>https://www.anthropic.com/news/claude-discovers-novel-enzyme-system</link>
+    <guid isPermaLink="false">https://www.anthropic.com/news/claude-discovers-novel-enzyme-system</guid>
+    <description>In spring 2026, Anthropic formed a life sciences research group and tasked Claude with searching DNA databases for novel reverse transcriptase (RT) systems. Using roughly 950 agents and 210 million tokens over 21 hours, Claude gathered over 200,000 RTs, narrowed them to 3,500 candidates, and produced reports on the 20 most compelling. One agent detected a tandem repeat array next to an odd-looking RT, leading to the discovery of array-associated reverse transcriptases (ART), a previously uncharacterized system found mainly in bacteriophages. ART consists of an RT, a partner gene, and a CRISPR-like array of evenly spaced DNA repeats, with initial experiments showing the array is expressed as distinct short RNAs. Although the underlying RT had been identified in prior studies, Claude was the first to recognize the system&#x27;s defining features, a finding Feng Zhang of MIT and the Broad Institute called an exciting example of AI contributing to biological discovery.</description>
+    <pubDate>2026-09-23T18:06:47+00:00</pubDate>
     <source>Hacker News</source>
   </item>
 </channel></rss>
