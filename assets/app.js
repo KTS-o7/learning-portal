@@ -101,6 +101,20 @@
     var main = $("main");
     if (!main) return;
     main.innerHTML = "";
+
+    /* editor's note + "start here" (editions from 2026-09-26 on) */
+    if (d.editor_note || d.lede) {
+      var brief = ce("section", { class: "brief" }, []);
+      if (d.editor_note) brief.appendChild(ce("p", { class: "note", text: d.editor_note }, []));
+      if (d.lede && d.lede.id) {
+        var start = ce("p", { class: "start" }, [ce("b", { text: "Start here" }, [])]);
+        start.appendChild(ce("a", { href: "#" + d.lede.id, text: d.lede.title || "Today's lead story" }, []));
+        if (d.lede.reason) start.appendChild(document.createTextNode(" — " + d.lede.reason));
+        brief.appendChild(start);
+      }
+      main.appendChild(brief);
+    }
+
     (d.sections || []).forEach(function (sec) {
       if (!sec.stories || !sec.stories.length) return;
       var s = ce("section", { class: "sec", id: "sec-" + sec.name }, []);
@@ -114,7 +128,11 @@
         lead.textContent = sec.intro;
         s.appendChild(lead);
       }
-      sec.stories.forEach(function (story) { s.appendChild(renderStory(story)); });
+      sec.stories.forEach(function (story) {
+        var el = renderStory(story);
+        if (d.lede && d.lede.id === story.id) el.className += " is-lede";
+        s.appendChild(el);
+      });
       main.appendChild(s);
     });
 
@@ -159,18 +177,37 @@
     h2.appendChild(link);
     body.appendChild(h2);
 
+    if (s.why) body.appendChild(ce("p", { class: "why", text: s.why }, []));
+
     var sum = ce("div", { class: "sum" }, []);
     var p = ce("p", {}, []);
     p.textContent = (s.summary && s.summary.trim()) || (s.snippet && s.snippet.trim()) || "";
     sum.appendChild(p);
     body.appendChild(sum);
 
+    if (s.debate) {
+      body.appendChild(ce("p", { class: "note-line" },
+        [ce("b", { text: "In the thread" }, []), document.createTextNode(s.debate)]));
+    }
+    if (s.takeaway) {
+      body.appendChild(ce("p", { class: "note-line take" },
+        [ce("b", { text: "Takeaway" }, []), document.createTextNode(s.takeaway)]));
+    }
+
+    var bits = [];
+    if (s.minutes) bits.push(s.minutes + " min read");
+    if (s.level) bits.push(s.level);
     if (s.published_at) {
+      var dt = new Date(s.published_at);
+      if (!isNaN(dt)) bits.push("Published " + dt.toUTCString().replace(/^[A-Za-z]+, /, "").replace(/ \d\d:\d\d:\d\d GMT$/, ""));
+    }
+    if (bits.length || s.thread_url) {
       var sm = ce("div", { class: "smeta" }, []);
-      try {
-        var dt = new Date(s.published_at);
-        sm.textContent = "Published " + dt.toUTCString().replace(/^[A-Za-z]+, /, "");
-      } catch (e) { /* ignore */ }
+      sm.appendChild(document.createTextNode(bits.join(" · ")));
+      if (s.thread_url) {
+        if (bits.length) sm.appendChild(document.createTextNode(" · "));
+        sm.appendChild(ce("a", { href: s.thread_url, target: "_blank", rel: "noopener", text: "discussion" }, []));
+      }
       body.appendChild(sm);
     }
     a.appendChild(body);

@@ -8,59 +8,35 @@ and engineering blog posts, published as a static newspaper-style HTML page.
 
 ## How it works
 
-Every day at 01:30 UTC, a Hermes cron job loads the
-`learning-portal-curator` skill (at `~/.hermes/skills/learning-portal-curator/`)
-and runs the full curation at runtime:
+Every day at 01:30 UTC (07:00 IST) a cron job runs `scripts/publish.sh`
+(a Hermes `no_agent` job — plain script, no LLM agent with shell access):
 
-1. **Read SKILL.md** — workflow + section rules
-2. **Fetch** high-signal items from free sources via `feeds.md`:
-   - Hacker News (top stories, ≥120 pts)
-   - arXiv (cs.AI/LG/PL, last 24h)
-   - Lobsters (recent + page 2)
-   - Engineering blogs (Rust, Go, GitHub, Arpit Bhayani, Julia Evans,
-     Sean Goedecke) — vendor marketing feeds deliberately excluded
-3. **Dedupe, score, bucket** into a continuous newspaper stream:
-   `Engineering (top story) · Papers · Tools & Projects · Discussions`
-   Per-section caps: engineering 5, papers 5, tools 4, discussions 4
-   Per-source diversity: no single source > 3 in engineering
-4. **Summarise** each story via MiniMax-M3 (parallel,
-   `reasoning_split=True` to keep thinking out of `content`).
-   Same model Hermes uses — `~/.hermes/.env` provides `MINIMAX_API_KEY`,
-   with `OPENCODE_ZEN_API_KEY` and `KIMI_API_KEY` as fallbacks.
-5. **Render** `index.html` + `archive/<EDITION>.html` + `archive/index.html`
-   + `rss.xml` using the literal templates in the skill.
-6. **Commit + push** to `main`; nginx serves the site from `/opt/learning-portal/`.
+1. **Fetch** engineering blogs (independent writers first, one vendor/project
+   blog at most), arXiv (cs.DC/DB/OS/PL/SE/PF), the Hacker News front page and
+   Lobsters. Sources live in `ENGINEERING_FEEDS` / `ARXIV_CATS` in
+   `scripts/build_edition.py`.
+2. **Never rerun a story**: anything already published in `data/*.json` is skipped.
+3. **Select ~10 stories**: engineering 3, papers 2, tools 2, discussions 2 and
+   one "Off the clock" pick. Papers and discussions are ranked by MiniMax-M3
+   against the reader profile (`READER`).
+4. **Summarise** each story as *why read* / *gist* / *takeaway* (+ what the
+   comment thread argues about, for discussions), with reading time and level.
+5. **Edit**: one call writes the editor's note, the "Start here" pick and the
+   section intros from the day's actual stories.
+6. **Publish**: `data/<DATE>.json`, `data/latest.json`, `rss.xml`,
+   `archive/<DATE>.html`, `archive/index.html`, `archive.json`, validated, then
+   committed and pushed. nginx serves `/opt/learning-portal/`.
 
-## Layout
+`index.html` is a static shell: `assets/app.js` fetches `data/latest.json`, so
+the homepage never needs regenerating. Archive pages inline their JSON via
+`templates/snapshot_shell.html.tmpl`.
 
-```
-/opt/learning-portal
-├── index.html                   ← today's edition
-├── archive/YYYY-MM-DD.html      ← per-day editions (history)
-├── archive/index.html           ← archive listing
-├── rss.xml
-├── archive.json                 ← ordered list of editions (newest first)
-├── generate.py.deprecated       ← old pipeline, kept for rollback only
-└── run_hermes_curator.sh.*      ← old test wrapper, kept for rollback only
-```
-
-## Manual run (debugging)
+## Manual run
 
 ```bash
-# Simulate what the cron job does, manually:
-hermes chat -q "$(cat /tmp/hermes_prompt.txt)" \
-  --yolo --skills learning-portal-curator
+python3 scripts/build_edition.py --dry-run   # preview → /tmp/dailybyte-preview/<DATE>.json
+scripts/publish.sh                          # build, validate, commit, push
 ```
-
-Or run the skill's self-contained python script directly:
-```bash
-python3 /tmp/curate_today.py
-```
-
-## Adding a source
-
-Edit `feeds.md` in the skill directory — the next run picks it up
-automatically. No code change needed.
 
 **Security:** this repo is public. It contains only generated content and
 templates — no API keys, no nginx configs, no infra files. The skill lives in

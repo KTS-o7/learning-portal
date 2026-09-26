@@ -73,6 +73,20 @@ article.story .sum{margin:6px 0 0;font-size:15px;color:var(--ink);line-height:1.
 article.story .sum p{margin:0}
 article.story .smeta{margin-top:8px;font-size:11px;color:var(--mut2);letter-spacing:.04em}
 
+/* editor's note + start here */
+.brief{max-width:680px;margin:8px auto 24px;padding:16px 20px;background:var(--paper2);
+border:1px solid var(--rule);border-radius:4px}
+.brief .note{margin:0 0 8px;font-family:var(--serif);font-size:18px;line-height:1.45}
+.brief .start{margin:0;font-size:14px;color:var(--mut)}
+.brief .start b,article.story .note-line b{font-size:10px;font-weight:700;letter-spacing:.14em;
+text-transform:uppercase;color:var(--ac);margin-right:8px}
+
+/* story extras */
+article.story.is-lede{background:var(--paper2);box-shadow:inset 3px 0 0 var(--ac);padding-left:12px}
+article.story .why{margin:6px 0 0;font-family:var(--serif);font-style:italic;color:var(--mut);font-size:16px}
+article.story .note-line{margin:8px 0 0;font-size:14px;line-height:1.5}
+article.story .smeta a{color:var(--ln)}
+
 /* footer */
 .foot{max-width:920px;margin:32px auto;padding:28px var(--pad) 60px;
 border-top:1px solid var(--rule);font-size:12px;color:var(--mut2);text-align:center;line-height:1.7}

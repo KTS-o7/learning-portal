@@ -1,35 +1,88 @@
 #!/usr/bin/env python3
 """Build the Daily Byte edition for TODAY (UTC).
 
-Pipeline (matches learning-portal-curator SKILL.md):
-  1. Fetch HN, arXiv, Lobsters, engineering blogs.
-  2. Dedupe, score, apply caps (eng 5 / papers 5 / tools 4 / discussions 4).
-  3. Summarise each selected article via MiniMax-M3 (max_tokens=1500).
-  4. Emit data/<DATE>.json, data/latest.json, rss.xml, archive/<DATE>.html.
-  5. Update archive.json (prepend today).
+Pipeline:
+  1. Fetch engineering blogs, arXiv (systems/PL/SE categories), HN front page, Lobsters.
+  2. Drop anything already published in an earlier edition (no reruns).
+  3. Select: engineering 3 (max 1 per source, max 1 vendor/project blog),
+     papers 2 and discussions 2 + 1 offbeat (LLM-ranked against READER),
+     tools 2 (HN repo links by points).
+  4. Summarise each story into why / gist / takeaway (+ comment-thread debate
+     for discussions) via MiniMax-M3.
+  5. One editorial call: editor's note, "start here" pick, per-section intros
+     written from the day's actual stories.
+  6. Emit data/<DATE>.json, data/latest.json, rss.xml, archive/<DATE>.html,
+     archive/index.html and update archive.json.
+
+Usage: build_edition.py [--dry-run]
+  --dry-run  write only /tmp/dailybyte-preview/<DATE>.json, touch nothing in the repo.
 """
 from __future__ import annotations
-import json, pathlib, re, os, sys, html, subprocess, hashlib, time
+import json, pathlib, re, os, sys, html, subprocess, time
 from concurrent.futures import ThreadPoolExecutor, as_completed
-import urllib.request, urllib.parse, urllib.error
+import urllib.request, urllib.parse
 import xml.etree.ElementTree as ET
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone
 
-ROOT = pathlib.Path("/opt/learning-portal")
-TODAY = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+ROOT = pathlib.Path(__file__).resolve().parent.parent
 NOW = datetime.now(timezone.utc)
+TODAY = NOW.strftime("%Y-%m-%d")
+DRY_RUN = "--dry-run" in sys.argv
 
-# Load .env (cron context doesn't source it).
-for line in pathlib.Path("/root/.hermes/.env").read_text().splitlines():
-    if "=" in line and not line.startswith("#"):
-        k, v = line.split("=", 1)
-        os.environ.setdefault(k.strip(), v.strip())
+# Load API keys (cron context doesn't source .env). Never override real env vars.
+for env_file in (os.environ.get("DAILYBYTE_ENV_FILE"), "/root/.hermes/.env"):
+    if env_file and pathlib.Path(env_file).is_file():
+        for line in pathlib.Path(env_file).read_text().splitlines():
+            if "=" in line and not line.lstrip().startswith("#"):
+                k, v = line.split("=", 1)
+                os.environ.setdefault(k.strip(), v.strip())
 
-MINIMAX_KEY = os.environ["MINIMAX_API_KEY"]
+MINIMAX_KEY = os.environ.get("MINIMAX_API_KEY", "")
 
-UA = "Mozilla/5.0 (compatible; DailyByteBot/1.0)"
-
+UA = "Mozilla/5.0 (compatible; DailyByteBot/1.0; +https://learn.shenthar.me)"
 ATOM_NS = {"atom": "http://www.w3.org/2005/Atom"}
+
+READER = (
+    "a backend/infrastructure software engineer who reads books like Designing Data-Intensive "
+    "Applications, OSTEP, SICP and Crafting Interpreters. Interested in distributed systems, "
+    "databases, operating systems, performance, programming languages and compilers, developer "
+    "tooling, and practical AI/LLM engineering. Not interested in marketing, funding news, "
+    "product launch announcements, or ML theory without a systems angle."
+)
+
+# Section caps — ~10 stories keeps the edition a genuinely short daily read.
+CAPS = {"engineering": 3, "papers": 2, "tools": 2, "discussions": 2, "offbeat": 1}
+
+# (name, feed url, vendor/project blog?). Vendor blogs are capped at one per edition.
+ENGINEERING_FEEDS = [
+    ("Sean Goedecke", "https://www.seangoedecke.com/rss.xml", False),
+    ("Julia Evans", "https://jvns.ca/atom.xml", False),
+    ("Arpit Bhayani", "https://arpitbhayani.me/rss.xml", False),
+    ("Marc Brooker", "https://brooker.co.za/blog/rss.xml", False),
+    ("Murat Demirbas", "https://muratbuffalo.blogspot.com/feeds/posts/default", False),
+    ("Phil Eaton", "https://notes.eatonphil.com/rss.xml", False),
+    ("Hillel Wayne", "https://www.hillelwayne.com/index.xml", False),
+    ("Simon Willison", "https://simonwillison.net/atom/entries/", False),
+    ("Brendan Gregg", "https://www.brendangregg.com/blog/rss.xml", False),
+    ("Eli Bendersky", "https://eli.thegreenplace.net/feeds/all.atom.xml", False),
+    ("Dan Luu", "https://danluu.com/atom.xml", False),
+    ("Aleksey Charapko", "http://charap.co/feed/", False),
+    ("Mitchell Hashimoto", "https://mitchellh.com/feed.xml", False),
+    ("Go Blog", "https://go.dev/blog/feed.atom", True),
+    ("Rust Blog", "https://blog.rust-lang.org/feed.xml", True),
+    ("GitHub Blog", "https://github.blog/feed/", True),
+]
+ENGINEERING_MAX_AGE_DAYS = 10  # independent blogs post weekly-ish; history check prevents reruns
+
+ARXIV_CATS = ["cs.DC", "cs.DB", "cs.OS", "cs.PL", "cs.SE", "cs.PF"]
+
+SECTION_META = {
+    "engineering": ("Engineering", "blog", "eng"),
+    "papers": ("Papers", "paper", "pap"),
+    "tools": ("Tools", "repo", "tool"),
+    "discussions": ("Discussions", "discussion", "disc"),
+    "offbeat": ("Off the clock", "discussion", "off"),
+}
 
 # ---- HTTP helpers ----------------------------------------------------------
 
@@ -43,210 +96,192 @@ def fetch(url: str, timeout: int = 20) -> bytes | None:
         return None
 
 
-def fetch_text(url: str, timeout: int = 15, max_bytes: int = 200_000) -> str:
-    b = fetch(url, timeout)
-    if not b:
-        return ""
-    return b[:max_bytes].decode("utf-8", errors="replace")
+def fetch_json(url: str, timeout: int = 20):
+    raw = fetch(url, timeout)
+    if not raw:
+        return None
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        return None
 
 
-# ---- Feed parsers ----------------------------------------------------------
+TAG_RE = re.compile(r"<[^>]+>")
+WS_RE = re.compile(r"\s+")
 
-ENGINEERING_FEEDS = [
-    ("Go Blog", "https://go.dev/blog/feed.atom"),
-    ("Rust Blog", "https://blog.rust-lang.org/feed.xml"),
-    ("GitHub Blog", "https://github.blog/feed/"),
-    ("Arpit Bhayani", "https://arpitbhayani.me/rss.xml"),
-    ("Julia Evans", "https://jvns.ca/atom.xml"),
-    ("Sean Goedecke", "https://www.seangoedecke.com/rss.xml"),
-]
+
+def plain(s: str) -> str:
+    return WS_RE.sub(" ", html.unescape(TAG_RE.sub(" ", s or ""))).strip()
 
 
 def _text(el) -> str:
     return "".join(el.itertext()).strip() if el is not None else ""
 
 
-def parse_atom_or_rss(url: str, source_name: str) -> list[dict]:
+def norm_url(url: str) -> str:
+    u = urllib.parse.urlsplit((url or "").strip())
+    host = u.netloc.lower().removeprefix("www.")
+    path = re.sub(r"v\d+$", "", u.path.rstrip("/")) if "arxiv.org" in host else u.path.rstrip("/")
+    return f"{host}{path}"
+
+
+def title_key(title: str) -> str:
+    return re.sub(r"[^a-z0-9]", "", (title or "").lower())[:60]
+
+
+# ---- Feed parsers ----------------------------------------------------------
+
+def parse_feed(url: str, source: str, vendor: bool) -> list[dict]:
     raw = fetch(url)
     if not raw:
         return []
-    items: list[dict] = []
     try:
         root = ET.fromstring(raw)
     except ET.ParseError:
         return []
-    # Atom
+    items: list[dict] = []
     for entry in root.findall("atom:entry", ATOM_NS):
-        title = _text(entry.find("atom:title", ATOM_NS))
         link_el = entry.find("atom:link[@rel='alternate']", ATOM_NS)
         if link_el is None:
             link_el = entry.find("atom:link", ATOM_NS)
         link = link_el.get("href") if link_el is not None else ""
-        if not link:
+        title = plain(_text(entry.find("atom:title", ATOM_NS)))
+        if not link or not title:
             continue
-        published = _text(entry.find("atom:published", ATOM_NS)) or _text(entry.find("atom:updated", ATOM_NS))
-        summary = _text(entry.find("atom:summary", ATOM_NS)) or _text(entry.find("atom:content", ATOM_NS))
-        # Strip HTML if any leaked through
-        summary_clean = re.sub(r"<[^>]+>", " ", summary)
-        summary_clean = re.sub(r"&[a-z]+;", " ", summary_clean)
-        summary_clean = re.sub(r"\s+", " ", summary_clean).strip()
         items.append({
-            "title": title,
-            "url": link,
-            "source": source_name,
-            "source_kind": "blog",
-            "published_at": published,
-            "snippet": summary_clean[:600],
+            "title": title, "url": link, "source": source, "vendor": vendor,
+            "published_at": _text(entry.find("atom:published", ATOM_NS)) or _text(entry.find("atom:updated", ATOM_NS)),
+            "snippet": plain(_text(entry.find("atom:summary", ATOM_NS)) or _text(entry.find("atom:content", ATOM_NS)))[:600],
         })
-    # RSS
     for item in root.findall(".//item"):
-        title = _text(item.find("title"))
-        link = _text(item.find("link"))
-        pub = _text(item.find("pubDate"))
-        desc = _text(item.find("description"))
-        desc_clean = re.sub(r"<[^>]+>", " ", desc)
-        desc_clean = re.sub(r"&[a-z]+;", " ", desc_clean)
-        desc_clean = re.sub(r"\s+", " ", desc_clean).strip()
+        title, link = plain(_text(item.find("title"))), _text(item.find("link"))
         if not title or not link:
             continue
         items.append({
-            "title": title,
-            "url": link,
-            "source": source_name,
-            "source_kind": "blog",
-            "published_at": pub,
-            "snippet": desc_clean[:600],
+            "title": title, "url": link, "source": source, "vendor": vendor,
+            "published_at": _text(item.find("pubDate")),
+            "snippet": plain(_text(item.find("description")))[:600],
         })
     return items
 
 
 def fetch_blogs() -> list[dict]:
     out: list[dict] = []
-    with ThreadPoolExecutor(max_workers=6) as ex:
-        futures = [ex.submit(parse_atom_or_rss, url, name) for name, url in ENGINEERING_FEEDS]
-        for f in as_completed(futures):
-            try:
-                out.extend(f.result())
-            except Exception as e:
-                print(f"  blog fail: {e}", file=sys.stderr)
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        for f in as_completed([ex.submit(parse_feed, u, n, v) for n, u, v in ENGINEERING_FEEDS]):
+            out.extend(f.result())
     return out
+
+
+ARXIV_CACHE = ROOT / ".cache" / "arxiv_pool.json"
+
+
+def _first_author(names: str) -> str:
+    authors = [a.strip() for a in names.split(",") if a.strip()]
+    return (authors[0] + (" et al." if len(authors) > 1 else "")) if authors else "arXiv"
 
 
 def fetch_arxiv() -> list[dict]:
-    cats = ["cs.AI", "cs.LG", "cs.PL"]
-    out: list[dict] = []
-    for cat in cats:
-        url = (
-            f"http://export.arxiv.org/api/query?search_query=cat:{cat}"
-            "&sortBy=submittedDate&sortOrder=descending&max_results=15"
-        )
-        raw = fetch(url)
-        if not raw:
+    """Papers from the last 7 days.
+
+    rss.arxiv.org lists only the latest announcement (empty on weekends), and the
+    export API answers 406 to uncached queries from this server's IP. So each run
+    merges the day's RSS items into a rolling 7-day cache and selects from that.
+    """
+    fresh: list[dict] = []
+    raw = fetch("https://rss.arxiv.org/rss/" + "+".join(ARXIV_CATS), timeout=40)
+    try:
+        root = ET.fromstring(raw) if raw else None
+    except ET.ParseError:
+        root = None
+    for item in (root.findall(".//item") if root is not None else []):
+        if (_text(item.find("{http://arxiv.org/schemas/atom}announce_type")) or "new") not in ("new", "cross"):
             continue
+        link = _text(item.find("link")).replace("http://", "https://")
+        abstract = re.sub(r"^.*?Abstract:\s*", "", plain(_text(item.find("description"))))
+        fresh.append({
+            "title": plain(_text(item.find("title"))), "url": re.sub(r"v\d+$", "", link),
+            "source": _first_author(_text(item.find("{http://purl.org/dc/elements/1.1/}creator"))),
+            "published_at": _text(item.find("pubDate")), "snippet": abstract[:1500],
+        })
+    if not fresh:  # fallback: export API (works when the query is cached at arXiv's CDN)
+        q = "+OR+".join(f"cat:{c}" for c in ARXIV_CATS)
+        raw = fetch(f"https://export.arxiv.org/api/query?search_query={q}"
+                    "&sortBy=submittedDate&sortOrder=descending&max_results=120", timeout=40)
         try:
-            root = ET.fromstring(raw)
+            root = ET.fromstring(raw) if raw else None
         except ET.ParseError:
-            continue
-        for entry in root.findall("atom:entry", ATOM_NS):
-            title = _text(entry.find("atom:title", ATOM_NS))
-            link_el = entry.find("atom:id", ATOM_NS)
-            link = _text(link_el)
-            # Strip arxiv version link to abs page
-            link = re.sub(r"v\d+$", "", link)
-            pub = _text(entry.find("atom:published", ATOM_NS))
-            author = _text(entry.find("atom:author/atom:name", ATOM_NS))
-            summary = _text(entry.find("atom:summary", ATOM_NS))
-            summary_clean = re.sub(r"<[^>]+>", " ", summary)
-            summary_clean = re.sub(r"&[a-z]+;", " ", summary_clean)
-            summary_clean = re.sub(r"\s+", " ", summary_clean).strip()
-            if not title or not link:
-                continue
-            out.append({
-                "title": re.sub(r"\s+", " ", title),
-                "url": link,
-                "source": author or "arXiv",
-                "source_kind": "paper",
-                "published_at": pub,
-                "snippet": summary_clean[:800],
+            root = None
+        for entry in (root.findall("atom:entry", ATOM_NS) if root is not None else []):
+            fresh.append({
+                "title": plain(_text(entry.find("atom:title", ATOM_NS))),
+                "url": re.sub(r"v\d+$", "", _text(entry.find("atom:id", ATOM_NS))).replace("http://", "https://"),
+                "source": _first_author(", ".join(_text(a) for a in entry.findall("atom:author/atom:name", ATOM_NS))),
+                "published_at": _text(entry.find("atom:published", ATOM_NS)),
+                "snippet": plain(_text(entry.find("atom:summary", ATOM_NS)))[:1500],
             })
-    return out
+    pool = {p["url"]: p for p in (json.loads(ARXIV_CACHE.read_text()) if ARXIV_CACHE.exists() else [])}
+    for p in fresh:
+        if p["title"] and p["url"]:
+            pool[p["url"]] = {**p, "cached_at": pool.get(p["url"], {}).get("cached_at", NOW.isoformat())}
+    pool_list = [p for p in pool.values()
+                 if (NOW - datetime.fromisoformat(p["cached_at"])).total_seconds() <= 7 * 86400]
+    if not DRY_RUN:
+        ARXIV_CACHE.parent.mkdir(exist_ok=True)
+        ARXIV_CACHE.write_text(json.dumps(pool_list, ensure_ascii=False))
+    return sorted(pool_list, key=lambda p: p["cached_at"], reverse=True)
 
 
 def fetch_hn() -> list[dict]:
-    raw = fetch("https://hacker-news.firebaseio.com/v0/topstories.json")
-    if not raw:
-        return []
-    try:
-        ids = json.loads(raw)[:80]
-    except json.JSONDecodeError:
-        return []
-    out: list[dict] = []
-    for i in ids:
-        item_raw = fetch(f"https://hacker-news.firebaseio.com/v0/item/{i}.json")
-        if not item_raw:
-            continue
-        try:
-            d = json.loads(item_raw)
-        except json.JSONDecodeError:
-            continue
-        if not d or d.get("dead") or d.get("deleted"):
-            continue
-        # HN text posts: strip HTML for the snippet
-        text = (d.get("text") or "").strip()
-        text_plain = re.sub(r"<[^>]+>", " ", text)
-        text_plain = re.sub(r"&#x2F;", "/", text_plain)
-        text_plain = re.sub(r"&amp;", "&", text_plain)
-        text_plain = re.sub(r"\s+", " ", text_plain).strip()
+    d = fetch_json("https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=60")
+    out = []
+    for h in (d or {}).get("hits", []):
+        hn_url = f"https://news.ycombinator.com/item?id={h['objectID']}"
         out.append({
-            "title": d.get("title", ""),
-            "url": d.get("url") or f"https://news.ycombinator.com/item?id={i}",
-            "source": "Hacker News",
-            "source_kind": "hn",
-            "published_at": datetime.fromtimestamp(d.get("time", 0), tz=timezone.utc).isoformat() if d.get("time") else "",
-            "snippet": text_plain[:800],
-            "score": d.get("score", 0),
-            "comments": d.get("descendants", 0),
+            "title": h.get("title") or "", "url": h.get("url") or hn_url, "source": "Hacker News",
+            "hn_id": h["objectID"], "thread_url": hn_url,
+            "published_at": h.get("created_at", ""),
+            "snippet": plain(h.get("story_text") or "")[:800],
+            "score": h.get("points") or 0, "comments": h.get("num_comments") or 0,
         })
     return out
 
 
 def fetch_lobsters() -> list[dict]:
-    out: list[dict] = []
-    for url in ("https://lobste.rs/rss", "https://lobste.rs/page/2.rss"):
-        raw = fetch(url)
-        if not raw:
-            continue
-        try:
-            root = ET.fromstring(raw)
-        except ET.ParseError:
-            continue
-        for item in root.findall(".//item"):
-            title = _text(item.find("title"))
-            link = _text(item.find("link"))
-            pub = _text(item.find("pubDate"))
-            desc = _text(item.find("description"))
-            desc_clean = re.sub(r"<[^>]+>", " ", desc)
-            desc_clean = re.sub(r"&[a-z]+;", " ", desc_clean)
-            desc_clean = re.sub(r"\s+", " ", desc_clean).strip()
-            if not title or not link:
-                continue
-            out.append({
-                "title": title,
-                "url": link,
-                "source": "Lobsters",
-                "source_kind": "lobsters",
-                "published_at": pub,
-                "snippet": desc_clean[:600],
-            })
+    d = fetch_json("https://lobste.rs/hottest.json")
+    out = []
+    for s in d or []:
+        out.append({
+            "title": s.get("title") or "", "url": s.get("url") or s.get("comments_url"),
+            "source": "Lobsters", "thread_url": s.get("comments_url"), "lobsters_id": s.get("short_id"),
+            "published_at": s.get("created_at", ""), "snippet": plain(s.get("description") or "")[:800],
+            "score": s.get("score") or 0, "comments": s.get("comment_count") or 0,
+            "tags": s.get("tags") or [],
+        })
     return out
+
+
+def fetch_thread_comments(item: dict, limit: int = 8) -> str:
+    """Top comments of the discussion thread, as plain text."""
+    comments: list[str] = []
+    if item.get("hn_id"):
+        d = fetch_json(f"https://hacker-news.firebaseio.com/v0/item/{item['hn_id']}.json")
+        for kid in (d or {}).get("kids", [])[:limit]:
+            c = fetch_json(f"https://hacker-news.firebaseio.com/v0/item/{kid}.json")
+            if c and not c.get("dead") and not c.get("deleted") and c.get("text"):
+                comments.append(plain(c["text"])[:500])
+    elif item.get("lobsters_id"):
+        d = fetch_json(f"https://lobste.rs/s/{item['lobsters_id']}.json")
+        for c in (d or {}).get("comments", [])[:limit]:
+            if c.get("depth", 0) == 0 and c.get("comment_plain"):
+                comments.append(plain(c["comment_plain"])[:500])
+    return "\n".join(f"- {c}" for c in comments)
 
 
 # ---- Article body extraction ----------------------------------------------
 
-SCRIPT_RE = re.compile(r"<script[^>]*>.*?</script>", re.DOTALL)
-STYLE_RE = re.compile(r"<style[^>]*>.*?</style>", re.DOTALL)
-TAG_RE = re.compile(r"<[^>]+>")
-WS_RE = re.compile(r"\s+")
+SCRIPT_RE = re.compile(r"<script[^>]*>.*?</script>", re.DOTALL | re.IGNORECASE)
+STYLE_RE = re.compile(r"<style[^>]*>.*?</style>", re.DOTALL | re.IGNORECASE)
 P_RE = re.compile(r"<p[^>]*>(.*?)</p>", re.DOTALL | re.IGNORECASE)
 
 
@@ -254,430 +289,359 @@ def extract_body(url: str) -> str:
     raw = fetch(url, timeout=15)
     if not raw:
         return ""
-    text = raw.decode("utf-8", errors="replace")
-    text = SCRIPT_RE.sub(" ", text)
-    text = STYLE_RE.sub(" ", text)
-    # Try <article> blocks
-    articles = re.findall(r"<article[^>]*>(.*?)</article>", text, re.DOTALL | re.IGNORECASE)
+    text = STYLE_RE.sub(" ", SCRIPT_RE.sub(" ", raw.decode("utf-8", errors="replace")))
     best = ""
-    for a in articles:
-        plain = TAG_RE.sub(" ", a)
-        plain = WS_RE.sub(" ", plain).strip()
-        if len(plain) > len(best):
-            best = plain
+    for pattern in (r"<article[^>]*>(.*?)</article>", r"<main[^>]*>(.*?)</main>"):
+        for block in re.findall(pattern, text, re.DOTALL | re.IGNORECASE):
+            p = plain(block)
+            if len(p) > len(best):
+                best = p
+        if len(best) >= 400:
+            break
     if len(best) < 400:
-        mains = re.findall(r"<main[^>]*>(.*?)</main>", text, re.DOTALL | re.IGNORECASE)
-        for m in mains:
-            plain = TAG_RE.sub(" ", m)
-            plain = WS_RE.sub(" ", plain).strip()
-            if len(plain) > len(best):
-                best = plain
-    if len(best) < 400:
-        paras = P_RE.findall(text)
-        joined = " ".join(TAG_RE.sub(" ", p) for p in paras)
-        plain = WS_RE.sub(" ", joined).strip()
-        if len(plain) > len(best):
-            best = plain
-    return best[:10_000]
+        p = plain(" ".join(P_RE.findall(text)))
+        if len(p) > len(best):
+            best = p
+    return best[:12_000]
 
 
-# ---- LLM summarisation -----------------------------------------------------
+# ---- LLM -------------------------------------------------------------------
 
-BAD_PREFIXES = (
-    "this article", "the provided text", "the provided article", "the provided snippet",
-    "the provided content",
-    "as an ai model", "i'm unable", "i cannot", "i don't have", "i do not have",
-    "the user wants", "the user is asking", "the user has asked",
-    "let me analyze", "let me start", "let me write", "let me draft", "let me check",
-    "let me first", "let me think", "let me see",
-    "based on the prompt", "based on the article", "based on the provided",
-    "based on the title", "based on the snippet", "you've provided only",
-    "you have provided only", "you only provided", "i can see the", "i see that the",
-    "the title and author", "the text provided", "here is a summary",
-    "here's a summary", "in summary, the", "to summarize", "summary of the",
-    "i need to", "i should",
-)
-
-
-def summarise(title: str, body: str, fallback_snippet: str = "") -> str:
-    body = body or ""
-    fb = (fallback_snippet or "").strip()
-    prompt_body = body if len(body) > 200 else fb
-    if len(prompt_body) < 200:
-        # Hard fallback — derive from title/snippet only.
-        return (fb or title)[:1200]
-    prompt = (
-        f"Title: {title}\n\n{prompt_body}\n\n"
-        "Summarize in 4-6 sentences (100-150 words). Use only facts from the article. "
-        "Plain prose, no lists or headings. Don't start with 'This article'."
-    )
+def llm(prompt: str, max_tokens: int = 1800, temperature: float = 0.3) -> str:
+    if not MINIMAX_KEY:
+        return ""
     payload = {
         "model": "MiniMax-M3",
         "messages": [{"role": "user", "content": prompt}],
-        "max_tokens": 1500,
-        "temperature": 0.2,
+        "max_tokens": max_tokens,
+        "temperature": temperature,
+        # Keeps reasoning out of `content`. M3 can spend 600+ tokens reasoning, so leave headroom.
         "reasoning_split": True,
     }
-    try:
-        req = urllib.request.Request(
-            "https://api.minimax.io/v1/chat/completions",
-            data=json.dumps(payload).encode("utf-8"),
-            headers={
-                "Authorization": f"Bearer {MINIMAX_KEY}",
-                "Content-Type": "application/json",
-                "User-Agent": UA,
-            },
-            method="POST",
-        )
-        with urllib.request.urlopen(req, timeout=60) as r:
-            resp = json.loads(r.read())
-        msg = resp["choices"][0]["message"]
-        text = msg.get("content") or ""
-        text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL).strip()
-        if not text:
-            return (fb or title)[:1200]
-        low = text.lower().lstrip()
-        for bad in BAD_PREFIXES:
-            if low.startswith(bad):
-                return (fb or title)[:1200]
-        return text
-    except Exception as e:
-        print(f"  summarise fail: {e}", file=sys.stderr)
-        return (fb or title)[:1200]
+    for attempt in range(3):
+        try:
+            req = urllib.request.Request(
+                "https://api.minimax.io/v1/chat/completions",
+                data=json.dumps(payload).encode(),
+                headers={"Authorization": f"Bearer {MINIMAX_KEY}", "Content-Type": "application/json",
+                         "User-Agent": UA},
+                method="POST",
+            )
+            with urllib.request.urlopen(req, timeout=90) as r:
+                msg = json.loads(r.read())["choices"][0]["message"]
+            text = re.sub(r"<think>.*?</think>", "", msg.get("content") or "", flags=re.DOTALL).strip()
+            if text:
+                return text
+        except Exception as e:
+            print(f"  llm fail (attempt {attempt + 1}): {e}", file=sys.stderr)
+        time.sleep(2 * (attempt + 1))
+    return ""
 
 
-# ---- Scoring & selection -------------------------------------------------
+def llm_json(prompt: str, **kw) -> dict | None:
+    for _ in range(2):
+        text = llm(prompt, **kw)
+        m = re.search(r"\{.*\}", text, re.DOTALL)
+        if not m:
+            continue
+        try:
+            return json.loads(m.group(0))
+        except json.JSONDecodeError:
+            continue
+    return None
 
-def _title_key(title: str) -> str:
-    return re.sub(r"[^a-z0-9]", "", title.lower())[:60]
 
+STYLE_RULES = (
+    "Rules: use only facts from the text. Plain, direct English; explain jargon in simple words. "
+    "Never start a field with \"The article\", \"The paper\", \"The author\", \"This\", \"In this\" or "
+    "\"Researchers\". No marketing words (revolutionary, game-changing, powerful, seamless, cutting-edge). "
+    "No markdown, no lists, no emoji."
+)
+
+BAD_OPENERS = ("the article", "the paper", "the author", "this article", "this paper", "this post",
+               "the provided", "as an ai", "i'm unable", "i cannot", "here is", "here's", "based on the")
+
+
+def _clean(s) -> str:
+    return WS_RE.sub(" ", str(s or "")).strip().strip('"')
+
+
+def rank(candidates: list[dict], want: int, what: str, offbeat: bool = False) -> tuple[list[int], int | None]:
+    """Ask the LLM to pick the `want` candidates most useful to READER. Returns indices."""
+    if not candidates:
+        return [], None
+    lines = [f"{i}. {c['title']} — {c.get('snippet', '')[:220]}" for i, c in enumerate(candidates)]
+    extra = ('Also pick one "offbeat" item: the most interesting non-software story in the list '
+             '(science, history, craft), or null if none. ') if offbeat else ""
+    prompt = (
+        f"You pick {what} for Daily Byte, a daily digest read by {READER}\n\n"
+        f"Candidates:\n" + "\n".join(lines) + "\n\n"
+        f"Pick the {want} candidates this reader would learn the most from. Prefer depth, "
+        f"practical insight and clear explanations over hype, launches and narrow benchmarks. {extra}"
+        'Return ONLY JSON: {"picks": [index, ...]' + (', "offbeat": index or null' if offbeat else "") + "}"
+    )
+    d = llm_json(prompt, max_tokens=1500, temperature=0.2) or {}
+    picks = [i for i in d.get("picks", []) if isinstance(i, int) and 0 <= i < len(candidates)]
+    ob = d.get("offbeat")
+    ob = ob if isinstance(ob, int) and 0 <= ob < len(candidates) and ob not in picks else None
+    return list(dict.fromkeys(picks))[:want], ob
+
+
+def summarise(item: dict, section: str, body: str, comments: str = "") -> dict:
+    text = body if len(body) > 300 else item.get("snippet", "")
+    if len(text) < 150:
+        print(f"  no text to summarise ({len(body)} chars body): {item['title']}", file=sys.stderr)
+        return {}
+    debate_key = ('"debate": 1-2 sentences (max 45 words): what commenters argue about or disagree on, '
+                  "based only on the comments.\n") if comments else ""
+    why_rule = ('"why": one sentence (max 20 words): what makes this fascinating. Do not force a link to '
+                "software.\n") if section == "offbeat" else (
+                '"why": one sentence (max 20 words): why this reader should care. Concrete, no hype.\n')
+    prompt = (
+        f"You write for Daily Byte, a daily digest read by {READER}\n\n"
+        f"Title: {item['title']}\nSource: {item['source']}\n\nText:\n{text}\n\n"
+        + (f"Top comments from the discussion thread:\n{comments}\n\n" if comments else "")
+        + "Return ONLY a JSON object with these keys:\n"
+        + why_rule
+        + '"gist": 2-3 sentences (max 65 words): the key facts, numbers or argument.\n'
+        '"takeaway": one sentence (max 22 words): the idea, lesson or action worth keeping.\n'
+        '"level": "beginner", "intermediate" or "advanced".\n'
+        + debate_key + STYLE_RULES
+        + (" Write for a strong engineer outside this subfield: replace formal terms with what they mean "
+           "in practice, and say what problem the work solves before how." if section == "papers" else "")
+    )
+    d = llm_json(prompt, max_tokens=2000, temperature=0.3) or {}
+    if str(d.get("gist", "")).lower().startswith(BAD_OPENERS):
+        d = llm_json(prompt + '\nThe "gist" must start with the subject itself, never with "The article" '
+                     'or "The paper".', max_tokens=2000, temperature=0.3) or d
+    out = {k: _clean(d.get(k)) for k in ("why", "gist", "takeaway", "level", "debate") if d.get(k)}
+    # Last resort: drop a leading "The article/paper/post" instead of losing the story.
+    out["gist"] = re.sub(r"^(?:the|this) (?:article|paper|post|piece|author)\s+(\w)",
+                         lambda m: m.group(1).upper(), out.get("gist", ""), flags=re.IGNORECASE)
+    gist = out["gist"]
+    problem = ("no JSON from model" if not d else "no gist" if not gist
+               else "bad opener" if gist.lower().startswith(BAD_OPENERS) else "gist too short" if len(gist) < 80 else "")
+    if problem:
+        print(f"  summary rejected ({problem}): {item['title']} | {json.dumps(d)[:300]}", file=sys.stderr)
+        return {}
+    if out.get("level") not in ("beginner", "intermediate", "advanced"):
+        out.pop("level", None)
+    return out
+
+
+def editorial(stories: list[dict]) -> dict:
+    lines = [f"{s['id']} [{s['section']}] {s['title']} — {s.get('why', '')}" for s in stories]
+    sections = sorted({s["section"] for s in stories})
+    prompt = (
+        f"You are the editor of Daily Byte, a daily digest read by {READER}\n\n"
+        "Today's stories:\n" + "\n".join(lines) + "\n\n"
+        "Return ONLY JSON with keys:\n"
+        '"editor_note": 1-2 sentences (max 45 words) on what connects today\'s edition. Specific, no hype, '
+        'do not start with "Today".\n'
+        '"lede_id": the id of the single story most worth reading first.\n'
+        '"lede_reason": one sentence (max 20 words) on why to start there.\n'
+        '"intros": an object with one sentence (max 22 words) per section in ' + json.dumps(sections)
+        + " describing that section's actual stories. The offbeat section is a non-software curiosity: "
+        "describe it on its own terms, without tying it to software.\n" + STYLE_RULES
+    )
+    d = llm_json(prompt, max_tokens=1800, temperature=0.4) or {}
+    ids = {s["id"] for s in stories}
+    return {
+        "editor_note": _clean(d.get("editor_note")),
+        "lede_id": d.get("lede_id") if d.get("lede_id") in ids else None,
+        "lede_reason": _clean(d.get("lede_reason")),
+        "intros": {k: _clean(v) for k, v in (d.get("intros") or {}).items() if k in sections and v},
+    }
+
+
+# ---- Selection helpers -----------------------------------------------------
 
 def parse_dt(s: str) -> datetime | None:
     if not s:
         return None
     s = s.strip()
-    # ISO with offset
-    for fmt in ("%Y-%m-%dT%H:%M:%S%z", "%Y-%m-%dT%H:%M:%S.%f%z"):
-        try:
-            return datetime.strptime(s, fmt)
-        except ValueError:
-            continue
-    # ISO with Z
-    for fmt in ("%Y-%m-%dT%H:%M:%SZ", "%Y-%m-%dT%H:%M:%S.%fZ"):
-        try:
-            return datetime.strptime(s, fmt).replace(tzinfo=timezone.utc)
-        except ValueError:
-            continue
-    # RFC 822
+    try:
+        d = datetime.fromisoformat(s.replace("Z", "+00:00"))
+        return d if d.tzinfo else d.replace(tzinfo=timezone.utc)
+    except ValueError:
+        pass
     try:
         from email.utils import parsedate_to_datetime
         d = parsedate_to_datetime(s)
-        if d.tzinfo is None:
-            d = d.replace(tzinfo=timezone.utc)
-        return d
+        return d if d.tzinfo else d.replace(tzinfo=timezone.utc)
     except Exception:
         return None
 
 
-def within_48h(item: dict) -> bool:
-    dt = parse_dt(item.get("published_at", ""))
-    if not dt:
-        return True
-    return abs((NOW - dt).total_seconds()) <= 48 * 3600
+def age_hours(item: dict) -> float | None:
+    d = parse_dt(item.get("published_at", ""))
+    return (NOW - d).total_seconds() / 3600 if d else None
 
 
-def score_blog(item: dict) -> float:
-    s = 0.0
-    dt = parse_dt(item.get("published_at", ""))
-    if dt:
-        age_h = (NOW - dt).total_seconds() / 3600
-        s += max(0.0, 48 - age_h) / 12  # recent items win
-    title = item["title"].lower()
-    if any(p in title for p in ("announcing ", "introducing ")):
-        s -= 3
-    if item.get("source_kind") == "blog":
-        s += 1
-    return s
+def load_published() -> tuple[set[str], set[str]]:
+    """URLs and title keys of every story in earlier editions (today's file excluded so reruns work)."""
+    urls, titles = set(), set()
+    for f in (ROOT / "data").glob("20*.json"):
+        if f.stem == TODAY:
+            continue
+        try:
+            d = json.loads(f.read_text())
+        except Exception:
+            continue
+        for sec in d.get("sections", []):
+            for st in sec.get("stories", []):
+                urls.add(norm_url(st.get("url", "")))
+                titles.add(title_key(st.get("title", "")))
+    return urls, titles
 
 
-def score_paper(item: dict) -> float:
-    s = 0.0
-    dt = parse_dt(item.get("published_at", ""))
-    if dt:
-        age_h = (NOW - dt).total_seconds() / 3600
-        s += max(0.0, 48 - age_h) / 12
-    return s
+REPO_HOSTS = ("github.com", "gitlab.com", "codeberg.org", "sr.ht")
 
 
-def score_tool(item: dict) -> float:
-    s = float(item.get("score", 0))
-    title = item["title"].lower()
-    if "github.com" in item.get("url", "").lower():
-        s += 50
-    if any(p in title for p in ("announcing ", "introducing ")):
-        s -= 20
-    return s
+def is_repo(item: dict) -> bool:
+    return any(h in (item.get("url") or "").lower() for h in REPO_HOSTS)
 
 
-def score_disc(item: dict) -> float:
-    s = float(item.get("score", 0)) + float(item.get("comments", 0)) * 0.3
-    if item.get("source_kind") == "lobsters":
-        s += 5
-    return s
+def reading_minutes(body: str) -> int | None:
+    words = len(body.split())
+    return max(1, round(words / 230)) if words >= 150 else None
 
 
 # ---- Pipeline --------------------------------------------------------------
 
 def main():
-    print(f"Edition for {TODAY}")
+    print(f"Edition for {TODAY}{' (dry run)' if DRY_RUN else ''}")
+    if not MINIMAX_KEY:
+        print("ERROR: MINIMAX_API_KEY missing", file=sys.stderr)
+        sys.exit(1)
 
-    print("Fetching engineering blogs...")
-    blogs = fetch_blogs()
-    print(f"  blogs: {len(blogs)}")
+    with ThreadPoolExecutor(max_workers=4) as ex:
+        f_blogs, f_pap, f_hn, f_lob = (ex.submit(fn) for fn in (fetch_blogs, fetch_arxiv, fetch_hn, fetch_lobsters))
+        blogs, papers, hn, lobs = f_blogs.result(), f_pap.result(), f_hn.result(), f_lob.result()
+    print(f"  fetched: blogs={len(blogs)} papers={len(papers)} hn={len(hn)} lobsters={len(lobs)}")
 
-    print("Fetching arXiv...")
-    papers = fetch_arxiv()
-    print(f"  papers: {len(papers)}")
-
-    print("Fetching HN...")
-    hn = fetch_hn()
-    print(f"  hn: {len(hn)}")
-
-    print("Fetching Lobsters...")
-    lobs = fetch_lobsters()
-    print(f"  lobsters: {len(lobs)}")
-
-    # ---- Dedupe by title ----
+    pub_urls, pub_titles = load_published()
     seen: set[str] = set()
 
-    def add(item: dict, store: list[dict]):
-        k = _title_key(item["title"])
-        if k in seen:
-            return
-        seen.add(k)
-        store.append(item)
-
-    blogs_pool: list[dict] = []
-    papers_pool: list[dict] = []
-    for it in blogs:
-        add(it, blogs_pool)
-    for it in papers:
-        add(it, papers_pool)
-
-    hn_pool: list[dict] = []
-    for it in hn:
-        add(it, hn_pool)
-    lobs_pool: list[dict] = []
-    for it in lobs:
-        add(it, lobs_pool)
-
-    # ---- Primary pass: 48h ----
-    eng_recent = [x for x in blogs_pool if within_48h(x)]
-    pap_recent = [x for x in papers_pool if within_48h(x)]
-
-    # ---- Backfill if sparse ----
-    if len(eng_recent) < 3:
-        backfill = [x for x in blogs_pool if x not in eng_recent]
-        backfill.sort(key=score_blog, reverse=True)
-        eng_recent.extend(backfill[: 5 - len(eng_recent)])
-    if len(pap_recent) < 3:
-        backfill = [x for x in papers_pool if x not in pap_recent]
-        backfill.sort(key=score_paper, reverse=True)
-        pap_recent.extend(backfill[: 5 - len(pap_recent)])
-
-    # ---- Score & cap ----
-    eng_recent.sort(key=score_blog, reverse=True)
-    pap_recent.sort(key=score_paper, reverse=True)
-    # Engineering blog diversity: max 3 per source
-    selected_eng: list[dict] = []
-    src_count: dict[str, int] = {}
-    for it in eng_recent:
-        s = it["source"]
-        if src_count.get(s, 0) >= 3:
-            continue
-        selected_eng.append(it)
-        src_count[s] = src_count.get(s, 0) + 1
-        if len(selected_eng) >= 5:
-            break
-    selected_pap = pap_recent[:5]
-
-    # Tools: HN items pointing at github.com repos
-    tools_pool = [x for x in hn_pool if "github.com" in x.get("url", "").lower()]
-    tools_pool.sort(key=score_tool, reverse=True)
-    selected_tools = tools_pool[:4]
-
-    # Discussions: HN non-github + Lobsters
-    hn_disc = [x for x in hn_pool if "github.com" not in x.get("url", "").lower()]
-    hn_disc.sort(key=score_disc, reverse=True)
-    lobs_sorted = sorted(lobs_pool, key=score_disc, reverse=True)
-    disc_pool = hn_disc + lobs_sorted
-    disc_pool.sort(key=score_disc, reverse=True)
-    selected_disc = disc_pool[:4]
-
-    # ---- Summarise ----
-    def process(item: dict, section: str) -> dict:
-        out = dict(item)
-        out["section"] = section
-        body = extract_body(item["url"])
-        out["summary"] = summarise(item["title"], body, item.get("snippet", ""))
+    def fresh(items: list[dict]) -> list[dict]:
+        out = []
+        for it in items:
+            u, t = norm_url(it["url"]), title_key(it["title"])
+            if not t or u in pub_urls or t in pub_titles or u in seen or t in seen:
+                continue
+            seen.update((u, t))
+            out.append(it)
         return out
 
-    work: list[tuple[dict, str]] = []
-    for it in selected_eng:
-        work.append((it, "engineering"))
-    for it in selected_pap:
-        work.append((it, "papers"))
-    for it in selected_tools:
-        work.append((it, "tools"))
-    for it in selected_disc:
-        work.append((it, "discussions"))
+    # Engineering: recent posts, independent voices first, one per source, max one vendor blog.
+    def eng_score(it):
+        a = age_hours(it)
+        s = (ENGINEERING_MAX_AGE_DAYS * 24 - a) / 24 if a is not None else 0
+        s += -2 if it["vendor"] else 3
+        if re.match(r"(announcing|introducing|now available|github copilot)", it["title"].lower()):
+            s -= 4
+        return s
 
+    eng_pool = [x for x in fresh(blogs) if (age_hours(x) or 0) <= ENGINEERING_MAX_AGE_DAYS * 24]
+    eng_pool.sort(key=eng_score, reverse=True)
+    eng, used_sources, vendor_used = [], set(), False
+    for it in eng_pool:
+        if it["source"] in used_sources or (it["vendor"] and vendor_used):
+            continue
+        eng.append(it)
+        used_sources.add(it["source"])
+        vendor_used |= it["vendor"]
+        if len(eng) == CAPS["engineering"]:
+            break
+
+    # Papers: last week's systems/PL/SE papers, ranked for this reader.
+    pap_pool = fresh(papers)[:60]
+    picks, _ = rank(pap_pool, CAPS["papers"], "research papers")
+    pap = [pap_pool[i] for i in picks] or pap_pool[:CAPS["papers"]]
+
+    # Tools: repo links on the HN front page, by points.
+    hn_fresh = fresh(hn)
+    tools_pool = sorted([x for x in hn_fresh if is_repo(x)], key=lambda x: x["score"], reverse=True)
+    tools = tools_pool[:CAPS["tools"]]
+
+    # Discussions: busy HN/Lobsters threads ranked for this reader, plus one offbeat pick.
+    disc_pool = [x for x in hn_fresh if not is_repo(x) and x["comments"] >= 30]
+    disc_pool += [x for x in fresh(lobs) if x["comments"] >= 5]
+    disc_pool.sort(key=lambda x: x["score"] + 0.5 * x["comments"], reverse=True)
+    disc_pool = disc_pool[:40]
+    picks, ob = rank(disc_pool, CAPS["discussions"], "discussion threads", offbeat=True)
+    disc = [disc_pool[i] for i in picks] or disc_pool[:CAPS["discussions"]]
+    offbeat = [disc_pool[ob]] if ob is not None else []
+
+    work = ([(x, "engineering") for x in eng] + [(x, "papers") for x in pap] + [(x, "tools") for x in tools]
+            + [(x, "discussions") for x in disc] + [(x, "offbeat") for x in offbeat])
     print(f"Summarising {len(work)} stories...")
-    enriched: list[dict] = []
+
+    def process(item: dict, section: str) -> dict | None:
+        body = extract_body(item["url"]) if section != "papers" else ""
+        comments = fetch_thread_comments(item) if section in ("discussions", "offbeat") else ""
+        s = summarise(item, section, body, comments)
+        if not s:
+            print(f"  dropped (no usable summary): {item['title']}", file=sys.stderr)
+            return None
+        return {**item, **s, "section": section,
+                "minutes": reading_minutes(body) if section in ("engineering", "discussions", "offbeat") else None}
+
+    done: dict[int, dict] = {}
     with ThreadPoolExecutor(max_workers=3) as ex:
-        futures = {ex.submit(process, it, sec): (it, sec) for it, sec in work}
+        futures = {ex.submit(process, it, sec): n for n, (it, sec) in enumerate(work)}
         for f in as_completed(futures):
             try:
-                enriched.append(f.result())
+                r = f.result()
             except Exception as e:
-                it, sec = futures[f]
-                print(f"  process fail {it['title']}: {e}", file=sys.stderr)
+                print(f"  process fail: {e}", file=sys.stderr)
+                r = None
+            if r:
+                done[futures[f]] = r
+    enriched = [done[n] for n in sorted(done)]
 
-    # ---- Group back by section ----
-    by_section: dict[str, list[dict]] = {
-        "engineering": [], "papers": [], "tools": [], "discussions": [],
-    }
-    for e in enriched:
-        sec = e.pop("section")
-        by_section[sec].append(e)
+    # Stable ids, then the editorial pass.
+    counters: dict[str, int] = {}
+    for s in enriched:
+        prefix = SECTION_META[s["section"]][2]
+        counters[prefix] = counters.get(prefix, 0) + 1
+        s["id"] = f"{prefix}-{counters[prefix]:02d}"
+    total = len(enriched)
+    if total < 5:
+        print(f"ERROR: only {total} usable stories — keeping the last good edition", file=sys.stderr)
+        sys.exit(1)
+    ed = editorial(enriched)
 
-    # Stable ordering within section (preserve selection order)
-    for sec, items in by_section.items():
-        if sec == "engineering":
-            order = selected_eng
-        elif sec == "papers":
-            order = selected_pap
-        elif sec == "tools":
-            order = selected_tools
-        else:
-            order = selected_disc
-        pos = {id(x): i for i, x in enumerate(order)}
-        items.sort(key=lambda x: pos.get(id(x), 999))
+    sections = []
+    for name in CAPS:
+        label, kind, _ = SECTION_META[name]
+        stories = []
+        for s in (x for x in enriched if x["section"] == name):
+            st = {
+                "id": s["id"], "title": s["title"], "url": s["url"], "source": s["source"],
+                "source_kind": kind, "published_at": s.get("published_at", ""),
+                "summary": s["gist"],  # kept for RSS and older renderers
+                "why": s.get("why", ""), "takeaway": s.get("takeaway", ""),
+            }
+            for k in ("debate", "level", "minutes", "thread_url"):
+                if s.get(k):
+                    st[k] = s[k]
+            stories.append(st)
+        if stories:
+            sections.append({"name": name, "label": label, "intro": ed["intros"].get(name, ""), "stories": stories})
 
-    # ---- Build final JSON ----
-    # Drop slots where both summary and snippet are empty — the renderer
-    # can't display an empty card, and Cloudflare will cache the bad card.
-    # Also drop slots whose summary is just a title echo or a URL (fetch
-    # failure with body-extract fallback) — those render as nearly-blank
-    # cards too. Real summaries are 100-150 words (>=600 chars at M3's pace).
-    def _is_junk_summary(item: dict) -> bool:
-        s = (item.get("summary") or "").strip()
-        if not s:
-            return True
-        # Title echo: summary equals (or starts with) the original title
-        title = (item.get("title") or "").strip()
-        if title and s.lower().startswith(title.lower()[:60]):
-            return True
-        # URL echo: summary is just a URL pasted in
-        if s.startswith("http://") or s.startswith("https://"):
-            return True
-        # Far too short to be a real summary
-        if len(s) < 200:
-            return True
-        return False
-
-    for sec_items in by_section.values():
-        sec_items[:] = [
-            x for x in sec_items
-            if not _is_junk_summary(x) or len((x.get("snippet") or "").strip()) >= 200
-        ]
-    total = sum(len(v) for v in by_section.values())
-    edition_tag = f"vol-2-no-{34 + (NOW - datetime(2026, 9, 9, tzinfo=timezone.utc)).days}"
-
-    archive = json.load(open(ROOT / "archive.json"))
+    archive = json.loads((ROOT / "archive.json").read_text())
     archive_no_today = [d for d in archive if d != TODAY]
-    prev_day = archive_no_today[0] if archive_no_today else None
-
-    label = NOW.strftime("%A, %B %-d, %Y")
-
-    sections = [
-        {
-            "name": "engineering",
-            "label": "Engineering",
-            "intro": "Independent engineering blogs lead with concrete trade-offs and post-mortems rather than product launches.",
-            "stories": [
-                {
-                    "id": f"eng-{i+1:02d}",
-                    "title": x["title"],
-                    "url": x["url"],
-                    "source": x["source"],
-                    "source_kind": "blog",
-                    "published_at": x.get("published_at", ""),
-                    "snippet": x.get("snippet", ""),
-                    "summary": x["summary"],
-                } for i, x in enumerate(by_section["engineering"])
-            ],
-        },
-        {
-            "name": "papers",
-            "label": "Papers",
-            "intro": "Recent arXiv work across machine learning, programming languages, and applied mathematics — research that informs how engineers build.",
-            "stories": [
-                {
-                    "id": f"pap-{i+1:02d}",
-                    "title": x["title"],
-                    "url": x["url"],
-                    "source": x["source"],
-                    "source_kind": "paper",
-                    "published_at": x.get("published_at", ""),
-                    "snippet": x.get("snippet", ""),
-                    "summary": x["summary"],
-                } for i, x in enumerate(by_section["papers"])
-            ],
-        },
-        {
-            "name": "tools",
-            "label": "Tools",
-            "intro": "Open-source releases trending on Hacker News — small focused tools and active projects worth a look.",
-            "stories": [
-                {
-                    "id": f"tool-{i+1:02d}",
-                    "title": x["title"],
-                    "url": x["url"],
-                    "source": x["source"],
-                    "source_kind": "repo",
-                    "published_at": x.get("published_at", ""),
-                    "snippet": x.get("snippet", ""),
-                    "summary": x["summary"],
-                } for i, x in enumerate(by_section["tools"])
-            ],
-        },
-        {
-            "name": "discussions",
-            "label": "Discussions",
-            "intro": "Active threads from Hacker News and Lobsters — the meta-conversation around this week's tooling and craft.",
-            "stories": [
-                {
-                    "id": f"disc-{i+1:02d}",
-                    "title": x["title"],
-                    "url": x["url"],
-                    "source": x["source"],
-                    "source_kind": "discussion" if x["source_kind"] == "lobsters" else "blog",
-                    "published_at": x.get("published_at", ""),
-                    "snippet": x.get("snippet", ""),
-                    "summary": x["summary"],
-                } for i, x in enumerate(by_section["discussions"])
-            ],
-        },
-    ]
-
+    lede = next((s for s in enriched if s["id"] == ed["lede_id"]), None)
     digest = {
         "date": TODAY,
-        "label": label,
-        "edition_tag": edition_tag,
+        "label": NOW.strftime("%A, %B %-d, %Y"),
+        "edition_tag": f"vol-2-no-{34 + (NOW - datetime(2026, 9, 9, tzinfo=timezone.utc)).days}",
         "total": total,
-        "prev_day": prev_day,
+        "prev_day": archive_no_today[0] if archive_no_today else None,
         "next_day": None,
+        "editor_note": ed["editor_note"],
+        "lede": {"id": lede["id"], "title": lede["title"], "reason": ed["lede_reason"]} if lede else None,
         "site": {
             "name": "Daily Byte",
             "tagline": "A byte-size daily digest for engineers who value depth over noise.",
@@ -686,28 +650,20 @@ def main():
         },
         "sections": sections,
     }
+    payload = json.dumps(digest, indent=2, ensure_ascii=False)
 
-    if total == 0:
-        print("ERROR: zero stories selected", file=sys.stderr)
-        sys.exit(1)
+    if DRY_RUN:
+        out = pathlib.Path("/tmp/dailybyte-preview") / f"{TODAY}.json"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(payload)
+        print(f"DRY RUN wrote {out} total={total}")
+        return
 
-    # ---- Write artifacts ----
-    out_data = ROOT / "data" / f"{TODAY}.json"
-    out_data.write_text(json.dumps(digest, indent=2, ensure_ascii=False))
-    (ROOT / "data" / "latest.json").write_text(json.dumps(digest, indent=2, ensure_ascii=False))
-
-    # RSS
-    subprocess.check_call(["python3", str(ROOT / "scripts" / "build_rss.py"), TODAY],
-                          cwd=ROOT)
-
-    # Archive snapshot
-    subprocess.check_call(["python3", str(ROOT / "scripts" / "build_snapshot.py"), TODAY],
-                          cwd=ROOT)
-
-    # Archive.json
-    new_archive = [TODAY] + archive_no_today
-    (ROOT / "archive.json").write_text(json.dumps(new_archive, indent=2) + "\n")
-
+    (ROOT / "data" / f"{TODAY}.json").write_text(payload)
+    (ROOT / "data" / "latest.json").write_text(payload)
+    (ROOT / "archive.json").write_text(json.dumps([TODAY] + archive_no_today, indent=2) + "\n")
+    for script in ("build_rss.py", "build_snapshot.py", "build_archive_index.py"):
+        subprocess.check_call([sys.executable, str(ROOT / "scripts" / script), TODAY], cwd=ROOT)
     print(f"OK {TODAY} total={total}")
 
 

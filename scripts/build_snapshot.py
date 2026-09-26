@@ -2,7 +2,7 @@
 """Build the per-day archive snapshot for a given edition.
 
 Usage: build_snapshot.py <DATE>
-Reads data/<DATE>.json, inlines it into the snapshot shell template,
+Reads data/<DATE>.json, inlines it into templates/snapshot_shell.html.tmpl,
 writes archive/<DATE>.html. Uses str.replace ONLY (never .format()).
 """
 import json, pathlib, sys
@@ -12,12 +12,8 @@ if len(sys.argv) != 2:
     sys.exit(2)
 
 date = sys.argv[1]
-root = pathlib.Path("/opt/learning-portal")
-tmpl = (root / "../root/.hermes/skills/learning-portal-curator/templates/snapshot_shell.html.tmpl")
-# Fallback: skill lives under ~/.hermes/skills/
-if not tmpl.exists():
-    tmpl = pathlib.Path("/root/.hermes/skills/learning-portal-curator/templates/snapshot_shell.html.tmpl")
-tmpl_text = tmpl.read_text()
+root = pathlib.Path(__file__).resolve().parent.parent
+tmpl_text = (root / "templates" / "snapshot_shell.html.tmpl").read_text()
 
 data_path = root / "data" / f"{date}.json"
 if not data_path.exists():
@@ -25,7 +21,8 @@ if not data_path.exists():
     sys.exit(1)
 
 data = json.load(open(data_path))
-digest_json = json.dumps(data, ensure_ascii=False)
+# "</" inside inlined JSON would close the <script> tag early.
+digest_json = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
 
 out = tmpl_text.replace("{EDITION}", date).replace("{DIGEST_JSON}", digest_json)
 # Only guard against the doubled-CSS brace bug ("{{"). "}}" is fine —
