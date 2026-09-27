@@ -2,7 +2,7 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-27</description>
+  <description>All threads converge on one question: how do real systems safely incorporate LLM agents without inheriting their architectural mistakes, runaway costs, or unbounded behavior.</description>
   <item>
     <title>You should all be asking way more questions</title>
     <link>https://seangoedecke.com/you-should-all-be-asking-way-more-questions/</link>

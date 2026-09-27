@@ -5,8 +5,12 @@
   "total": 8,
   "prev_day": "2026-09-26",
   "next_day": null,
-  "editor_note": "",
-  "lede": null,
+  "editor_note": "All threads converge on one question: how do real systems safely incorporate LLM agents without inheriting their architectural mistakes, runaway costs, or unbounded behavior.",
+  "lede": {
+    "id": "pap-01",
+    "title": "Requirement-Bound Verified Commissioning: A Frozen Four-Billion-Parameter Local Model as a Candidate Generator under an External Acceptance Layer with Verification and Release Authority",
+    "reason": "Proposes a concrete pattern for safely wrapping a frozen local model under deterministic verification, applicable to any agent pipeline."
+  },
   "site": {
     "name": "Daily Byte",
     "tagline": "A byte-size daily digest for engineers who value depth over noise.",
@@ -17,7 +21,7 @@
     {
       "name": "engineering",
       "label": "Engineering",
-      "intro": "",
+      "intro": "Advice on questioning AI-generated designs, the economics of agentic workloads under new pricing, and a critique of borrowed control-theory intuitions.",
       "stories": [
         {
           "id": "eng-01",
@@ -63,7 +67,7 @@
     {
       "name": "papers",
       "label": "Papers",
-      "intro": "",
+      "intro": "Two empirical studies: one tests a frozen-model-plus-verifier pattern, the other surveys 2,170 GitHub projects using a lightweight LLM decision component.",
       "stories": [
         {
           "id": "pap-01",
@@ -94,7 +98,7 @@
     {
       "name": "tools",
       "label": "Tools",
-      "intro": "",
+      "intro": "A constraint-solver diagram language built so LLM agents can edit it by changing relationships rather than coordinates.",
       "stories": [
         {
           "id": "tool-01",
@@ -114,7 +118,7 @@
     {
       "name": "discussions",
       "label": "Discussions",
-      "intro": "",
+      "intro": "Production-scale sandboxing for agent training sits alongside a practical 2026 survey of Rust SIMD options.",
       "stories": [
         {
           "id": "disc-01",
