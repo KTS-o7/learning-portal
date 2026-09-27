@@ -14,8 +14,9 @@ Pipeline:
   6. Emit data/<DATE>.json, data/latest.json, rss.xml, archive/<DATE>.html,
      archive/index.html and update archive.json.
 
-Usage: build_edition.py [--dry-run]
-  --dry-run  write only /tmp/dailybyte-preview/<DATE>.json, touch nothing in the repo.
+Usage: build_edition.py [--dry-run | --re-edit YYYY-MM-DD]
+  --dry-run   write only /tmp/dailybyte-preview/<DATE>.json, touch nothing in the repo.
+  --re-edit   redo only the editor's note / start-here / intros of an existing edition.
 """
 from __future__ import annotations
 import json, pathlib, re, os, sys, html, subprocess, time
@@ -338,8 +339,8 @@ def llm(prompt: str, max_tokens: int = 1800, temperature: float = 0.3) -> str:
     return ""
 
 
-def llm_json(prompt: str, **kw) -> dict | None:
-    for _ in range(2):
+def llm_json(prompt: str, attempts: int = 2, **kw) -> dict | None:
+    for _ in range(attempts):
         text = llm(prompt, **kw)
         m = re.search(r"\{.*\}", text, re.DOTALL)
         if not m:
@@ -380,8 +381,8 @@ def rank(candidates: list[dict], want: int, what: str, offbeat: bool = False) ->
         f"practical insight and clear explanations over hype, launches and narrow benchmarks. {extra}"
         'Return ONLY JSON: {"picks": [index, ...]' + (', "offbeat": index or null' if offbeat else "") + "}"
     )
-    d = llm_json(prompt, max_tokens=1500, temperature=0.2) or {}
-    picks = [i for i in d.get("picks", []) if isinstance(i, int) and 0 <= i < len(candidates)]
+    d = llm_json(prompt, attempts=3, max_tokens=3000, temperature=0.2) or {}
+    picks =[i for i in d.get("picks", []) if isinstance(i, int) and 0 <= i < len(candidates)]
     ob = d.get("offbeat")
     ob = ob if isinstance(ob, int) and 0 <= ob < len(candidates) and ob not in picks else None
     return list(dict.fromkeys(picks))[:want], ob
@@ -410,10 +411,10 @@ def summarise(item: dict, section: str, body: str, comments: str = "") -> dict:
         + (" Write for a strong engineer outside this subfield: replace formal terms with what they mean "
            "in practice, and say what problem the work solves before how." if section == "papers" else "")
     )
-    d = llm_json(prompt, max_tokens=2000, temperature=0.3) or {}
+    d = llm_json(prompt, attempts=3, max_tokens=3000, temperature=0.3) or {}
     if str(d.get("gist", "")).lower().startswith(BAD_OPENERS):
         d = llm_json(prompt + '\nThe "gist" must start with the subject itself, never with "The article" '
-                     'or "The paper".', max_tokens=2000, temperature=0.3) or d
+                     'or "The paper".', max_tokens=3000, temperature=0.3) or d
     out = {k: _clean(d.get(k)) for k in ("why", "gist", "takeaway", "level", "debate") if d.get(k)}
     # Last resort: drop a leading "The article/paper/post" instead of losing the story.
     out["gist"] = re.sub(r"^(?:the|this) (?:article|paper|post|piece|author)\s+(\w)",
@@ -442,14 +443,20 @@ def editorial(stories: list[dict]) -> dict:
         '"lede_reason": one sentence (max 20 words) on why to start there.\n'
         '"intros": an object with one sentence (max 22 words) per section in ' + json.dumps(sections)
         + " describing that section's actual stories. The offbeat section is a non-software curiosity: "
-        "describe it on its own terms, without tying it to software.\n" + STYLE_RULES
+        "describe it on its own terms, without tying it to software.\n"
+        "Respect the word limits strictly. Do not address the reader as \"you\" and do not comment on the "
+        "editing process.\n" + STYLE_RULES
     )
-    d = llm_json(prompt, max_tokens=1800, temperature=0.4) or {}
+    # M3 sometimes returns empty content or runs long enough to truncate the JSON; give it room and retries.
+    d = llm_json(prompt, attempts=3, max_tokens=4000, temperature=0.4) or {}
+    if not d:
+        print("  editorial call failed — falling back to first story as lede", file=sys.stderr)
     ids = {s["id"] for s in stories}
+    lede_id = d.get("lede_id") if d.get("lede_id") in ids else None
     return {
         "editor_note": _clean(d.get("editor_note")),
-        "lede_id": d.get("lede_id") if d.get("lede_id") in ids else None,
-        "lede_reason": _clean(d.get("lede_reason")),
+        "lede_id": lede_id or stories[0]["id"],
+        "lede_reason": _clean(d.get("lede_reason")) if lede_id else "",
         "intros": {k: _clean(v) for k, v in (d.get("intros") or {}).items() if k in sections and v},
     }
 
@@ -509,7 +516,29 @@ def reading_minutes(body: str) -> int | None:
 
 # ---- Pipeline --------------------------------------------------------------
 
+def reedit(date: str):
+    """Re-run only the editorial pass on an existing edition (e.g. after the call failed)."""
+    path = ROOT / "data" / f"{date}.json"
+    d = json.loads(path.read_text())
+    stories = [{**st, "section": s["name"]} for s in d["sections"] for st in s["stories"]]
+    ed = editorial(stories)
+    lede = next(s for s in stories if s["id"] == ed["lede_id"])
+    d["editor_note"] = ed["editor_note"]
+    d["lede"] = {"id": lede["id"], "title": lede["title"], "reason": ed["lede_reason"]}
+    for s in d["sections"]:
+        s["intro"] = ed["intros"].get(s["name"], s.get("intro", ""))
+    payload = json.dumps(d, indent=2, ensure_ascii=False)
+    path.write_text(payload)
+    if json.loads((ROOT / "data" / "latest.json").read_text()).get("date") == date:
+        (ROOT / "data" / "latest.json").write_text(payload)
+    for script in ("build_rss.py", "build_snapshot.py", "build_archive_index.py"):
+        subprocess.check_call([sys.executable, str(ROOT / "scripts" / script), date], cwd=ROOT)
+    print(f"re-edited {date}: note={bool(ed['editor_note'])} intros={len(ed['intros'])}")
+
+
 def main():
+    if "--re-edit" in sys.argv:
+        return reedit(sys.argv[sys.argv.index("--re-edit") + 1])
     print(f"Edition for {TODAY}{' (dry run)' if DRY_RUN else ''}")
     if not MINIMAX_KEY:
         print("ERROR: MINIMAX_API_KEY missing", file=sys.stderr)
