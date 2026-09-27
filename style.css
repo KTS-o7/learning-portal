@@ -117,8 +117,17 @@ text-transform:uppercase}
 .error{text-align:center;padding:60px var(--pad);color:#9d0006;background:#fff0f0;
 margin:20px;border-radius:4px}
 
+/* "Start here" jumps land below the sticky top bar */
+article.story{scroll-margin-top:56px}
+
 /* responsive: stack the meta above title on narrow screens */
 @media (max-width:640px){
   article.story{grid-template-columns:1fr;gap:8px}
   article.story .meta{flex-direction:row;align-items:center;gap:10px}
+  /* top bar: links on one line, date nav on the next, count dropped — no sideways scroll */
+  .chrome-in{flex-wrap:wrap;justify-content:center;row-gap:6px;padding:8px 12px}
+  .chrome .left{gap:12px}
+  .chrome .nav{width:100%;justify-content:center}
+  .chrome .right{display:none}
+  article.story{scroll-margin-top:80px}
 }
