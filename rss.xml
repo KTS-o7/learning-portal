@@ -2,85 +2,69 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>A common thread across several stories is encoding safety into foundations: type systems that rule out invalid states, consensus rules that keep moving under bad conditions, and linters that catch risky database changes before they ship.</description>
+  <description>A byte-size daily digest for engineers who value depth over noise. — edition 2026-09-27</description>
   <item>
-    <title>Rusty thoughts on &quot;Parse, don&#x27;t validate&quot;</title>
-    <link>https://eli.thegreenplace.net/2026/rusty-thoughts-on-parse-dont-validate/</link>
-    <guid isPermaLink="false">https://eli.thegreenplace.net/2026/rusty-thoughts-on-parse-dont-validate/</guid>
-    <description>Encoding invariants in types eliminates runtime checks and prevents invalid states, a core type-system design idea relevant to any systems language. Rust types like NonEmpty, NonZero, AbsPathBuf, and serde-deserialized structs encode invariants directly so client code skips re-validation. NonEmpty stores a head plus a tail Vec, while NonZero uses the zero bit pattern so Option&lt;NonZeroUsize&gt; has the same size as a plain usize. Examples come from uutils, rust-analyzer&#x27;s gradual path refinement, and standard library APIs. Takeaway: Make invalid states unrepresentable by encoding invariants in refined types rather than re-checking them at every call site.</description>
-    <pubDate>2026-09-26T08:25:00-07:00</pubDate>
-    <source>Eli Bendersky</source>
-  </item>
-  <item>
-    <title>Advice to a beginning software engineer</title>
-    <link>https://seangoedecke.com/advice-to-a-beginning-software-engineer/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/advice-to-a-beginning-software-engineer/</guid>
-    <description>Frames career advice against post-ZIRP industry dynamics and warns against &#x27;meat proxy&#x27; AI usage. Most career advice circulating today was shaped by the ZIRP era when engineers had unusual bargaining power and job security. The author argues beginners should stay friendly and conscientious rather than pick political fights, and especially should never pass AI-generated output verbatim to colleagues while still using agents as tools. Takeaway: Use AI agents to inform your own judgment, but never substitute them for your thinking or relay their output unchanged.</description>
-    <pubDate>Sat, 26 Sep 2026 00:00:00 GMT</pubDate>
+    <title>You should all be asking way more questions</title>
+    <link>https://seangoedecke.com/you-should-all-be-asking-way-more-questions/</link>
+    <guid isPermaLink="false">https://seangoedecke.com/you-should-all-be-asking-way-more-questions/</guid>
+    <description>A practical habit for catching design errors early, especially now that AI agents make frequent architectural mistakes. Asking frequent clarifying questions during design talks prevents small misunderstandings from compounding into failed projects. The author simulates implementations mentally, checking data flow between services, authentication, and persistence, and finds that roughly half of probing questions to AI coding agents reveal incorrect design assumptions due to models&#x27; lack of continuous learning. The same skeptical habit applies equally to senior engineers and AI models. Takeaway: Treat every design claim as suspect until you can mentally implement it, and question both humans and AI agents relentlessly.</description>
+    <pubDate>Fri, 25 Sep 2026 00:00:00 GMT</pubDate>
     <source>Sean Goedecke</source>
   </item>
   <item>
-    <title>What Happens When the Model Eats the Stack? Rethinking the Research Agenda for Data Agents to Withstand the Bitter Lesson</title>
-    <link>https://muratbuffalo.blogspot.com/2026/09/what-happens-when-model-eats-stack.html</link>
-    <guid isPermaLink="false">https://muratbuffalo.blogspot.com/2026/09/what-happens-when-model-eats-stack.html</guid>
-    <description>LLM improvements are absorbing hand-designed data agent scaffolding, with measured benchmark gains and a new semantic bottleneck emerging. Newer models (GPT-5.6 Sol) reduced query turns from 23.2 to 6.0 versus older o3, letting plain coding agents beat specialized data agents. Remaining failures (60%+) became semantic: business rules, undocumented schemas. The proposed fix is a persistent semantic context layer inside the database. Takeaway: As models improve, hand-engineered agent scaffolding disappears and the remaining problem shifts to capturing domain-specific semantic context that LLMs cannot infer.</description>
-    <pubDate>2026-09-23T19:04:29.506-04:00</pubDate>
+    <title>Claude Opus 5.5, GPT-6 Sol, GPT-6 Luna, and a new price war</title>
+    <link>https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/</link>
+    <guid isPermaLink="false">https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/</guid>
+    <description>Cache pricing dropped 60% on Opus 5.5 and GPT-6 halved its mid-tier pricing, materially cutting costs for agentic workloads. Opus 5.5 dropped to $4/$20 per million tokens with 60% lower cache reads. GPT-6 Sol and Luna each cost half their GPT-5.6 counterparts, with Luna at $0.10/$0.50. Opus 5.5&#x27;s max thinking mode hit the 128k output limit while planning an SVG, costing $2.56 and 20 minutes. Takeaway: Watch max output token limits when configuring reasoning effort, since extended thinking can burn budget without returning anything.</description>
+    <pubDate>2026-09-22T23:46:41+00:00</pubDate>
+    <source>Simon Willison</source>
+  </item>
+  <item>
+    <title>In Search of a Compositional Theory of Self-Stabilization</title>
+    <link>https://muratbuffalo.blogspot.com/2026/09/in-search-of-compositional-theory-of.html</link>
+    <guid isPermaLink="false">https://muratbuffalo.blogspot.com/2026/09/in-search-of-compositional-theory-of.html</guid>
+    <description>Shows why borrowed control-theory intuitions mislead on retry-storm metastability by ignoring self-memory terms in queueed systems. Demirbas adapts a 2017 assume-guarantee small-gain theorem to a two-queue retry model with fresh and duplicate work. Multiplying only coupling entries predicts stability with a 0.1 per-round multiplier, but including diagonal memory terms yields an eigenvalue of 1.19, matching the observed metastable failure. Retry budgets and fresh-first service work by zeroing off-diagonal coupling. Takeaway: Predicting metastable retry loops requires a full eigenvalue analysis of every state-derivative entry, not just cross-component coupling gains.</description>
+    <pubDate>2026-09-21T12:55:13.615-04:00</pubDate>
     <source>Murat Demirbas</source>
   </item>
   <item>
-    <title>Forte: A sensitivity type system for imperative Rust</title>
-    <link>https://arxiv.org/abs/2609.30254</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2609.30254</guid>
-    <description>Brings sound, mechanized differential-privacy verification to real Rust code that mutates, without forking the compiler. Forte is a sensitivity type system for Rust that extends prior pure and first-order systems to handle in-place mutation through exclusive borrows. The soundness theorem, metric preservation over a store-based operational semantics, is mechanized in Verus and checked by Flux as an ordinary library. Evaluation on OpenDP mechanism kernels with genuine mutation matches trusted stability maps and catches errors in previously unproved constructors. Takeaway: Rust&#x27;s ownership system can carry a sound sensitivity analysis for differential privacy without compiler modification.</description>
-    <pubDate>2026-09-24T17:58:58Z</pubDate>
-    <source>Chiké Abuah</source>
+    <title>Requirement-Bound Verified Commissioning: A Frozen Four-Billion-Parameter Local Model as a Candidate Generator under an External Acceptance Layer with Verification and Release Authority</title>
+    <link>https://arxiv.org/abs/2609.30219</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2609.30219</guid>
+    <description>Tests whether a small frozen local model can be used safely under an external deterministic verification layer, a pattern relevant to any pipeline combining LLMs with hard checks. A 4B-parameter local LLM generates candidate answers for mechatronic commissioning tasks, but nothing is released until an external grammar-based gate verifies two facts from the original text. Across 144 benchmark tasks, 0 of 83 releases were false. Outside the benchmark, 1 false release appeared among 146, showing the safety claim does not survive distribution shift. Takeaway: Wrapping a small frozen model in an external deterministic verifier buys real safety inside the benchmark, but guarantees break on out-of-distribution inputs.</description>
+    <pubDate>2026-09-24T17:46:53Z</pubDate>
+    <source>Mehmet Iscan</source>
   </item>
   <item>
-    <title>Steelhead: Interleaving Partially Synchronous and Asynchronous Commit Rules on a Shared DAG</title>
-    <link>https://arxiv.org/abs/2609.30163</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2609.30163</guid>
-    <description>A drop-in upgrade for DAG BFT consensus that keeps throughput high in good networks and avoids stalling in bad ones. Most BFT DAG consensus is either fast-but-stallable or slow-but-always-live. Steelhead runs both on one DAG: most rounds use the fast partially synchronous rule, every k-th round uses an asynchronous rule with a hidden leader chosen by a common coin. Validators adaptively pick the best k, send no extra messages beyond DAG blocks, and instantiate over Mysticeti/Mahi-Mahi (n≥3f+1) and BlueBottle (n≥5f+1) with Lean 4 proofs. Takeaway: Best-of-both-worlds BFT consensus can be built by interleaving two commit rules on the same DAG rather than switching protocols.</description>
-    <pubDate>2026-09-24T17:18:49Z</pubDate>
-    <source>George Danezis et al.</source>
+    <title>Jev in the Wild: A Data-Driven Analysis of the Jev Model&#x27;s Functionality, Applications and Ecosystem</title>
+    <link>https://arxiv.org/abs/2609.30216</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2609.30216</guid>
+    <description>Empirical GitHub analysis of 2,170 projects shows how a lightweight LLM decision component is integrated in real systems. Jev is a fast, low-cost model that returns choices, binary judgments, and scores. An analysis of 2,170 GitHub projects using it shows rapid ecosystem growth. Attribute judgment and scoring dominate usage, while action selection, content filtering, and model or tool routing vary by domain. Public attention concentrates on routing and interface agents but does not match the actual number of projects. Takeaway: LLM decision components become reusable building blocks whose real usage patterns diverge from where public attention concentrates.</description>
+    <pubDate>2026-09-24T17:46:08Z</pubDate>
+    <source>Guoming Ling et al.</source>
   </item>
   <item>
-    <title>PipePipe: NewPipe hard fork implementing SponsorBlock</title>
-    <link>https://github.com/InfinityLoop1308/PipePipe</link>
-    <guid isPermaLink="false">https://github.com/InfinityLoop1308/PipePipe</guid>
-    <description>Mostly a consumer Android YouTube client fork; little relevance to backend or systems engineering interests. PipePipe is a hard fork of the NewPipe Android YouTube client, independently maintained since early 2022 with features like SponsorBlock integration, dislike restoration, AV1/VP9 playback, and SABR streaming protocol support. It is a mobile app project, not a backend or infrastructure tool. Takeaway: Skip unless you build Android media clients; SABR protocol reverse-engineering may interest streaming protocol researchers.</description>
-    <pubDate>2026-09-25T10:55:40Z</pubDate>
+    <title>Show HN: Reladraw – A diagram language where you decide where to place things</title>
+    <link>https://github.com/reladraw/reladraw</link>
+    <guid isPermaLink="false">https://github.com/reladraw/reladraw</guid>
+    <description>A constraint-solver diagram DSL where placement is declared as relationships, designed for LLM agents to edit. Reladraw is a text-based diagram language where every position is stated relative to other named elements, with no coordinates in the source. A TypeScript resolver treats each axis as a set of minimum-distance constraints and finds the tightest layout using longest paths, giving deterministic output with no search. It ships as a CLI and an agent skill so LLM coding assistants can author and modify diagrams by editing text. Takeaway: For tools that LLM agents must edit, declarative relationships in source beat pixels and opaque auto-layout.</description>
+    <pubDate>2026-09-26T17:10:40Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: A Claude Code skill to analyze your chess games</title>
-    <link>https://github.com/brumar/chess-postmortem-skills</link>
-    <guid isPermaLink="false">https://github.com/brumar/chess-postmortem-skills</guid>
-    <description>Demonstrates grounding an LLM workflow in a deterministic engine with parallel subagents and a verifier pass to cut hallucinations. Claude Code skills drive Stockfish via subagents to produce a narrated chess post-mortem from a PGN plus optional think-aloud audio. Each claim is checked against the engine, and a verifier pass re-reads results. A full run, including video, takes about an hour. Takeaway: Pairing LLM reasoning with a deterministic tool and a verifier pass is a workable pattern for keeping long analyses honest.</description>
-    <pubDate>2026-09-26T15:34:53Z</pubDate>
+    <title>DeepSeek Elastic Compute (DSec)</title>
+    <link>https://arxiv.org/abs/2609.22978</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2609.22978</guid>
+    <description>Production-scale sandbox infrastructure for LLM agent training handles 380,000 concurrent sandboxes across 160 nodes. DSec unifies FnCall, container, microVM, and full-VM sandboxes behind one SDK, sharing memory and CPU scheduling across a cluster. It co-designs with RL training, decoupling stateful rollout execution from preemptible GPU jobs and loading images from Fire-Flyer File System on demand. One 160-node unit runs 3 million sandboxes daily, sustaining 380,000 concurrent and over 5,000 creations per second. Commenters speculate the 131-author list serves as an asset-protection strategy against competitor recruiting. Others ask whether DSec is essentially reinventing serverless, and a few worry about misuse of 380,000 concurrent agents. Takeaway: Sandbox platforms for agentic training must decouple stateful execution from GPU scheduling while providing elastic isolation across heterogeneous backends.</description>
+    <pubDate>2026-09-26T18:22:41Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Is your Postgres migration safe or not safe?</title>
-    <link>https://safenotsafe.dev/</link>
-    <guid isPermaLink="false">https://safenotsafe.dev/</guid>
-    <description>Browser-based Postgres migration linter that catches risky DDL patterns locally before they reach production. safe-not-safe runs libpg_query compiled to WebAssembly in a browser web worker to statically analyze migration SQL. It flags patterns like unsafe ALTER TABLE statements, accounts for table row count context, and sends nothing to a server. The UI shows parse trees, rule engine output, and the raw SQL side by side. Commenters disagree on whether rule checks suffice: some note state-dependent risks like column rewrites or NOT NULL without defaults that LLMs flag but linters miss, while others prefer full zero-downtime migration frameworks over linters. Takeaway: Static rule-based migration linters catch common footguns but miss risks that depend on live database state.</description>
-    <pubDate>2026-09-26T07:33:12Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>What even is an OS now?</title>
-    <link>https://sockpuppet.org/blog/2026/09/25/what-even-is-an-os-now/</link>
-    <guid isPermaLink="false">https://sockpuppet.org/blog/2026/09/25/what-even-is-an-os-now/</guid>
-    <description>A systems question on whether OS process isolation still matters when most code is AI-generated on-device. Modern operating systems exist mainly to isolate untrusted applications. If users instead run AI-generated single-purpose programs on-device, that isolation model loses its purpose. It is also a launch announcement: the writer is leaving Fly.io to build a phone around this premise. Commenters disagree on whether regulated apps like banking still demand strong isolation regardless of who writes the code. Others argue the app abstraction itself disappears, with an AI assistant doing tasks directly. Takeaway: Process isolation solves an untrusted-code problem; if code provenance shifts, the OS abstraction may need rethinking.</description>
-    <pubDate>2026-09-25T21:36:56Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Gravity seems holographic. What does that mean for reality?</title>
-    <link>https://www.quantamagazine.org/gravity-seems-holographic-what-does-that-mean-for-reality-20260925/</link>
-    <guid isPermaLink="false">https://www.quantamagazine.org/gravity-seems-holographic-what-does-that-mean-for-reality-20260925/</guid>
-    <description>A region of space appears to hold no more information than its surface, a striking equivalence between volume and area. The holographic principle says everything happening inside a region of space can be deduced from its surface alone. Black hole entropy grows with surface area rather than volume, and the AdS/CFT correspondence proves mathematically that a gravitational theory in a curved space is exactly equivalent to a quantum theory on its boundary. Commenters split over whether the box framing is misleading, whether the idea is genuine physics or recycled hype, and whether encoding 3D in 2D is even surprising. Takeaway: Two very different theories can be exact mathematical duals, encoding the same physics in different variables.</description>
-    <pubDate>2026-09-25T15:31:02Z</pubDate>
-    <source>Hacker News</source>
+    <title>The state of SIMD in Rust in 2026</title>
+    <link>https://shnatsel.github.io/state-of-simd-rust-2026/</link>
+    <guid isPermaLink="false">https://shnatsel.github.io/state-of-simd-rust-2026/</guid>
+    <description>Maintained survey of Rust SIMD options in 2026 with concrete tradeoffs between autovectorization, portable abstractions, and runtime dispatch across crates. Five Rust SIMD libraries (std::simd, fearless_simd, wide, pulp, macerator) plus the multiversion crate differ on fixed versus hardware-width vectors, multiversioning ergonomics, and instruction set coverage from x86 SSE2 through AVX-512, ARM NEON, and WebAssembly. fearless_simd is positioned as the most complete all-in-one option. Commenters dispute dismissing LoongArch as only relevant to the Chinese government, and note ARM SVE vector length varies significantly across implementations, with shared execution units on Apple and Qualcomm chips. Takeaway: fearless_simd is the best all-in-one Rust SIMD option today; multiversion is simplest for autovectorized code on known hardware.</description>
+    <pubDate>2026-09-26T03:28:50.571-05:00</pubDate>
+    <source>Lobsters</source>
   </item>
 </channel></rss>
