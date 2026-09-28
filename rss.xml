@@ -2,69 +2,77 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>All threads converge on one question: how do real systems safely incorporate LLM agents without inheriting their architectural mistakes, runaway costs, or unbounded behavior.</description>
+  <description>Exactly-once delivery resurfaces in both the stream processing and LLM agent papers, while the rest weighs practical engineering tradeoffs from S3&#x27;s aging API to supervised LM programs on the BEAM.</description>
   <item>
-    <title>You should all be asking way more questions</title>
-    <link>https://seangoedecke.com/you-should-all-be-asking-way-more-questions/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/you-should-all-be-asking-way-more-questions/</guid>
-    <description>A practical habit for catching design errors early, especially now that AI agents make frequent architectural mistakes. Asking frequent clarifying questions during design talks prevents small misunderstandings from compounding into failed projects. The author simulates implementations mentally, checking data flow between services, authentication, and persistence, and finds that roughly half of probing questions to AI coding agents reveal incorrect design assumptions due to models&#x27; lack of continuous learning. The same skeptical habit applies equally to senior engineers and AI models. Takeaway: Treat every design claim as suspect until you can mentally implement it, and question both humans and AI agents relentlessly.</description>
-    <pubDate>Fri, 25 Sep 2026 00:00:00 GMT</pubDate>
-    <source>Sean Goedecke</source>
-  </item>
-  <item>
-    <title>Claude Opus 5.5, GPT-6 Sol, GPT-6 Luna, and a new price war</title>
-    <link>https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/</link>
-    <guid isPermaLink="false">https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/</guid>
-    <description>Cache pricing dropped 60% on Opus 5.5 and GPT-6 halved its mid-tier pricing, materially cutting costs for agentic workloads. Opus 5.5 dropped to $4/$20 per million tokens with 60% lower cache reads. GPT-6 Sol and Luna each cost half their GPT-5.6 counterparts, with Luna at $0.10/$0.50. Opus 5.5&#x27;s max thinking mode hit the 128k output limit while planning an SVG, costing $2.56 and 20 minutes. Takeaway: Watch max output token limits when configuring reasoning effort, since extended thinking can burn budget without returning anything.</description>
-    <pubDate>2026-09-22T23:46:41+00:00</pubDate>
+    <title>2026 in LLMs (so far)</title>
+    <link>https://simonwillison.net/2026/Sep/27/2026-in-llms-so-far/</link>
+    <guid isPermaLink="false">https://simonwillison.net/2026/Sep/27/2026-in-llms-so-far/</guid>
+    <description>It maps how coding agents matured in 2026 with concrete numbers on commits, costs, and open sandboxing problems. In November 2025, Claude Opus 4.5 and GPT-5.1 made coding agents reliable enough for daily use. OpenClaw grew to over 100,000 commits by early 2026, defining a new class of consumer-facing coding agents called Claws. StrongDM&#x27;s Dark Factory banned human-written and reviewed code, token costs rose from fifty to over a thousand dollars per day, and 40 of 277 conference sessions tackled agent sandboxing. Takeaway: Coding agents crossed a reliability threshold in late 2025, but the open problem is sandboxing: keeping them safe enough for non-technical users.</description>
+    <pubDate>2026-09-27T23:54:15+00:00</pubDate>
     <source>Simon Willison</source>
   </item>
   <item>
-    <title>In Search of a Compositional Theory of Self-Stabilization</title>
-    <link>https://muratbuffalo.blogspot.com/2026/09/in-search-of-compositional-theory-of.html</link>
-    <guid isPermaLink="false">https://muratbuffalo.blogspot.com/2026/09/in-search-of-compositional-theory-of.html</guid>
-    <description>Shows why borrowed control-theory intuitions mislead on retry-storm metastability by ignoring self-memory terms in queueed systems. Demirbas adapts a 2017 assume-guarantee small-gain theorem to a two-queue retry model with fresh and duplicate work. Multiplying only coupling entries predicts stability with a 0.1 per-round multiplier, but including diagonal memory terms yields an eigenvalue of 1.19, matching the observed metastable failure. Retry budgets and fresh-first service work by zeroing off-diagonal coupling. Takeaway: Predicting metastable retry loops requires a full eigenvalue analysis of every state-derivative entry, not just cross-component coupling gains.</description>
-    <pubDate>2026-09-21T12:55:13.615-04:00</pubDate>
-    <source>Murat Demirbas</source>
+    <title>Replacing the old battery on rechargeable bike lights</title>
+    <link>https://jvns.ca/blog/2026/09/27/replacing-the-old-battery-on-rechargeable-bike-lights/</link>
+    <guid isPermaLink="false">https://jvns.ca/blog/2026/09/27/replacing-the-old-battery-on-rechargeable-bike-lights/</guid>
+    <description>A concrete example of using an LLM to identify an obscure battery part number when standard supplier catalogs fail. A beginner desoldered and replaced LIR2477 coin-cell batteries in 10-year-old bike lights for about $20 CAD in parts from AliExpress. An LLM decoded an unreadable battery marking after DigiKey&#x27;s search couldn&#x27;t locate the part. The project used an iFixit desoldering guide and a community makerspace. Takeaway: LLMs can identify obscure component markings when supplier catalogs fail, though the author notes better non-LLM methods likely exist.</description>
+    <pubDate>2026-09-27T00:00:00+00:00</pubDate>
+    <source>Julia Evans</source>
   </item>
   <item>
-    <title>Requirement-Bound Verified Commissioning: A Frozen Four-Billion-Parameter Local Model as a Candidate Generator under an External Acceptance Layer with Verification and Release Authority</title>
-    <link>https://arxiv.org/abs/2609.30219</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2609.30219</guid>
-    <description>Tests whether a small frozen local model can be used safely under an external deterministic verification layer, a pattern relevant to any pipeline combining LLMs with hard checks. A 4B-parameter local LLM generates candidate answers for mechatronic commissioning tasks, but nothing is released until an external grammar-based gate verifies two facts from the original text. Across 144 benchmark tasks, 0 of 83 releases were false. Outside the benchmark, 1 false release appeared among 146, showing the safety claim does not survive distribution shift. Takeaway: Wrapping a small frozen model in an external deterministic verifier buys real safety inside the benchmark, but guarantees break on out-of-distribution inputs.</description>
-    <pubDate>2026-09-24T17:46:53Z</pubDate>
-    <source>Mehmet Iscan</source>
+    <title>Human-AI partnerships are for alignment, not capability</title>
+    <link>https://seangoedecke.com/human-ai-partnerships-are-for-alignment-not-capability/</link>
+    <guid isPermaLink="false">https://seangoedecke.com/human-ai-partnerships-are-for-alignment-not-capability/</guid>
+    <description>Reframes the engineer-AI relationship: the human&#x27;s value is technical judgment and context, not raw code quality. AI coding agents write more correct code than humans, but their output is misaligned with organizational values: bloated comments, useless tests, ignored long-term strategy. The engineer&#x27;s job is to align the AI to company-specific technical values, which are context-dependent and hard to train into models. Takeaway: Your moat as an engineer is knowing your system&#x27;s context and tradeoffs, since AI already beats you at code.</description>
+    <pubDate>Sun, 27 Sep 2026 00:00:00 GMT</pubDate>
+    <source>Sean Goedecke</source>
   </item>
   <item>
-    <title>Jev in the Wild: A Data-Driven Analysis of the Jev Model&#x27;s Functionality, Applications and Ecosystem</title>
-    <link>https://arxiv.org/abs/2609.30216</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2609.30216</guid>
-    <description>Empirical GitHub analysis of 2,170 projects shows how a lightweight LLM decision component is integrated in real systems. Jev is a fast, low-cost model that returns choices, binary judgments, and scores. An analysis of 2,170 GitHub projects using it shows rapid ecosystem growth. Attribute judgment and scoring dominate usage, while action selection, content filtering, and model or tool routing vary by domain. Public attention concentrates on routing and interface agents but does not match the actual number of projects. Takeaway: LLM decision components become reusable building blocks whose real usage patterns diverge from where public attention concentrates.</description>
-    <pubDate>2026-09-24T17:46:08Z</pubDate>
-    <source>Guoming Ling et al.</source>
+    <title>Where Does Streaming State Cost Go? A Reproducible Comparison of Flink and Kafka Streams on Kafka</title>
+    <link>https://arxiv.org/abs/2609.28779</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2609.28779</guid>
+    <description>Exactly-once streams sound safe, but latency and recovery cost differ sharply by engine architecture. At 100 events per second, both engines stayed correct across 50 trials. Windowed workloads took 4.3 to 6.2 seconds end to end with p99 of 5.7 to 9.9 seconds, versus milliseconds when stateless. Raising the durability interval from 1s to 10s pushed Kafka Streams p99 from 6.1s to 23.2s on one stage and Flink from 0.7s to 8.7s on another, and failure injection surfaced incomplete processing only when latency spiked. Takeaway: Correctness guarantees hide large latency gaps under state and durability pressure, so benchmark end to end before picking an engine.</description>
+    <pubDate>2026-09-23T20:48:06Z</pubDate>
+    <source>Kiran N Kumar et al.</source>
   </item>
   <item>
-    <title>Show HN: Reladraw – A diagram language where you decide where to place things</title>
-    <link>https://github.com/reladraw/reladraw</link>
-    <guid isPermaLink="false">https://github.com/reladraw/reladraw</guid>
-    <description>A constraint-solver diagram DSL where placement is declared as relationships, designed for LLM agents to edit. Reladraw is a text-based diagram language where every position is stated relative to other named elements, with no coordinates in the source. A TypeScript resolver treats each axis as a set of minimum-distance constraints and finds the tightest layout using longest paths, giving deterministic output with no search. It ships as a CLI and an agent skill so LLM coding assistants can author and modify diagrams by editing text. Takeaway: For tools that LLM agents must edit, declarative relationships in source beat pixels and opaque auto-layout.</description>
-    <pubDate>2026-09-26T17:10:40Z</pubDate>
+    <title>Where Does Exactly-Once Live? Model, Harness, and Tool-Contract Effects on Duplicate Side Effects in LLM Agents</title>
+    <link>https://arxiv.org/abs/2609.29095</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2609.29095</guid>
+    <description>Exactly-once delivery is a classic distributed systems problem; this paper maps where it fails inside LLM agent tool calls. LIMBO is a sandbox of six services with 12 fault modes grading 25,930 agent episodes against an effect ledger. When a read-back can confirm a write, frontier models duplicate only 0.5%; when writes are in-flight or redelivered, even they duplicate 56-74%, and tool contracts explain 81% of variance. No verify-only policy achieves exactly-once under late commits without bounding in-flight time. Takeaway: Exactly-once for agent tool calls lives in the model when read-backs work, in the tool contract when they cannot.</description>
+    <pubDate>2026-09-24T06:24:16Z</pubDate>
+    <source>Jiapeng Li</source>
+  </item>
+  <item>
+    <title>Imp is a full port of DSPy to the BEAM</title>
+    <link>https://github.com/deepfates/imp</link>
+    <guid isPermaLink="false">https://github.com/deepfates/imp</guid>
+    <description>DSPy is now on the BEAM, giving Elixir engineers typed, optimizable LM programs that run as supervised OTP processes. Imp ports DSPy&#x27;s signatures, modules, optimizers (GEPA, MIPROv2, SIMBA, few-shot, fine-tuning) and agent loops to Elixir. Agents run as supervised OTP processes with deadlines, per-call tool authorization, and an event stream; tool calls that may have side effects are reported as unknown rather than silently retried. Version 0.5 is experimental, MIT-licensed, and needs Elixir 1.19 plus a C/C++ toolchain. Takeaway: LM workflows gain OTP-style supervision: every run is a process you can watch, kill, and authorize, with no silent retries on side-effecting tool calls.</description>
+    <pubDate>2026-09-27T19:28:23Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>DeepSeek Elastic Compute (DSec)</title>
-    <link>https://arxiv.org/abs/2609.22978</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2609.22978</guid>
-    <description>Production-scale sandbox infrastructure for LLM agent training handles 380,000 concurrent sandboxes across 160 nodes. DSec unifies FnCall, container, microVM, and full-VM sandboxes behind one SDK, sharing memory and CPU scheduling across a cluster. It co-designs with RL training, decoupling stateful rollout execution from preemptible GPU jobs and loading images from Fire-Flyer File System on demand. One 160-node unit runs 3 million sandboxes daily, sustaining 380,000 concurrent and over 5,000 creations per second. Commenters speculate the 131-author list serves as an asset-protection strategy against competitor recruiting. Others ask whether DSec is essentially reinventing serverless, and a few worry about misuse of 380,000 concurrent agents. Takeaway: Sandbox platforms for agentic training must decouple stateful execution from GPU scheduling while providing elastic isolation across heterogeneous backends.</description>
-    <pubDate>2026-09-26T18:22:41Z</pubDate>
+    <title>Guitar amp and effects pedal built on the Waveshare ESP32-S3-Touch-AMOLED-2.06</title>
+    <link>https://github.com/dashersw/coyopedal</link>
+    <guid isPermaLink="false">https://github.com/dashersw/coyopedal</guid>
+    <description>A real-world case study of running a neural audio model on a microcontroller under hard real-time budgets. CoyoPedal runs a 23-layer, eight-channel WaveNet NAM A2 model at 48 kHz on an ESP32-S3, using hand-written Xtensa kernels with block floating point split across both cores. It hits 91% and 94 percent of a 1333 microsecond block budget per core with no missed deadlines, while a TSX UI compiles to native C++ and the same firmware also builds to WebAssembly. Takeaway: Modern neural audio fits on constrained MCUs when numerics, kernels and block scheduling are chosen deliberately.</description>
+    <pubDate>2026-09-26T02:24:50Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>The state of SIMD in Rust in 2026</title>
-    <link>https://shnatsel.github.io/state-of-simd-rust-2026/</link>
-    <guid isPermaLink="false">https://shnatsel.github.io/state-of-simd-rust-2026/</guid>
-    <description>Maintained survey of Rust SIMD options in 2026 with concrete tradeoffs between autovectorization, portable abstractions, and runtime dispatch across crates. Five Rust SIMD libraries (std::simd, fearless_simd, wide, pulp, macerator) plus the multiversion crate differ on fixed versus hardware-width vectors, multiversioning ergonomics, and instruction set coverage from x86 SSE2 through AVX-512, ARM NEON, and WebAssembly. fearless_simd is positioned as the most complete all-in-one option. Commenters dispute dismissing LoongArch as only relevant to the Chinese government, and note ARM SVE vector length varies significantly across implementations, with shared execution units on Apple and Qualcomm chips. Takeaway: fearless_simd is the best all-in-one Rust SIMD option today; multiversion is simplest for autovectorized code on known hardware.</description>
-    <pubDate>2026-09-26T03:28:50.571-05:00</pubDate>
-    <source>Lobsters</source>
+    <title>S3 Is the Future, S3 Is the Past</title>
+    <link>https://btrblocks.com/blog/s3_is_the_future_and_the_past/</link>
+    <guid isPermaLink="false">https://btrblocks.com/blog/s3_is_the_future_and_the_past/</guid>
+    <description>S3&#x27;s disk-era latency and per-request bandwidth shape every modern data architecture, but SSDs and fast networks have outgrown them. S3 imposes an architectural tax: caching layers, write batching, separate metadata stores like DynamoDB or FoundationDB, and full-object rewrites all work around its disk-derived constraints. Modern SSDs deliver around 100 microsecond latency and millions of IOPS near disk prices; 100+ Gbit networks add sub-100-microsecond intra-DC latency. Cloud providers will not disrupt their revenue, so engineers should build SSD-native primitives themselves. Commenters split on whether S3 is actually cheap or merely convenient, with one noting six months of S3 equals buying a 4TB SSD outright. Others argue current cloud SSD pricing still forces S3 use at big-data scale. Takeaway: Today&#x27;s S3-centric patterns are workarounds for hardware constraints that no longer exist; build storage assuming microsecond SSD latency.</description>
+    <pubDate>2026-09-25T23:58:17Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Fakecloud: Local AWS cloud emulator for integration tests</title>
+    <link>https://fakecloud.dev/</link>
+    <guid isPermaLink="false">https://fakecloud.dev/</guid>
+    <description>Local AWS emulator alternative to LocalStack that needs no auth or paid tier for testing real AWS client code locally. fakecloud emulates 105 AWS services and 3,932 API operations, claiming 248,557 Smithy test variants pass. It runs as a single binary or Docker image, accepts any dummy creds, and provides first-party SDKs for inspecting SES emails, SQS messages, and Lambda invocations after normal AWS SDK calls. Commenters dispute the 100 percent conformance claim, noting incomplete DynamoDB behavior, and question whether external simulators beat inline test mocking. Others raise trust concerns about anonymous authors and a curl-to-shell installer. Takeaway: When evaluating cloud emulators, verify conformance claims independently and weigh trust signals against convenient features.</description>
+    <pubDate>2026-09-26T14:25:16Z</pubDate>
+    <source>Hacker News</source>
   </item>
 </channel></rss>
