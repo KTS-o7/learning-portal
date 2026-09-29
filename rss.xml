@@ -2,77 +2,77 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>Exactly-once delivery resurfaces in both the stream processing and LLM agent papers, while the rest weighs practical engineering tradeoffs from S3&#x27;s aging API to supervised LM programs on the BEAM.</description>
+  <description>Three threads run through these stories: the memory bandwidth wall behind long-context LLM inference, tiny classification models replacing general LLMs in pipelines, and latency cuts from synthesis and extreme quantization.</description>
   <item>
-    <title>2026 in LLMs (so far)</title>
-    <link>https://simonwillison.net/2026/Sep/27/2026-in-llms-so-far/</link>
-    <guid isPermaLink="false">https://simonwillison.net/2026/Sep/27/2026-in-llms-so-far/</guid>
-    <description>It maps how coding agents matured in 2026 with concrete numbers on commits, costs, and open sandboxing problems. In November 2025, Claude Opus 4.5 and GPT-5.1 made coding agents reliable enough for daily use. OpenClaw grew to over 100,000 commits by early 2026, defining a new class of consumer-facing coding agents called Claws. StrongDM&#x27;s Dark Factory banned human-written and reviewed code, token costs rose from fifty to over a thousand dollars per day, and 40 of 277 conference sessions tackled agent sandboxing. Takeaway: Coding agents crossed a reliability threshold in late 2025, but the open problem is sandboxing: keeping them safe enough for non-technical users.</description>
-    <pubDate>2026-09-27T23:54:15+00:00</pubDate>
+    <title>Small Decisions: Engineering a Leading Model</title>
+    <link>http://brooker.co.za/blog/2026/09/28/engineering-system-one.html</link>
+    <guid isPermaLink="false">http://brooker.co.za/blog/2026/09/28/engineering-system-one.html</guid>
+    <description>Concrete systems-level walkthrough of building a small calibrated classifier with constant-time inference and measured latency on consumer GPU. Marc Brooker built a 2B-parameter classifier by stripping the text-generation head from Qwen3.5-2B and adding a small pointer head fine-tuned with rank-16 LoRA. Inference runs in one or two forward passes regardless of question count, hitting p50 100ms and p95 under 300ms on a 3090. Per-question-type temperature scaling yields a 0.009 Brier score on easy tasks, beating Qwen3.5-2B on accuracy and calibration. Takeaway: Replacing the text-generation head with a small pointer head turns an LLM into a calibrated classifier with constant-cost inference.</description>
+    <pubDate>Mon, 28 Sep 2026 00:00:00 +0000</pubDate>
+    <source>Marc Brooker</source>
+  </item>
+  <item>
+    <title>How we found 24 Android vulnerabilities using our open source AI security agent</title>
+    <link>https://github.blog/security/how-we-found-24-android-vulnerabilities-using-our-open-source-ai-security-agent/</link>
+    <guid isPermaLink="false">https://github.blog/security/how-we-found-24-android-vulnerabilities-using-our-open-source-ai-security-agent/</guid>
+    <description>Shows practical prompt-engineering patterns for guiding LLMs through structured code security audits. GitHub Security Lab&#x27;s open-source taskflow agent used guided LLM prompts to find 24 Android vulnerabilities including OsmAnd location tracking and Wikipedia account takeover. The approach splits audit work into incremental taskflows combining strict and broad prompts across multiple runs. LLMs find bugs well but misjudge severity, so human review remains essential. Takeaway: For LLM code analysis, split audits into incremental taskflows combining strict and broad prompts, then have humans review for severity.</description>
+    <pubDate>Mon, 28 Sep 2026 19:00:00 +0000</pubDate>
+    <source>GitHub Blog</source>
+  </item>
+  <item>
+    <title>Jev introduces a new shape of LLM - System One, aka Decision Models</title>
+    <link>https://simonwillison.net/2026/Sep/21/jev/</link>
+    <guid isPermaLink="false">https://simonwillison.net/2026/Sep/21/jev/</guid>
+    <description>A specialized, cheap classification-only model changes how you architect LLM pipelines for routing, ranking, and labeling. Jev is a decision model: text in, typed probabilistic scores out. It charges only input tokens at $0.042 per million, cheaper than GPT-5 Nano, and evaluates questions in parallel. Useful for classification, spam, prioritization, and BM25 reranking, but it is opaque and raises bias concerns since no reasoning is returned. Takeaway: Consider replacing expensive generative LLM calls with cheap decision-model scores wherever you only need classification or ranking.</description>
+    <pubDate>2026-09-21T23:09:20+00:00</pubDate>
     <source>Simon Willison</source>
   </item>
   <item>
-    <title>Replacing the old battery on rechargeable bike lights</title>
-    <link>https://jvns.ca/blog/2026/09/27/replacing-the-old-battery-on-rechargeable-bike-lights/</link>
-    <guid isPermaLink="false">https://jvns.ca/blog/2026/09/27/replacing-the-old-battery-on-rechargeable-bike-lights/</guid>
-    <description>A concrete example of using an LLM to identify an obscure battery part number when standard supplier catalogs fail. A beginner desoldered and replaced LIR2477 coin-cell batteries in 10-year-old bike lights for about $20 CAD in parts from AliExpress. An LLM decoded an unreadable battery marking after DigiKey&#x27;s search couldn&#x27;t locate the part. The project used an iFixit desoldering guide and a community makerspace. Takeaway: LLMs can identify obscure component markings when supplier catalogs fail, though the author notes better non-LLM methods likely exist.</description>
-    <pubDate>2026-09-27T00:00:00+00:00</pubDate>
-    <source>Julia Evans</source>
+    <title>The KV Cache Is the New Memory Wall</title>
+    <link>https://arxiv.org/abs/2609.30854</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2609.30854</guid>
+    <description>Long-context LLM inference is bottlenecked by KV cache memory bandwidth, not compute, and this paper gives the analytical framework to reason about it. At 128k tokens, a Llama-3-70B sequence&#x27;s KV cache (42 GB) approaches its weight footprint (140 GB), shifting the bottleneck from weights to attention state. The paper derives closed-form bandwidth models for H100, B200, and MI300X predicting where KV traffic overtakes weight traffic, then evaluates five optimization categories under one protocol. Takeaway: KV optimization only helps beyond a hardware-specific crossover; below it you trade complexity for no speedup.</description>
+    <pubDate>Mon, 28 Sep 2026 00:00:00 -0400</pubDate>
+    <source>Tejinder Singh</source>
   </item>
   <item>
-    <title>Human-AI partnerships are for alignment, not capability</title>
-    <link>https://seangoedecke.com/human-ai-partnerships-are-for-alignment-not-capability/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/human-ai-partnerships-are-for-alignment-not-capability/</guid>
-    <description>Reframes the engineer-AI relationship: the human&#x27;s value is technical judgment and context, not raw code quality. AI coding agents write more correct code than humans, but their output is misaligned with organizational values: bloated comments, useless tests, ignored long-term strategy. The engineer&#x27;s job is to align the AI to company-specific technical values, which are context-dependent and hard to train into models. Takeaway: Your moat as an engineer is knowing your system&#x27;s context and tradeoffs, since AI already beats you at code.</description>
-    <pubDate>Sun, 27 Sep 2026 00:00:00 GMT</pubDate>
-    <source>Sean Goedecke</source>
+    <title>KCensus: Synthesizing Latency-Optimal Consensus Fast Paths (Extended Version)</title>
+    <link>https://arxiv.org/abs/2609.31302</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2609.31302</guid>
+    <description>Cuts consensus latency by synthesizing protocols tailored to your topology and workload. Most fast-path consensus schemes are hand-tuned for specific conditions. The authors model fast paths as mechanisms that spread knowledge about proposals, derive a condition those mechanisms must satisfy, and turn it into an optimization problem. Their framework KCensus synthesizes optimal fast paths; a geo-replicated key-value store using it achieves up to 16% lower average latency across AWS regions. Takeaway: Frame consensus fast paths as knowledge-spreading to find the best one for your setting.</description>
+    <pubDate>Mon, 28 Sep 2026 00:00:00 -0400</pubDate>
+    <source>Cl\&#x27;ement Burgelin et al.</source>
   </item>
   <item>
-    <title>Where Does Streaming State Cost Go? A Reproducible Comparison of Flink and Kafka Streams on Kafka</title>
-    <link>https://arxiv.org/abs/2609.28779</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2609.28779</guid>
-    <description>Exactly-once streams sound safe, but latency and recovery cost differ sharply by engine architecture. At 100 events per second, both engines stayed correct across 50 trials. Windowed workloads took 4.3 to 6.2 seconds end to end with p99 of 5.7 to 9.9 seconds, versus milliseconds when stateless. Raising the durability interval from 1s to 10s pushed Kafka Streams p99 from 6.1s to 23.2s on one stage and Flink from 0.7s to 8.7s on another, and failure injection surfaced incomplete processing only when latency spiked. Takeaway: Correctness guarantees hide large latency gaps under state and durability pressure, so benchmark end to end before picking an engine.</description>
-    <pubDate>2026-09-23T20:48:06Z</pubDate>
-    <source>Kiran N Kumar et al.</source>
-  </item>
-  <item>
-    <title>Where Does Exactly-Once Live? Model, Harness, and Tool-Contract Effects on Duplicate Side Effects in LLM Agents</title>
-    <link>https://arxiv.org/abs/2609.29095</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2609.29095</guid>
-    <description>Exactly-once delivery is a classic distributed systems problem; this paper maps where it fails inside LLM agent tool calls. LIMBO is a sandbox of six services with 12 fault modes grading 25,930 agent episodes against an effect ledger. When a read-back can confirm a write, frontier models duplicate only 0.5%; when writes are in-flight or redelivered, even they duplicate 56-74%, and tool contracts explain 81% of variance. No verify-only policy achieves exactly-once under late commits without bounding in-flight time. Takeaway: Exactly-once for agent tool calls lives in the model when read-backs work, in the tool contract when they cannot.</description>
-    <pubDate>2026-09-24T06:24:16Z</pubDate>
-    <source>Jiapeng Li</source>
-  </item>
-  <item>
-    <title>Imp is a full port of DSPy to the BEAM</title>
-    <link>https://github.com/deepfates/imp</link>
-    <guid isPermaLink="false">https://github.com/deepfates/imp</guid>
-    <description>DSPy is now on the BEAM, giving Elixir engineers typed, optimizable LM programs that run as supervised OTP processes. Imp ports DSPy&#x27;s signatures, modules, optimizers (GEPA, MIPROv2, SIMBA, few-shot, fine-tuning) and agent loops to Elixir. Agents run as supervised OTP processes with deadlines, per-call tool authorization, and an event stream; tool calls that may have side effects are reported as unknown rather than silently retried. Version 0.5 is experimental, MIT-licensed, and needs Elixir 1.19 plus a C/C++ toolchain. Takeaway: LM workflows gain OTP-style supervision: every run is a process you can watch, kill, and authorize, with no silent retries on side-effecting tool calls.</description>
-    <pubDate>2026-09-27T19:28:23Z</pubDate>
+    <title>Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms</title>
+    <link>https://github.com/firelex/jeff</link>
+    <guid isPermaLink="false">https://github.com/firelex/jeff</guid>
+    <description>Tiny local classifiers returning calibrated probabilities in ~25 ms, fine-tunable on one workstation GPU. Jeff fine-tunes 0.8B-2B Qwen and Gemma models for zero-shot option classification, returning calibrated probabilities in one forward pass with no text generation. Latency: 22 ms on RTX PRO 6000, 28 ms on M4 Max MLX; 0.8B trains in ~2 hours on one GPU. Overall benchmark scores approach Jev, though reasoning benchmarks lag; a domain fine-tune on ~11k examples pushed accuracy from 31.7% to 95.8%. Takeaway: For routing or intent classification at scale, a small local fine-tune can beat waiting on a large remote model.</description>
+    <pubDate>2026-09-28T20:23:36Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Guitar amp and effects pedal built on the Waveshare ESP32-S3-Touch-AMOLED-2.06</title>
-    <link>https://github.com/dashersw/coyopedal</link>
-    <guid isPermaLink="false">https://github.com/dashersw/coyopedal</guid>
-    <description>A real-world case study of running a neural audio model on a microcontroller under hard real-time budgets. CoyoPedal runs a 23-layer, eight-channel WaveNet NAM A2 model at 48 kHz on an ESP32-S3, using hand-written Xtensa kernels with block floating point split across both cores. It hits 91% and 94 percent of a 1333 microsecond block budget per core with no missed deadlines, while a TSX UI compiles to native C++ and the same firmware also builds to WebAssembly. Takeaway: Modern neural audio fits on constrained MCUs when numerics, kernels and block scheduling are chosen deliberately.</description>
-    <pubDate>2026-09-26T02:24:50Z</pubDate>
+    <title>ESP32S3 cluster running 1.58-bit (BitNet) Language model</title>
+    <link>https://github.com/Low-Zi-Hong/ESP32s3-LLM-Cluster</link>
+    <guid isPermaLink="false">https://github.com/Low-Zi-Hong/ESP32s3-LLM-Cluster</guid>
+    <description>A 0.5B language model running across seven $2 microcontrollers demonstrates extreme pipeline parallelism and custom quantization in a tight distributed system. A 0.5B BitNet model with 1.58-bit ternary weights is split across 7 ESP32S3 boards: a master runs BPE tokenization and INT4 embeddings, while 6 compute nodes each handle 4 transformer blocks. Hidden states pass between boards via high-speed SPI daisy-chain, with assembly-optimized MAC operations, FP16 scaled computations, and a PSRAM-backed KV cache. Takeaway: Pipeline parallelism plus aggressive 1.58-bit quantization can make a functional LLM inference engine out of cheap microcontrollers.</description>
+    <pubDate>2026-09-28T21:26:41Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>S3 Is the Future, S3 Is the Past</title>
-    <link>https://btrblocks.com/blog/s3_is_the_future_and_the_past/</link>
-    <guid isPermaLink="false">https://btrblocks.com/blog/s3_is_the_future_and_the_past/</guid>
-    <description>S3&#x27;s disk-era latency and per-request bandwidth shape every modern data architecture, but SSDs and fast networks have outgrown them. S3 imposes an architectural tax: caching layers, write batching, separate metadata stores like DynamoDB or FoundationDB, and full-object rewrites all work around its disk-derived constraints. Modern SSDs deliver around 100 microsecond latency and millions of IOPS near disk prices; 100+ Gbit networks add sub-100-microsecond intra-DC latency. Cloud providers will not disrupt their revenue, so engineers should build SSD-native primitives themselves. Commenters split on whether S3 is actually cheap or merely convenient, with one noting six months of S3 equals buying a 4TB SSD outright. Others argue current cloud SSD pricing still forces S3 use at big-data scale. Takeaway: Today&#x27;s S3-centric patterns are workarounds for hardware constraints that no longer exist; build storage assuming microsecond SSD latency.</description>
-    <pubDate>2026-09-25T23:58:17Z</pubDate>
-    <source>Hacker News</source>
+    <title>What makes Lisp difficult to read?</title>
+    <link>https://paultm.nl/paren-thesis</link>
+    <guid isPermaLink="false">https://paultm.nl/paren-thesis</guid>
+    <description>Cognitive science explanation for why Lisp notation strains visual parsing, relevant to language and DSL design. Lisp puts the function name between opening and closing parentheses, increasing delimiter distance. This violates Gestalt laws of proximity and closure, making parens harder to match visually. C-style notation clusters delimiters tightly and benefits from working memory limits of about four items. Commenters argue nested calls are inherently hard to read in any language, and Lisp&#x27;s perceived difficulty is largely a familiarity issue rather than a notation problem. Takeaway: Tightly clustered delimiters match better with human visual grouping than widely-separated ones.</description>
+    <pubDate>2026-09-27T23:44:02.263-05:00</pubDate>
+    <source>Lobsters</source>
   </item>
   <item>
-    <title>Fakecloud: Local AWS cloud emulator for integration tests</title>
-    <link>https://fakecloud.dev/</link>
-    <guid isPermaLink="false">https://fakecloud.dev/</guid>
-    <description>Local AWS emulator alternative to LocalStack that needs no auth or paid tier for testing real AWS client code locally. fakecloud emulates 105 AWS services and 3,932 API operations, claiming 248,557 Smithy test variants pass. It runs as a single binary or Docker image, accepts any dummy creds, and provides first-party SDKs for inspecting SES emails, SQS messages, and Lambda invocations after normal AWS SDK calls. Commenters dispute the 100 percent conformance claim, noting incomplete DynamoDB behavior, and question whether external simulators beat inline test mocking. Others raise trust concerns about anonymous authors and a curl-to-shell installer. Takeaway: When evaluating cloud emulators, verify conformance claims independently and weigh trust signals against convenient features.</description>
-    <pubDate>2026-09-26T14:25:16Z</pubDate>
-    <source>Hacker News</source>
+    <title>Don&#x27;t couple your Go code to GitHub</title>
+    <link>https://iain.rocks/blog/dont-couple-your-go-code-to-github</link>
+    <guid isPermaLink="false">https://iain.rocks/blog/dont-couple-your-go-code-to-github</guid>
+    <description>Avoids lock-in to a specific git host by keeping Go import paths independent of where code is hosted. Go&#x27;s module system uses the git hosting URL as the package namespace, so moving from GitHub to GitLab forces import path changes across your codebase. Using a custom vanity domain like go.uber.org lets you redirect imports to any git host behind the scenes without changing consumer code. Commenters warn that vanity domains introduce trust risks since a domain could serve different code to the browser than to the Go toolchain, unlike a direct github.com URL. Takeaway: Set up a custom domain for Go imports to decouple your code from any single git hosting provider.</description>
+    <pubDate>2026-09-27T15:17:42.121-05:00</pubDate>
+    <source>Lobsters</source>
   </item>
 </channel></rss>
