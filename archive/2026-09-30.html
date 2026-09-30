@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+  Generated archive snapshot for edition 2026-09-30.
+  The digest JSON is inlined below as #digest-data so this page works
+  without any fetch — the same assets/app.js reads it on boot.
+  DO NOT run .format() on this file: it contains literal LEFT-BRACE and
+  RIGHT-BRACE pairs in the embedded JSON below. Substitute only via
+  str.replace().
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Byte — 2026-09-30</title>
+<meta name="description" content="A byte-size daily digest for engineers who value depth over noise.">
+<link rel="alternate" type="application/rss+xml" title="Daily Byte" href="../rss.xml">
+<link rel="canonical" href="https://learn.shenthar.me/archive/2026-09-30.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+<link rel="stylesheet" href="../style.css?v=5">
+<script src="../assets/app.js?v=4" defer></script>
+<script type="application/json" id="digest-data">{"date": "2026-09-30", "label": "Wednesday, September 30, 2026", "edition_tag": "vol-2-no-55", "total": 6, "prev_day": "2026-09-29", "next_day": null, "editor_note": "Two systems-flavored papers anchor the edition - TLA+ refinement for a streaming protocol, and MPKs enabling cheap preemptible VMs - alongside LLM systems engineering and new policy pressure on developer infrastructure.", "lede": {"id": "pap-02", "title": "ThreadShift: Transparent Thread-Level Offloading on Transient Cloud Resources Using MPKs", "reason": "MPK-based thread offloading on preemptible cloud VMs is a concrete OS-level trick with real cost savings."}, "site": {"name": "Daily Byte", "tagline": "A byte-size daily digest for engineers who value depth over noise.", "base_url": "https://learn.shenthar.me", "repo": "https://github.com/KTS-o7/learning-portal"}, "sections": [{"name": "engineering", "label": "Engineering", "intro": "OpenAI ships APIs with concrete performance numbers and an open-source scanner, as state laws begin reshaping requirements for code hosting.", "stories": [{"id": "eng-01", "title": "OpenAI DevDay 2026 live blog", "url": "https://simonwillison.net/2026/Sep/29/openai-devday-2026-live-blog/", "source": "Simon Willison", "source_kind": "blog", "published_at": "2026-09-29T15:55:13+00:00", "summary": "OpenAI announced GPT-6.1 Sol at one-fifth Astra's cost and an Ultrafast mode at 300 tokens per second. The Decisions API returns in under a second by constraining a model to a predefined option set. Codex Security Cloud and its open-source CLI auto-generate patches with a 1 percent rollback rate after deduplication.", "why": "OpenAI shipped new APIs with concrete performance numbers, including a sub-second Decisions endpoint and an open-source security scanner.", "takeaway": "Constraining a model to a small option set yields sub-second responses, and security scanning benefits from deduplication plus adversarial patch verification.", "level": "intermediate", "minutes": 9}, {"id": "eng-02", "title": "Developer policy update: Transparency, state policy, and what’s ahead", "url": "https://github.blog/news-insights/policy-news-and-insights/developer-policy-update-transparency-state-policy-and-whats-ahead/", "source": "GitHub Blog", "source_kind": "blog", "published_at": "Tue, 29 Sep 2026 15:00:00 +0000", "summary": "GitHub received 708 government takedown requests in H1 2026 versus 98 in all of 2025, a jump driven by expanded reporting methodology rather than increased removals. California's AI Transparency Act (SB 1000) awaits the governor's signature, while follow-up bill AB 2713 could interpret code repositories as covered platforms, and several state age assurance laws risk sweeping in developer tools.", "why": "State laws on AI transparency and age assurance could impose requirements on code hosting and open source developer infrastructure.", "takeaway": "Watch AI transparency and age assurance legislation because broad platform definitions may pull code repos and dev tools into consumer-facing regulations.", "level": "intermediate", "minutes": 7}]}, {"name": "papers", "label": "Papers", "intro": "TLA+ refinement turns an ambiguous streaming protocol into a working conformance checker, and MPK-based offloading reclaims preemptible cloud VMs for unmodified apps.", "stories": [{"id": "pap-01", "title": "Designing a Producer-driven Stream Protocol by Formal Refinement", "url": "https://arxiv.org/abs/2609.33813", "source": "Erick Lavoie", "source_kind": "paper", "published_at": "Tue, 29 Sep 2026 00:00:00 -0400", "summary": "Re-derives JavaScript's push-stream protocol using TLA+ and the TLC model checker to fill gaps in its specification. The resulting protocol combines synchronous and asynchronous modules, provides flow control without bounded buffers, terminates cleanly, and avoids heap allocation. Beyond the original design, intermediate pipeline modules can close their input and output independently, and modules explicitly signal when waiting on the runtime.", "why": "Shows how TLA+ refinement clarifies an ambiguous stream protocol and yields a conformance checker for coroutine pipelines.", "takeaway": "Formal refinement can turn a vague streaming contract into a precise spec plus a checker for implementations.", "level": "advanced"}, {"id": "pap-02", "title": "ThreadShift: Transparent Thread-Level Offloading on Transient Cloud Resources Using MPKs", "url": "https://arxiv.org/abs/2609.32153", "source": "Antoine Murat et al.", "source_kind": "paper", "published_at": "Tue, 29 Sep 2026 00:00:00 -0400", "summary": "Transient (spot/preemptible) VMs are cheap but get killed, breaking long-running apps. ThreadShift offloads individual threads to these VMs and checkpoints per-thread using Memory Protection Keys to track writes and keep remote memory coherent, handling cross-thread dependencies without pausing the whole app. It checkpoints up to three orders of magnitude faster than CRIU, offloads in 164 microseconds, and cuts commodity cloud cost by up to 56%.", "why": "Lets you safely run unmodified apps on cheap preemptible cloud VMs without paying the usual checkpointing cost.", "takeaway": "Thread-grained checkpointing via MPKs makes spot instances viable for stateful Linux workloads.", "level": "advanced"}]}, {"name": "tools", "label": "Tools", "intro": "A full PS5 browser-to-kernel exploit chain lands, while a new reasoning classifier ships with a speculative decoder tuned for Gated DeltaNet layers.", "stories": [{"id": "tool-01", "title": "PS5 Relapse Exploit", "url": "https://github.com/ntfargo/Relapse-Exploit", "source": "Hacker News", "source_kind": "repo", "published_at": "2026-09-29T15:44:41Z", "summary": "PS5 exploit targets firmwares 7.00 through 13.60 with a browser stage that corrupts a typedarray through a structured clone object pool mismatch in JavaScriptCore, then escalates via an aio_multi_wait use-after-free race in the kernel for read/write access. Loaded ELF payloads are served on TCP port 9021. Maintainers warn the kernel stage can panic or hang the console.", "why": "Full browser-to-kernel exploit chain on PS5 using JSC type confusion and a kernel use-after-free race.", "takeaway": "Object pool mismatches in JS engines and use-after-free races in kernels remain viable full-chain attack surfaces.", "level": "advanced", "thread_url": "https://news.ycombinator.com/item?id=49895304"}, {"id": "tool-02", "title": "Jeeves. Reasoning improves Jev-like decision models", "url": "https://github.com/PostHog/jeeves", "source": "Hacker News", "source_kind": "repo", "published_at": "2026-09-29T11:13:54Z", "summary": "Jeeves fine-tunes Qwen3.5-9B with LoRA plus a pointer head that scores options via scaled dot-product, producing reasoning chains before classification. It uses CISPO for RL training and a block-4 diffusion drafter adapted to Gated DeltaNet layers through cross-attention on post-convolution keys and values, giving 1.6x to 1.76x speculative speedup. It hits 0.889 accuracy on out-of-domain test data versus 0.857 for Jev, running at about 0.3s without thinking and 3.3s median with thinking on one H100.", "why": "A decision classifier with reasoning plus a speculative decoder adapted to Gated DeltaNet layers, full of systems-level LLM engineering detail.", "takeaway": "Reasoning chains can be bolted onto a classifier via a pointer head, and diffusion-style speculative decoding works on gated-deltanet layers.", "level": "advanced", "thread_url": "https://news.ycombinator.com/item?id=49891290"}]}]}</script>
+</head>
+<body>
+<div class="chrome"><div class="chrome-in">
+  <div class="left">
+    <a href="../"><strong>Daily Byte</strong></a>
+    <a href="https://github.com/KTS-o7/learning-portal" target="_blank" rel="noopener">Source</a>
+    <a href="./">Archive</a>
+    <a href="../rss.xml">RSS</a>
+  </div>
+  <div class="nav"><span class="d">Loading…</span></div>
+  <div class="right"><span class="count">…</span></div>
+</div></div>
+
+<header class="mast">
+  <h1>Daily Byte<span class="dot">.</span></h1>
+  <div class="tag">A byte-size daily digest for engineers who value depth over noise.</div>
+  <div class="edition">Loading…</div>
+</header>
+
+<main>
+  <div class="loading">Loading edition 2026-09-30…</div>
+</main>
+
+<footer class="foot">
+  Curated daily by your <strong>Hermes</strong> agent ·
+  <a href="https://github.com/KTS-o7/learning-portal" target="_blank" rel="noopener">open source</a> ·
+  served from learn.shenthar.me
+  <div style="margin-top:8px"><a href="../rss.xml">Subscribe via RSS</a></div>
+</footer>
+</body>
+</html>

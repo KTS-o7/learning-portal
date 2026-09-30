@@ -2,77 +2,53 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>Three threads run through these stories: the memory bandwidth wall behind long-context LLM inference, tiny classification models replacing general LLMs in pipelines, and latency cuts from synthesis and extreme quantization.</description>
+  <description>Two systems-flavored papers anchor the edition - TLA+ refinement for a streaming protocol, and MPKs enabling cheap preemptible VMs - alongside LLM systems engineering and new policy pressure on developer infrastructure.</description>
   <item>
-    <title>Small Decisions: Engineering a Leading Model</title>
-    <link>http://brooker.co.za/blog/2026/09/28/engineering-system-one.html</link>
-    <guid isPermaLink="false">http://brooker.co.za/blog/2026/09/28/engineering-system-one.html</guid>
-    <description>Concrete systems-level walkthrough of building a small calibrated classifier with constant-time inference and measured latency on consumer GPU. Marc Brooker built a 2B-parameter classifier by stripping the text-generation head from Qwen3.5-2B and adding a small pointer head fine-tuned with rank-16 LoRA. Inference runs in one or two forward passes regardless of question count, hitting p50 100ms and p95 under 300ms on a 3090. Per-question-type temperature scaling yields a 0.009 Brier score on easy tasks, beating Qwen3.5-2B on accuracy and calibration. Takeaway: Replacing the text-generation head with a small pointer head turns an LLM into a calibrated classifier with constant-cost inference.</description>
-    <pubDate>Mon, 28 Sep 2026 00:00:00 +0000</pubDate>
-    <source>Marc Brooker</source>
-  </item>
-  <item>
-    <title>How we found 24 Android vulnerabilities using our open source AI security agent</title>
-    <link>https://github.blog/security/how-we-found-24-android-vulnerabilities-using-our-open-source-ai-security-agent/</link>
-    <guid isPermaLink="false">https://github.blog/security/how-we-found-24-android-vulnerabilities-using-our-open-source-ai-security-agent/</guid>
-    <description>Shows practical prompt-engineering patterns for guiding LLMs through structured code security audits. GitHub Security Lab&#x27;s open-source taskflow agent used guided LLM prompts to find 24 Android vulnerabilities including OsmAnd location tracking and Wikipedia account takeover. The approach splits audit work into incremental taskflows combining strict and broad prompts across multiple runs. LLMs find bugs well but misjudge severity, so human review remains essential. Takeaway: For LLM code analysis, split audits into incremental taskflows combining strict and broad prompts, then have humans review for severity.</description>
-    <pubDate>Mon, 28 Sep 2026 19:00:00 +0000</pubDate>
-    <source>GitHub Blog</source>
-  </item>
-  <item>
-    <title>Jev introduces a new shape of LLM - System One, aka Decision Models</title>
-    <link>https://simonwillison.net/2026/Sep/21/jev/</link>
-    <guid isPermaLink="false">https://simonwillison.net/2026/Sep/21/jev/</guid>
-    <description>A specialized, cheap classification-only model changes how you architect LLM pipelines for routing, ranking, and labeling. Jev is a decision model: text in, typed probabilistic scores out. It charges only input tokens at $0.042 per million, cheaper than GPT-5 Nano, and evaluates questions in parallel. Useful for classification, spam, prioritization, and BM25 reranking, but it is opaque and raises bias concerns since no reasoning is returned. Takeaway: Consider replacing expensive generative LLM calls with cheap decision-model scores wherever you only need classification or ranking.</description>
-    <pubDate>2026-09-21T23:09:20+00:00</pubDate>
+    <title>OpenAI DevDay 2026 live blog</title>
+    <link>https://simonwillison.net/2026/Sep/29/openai-devday-2026-live-blog/</link>
+    <guid isPermaLink="false">https://simonwillison.net/2026/Sep/29/openai-devday-2026-live-blog/</guid>
+    <description>OpenAI shipped new APIs with concrete performance numbers, including a sub-second Decisions endpoint and an open-source security scanner. OpenAI announced GPT-6.1 Sol at one-fifth Astra&#x27;s cost and an Ultrafast mode at 300 tokens per second. The Decisions API returns in under a second by constraining a model to a predefined option set. Codex Security Cloud and its open-source CLI auto-generate patches with a 1 percent rollback rate after deduplication. Takeaway: Constraining a model to a small option set yields sub-second responses, and security scanning benefits from deduplication plus adversarial patch verification.</description>
+    <pubDate>2026-09-29T15:55:13+00:00</pubDate>
     <source>Simon Willison</source>
   </item>
   <item>
-    <title>The KV Cache Is the New Memory Wall</title>
-    <link>https://arxiv.org/abs/2609.30854</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2609.30854</guid>
-    <description>Long-context LLM inference is bottlenecked by KV cache memory bandwidth, not compute, and this paper gives the analytical framework to reason about it. At 128k tokens, a Llama-3-70B sequence&#x27;s KV cache (42 GB) approaches its weight footprint (140 GB), shifting the bottleneck from weights to attention state. The paper derives closed-form bandwidth models for H100, B200, and MI300X predicting where KV traffic overtakes weight traffic, then evaluates five optimization categories under one protocol. Takeaway: KV optimization only helps beyond a hardware-specific crossover; below it you trade complexity for no speedup.</description>
-    <pubDate>Mon, 28 Sep 2026 00:00:00 -0400</pubDate>
-    <source>Tejinder Singh</source>
+    <title>Developer policy update: Transparency, state policy, and what’s ahead</title>
+    <link>https://github.blog/news-insights/policy-news-and-insights/developer-policy-update-transparency-state-policy-and-whats-ahead/</link>
+    <guid isPermaLink="false">https://github.blog/news-insights/policy-news-and-insights/developer-policy-update-transparency-state-policy-and-whats-ahead/</guid>
+    <description>State laws on AI transparency and age assurance could impose requirements on code hosting and open source developer infrastructure. GitHub received 708 government takedown requests in H1 2026 versus 98 in all of 2025, a jump driven by expanded reporting methodology rather than increased removals. California&#x27;s AI Transparency Act (SB 1000) awaits the governor&#x27;s signature, while follow-up bill AB 2713 could interpret code repositories as covered platforms, and several state age assurance laws risk sweeping in developer tools. Takeaway: Watch AI transparency and age assurance legislation because broad platform definitions may pull code repos and dev tools into consumer-facing regulations.</description>
+    <pubDate>Tue, 29 Sep 2026 15:00:00 +0000</pubDate>
+    <source>GitHub Blog</source>
   </item>
   <item>
-    <title>KCensus: Synthesizing Latency-Optimal Consensus Fast Paths (Extended Version)</title>
-    <link>https://arxiv.org/abs/2609.31302</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2609.31302</guid>
-    <description>Cuts consensus latency by synthesizing protocols tailored to your topology and workload. Most fast-path consensus schemes are hand-tuned for specific conditions. The authors model fast paths as mechanisms that spread knowledge about proposals, derive a condition those mechanisms must satisfy, and turn it into an optimization problem. Their framework KCensus synthesizes optimal fast paths; a geo-replicated key-value store using it achieves up to 16% lower average latency across AWS regions. Takeaway: Frame consensus fast paths as knowledge-spreading to find the best one for your setting.</description>
-    <pubDate>Mon, 28 Sep 2026 00:00:00 -0400</pubDate>
-    <source>Cl\&#x27;ement Burgelin et al.</source>
+    <title>Designing a Producer-driven Stream Protocol by Formal Refinement</title>
+    <link>https://arxiv.org/abs/2609.33813</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2609.33813</guid>
+    <description>Shows how TLA+ refinement clarifies an ambiguous stream protocol and yields a conformance checker for coroutine pipelines. Re-derives JavaScript&#x27;s push-stream protocol using TLA+ and the TLC model checker to fill gaps in its specification. The resulting protocol combines synchronous and asynchronous modules, provides flow control without bounded buffers, terminates cleanly, and avoids heap allocation. Beyond the original design, intermediate pipeline modules can close their input and output independently, and modules explicitly signal when waiting on the runtime. Takeaway: Formal refinement can turn a vague streaming contract into a precise spec plus a checker for implementations.</description>
+    <pubDate>Tue, 29 Sep 2026 00:00:00 -0400</pubDate>
+    <source>Erick Lavoie</source>
   </item>
   <item>
-    <title>Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms</title>
-    <link>https://github.com/firelex/jeff</link>
-    <guid isPermaLink="false">https://github.com/firelex/jeff</guid>
-    <description>Tiny local classifiers returning calibrated probabilities in ~25 ms, fine-tunable on one workstation GPU. Jeff fine-tunes 0.8B-2B Qwen and Gemma models for zero-shot option classification, returning calibrated probabilities in one forward pass with no text generation. Latency: 22 ms on RTX PRO 6000, 28 ms on M4 Max MLX; 0.8B trains in ~2 hours on one GPU. Overall benchmark scores approach Jev, though reasoning benchmarks lag; a domain fine-tune on ~11k examples pushed accuracy from 31.7% to 95.8%. Takeaway: For routing or intent classification at scale, a small local fine-tune can beat waiting on a large remote model.</description>
-    <pubDate>2026-09-28T20:23:36Z</pubDate>
+    <title>ThreadShift: Transparent Thread-Level Offloading on Transient Cloud Resources Using MPKs</title>
+    <link>https://arxiv.org/abs/2609.32153</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2609.32153</guid>
+    <description>Lets you safely run unmodified apps on cheap preemptible cloud VMs without paying the usual checkpointing cost. Transient (spot/preemptible) VMs are cheap but get killed, breaking long-running apps. ThreadShift offloads individual threads to these VMs and checkpoints per-thread using Memory Protection Keys to track writes and keep remote memory coherent, handling cross-thread dependencies without pausing the whole app. It checkpoints up to three orders of magnitude faster than CRIU, offloads in 164 microseconds, and cuts commodity cloud cost by up to 56%. Takeaway: Thread-grained checkpointing via MPKs makes spot instances viable for stateful Linux workloads.</description>
+    <pubDate>Tue, 29 Sep 2026 00:00:00 -0400</pubDate>
+    <source>Antoine Murat et al.</source>
+  </item>
+  <item>
+    <title>PS5 Relapse Exploit</title>
+    <link>https://github.com/ntfargo/Relapse-Exploit</link>
+    <guid isPermaLink="false">https://github.com/ntfargo/Relapse-Exploit</guid>
+    <description>Full browser-to-kernel exploit chain on PS5 using JSC type confusion and a kernel use-after-free race. PS5 exploit targets firmwares 7.00 through 13.60 with a browser stage that corrupts a typedarray through a structured clone object pool mismatch in JavaScriptCore, then escalates via an aio_multi_wait use-after-free race in the kernel for read/write access. Loaded ELF payloads are served on TCP port 9021. Maintainers warn the kernel stage can panic or hang the console. Takeaway: Object pool mismatches in JS engines and use-after-free races in kernels remain viable full-chain attack surfaces.</description>
+    <pubDate>2026-09-29T15:44:41Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>ESP32S3 cluster running 1.58-bit (BitNet) Language model</title>
-    <link>https://github.com/Low-Zi-Hong/ESP32s3-LLM-Cluster</link>
-    <guid isPermaLink="false">https://github.com/Low-Zi-Hong/ESP32s3-LLM-Cluster</guid>
-    <description>A 0.5B language model running across seven $2 microcontrollers demonstrates extreme pipeline parallelism and custom quantization in a tight distributed system. A 0.5B BitNet model with 1.58-bit ternary weights is split across 7 ESP32S3 boards: a master runs BPE tokenization and INT4 embeddings, while 6 compute nodes each handle 4 transformer blocks. Hidden states pass between boards via high-speed SPI daisy-chain, with assembly-optimized MAC operations, FP16 scaled computations, and a PSRAM-backed KV cache. Takeaway: Pipeline parallelism plus aggressive 1.58-bit quantization can make a functional LLM inference engine out of cheap microcontrollers.</description>
-    <pubDate>2026-09-28T21:26:41Z</pubDate>
+    <title>Jeeves. Reasoning improves Jev-like decision models</title>
+    <link>https://github.com/PostHog/jeeves</link>
+    <guid isPermaLink="false">https://github.com/PostHog/jeeves</guid>
+    <description>A decision classifier with reasoning plus a speculative decoder adapted to Gated DeltaNet layers, full of systems-level LLM engineering detail. Jeeves fine-tunes Qwen3.5-9B with LoRA plus a pointer head that scores options via scaled dot-product, producing reasoning chains before classification. It uses CISPO for RL training and a block-4 diffusion drafter adapted to Gated DeltaNet layers through cross-attention on post-convolution keys and values, giving 1.6x to 1.76x speculative speedup. It hits 0.889 accuracy on out-of-domain test data versus 0.857 for Jev, running at about 0.3s without thinking and 3.3s median with thinking on one H100. Takeaway: Reasoning chains can be bolted onto a classifier via a pointer head, and diffusion-style speculative decoding works on gated-deltanet layers.</description>
+    <pubDate>2026-09-29T11:13:54Z</pubDate>
     <source>Hacker News</source>
-  </item>
-  <item>
-    <title>What makes Lisp difficult to read?</title>
-    <link>https://paultm.nl/paren-thesis</link>
-    <guid isPermaLink="false">https://paultm.nl/paren-thesis</guid>
-    <description>Cognitive science explanation for why Lisp notation strains visual parsing, relevant to language and DSL design. Lisp puts the function name between opening and closing parentheses, increasing delimiter distance. This violates Gestalt laws of proximity and closure, making parens harder to match visually. C-style notation clusters delimiters tightly and benefits from working memory limits of about four items. Commenters argue nested calls are inherently hard to read in any language, and Lisp&#x27;s perceived difficulty is largely a familiarity issue rather than a notation problem. Takeaway: Tightly clustered delimiters match better with human visual grouping than widely-separated ones.</description>
-    <pubDate>2026-09-27T23:44:02.263-05:00</pubDate>
-    <source>Lobsters</source>
-  </item>
-  <item>
-    <title>Don&#x27;t couple your Go code to GitHub</title>
-    <link>https://iain.rocks/blog/dont-couple-your-go-code-to-github</link>
-    <guid isPermaLink="false">https://iain.rocks/blog/dont-couple-your-go-code-to-github</guid>
-    <description>Avoids lock-in to a specific git host by keeping Go import paths independent of where code is hosted. Go&#x27;s module system uses the git hosting URL as the package namespace, so moving from GitHub to GitLab forces import path changes across your codebase. Using a custom vanity domain like go.uber.org lets you redirect imports to any git host behind the scenes without changing consumer code. Commenters warn that vanity domains introduce trust risks since a domain could serve different code to the browser than to the Go toolchain, unlike a direct github.com URL. Takeaway: Set up a custom domain for Go imports to decouple your code from any single git hosting provider.</description>
-    <pubDate>2026-09-27T15:17:42.121-05:00</pubDate>
-    <source>Lobsters</source>
   </item>
 </channel></rss>
