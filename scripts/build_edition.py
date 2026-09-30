@@ -583,24 +583,33 @@ def main():
         if len(eng) == CAPS["engineering"]:
             break
 
+    def split(pool: list[dict], picks: list[int], cap: int, exclude=()) -> tuple[list[dict], list[dict]]:
+        """Ranked picks first, then the rest of the pool: (selected, backups)."""
+        ranked = [pool[i] for i in picks]
+        order = [x for x in ranked + [x for x in pool if x not in ranked] if x not in exclude]
+        return order[:cap], order[cap:]
+
     # Papers: last week's systems/PL/SE papers, ranked for this reader.
     pap_pool = fresh(papers)[:60]
-    picks, _ = rank(pap_pool, CAPS["papers"], "research papers")
-    pap = [pap_pool[i] for i in picks] or pap_pool[:CAPS["papers"]]
+    picks, _ = rank(pap_pool, CAPS["papers"] + 2, "research papers")
+    pap, pap_backup = split(pap_pool, picks, CAPS["papers"])
 
     # Tools: repo links on the HN front page, by points.
     hn_fresh = fresh(hn)
     tools_pool = sorted([x for x in hn_fresh if is_repo(x)], key=lambda x: x["score"], reverse=True)
-    tools = tools_pool[:CAPS["tools"]]
+    tools, tools_backup = tools_pool[:CAPS["tools"]], tools_pool[CAPS["tools"]:]
 
     # Discussions: busy HN/Lobsters threads ranked for this reader, plus one offbeat pick.
     disc_pool = [x for x in hn_fresh if not is_repo(x) and x["comments"] >= 30]
     disc_pool += [x for x in fresh(lobs) if x["comments"] >= 5]
     disc_pool.sort(key=lambda x: x["score"] + 0.5 * x["comments"], reverse=True)
     disc_pool = disc_pool[:40]
-    picks, ob = rank(disc_pool, CAPS["discussions"], "discussion threads", offbeat=True)
-    disc = [disc_pool[i] for i in picks] or disc_pool[:CAPS["discussions"]]
+    picks, ob = rank(disc_pool, CAPS["discussions"] + 2, "discussion threads", offbeat=True)
     offbeat = [disc_pool[ob]] if ob is not None else []
+    disc, disc_backup = split(disc_pool, picks, CAPS["discussions"], exclude=offbeat)
+    # When a pick can't be summarised (PDF, bot wall, JS-only page), the next backup takes its slot.
+    backups = {"engineering": [x for x in eng_pool if x not in eng], "papers": pap_backup,
+               "tools": tools_backup, "discussions": disc_backup, "offbeat": []}
 
     work = ([(x, "engineering") for x in eng] + [(x, "papers") for x in pap] + [(x, "tools") for x in tools]
             + [(x, "discussions") for x in disc] + [(x, "offbeat") for x in offbeat])
@@ -628,6 +637,21 @@ def main():
             if r:
                 done[futures[f]] = r
     enriched = [done[n] for n in sorted(done)]
+
+    # Refill dropped slots from each section's backups (a few tries per section).
+    for section, cap in CAPS.items():
+        tries = 0
+        while sum(s["section"] == section for s in enriched) < cap and backups[section] and tries < 3:
+            cand = backups[section].pop(0)
+            if section == "engineering":
+                chosen = [s for s in enriched if s["section"] == "engineering"]
+                if cand["source"] in {s["source"] for s in chosen} or (cand["vendor"] and any(s["vendor"] for s in chosen)):
+                    continue
+            tries += 1
+            print(f"  refilling {section} with: {cand['title']}", file=sys.stderr)
+            r = process(cand, section)
+            if r:
+                enriched.append(r)
 
     # Stable ids, then the editorial pass.
     counters: dict[str, int] = {}
