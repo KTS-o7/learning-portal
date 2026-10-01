@@ -2,53 +2,61 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>Two systems-flavored papers anchor the edition - TLA+ refinement for a streaming protocol, and MPKs enabling cheap preemptible VMs - alongside LLM systems engineering and new policy pressure on developer infrastructure.</description>
+  <description>Systems-level engineering shows up across the edition: merge-base and packfile work in Git, a 30-year-old C++ front-end going public, a megakernel reframing MoE training, and what formal methods can and can&#x27;t catch.</description>
   <item>
-    <title>OpenAI DevDay 2026 live blog</title>
-    <link>https://simonwillison.net/2026/Sep/29/openai-devday-2026-live-blog/</link>
-    <guid isPermaLink="false">https://simonwillison.net/2026/Sep/29/openai-devday-2026-live-blog/</guid>
-    <description>OpenAI shipped new APIs with concrete performance numbers, including a sub-second Decisions endpoint and an open-source security scanner. OpenAI announced GPT-6.1 Sol at one-fifth Astra&#x27;s cost and an Ultrafast mode at 300 tokens per second. The Decisions API returns in under a second by constraining a model to a predefined option set. Codex Security Cloud and its open-source CLI auto-generate patches with a 1 percent rollback rate after deduplication. Takeaway: Constraining a model to a small option set yields sub-second responses, and security scanning benefits from deduplication plus adversarial patch verification.</description>
-    <pubDate>2026-09-29T15:55:13+00:00</pubDate>
-    <source>Simon Willison</source>
-  </item>
-  <item>
-    <title>Developer policy update: Transparency, state policy, and what’s ahead</title>
-    <link>https://github.blog/news-insights/policy-news-and-insights/developer-policy-update-transparency-state-policy-and-whats-ahead/</link>
-    <guid isPermaLink="false">https://github.blog/news-insights/policy-news-and-insights/developer-policy-update-transparency-state-policy-and-whats-ahead/</guid>
-    <description>State laws on AI transparency and age assurance could impose requirements on code hosting and open source developer infrastructure. GitHub received 708 government takedown requests in H1 2026 versus 98 in all of 2025, a jump driven by expanded reporting methodology rather than increased removals. California&#x27;s AI Transparency Act (SB 1000) awaits the governor&#x27;s signature, while follow-up bill AB 2713 could interpret code repositories as covered platforms, and several state age assurance laws risk sweeping in developer tools. Takeaway: Watch AI transparency and age assurance legislation because broad platform definitions may pull code repos and dev tools into consumer-facing regulations.</description>
-    <pubDate>Tue, 29 Sep 2026 15:00:00 +0000</pubDate>
+    <title>Highlights from Git 2.56</title>
+    <link>https://github.blog/open-source/git/highlights-from-git-2-56/</link>
+    <guid isPermaLink="false">https://github.blog/open-source/git/highlights-from-git-2-56/</guid>
+    <description>Git 2.56 brings large-scale speedups (merge-base, packfile loading) plus safer merge-conflict staging and bitmap-friendly path-walk repacks. Git 2.56 cuts merge-base traversal by up to 70x on monorepos, with the Linux kernel v4.8/v4.9 case dropping from 167,441 steps to 3,887. Path-walk repacking now works with reachability bitmaps and delta islands, shrinking the Fluent UI pack from 558.5 MB to 164.4 MB. It also adds `git add --resolved` for safer conflict staging, compare-and-swap `git refs` subcommands, and `bisect --reset-when-found`. Takeaway: Git 2.56&#x27;s biggest wins are algorithmic: smarter merge-base termination and linear packfile loading replace quadratic bottlenecks hurting large monorepos.</description>
+    <pubDate>Mon, 28 Sep 2026 17:23:33 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
-    <title>Designing a Producer-driven Stream Protocol by Formal Refinement</title>
-    <link>https://arxiv.org/abs/2609.33813</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2609.33813</guid>
-    <description>Shows how TLA+ refinement clarifies an ambiguous stream protocol and yields a conformance checker for coroutine pipelines. Re-derives JavaScript&#x27;s push-stream protocol using TLA+ and the TLC model checker to fill gaps in its specification. The resulting protocol combines synchronous and asynchronous modules, provides flow control without bounded buffers, terminates cleanly, and avoids heap allocation. Beyond the original design, intermediate pipeline modules can close their input and output independently, and modules explicitly signal when waiting on the runtime. Takeaway: Formal refinement can turn a vague streaming contract into a precise spec plus a checker for implementations.</description>
-    <pubDate>Tue, 29 Sep 2026 00:00:00 -0400</pubDate>
-    <source>Erick Lavoie</source>
+    <title>Mixture-of-Kittens: MoE Megakernel for NVL72s</title>
+    <link>https://arxiv.org/abs/2609.36070</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2609.36070</guid>
+    <description>MoE training built for slow scale-out networks underperforms on fast single-hop GPU fabrics, and a single fused kernel regains throughput. MoK is one deterministic training kernel for Mixture-of-Experts models on Nvidia NVL72. It picks push or pull communication per operator, restructures how compute and communication overlap, and removes CPU-GPU synchronization, reaching 2.37x the best public baseline and 1.41x end-to-end across 512 GPUs. Takeaway: On fast GPU fabrics, fuse token dispatch, expert FFNs, and combine into one deterministic kernel instead of relying on scale-out style all-to-all.</description>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 -0400</pubDate>
+    <source>Stuart H. Sul et al.</source>
   </item>
   <item>
-    <title>ThreadShift: Transparent Thread-Level Offloading on Transient Cloud Resources Using MPKs</title>
-    <link>https://arxiv.org/abs/2609.32153</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2609.32153</guid>
-    <description>Lets you safely run unmodified apps on cheap preemptible cloud VMs without paying the usual checkpointing cost. Transient (spot/preemptible) VMs are cheap but get killed, breaking long-running apps. ThreadShift offloads individual threads to these VMs and checkpoints per-thread using Memory Protection Keys to track writes and keep remote memory coherent, handling cross-thread dependencies without pausing the whole app. It checkpoints up to three orders of magnitude faster than CRIU, offloads in 164 microseconds, and cuts commodity cloud cost by up to 56%. Takeaway: Thread-grained checkpointing via MPKs makes spot instances viable for stateful Linux workloads.</description>
-    <pubDate>Tue, 29 Sep 2026 00:00:00 -0400</pubDate>
-    <source>Antoine Murat et al.</source>
+    <title>Epistemic Typing as a PostgreSQL Table Access Method: Adversarial Conflict Resolution Under Confidence Forgery and Sybil Coordination</title>
+    <link>https://arxiv.org/abs/2609.36795</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2609.36795</guid>
+    <description>Postgres access method resolves conflicting writes at the heap layer using provenance type, relevant to multi-source data fusion pipelines. KNDB tags rows with an origin type (measured, inferred, or derived) and resolves conflicting field values inside Postgres heap writes rather than after. It beats a confidence-only baseline by 63 points on Book-Author fusion and 92.7 on Zheng crowdsourcing; disabling origin-type logic makes the win vanish. Against four published truth-discovery algorithms, KNDB dominates once honest-source density crosses a threshold proportional to top surface-form support. Takeaway: Encoding provenance type into storage write paths is essential for adversarial multi-source fusion, beyond confidence scoring alone.</description>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 -0400</pubDate>
+    <source>Venkata Maguluri et al.</source>
   </item>
   <item>
-    <title>PS5 Relapse Exploit</title>
-    <link>https://github.com/ntfargo/Relapse-Exploit</link>
-    <guid isPermaLink="false">https://github.com/ntfargo/Relapse-Exploit</guid>
-    <description>Full browser-to-kernel exploit chain on PS5 using JSC type confusion and a kernel use-after-free race. PS5 exploit targets firmwares 7.00 through 13.60 with a browser stage that corrupts a typedarray through a structured clone object pool mismatch in JavaScriptCore, then escalates via an aio_multi_wait use-after-free race in the kernel for read/write access. Loaded ELF payloads are served on TCP port 9021. Maintainers warn the kernel stage can panic or hang the console. Takeaway: Object pool mismatches in JS engines and use-after-free races in kernels remain viable full-chain attack surfaces.</description>
-    <pubDate>2026-09-29T15:44:41Z</pubDate>
+    <title>Launch HN: Magnitude (YC S25) – Self-optimizing inference engine for agents</title>
+    <link>https://github.com/magnitudedev/magnitude</link>
+    <guid isPermaLink="false">https://github.com/magnitudedev/magnitude</guid>
+    <description>A local LLM inference engine that JIT-compiles and autotunes for your specific hardware, beating llama.cpp on decode throughput. Magnitude is an open-source desktop inference engine that compiles and tunes its kernels on your machine before running models. Claims up to 2x faster than llama.cpp: 92% on Metal, 19% on CUDA, plus 27% lower memory per agent. Supports Apple Silicon, NVIDIA, AMD, and CPU-only, with shared prefix caches across sessions. Takeaway: Per-device kernel autotuning and shared prefix caching are practical levers for faster local LLM serving.</description>
+    <pubDate>2026-09-30T17:37:40Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Jeeves. Reasoning improves Jev-like decision models</title>
-    <link>https://github.com/PostHog/jeeves</link>
-    <guid isPermaLink="false">https://github.com/PostHog/jeeves</guid>
-    <description>A decision classifier with reasoning plus a speculative decoder adapted to Gated DeltaNet layers, full of systems-level LLM engineering detail. Jeeves fine-tunes Qwen3.5-9B with LoRA plus a pointer head that scores options via scaled dot-product, producing reasoning chains before classification. It uses CISPO for RL training and a block-4 diffusion drafter adapted to Gated DeltaNet layers through cross-attention on post-convolution keys and values, giving 1.6x to 1.76x speculative speedup. It hits 0.889 accuracy on out-of-domain test data versus 0.857 for Jev, running at about 0.3s without thinking and 3.3s median with thinking on one H100. Takeaway: Reasoning chains can be bolted onto a classifier via a pointer head, and diffusion-style speculative decoding works on gated-deltanet layers.</description>
-    <pubDate>2026-09-29T11:13:54Z</pubDate>
+    <title>EDG C++ front-end goes public</title>
+    <link>https://edgcpp.org/#transition</link>
+    <guid isPermaLink="false">https://edgcpp.org/#transition</guid>
+    <description>EDG, a production C++ front-end used for 30 years, is now open source under the C++ Alliance. On September 30, 2026, EDG&#x27;s C++ front-end source became public at github.com/edgcpp/compiler under Apache-2.0 with the LLVM exception. The C++ Alliance, which also fiscally sponsors Boost, now maintains it. Contributions flow through three tracks (community, maintenance, collectively funded features), all landing in one shared codebase with no early access. Commenters note EDG the company appears to be winding down, suggesting the open-sourcing is a stewardship change rather than a growth story; others speculate about using it for transpiling C++ to other languages. Takeaway: A battle-tested C++ front-end with three decades of history and unique compiler-emulation capabilities is now open for community development.</description>
+    <pubDate>2026-09-30T19:26:37Z</pubDate>
     <source>Hacker News</source>
+  </item>
+  <item>
+    <title>What TLA+ can and can&#x27;t check</title>
+    <link>https://buttondown.com/hillelwayne/archive/what-tla-can-and-cant-check/</link>
+    <guid isPermaLink="false">https://buttondown.com/hillelwayne/archive/what-tla-can-and-cant-check/</guid>
+    <description>Hype claims TLA+ will fix LLM-generated bugs, but it can&#x27;t express many properties people assume it can. TLA+ verifies invariants, action properties, and liveness across single behaviors. It cannot natively express multi-step properties, real time, floating point, reachability (&#x27;is P possible&#x27;), or hyperproperties that compare behaviors (like security or statistical guarantees). Workarounds exist but inflate complexity. Commenters mention Quint as better tooling, note TLA+&#x27;s weak-memory modeling gaps, criticize its awkward syntax, and argue no formal method can rescue probabilistic code generators. Takeaway: Formal methods only verify what you can phrase as logic over single behaviors; many real concerns stay out of reach.</description>
+    <pubDate>2026-09-30T13:57:06Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>The Cuckoo&#x27;s Egg</title>
+    <link>https://en.wikipedia.org/wiki/The_Cuckoo%27s_Egg_(book)</link>
+    <guid isPermaLink="false">https://en.wikipedia.org/wiki/The_Cuckoo%27s_Egg_(book)</guid>
+    <description>Astronomer-turned-sysadmin traced a 75-cent error into a KGB spy ring, inventing the first honeypot along the way. In 1986, Clifford Stoll discovered an unauthorized user at Lawrence Berkeley Lab exploiting a GNU Emacs movemail vulnerability. Over ten months, he wired 50 terminals to phone lines, traced the intruder through Tymnet to West Germany, and identified Markus Hess selling secrets to the KGB. Many military sites still had default passwords, with guest accounts needing no password. Commenters share no disagreement; they recommend a recent DefCon talk on the case and note Stoll&#x27;s later work on impossible glass geometries via Numberphile. Takeaway: A 75-cent accounting discrepancy and persistent logging exposed a multi-year espionage operation nobody else was investigating.</description>
+    <pubDate>2026-09-30T03:48:43.805-05:00</pubDate>
+    <source>Lobsters</source>
   </item>
 </channel></rss>
