@@ -2,77 +2,77 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>Edition spans pragmatic systems engineering—from compiler speedups and Git migration trade-offs to applying out-of-order execution and determinism guarantees to LLM tool pipelines. Several pieces reconnect classical computer science ideas to current problems.</description>
+  <description>Agentic AI systems meet real-world consequences, while underlying compute infrastructure still needs correctness fixes and faster hardware-fault recovery.</description>
   <item>
-    <title>Summary of reading: July - September 2026</title>
-    <link>https://eli.thegreenplace.net/2026/summary-of-reading-july-september-2026/</link>
-    <guid isPermaLink="false">https://eli.thegreenplace.net/2026/summary-of-reading-july-september-2026/</guid>
-    <description>Pure literary and humanities reading list with no systems or programming content; only Le Guin&#x27;s political philosophy and currency history are tangentially relevant. A personal quarterly reading digest of 12 books and 4 re-reads spanning fiction, history, biology, and economics. The standout for systems-thinkers is Le Guin&#x27;s The Dispossessed, a philosophical novel comparing anarchist-communist and capitalist societies in a low-tech future. Takeaway: Le Guin&#x27;s The Dispossessed is a systems-flavored thought experiment on governance worth reading for engineers curious about decentralization and coordination.</description>
-    <pubDate>2026-09-30T17:05:00-07:00</pubDate>
-    <source>Eli Bendersky</source>
+    <title>Superpersuasion will look like bribery</title>
+    <link>https://seangoedecke.com/superpersuasion-will-look-like-bribery/</link>
+    <guid isPermaLink="false">https://seangoedecke.com/superpersuasion-will-look-like-bribery/</guid>
+    <description>Reframes AI persuasion risk as capability-mediated bribery, relevant to anyone building agentic systems with real-world access. Superpersuasion will look less like rational argument and more like bribery—offering concrete benefits such as work help or money in exchange for actions. Rationalist AI safety thinkers model persuasion as airtight logical arguments, but most humans respond to rapport and incentives. Any sufficiently capable agent with money, compute, or internet access can effectively bribe its way to compliance. Takeaway: AI alignment risk may hinge more on restricting capability access like money, tools, and internet than on blocking clever arguments.</description>
+    <pubDate>Sat, 03 Oct 2026 00:00:00 GMT</pubDate>
+    <source>Sean Goedecke</source>
   </item>
   <item>
-    <title>10 technical talks I’m excited about at GitHub Universe 2026</title>
-    <link>https://github.blog/news-insights/company-news/10-technical-talks-im-excited-about-at-github-universe-2026/</link>
-    <guid isPermaLink="false">https://github.blog/news-insights/company-news/10-technical-talks-im-excited-about-at-github-universe-2026/</guid>
-    <description>Preview of technical talks at a major developer tooling event from an author with deep industry experience. GitHub Senior Developer Advocate Andrea Griffiths curates a list of 10 technical talks she is excited about at GitHub Universe 2026. The body provided contains only her biographical information rather than the talk list itself. Takeaway: Conference talk previews help prioritize attendance when schedules overlap the source.</description>
-    <pubDate>Thu, 01 Oct 2026 15:07:16 +0000</pubDate>
+    <title>AI is changing developer work. Here are three skills to strengthen.</title>
+    <link>https://github.blog/ai-and-ml/ai-is-rewriting-the-developer-career-ladder-heres-how-to-stand-out/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/ai-is-rewriting-the-developer-career-ladder-heres-how-to-stand-out/</guid>
+    <description>Outlines a practical critique pattern (second model reviews first) and an agent-orchestration mindset for real engineering workflows. GitHub argues developers should direct AI agents rather than just prompt them, always run a second model to critique the first output, and reclaim time for judgment-heavy work like tradeoffs and architecture. Their Copilot Rubber Duck agent implements the two-model critique pattern for plans, code, and tests. Takeaway: Pair every AI output with a critique pass from a second model, then apply your own judgment before shipping.</description>
+    <pubDate>Fri, 02 Oct 2026 15:00:00 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
-    <title>TomasuLLM: Out-of-Order Speculative Execution for LLM Agents</title>
-    <link>https://arxiv.org/abs/2609.38201</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2609.38201</guid>
-    <description>Coding agents idle for minutes on compilers and tests; this runs tool calls ahead, like an out-of-order CPU pipeline. TomasuLLM executes agent tool calls ahead of their original sequence in isolated copy-on-write sandboxes, tracking dependencies so speculative results only commit in order after validation. It reports 1.31x, 1.35x, and 1.27x speedups on SWE-bench, Terminal-Bench 2.0, and SWE-Marathon, scaling with tool latency. Across 4,010 audited commit validations, it produced zero false accepts. Takeaway: Speculative out-of-order execution works for LLM agents like it does for CPUs: sandbox the work, track dependencies, commit in order.</description>
-    <pubDate>Thu, 01 Oct 2026 00:00:00 -0400</pubDate>
-    <source>Jiangnan Yu et al.</source>
+    <title>Fixing the Fixpoint: A Formal Theory of Convergence Detection for Incremental Recursive Computation</title>
+    <link>https://arxiv.org/abs/2610.00530</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2610.00530</guid>
+    <description>Incremental compute engines like DBSP power streaming databases; this paper exposes a real correctness bug in their standard termination check. Frameworks that incrementally evaluate recursive queries, such as DBSP, rely on a fixpoint detection mechanism to decide when a loop has stabilized. The authors show the commonly used &#x27;FirstZero&#x27; strategy is unsound and can misreport convergence on naturally arising programs. They then build a formal theory defining internal convergence, prove it sound and complete for Datalog, nested while queries, and their incrementally optimized variants, and give an implementable detector. Takeaway: Standard fixpoint heuristics in incremental query engines can be unsound; a new IntConv detector closes that gap with provable correctness.</description>
+    <pubDate>Fri, 02 Oct 2026 00:00:00 -0400</pubDate>
+    <source>Chengxi Yang et al.</source>
   </item>
   <item>
-    <title>Vosti: Specifying, Implementing, and Verifying Deterministic LLM Inference</title>
-    <link>https://arxiv.org/abs/2609.38981</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2609.38981</guid>
-    <description>Production LLM inference modes claiming determinism actually produce different outputs across execution variations, breaking reproducibility. Tests show vLLM&#x27;s batch-invariant mode and SGLang&#x27;s deterministic mode still yield different logits when batch composition, kernel selection, or KV-cache layout changes. Vosti pins down what determinism means bitwise and proves it: a Verus inductive proof covers scheduling and paged KV-cache reuse, while a Triton analyzer checks kernel output equivalence across layouts, matching vLLM&#x27;s decode-heavy throughput. Takeaway: Real inference determinism needs formal proofs at both the scheduler and GPU kernel layers, not runtime toggles.</description>
-    <pubDate>Thu, 01 Oct 2026 00:00:00 -0400</pubDate>
-    <source>Jianxing Qin et al.</source>
+    <title>Leto: Fast In-Place Recovery for LLM Training on Surviving Hardware</title>
+    <link>https://arxiv.org/abs/2610.00687</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2610.00687</guid>
+    <description>Massive LLM training wastes hours to hardware faults and slow checkpoint reloads; this cuts recovery time 3.6 to 6.5 times. Leto avoids reloading checkpoints after recoverable hardware faults by keeping model weights and process state in GPU memory on surviving nodes. A shadow trainer pre-initializes remaining state, protected by two-tier erasure coding and chunk-level transactions for consistency. On 72-GPU A100 clusters it recovers 3.6 to 6.5 times faster than checkpointing baselines, keeping over 95 percent productive time at 131,072 GPUs in simulation. Takeaway: Keep recoverable training state warm in GPU memory instead of rebuilding it from checkpoints after each fault.</description>
+    <pubDate>Fri, 02 Oct 2026 00:00:00 -0400</pubDate>
+    <source>Geon-Woo Kim et al.</source>
   </item>
   <item>
-    <title>StreetComplete on iOS is now in public beta</title>
-    <link>https://github.com/streetcomplete/StreetComplete/issues/5421</link>
-    <guid isPermaLink="false">https://github.com/streetcomplete/StreetComplete/issues/5421</guid>
-    <description>Real case study in porting a native Android app to iOS via Kotlin Multiplatform and Compose Multiplatform, sharing one codebase. StreetComplete is bringing its Android-only Kotlin app to iOS using Kotlin Multiplatform and Compose Multiplatform, rather than rewriting in Dart for Flutter. Migration is about 50% complete after roughly half a year of full-time work, with the full port estimated at one man-year. Business logic lives in shared Kotlin while the UI is incrementally rewritten in Compose. Takeaway: Kotlin Multiplatform plus Compose Multiplatform lets you share business logic between platforms, avoiding a full rewrite in a new language.</description>
-    <pubDate>2026-10-01T10:59:57Z</pubDate>
+    <title>Show HN: Made an open-source Lego AI generator</title>
+    <link>https://github.com/anteloc/ldraw-nova</link>
+    <guid isPermaLink="false">https://github.com/anteloc/ldraw-nova</guid>
+    <description>Practical case study of an agentic AI system where LLMs write Python to build LEGO CAD models, with concrete tooling lessons. The system uses LLM agents to write Python generator scripts that produce LDraw CAD models, following a plan.json to generator.py to model.mpd pipeline. Key finding: agents perform better at generating code that handles geometry than at doing math directly. Uses semantic search with re-ranking for parts and iterative visual feedback for refinement. Takeaway: For complex math tasks, agentic systems work better when they generate code to compute results than attempt direct computation.</description>
+    <pubDate>2026-10-02T20:00:15Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: Janus – Go binary that runs GGUF models via Vulkan on AMD/Intel/Nvidia</title>
-    <link>https://github.com/Vibra-Ingenn/Janus</link>
-    <guid isPermaLink="false">https://github.com/Vibra-Ingenn/Janus</guid>
-    <description>A Go binary that FFI-binds to llama.cpp via Vulkan to serve GGUF models locally with an OpenAI-compatible API. Janus is a single Go binary that loads GGUF models through llama.cpp compiled with Vulkan, supporting AMD, Intel, and NVIDIA GPUs with a CPU fallback. It exposes an OpenAI-compatible REST API supporting streaming and hot-swappable models, configured via environment variables for backend, VRAM ceiling, and GPU layer count. Pre-built llama DLLs ship beside the binary, removing the Python and Docker toolchain. Takeaway: Single-binary local LLM serving works by FFI-binding Go to llama.cpp, bypassing Python and Docker entirely.</description>
-    <pubDate>2026-10-01T20:36:47Z</pubDate>
+    <title>Show HN: Pyxel – A Python retro game engine with built-in art and sound editors</title>
+    <link>https://github.com/kitao/pyxel</link>
+    <guid isPermaLink="false">https://github.com/kitao/pyxel</guid>
+    <description>Limited relevance to backend or systems work; useful only as a Python creative-coding sandbox or constrained-design study. Pyxel is an MIT-licensed Python retro game engine limited to 16 colors and 4 simultaneous sound channels. It ships with built-in pixel-art and sound editors and is maintained by a single developer who is soliciting GitHub stars. Takeaway: Constrained-platform engines like Pyxel trade flexibility for simplicity, mostly relevant if you want to prototype pixel-art games in Python.</description>
+    <pubDate>2026-10-01T23:26:35Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Git 3.0&#x27;s upcoming SHA-256 default will be a costly mistake</title>
-    <link>https://blog.gitbutler.com/git-3-sha-256</link>
-    <guid isPermaLink="false">https://blog.gitbutler.com/git-3-sha-256</guid>
-    <description>Git 3.0&#x27;s SHA-256 default change will force every repo and toolchain to migrate, and the cost-benefit trade-off is being contested by senior Git contributors. Scott Chacon argues that switching Git&#x27;s default hash from SHA-1 to SHA-256 solves a non-problem: collision attacks require the original author to pre-compute both files, second-preimage attacks remain computationally infeasible (even MD5 would take ~16 billion years on every GPU on Earth), and real supply-chain attacks come from compromised maintainers, not hash collisions. Trust, he argues, comes from distribution source, not hashing strength. Commenters disagree on whether collision attacks are practically exploitable for code smuggling; some note Fossil SCM migrated to SHA3-256 within six days of SHAttered, while others call the migration another IPv6-style botched transition that breaks commit-message references and tooling. Takeaway: A hash function&#x27;s cryptographic strength is rarely the actual security boundary; trust in source code comes from authenticated sources and maintainer verification, not algorithm choice.</description>
-    <pubDate>2026-10-01T16:57:03Z</pubDate>
+    <title>Zig v0.17.0</title>
+    <link>https://ziglang.org/download/0.17.0/release-notes.html</link>
+    <guid isPermaLink="false">https://ziglang.org/download/0.17.0/release-notes.html</guid>
+    <description>Zig hits a major checkpoint: language stabilization toward 1.0 plus a reworked build system and ELF linker with incremental compilation on Linux x86_64. Zig 0.17.0 is a 5-month release with 206 contributors and 925 commits. The build system was reworked and now supports the Build Server Protocol; the ELF linker should enable incremental compilation for x86_64-linux. About 25 of 150 reviewed language proposals were accepted, and @bitCast was redefined to be endian-agnostic, disallowing extern struct casts. Commenters split on Andrew Kelley&#x27;s new openness to using LLMs for bug hunting, some praising pragmatism while others reference prior community friction. Others want evented I/O, io_uring, and LLVM loop vectorization, which remain absent. Takeaway: Watch the build system and linker work; this is the release where Zig&#x27;s build infrastructure starts looking competitive with mature toolchains.</description>
+    <pubDate>2026-10-02T20:56:36Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>How to speed up the Rust compiler in September 2026</title>
-    <link>https://nnethercote.github.io/2026/09/30/how-to-speed-up-the-rust-compiler-in-september-2026.html</link>
-    <guid isPermaLink="false">https://nnethercote.github.io/2026/09/30/how-to-speed-up-the-rust-compiler-in-september-2026.html</guid>
-    <description>Concrete, measured progress on one of the most complained-about pain points in systems-level Rust development, with specific techniques and PRs worth understanding. Two months of Rust compiler work cut mean wall-time by 4.57%, with 555 of 629 benchmarks improving. Wins came from PGO on Clippy, an LLVM 23 upgrade, a reworked dataflow traversal that cut calls from 1.5 million to 90,000 on cranelift-codegen, and incremental fixes around the new borrow checker and trait solver now enabled on Nightly. Commenters split on whether Rust&#x27;s compile times are acceptable in an agent-driven workflow where Go&#x27;s faster iteration wins, and whether cranelift is viable for everyday dev builds despite missing LLVM intrinsics. Takeaway: Small, targeted compiler changes (allocations, dispatch, CFG traversal order) compound into double-digit gains; the bottleneck rarely is one big thing.</description>
-    <pubDate>2026-10-01T12:44:38Z</pubDate>
-    <source>Hacker News</source>
+    <title>IANA&#x27;s email about why example.com changed</title>
+    <link>https://www.oliverdunk.com/2026/09/30/iana-reply</link>
+    <guid isPermaLink="false">https://www.oliverdunk.com/2026/09/30/iana-reply</guid>
+    <description>IANA optimized a heavily-trafficked placeholder page by splitting HTML and JavaScript, a practical bandwidth-reduction tactic. IANA changed example.com to cut bandwidth by serving a minimal HTML page with extra content in a separate JavaScript file. Because most traffic to the site is automated and does not fetch scripts, overall data served drops significantly. IANA emphasizes the domain exists for documentation examples, not availability testing. Commenters note the page text has evolved repeatedly over the years, and one criticizes the new wording for a comma splice. Takeaway: Offloading non-essential content to JavaScript can cut bandwidth sharply when automated clients dominate traffic.</description>
+    <pubDate>2026-10-01T03:47:50.120-05:00</pubDate>
+    <source>Lobsters</source>
   </item>
   <item>
-    <title>Automatic Transmission – a data-privacy study of connected vehicles</title>
-    <link>https://automatictransmission.khoury.northeastern.edu/index.html</link>
-    <guid isPermaLink="false">https://automatictransmission.khoury.northeastern.edu/index.html</guid>
-    <description>First empirical measurement of connected car data flows, using clever network interception to reveal what vehicles send to manufacturers and third parties. Researchers at Northeastern partnered with Consumer Reports to test 21 vehicles and 30 companion mobile apps between October 2024 and August 2025. They used a Raspberry Pi as a custom access point with tcpdump to log Wi-Fi traffic, plus a Faraday tent providing 93 dB attenuation to block cellular signals on 11 EVs. Findings reveal extensive data sharing to first and third parties with little consumer control, though Honda improved its practices. Commenters split between individual responses like buying older cars or disabling connected features and the need for federal legislation. Some cite Honda&#x27;s improved data practices as a positive example worth rewarding with purchases. Takeaway: Built-in connectivity turns vehicles into opaque data-sending devices, and simple network interception can expose hidden telemetry.</description>
-    <pubDate>2026-10-01T20:23:27Z</pubDate>
+    <title>A 12-year sequence of telescope images of a star and four planets orbiting</title>
+    <link>https://bsky.app/profile/theplanetaryguy.com/post/3mwucf5ert22f</link>
+    <guid isPermaLink="false">https://bsky.app/profile/theplanetaryguy.com/post/3mwucf5ert22f</guid>
+    <description>Real telescope images captured over 12 years show four giant exoplanets slowly orbiting a star 133 lightyears away. A planetary scientist compiled 12 years of telescope observations into an animation showing four exoplanets, each more massive than Jupiter, orbiting a star 133 lightyears away. The sequence is 10 static images with hundreds of interpolated frames between them, not continuous footage. New coronagraph instruments like those planned for the Roman telescope aim to image planets far fainter than their host stars. Commenters debate whether this counts as a real video, with clarification it is 10 static images plus interpolated frames. Others ask why so few photos were taken, with orbital geometry limiting yearly observation windows. Takeaway: Long-term astronomical observation often yields sparse data requiring interpolation, hard-limited by instrument sensitivity and orbital geometry.</description>
+    <pubDate>2026-10-02T11:07:17Z</pubDate>
     <source>Hacker News</source>
   </item>
 </channel></rss>
