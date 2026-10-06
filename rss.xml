@@ -2,77 +2,53 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>Several stories dissect systems tradeoffs, from low-level code generation in Go and Rust to serving infrastructure for large language models using KV cache and tiered memory.</description>
+  <description>Several pieces probe where complexity hides at system boundaries: NVMe write paths, multi-component AI pipelines, async runtimes, and compiler backends.</description>
   <item>
-    <title>Strands Decider: Why Not an Encoder?</title>
-    <link>http://brooker.co.za/blog/2026/10/04/encoders.html</link>
-    <guid isPermaLink="false">http://brooker.co.za/blog/2026/10/04/encoders.html</guid>
-    <description>Concrete benchmark of encoder vs decoder architectures for a real classification task, with latency and compute-cost tradeoffs quantified. Brooker compared five model designs for strands-decider and found encoder-only models hit a 35ms median latency versus 65ms for the decoder, but scaled worse with prompt length due to quadratic attention costs. The decoder used 75% Gated DeltaNet layers with linear compute cost, giving a higher latency floor but better asymptotic scaling. Accuracy differences between the best encoder and decoder were within run-to-run variance. Takeaway: Pick encoder or decoder by prompt-length distribution: encoders win for short inputs, decoders with linear-cost attention for long ones.</description>
-    <pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate>
-    <source>Marc Brooker</source>
+    <title>ReviewBench: An open benchmark for AI code review</title>
+    <link>https://github.blog/ai-and-ml/github-copilot/reviewbench-an-open-benchmark-for-ai-code-review/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/reviewbench-an-open-benchmark-for-ai-code-review/</guid>
+    <description>Provides an open, reproducible way to compare AI code reviewers against your team&#x27;s review priorities before adopting one. ReviewBench is an open benchmark of 219 pull requests across 19 languages, drawn from distributions matching 103.9 million real GitHub pull requests. It builds ground truth from humans, multiple LLMs, and static analyzers, then reports grounded and augmented precision, recall, and F1, with 96.6 percent agreement from independent senior engineer re-labeling. Takeaway: Evaluate AI code review tools on offline benchmarks that track production behavior, slicing metrics by severity and category to match your workflow.</description>
+    <pubDate>Mon, 05 Oct 2026 15:59:40 +0000</pubDate>
+    <source>GitHub Blog</source>
   </item>
   <item>
-    <title>Do not build the LLM torture factory</title>
-    <link>https://seangoedecke.com/do-not-build-the-llm-torture-factory/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/do-not-build-the-llm-torture-factory/</guid>
-    <description>Steering vectors produce real behavioral changes in LLMs, so engineers building with these techniques face ethical design choices. You can extract a discomfort steering vector from an LLM and boost it, causing the model to express pain and press relief buttons. The author argues against building parallel torture farms because steering vectors demonstrably affect model behavior deeply, as shown by Golden Gate Claude, and future AI systems may remember and judge such practices. Takeaway: Boosting internal pain vectors causes measurable behavioral changes in LLMs, so building such systems is a loaded engineering decision.</description>
-    <pubDate>Fri, 02 Oct 2026 00:00:00 GMT</pubDate>
-    <source>Sean Goedecke</source>
+    <title>Compound AI System Reliability: A Failure Taxonomy and Resilience Pattern Catalog from 150 Production Incidents</title>
+    <link>https://arxiv.org/abs/2610.02503</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2610.02503</guid>
+    <description>Multi-component AI pipelines fail in systematic ways at component boundaries, and concrete defenses exist with measured effectiveness. Analysis of 150 production incidents produces a taxonomy of 23 failure modes across retrieval, generation, tool, orchestration, and integration boundaries. Circuit breakers cut cascading failures by 89%, output quality checks catch 73% of silent quality drops, component isolation reduces impact scope by 64%, and three or more patterns together cut recovery time by 71%. Takeaway: Treat multi-component AI pipelines like any distributed system: classify failure modes at boundaries, then stack circuit breakers, quality gates, and isolation.</description>
+    <pubDate>Mon, 05 Oct 2026 00:00:00 -0400</pubDate>
+    <source>Rudrendu Kumar Paul et al.</source>
   </item>
   <item>
-    <title>Arch-specific SIMD in Go</title>
-    <link>https://go.dev/blog/archsimd</link>
-    <guid isPermaLink="false">https://go.dev/blog/archsimd</guid>
-    <description>Go 1.27 adds arm64 and wasm SIMD, letting performance-critical code drop hand-written assembly on three architectures. Behind GOEXPERIMENT=simd, the new simd/archsimd package exposes architecture-specific SIMD intrinsics using method-based, human-named APIs rather than C-style names like _mm512_slli_epi64. Coverage spans AVX, AVX2, and AVX-512 on amd64, NEON on arm64 with SVE in progress, and 128-bit SIMD on wasm, with unified vector types and opaque masks. Takeaway: Go&#x27;s new archsimd package delivers first-class SIMD intrinsics with a cleaner, architecture-hiding API across three targets.</description>
-    <pubDate>2026-10-02T00:00:00+00:00</pubDate>
-    <source>Go Blog</source>
+    <title>FDP: The Data Placement Promise of Modern NVMe SSDs</title>
+    <link>https://arxiv.org/abs/2610.02676</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2610.02676</guid>
+    <description>FDP lets databases cut SSD write amplification and improve throughput without invasive changes to existing storage engines. NVMe FDP exposes Reclaim Units so the host can tell the SSD which writes share a lifetime, cutting internal write amplification (extra flash writes from on-device garbage collection) without sequential-write constraints or host-managed cleanup. FDP SSDs are shipping with normal block I/O compatibility, and MySQL and RocksDB got lower WAF plus better throughput and tail latency at high device fill. Takeaway: Map your storage engine&#x27;s data lifetimes and write patterns onto FDP&#x27;s Reclaim Units to cut SSD wear and tail latency.</description>
+    <pubDate>Mon, 05 Oct 2026 00:00:00 -0400</pubDate>
+    <source>Sijie Lan et al.</source>
   </item>
   <item>
-    <title>WAMpy: Efficient Synthesis of Prolog Programs in Python</title>
-    <link>https://arxiv.org/abs/2610.03234</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2610.03234</guid>
-    <description>You repeatedly compile and evaluate small Prolog programs from Python; this framework is tuned for that workload. WAMpy is a Python framework for synthesizing Prolog programs, built for workloads that repeatedly compile and test small candidate clauses. It lowers Prolog to NumPy-array WAM bytecode, JIT-compiles hot paths with Numba, and supports partial recompilation. In a repeated compile-and-evaluate benchmark it outperforms SWI-Prolog called from Python via Janus. Takeaway: For repeated compile-and-run Prolog loops inside Python, a specialized WAM in NumPy plus Numba beats embedding a full Prolog engine.</description>
-    <pubDate>2026-10-02T12:44:26Z</pubDate>
-    <source>Dominik Magiera et al.</source>
-  </item>
-  <item>
-    <title>Coda: Exploiting Admission Flexibility for Coding-Agent Serving</title>
-    <link>https://arxiv.org/abs/2610.03088</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2610.03088</guid>
-    <description>It attacks a practical LLM serving bottleneck: long-lived coding-agent sessions where KV cache reuse and mixed context lengths hurt throughput. Coding-agent traffic alternates between model calls and tool calls, leaving reusable key-value state across memory tiers and producing batches with mixed context lengths. Coda adds an admission layer that reorders requests by KV-state tier cost and groups attention by context-length compatibility, plus a worker router balancing state locality, load, and length fit. It is evaluated against state-of-the-art coding-agent serving systems. Takeaway: For LLM serving, when to admit and how to group requests matters as much as what runs on each GPU.</description>
-    <pubDate>2026-10-02T10:07:36Z</pubDate>
-    <source>Youhe Jiang et al.</source>
-  </item>
-  <item>
-    <title>Run Qwen 3.8 Flash Next (125B) on consumer hardware (RTX 4090) at 100T/s</title>
-    <link>https://github.com/Niko1221/Strata</link>
-    <guid isPermaLink="false">https://github.com/Niko1221/Strata</guid>
-    <description>Shows a practical systems approach to running a 125B-parameter MoE model on a 12GB GPU using tiered memory and speculative decoding. Strata runs Qwen3-8B-Flash-Next (125B params, 24,576 experts, 10 active per token) on RTX cards with as little as 12GB VRAM by tiering experts across VRAM, RAM, and SSD. It hits 60-94 tokens/s output and 1,000+ tokens/s prompt ingestion on a 12GB RTX 5070, using a small draft model that the large model verifies in parallel for a 1.6-1.8x speedup. Takeaway: MoE inference can be split across VRAM, system RAM, and SSD with speculative decoding to make 100B+ models run on consumer hardware.</description>
-    <pubDate>2026-10-04T12:51:53Z</pubDate>
+    <title>DEDA – Tracking Dots Extraction, Decoding and Anonymisation Toolkit</title>
+    <link>https://github.com/dfd-tud/deda</link>
+    <guid isPermaLink="false">https://github.com/dfd-tud/deda</guid>
+    <description>Practical Python CLI for reading and stripping the hidden tracking dots most color laser printers embed in printouts. DEDA is a pip-installable Python toolkit for extracting, decoding, and anonymising Machine Identification Code, the yellow dots almost every color laser printer adds to pages. It includes commands to parse scans, compare prints from different devices, generate fake dot patterns, and mask documents at print time using a calibration-based JSON mask. Takeaway: A ready-to-use toolchain if you need to forensic-analyse or sanitise printed documents against printer-level tracking.</description>
+    <pubDate>2026-10-04T12:09:10Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Turn off Apple Intelligence on macOS 27 and get its disk space back</title>
-    <link>https://github.com/omlahore/RemoveMacAI</link>
-    <guid isPermaLink="false">https://github.com/omlahore/RemoveMacAI</guid>
-    <description>macOS 27 buries Apple Intelligence behind scattered toggles and leaves multi-gigabyte models on disk after disabling. macOS 27 removed the single switch for Apple Intelligence and its foundation, image, and code models persist after features are turned off. RemoveMacAI applies a configuration profile, uses Apple&#x27;s asset service to delete the models, and redirects future downloads to a closed local port, all without disabling System Integrity Protection. The profile persists across OS updates and is fully reversible. Takeaway: A configuration profile plus a blackhole local port is enough to suppress an OS feature and reclaim disk without touching /System.</description>
-    <pubDate>2026-10-04T19:42:25Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Two-Stack Sliding-Window Aggregation</title>
-    <link>https://orlp.net/blog/two-stack-sliding-window-aggregation/</link>
-    <guid isPermaLink="false">https://orlp.net/blog/two-stack-sliding-window-aggregation/</guid>
-    <description>A two-stack algorithm gives amortized O(1) sliding-window aggregation for any associative function, without needing an inverse. The algorithm uses two stacks and one running aggregate to maintain a window summary in amortized O(1) time per operation. It works for any associative aggregation like min, quantile, or HyperLogLog where no inverse exists, unlike the naive deque approach that breaks on floating-point NaN. Memory is O(w) for window size w; partial aggregates are pushed onto the second stack only when the first drains. Commenters cite deamortized approaches like pkhuong&#x27;s monoid-augmented FIFOs and earlier sources like Hood and Melville&#x27;s 1981 LISP queues, arguing the algorithm&#x27;s history predates the 2011 Stack Overflow post. Takeaway: Amortized O(1) sliding-window aggregation is possible with two stacks plus any associative combine function.</description>
-    <pubDate>2026-10-03T07:39:14.892-05:00</pubDate>
+    <title>Async Rust: Where does the scheduler live?</title>
+    <link>https://herecomesthemoon.net/2026/10/async-rust-where-does-the-scheduler-live/</link>
+    <guid isPermaLink="false">https://herecomesthemoon.net/2026/10/async-rust-where-does-the-scheduler-live/</guid>
+    <description>Catalogs 25 common async Rust complaints and argues they&#x27;re inherent to concurrent programming, not Rust-specific flaws. Presents an async Rust bingo card covering scoped task trilemma, function coloring, async closures, Tokio defaultism, cancellation safety, Pin issues, and io_uring friction. The author concludes that async Rust&#x27;s need for a runtime and scheduler is unavoidable, since threads also depend on a scheduler (the kernel). Commenters find the bingo format funny and validate the point about Tokio&#x27;s &#x27;hidden runtime argument&#x27; complicating code comprehension. Takeaway: Most async Rust grievances stem from fundamental concurrency tradeoffs, not language design choices; a runtime is unavoidable.</description>
+    <pubDate>2026-10-05T13:31:29.400-05:00</pubDate>
     <source>Lobsters</source>
   </item>
   <item>
-    <title>Rust&#x27;s derive often implies inline</title>
-    <link>https://yossarian.net/til/post/rust-s-derive-often-implies-inline/</link>
-    <guid isPermaLink="false">https://yossarian.net/til/post/rust-s-derive-often-implies-inline/</guid>
-    <description>Rust&#x27;s derive(Debug) implicitly inlines, bloating binaries through deeply nested error hierarchies. Rust&#x27;s #[derive(Debug)] emits #[inline] on generated fmt functions. For deeply nested error types with many fields, this causes heavy code duplication across translation units. The uv project saved approximately 160KB by replacing the derive with a custom proc macro that uses #[inline(never)]. Commenters disagree on whether #[inline] on derived Debug is appropriate; one notes a 2023 PR added it because benchmarks improved, even when only applying it to structs of five or fewer fields. Takeaway: For large nested error enums, write a custom Debug derive using #[inline(never)] to control binary size.</description>
-    <pubDate>2026-10-03T20:41:57.843-05:00</pubDate>
+    <title>Gleam doesn&#x27;t compile to Erlang source anymore</title>
+    <link>https://gleam.run/news/gleam-doesnt-compile-to-erlang-source-anymore/</link>
+    <guid isPermaLink="false">https://gleam.run/news/gleam-doesnt-compile-to-erlang-source-anymore/</guid>
+    <description>Gleam now targets Erlang abstract forms, skipping the Erlang tokenizer and parser to cut build times and improve trace accuracy. Gleam v1.19 rewrites the Erlang code generator to emit Erlang abstract forms, an intermediate representation, instead of source. Benchmarks show much faster cold builds versus v1.17, with Gleam-Erlang faster than vanilla Erlang. Other wins: accurate Gleam-source line numbers in BEAM crash dumps, flatter JS pattern-match code, direct list-literal compilation, and TypeScript overloads preserving type parameters. Commenters question whether the benchmark reads correctly, since Gleam-to-abstract-forms appears faster than Erlang-to-abstract-forms on the same test. Others debate whether the word transpiler is actually pejorative. Takeaway: Compiling to another language&#x27;s stable intermediate representation, not its source, can outperform the source language&#x27;s own compiler.</description>
+    <pubDate>2026-10-05T12:29:17.719-05:00</pubDate>
     <source>Lobsters</source>
   </item>
 </channel></rss>

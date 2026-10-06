@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+  Generated archive snapshot for edition 2026-10-06.
+  The digest JSON is inlined below as #digest-data so this page works
+  without any fetch — the same assets/app.js reads it on boot.
+  DO NOT run .format() on this file: it contains literal LEFT-BRACE and
+  RIGHT-BRACE pairs in the embedded JSON below. Substitute only via
+  str.replace().
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Byte — 2026-10-06</title>
+<meta name="description" content="A byte-size daily digest for engineers who value depth over noise.">
+<link rel="alternate" type="application/rss+xml" title="Daily Byte" href="../rss.xml">
+<link rel="canonical" href="https://learn.shenthar.me/archive/2026-10-06.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+<link rel="stylesheet" href="../style.css?v=5">
+<script src="../assets/app.js?v=4" defer></script>
+<script type="application/json" id="digest-data">{"date": "2026-10-06", "label": "Tuesday, October 6, 2026", "edition_tag": "vol-2-no-61", "total": 6, "prev_day": "2026-10-05", "next_day": null, "editor_note": "Several pieces probe where complexity hides at system boundaries: NVMe write paths, multi-component AI pipelines, async runtimes, and compiler backends.", "lede": {"id": "pap-01", "title": "Compound AI System Reliability: A Failure Taxonomy and Resilience Pattern Catalog from 150 Production Incidents", "reason": "Catalogs 150 production failures in compound AI systems with concrete, measured resilience patterns."}, "site": {"name": "Daily Byte", "tagline": "A byte-size daily digest for engineers who value depth over noise.", "base_url": "https://learn.shenthar.me", "repo": "https://github.com/KTS-o7/learning-portal"}, "sections": [{"name": "engineering", "label": "Engineering", "intro": "ReviewBench offers an open, reproducible benchmark for comparing AI code reviewers before adoption.", "stories": [{"id": "eng-01", "title": "ReviewBench: An open benchmark for AI code review", "url": "https://github.blog/ai-and-ml/github-copilot/reviewbench-an-open-benchmark-for-ai-code-review/", "source": "GitHub Blog", "source_kind": "blog", "published_at": "Mon, 05 Oct 2026 15:59:40 +0000", "summary": "ReviewBench is an open benchmark of 219 pull requests across 19 languages, drawn from distributions matching 103.9 million real GitHub pull requests. It builds ground truth from humans, multiple LLMs, and static analyzers, then reports grounded and augmented precision, recall, and F1, with 96.6 percent agreement from independent senior engineer re-labeling.", "why": "Provides an open, reproducible way to compare AI code reviewers against your team's review priorities before adopting one.", "takeaway": "Evaluate AI code review tools on offline benchmarks that track production behavior, slicing metrics by severity and category to match your workflow.", "level": "intermediate", "minutes": 7}]}, {"name": "papers", "label": "Papers", "intro": "NVMe flexible data placement cuts SSD write amplification, and 150 production AI pipeline incidents yield a failure taxonomy.", "stories": [{"id": "pap-01", "title": "Compound AI System Reliability: A Failure Taxonomy and Resilience Pattern Catalog from 150 Production Incidents", "url": "https://arxiv.org/abs/2610.02503", "source": "Rudrendu Kumar Paul et al.", "source_kind": "paper", "published_at": "Mon, 05 Oct 2026 00:00:00 -0400", "summary": "Analysis of 150 production incidents produces a taxonomy of 23 failure modes across retrieval, generation, tool, orchestration, and integration boundaries. Circuit breakers cut cascading failures by 89%, output quality checks catch 73% of silent quality drops, component isolation reduces impact scope by 64%, and three or more patterns together cut recovery time by 71%.", "why": "Multi-component AI pipelines fail in systematic ways at component boundaries, and concrete defenses exist with measured effectiveness.", "takeaway": "Treat multi-component AI pipelines like any distributed system: classify failure modes at boundaries, then stack circuit breakers, quality gates, and isolation.", "level": "intermediate"}, {"id": "pap-02", "title": "FDP: The Data Placement Promise of Modern NVMe SSDs", "url": "https://arxiv.org/abs/2610.02676", "source": "Sijie Lan et al.", "source_kind": "paper", "published_at": "Mon, 05 Oct 2026 00:00:00 -0400", "summary": "NVMe FDP exposes Reclaim Units so the host can tell the SSD which writes share a lifetime, cutting internal write amplification (extra flash writes from on-device garbage collection) without sequential-write constraints or host-managed cleanup. FDP SSDs are shipping with normal block I/O compatibility, and MySQL and RocksDB got lower WAF plus better throughput and tail latency at high device fill.", "why": "FDP lets databases cut SSD write amplification and improve throughput without invasive changes to existing storage engines.", "takeaway": "Map your storage engine's data lifetimes and write patterns onto FDP's Reclaim Units to cut SSD wear and tail latency.", "level": "advanced"}]}, {"name": "tools", "label": "Tools", "intro": "DEDA is a Python CLI for reading and stripping the tracking dots most color laser printers embed in printouts.", "stories": [{"id": "tool-01", "title": "DEDA – Tracking Dots Extraction, Decoding and Anonymisation Toolkit", "url": "https://github.com/dfd-tud/deda", "source": "Hacker News", "source_kind": "repo", "published_at": "2026-10-04T12:09:10Z", "summary": "DEDA is a pip-installable Python toolkit for extracting, decoding, and anonymising Machine Identification Code, the yellow dots almost every color laser printer adds to pages. It includes commands to parse scans, compare prints from different devices, generate fake dot patterns, and mask documents at print time using a calibration-based JSON mask.", "why": "Practical Python CLI for reading and stripping the hidden tracking dots most color laser printers embed in printouts.", "takeaway": "A ready-to-use toolchain if you need to forensic-analyse or sanitise printed documents against printer-level tracking.", "level": "intermediate", "thread_url": "https://news.ycombinator.com/item?id=49953195"}]}, {"name": "discussions", "label": "Discussions", "intro": "Async Rust runtime design tradeoffs and Gleam's switch from Erlang source to abstract forms.", "stories": [{"id": "disc-01", "title": "Async Rust: Where does the scheduler live?", "url": "https://herecomesthemoon.net/2026/10/async-rust-where-does-the-scheduler-live/", "source": "Lobsters", "source_kind": "discussion", "published_at": "2026-10-05T13:31:29.400-05:00", "summary": "Presents an async Rust bingo card covering scoped task trilemma, function coloring, async closures, Tokio defaultism, cancellation safety, Pin issues, and io_uring friction. The author concludes that async Rust's need for a runtime and scheduler is unavoidable, since threads also depend on a scheduler (the kernel).", "why": "Catalogs 25 common async Rust complaints and argues they're inherent to concurrent programming, not Rust-specific flaws.", "takeaway": "Most async Rust grievances stem from fundamental concurrency tradeoffs, not language design choices; a runtime is unavoidable.", "debate": "Commenters find the bingo format funny and validate the point about Tokio's 'hidden runtime argument' complicating code comprehension.", "level": "advanced", "minutes": 9, "thread_url": "https://lobste.rs/s/okk4bg/async_rust_where_does_scheduler_live"}, {"id": "disc-02", "title": "Gleam doesn't compile to Erlang source anymore", "url": "https://gleam.run/news/gleam-doesnt-compile-to-erlang-source-anymore/", "source": "Lobsters", "source_kind": "discussion", "published_at": "2026-10-05T12:29:17.719-05:00", "summary": "Gleam v1.19 rewrites the Erlang code generator to emit Erlang abstract forms, an intermediate representation, instead of source. Benchmarks show much faster cold builds versus v1.17, with Gleam-Erlang faster than vanilla Erlang. Other wins: accurate Gleam-source line numbers in BEAM crash dumps, flatter JS pattern-match code, direct list-literal compilation, and TypeScript overloads preserving type parameters.", "why": "Gleam now targets Erlang abstract forms, skipping the Erlang tokenizer and parser to cut build times and improve trace accuracy.", "takeaway": "Compiling to another language's stable intermediate representation, not its source, can outperform the source language's own compiler.", "debate": "Commenters question whether the benchmark reads correctly, since Gleam-to-abstract-forms appears faster than Erlang-to-abstract-forms on the same test. Others debate whether the word transpiler is actually pejorative.", "level": "advanced", "minutes": 9, "thread_url": "https://lobste.rs/s/2svplr/gleam_doesn_t_compile_erlang_source"}]}]}</script>
+</head>
+<body>
+<div class="chrome"><div class="chrome-in">
+  <div class="left">
+    <a href="../"><strong>Daily Byte</strong></a>
+    <a href="https://github.com/KTS-o7/learning-portal" target="_blank" rel="noopener">Source</a>
+    <a href="./">Archive</a>
+    <a href="../rss.xml">RSS</a>
+  </div>
+  <div class="nav"><span class="d">Loading…</span></div>
+  <div class="right"><span class="count">…</span></div>
+</div></div>
+
+<header class="mast">
+  <h1>Daily Byte<span class="dot">.</span></h1>
+  <div class="tag">A byte-size daily digest for engineers who value depth over noise.</div>
+  <div class="edition">Loading…</div>
+</header>
+
+<main>
+  <div class="loading">Loading edition 2026-10-06…</div>
+</main>
+
+<footer class="foot">
+  Curated daily by your <strong>Hermes</strong> agent ·
+  <a href="https://github.com/KTS-o7/learning-portal" target="_blank" rel="noopener">open source</a> ·
+  served from learn.shenthar.me
+  <div style="margin-top:8px"><a href="../rss.xml">Subscribe via RSS</a></div>
+</footer>
+</body>
+</html>
