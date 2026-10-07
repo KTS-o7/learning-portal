@@ -2,53 +2,85 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>Several pieces probe where complexity hides at system boundaries: NVMe write paths, multi-component AI pipelines, async runtimes, and compiler backends.</description>
+  <description>Several pieces treat systems at their boundaries — how engineers parse code, how programs report status, how Git scales under agents, and how binaries cross architectures. The common thread is redesigning the right layer rather than patching symptoms.</description>
   <item>
-    <title>ReviewBench: An open benchmark for AI code review</title>
-    <link>https://github.blog/ai-and-ml/github-copilot/reviewbench-an-open-benchmark-for-ai-code-review/</link>
-    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/reviewbench-an-open-benchmark-for-ai-code-review/</guid>
-    <description>Provides an open, reproducible way to compare AI code reviewers against your team&#x27;s review priorities before adopting one. ReviewBench is an open benchmark of 219 pull requests across 19 languages, drawn from distributions matching 103.9 million real GitHub pull requests. It builds ground truth from humans, multiple LLMs, and static analyzers, then reports grounded and augmented precision, recall, and F1, with 96.6 percent agreement from independent senior engineer re-labeling. Takeaway: Evaluate AI code review tools on offline benchmarks that track production behavior, slicing metrics by severity and category to match your workflow.</description>
-    <pubDate>Mon, 05 Oct 2026 15:59:40 +0000</pubDate>
+    <title>How to read code</title>
+    <link>https://seangoedecke.com/how-to-read-code/</link>
+    <guid isPermaLink="false">https://seangoedecke.com/how-to-read-code/</guid>
+    <description>Most engineers read code linearly, which is slow and error-prone; this offers a faster, more reliable method for diffs and large codebases. Code is read as diffs and is structurally more complex than prose, so linear reading fails. The recommended approach is dyadic scanning: multiple out-of-order passes tracing call paths and treating unfamiliar code as black boxes, followed by a final end-to-end read. LLMs can help but cannot replace this, since their engineering values diverge from yours and they over-engineer fixes like the 3000-line diff example. Takeaway: Trace call paths out-of-order in short passes before any linear read of a diff or codebase.</description>
+    <pubDate>Wed, 07 Oct 2026 00:00:00 GMT</pubDate>
+    <source>Sean Goedecke</source>
+  </item>
+  <item>
+    <title>A Terminal Protocol for Program Status (OSC 7501)</title>
+    <link>https://mitchellh.com/writing/program-status-osc7501</link>
+    <guid isPermaLink="false">https://mitchellh.com/writing/program-status-osc7501</guid>
+    <description>A new OSC escape sequence lets programs report their own status through the pty instead of screen-scraping heuristics. Mitchell Hashimoto specified OSC 7501, a Program Status Protocol using terminal escape sequences with key=value pairs (state, app, kind, msg) for idle, working, blocked, done, or error. It supports hierarchical records, is scriptable in POSIX sh, and is already implemented in Ghostty, Rex, Terraform, Claude Code, Codex, and Homebrew. It targets agentic inboxes that currently rely on brittle screen-scraping or socket APIs. Takeaway: Programs already know their state; a standard terminal escape sequence is cleaner than screen-scraping heuristics for status reporting.</description>
+    <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+    <source>Mitchell Hashimoto</source>
+  </item>
+  <item>
+    <title>Building Git infrastructure for agent-scale development</title>
+    <link>https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/</link>
+    <guid isPermaLink="false">https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/</guid>
+    <description>A real-world distributed systems redesign showing how to decouple storage from compute and shrink coordination under massive write load. GitHub&#x27;s Spokes design ties each replica to both durability and reads, so adding read capacity slows every write. The rebuild moves authoritative data to Azure Blob Storage and serves them via lightweight compute workers that cache for reads. The coordinated step shrinks to just the reference update, delivering up to 35x write throughput in internal benchmarks. Takeaway: To scale writes, minimize the critical path to what truly needs agreement and separate durable storage from serving compute.</description>
+    <pubDate>Tue, 06 Oct 2026 20:57:56 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
-    <title>Compound AI System Reliability: A Failure Taxonomy and Resilience Pattern Catalog from 150 Production Incidents</title>
-    <link>https://arxiv.org/abs/2610.02503</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2610.02503</guid>
-    <description>Multi-component AI pipelines fail in systematic ways at component boundaries, and concrete defenses exist with measured effectiveness. Analysis of 150 production incidents produces a taxonomy of 23 failure modes across retrieval, generation, tool, orchestration, and integration boundaries. Circuit breakers cut cascading failures by 89%, output quality checks catch 73% of silent quality drops, component isolation reduces impact scope by 64%, and three or more patterns together cut recovery time by 71%. Takeaway: Treat multi-component AI pipelines like any distributed system: classify failure modes at boundaries, then stack circuit breakers, quality gates, and isolation.</description>
-    <pubDate>Mon, 05 Oct 2026 00:00:00 -0400</pubDate>
-    <source>Rudrendu Kumar Paul et al.</source>
+    <title>Characterizing Parallelism Strategies in LLM Inference: Fundamental Compute-Communication Trade-offs</title>
+    <link>https://arxiv.org/abs/2610.05305</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2610.05305</guid>
+    <description>Gives analytical models for choosing tensor, pipeline, or hybrid parallelism in LLM serving instead of relying on empirical tuning. An analytical framework models distributed LLM inference across tensor, pipeline, and hybrid parallelism by decomposing latency into compute, inter-GPU communication, and pipeline bubble overhead. It captures prefill versus decoding phase differences, explaining why pipeline parallelism favors compute-heavy prefill while tensor parallelism reduces decoding overhead. Takeaway: Use analytical latency models, not just benchmarks, to pick parallelism strategy because prefill and decoding phases favor different configurations.</description>
+    <pubDate>Tue, 06 Oct 2026 00:00:00 -0400</pubDate>
+    <source>Javad Mirzaei et al.</source>
   </item>
   <item>
-    <title>FDP: The Data Placement Promise of Modern NVMe SSDs</title>
-    <link>https://arxiv.org/abs/2610.02676</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2610.02676</guid>
-    <description>FDP lets databases cut SSD write amplification and improve throughput without invasive changes to existing storage engines. NVMe FDP exposes Reclaim Units so the host can tell the SSD which writes share a lifetime, cutting internal write amplification (extra flash writes from on-device garbage collection) without sequential-write constraints or host-managed cleanup. FDP SSDs are shipping with normal block I/O compatibility, and MySQL and RocksDB got lower WAF plus better throughput and tail latency at high device fill. Takeaway: Map your storage engine&#x27;s data lifetimes and write patterns onto FDP&#x27;s Reclaim Units to cut SSD wear and tail latency.</description>
-    <pubDate>Mon, 05 Oct 2026 00:00:00 -0400</pubDate>
-    <source>Sijie Lan et al.</source>
+    <title>AID: A Framework for AI Infrastructure Dynamics</title>
+    <link>https://arxiv.org/abs/2610.04801</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2610.04801</guid>
+    <description>Formalizes AI inference systems as a learning problem with analytical guarantees on when observations suffice to predict behavior. AID frames AI inference infrastructure as a learning problem covering coupled physical, compute, network, and serving processes. It distinguishes representations for prediction under existing policies from those preserving outcomes under changed actions, plus identification of intervention responses. Two analytical results give a lower bound on prediction error when observations cannot distinguish models and a sufficient condition for exact state reduction, accompanied by a validation protocol covering caches, workloads, measurements, and actions. Takeaway: Formal modeling of inference infrastructure yields concrete bounds on when observations fail and when state can be reduced exactly.</description>
+    <pubDate>Tue, 06 Oct 2026 00:00:00 -0400</pubDate>
+    <source>Abi Aryan</source>
   </item>
   <item>
-    <title>DEDA – Tracking Dots Extraction, Decoding and Anonymisation Toolkit</title>
-    <link>https://github.com/dfd-tud/deda</link>
-    <guid isPermaLink="false">https://github.com/dfd-tud/deda</guid>
-    <description>Practical Python CLI for reading and stripping the hidden tracking dots most color laser printers embed in printouts. DEDA is a pip-installable Python toolkit for extracting, decoding, and anonymising Machine Identification Code, the yellow dots almost every color laser printer adds to pages. It includes commands to parse scans, compare prints from different devices, generate fake dot patterns, and mask documents at print time using a calibration-based JSON mask. Takeaway: A ready-to-use toolchain if you need to forensic-analyse or sanitise printed documents against printer-level tracking.</description>
-    <pubDate>2026-10-04T12:09:10Z</pubDate>
+    <title>OpenTPU – An open-source AI accelerator, developed by AI</title>
+    <link>https://github.com/FeSens/openTPU</link>
+    <guid isPermaLink="false">https://github.com/FeSens/openTPU</guid>
+    <description>A full-stack open AI accelerator (RTL, ISA, simulator, compiler, kernel language) running real LLMs on FPGA with bit-exact sim-to-silicon match. OpenTPU is a complete open AI accelerator in one monorepo: SystemVerilog RTL, an 8-word 32-bit ISA, a Python kernel language with affine loop fusion, and a bit-exact simulator. It runs ten real models from 230M to a 35B MoE on a Kintex-7 PCIe card with DDR3, sustaining 82-94% of DRAM peak, and the simulator matches the card&#x27;s tokens bit for bit. Takeaway: An end-to-end readable accelerator, from kernel to wires, is now freely available for learning and modification.</description>
+    <pubDate>2026-10-06T16:23:25Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Async Rust: Where does the scheduler live?</title>
-    <link>https://herecomesthemoon.net/2026/10/async-rust-where-does-the-scheduler-live/</link>
-    <guid isPermaLink="false">https://herecomesthemoon.net/2026/10/async-rust-where-does-the-scheduler-live/</guid>
-    <description>Catalogs 25 common async Rust complaints and argues they&#x27;re inherent to concurrent programming, not Rust-specific flaws. Presents an async Rust bingo card covering scoped task trilemma, function coloring, async closures, Tokio defaultism, cancellation safety, Pin issues, and io_uring friction. The author concludes that async Rust&#x27;s need for a runtime and scheduler is unavoidable, since threads also depend on a scheduler (the kernel). Commenters find the bingo format funny and validate the point about Tokio&#x27;s &#x27;hidden runtime argument&#x27; complicating code comprehension. Takeaway: Most async Rust grievances stem from fundamental concurrency tradeoffs, not language design choices; a runtime is unavoidable.</description>
-    <pubDate>2026-10-05T13:31:29.400-05:00</pubDate>
+    <title>AnyPS5: Port PS5 binaries to PC without emulation (87% system libraries mapped)</title>
+    <link>https://github.com/boykopovar/AnyPS5</link>
+    <guid isPermaLink="false">https://github.com/boykopovar/AnyPS5</guid>
+    <description>It re-implements a foreign userspace ABI and relinks native ELF binaries instead of emulating, a portability technique useful beyond consoles. AnyPS5 converts PS5 executables to native Linux or Windows by relinking them against reimplemented PRX system libraries, with 87% of declared functions mapped and no emulation process. It includes a SPIR-V shader recompiler, SDL-based input mapping, and terminates via std::runtime_error on unsupported states. Takeaway: Re-implementing a target ABI plus relinking can deliver portability without an emulation runtime.</description>
+    <pubDate>2026-10-06T23:28:08Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Email Self Hosters - what are you using?</title>
+    <link>https://lobste.rs/s/rwloew/email_self_hosters_what_are_you_using</link>
+    <guid isPermaLink="false">https://lobste.rs/s/rwloew/email_self_hosters_what_are_you_using</guid>
+    <description>Surveys real-world email server stacks in 2026 and shows which combinations engineers actually trust for self-hosting. Postfix plus Dovecot plus rspamd is the default battle-tested combo, while OpenBSD users favor OpenSMTPD for its clean config. Newer unified servers Stalwart and Mox are emerging around JMAP, but the recurring complaint is IP reputation, not the software, so many relay outbound through AWS SES or SMTP2GO. Commenters split between praising the boring longevity of Postfix plus Cyrus and endorsing the modern JMAP-first Stalwart, while several argue self-hosting only stays viable with an SMTP relay to dodge residential IP blacklists. Takeaway: Choosing an MTA is easy; surviving Gmail and Outlook deliverability rules is the hard part of running your own mail.</description>
+    <pubDate>2026-10-06T03:09:53.070-05:00</pubDate>
     <source>Lobsters</source>
   </item>
   <item>
-    <title>Gleam doesn&#x27;t compile to Erlang source anymore</title>
-    <link>https://gleam.run/news/gleam-doesnt-compile-to-erlang-source-anymore/</link>
-    <guid isPermaLink="false">https://gleam.run/news/gleam-doesnt-compile-to-erlang-source-anymore/</guid>
-    <description>Gleam now targets Erlang abstract forms, skipping the Erlang tokenizer and parser to cut build times and improve trace accuracy. Gleam v1.19 rewrites the Erlang code generator to emit Erlang abstract forms, an intermediate representation, instead of source. Benchmarks show much faster cold builds versus v1.17, with Gleam-Erlang faster than vanilla Erlang. Other wins: accurate Gleam-source line numbers in BEAM crash dumps, flatter JS pattern-match code, direct list-literal compilation, and TypeScript overloads preserving type parameters. Commenters question whether the benchmark reads correctly, since Gleam-to-abstract-forms appears faster than Erlang-to-abstract-forms on the same test. Others debate whether the word transpiler is actually pejorative. Takeaway: Compiling to another language&#x27;s stable intermediate representation, not its source, can outperform the source language&#x27;s own compiler.</description>
-    <pubDate>2026-10-05T12:29:17.719-05:00</pubDate>
+    <title>Montray - a tray icon for systemd service health</title>
+    <link>https://github.com/dimonomid/montray/</link>
+    <guid isPermaLink="false">https://github.com/dimonomid/montray/</guid>
+    <description>Systemd fails services silently, and this gives you a visible tray indicator plus arbitrary CLI health checks across machines. Montray is a two-part monitor: a Go server that runs health checks (systemd units, exec commands, disk space) and reports incidents over WebSocket, plus a Rust+Slint tray UI that aggregates multiple servers. Remote machines are reached via SSH tunnels or TLS. Default config flags failing units as warnings and under 100 MiB root free as errors. A commenter worries that the rise of AI-generated code makes it easy to hide backdoors in new utilities, so installing small open-source projects like this requires extra trust scrutiny. Takeaway: For personal servers, a small Go-plus-Rust check daemon plus a tray UI is a low-overhead way to surface silent systemd failures.</description>
+    <pubDate>2026-10-06T04:07:39.717-05:00</pubDate>
     <source>Lobsters</source>
+  </item>
+  <item>
+    <title>Nobel Prize in Physics 2026: Francis Halzen</title>
+    <link>https://www.nobelprize.org/prizes/physics/2026/</link>
+    <guid isPermaLink="false">https://www.nobelprize.org/prizes/physics/2026/</guid>
+    <description>A cubic-kilometer sensor grid buried in Antarctic ice detects nearly massless ghost particles via faint light flashes. Francis Halzen won the 2026 Nobel Prize in Physics for the IceCube Neutrino Observatory, a cubic-kilometer detector at the South Pole. Neutrinos convert into charged particles that emit Cherenkov radiation, captured by sensors embedded deep in ancient ice. The project required drilling three kilometers down because shallower ice has poor optical clarity. Commenters debate the unique funding challenge when the minimum viable product itself requires drilling kilometers deep in Antarctica and costs billions up front. Takeaway: Catching the universe&#x27;s most elusive particles demanded infrastructure-scale engineering: kilometer-deep drilling, thousands of distributed sensors, and remote data processing.</description>
+    <pubDate>2026-10-06T09:48:46Z</pubDate>
+    <source>Hacker News</source>
   </item>
 </channel></rss>
