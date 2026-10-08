@@ -2,85 +2,69 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>Several pieces treat systems at their boundaries — how engineers parse code, how programs report status, how Git scales under agents, and how binaries cross architectures. The common thread is redesigning the right layer rather than patching symptoms.</description>
+  <description>Production systems under tight constraints run through this edition: tokenizer costs, push-path classifier budgets, isolation correctness, and consumer-hardware MoE inference.</description>
   <item>
-    <title>How to read code</title>
-    <link>https://seangoedecke.com/how-to-read-code/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/how-to-read-code/</guid>
-    <description>Most engineers read code linearly, which is slow and error-prone; this offers a faster, more reliable method for diffs and large codebases. Code is read as diffs and is structurally more complex than prose, so linear reading fails. The recommended approach is dyadic scanning: multiple out-of-order passes tracing call paths and treating unfamiliar code as black boxes, followed by a final end-to-end read. LLMs can help but cannot replace this, since their engineering values diverge from yours and they over-engineer fixes like the 3000-line diff example. Takeaway: Trace call paths out-of-order in short passes before any linear read of a diff or codebase.</description>
-    <pubDate>Wed, 07 Oct 2026 00:00:00 GMT</pubDate>
-    <source>Sean Goedecke</source>
+    <title>Claude Haiku 5.5</title>
+    <link>https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/</link>
+    <guid isPermaLink="false">https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/</guid>
+    <description>Real pricing structure, hidden tokenizer cost increase, and reasoning-mode latency characteristics for production API budgeting. Claude Haiku 5.5 prices at $0.10/$0.50 per million tokens up to 100K, jumping 5x above that threshold. A new tokenizer inflates token counts by ~1.25x versus Haiku 4.5, an effective price hike. Reasoning cannot be disabled, defaults to medium, and max effort on a simple SVG took over 5 minutes. Takeaway: Compare total cost including tokenizer changes and reasoning overhead, not just list prices, before switching workloads to Haiku 5.5.</description>
+    <pubDate>2026-10-07T20:56:21+00:00</pubDate>
+    <source>Simon Willison</source>
   </item>
   <item>
-    <title>A Terminal Protocol for Program Status (OSC 7501)</title>
-    <link>https://mitchellh.com/writing/program-status-osc7501</link>
-    <guid isPermaLink="false">https://mitchellh.com/writing/program-status-osc7501</guid>
-    <description>A new OSC escape sequence lets programs report their own status through the pty instead of screen-scraping heuristics. Mitchell Hashimoto specified OSC 7501, a Program Status Protocol using terminal escape sequences with key=value pairs (state, app, kind, msg) for idle, working, blocked, done, or error. It supports hierarchical records, is scriptable in POSIX sh, and is already implemented in Ghostty, Rex, Terraform, Claude Code, Codex, and Homebrew. It targets agentic inboxes that currently rely on brittle screen-scraping or socket APIs. Takeaway: Programs already know their state; a standard terminal escape sequence is cleaner than screen-scraping heuristics for status reporting.</description>
-    <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
-    <source>Mitchell Hashimoto</source>
-  </item>
-  <item>
-    <title>Building Git infrastructure for agent-scale development</title>
-    <link>https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/</link>
-    <guid isPermaLink="false">https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/</guid>
-    <description>A real-world distributed systems redesign showing how to decouple storage from compute and shrink coordination under massive write load. GitHub&#x27;s Spokes design ties each replica to both durability and reads, so adding read capacity slows every write. The rebuild moves authoritative data to Azure Blob Storage and serves them via lightweight compute workers that cache for reads. The coordinated step shrinks to just the reference update, delivering up to 35x write throughput in internal benchmarks. Takeaway: To scale writes, minimize the critical path to what truly needs agreement and separate durable storage from serving compute.</description>
-    <pubDate>Tue, 06 Oct 2026 20:57:56 +0000</pubDate>
+    <title>Secret protection must scale with software</title>
+    <link>https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/</guid>
+    <description>GitHub&#x27;s fine-tuned ModernBERT classifier blocks unstructured secrets in under 2ms on the push path, more than doubling prevention. One in three pull requests now involves an AI agent, and secrets appear in public code every two seconds. Mean time to manually revoke a leaked credential hovers around 40 days. GitHub&#x27;s new fine-tuned ModernBERT classifier evaluates candidate secrets in context in under 2ms, potentially more than doubling push-time blocks. The piece frames secret protection as a coupled constraint problem of precision, latency, throughput, and cost. Takeaway: Pushing ML onto a developer&#x27;s critical path is a coupled constraint problem: precision, latency, throughput, and cost must all be solved together.</description>
+    <pubDate>Wed, 07 Oct 2026 17:45:34 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
-    <title>Characterizing Parallelism Strategies in LLM Inference: Fundamental Compute-Communication Trade-offs</title>
-    <link>https://arxiv.org/abs/2610.05305</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2610.05305</guid>
-    <description>Gives analytical models for choosing tensor, pipeline, or hybrid parallelism in LLM serving instead of relying on empirical tuning. An analytical framework models distributed LLM inference across tensor, pipeline, and hybrid parallelism by decomposing latency into compute, inter-GPU communication, and pipeline bubble overhead. It captures prefill versus decoding phase differences, explaining why pipeline parallelism favors compute-heavy prefill while tensor parallelism reduces decoding overhead. Takeaway: Use analytical latency models, not just benchmarks, to pick parallelism strategy because prefill and decoding phases favor different configurations.</description>
-    <pubDate>Tue, 06 Oct 2026 00:00:00 -0400</pubDate>
-    <source>Javad Mirzaei et al.</source>
+    <title>Mechanizing Transactional Anomalous Patterns for Weak Isolation Levels</title>
+    <link>https://arxiv.org/abs/2610.07665</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2610.07665</guid>
+    <description>Isolation level definitions are foundational to database correctness, and this work mechanically verifies them while catching real gaps. Machine-checked formalization of weak database isolation level definitions using the Rocq proof assistant, applied to TAP-based isolation checking. The process exposed two flaws in the original pen-and-paper proofs: an underspecified transaction history model and a missed Read Atomicity violation. Fixes integrated into the Plume isolation checker. Takeaway: Pen-and-paper proofs of database isolation semantics are fallible; machine-checked verification caught gaps in a real isolation checker.</description>
+    <pubDate>Wed, 07 Oct 2026 00:00:00 -0400</pubDate>
+    <source>Long Gu et al.</source>
   </item>
   <item>
-    <title>AID: A Framework for AI Infrastructure Dynamics</title>
-    <link>https://arxiv.org/abs/2610.04801</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2610.04801</guid>
-    <description>Formalizes AI inference systems as a learning problem with analytical guarantees on when observations suffice to predict behavior. AID frames AI inference infrastructure as a learning problem covering coupled physical, compute, network, and serving processes. It distinguishes representations for prediction under existing policies from those preserving outcomes under changed actions, plus identification of intervention responses. Two analytical results give a lower bound on prediction error when observations cannot distinguish models and a sufficient condition for exact state reduction, accompanied by a validation protocol covering caches, workloads, measurements, and actions. Takeaway: Formal modeling of inference infrastructure yields concrete bounds on when observations fail and when state can be reduced exactly.</description>
-    <pubDate>Tue, 06 Oct 2026 00:00:00 -0400</pubDate>
-    <source>Abi Aryan</source>
+    <title>Cascadia: Resident 975B MoE Inference on Eleven AI PCs</title>
+    <link>https://arxiv.org/abs/2610.07219</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2610.07219</guid>
+    <description>Demonstrates splitting a 975B sparse model across 11 consumer PCs with measured throughput, latency, and long-context behavior. Eleven consumer Intel AI PCs, each holding six decoder layers in 64GB of RAM, jointly serve a 975B-parameter sparse model over gigabit ethernet using a custom OpenVINO runtime. Peak aggregate decode reaches 60.3 tokens/s at 88 concurrent streams; median first-token latency is 6.05s at 15 streams, and prompts up to 64k tokens still recover embedded code. Takeaway: Sparse-expert weights can be sharded across commodity PCs on gigabit ethernet, but first-token time scales quadratically with prompt length.</description>
+    <pubDate>Wed, 07 Oct 2026 00:00:00 -0400</pubDate>
+    <source>Tate Berenbaum (Not Community Labs Inc.) et al.</source>
   </item>
   <item>
-    <title>OpenTPU – An open-source AI accelerator, developed by AI</title>
-    <link>https://github.com/FeSens/openTPU</link>
-    <guid isPermaLink="false">https://github.com/FeSens/openTPU</guid>
-    <description>A full-stack open AI accelerator (RTL, ISA, simulator, compiler, kernel language) running real LLMs on FPGA with bit-exact sim-to-silicon match. OpenTPU is a complete open AI accelerator in one monorepo: SystemVerilog RTL, an 8-word 32-bit ISA, a Python kernel language with affine loop fusion, and a bit-exact simulator. It runs ten real models from 230M to a 35B MoE on a Kintex-7 PCIe card with DDR3, sustaining 82-94% of DRAM peak, and the simulator matches the card&#x27;s tokens bit for bit. Takeaway: An end-to-end readable accelerator, from kernel to wires, is now freely available for learning and modification.</description>
-    <pubDate>2026-10-06T16:23:25Z</pubDate>
+    <title>Docker Agent</title>
+    <link>https://github.com/docker/docker-agent</link>
+    <guid isPermaLink="false">https://github.com/docker/docker-agent</guid>
+    <description>It packages LLM agents as OCI artifacts and runs them through the Docker CLI, reusing container distribution for AI tooling. docker-agent is a Docker CLI plugin that runs AI agents defined declaratively in YAML, with MCP tool integration, multi-agent delegation, built-in RAG, and reasoning tools. Agents are packaged and distributed through any OCI registry. It supports OpenAI, Anthropic, Gemini, Bedrock, and local models via Docker Model Runner. Takeaway: Treating agent configurations as versioned, OCI-distributed YAML is a practical way to ship and share LLM workflows.</description>
+    <pubDate>2026-10-07T17:48:38Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>AnyPS5: Port PS5 binaries to PC without emulation (87% system libraries mapped)</title>
-    <link>https://github.com/boykopovar/AnyPS5</link>
-    <guid isPermaLink="false">https://github.com/boykopovar/AnyPS5</guid>
-    <description>It re-implements a foreign userspace ABI and relinks native ELF binaries instead of emulating, a portability technique useful beyond consoles. AnyPS5 converts PS5 executables to native Linux or Windows by relinking them against reimplemented PRX system libraries, with 87% of declared functions mapped and no emulation process. It includes a SPIR-V shader recompiler, SDL-based input mapping, and terminates via std::runtime_error on unsupported states. Takeaway: Re-implementing a target ABI plus relinking can deliver portability without an emulation runtime.</description>
-    <pubDate>2026-10-06T23:28:08Z</pubDate>
+    <title>Rust Port of TypeScript (Tsc)</title>
+    <link>https://github.com/pingdotgg/ts-rust</link>
+    <guid isPermaLink="false">https://github.com/pingdotgg/ts-rust</guid>
+    <description>An LLM ported a production compiler from Go to Rust in two weeks for ~$24k, beating the Go version on real projects. Using Opus 5.5, the author ported Microsoft&#x27;s TypeScript compiler from Go to Rust over about two weeks for roughly $24,000 in API spend. The Rust port passes all 181,711 Go baseline tests, matches the Go output on 120 open-source repositories, and type-checks real projects about 1.6x faster than the Go compiler on a geometric mean across six apps. Takeaway: A frontier LLM can port a large production compiler between languages in weeks for tens of thousands of dollars.</description>
+    <pubDate>2026-10-08T00:46:00Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Email Self Hosters - what are you using?</title>
-    <link>https://lobste.rs/s/rwloew/email_self_hosters_what_are_you_using</link>
-    <guid isPermaLink="false">https://lobste.rs/s/rwloew/email_self_hosters_what_are_you_using</guid>
-    <description>Surveys real-world email server stacks in 2026 and shows which combinations engineers actually trust for self-hosting. Postfix plus Dovecot plus rspamd is the default battle-tested combo, while OpenBSD users favor OpenSMTPD for its clean config. Newer unified servers Stalwart and Mox are emerging around JMAP, but the recurring complaint is IP reputation, not the software, so many relay outbound through AWS SES or SMTP2GO. Commenters split between praising the boring longevity of Postfix plus Cyrus and endorsing the modern JMAP-first Stalwart, while several argue self-hosting only stays viable with an SMTP relay to dodge residential IP blacklists. Takeaway: Choosing an MTA is easy; surviving Gmail and Outlook deliverability rules is the hard part of running your own mail.</description>
-    <pubDate>2026-10-06T03:09:53.070-05:00</pubDate>
+    <title>When Submarine Cables Go Dark: Understanding and Preparing for the Risks of Taiwan&#x27;s International Internet Disconnection</title>
+    <link>https://resilience.ocf.tw/web/report/en.html</link>
+    <guid isPermaLink="false">https://resilience.ocf.tw/web/report/en.html</guid>
+    <description>A reproducible method shows 88 percent of Taiwan&#x27;s popular websites have hidden foreign or multinational-cloud dependencies that would break under cable outages. Analysis of 2,179 Taiwan websites found 39.3 percent are foreign-dependent and 49.6 percent rely on local nodes of multinational public clouds or CDNs. Taiwan&#x27;s 14 international cables face damage 5.1 times yearly versus a global average of 0.1 to 0.2, with international cable repairs averaging 32 days. Satellites offer only Gbps-class backup, three orders of magnitude below cable capacity. Commenters are uniformly positive about the paper&#x27;s relevance, with one highlighting the smc.peering.tw cable map as a useful companion resource; no substantive disagreement emerges. Takeaway: Treat application-layer resource dependencies as a measurable graph; physical link health does not equal service reachability.</description>
+    <pubDate>2026-10-07T14:44:06.009-05:00</pubDate>
     <source>Lobsters</source>
   </item>
   <item>
-    <title>Montray - a tray icon for systemd service health</title>
-    <link>https://github.com/dimonomid/montray/</link>
-    <guid isPermaLink="false">https://github.com/dimonomid/montray/</guid>
-    <description>Systemd fails services silently, and this gives you a visible tray indicator plus arbitrary CLI health checks across machines. Montray is a two-part monitor: a Go server that runs health checks (systemd units, exec commands, disk space) and reports incidents over WebSocket, plus a Rust+Slint tray UI that aggregates multiple servers. Remote machines are reached via SSH tunnels or TLS. Default config flags failing units as warnings and under 100 MiB root free as errors. A commenter worries that the rise of AI-generated code makes it easy to hide backdoors in new utilities, so installing small open-source projects like this requires extra trust scrutiny. Takeaway: For personal servers, a small Go-plus-Rust check daemon plus a tray UI is a low-overhead way to surface silent systemd failures.</description>
-    <pubDate>2026-10-06T04:07:39.717-05:00</pubDate>
+    <title>Janet on x32: 32-bit Pointers, 64-bit Speed, 25% Less RAM</title>
+    <link>https://alexalejandre.com/programming/lisp/janet-for-the-x32-abi/</link>
+    <guid isPermaLink="false">https://alexalejandre.com/programming/lisp/janet-for-the-x32-abi/</guid>
+    <description>x32 trades 4GB address space for ~25% RAM reduction and better cache use, but distro support is eroding. Janet compiled with the Linux x32 ABI uses 32-bit pointers on 64-bit hardware, cutting memory use by 13-46% in benchmarks. Tests showed near-identical speed once proper -mx32 flags are used; the -m32 fallback halves register count and slows programs 50%. Building requires patching Janet&#x27;s value-layout headers and disabling FFI, and distros like Arch lack x32-enabled kernels entirely. Zig 0.17 ships x32 support as a fun exercise, while CHERI analysis suggests under 20% of pages hold pointers so savings are workload-dependent, and LWN reports x32 is now proposed for removal as 32-bit address space strains modern apps. Takeaway: x32 trades 4GB of address space for denser pointer-heavy heaps; the real obstacle is distro support, not performance.</description>
+    <pubDate>2026-10-06T17:26:46.902-05:00</pubDate>
     <source>Lobsters</source>
-  </item>
-  <item>
-    <title>Nobel Prize in Physics 2026: Francis Halzen</title>
-    <link>https://www.nobelprize.org/prizes/physics/2026/</link>
-    <guid isPermaLink="false">https://www.nobelprize.org/prizes/physics/2026/</guid>
-    <description>A cubic-kilometer sensor grid buried in Antarctic ice detects nearly massless ghost particles via faint light flashes. Francis Halzen won the 2026 Nobel Prize in Physics for the IceCube Neutrino Observatory, a cubic-kilometer detector at the South Pole. Neutrinos convert into charged particles that emit Cherenkov radiation, captured by sensors embedded deep in ancient ice. The project required drilling three kilometers down because shallower ice has poor optical clarity. Commenters debate the unique funding challenge when the minimum viable product itself requires drilling kilometers deep in Antarctica and costs billions up front. Takeaway: Catching the universe&#x27;s most elusive particles demanded infrastructure-scale engineering: kilometer-deep drilling, thousands of distributed sensors, and remote data processing.</description>
-    <pubDate>2026-10-06T09:48:46Z</pubDate>
-    <source>Hacker News</source>
   </item>
 </channel></rss>
