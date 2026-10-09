@@ -2,69 +2,77 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>Production systems under tight constraints run through this edition: tokenizer costs, push-path classifier budgets, isolation correctness, and consumer-hardware MoE inference.</description>
+  <description>Several stories explore efficiency under resource constraints: RDMA-pipelined vector search, kernel-level CXL emulation, tiny on-device speech recognition, and sampling-based simulation. Ducklake and Rgpu offer practical infra wins for data and GPU work.</description>
   <item>
-    <title>Claude Haiku 5.5</title>
-    <link>https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/</link>
-    <guid isPermaLink="false">https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/</guid>
-    <description>Real pricing structure, hidden tokenizer cost increase, and reasoning-mode latency characteristics for production API budgeting. Claude Haiku 5.5 prices at $0.10/$0.50 per million tokens up to 100K, jumping 5x above that threshold. A new tokenizer inflates token counts by ~1.25x versus Haiku 4.5, an effective price hike. Reasoning cannot be disabled, defaults to medium, and max effort on a simple SVG took over 5 minutes. Takeaway: Compare total cost including tokenizer changes and reasoning overhead, not just list prices, before switching workloads to Haiku 5.5.</description>
-    <pubDate>2026-10-07T20:56:21+00:00</pubDate>
-    <source>Simon Willison</source>
+    <title>Monte-Carlo simulations</title>
+    <link>https://eli.thegreenplace.net/2026/monte-carlo-simulations/</link>
+    <guid isPermaLink="false">https://eli.thegreenplace.net/2026/monte-carlo-simulations/</guid>
+    <description>Shows when sampling beats exhaustive enumeration and why mean assumptions miss variance-driven outcomes in uncertain systems. Monte Carlo uses randomness and the law of large numbers to estimate quantities hard to compute analytically. Examples include estimating pi via dart-throwing, computing that 3.23% of 12-card SET hands have no sets from 10 million samples rather than 70 trillion enumerations, and modeling retirement portfolios under uncertain returns and inflation. Sampling error drops as 1/sqrt(N), favoring Monte Carlo for high-dimensional problems. Takeaway: Sampling-based methods trade precision for tractability, but variance and sequence of inputs matter more than averages alone.</description>
+    <pubDate>2026-10-07T19:34:00-07:00</pubDate>
+    <source>Eli Bendersky</source>
   </item>
   <item>
-    <title>Secret protection must scale with software</title>
-    <link>https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/</link>
-    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/</guid>
-    <description>GitHub&#x27;s fine-tuned ModernBERT classifier blocks unstructured secrets in under 2ms on the push path, more than doubling prevention. One in three pull requests now involves an AI agent, and secrets appear in public code every two seconds. Mean time to manually revoke a leaked credential hovers around 40 days. GitHub&#x27;s new fine-tuned ModernBERT classifier evaluates candidate secrets in context in under 2ms, potentially more than doubling push-time blocks. The piece frames secret protection as a coupled constraint problem of precision, latency, throughput, and cost. Takeaway: Pushing ML onto a developer&#x27;s critical path is a coupled constraint problem: precision, latency, throughput, and cost must all be solved together.</description>
-    <pubDate>Wed, 07 Oct 2026 17:45:34 +0000</pubDate>
+    <title>How one bug bounty researcher chooses the features they investigate</title>
+    <link>https://github.blog/security/how-one-bug-bounty-researcher-chooses-the-features-they-investigate/</link>
+    <guid isPermaLink="false">https://github.blog/security/how-one-bug-bounty-researcher-chooses-the-features-they-investigate/</guid>
+    <description>A bug bounty researcher explains how they pick complex features for authorization testing, useful for engineers building access control. Researcher @vaib25vicky picks hard-to-understand GitHub features, explores them as a normal user, and watches for misuse paths, specializing in authorization and access control. GitHub restructured its bounty program around quality over quantity, offering VIP payouts up to $30,000 for critical findings. AI tools boost productivity but still require human verification. Takeaway: When auditing access control, prioritize complex features and exercise them as users would, watching for misuse paths.</description>
+    <pubDate>Thu, 08 Oct 2026 17:02:52 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
-    <title>Mechanizing Transactional Anomalous Patterns for Weak Isolation Levels</title>
-    <link>https://arxiv.org/abs/2610.07665</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2610.07665</guid>
-    <description>Isolation level definitions are foundational to database correctness, and this work mechanically verifies them while catching real gaps. Machine-checked formalization of weak database isolation level definitions using the Rocq proof assistant, applied to TAP-based isolation checking. The process exposed two flaws in the original pen-and-paper proofs: an underspecified transaction history model and a missed Read Atomicity violation. Fixes integrated into the Plume isolation checker. Takeaway: Pen-and-paper proofs of database isolation semantics are fallible; machine-checked verification caught gaps in a real isolation checker.</description>
-    <pubDate>Wed, 07 Oct 2026 00:00:00 -0400</pubDate>
-    <source>Long Gu et al.</source>
+    <title>RiftANN: Efficient Graph Traversal for Vector Search with RDMA-Based Memory Disaggregation</title>
+    <link>https://arxiv.org/abs/2610.08990</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2610.08990</guid>
+    <description>Billion-scale vector search breaks single-server RAM; RiftANN makes disaggregated-memory ANN fast via RDMA pipelining and parallel evaluation. Graph indexes for approximate nearest neighbor search exceed DRAM at billion-scale vectors. RiftANN runs graph traversal across disaggregated memory by navigating with compact vectors locally, batching one-sided remote reads, evaluating returned neighbors in parallel, and using an impact gate to advance traversal when unfinished evaluations are unlikely to matter. On SIFT, SPACEV, and DEEP at 100M vectors plus SIFT1B, it achieves 1.6x-4.3x lower latency and 1.1x-2.2x higher throughput than DistVS at matched recall. Takeaway: For memory-disaggregated search, hide remote latency with batched RDMA pipelines and speculatively advance using thresholded, impact-gated candidate updates.</description>
+    <pubDate>Thu, 08 Oct 2026 00:00:00 -0400</pubDate>
+    <source>Qi Lin et al.</source>
   </item>
   <item>
-    <title>Cascadia: Resident 975B MoE Inference on Eleven AI PCs</title>
-    <link>https://arxiv.org/abs/2610.07219</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2610.07219</guid>
-    <description>Demonstrates splitting a 975B sparse model across 11 consumer PCs with measured throughput, latency, and long-context behavior. Eleven consumer Intel AI PCs, each holding six decoder layers in 64GB of RAM, jointly serve a 975B-parameter sparse model over gigabit ethernet using a custom OpenVINO runtime. Peak aggregate decode reaches 60.3 tokens/s at 88 concurrent streams; median first-token latency is 6.05s at 15 streams, and prompts up to 64k tokens still recover embedded code. Takeaway: Sparse-expert weights can be sharded across commodity PCs on gigabit ethernet, but first-token time scales quadratically with prompt length.</description>
-    <pubDate>Wed, 07 Oct 2026 00:00:00 -0400</pubDate>
-    <source>Tate Berenbaum (Not Community Labs Inc.) et al.</source>
+    <title>CXDVirt: Low Latency Kernel Module Based CXL-SSD Emulation</title>
+    <link>https://arxiv.org/abs/2610.08899</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2610.08899</guid>
+    <description>Emulating CXL-SSDs in a kernel module avoids VM overhead, useful for anyone building or testing memory-semantic storage systems. CXL-SSDs expose flash with memory-like access and a small DRAM cache, but emulating them in a VM (Cylon) adds over 3 microseconds per cache miss, more than the NAND read itself. CXDVirt runs as a kernel module using devdax and a custom page-fault handler, cutting miss latency 1.4-1.6x (4.1x at P99.9) and scaling better under thread load. Takeaway: Kernel-level page-fault handling can emulate memory-semantic devices without paying VM exit overhead.</description>
+    <pubDate>Thu, 08 Oct 2026 00:00:00 -0400</pubDate>
+    <source>Hyunsun Chung et al.</source>
   </item>
   <item>
-    <title>Docker Agent</title>
-    <link>https://github.com/docker/docker-agent</link>
-    <guid isPermaLink="false">https://github.com/docker/docker-agent</guid>
-    <description>It packages LLM agents as OCI artifacts and runs them through the Docker CLI, reusing container distribution for AI tooling. docker-agent is a Docker CLI plugin that runs AI agents defined declaratively in YAML, with MCP tool integration, multi-agent delegation, built-in RAG, and reasoning tools. Agents are packaged and distributed through any OCI registry. It supports OpenAI, Anthropic, Gemini, Bedrock, and local models via Docker Model Runner. Takeaway: Treating agent configurations as versioned, OCI-distributed YAML is a practical way to ship and share LLM workflows.</description>
-    <pubDate>2026-10-07T17:48:38Z</pubDate>
+    <title>DuckDB Ducklake</title>
+    <link>https://github.com/duckdb/ducklake</link>
+    <guid isPermaLink="false">https://github.com/duckdb/ducklake</guid>
+    <description>Adds database features like time travel, updates, and CDC to Parquet-based lakehouse storage without proprietary formats. DuckLake is a DuckDB extension for an open lakehouse format that stores metadata in a SQL catalog (DuckDB file, PostgreSQL, or SQLite) and data in Parquet files. It supports standard SQL, updates, schema evolution, time travel via snapshot versions, change data feeds, and deletion vectors. Takeaway: Separating metadata into a SQL catalog while keeping data in Parquet enables DBMS-style features on lakehouse data.</description>
+    <pubDate>2026-10-07T17:40:23Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Rust Port of TypeScript (Tsc)</title>
-    <link>https://github.com/pingdotgg/ts-rust</link>
-    <guid isPermaLink="false">https://github.com/pingdotgg/ts-rust</guid>
-    <description>An LLM ported a production compiler from Go to Rust in two weeks for ~$24k, beating the Go version on real projects. Using Opus 5.5, the author ported Microsoft&#x27;s TypeScript compiler from Go to Rust over about two weeks for roughly $24,000 in API spend. The Rust port passes all 181,711 Go baseline tests, matches the Go output on 120 open-source repositories, and type-checks real projects about 1.6x faster than the Go compiler on a geometric mean across six apps. Takeaway: A frontier LLM can port a large production compiler between languages in weeks for tens of thousands of dollars.</description>
-    <pubDate>2026-10-08T00:46:00Z</pubDate>
+    <title>Show HN: Rgpu – a PyTorch device whose tensors live on a remote GPU</title>
+    <link>https://github.com/ymcrcat/rgpu</link>
+    <guid isPermaLink="false">https://github.com/ymcrcat/rgpu</guid>
+    <description>Lets you run PyTorch or CUDA workloads against a remote NVIDIA GPU, exposing internals of driver API remoting. rGPU offers two paths: a PyTorch device running torch ops over TCP against a remote GPU, and a CUDA shim intercepting libcuda, CUDA Runtime, cuBLAS, cuBLASLt, and cuDNN calls. Transport is plain TCP with no authentication or encryption, so users must rely on SSH tunnels and a host firewall on port 9713. Takeaway: Driver-API-level GPU remoting is feasible; the security model here is delegated entirely to SSH and firewall configuration.</description>
+    <pubDate>2026-10-07T05:15:44Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>When Submarine Cables Go Dark: Understanding and Preparing for the Risks of Taiwan&#x27;s International Internet Disconnection</title>
-    <link>https://resilience.ocf.tw/web/report/en.html</link>
-    <guid isPermaLink="false">https://resilience.ocf.tw/web/report/en.html</guid>
-    <description>A reproducible method shows 88 percent of Taiwan&#x27;s popular websites have hidden foreign or multinational-cloud dependencies that would break under cable outages. Analysis of 2,179 Taiwan websites found 39.3 percent are foreign-dependent and 49.6 percent rely on local nodes of multinational public clouds or CDNs. Taiwan&#x27;s 14 international cables face damage 5.1 times yearly versus a global average of 0.1 to 0.2, with international cable repairs averaging 32 days. Satellites offer only Gbps-class backup, three orders of magnitude below cable capacity. Commenters are uniformly positive about the paper&#x27;s relevance, with one highlighting the smc.peering.tw cable map as a useful companion resource; no substantive disagreement emerges. Takeaway: Treat application-layer resource dependencies as a measurable graph; physical link health does not equal service reachability.</description>
-    <pubDate>2026-10-07T14:44:06.009-05:00</pubDate>
+    <title>Whistle: Speech to Text in 16.9 MB</title>
+    <link>https://cactuscompute.com/blog/whistle</link>
+    <guid isPermaLink="false">https://cactuscompute.com/blog/whistle</guid>
+    <description>On-device speech recognition in a single 16.9 MB file, sharing one C++ inference engine with an LLM across 17 platforms. Whistle is a CPU-only speech-to-text model in one 16.9 MB file with no dependencies, running up to 30 s clips across 7 languages. On an M4 Pro it hits 11.1 ms time-to-first-token and 1,319 decode tokens/s, beating Whisper base (145.3 MB) on LibriSpeech, SPGISpeech, Earnings-22 and FLEURS, while sharing its encoder-decoder blocks, quantisation and C++ container with Needle. Commenters report Whistle getting stuck outputting &#x27;Thank you&#x27; as a placeholder and getting only 70/170 right versus qwen-ASR 1.7B&#x27;s 168/170, while others ask for Parakeet comparisons and live streaming output. Takeaway: A tiny on-device speech model can share a single quantised runtime with an LLM and still beat a 145 MB baseline on most benchmarks.</description>
+    <pubDate>2026-10-08T16:59:39Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>C for Rust Programmers</title>
+    <link>https://bd103.dev/blog/2026-10-07-c-for-rust-programmers/</link>
+    <guid isPermaLink="false">https://bd103.dev/blog/2026-10-07-c-for-rust-programmers/</guid>
+    <description>A Rust programmer catalogs C footguns like null-terminated strings, platform-dependent integer widths, and array decay to pointers. A Rust developer catalogs C&#x27;s surprising behaviors: booleans only became real primitives in C23, strings end with null bytes unlike Rust&#x27;s 16-byte length-tagged references, long is 64-bit on Unix but 32-bit on Windows, errors use magic integers plus errno, and arrays silently decay to pointers when passed across functions. Commenters argue these quirks stem from history and compatibility constraints, and that tools like FilC can compile C with safety exceeding Rust&#x27;s, while garbage collectors often integrate easily. Takeaway: When reading C code, use fixed-width types from stdint.h for portability and remember arrays become pointers across function boundaries.</description>
+    <pubDate>2026-10-07T09:30:05.893-05:00</pubDate>
     <source>Lobsters</source>
   </item>
   <item>
-    <title>Janet on x32: 32-bit Pointers, 64-bit Speed, 25% Less RAM</title>
-    <link>https://alexalejandre.com/programming/lisp/janet-for-the-x32-abi/</link>
-    <guid isPermaLink="false">https://alexalejandre.com/programming/lisp/janet-for-the-x32-abi/</guid>
-    <description>x32 trades 4GB address space for ~25% RAM reduction and better cache use, but distro support is eroding. Janet compiled with the Linux x32 ABI uses 32-bit pointers on 64-bit hardware, cutting memory use by 13-46% in benchmarks. Tests showed near-identical speed once proper -mx32 flags are used; the -m32 fallback halves register count and slows programs 50%. Building requires patching Janet&#x27;s value-layout headers and disabling FFI, and distros like Arch lack x32-enabled kernels entirely. Zig 0.17 ships x32 support as a fun exercise, while CHERI analysis suggests under 20% of pages hold pointers so savings are workload-dependent, and LWN reports x32 is now proposed for removal as 32-bit address space strains modern apps. Takeaway: x32 trades 4GB of address space for denser pointer-heavy heaps; the real obstacle is distro support, not performance.</description>
-    <pubDate>2026-10-06T17:26:46.902-05:00</pubDate>
-    <source>Lobsters</source>
+    <title>Archaeologists Are Reconstructing the &#x27;Invisible&#x27; Technologies of the Stone Age</title>
+    <link>https://www.smithsonianmag.com/science-nature/archaeologists-are-reconstructing-the-invisible-technologies-of-the-stone-age-from-rope-to-thread-and-twine-180989534/</link>
+    <guid isPermaLink="false">https://www.smithsonianmag.com/science-nature/archaeologists-are-reconstructing-the-invisible-technologies-of-the-stone-age-from-rope-to-thread-and-twine-180989534/</guid>
+    <description>A tool&#x27;s spiral grooves revealed a 35,000-year-old invisible technology, showing how durable artifacts can encode information about perishable systems. A 35,000-year-old ivory rod with spiral grooves turned out to be a rope-making tool, producing 16 feet of fiber in ten minutes. Stone tool wear marks suggest fiber hafting dates back 250,000 years, but organic materials rarely survive, leaving over 90 percent of daily prehistoric life invisible in the record. Commenters speculate about other lost technologies like better fabrics, waterproof clothing, and wooden tools, wondering how much actual sophistication of the Stone Age remains unknown to us. Takeaway: Durable artifacts often preserve traces of perishable technologies, so absence of evidence is not evidence of absence.</description>
+    <pubDate>2026-10-07T21:25:16Z</pubDate>
+    <source>Hacker News</source>
   </item>
 </channel></rss>
