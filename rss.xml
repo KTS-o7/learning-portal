@@ -2,77 +2,77 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>Several stories explore efficiency under resource constraints: RDMA-pipelined vector search, kernel-level CXL emulation, tiny on-device speech recognition, and sampling-based simulation. Ducklake and Rgpu offer practical infra wins for data and GPU work.</description>
+  <description>Humans stay in the loop across the stack, from voice-driven coding and screen-annotating agents to switch-assisted storage repairs, while Rust and theorem provers push language boundaries.</description>
   <item>
-    <title>Monte-Carlo simulations</title>
-    <link>https://eli.thegreenplace.net/2026/monte-carlo-simulations/</link>
-    <guid isPermaLink="false">https://eli.thegreenplace.net/2026/monte-carlo-simulations/</guid>
-    <description>Shows when sampling beats exhaustive enumeration and why mean assumptions miss variance-driven outcomes in uncertain systems. Monte Carlo uses randomness and the law of large numbers to estimate quantities hard to compute analytically. Examples include estimating pi via dart-throwing, computing that 3.23% of 12-card SET hands have no sets from 10 million samples rather than 70 trillion enumerations, and modeling retirement portfolios under uncertain returns and inflation. Sampling error drops as 1/sqrt(N), favoring Monte Carlo for high-dimensional problems. Takeaway: Sampling-based methods trade precision for tractability, but variance and sequence of inputs matter more than averages alone.</description>
-    <pubDate>2026-10-07T19:34:00-07:00</pubDate>
-    <source>Eli Bendersky</source>
+    <title>Software&#x27;s centaur age may last decades</title>
+    <link>https://seangoedecke.com/softwares-centaur-age-may-last-decades/</link>
+    <guid isPermaLink="false">https://seangoedecke.com/softwares-centaur-age-may-last-decades/</guid>
+    <description>Centaur human-AI teams likely dominate software engineering for a decade or more, giving engineers time to plan. Software engineering is in a centaur age where human-AI teams outperform either alone, likely lasting decades as in chess. After Claude Opus 4.5 (November 2025), coding agents run unsupervised but still need human review, with mistakes now about alignment rather than bugs. Engineers should lean into AI partnerships and shift their value from writing code to judging it. Takeaway: Don&#x27;t panic or quit; lean into AI partnerships and shift value from writing code to aligning AI output.</description>
+    <pubDate>Sat, 10 Oct 2026 00:00:00 GMT</pubDate>
+    <source>Sean Goedecke</source>
   </item>
   <item>
-    <title>How one bug bounty researcher chooses the features they investigate</title>
-    <link>https://github.blog/security/how-one-bug-bounty-researcher-chooses-the-features-they-investigate/</link>
-    <guid isPermaLink="false">https://github.blog/security/how-one-bug-bounty-researcher-chooses-the-features-they-investigate/</guid>
-    <description>A bug bounty researcher explains how they pick complex features for authorization testing, useful for engineers building access control. Researcher @vaib25vicky picks hard-to-understand GitHub features, explores them as a normal user, and watches for misuse paths, specializing in authorization and access control. GitHub restructured its bounty program around quality over quantity, offering VIP payouts up to $30,000 for critical findings. AI tools boost productivity but still require human verification. Takeaway: When auditing access control, prioritize complex features and exercise them as users would, watching for misuse paths.</description>
-    <pubDate>Thu, 08 Oct 2026 17:02:52 +0000</pubDate>
+    <title>A new feature for my blog, built using my voice</title>
+    <link>https://simonwillison.net/2026/Oct/9/built-using-my-voice/</link>
+    <guid isPermaLink="false">https://simonwillison.net/2026/Oct/9/built-using-my-voice/</guid>
+    <description>Demonstrates a real voice-driven AI coding workflow with concrete tradeoffs for hands-free feature development. Simon Willison built a Django Newsletters index page using ChatGPT desktop app&#x27;s voice mode with GPT-6 Astra, working against a local dev environment. A half-hour voice session while cooking produced most of the feature (model, migration, views, templates, importers), with another half hour of typing to finalize the import logic. Visual preview plus keyboard fallback made the workflow viable. Takeaway: Voice-driven coding works for broad-stroke feature building with visual preview, but typing still wins for precise edits and error messages.</description>
+    <pubDate>2026-10-09T12:54:06+00:00</pubDate>
+    <source>Simon Willison</source>
+  </item>
+  <item>
+    <title>Hack the World: Why hackathons are still the best place to learn to build</title>
+    <link>https://github.blog/developer-skills/career-growth/hack-the-world-why-hackathons-are-still-the-best-place-to-learn-to-build/</link>
+    <guid isPermaLink="false">https://github.blog/developer-skills/career-growth/hack-the-world-why-hackathons-are-still-the-best-place-to-learn-to-build/</guid>
+    <description>Mostly promotional GitHub content with anecdotes, but useful as a reminder that time-boxed building accelerates practical skills. Anecdotal piece arguing hackathons remain effective learning environments due to intense time pressure, peer collaboration, and AI tools lowering the barrier to building software. One example shows Copilot generating a frontend with news-API integration in 30 minutes. Otherwise light on technical depth and tied to GitHub promotional offers like the Student Developer Pack. Takeaway: Time-boxed, peer-driven build sessions with AI assistance can compress practical learning faster than solo study for some developers.</description>
+    <pubDate>Fri, 09 Oct 2026 16:00:00 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
-    <title>RiftANN: Efficient Graph Traversal for Vector Search with RDMA-Based Memory Disaggregation</title>
-    <link>https://arxiv.org/abs/2610.08990</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2610.08990</guid>
-    <description>Billion-scale vector search breaks single-server RAM; RiftANN makes disaggregated-memory ANN fast via RDMA pipelining and parallel evaluation. Graph indexes for approximate nearest neighbor search exceed DRAM at billion-scale vectors. RiftANN runs graph traversal across disaggregated memory by navigating with compact vectors locally, batching one-sided remote reads, evaluating returned neighbors in parallel, and using an impact gate to advance traversal when unfinished evaluations are unlikely to matter. On SIFT, SPACEV, and DEEP at 100M vectors plus SIFT1B, it achieves 1.6x-4.3x lower latency and 1.1x-2.2x higher throughput than DistVS at matched recall. Takeaway: For memory-disaggregated search, hide remote latency with batched RDMA pipelines and speculatively advance using thresholded, impact-gated candidate updates.</description>
-    <pubDate>Thu, 08 Oct 2026 00:00:00 -0400</pubDate>
-    <source>Qi Lin et al.</source>
+    <title>IAPRepair: In-Network Aggregation Enhanced Proactive Repair for Erasure-Coded Storage System</title>
+    <link>https://arxiv.org/abs/2610.11114</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2610.11114</guid>
+    <description>Erasure-coded storage repairs are bandwidth-bound; co-designing migration with switch-side aggregation cuts repair time by nearly half. Repairing erasure-coded stores pulls large amounts of cross-node data and stalls at slow receivers. IAPRepair batches repairs, picks providers and replacements by transmission load, schedules migration around leftover receive capacity, and aggregates blocks on a Tofino switch only when needed. Tested on 16 nodes and in simulation, it finishes at least 47.83% faster than the prior best method. Takeaway: Co-designing repair batches, provider selection, and switch-side aggregation makes proactive erasure-coded repair substantially faster.</description>
+    <pubDate>Fri, 09 Oct 2026 00:00:00 -0400</pubDate>
+    <source>Lei Liu et al.</source>
   </item>
   <item>
-    <title>CXDVirt: Low Latency Kernel Module Based CXL-SSD Emulation</title>
-    <link>https://arxiv.org/abs/2610.08899</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2610.08899</guid>
-    <description>Emulating CXL-SSDs in a kernel module avoids VM overhead, useful for anyone building or testing memory-semantic storage systems. CXL-SSDs expose flash with memory-like access and a small DRAM cache, but emulating them in a VM (Cylon) adds over 3 microseconds per cache miss, more than the NAND read itself. CXDVirt runs as a kernel module using devdax and a custom page-fault handler, cutting miss latency 1.4-1.6x (4.1x at P99.9) and scaling better under thread load. Takeaway: Kernel-level page-fault handling can emulate memory-semantic devices without paying VM exit overhead.</description>
-    <pubDate>Thu, 08 Oct 2026 00:00:00 -0400</pubDate>
-    <source>Hyunsun Chung et al.</source>
+    <title>Should Your Database Systems Use Hardware-Assisted Memory Safety Extensions in Production?</title>
+    <link>https://arxiv.org/abs/2610.11525</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2610.11525</guid>
+    <description>Memory bugs in production C/C++ databases like Redis, MySQL, and SQLite persist; hardware extensions like MTE and CHERI aim to catch them. Database systems written in unsafe languages still ship memory bugs despite better testing. The paper benchmarks Arm MTE and CHERI across data structures (B+Tree, hash table, skip list) and full systems including Redis, SQLite, MySQL, DuckDB, and LevelDB, measuring safety, performance overhead, and portability. Takeaway: Hardware memory tagging can catch memory bugs in production databases but forces tradeoffs between safety guarantees, runtime cost, and architectural portability.</description>
+    <pubDate>Fri, 09 Oct 2026 00:00:00 -0400</pubDate>
+    <source>Ilya Meignan--Masson et al.</source>
   </item>
   <item>
-    <title>DuckDB Ducklake</title>
-    <link>https://github.com/duckdb/ducklake</link>
-    <guid isPermaLink="false">https://github.com/duckdb/ducklake</guid>
-    <description>Adds database features like time travel, updates, and CDC to Parquet-based lakehouse storage without proprietary formats. DuckLake is a DuckDB extension for an open lakehouse format that stores metadata in a SQL catalog (DuckDB file, PostgreSQL, or SQLite) and data in Parquet files. It supports standard SQL, updates, schema evolution, time travel via snapshot versions, change data feeds, and deletion vectors. Takeaway: Separating metadata into a SQL catalog while keeping data in Parquet enables DBMS-style features on lakehouse data.</description>
-    <pubDate>2026-10-07T17:40:23Z</pubDate>
+    <title>Show HN: Let your AI agents paint big arrows, boxes and text on your screen</title>
+    <link>https://github.com/franzenzenhofer/big-arrow-on-the-screen</link>
+    <guid isPermaLink="false">https://github.com/franzenzenhofer/big-arrow-on-the-screen</guid>
+    <description>A pragmatic tool that lets LLM agents offload UI steps to humans via overlay annotations without taking focus. bigarrow is a Swift macOS CLI plus a Claude Code and Codex skill that draws transparent arrows, boxes, and copyable text above every window. Drawing needs no permission and never steals keyboard focus; finding targets needs Accessibility on the calling app. Core Animation does rendering on the render server, so a pulsing arrow costs about 1.4% CPU. Takeaway: For LLM agents that need human input on UI steps, a click-through overlay at screen-saver level beats automating the click.</description>
+    <pubDate>2026-10-09T11:03:48Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: Rgpu – a PyTorch device whose tensors live on a remote GPU</title>
-    <link>https://github.com/ymcrcat/rgpu</link>
-    <guid isPermaLink="false">https://github.com/ymcrcat/rgpu</guid>
-    <description>Lets you run PyTorch or CUDA workloads against a remote NVIDIA GPU, exposing internals of driver API remoting. rGPU offers two paths: a PyTorch device running torch ops over TCP against a remote GPU, and a CUDA shim intercepting libcuda, CUDA Runtime, cuBLAS, cuBLASLt, and cuDNN calls. Transport is plain TCP with no authentication or encryption, so users must rely on SSH tunnels and a host firewall on port 9713. Takeaway: Driver-API-level GPU remoting is feasible; the security model here is delegated entirely to SSH and firewall configuration.</description>
-    <pubDate>2026-10-07T05:15:44Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>Whistle: Speech to Text in 16.9 MB</title>
-    <link>https://cactuscompute.com/blog/whistle</link>
-    <guid isPermaLink="false">https://cactuscompute.com/blog/whistle</guid>
-    <description>On-device speech recognition in a single 16.9 MB file, sharing one C++ inference engine with an LLM across 17 platforms. Whistle is a CPU-only speech-to-text model in one 16.9 MB file with no dependencies, running up to 30 s clips across 7 languages. On an M4 Pro it hits 11.1 ms time-to-first-token and 1,319 decode tokens/s, beating Whisper base (145.3 MB) on LibriSpeech, SPGISpeech, Earnings-22 and FLEURS, while sharing its encoder-decoder blocks, quantisation and C++ container with Needle. Commenters report Whistle getting stuck outputting &#x27;Thank you&#x27; as a placeholder and getting only 70/170 right versus qwen-ASR 1.7B&#x27;s 168/170, while others ask for Parakeet comparisons and live streaming output. Takeaway: A tiny on-device speech model can share a single quantised runtime with an LLM and still beat a 145 MB baseline on most benchmarks.</description>
-    <pubDate>2026-10-08T16:59:39Z</pubDate>
-    <source>Hacker News</source>
-  </item>
-  <item>
-    <title>C for Rust Programmers</title>
-    <link>https://bd103.dev/blog/2026-10-07-c-for-rust-programmers/</link>
-    <guid isPermaLink="false">https://bd103.dev/blog/2026-10-07-c-for-rust-programmers/</guid>
-    <description>A Rust programmer catalogs C footguns like null-terminated strings, platform-dependent integer widths, and array decay to pointers. A Rust developer catalogs C&#x27;s surprising behaviors: booleans only became real primitives in C23, strings end with null bytes unlike Rust&#x27;s 16-byte length-tagged references, long is 64-bit on Unix but 32-bit on Windows, errors use magic integers plus errno, and arrays silently decay to pointers when passed across functions. Commenters argue these quirks stem from history and compatibility constraints, and that tools like FilC can compile C with safety exceeding Rust&#x27;s, while garbage collectors often integrate easily. Takeaway: When reading C code, use fixed-width types from stdint.h for portability and remember arrays become pointers across function boundaries.</description>
-    <pubDate>2026-10-07T09:30:05.893-05:00</pubDate>
+    <title>The Missing Piece in Rust Error Handling</title>
+    <link>https://mcmah309.github.io/posts/the-missing-piece-in-rust-error-handling/</link>
+    <guid isPermaLink="false">https://mcmah309.github.io/posts/the-missing-piece-in-rust-error-handling/</guid>
+    <description>Eros lets Rust error types compose like tuples and narrow as handlers remove errors, avoiding per-function enum boilerplate. The eros library declares Rust error sets as tuples like (io::Error, ParseIntError) rather than custom enums, using .union, .widen, and .recover methods. Recovery handlers remove specific errors from the signature, so the return type reflects what can still fail. Functions can degrade to an opaque AnyError for propagation-only callers, and context is attached separately via a procedural macro. Commenters note that exposing generic error types like ParseIntError in a tuple is ambiguous when the same parse could happen twice, and ask about an anyhow adapter for interop with existing code. Takeaway: Represent errors as composable sets rather than enums; let the type system narrow the set as handlers remove specific error types.</description>
+    <pubDate>2026-10-08T09:43:19.489-05:00</pubDate>
     <source>Lobsters</source>
   </item>
   <item>
-    <title>Archaeologists Are Reconstructing the &#x27;Invisible&#x27; Technologies of the Stone Age</title>
-    <link>https://www.smithsonianmag.com/science-nature/archaeologists-are-reconstructing-the-invisible-technologies-of-the-stone-age-from-rope-to-thread-and-twine-180989534/</link>
-    <guid isPermaLink="false">https://www.smithsonianmag.com/science-nature/archaeologists-are-reconstructing-the-invisible-technologies-of-the-stone-age-from-rope-to-thread-and-twine-180989534/</guid>
-    <description>A tool&#x27;s spiral grooves revealed a 35,000-year-old invisible technology, showing how durable artifacts can encode information about perishable systems. A 35,000-year-old ivory rod with spiral grooves turned out to be a rope-making tool, producing 16 feet of fiber in ten minutes. Stone tool wear marks suggest fiber hafting dates back 250,000 years, but organic materials rarely survive, leaving over 90 percent of daily prehistoric life invisible in the record. Commenters speculate about other lost technologies like better fabrics, waterproof clothing, and wooden tools, wondering how much actual sophistication of the Stone Age remains unknown to us. Takeaway: Durable artifacts often preserve traces of perishable technologies, so absence of evidence is not evidence of absence.</description>
-    <pubDate>2026-10-07T21:25:16Z</pubDate>
+    <title>A tale of four theorem provers, or: A (reasonably) opinionated comparison of Isabelle/HOL, Lean, HOL4, and Agda</title>
+    <link>https://blueberrywren.dev/blog/primes/</link>
+    <guid isPermaLink="false">https://blueberrywren.dev/blog/primes/</guid>
+    <description>Hands-on comparison of four theorem provers through one canonical proof, covering tooling, automation, and language design tradeoffs. Author formalized Euclid&#x27;s infinitude of primes in Isabelle/HOL, Lean, HOL4, and Agda. LCF-style systems (Isabelle/HOL, HOL4) provide strong automation like sledgehammer and metis but classical logic. Dependent-type systems (Lean, Agda) yield readable proof terms; Agda has no automation while Lean&#x27;s grind is hit-or-miss. Editor and theorem-search quality differ significantly across the four. Commenters debate whether non-readable tactic-based proofs are acceptable versus Agda&#x27;s transparent program-like proofs, and question how Rocq (Coq) compares to Lean in this lineup. Takeaway: LCF provers win on automation and theorem search; dependent-type provers win on readable proofs but trade away partial automation.</description>
+    <pubDate>2026-10-09T09:30:28.326-05:00</pubDate>
+    <source>Lobsters</source>
+  </item>
+  <item>
+    <title>Pointing AI at archives found a forgotten meteorite, lost rhinos, and more</title>
+    <link>https://jessewaites.com/blog/post/i-pointed-ai-at-400-years-of-archives/</link>
+    <guid isPermaLink="false">https://jessewaites.com/blog/post/i-pointed-ai-at-400-years-of-archives/</guid>
+    <description>A two-stage LLM pipeline turns 70 years of human archive reading into 12 hours of GPU work via semantic embeddings and cheap filters. An engineer embedded 5.7 million passages from 4.35 million VOC archive pages for semantic search, then used a cheap classifier called Jev to filter hits before a larger model read candidates. The pipeline was calibrated against known events like the dodo record and Laki eruption before searching for unknowns, surfacing an 1812 meteorite fall and lost rhinos. The workflow is open-sourced as Antiquity. Commenters split between admiring the systems engineering and worrying that skimming archives at scale produces shallow, junk-food findings without genuine historical understanding. Takeaway: Calibrate automated research pipelines against known answers before trusting their novel findings or null results.</description>
+    <pubDate>2026-10-09T11:36:20Z</pubDate>
     <source>Hacker News</source>
   </item>
 </channel></rss>
