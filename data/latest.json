@@ -1,15 +1,15 @@
 {
-  "date": "2026-10-11",
-  "label": "Sunday, October 11, 2026",
-  "edition_tag": "vol-2-no-66",
-  "total": 7,
-  "prev_day": "2026-10-10",
+  "date": "2026-10-12",
+  "label": "Monday, October 12, 2026",
+  "edition_tag": "vol-2-no-67",
+  "total": 8,
+  "prev_day": "2026-10-11",
   "next_day": null,
-  "editor_note": "Legacy transpilation with formal proofs, database engine tweaks, distributed GPU serving, and terminal-native tooling all tackle concrete systems tradeoffs rather than abstract benchmarks.",
+  "editor_note": "Several pieces reject false tradeoffs: MongoDB disaggregates without losing batching, RDMA's hidden costs surface, and borrow checks drop runtime overhead.",
   "lede": {
-    "id": "pap-01",
-    "title": "IRONPROOF: COBOL-to-Python Transpilation with SMT-Based Equivalence Checking",
-    "reason": "Formal equivalence proofs on COBOL-to-Python attack a real trust problem in legacy migration, blending PL and systems thinking."
+    "id": "pap-02",
+    "title": "Deploying RDMA for Large-Scale Inference and Training Workloads",
+    "reason": "Production RDMA deployment reveals what actually breaks beyond raw bandwidth."
   },
   "site": {
     "name": "Daily Byte",
@@ -19,32 +19,65 @@
   },
   "sections": [
     {
+      "name": "engineering",
+      "label": "Engineering",
+      "intro": "MongoDB details disaggregating compute and storage without losing batching, alongside a reminder that technical debates should stay evidence-based.",
+      "stories": [
+        {
+          "id": "eng-01",
+          "title": "Atlas Infinite: MongoDB's Disaggregated Architecture",
+          "url": "https://muratbuffalo.blogspot.com/2026/10/atlas-infinite-mongodbs-disaggregated.html",
+          "source": "Murat Demirbas",
+          "source_kind": "blog",
+          "published_at": "2026-10-10T21:37:26.362-04:00",
+          "summary": "MongoDB Atlas Infinite separates compute from storage using a logical oplog on the durability critical path and a separate physical phylog of page deltas emitted at WiredTiger checkpoint time. Page servers rebuild pages from the phylog while compute encrypts all data before sending, so storage never sees plaintext or tenant boundaries, and hot standbys combine checkpoint pages with the oplog for millisecond replica lag.",
+          "why": "MongoDB shows how to disaggregate compute and storage without losing storage engine batching or letting storage see plaintext.",
+          "takeaway": "Splitting the durable logical log from the physical page log preserves storage engine batching and keeps the storage tier blind to plaintext.",
+          "level": "advanced",
+          "minutes": 5
+        },
+        {
+          "id": "eng-02",
+          "title": "Don't diagnose your opponents",
+          "url": "https://seangoedecke.com/dont-diagnose-your-opponents/",
+          "source": "Sean Goedecke",
+          "source_kind": "blog",
+          "published_at": "Sun, 11 Oct 2026 00:00:00 GMT",
+          "summary": "When disagreeing, you can engage with the argument itself or diagnose why your opponent holds their view. Diagnosing feels piercingly analytical but avoids arguing facts and cannot be refuted, since it shifts from evidence to rhetoric. Reserve psychological explanations for after, not instead of, making a substantive technical case.",
+          "why": "Technical debates like microservices vs monoliths often degrade into personality attacks rather than evidence-based arguments.",
+          "takeaway": "Argue the evidence; treat psychological explanations of your opponent as separate from, not a replacement for, the factual case.",
+          "level": "beginner",
+          "minutes": 4
+        }
+      ]
+    },
+    {
       "name": "papers",
       "label": "Papers",
-      "intro": "SMT-based equivalence proofs verify COBOL-to-Python transpilation of legacy code, and relaxed-balance routing trims communication bottlenecks in distributed MoE inference.",
+      "intro": "Recursive logic queries get worst-case optimal join algorithms, and a paper covers what actually breaks in production RDMA deployments.",
       "stories": [
         {
           "id": "pap-01",
-          "title": "IRONPROOF: COBOL-to-Python Transpilation with SMT-Based Equivalence Checking",
-          "url": "https://arxiv.org/abs/2610.11073",
-          "source": "Dominik Blain",
+          "title": "Distributed Datalog at Scale with Worst-Case Optimal Joins",
+          "url": "https://arxiv.org/abs/2610.12692",
+          "source": "Kunting Qi et al.",
           "source_kind": "paper",
-          "published_at": "2026-10-08T01:31:58Z",
-          "summary": "IRONPROOF parses COBOL, emits Python, and uses Z3 to check both encode the same function on shared inputs, returning a proof or counterexample. Of 782 files entering checking from a 2,345-file corpus, 606 got full proofs, 101 partial, none refuted; independently written programs prove at only 52.6%, and end-to-end business apps like AWS CardDemo and IBM GenApp yield zero proofs.",
-          "why": "Formal equivalence proofs on COBOL-to-Python transpilation attack the trust gap left by unreliable LLM translations of legacy systems.",
-          "takeaway": "Equivalence proving works on small COBOL but real business apps stay out of reach, and LLM-only translation fails often enough to justify the formal machinery.",
+          "published_at": "2026-10-08T20:17:59Z",
+          "summary": "Standard distributed join pipelines chain binary joins, shuffling huge intermediates across nodes. Worst-case optimal joins avoid that blowup by processing joins one variable at a time, but previously only ran on shared-memory or non-recursive queries. Their engine is the first distributed-memory Datalog system using WCOJ for recursive fixpoints, partitioning along a variable grid and reshuffling only newly derived tuples each iteration.",
+          "why": "Targets the huge intermediate results problem in distributed multi-way joins by extending worst-case optimal joins to recursive logic queries.",
+          "takeaway": "In recursive multi-way joins, repartitioning only delta tuples keeps WCOJ intersections rank-local and avoids the intermediate blowup of binary-join chains.",
           "level": "advanced"
         },
         {
           "id": "pap-02",
-          "title": "Zepp: Accelerating Distributed MoE Serving under Relaxed Balance Constraints",
-          "url": "https://arxiv.org/abs/2610.11158",
-          "source": "Chang Chen et al.",
+          "title": "Deploying RDMA for Large-Scale Inference and Training Workloads",
+          "url": "https://arxiv.org/abs/2610.12815",
+          "source": "Yibo Huang et al.",
           "source_kind": "paper",
-          "published_at": "2026-10-08T03:19:33Z",
-          "summary": "Zepp reframes load balancing in distributed MoE serving as a constraint rather than a goal, since rebalancing operations themselves add cost. It places expert replicas to cut token traffic under GPU limits, reshapes communication under NIC limits, and overlaps compute with communication each iteration. Against 7 prior MoE serving systems it reports up to 6.68x MoE layer speedup.",
-          "why": "Systems work on distributed MoE inference, showing how to cut communication bottlenecks across many GPUs.",
-          "takeaway": "In distributed inference, skipping explicit rebalancing can outperform enforcing balance, because rebalancing itself costs cycles and network traffic.",
+          "published_at": "2026-10-08T23:57:00Z",
+          "summary": "ByteExpress is a software layer over hardware RDMA used in ByteDance's parameter-server inference and training. It combines an RDMA-aware allocator, zero-copy transfers, queue-pair multiplexing, receive-credit flow control, a software send window, and RPC-assisted recovery. In production it cut inference parameter fetch latency 35.7% mean and 43.7% P99, lowered CPU usage 10.69%, and reduced training push latency up to 74% P99 with no PFC pauses.",
+          "why": "Real production RDMA deployment reveals what breaks beyond raw bandwidth: buffers, connections, and recovery.",
+          "takeaway": "Realizing RDMA gains in production requires application-aware buffer management, coordinated connection and credit control, and recovery above the transport.",
           "level": "advanced"
         }
       ]
@@ -52,92 +85,70 @@
     {
       "name": "tools",
       "label": "Tools",
-      "intro": "A self-hosted AI agent runs on Cloudflare's free tier using Durable Objects, and a keyboard-driven diff viewer adds LSP navigation to reviews.",
+      "intro": "apsw exposes the full SQLite C API with async, while HashiCorp archives the Boundary repo with no future patches planned.",
       "stories": [
         {
           "id": "tool-01",
-          "title": "Talorys – A self-hosted personal AI agent on Cloudflare's free tier",
-          "url": "https://github.com/rociiu/talorys",
+          "title": "apsw: Another Python SQLite Wrapper",
+          "url": "https://github.com/rogerbinns/apsw",
           "source": "Hacker News",
           "source_kind": "repo",
-          "published_at": "2026-10-10T10:52:09Z",
-          "summary": "Talorys runs an AI assistant using Cloudflare Pages for the frontend, a service binding to a private Worker, and a SQLite-backed Durable Object for all storage plus Workers AI for chat. Scheduling uses Durable Object alarms rather than always-on workers, and built-in guardrails cap output tokens, context tokens, tool calls and daily requests.",
-          "why": "Shows a real architecture for shipping a stateful AI app entirely on Cloudflare free tier using Workers and Durable Objects.",
-          "takeaway": "A SQLite-backed Durable Object with alarms and service bindings can serve as the entire backend for a stateful AI app.",
+          "published_at": "2026-10-11T16:58:22Z",
+          "summary": "APSW is a wrapper around SQLite that links the SQLite C API with Python's C API, supporting CPython 3.10+. It covers FTS, sessions, virtual tables, VFS, JSON, and CArray, and works with async frameworks. Recommended over sqlite3 only when full SQLite features and control are needed.",
+          "why": "Exposes the full SQLite C API plus async support, beyond what Python's stdlib sqlite3 module offers.",
+          "takeaway": "Reach for apsw when stdlib sqlite3 hides features you actually need, like VFS or virtual tables.",
           "level": "advanced",
-          "thread_url": "https://news.ycombinator.com/item?id=50031614"
+          "thread_url": "https://news.ycombinator.com/item?id=50045273"
         },
         {
           "id": "tool-02",
-          "title": "Show HN: Diffle, a keyboard-centric diff viewer with LSP support",
-          "url": "https://github.com/moritzwilksch/diffle",
+          "title": "HashiCorp archives the Boundary open source repo",
+          "url": "https://github.com/hashicorp/boundary",
           "source": "Hacker News",
           "source_kind": "repo",
-          "published_at": "2026-10-08T15:23:19Z",
-          "summary": "Diffle is a terminal-first diff viewer with vim-style bindings (j/k, c, V, /, gd) that works over working trees, commits, ranges, and GitHub PRs. It auto-starts per-language LSPs for jump-to-definition and hover, stores comments under <git-dir>/diffle/, and exports them as pending GitHub reviews or as a prompt to an agent.",
-          "why": "Keyboard-driven diff reviewer with LSP navigation and GitHub review export, built for engineers who live in the terminal.",
-          "takeaway": "Comments-as-files in a separate git dir let you treat code review output like any other text pipeline, including feeding it to an agent.",
-          "level": "advanced",
-          "thread_url": "https://news.ycombinator.com/item?id=50006930"
+          "published_at": "2026-10-12T00:02:45Z",
+          "summary": "HashiCorp archived the Boundary Community Edition repository on October 8, 2026, ending active open source development. No new releases, maintenance updates, or security patches are planned for the self-managed version. Future work will focus on the commercial HCP Boundary and Boundary Enterprise products.",
+          "why": "Boundary CE, an open source access management tool, is archived with no future bug fixes or security patches planned.",
+          "takeaway": "Self-hosted Boundary CE users lose their patch pipeline and should plan a migration or accept unmaintained software risk.",
+          "level": "intermediate",
+          "thread_url": "https://news.ycombinator.com/item?id=50049498"
         }
       ]
     },
     {
       "name": "discussions",
       "label": "Discussions",
-      "intro": "Two threads: DuckDB 2.0 fixes recursive CTE re-scans and speeds S3 throughput via a separate prefetch pool, and AI tooling revives unikernels.",
+      "intro": "A new borrow checker permits multiple read-write references without use-after-free, and NumPy 2.5 makes searchsorted 25x faster via vectorized batch search.",
       "stories": [
         {
           "id": "disc-01",
-          "title": "Why DuckDB 2.0 is faster",
-          "url": "https://motherduck.com/blog/why-duckdb-20-is-faster/",
-          "source": "Hacker News",
+          "title": "Valen's Memory Safety: A New Kind of Borrow Checking",
+          "url": "https://verdagon.dev/blog/valen-group-borrowing",
+          "source": "Lobsters",
           "source_kind": "discussion",
-          "published_at": "2026-10-10T18:08:49Z",
-          "summary": "Three changes matter. Async prefetching (read_ahead_depth=-1) decouples S3 downloads from decoding, cutting a 2.2 GB Parquet query from 18.8s to 7.7s. Recursive CTEs now build a parent lookup once instead of re-reading the whole table every round, turning a 20,000-commit ancestry walk from seconds into 0.1s. VARIANT type auto-extracts recurring JSON fields into typed columns at write time.",
-          "why": "DuckDB 2.0 makes S3 scans 2-3x faster via a separate prefetch pool, and fixes recursive CTEs that re-scanned tables each round.",
-          "takeaway": "Overlap I/O with compute by giving prefetch its own thread pool; index parent columns before walking hierarchies; shred JSON by promoting common fields to columns.",
-          "debate": "Multiple commenters say the prose reads like LLM output. Others argue DuckDB is merely catching up to task-based designs like Umbra and CedarDB rather than innovating.",
-          "level": "intermediate",
+          "published_at": "2026-10-11T07:23:01.029-05:00",
+          "summary": "Valen's borrow checker, built on Nick Smith's Group Borrowing, lets the compiler track where each reference points to via explicit in syntax. Instead of shared-xor-mutable, it just prevents use-after-free, allowing multiple read-write borrows to one struct. Compile errors fire when references are used after their target is invalidated.",
+          "why": "New borrow checker allows multiple read-write references to the same object while preventing use-after-free, without runtime overhead.",
+          "takeaway": "Borrow checking can permit multiple mutable references if it tracks where each points and only forbids actual use-after-free.",
+          "debate": "Commenters worry about recursive structures like trees, raise concurrency TOCTTOU concerns versus shared-xor-mutable, and ask how it compares to OxCaml's Modes.",
+          "level": "advanced",
           "minutes": 10,
-          "thread_url": "https://news.ycombinator.com/item?id=50035530"
+          "thread_url": "https://lobste.rs/s/gmnqhj/valen_s_memory_safety_new_kind_borrow"
         },
         {
           "id": "disc-02",
-          "title": "Unikernels were hard. key word: were",
-          "url": "https://ghuntley.com/unikernels/",
-          "source": "Hacker News",
+          "title": "Making np.searchsorted up to 25× Faster in NumPy 2.5",
+          "url": "https://blog.scientific-python.org/numpy/searchsorted/",
+          "source": "Lobsters",
           "source_kind": "discussion",
-          "published_at": "2026-10-10T14:27:09Z",
-          "summary": "Unikernels compile your app with a minimal OS, removing shells and interpreters. AI agents now port missing libraries like Stripe in hours, and an author built a distributed OCaml unikernel OS in a week. S3-as-primary storage sidesteps local filesystem gaps, while Nix overlays patch supply chain issues.",
-          "why": "Unikernels' old friction (missing libraries, no shell) collapses when AI ports code and nothing in model weights knows how to exploit the system.",
-          "takeaway": "AI closes the library gap and removes post-exploitation paths from model weights, making unikernels a real option for attack-surface reduction.",
-          "debate": "Commenters split on debuggability without process isolation, prefer FPGAs over LLM-coded unikernels to avoid bloat, and note that kernel-bypass stacks like DPDK still depend on Linux.",
+          "published_at": "2026-10-10T18:25:51.517-05:00",
+          "summary": "NumPy 2.5's searchsorted was rewritten to process all keys together per iteration instead of running binary searches sequentially. By structuring the algorithm so every query shrinks its interval by the same amount each step, per-query state dropped to O(1) extra memory, yielding up to 25x speedup on M1 Pro benchmarks.",
+          "why": "A concrete case study of turning sequential per-key binary search into a vectorized batch operation, with cache and state-size reasoning.",
+          "takeaway": "Reformulating binary search as a synchronous batch over all keys turns it into a branchless, cache-friendly operation with O(1) extra state.",
+          "debate": "Commenters clarify that vectorized here means batched operations executed in compiled C++ loops, not CPU SIMD instructions.",
           "level": "advanced",
-          "minutes": 9,
-          "thread_url": "https://news.ycombinator.com/item?id=50033357"
-        }
-      ]
-    },
-    {
-      "name": "offbeat",
-      "label": "Off the clock",
-      "intro": "Synchrotron X-ray diffraction mapped 8-micrometer Chernobyl fragments, revealing nuclear fuel crystal structure held up surprisingly well over forty years.",
-      "stories": [
-        {
-          "id": "off-01",
-          "title": "Chernobyl particles reveal unexpectedly stable nuclear fuel after 40 years",
-          "url": "https://phys.org/news/2026-10-chernobyl-particles-reveal-unexpectedly-stable.html",
-          "source": "Hacker News",
-          "source_kind": "discussion",
-          "published_at": "2026-10-07T01:44:59Z",
-          "summary": "Researchers used synchrotron X-ray diffraction to scan six Chernobyl hot particles (8 to 50 micrometers) from 2,000 angles each. The uranium dioxide crystal structure remained largely intact, meaning particles hold onto fission products instead of releasing them. Three particle types form depending on whether fuel fused with zirconium or oxidized during the graphite fire.",
-          "why": "Synchrotron X-ray diffraction mapped the crystal structure of 8-micrometer radioactive fragments, finding fuel surprisingly intact after 40 years.",
-          "takeaway": "Long-lived radioactive particles can trap contaminants inside, extending environmental exposure far beyond when surface dust would have dispersed.",
-          "debate": "Commenters push back on the positive-sounding headline, clarifying that mechanical stability means particles persist longer, which is bad for the surrounding ecosystem.",
-          "level": "intermediate",
-          "minutes": 4,
-          "thread_url": "https://news.ycombinator.com/item?id=49986919"
+          "minutes": 10,
+          "thread_url": "https://lobste.rs/s/fbs3k7/making_np_searchsorted_up_25x_faster"
         }
       ]
     }

@@ -1,0 +1,156 @@
+{
+  "date": "2026-10-12",
+  "label": "Monday, October 12, 2026",
+  "edition_tag": "vol-2-no-67",
+  "total": 8,
+  "prev_day": "2026-10-11",
+  "next_day": null,
+  "editor_note": "Several pieces reject false tradeoffs: MongoDB disaggregates without losing batching, RDMA's hidden costs surface, and borrow checks drop runtime overhead.",
+  "lede": {
+    "id": "pap-02",
+    "title": "Deploying RDMA for Large-Scale Inference and Training Workloads",
+    "reason": "Production RDMA deployment reveals what actually breaks beyond raw bandwidth."
+  },
+  "site": {
+    "name": "Daily Byte",
+    "tagline": "A byte-size daily digest for engineers who value depth over noise.",
+    "base_url": "https://learn.shenthar.me",
+    "repo": "https://github.com/KTS-o7/learning-portal"
+  },
+  "sections": [
+    {
+      "name": "engineering",
+      "label": "Engineering",
+      "intro": "MongoDB details disaggregating compute and storage without losing batching, alongside a reminder that technical debates should stay evidence-based.",
+      "stories": [
+        {
+          "id": "eng-01",
+          "title": "Atlas Infinite: MongoDB's Disaggregated Architecture",
+          "url": "https://muratbuffalo.blogspot.com/2026/10/atlas-infinite-mongodbs-disaggregated.html",
+          "source": "Murat Demirbas",
+          "source_kind": "blog",
+          "published_at": "2026-10-10T21:37:26.362-04:00",
+          "summary": "MongoDB Atlas Infinite separates compute from storage using a logical oplog on the durability critical path and a separate physical phylog of page deltas emitted at WiredTiger checkpoint time. Page servers rebuild pages from the phylog while compute encrypts all data before sending, so storage never sees plaintext or tenant boundaries, and hot standbys combine checkpoint pages with the oplog for millisecond replica lag.",
+          "why": "MongoDB shows how to disaggregate compute and storage without losing storage engine batching or letting storage see plaintext.",
+          "takeaway": "Splitting the durable logical log from the physical page log preserves storage engine batching and keeps the storage tier blind to plaintext.",
+          "level": "advanced",
+          "minutes": 5
+        },
+        {
+          "id": "eng-02",
+          "title": "Don't diagnose your opponents",
+          "url": "https://seangoedecke.com/dont-diagnose-your-opponents/",
+          "source": "Sean Goedecke",
+          "source_kind": "blog",
+          "published_at": "Sun, 11 Oct 2026 00:00:00 GMT",
+          "summary": "When disagreeing, you can engage with the argument itself or diagnose why your opponent holds their view. Diagnosing feels piercingly analytical but avoids arguing facts and cannot be refuted, since it shifts from evidence to rhetoric. Reserve psychological explanations for after, not instead of, making a substantive technical case.",
+          "why": "Technical debates like microservices vs monoliths often degrade into personality attacks rather than evidence-based arguments.",
+          "takeaway": "Argue the evidence; treat psychological explanations of your opponent as separate from, not a replacement for, the factual case.",
+          "level": "beginner",
+          "minutes": 4
+        }
+      ]
+    },
+    {
+      "name": "papers",
+      "label": "Papers",
+      "intro": "Recursive logic queries get worst-case optimal join algorithms, and a paper covers what actually breaks in production RDMA deployments.",
+      "stories": [
+        {
+          "id": "pap-01",
+          "title": "Distributed Datalog at Scale with Worst-Case Optimal Joins",
+          "url": "https://arxiv.org/abs/2610.12692",
+          "source": "Kunting Qi et al.",
+          "source_kind": "paper",
+          "published_at": "2026-10-08T20:17:59Z",
+          "summary": "Standard distributed join pipelines chain binary joins, shuffling huge intermediates across nodes. Worst-case optimal joins avoid that blowup by processing joins one variable at a time, but previously only ran on shared-memory or non-recursive queries. Their engine is the first distributed-memory Datalog system using WCOJ for recursive fixpoints, partitioning along a variable grid and reshuffling only newly derived tuples each iteration.",
+          "why": "Targets the huge intermediate results problem in distributed multi-way joins by extending worst-case optimal joins to recursive logic queries.",
+          "takeaway": "In recursive multi-way joins, repartitioning only delta tuples keeps WCOJ intersections rank-local and avoids the intermediate blowup of binary-join chains.",
+          "level": "advanced"
+        },
+        {
+          "id": "pap-02",
+          "title": "Deploying RDMA for Large-Scale Inference and Training Workloads",
+          "url": "https://arxiv.org/abs/2610.12815",
+          "source": "Yibo Huang et al.",
+          "source_kind": "paper",
+          "published_at": "2026-10-08T23:57:00Z",
+          "summary": "ByteExpress is a software layer over hardware RDMA used in ByteDance's parameter-server inference and training. It combines an RDMA-aware allocator, zero-copy transfers, queue-pair multiplexing, receive-credit flow control, a software send window, and RPC-assisted recovery. In production it cut inference parameter fetch latency 35.7% mean and 43.7% P99, lowered CPU usage 10.69%, and reduced training push latency up to 74% P99 with no PFC pauses.",
+          "why": "Real production RDMA deployment reveals what breaks beyond raw bandwidth: buffers, connections, and recovery.",
+          "takeaway": "Realizing RDMA gains in production requires application-aware buffer management, coordinated connection and credit control, and recovery above the transport.",
+          "level": "advanced"
+        }
+      ]
+    },
+    {
+      "name": "tools",
+      "label": "Tools",
+      "intro": "apsw exposes the full SQLite C API with async, while HashiCorp archives the Boundary repo with no future patches planned.",
+      "stories": [
+        {
+          "id": "tool-01",
+          "title": "apsw: Another Python SQLite Wrapper",
+          "url": "https://github.com/rogerbinns/apsw",
+          "source": "Hacker News",
+          "source_kind": "repo",
+          "published_at": "2026-10-11T16:58:22Z",
+          "summary": "APSW is a wrapper around SQLite that links the SQLite C API with Python's C API, supporting CPython 3.10+. It covers FTS, sessions, virtual tables, VFS, JSON, and CArray, and works with async frameworks. Recommended over sqlite3 only when full SQLite features and control are needed.",
+          "why": "Exposes the full SQLite C API plus async support, beyond what Python's stdlib sqlite3 module offers.",
+          "takeaway": "Reach for apsw when stdlib sqlite3 hides features you actually need, like VFS or virtual tables.",
+          "level": "advanced",
+          "thread_url": "https://news.ycombinator.com/item?id=50045273"
+        },
+        {
+          "id": "tool-02",
+          "title": "HashiCorp archives the Boundary open source repo",
+          "url": "https://github.com/hashicorp/boundary",
+          "source": "Hacker News",
+          "source_kind": "repo",
+          "published_at": "2026-10-12T00:02:45Z",
+          "summary": "HashiCorp archived the Boundary Community Edition repository on October 8, 2026, ending active open source development. No new releases, maintenance updates, or security patches are planned for the self-managed version. Future work will focus on the commercial HCP Boundary and Boundary Enterprise products.",
+          "why": "Boundary CE, an open source access management tool, is archived with no future bug fixes or security patches planned.",
+          "takeaway": "Self-hosted Boundary CE users lose their patch pipeline and should plan a migration or accept unmaintained software risk.",
+          "level": "intermediate",
+          "thread_url": "https://news.ycombinator.com/item?id=50049498"
+        }
+      ]
+    },
+    {
+      "name": "discussions",
+      "label": "Discussions",
+      "intro": "A new borrow checker permits multiple read-write references without use-after-free, and NumPy 2.5 makes searchsorted 25x faster via vectorized batch search.",
+      "stories": [
+        {
+          "id": "disc-01",
+          "title": "Valen's Memory Safety: A New Kind of Borrow Checking",
+          "url": "https://verdagon.dev/blog/valen-group-borrowing",
+          "source": "Lobsters",
+          "source_kind": "discussion",
+          "published_at": "2026-10-11T07:23:01.029-05:00",
+          "summary": "Valen's borrow checker, built on Nick Smith's Group Borrowing, lets the compiler track where each reference points to via explicit in syntax. Instead of shared-xor-mutable, it just prevents use-after-free, allowing multiple read-write borrows to one struct. Compile errors fire when references are used after their target is invalidated.",
+          "why": "New borrow checker allows multiple read-write references to the same object while preventing use-after-free, without runtime overhead.",
+          "takeaway": "Borrow checking can permit multiple mutable references if it tracks where each points and only forbids actual use-after-free.",
+          "debate": "Commenters worry about recursive structures like trees, raise concurrency TOCTTOU concerns versus shared-xor-mutable, and ask how it compares to OxCaml's Modes.",
+          "level": "advanced",
+          "minutes": 10,
+          "thread_url": "https://lobste.rs/s/gmnqhj/valen_s_memory_safety_new_kind_borrow"
+        },
+        {
+          "id": "disc-02",
+          "title": "Making np.searchsorted up to 25× Faster in NumPy 2.5",
+          "url": "https://blog.scientific-python.org/numpy/searchsorted/",
+          "source": "Lobsters",
+          "source_kind": "discussion",
+          "published_at": "2026-10-10T18:25:51.517-05:00",
+          "summary": "NumPy 2.5's searchsorted was rewritten to process all keys together per iteration instead of running binary searches sequentially. By structuring the algorithm so every query shrinks its interval by the same amount each step, per-query state dropped to O(1) extra memory, yielding up to 25x speedup on M1 Pro benchmarks.",
+          "why": "A concrete case study of turning sequential per-key binary search into a vectorized batch operation, with cache and state-size reasoning.",
+          "takeaway": "Reformulating binary search as a synchronous batch over all keys turns it into a branchless, cache-friendly operation with O(1) extra state.",
+          "debate": "Commenters clarify that vectorized here means batched operations executed in compiled C++ loops, not CPU SIMD instructions.",
+          "level": "advanced",
+          "minutes": 10,
+          "thread_url": "https://lobste.rs/s/fbs3k7/making_np_searchsorted_up_25x_faster"
+        }
+      ]
+    }
+  ]
+}
