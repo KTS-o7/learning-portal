@@ -1,0 +1,191 @@
+{
+  "date": "2026-10-13",
+  "label": "Tuesday, October 13, 2026",
+  "edition_tag": "vol-2-no-68",
+  "total": 10,
+  "prev_day": "2026-10-12",
+  "next_day": null,
+  "editor_note": "AI coding agents are sliding into kernel-level work while benchmarks ignore their runtime costs and tools quietly install persistent daemons; meanwhile, compiler and runtime fundamentals keep moving through Python, GPU kernels, and memory allocators.",
+  "lede": {
+    "id": "disc-01",
+    "title": "Linus Torvalds Working On A Hefty Linux Kernel Improvement With Claude Code",
+    "reason": "Linus publicly shipping a kernel patch series authored with Claude marks a concrete threshold for AI in systems code."
+  },
+  "site": {
+    "name": "Daily Byte",
+    "tagline": "A byte-size daily digest for engineers who value depth over noise.",
+    "base_url": "https://learn.shenthar.me",
+    "repo": "https://github.com/KTS-o7/learning-portal"
+  },
+  "sections": [
+    {
+      "name": "engineering",
+      "label": "Engineering",
+      "intro": "Python 3.15 ships lazy imports, a sampling profiler, and a JIT; an op-ed rejects AI skepticism; Copilot gains a codebase-context primer.",
+      "stories": [
+        {
+          "id": "eng-01",
+          "title": "Hello Python 3.15, goodbye 3.10, and now I can use 3.11",
+          "url": "https://simonwillison.net/2026/Oct/12/python-3-15/",
+          "source": "Simon Willison",
+          "source_kind": "blog",
+          "published_at": "2026-10-12T18:15:38+00:00",
+          "summary": "Python 3.15 adds PEP 810 lazy imports that defer module loading until first use, useful for CLI tools with heavy optional dependencies. The new profiling.sampling module, named Tachyon, provides a low-overhead sampling profiler attachable to a running PID and can emit flame graphs. An experimental JIT yielded a 1.2x speedup on Fibonacci; Python 3.10 is now end-of-life, freeing libraries to use 3.11 features like tomllib, TaskGroup, and SQLite upgrades.",
+          "why": "Python 3.15 ships lazy imports, a standard library sampling profiler, and an experimental JIT relevant to tooling and performance work.",
+          "takeaway": "Use PEP 810 lazy imports to cut CLI startup time, and try profiling.sampling before reaching for external profilers.",
+          "level": "intermediate",
+          "minutes": 4
+        },
+        {
+          "id": "eng-02",
+          "title": "Software engineers don't get to be Luddites about AI",
+          "url": "https://seangoedecke.com/software-engineers-dont-get-to-be-luddites-about-ai/",
+          "source": "Sean Goedecke",
+          "source_kind": "blog",
+          "published_at": "Mon, 12 Oct 2026 00:00:00 GMT",
+          "summary": "Software engineers historically automated video rental, travel agencies, encyclopedias, and trading-floor jobs, making opposition to AI-driven automation in their own field hypocritical. The piece compares modern engineers to 19th-century loom mechanics, who built the machines that displaced Luddites and were themselves later displaced. It frames software engineering as inherently a process of replacing human labor with machines.",
+          "why": "Argues that opposing AI-driven automation is inconsistent given that software engineering has automated away many industries over decades.",
+          "takeaway": "Defending software engineering from AI automation conflicts with the profession's role in automating other industries over decades.",
+          "level": "beginner",
+          "minutes": 5
+        },
+        {
+          "id": "eng-03",
+          "title": "GitHub Copilot app for Beginners: How to teach Copilot about your codebase",
+          "url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-how-to-teach-copilot-about-your-codebase/",
+          "source": "GitHub Blog",
+          "source_kind": "blog",
+          "published_at": "Mon, 12 Oct 2026 17:43:59 +0000",
+          "summary": "Copilot accepts four configuration layers in a repository: a .github/copilot-instructions.md file for repository-wide rules, path-specific files under .github/instructions, skill directories under .github/skills each with a SKILL.md descriptor, and agent profiles under .github/agents. MCP servers such as Playwright extend Copilot to external tools and data. These mechanisms compose.",
+          "why": "Engineers using Copilot daily get a concrete taxonomy for configuring agent context beyond default prompts.",
+          "takeaway": "Pick the configuration mechanism based on whether context is global, procedural, role-specific, or external.",
+          "level": "beginner",
+          "minutes": 6
+        }
+      ]
+    },
+    {
+      "name": "papers",
+      "label": "Papers",
+      "intro": "Benchmarks judge code-agent fixes by correctness yet hide runtime gaps; another paper collapses six GPU thread-mapping rules into one.",
+      "stories": [
+        {
+          "id": "pap-01",
+          "title": "Not All Correct Fixes Run Alike: An Empirical Study of Patch Performance in Repository-Level Issue Resolution",
+          "url": "https://arxiv.org/abs/2610.13563",
+          "source": "Han Peng et al.",
+          "source_kind": "paper",
+          "published_at": "Mon, 12 Oct 2026 00:00:00 -0400",
+          "summary": "SWE-bench grades patches only by whether tests pass. This study repurposes the existing fail-to-pass tests as a performance workload, running four frontier models with SWE-agent on 262 instances with multiple correct solutions, measuring instruction count and wall-clock time. Using Welch ANOVA instead of the prior RSD metric, they spot performance differences among correct patches in nearly half of cases.",
+          "why": "Correctness-only code agent benchmarks mask big runtime performance differences between passing patches — relevant if you build or evaluate LLM coding agents.",
+          "takeaway": "Passing tests is not enough — when evaluating LLM-generated fixes, also measure runtime cost.",
+          "level": "intermediate"
+        },
+        {
+          "id": "pap-02",
+          "title": "A Simplified Layout Algebra for GPU Kernels",
+          "url": "https://arxiv.org/abs/2610.13679",
+          "source": "Nan An et al.",
+          "source_kind": "paper",
+          "published_at": "Mon, 12 Oct 2026 00:00:00 -0400",
+          "summary": "Mapping tensor chunks onto threads and memory is central to GPU kernel code generation, and NVIDIA's CuTe library formalizes this with an algebra requiring six interacting conditions per operation. Tagging each layout with its target space (thread values, logical coordinates, or physical addresses) and enforcing bijections or no-aliased writes accordingly reduces composition to a single range check.",
+          "why": "It simplifies how compilers decide which GPU thread holds which tensor element, cutting six interacting rules to one.",
+          "takeaway": "Tagging layouts by target space cuts GPU tensor composition checks from six interacting rules to one.",
+          "level": "advanced"
+        }
+      ]
+    },
+    {
+      "name": "tools",
+      "label": "Tools",
+      "intro": "Codex CLI silently installs a self-updating background daemon; another project statically recompiles PS2 games into WebAssembly.",
+      "stories": [
+        {
+          "id": "tool-01",
+          "title": "Codex CLI installs a persistent, self-updating background daemon by default",
+          "url": "https://github.com/openai/codex/issues/48195",
+          "source": "Hacker News",
+          "source_kind": "repo",
+          "published_at": "2026-10-12T18:29:04Z",
+          "summary": "Codex CLI 0.157.0 spawns a detached daemon (codex app-server --managed-daemon) by default on every interactive session, reparented to PID 1 and outliving the TUI. It duplicates the ~374MB binary into ~/.codex/packages/app-server-daemon/releases/, runs an hourly updater that force-kills active turns, and pins the first session's env (HTTPS_PROXY, direnv vars) for all later clients. Maintainers eventually flipped daemon_auto_start to opt-in.",
+          "why": "A popular AI CLI silently spawns a persistent, self-updating background daemon that breaks process and package-manager boundaries.",
+          "takeaway": "Tools that default to persistent, self-updating background processes violate least surprise and erode package-manager and environment isolation guarantees.",
+          "level": "advanced",
+          "thread_url": "https://news.ycombinator.com/item?id=50060694"
+        },
+        {
+          "id": "tool-02",
+          "title": "Show HN: PS2 games statically recompiled to WebAssembly",
+          "url": "https://github.com/snuri00/ps2-web-recomp",
+          "source": "Hacker News",
+          "source_kind": "repo",
+          "published_at": "2026-10-12T06:46:53Z",
+          "summary": "Emotion Engine machine code is translated to C++ then WebAssembly, with the IOP running original IRX modules through an interpreter and the Graphics Synthesizer reimplemented as WebGPU compute shaders. Performance went from 3 FPS to 50 FPS by hoisting texture uploads, caching GPU data, and switching from setTimeout to MessageChannel.",
+          "why": "Shows how static binary lifting plus a reimplemented OS can run a console in the browser at full speed.",
+          "takeaway": "AOT translation plus reimplemented OS services and compute shader GPU emulation can match console speed in the browser.",
+          "level": "advanced",
+          "thread_url": "https://news.ycombinator.com/item?id=50052251"
+        }
+      ]
+    },
+    {
+      "name": "discussions",
+      "label": "Discussions",
+      "intro": "Linus Torvalds used Claude Code to write a kernel patch series, and a thread revisits arena allocators as a systems memory pattern.",
+      "stories": [
+        {
+          "id": "disc-01",
+          "title": "Linus Torvalds Working On A Hefty Linux Kernel Improvement With Claude Code",
+          "url": "https://www.phoronix.com/news/Linus-Torvalds-Claude-Code",
+          "source": "Lobsters",
+          "source_kind": "discussion",
+          "published_at": "2026-10-12T05:11:29.702-05:00",
+          "summary": "Torvalds created a branch adapting memory management to read from the page cache without folio reference counts, targeting contention when many threads issue small reads to one file. He confirmed Claude Code wrote the code, tests, review, and the cover letter first draft, and the patches show significant performance gains.",
+          "why": "Linus Torvalds publicly used Claude Code to write a Linux kernel patch series addressing a real page cache contention bottleneck.",
+          "takeaway": "LLM coding assistants can produce measurable performance wins in low-level systems code, though AI-generated prose for humans draws criticism.",
+          "debate": "Commenters accept AI use for code and tests but object to AI drafting the human-written cover letter, calling it slop that replaces real communication.",
+          "level": "advanced",
+          "minutes": 2,
+          "thread_url": "https://lobste.rs/s/iq5xtw/linus_torvalds_working_on_hefty_linux"
+        },
+        {
+          "id": "disc-02",
+          "title": "Arena Allocators in C",
+          "url": "https://eliasebner.com/blog/guides/arena-allocators-in-c/",
+          "source": "Lobsters",
+          "source_kind": "discussion",
+          "published_at": "2026-10-11T11:59:58.126-05:00",
+          "summary": "An arena allocator reserves one large buffer and hands out memory by advancing a pointer, then frees everything at once when lifetimes end. The article implements this in C with 8-byte alignment, showing alloc, realloc, clear, and free operations on a struct with data, size, and used fields.",
+          "why": "Arena allocators are a fundamental memory management pattern used in compilers and systems code, not just games.",
+          "takeaway": "Group objects by lifetime into one allocation, then free them in bulk instead of tracking each free.",
+          "debate": "Commenters flag that the code uses C23 features like [[nodiscard]] without saying so, and uses non-standard pointer arithmetic on void* that only compiles under GCC. Others note arenas are standard in compiler work, citing Clangs AST as a bump-allocated structure.",
+          "level": "intermediate",
+          "minutes": 9,
+          "thread_url": "https://lobste.rs/s/zziknb/arena_allocators_c"
+        }
+      ]
+    },
+    {
+      "name": "offbeat",
+      "label": "Off the clock",
+      "intro": "A regulatory DNA deletion causes orange cat fur by overproducing a pigment gene thirteen-fold, illustrating non-coding control regions.",
+      "stories": [
+        {
+          "id": "off-01",
+          "title": "Secret of Orange Cats Revealed After 60-Year Search",
+          "url": "https://www.sciencealert.com/secret-of-orange-cats-finally-revealed-after-60-year-search",
+          "source": "Hacker News",
+          "source_kind": "discussion",
+          "published_at": "2026-10-10T22:10:57Z",
+          "summary": "Two teams found a 5 kilobase deletion in non-protein-coding DNA causes orange cat fur by overexpressing the Arhgap36 gene 13 times in skin cells. The mutation sits on the X chromosome, and X-inactivation in females creates the mosaic patterns seen in calico and tortoiseshell cats. The regulatory deletion shifts dark eumelanin pigments to red pheomelanin.",
+          "why": "A regulatory DNA deletion causes 13x gene overexpression, showing how non-coding control regions drive trait differences.",
+          "takeaway": "Regulatory DNA regions, not protein-coding sequences, can drive dramatic trait differences through expression-level changes.",
+          "debate": "Commenters noted this is a 2024 rehash, while others debated whether orange cats are actually less intelligent, noting the article calls it unsupported yet inconclusive.",
+          "level": "intermediate",
+          "minutes": 4,
+          "thread_url": "https://news.ycombinator.com/item?id=50037711"
+        }
+      ]
+    }
+  ]
+}
