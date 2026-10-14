@@ -2,85 +2,69 @@
 <rss version="2.0"><channel>
   <title>Daily Byte</title>
   <link>https://learn.shenthar.me/</link>
-  <description>AI coding agents are sliding into kernel-level work while benchmarks ignore their runtime costs and tools quietly install persistent daemons; meanwhile, compiler and runtime fundamentals keep moving through Python, GPU kernels, and memory allocators.</description>
+  <description>Several stories revisit familiar tools under new pressures: replacing heavy LLM pipelines with compact models, swapping git for a server-centric design, and oversubscribing GPU memory instead of buying more.</description>
   <item>
-    <title>Hello Python 3.15, goodbye 3.10, and now I can use 3.11</title>
-    <link>https://simonwillison.net/2026/Oct/12/python-3-15/</link>
-    <guid isPermaLink="false">https://simonwillison.net/2026/Oct/12/python-3-15/</guid>
-    <description>Python 3.15 ships lazy imports, a standard library sampling profiler, and an experimental JIT relevant to tooling and performance work. Python 3.15 adds PEP 810 lazy imports that defer module loading until first use, useful for CLI tools with heavy optional dependencies. The new profiling.sampling module, named Tachyon, provides a low-overhead sampling profiler attachable to a running PID and can emit flame graphs. An experimental JIT yielded a 1.2x speedup on Fibonacci; Python 3.10 is now end-of-life, freeing libraries to use 3.11 features like tomllib, TaskGroup, and SQLite upgrades. Takeaway: Use PEP 810 lazy imports to cut CLI startup time, and try profiling.sampling before reaching for external profilers.</description>
-    <pubDate>2026-10-12T18:15:38+00:00</pubDate>
-    <source>Simon Willison</source>
-  </item>
-  <item>
-    <title>Software engineers don&#x27;t get to be Luddites about AI</title>
-    <link>https://seangoedecke.com/software-engineers-dont-get-to-be-luddites-about-ai/</link>
-    <guid isPermaLink="false">https://seangoedecke.com/software-engineers-dont-get-to-be-luddites-about-ai/</guid>
-    <description>Argues that opposing AI-driven automation is inconsistent given that software engineering has automated away many industries over decades. Software engineers historically automated video rental, travel agencies, encyclopedias, and trading-floor jobs, making opposition to AI-driven automation in their own field hypocritical. The piece compares modern engineers to 19th-century loom mechanics, who built the machines that displaced Luddites and were themselves later displaced. It frames software engineering as inherently a process of replacing human labor with machines. Takeaway: Defending software engineering from AI automation conflicts with the profession&#x27;s role in automating other industries over decades.</description>
-    <pubDate>Mon, 12 Oct 2026 00:00:00 GMT</pubDate>
-    <source>Sean Goedecke</source>
-  </item>
-  <item>
-    <title>GitHub Copilot app for Beginners: How to teach Copilot about your codebase</title>
-    <link>https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-how-to-teach-copilot-about-your-codebase/</link>
-    <guid isPermaLink="false">https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-how-to-teach-copilot-about-your-codebase/</guid>
-    <description>Engineers using Copilot daily get a concrete taxonomy for configuring agent context beyond default prompts. Copilot accepts four configuration layers in a repository: a .github/copilot-instructions.md file for repository-wide rules, path-specific files under .github/instructions, skill directories under .github/skills each with a SKILL.md descriptor, and agent profiles under .github/agents. MCP servers such as Playwright extend Copilot to external tools and data. These mechanisms compose. Takeaway: Pick the configuration mechanism based on whether context is global, procedural, role-specific, or external.</description>
-    <pubDate>Mon, 12 Oct 2026 17:43:59 +0000</pubDate>
+    <title>GitHub’s model for secret detection: Finding more secrets with less noise</title>
+    <link>https://github.blog/ai-and-ml/githubs-model-for-secret-detection-finding-more-secrets-with-less-noise/</link>
+    <guid isPermaLink="false">https://github.blog/ai-and-ml/githubs-model-for-secret-detection-finding-more-secrets-with-less-noise/</guid>
+    <description>Concrete example of replacing a remote LLM pipeline with a compact encoder model for high-throughput classification at scale. GitHub built a two-stage secret scanner: regexes generate candidate strings, then a fine-tuned ModernBERT classifier reads each candidate with its file path and surrounding code to filter false positives. Exported to ONNX with 8-bit quantization, it raised owner-weighted alert acceptance by 11.5%, cut median post-push scan time by 86%, and reduced serving cost by over 98% compared with the prior LLM pipeline. Takeaway: For classification over short, structured context, a fine-tuned compact encoder usually beats a general LLM on latency and cost.</description>
+    <pubDate>Tue, 13 Oct 2026 17:56:33 +0000</pubDate>
     <source>GitHub Blog</source>
   </item>
   <item>
-    <title>Not All Correct Fixes Run Alike: An Empirical Study of Patch Performance in Repository-Level Issue Resolution</title>
-    <link>https://arxiv.org/abs/2610.13563</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2610.13563</guid>
-    <description>Correctness-only code agent benchmarks mask big runtime performance differences between passing patches — relevant if you build or evaluate LLM coding agents. SWE-bench grades patches only by whether tests pass. This study repurposes the existing fail-to-pass tests as a performance workload, running four frontier models with SWE-agent on 262 instances with multiple correct solutions, measuring instruction count and wall-clock time. Using Welch ANOVA instead of the prior RSD metric, they spot performance differences among correct patches in nearly half of cases. Takeaway: Passing tests is not enough — when evaluating LLM-generated fixes, also measure runtime cost.</description>
+    <title>Ember: Making Unified Virtual Memory Practical for Discrete-Memory GPUs</title>
+    <link>https://arxiv.org/abs/2610.13408</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2610.13408</guid>
+    <description>Practical GPU memory oversubscription enables large LLM inference on stock GPUs without manual data placement. NVIDIA&#x27;s Unified Virtual Memory slows down once data exceeds GPU memory because page-fault-driven migration wastes bandwidth and leaves the GPU idle. Ember starts allocations in host RAM and uses GPU hardware counters to promote only hot regions, batch-evicting cold ones. At 1.5x oversubscription it beats UVM by 6.8-10.6x on six apps and generates LLM tokens 4.7-16x faster at sizes where manual placement cannot run at all. Takeaway: Tracking page hotness via hardware counters, rather than prefetching on faults, is what makes automatic GPU memory management viable.</description>
     <pubDate>Mon, 12 Oct 2026 00:00:00 -0400</pubDate>
-    <source>Han Peng et al.</source>
+    <source>Senad-Leandro Lemes Galera et al.</source>
   </item>
   <item>
-    <title>A Simplified Layout Algebra for GPU Kernels</title>
-    <link>https://arxiv.org/abs/2610.13679</link>
-    <guid isPermaLink="false">https://arxiv.org/abs/2610.13679</guid>
-    <description>It simplifies how compilers decide which GPU thread holds which tensor element, cutting six interacting rules to one. Mapping tensor chunks onto threads and memory is central to GPU kernel code generation, and NVIDIA&#x27;s CuTe library formalizes this with an algebra requiring six interacting conditions per operation. Tagging each layout with its target space (thread values, logical coordinates, or physical addresses) and enforcing bijections or no-aliased writes accordingly reduces composition to a single range check. Takeaway: Tagging layouts by target space cuts GPU tensor composition checks from six interacting rules to one.</description>
+    <title>ProvQML: Efficient Provenance Capture for Machine Learning as Recursive Aggregate SQL [Extended Version]</title>
+    <link>https://arxiv.org/abs/2610.13756</link>
+    <guid isPermaLink="false">https://arxiv.org/abs/2610.13756</guid>
+    <description>It turns ML training into recursive SQL queries while automatically tracking where every parameter update came from. ProvQML extends a distributed recursive aggregate SQL engine to run ML algorithms as queries, capturing fine-grained provenance: local provenance ties each training instance to its gradient contribution at a specific step, while global provenance links the sequence of parameter updates across iterations. Experiments on standard ML datasets demonstrate efficient provenance capture for multiple model types. Takeaway: Recursive aggregate SQL is a viable execution layer for ML with built-in explainability through query provenance.</description>
     <pubDate>Mon, 12 Oct 2026 00:00:00 -0400</pubDate>
-    <source>Nan An et al.</source>
+    <source>Nkechi J. Akinwale et al.</source>
   </item>
   <item>
-    <title>Codex CLI installs a persistent, self-updating background daemon by default</title>
-    <link>https://github.com/openai/codex/issues/48195</link>
-    <guid isPermaLink="false">https://github.com/openai/codex/issues/48195</guid>
-    <description>A popular AI CLI silently spawns a persistent, self-updating background daemon that breaks process and package-manager boundaries. Codex CLI 0.157.0 spawns a detached daemon (codex app-server --managed-daemon) by default on every interactive session, reparented to PID 1 and outliving the TUI. It duplicates the ~374MB binary into ~/.codex/packages/app-server-daemon/releases/, runs an hourly updater that force-kills active turns, and pins the first session&#x27;s env (HTTPS_PROXY, direnv vars) for all later clients. Maintainers eventually flipped daemon_auto_start to opt-in. Takeaway: Tools that default to persistent, self-updating background processes violate least surprise and erode package-manager and environment isolation guarantees.</description>
-    <pubDate>2026-10-12T18:29:04Z</pubDate>
+    <title>11 year old unsoundness bugs found in Rust borrow checker</title>
+    <link>https://github.com/rust-lang/rust/issues/164250</link>
+    <guid isPermaLink="false">https://github.com/rust-lang/rust/issues/164250</guid>
+    <description>A long-standing soundness hole in Rust&#x27;s borrow checker let lifetime bounds be bypassed, affecting any Rust codebase that relies on it for memory safety. A bug in Rust since at least version 1.18 (2017) allows assigning a shorter-lived reference to a field that should require a &#x27;static lifetime, by exploiting how variance interacts with field assignment and Drop. Exploitation requires a malicious Drop implementation, and AddressSanitizer catches the resulting use-after-scope. The Types Team is treating it as P-high and folding the fix into Project Zero. Takeaway: Even mature, formally-grounded type systems can hide soundness bugs for over a decade when variance, lifetimes, and destructors interact subtly.</description>
+    <pubDate>2026-10-13T10:27:00Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Show HN: PS2 games statically recompiled to WebAssembly</title>
-    <link>https://github.com/snuri00/ps2-web-recomp</link>
-    <guid isPermaLink="false">https://github.com/snuri00/ps2-web-recomp</guid>
-    <description>Shows how static binary lifting plus a reimplemented OS can run a console in the browser at full speed. Emotion Engine machine code is translated to C++ then WebAssembly, with the IOP running original IRX modules through an interpreter and the Graphics Synthesizer reimplemented as WebGPU compute shaders. Performance went from 3 FPS to 50 FPS by hoisting texture uploads, caching GPU data, and switching from setTimeout to MessageChannel. Takeaway: AOT translation plus reimplemented OS services and compute shader GPU emulation can match console speed in the browser.</description>
-    <pubDate>2026-10-12T06:46:53Z</pubDate>
+    <title>Show HN: Spotatui, a Spotify TUI/GUI without web API rate limits</title>
+    <link>https://github.com/LargeModGames/spotatui</link>
+    <guid isPermaLink="false">https://github.com/LargeModGames/spotatui</guid>
+    <description>Demonstrates a Rust TUI&#x27;s lightweight footprint (~78 MB RAM) and exposes playback control over MCP for coding agents. spotatui is a Rust terminal music player forked from spotify-tui that streams Spotify natively via librespot, avoiding web API rate limits. It routes audio from multiple sources (YouTube, Subsonic, local files, Qobuz, Apple Music) through its own engine with an FFT visualizer and Lua plugins. It exposes a Model Context Protocol interface so coding agents can drive playback directly. Takeaway: Bundling native streaming plus an MCP interface shows how to make a tool scriptable by agents without wrapper services.</description>
+    <pubDate>2026-10-13T11:32:00Z</pubDate>
     <source>Hacker News</source>
   </item>
   <item>
-    <title>Linus Torvalds Working On A Hefty Linux Kernel Improvement With Claude Code</title>
-    <link>https://www.phoronix.com/news/Linus-Torvalds-Claude-Code</link>
-    <guid isPermaLink="false">https://www.phoronix.com/news/Linus-Torvalds-Claude-Code</guid>
-    <description>Linus Torvalds publicly used Claude Code to write a Linux kernel patch series addressing a real page cache contention bottleneck. Torvalds created a branch adapting memory management to read from the page cache without folio reference counts, targeting contention when many threads issue small reads to one file. He confirmed Claude Code wrote the code, tests, review, and the cover letter first draft, and the patches show significant performance gains. Commenters accept AI use for code and tests but object to AI drafting the human-written cover letter, calling it slop that replaces real communication. Takeaway: LLM coding assistants can produce measurable performance wins in low-level systems code, though AI-generated prose for humans draws criticism.</description>
-    <pubDate>2026-10-12T05:11:29.702-05:00</pubDate>
+    <title>Redesigning source control at Anthropic</title>
+    <link>https://www.anthropic.com/engineering/redesigning-source-control</link>
+    <guid isPermaLink="false">https://www.anthropic.com/engineering/redesigning-source-control</guid>
+    <description>Real case study of replacing git with a server-centric VCS to handle AI-driven merge volume in a massive monorepo. Anthropic built Scion, a server-centric VCS, after merge volume hit 30,000 per day and their monorepo reached roughly 100 GB of history. It uses content-addressed changesets in a write-ahead log, Spanner for ref state, recursively computed derived data, and stateless cache servers answering sparse checkout requests. Commenters question whether a monorepo at all is wise and whether announcing unreleased internal tools is useful, while others argue reinventing VCS becomes rational as AI lowers coding costs. Takeaway: For always-online workloads, a server-centric VCS with content-addressed storage and lazily derived data can outperform gits decentralized model.</description>
+    <pubDate>2026-10-13T15:49:56Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>A Dynamic and Distributed Virtual GPU Cloud Built on Idle Apple Silicon Devices</title>
+    <link>https://machinelearning.apple.com/research/distributed-gpu-cloud</link>
+    <guid isPermaLink="false">https://machinelearning.apple.com/research/distributed-gpu-cloud</guid>
+    <description>Aggregates idle macOS GPUs into a cluster for ML inference, exploring fault tolerance and resource scheduling tradeoffs. Minions pools idle Apple Silicon GPUs from macOS machines to run distributed ML inference. It manages task scheduling across devices with fault tolerance and input/output storage, avoiding new GPU procurement. Built as a response to high costs and wait times on centralized GPU infrastructure. Commenters question whether the contribution is novel beyond a basic CRUD database plus S3. Others argue energy costs and inefficiency on consumer devices outweigh benefits compared to centralized data centers. Takeaway: Harnessing idle consumer GPUs for inference requires weighing real costs versus centralized GPU clusters.</description>
+    <pubDate>2026-10-13T12:26:36Z</pubDate>
+    <source>Hacker News</source>
+  </item>
+  <item>
+    <title>Lotus Improv on the NeXT</title>
+    <link>https://stonetools.ghost.io/lotusimprov-next/</link>
+    <guid isPermaLink="false">https://stonetools.ghost.io/lotusimprov-next/</guid>
+    <description>A 1988 spreadsheet modeled data with named categories instead of fixed cells, foreshadowing pivot tables and relational thinking. Lotus Improv was a NeXT-exclusive spreadsheet that replaced generic A1/B7 cell addresses with user-defined categories and items, letting formulas read like English and views rearrange on the fly. NeXTSTEP later became macOS and iOS. The author runs it today through Previous on Windows 11. Commenters wonder how feasible it would be to rebuild Improv&#x27;s relational model as a modern spreadsheet alternative in 2026. Takeaway: Decoupling data values from their layout makes analysis more intuitive; conventional spreadsheets remain stuck in a weaker 1980s model.</description>
+    <pubDate>2026-10-13T06:15:09.948-05:00</pubDate>
     <source>Lobsters</source>
-  </item>
-  <item>
-    <title>Arena Allocators in C</title>
-    <link>https://eliasebner.com/blog/guides/arena-allocators-in-c/</link>
-    <guid isPermaLink="false">https://eliasebner.com/blog/guides/arena-allocators-in-c/</guid>
-    <description>Arena allocators are a fundamental memory management pattern used in compilers and systems code, not just games. An arena allocator reserves one large buffer and hands out memory by advancing a pointer, then frees everything at once when lifetimes end. The article implements this in C with 8-byte alignment, showing alloc, realloc, clear, and free operations on a struct with data, size, and used fields. Commenters flag that the code uses C23 features like [[nodiscard]] without saying so, and uses non-standard pointer arithmetic on void* that only compiles under GCC. Others note arenas are standard in compiler work, citing Clangs AST as a bump-allocated structure. Takeaway: Group objects by lifetime into one allocation, then free them in bulk instead of tracking each free.</description>
-    <pubDate>2026-10-11T11:59:58.126-05:00</pubDate>
-    <source>Lobsters</source>
-  </item>
-  <item>
-    <title>Secret of Orange Cats Revealed After 60-Year Search</title>
-    <link>https://www.sciencealert.com/secret-of-orange-cats-finally-revealed-after-60-year-search</link>
-    <guid isPermaLink="false">https://www.sciencealert.com/secret-of-orange-cats-finally-revealed-after-60-year-search</guid>
-    <description>A regulatory DNA deletion causes 13x gene overexpression, showing how non-coding control regions drive trait differences. Two teams found a 5 kilobase deletion in non-protein-coding DNA causes orange cat fur by overexpressing the Arhgap36 gene 13 times in skin cells. The mutation sits on the X chromosome, and X-inactivation in females creates the mosaic patterns seen in calico and tortoiseshell cats. The regulatory deletion shifts dark eumelanin pigments to red pheomelanin. Commenters noted this is a 2024 rehash, while others debated whether orange cats are actually less intelligent, noting the article calls it unsupported yet inconclusive. Takeaway: Regulatory DNA regions, not protein-coding sequences, can drive dramatic trait differences through expression-level changes.</description>
-    <pubDate>2026-10-10T22:10:57Z</pubDate>
-    <source>Hacker News</source>
   </item>
 </channel></rss>
